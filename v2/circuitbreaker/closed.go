@@ -1,11 +1,9 @@
 package circuitbreaker
 
 import (
-	"slices"
 	"time"
 
 	A "github.com/IBM/fp-go/v2/array"
-	F "github.com/IBM/fp-go/v2/function"
 	N "github.com/IBM/fp-go/v2/number"
 	"github.com/IBM/fp-go/v2/optics/lens"
 	"github.com/IBM/fp-go/v2/option"
@@ -120,7 +118,8 @@ var (
 // Thread Safety: Returns a new instance; the original is not modified.
 // Safe for concurrent use.
 func (s *closedStateWithErrorCount) Empty() ClosedState {
-	return resetFailureCount(s)
+	_ = "STUB: not implemented"
+	return *new(ClosedState)
 }
 
 // AddError increments the failure count and returns a new closedStateWithErrorCount.
@@ -129,7 +128,8 @@ func (s *closedStateWithErrorCount) Empty() ClosedState {
 // Thread Safety: Returns a new instance; the original is not modified.
 // Safe for concurrent use.
 func (s *closedStateWithErrorCount) AddError(_ time.Time) ClosedState {
-	return incFailureCount(s)
+	_ = "STUB: not implemented"
+	return *new(ClosedState)
 }
 
 // AddSuccess resets the failure count to zero and returns a new closedStateWithErrorCount.
@@ -138,7 +138,8 @@ func (s *closedStateWithErrorCount) AddError(_ time.Time) ClosedState {
 // Thread Safety: Returns a new instance; the original is not modified.
 // Safe for concurrent use.
 func (s *closedStateWithErrorCount) AddSuccess(_ time.Time) ClosedState {
-	return resetFailureCount(s)
+	_ = "STUB: not implemented"
+	return *new(ClosedState)
 }
 
 // Check verifies if the failure count is below the threshold.
@@ -147,12 +148,8 @@ func (s *closedStateWithErrorCount) AddSuccess(_ time.Time) ClosedState {
 //
 // Thread Safety: Does not modify the receiver; safe for concurrent use.
 func (s *closedStateWithErrorCount) Check(_ time.Time) Option[ClosedState] {
-	return F.Pipe3(
-		s,
-		failureCountLens.Get,
-		s.checkFailures,
-		option.MapTo[uint](ClosedState(s)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeClosedStateCounter creates a counter-based ClosedState implementation.
@@ -179,9 +176,8 @@ func (s *closedStateWithErrorCount) Check(_ time.Time) Option[ClosedState] {
 // Thread Safety: The returned ClosedState is safe for concurrent use. All methods
 // return new instances rather than modifying the receiver.
 func MakeClosedStateCounter(maxFailures uint) ClosedState {
-	return &closedStateWithErrorCount{
-		checkFailures: option.FromPredicate(N.LessThan(maxFailures)),
-	}
+	_ = "STUB: not implemented"
+	return *new(ClosedState)
 }
 
 // Empty returns a new closedStateWithHistory with an empty failure history.
@@ -189,38 +185,39 @@ func MakeClosedStateCounter(maxFailures uint) ClosedState {
 // Thread Safety: Returns a new instance with a new empty slice; the original is not modified.
 // Safe for concurrent use.
 func (s *closedStateWithHistory) Empty() ClosedState {
-	return resetHistory(s)
+	_ = "STUB: not implemented"
+	return *
+
+	// addToSlice creates a new sorted slice by adding an item to an existing slice.
+	// This function does not modify the input slice; it creates a new slice with the item added
+	// and returns it in sorted order.
+	//
+	// Parameters:
+	//   - o: An Ord instance for comparing time.Time values to determine sort order
+	//   - ar: The existing slice of time.Time values (assumed to be sorted)
+	//   - item: The new time.Time value to add to the slice
+	//
+	// Returns:
+	//   - A new slice containing all elements from ar plus the new item, sorted in ascending order
+	//
+	// Implementation Details:
+	//   - Creates a new slice with capacity len(ar)+1
+	//   - Copies all elements from ar to the new slice
+	//   - Appends the new item
+	//   - Sorts the entire slice using the provided Ord comparator
+	//
+	// Thread Safety: This function is pure and does not modify its inputs. It always returns
+	// a new slice, making it safe for concurrent use. This is a key component of the immutable
+	// design of closedStateWithHistory.
+	//
+	// Note: This function is used internally by closedStateWithHistory.AddError to maintain
+	// a sorted history of failure timestamps for efficient binary search operations.
+	new(ClosedState)
 }
 
-// addToSlice creates a new sorted slice by adding an item to an existing slice.
-// This function does not modify the input slice; it creates a new slice with the item added
-// and returns it in sorted order.
-//
-// Parameters:
-//   - o: An Ord instance for comparing time.Time values to determine sort order
-//   - ar: The existing slice of time.Time values (assumed to be sorted)
-//   - item: The new time.Time value to add to the slice
-//
-// Returns:
-//   - A new slice containing all elements from ar plus the new item, sorted in ascending order
-//
-// Implementation Details:
-//   - Creates a new slice with capacity len(ar)+1
-//   - Copies all elements from ar to the new slice
-//   - Appends the new item
-//   - Sorts the entire slice using the provided Ord comparator
-//
-// Thread Safety: This function is pure and does not modify its inputs. It always returns
-// a new slice, making it safe for concurrent use. This is a key component of the immutable
-// design of closedStateWithHistory.
-//
-// Note: This function is used internally by closedStateWithHistory.AddError to maintain
-// a sorted history of failure timestamps for efficient binary search operations.
 func addToSlice(o ord.Ord[time.Time], ar []time.Time, item time.Time) []time.Time {
-	cpy := make([]time.Time, len(ar)+1)
-	cpy[copy(cpy, ar)] = item
-	slices.SortFunc(cpy, o.Compare)
-	return cpy
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AddError records a failure at the given time and returns a new closedStateWithHistory.
@@ -230,18 +227,11 @@ func addToSlice(o ord.Ord[time.Time], ar []time.Time, item time.Time) []time.Tim
 // Thread Safety: Returns a new instance with a new history slice; the original is not modified.
 // Safe for concurrent use. The addToSlice function creates a new slice, ensuring immutability.
 func (s *closedStateWithHistory) AddError(currentTime time.Time) ClosedState {
-
-	addFailureToHistory := F.Pipe1(
-		historyLens,
-		lens.Modify[*closedStateWithHistory](func(old []time.Time) []time.Time {
-			// oldest valid entry
-			idx, _ := slices.BinarySearchFunc(old, currentTime.Add(-s.timeWindow), s.ordTime.Compare)
-			return addToSlice(s.ordTime, old[idx:], currentTime)
-		}),
-	)
-
-	return addFailureToHistory(s)
+	_ = "STUB: not implemented"
+	return *new(ClosedState)
 }
+
+// oldest valid entry
 
 // AddSuccess purges the entire failure history and returns a new closedStateWithHistory.
 // The time parameter is ignored; any success clears all tracked failures.
@@ -249,23 +239,20 @@ func (s *closedStateWithHistory) AddError(currentTime time.Time) ClosedState {
 // Thread Safety: Returns a new instance with a new empty slice; the original is not modified.
 // Safe for concurrent use.
 func (s *closedStateWithHistory) AddSuccess(_ time.Time) ClosedState {
-	return resetHistory(s)
+	_ = "STUB: not implemented"
+	return *
+
+	// Check verifies if the number of failures in the history is below the threshold.
+	// Returns Some(ClosedState) if below threshold, None if at or above threshold.
+	// The time parameter is ignored; the check is based on the current history size.
+	//
+	// Thread Safety: Does not modify the receiver; safe for concurrent use.
+	new(ClosedState)
 }
 
-// Check verifies if the number of failures in the history is below the threshold.
-// Returns Some(ClosedState) if below threshold, None if at or above threshold.
-// The time parameter is ignored; the check is based on the current history size.
-//
-// Thread Safety: Does not modify the receiver; safe for concurrent use.
 func (s *closedStateWithHistory) Check(_ time.Time) Option[ClosedState] {
-
-	return F.Pipe4(
-		s,
-		historyLens.Get,
-		A.Size,
-		s.checkFailures,
-		option.MapTo[int](ClosedState(s)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeClosedStateHistory creates a time-window-based ClosedState implementation.
@@ -320,10 +307,6 @@ func (s *closedStateWithHistory) Check(_ time.Time) Option[ClosedState] {
 func MakeClosedStateHistory(
 	timeWindow time.Duration,
 	maxFailures uint) ClosedState {
-	return &closedStateWithHistory{
-		checkFailures: option.FromPredicate(N.LessThan(int(maxFailures))),
-		ordTime:       ord.OrdTime(),
-		history:       A.Empty[time.Time](),
-		timeWindow:    timeWindow,
-	}
+	_ = "STUB: not implemented"
+	return *new(ClosedState)
 }

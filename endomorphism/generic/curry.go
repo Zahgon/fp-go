@@ -17,20 +17,12 @@ package generic
 
 // Curry2 is a duplicate of [F.Curry2] but because of the type system it's not compatible otherwise
 func Curry2[GT1 ~func(T1) T1, FCT ~func(T0, T1) T1, T0, T1 any](f FCT) func(T0) GT1 {
-	return func(t0 T0) GT1 {
-		return func(t1 T1) T1 {
-			return f(t0, t1)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry2 is a duplicate of [F.Curry2] but because of the type system it's not compatible otherwise
 func Curry3[GT2 ~func(T2) T2, FCT ~func(T0, T1, T2) T2, T0, T1, T2 any](f FCT) func(T0) func(T1) GT2 {
-	return func(t0 T0) func(T1) GT2 {
-		return func(t1 T1) GT2 {
-			return func(t2 T2) T2 {
-				return f(t0, t1, t2)
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

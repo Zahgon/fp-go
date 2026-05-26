@@ -15,152 +15,131 @@
 
 package generic
 
-import (
-	"sync"
-
-	F "github.com/IBM/fp-go/function"
-	FIO "github.com/IBM/fp-go/internal/fromio"
-	FR "github.com/IBM/fp-go/internal/fromreader"
-	FC "github.com/IBM/fp-go/internal/functor"
-	"github.com/IBM/fp-go/internal/readert"
-	IO "github.com/IBM/fp-go/io/generic"
-	R "github.com/IBM/fp-go/reader/generic"
-)
-
 func FromIO[GEA ~func(E) GIOA, GIOA ~func() A, E, A any](t GIOA) GEA {
-	return R.Of[GEA, E](t)
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
 func FromReader[GA ~func(E) A, GEA ~func(E) GIOA, GIOA ~func() A, E, A any](r GA) GEA {
-	return readert.MonadFromReader[GA, GEA](IO.Of[GIOA, A], r)
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
 func MonadMap[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GIOA ~func() A, GIOB ~func() B, E, A, B any](fa GEA, f func(A) B) GEB {
-	return readert.MonadMap[GEA, GEB](IO.MonadMap[GIOA, GIOB, A, B], fa, f)
+	_ = "STUB: not implemented"
+	return *new(GEB)
 }
 
 func Map[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GIOA ~func() A, GIOB ~func() B, E, A, B any](f func(A) B) func(GEA) GEB {
-	return readert.Map[GEA, GEB](IO.Map[GIOA, GIOB, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChain[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GIOA ~func() A, GIOB ~func() B, E, A, B any](ma GEA, f func(A) GEB) GEB {
-	return readert.MonadChain(IO.MonadChain[GIOA, GIOB, A, B], ma, f)
+	_ = "STUB: not implemented"
+	return *new(GEB)
 }
 
 func Chain[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GIOA ~func() A, GIOB ~func() B, E, A, B any](f func(A) GEB) func(GEA) GEB {
-	return F.Bind2nd(MonadChain[GEA, GEB, GIOA, GIOB, E, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Of[GEA ~func(E) GIOA, GIOA ~func() A, E, A any](a A) GEA {
-	return readert.MonadOf[GEA](IO.Of[GIOA, A], a)
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
 func MonadAp[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GEFAB ~func(E) GIOFAB, GIOA ~func() A, GIOB ~func() B, GIOFAB ~func() func(A) B, E, A, B any](fab GEFAB, fa GEA) GEB {
-	return readert.MonadAp[GEA, GEB, GEFAB, E, A](IO.MonadAp[GIOA, GIOB, GIOFAB, A, B], fab, fa)
+	_ = "STUB: not implemented"
+	return *new(GEB)
 }
 
 func Ap[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GEFAB ~func(E) GIOFAB, GIOA ~func() A, GIOB ~func() B, GIOFAB ~func() func(A) B, E, A, B any](fa GEA) func(GEFAB) GEB {
-	return F.Bind2nd(MonadAp[GEA, GEB, GEFAB, GIOA, GIOB, GIOFAB, E, A, B], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadApSeq[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GEFAB ~func(E) GIOFAB, GIOA ~func() A, GIOB ~func() B, GIOFAB ~func() func(A) B, E, A, B any](fab GEFAB, fa GEA) GEB {
-	return readert.MonadAp[GEA, GEB, GEFAB, E, A](IO.MonadApSeq[GIOA, GIOB, GIOFAB, A, B], fab, fa)
+	_ = "STUB: not implemented"
+	return *new(GEB)
 }
 
 func ApSeq[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GEFAB ~func(E) GIOFAB, GIOA ~func() A, GIOB ~func() B, GIOFAB ~func() func(A) B, E, A, B any](fa GEA) func(GEFAB) GEB {
-	return F.Bind2nd(MonadApSeq[GEA, GEB, GEFAB, GIOA, GIOB, GIOFAB, E, A, B], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadApPar[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GEFAB ~func(E) GIOFAB, GIOA ~func() A, GIOB ~func() B, GIOFAB ~func() func(A) B, E, A, B any](fab GEFAB, fa GEA) GEB {
-	return readert.MonadAp[GEA, GEB, GEFAB, E, A](IO.MonadApPar[GIOA, GIOB, GIOFAB, A, B], fab, fa)
+	_ = "STUB: not implemented"
+	return *new(GEB)
 }
 
 func ApPar[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GEFAB ~func(E) GIOFAB, GIOA ~func() A, GIOB ~func() B, GIOFAB ~func() func(A) B, E, A, B any](fa GEA) func(GEFAB) GEB {
-	return F.Bind2nd(MonadApPar[GEA, GEB, GEFAB, GIOA, GIOB, GIOFAB, E, A, B], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Ask[GEE ~func(E) GIOE, GIOE ~func() E, E any]() GEE {
-	return FR.Ask(FromReader[func(E) E, GEE, GIOE, E, E])()
+	_ = "STUB: not implemented"
+	return *new(GEE)
 }
 
 func Asks[GA ~func(E) A, GEA ~func(E) GIOA, GIOA ~func() A, E, A any](r GA) GEA {
-	return FR.Asks(FromReader[GA, GEA, GIOA, E, A])(r)
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
 func MonadChainIOK[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GIOA ~func() A, GIOB ~func() B, E, A, B any](ma GEA, f func(A) GIOB) GEB {
-	return FIO.MonadChainIOK(
-		MonadChain[GEA, GEB],
-		FromIO[GEB],
-		ma, f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GEB)
 }
 
 func ChainIOK[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GIOA ~func() A, GIOB ~func() B, E, A, B any](f func(A) GIOB) func(GEA) GEB {
-	return FIO.ChainIOK(
-		Chain[GEA, GEB],
-		FromIO[GEB],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainFirstIOK[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GIOA ~func() A, GIOB ~func() B, E, A, B any](ma GEA, f func(A) GIOB) GEA {
-	return FIO.MonadChainFirstIOK(
-		MonadChain[GEA, GEA],
-		MonadMap[GEB, GEA],
-		FromIO[GEB],
-		ma, f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
 func ChainFirstIOK[GEA ~func(E) GIOA, GEB ~func(E) GIOB, GIOA ~func() A, GIOB ~func() B, E, A, B any](f func(A) GIOB) func(GEA) GEA {
-	return FIO.ChainFirstIOK(
-		Chain[GEA, GEA],
-		Map[GEB, GEA],
-		FromIO[GEB],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Defer creates an IO by creating a brand new IO via a generator function, each time
 func Defer[GEA ~func(E) GA, GA ~func() A, E, A any](gen func() GEA) GEA {
-	return func(e E) GA {
-		return func() A {
-			return gen()(e)()
-		}
-	}
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
 // Memoize computes the value of the provided reader monad lazily but exactly once
 // The context used to compute the value is the context of the first call, so do not use this
 // method if the value has a functional dependency on the content of the context
 func Memoize[GEA ~func(E) GA, GA ~func() A, E, A any](rdr GEA) GEA {
+	_ = "STUB: not implemented"
 	// synchronization primitives
-	var once sync.Once
-	var result A
-	// callback
-	gen := func(e E) func() {
-		return func() {
-			result = rdr(e)()
-		}
-	}
-	// returns our memoized wrapper
-	return func(e E) GA {
-		io := gen(e)
-		return func() A {
-			once.Do(io)
-			return result
-		}
-	}
+	return *new(GEA)
 }
 
+// callback
+
+// returns our memoized wrapper
+
 func Flatten[GEA ~func(R) GIOA, GGEA ~func(R) GIOEA, GIOA ~func() A, GIOEA ~func() GEA, R, A any](mma GGEA) GEA {
-	return MonadChain(mma, F.Identity[GEA])
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
 func MonadFlap[GEFAB ~func(E) GIOFAB, GEB ~func(E) GIOB, GIOFAB ~func() func(A) B, GIOB ~func() B, E, A, B any](fab GEFAB, a A) GEB {
-	return FC.MonadFlap(MonadMap[GEFAB, GEB], fab, a)
+	_ = "STUB: not implemented"
+	return *new(GEB)
 }
 
 func Flap[GEFAB ~func(E) GIOFAB, GEB ~func(E) GIOB, GIOFAB ~func() func(A) B, GIOB ~func() B, E, A, B any](a A) func(GEFAB) GEB {
-	return FC.Flap(Map[GEFAB, GEB], a)
+	_ = "STUB: not implemented"
+	return nil
 }

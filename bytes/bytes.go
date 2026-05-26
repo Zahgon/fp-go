@@ -15,14 +15,8 @@
 
 package bytes
 
-func Empty() []byte {
-	return Monoid.Empty()
-}
+func Empty() []byte { _ = "STUB: not implemented"; return nil }
 
-func ToString(a []byte) string {
-	return string(a)
-}
+func ToString(a []byte) string { _ = "STUB: not implemented"; return "" }
 
-func Size(as []byte) int {
-	return len(as)
-}
+func Size(as []byte) int { _ = "STUB: not implemented"; return 0 }

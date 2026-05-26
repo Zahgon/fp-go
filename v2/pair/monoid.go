@@ -16,7 +16,6 @@
 package pair
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	M "github.com/IBM/fp-go/v2/monoid"
 )
 
@@ -86,12 +85,8 @@ import (
 //
 //go:inline
 func Monoid[L, R any](l M.Monoid[L], r M.Monoid[R]) M.Monoid[Pair[L, R]] {
-	return M.MakeMonoid(
-		func(pl, pr Pair[L, R]) Pair[L, R] {
-			return MakePair(l.Concat(Head(pl), Head(pr)), r.Concat(Tail(pl), Tail(pr)))
-		},
-		MakePair(l.Empty(), r.Empty()),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoid creates a monoid for [Pair] using applicative functor operations on the tail.
@@ -137,7 +132,8 @@ func Monoid[L, R any](l M.Monoid[L], r M.Monoid[R]) M.Monoid[Pair[L, R]] {
 //
 //go:inline
 func ApplicativeMonoid[L, R any](l M.Monoid[L], r M.Monoid[R]) M.Monoid[Pair[L, R]] {
-	return ApplicativeMonoidTail(l, r)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoidTail creates a monoid for [Pair] by lifting the tail monoid into the applicative functor.
@@ -220,11 +216,8 @@ func ApplicativeMonoid[L, R any](l M.Monoid[L], r M.Monoid[R]) M.Monoid[Pair[L, 
 //
 //go:inline
 func ApplicativeMonoidTail[L, R any](l M.Monoid[L], r M.Monoid[R]) M.Monoid[Pair[L, R]] {
-	return M.ApplicativeMonoid(
-		FromHead[R](l.Empty()),
-		MonadMapTail[L, R, func(R) R],
-		F.Bind1of3(MonadApTail[L, R, R])(l),
-		r)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoidHead creates a monoid for [Pair] by lifting the head monoid into the applicative functor.
@@ -307,9 +300,6 @@ func ApplicativeMonoidTail[L, R any](l M.Monoid[L], r M.Monoid[R]) M.Monoid[Pair
 //
 //go:inline
 func ApplicativeMonoidHead[L, R any](l M.Monoid[L], r M.Monoid[R]) M.Monoid[Pair[L, R]] {
-	return M.ApplicativeMonoid(
-		FromTail[L](r.Empty()),
-		MonadMapHead[R, L, func(L) L],
-		F.Bind1of3(MonadApHead[R, L, L])(r),
-		l)
+	_ = "STUB: not implemented"
+	return nil
 }

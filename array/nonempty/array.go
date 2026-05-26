@@ -16,10 +16,7 @@
 package nonempty
 
 import (
-	G "github.com/IBM/fp-go/array/generic"
 	EM "github.com/IBM/fp-go/endomorphism"
-	F "github.com/IBM/fp-go/function"
-	"github.com/IBM/fp-go/internal/array"
 	S "github.com/IBM/fp-go/semigroup"
 )
 
@@ -27,110 +24,83 @@ import (
 type NonEmptyArray[A any] []A
 
 // Of constructs a single element array
-func Of[A any](first A) NonEmptyArray[A] {
-	return G.Of[NonEmptyArray[A]](first)
-}
+func Of[A any](first A) NonEmptyArray[A] { _ = "STUB: not implemented"; return nil }
 
 // From constructs a [NonEmptyArray] from a set of variadic arguments
-func From[A any](first A, data ...A) NonEmptyArray[A] {
-	count := len(data)
-	if count == 0 {
-		return Of(first)
-	}
-	// allocate the requested buffer
-	buffer := make(NonEmptyArray[A], count+1)
-	buffer[0] = first
-	copy(buffer[1:], data)
-	return buffer
-}
+func From[A any](first A, data ...A) NonEmptyArray[A] { _ = "STUB: not implemented"; return nil }
 
-func IsEmpty[A any](_ NonEmptyArray[A]) bool {
-	return false
-}
+// allocate the requested buffer
 
-func IsNonEmpty[A any](_ NonEmptyArray[A]) bool {
-	return true
-}
+func IsEmpty[A any](_ NonEmptyArray[A]) bool { _ = "STUB: not implemented"; return false }
+
+func IsNonEmpty[A any](_ NonEmptyArray[A]) bool { _ = "STUB: not implemented"; return false }
 
 func MonadMap[A, B any](as NonEmptyArray[A], f func(a A) B) NonEmptyArray[B] {
-	return G.MonadMap[NonEmptyArray[A], NonEmptyArray[B]](as, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Map[A, B any](f func(a A) B) func(NonEmptyArray[A]) NonEmptyArray[B] {
-	return F.Bind2nd(MonadMap[A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Reduce[A, B any](f func(B, A) B, initial B) func(NonEmptyArray[A]) B {
-	return func(as NonEmptyArray[A]) B {
-		return array.Reduce(as, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ReduceRight[A, B any](f func(A, B) B, initial B) func(NonEmptyArray[A]) B {
-	return func(as NonEmptyArray[A]) B {
-		return array.ReduceRight(as, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Tail[A any](as NonEmptyArray[A]) []A {
-	return as[1:]
-}
+func Tail[A any](as NonEmptyArray[A]) []A { _ = "STUB: not implemented"; return nil }
 
-func Head[A any](as NonEmptyArray[A]) A {
-	return as[0]
-}
+func Head[A any](as NonEmptyArray[A]) A { _ = "STUB: not implemented"; return *new(A) }
 
-func First[A any](as NonEmptyArray[A]) A {
-	return as[0]
-}
+func First[A any](as NonEmptyArray[A]) A { _ = "STUB: not implemented"; return *new(A) }
 
-func Last[A any](as NonEmptyArray[A]) A {
-	return as[len(as)-1]
-}
+func Last[A any](as NonEmptyArray[A]) A { _ = "STUB: not implemented"; return *new(A) }
 
-func Size[A any](as NonEmptyArray[A]) int {
-	return G.Size(as)
-}
+func Size[A any](as NonEmptyArray[A]) int { _ = "STUB: not implemented"; return 0 }
 
 func Flatten[A any](mma NonEmptyArray[NonEmptyArray[A]]) NonEmptyArray[A] {
-	return G.Flatten(mma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChain[A, B any](fa NonEmptyArray[A], f func(a A) NonEmptyArray[B]) NonEmptyArray[B] {
-	return G.MonadChain[NonEmptyArray[A], NonEmptyArray[B]](fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Chain[A, B any](f func(A) NonEmptyArray[B]) func(NonEmptyArray[A]) NonEmptyArray[B] {
-	return G.Chain[NonEmptyArray[A], NonEmptyArray[B]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadAp[B, A any](fab NonEmptyArray[func(A) B], fa NonEmptyArray[A]) NonEmptyArray[B] {
-	return G.MonadAp[NonEmptyArray[B]](fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Ap[B, A any](fa NonEmptyArray[A]) func(NonEmptyArray[func(A) B]) NonEmptyArray[B] {
-	return G.Ap[NonEmptyArray[B], NonEmptyArray[func(A) B]](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FoldMap maps and folds a [NonEmptyArray]. Map the [NonEmptyArray] passing each value to the iterating function. Then fold the results using the provided [Semigroup].
 func FoldMap[A, B any](s S.Semigroup[B]) func(func(A) B) func(NonEmptyArray[A]) B {
-	return func(f func(A) B) func(NonEmptyArray[A]) B {
-		return func(as NonEmptyArray[A]) B {
-			return array.Reduce(Tail(as), func(cur B, a A) B {
-				return s.Concat(cur, f(a))
-			}, f(Head(as)))
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Fold folds the [NonEmptyArray] using the provided [Semigroup].
-func Fold[A any](s S.Semigroup[A]) func(NonEmptyArray[A]) A {
-	return func(as NonEmptyArray[A]) A {
-		return array.Reduce(Tail(as), s.Concat, Head(as))
-	}
-}
+func Fold[A any](s S.Semigroup[A]) func(NonEmptyArray[A]) A { _ = "STUB: not implemented"; return nil }
 
 // Prepend prepends a single value to an array
 func Prepend[A any](head A) EM.Endomorphism[NonEmptyArray[A]] {
-	return array.Prepend[EM.Endomorphism[NonEmptyArray[A]]](head)
+	_ = "STUB: not implemented"
+	return nil
 }

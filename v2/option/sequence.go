@@ -15,10 +15,6 @@
 
 package option
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-)
-
 // Sequence converts an Option of some higher kinded type into the higher kinded type of an Option.
 // This is a generic sequencing operation that works with any applicative functor.
 //
@@ -37,7 +33,8 @@ func Sequence[A, HKTA, HKTOA any](
 	mof func(Option[A]) HKTOA,
 	mmap func(Kleisli[A, A]) func(HKTA) HKTOA,
 ) func(Option[HKTA]) HKTOA {
-	return Fold(F.Nullary2(None[A], mof), mmap(Some[A]))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Traverse converts an Option by applying a function that produces a higher kinded type,
@@ -63,7 +60,8 @@ func Traverse[A, B, HKTB, HKTOB any](
 	mof func(Option[B]) HKTOB,
 	mmap func(Kleisli[B, B]) func(HKTB) HKTOB,
 ) func(func(A) HKTB) func(Option[A]) HKTOB {
-	return MakeTraversable[A](mof, mmap)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeTraversable creates a fully curried traversal function for Option types.
@@ -121,9 +119,6 @@ func MakeTraversable[A, B, HKTB, HKTOB any](
 	mof func(Option[B]) HKTOB,
 	mmap func(Kleisli[B, B]) func(HKTB) HKTOB,
 ) func(func(A) HKTB) func(Option[A]) HKTOB {
-	onNone := F.Nullary2(None[B], mof)
-	onSome := mmap(Some[B])
-	return func(f func(A) HKTB) func(Option[A]) HKTOB {
-		return Fold(onNone, F.Flow2(f, onSome))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

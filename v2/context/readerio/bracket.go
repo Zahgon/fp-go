@@ -1,10 +1,5 @@
 package readerio
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	RIO "github.com/IBM/fp-go/v2/readerio"
-)
-
 // Bracket ensures that a resource is properly acquired, used, and released, even if an error occurs.
 // This implements the bracket pattern for safe resource management with [ReaderIO].
 //
@@ -72,7 +67,8 @@ func Bracket[
 	use Kleisli[A, B],
 	release func(A, B) ReaderIO[ANY],
 ) ReaderIO[B] {
-	return RIO.Bracket(acquire, use, release)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WithResource creates a higher-order function that manages a resource lifecycle for any operation.
@@ -186,5 +182,6 @@ func Bracket[
 //go:inline
 func WithResource[A, B, ANY any](
 	onCreate ReaderIO[A], onRelease Kleisli[A, ANY]) Kleisli[Kleisli[A, B], B] {
-	return function.Bind13of3(Bracket[A, B, ANY])(onCreate, function.Ignore2of2[B](onRelease))
+	_ = "STUB: not implemented"
+	return nil
 }

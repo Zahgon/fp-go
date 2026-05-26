@@ -15,20 +15,13 @@
 
 package lazy
 
-import "sync"
-
 // Memoize computes the value of the provided IO monad lazily but exactly once
 func Memoize[GA ~func() A, A any](ma GA) GA {
+	_ = "STUB: not implemented"
 	// synchronization primitives
-	var once sync.Once
-	var result A
-	// callback
-	gen := func() {
-		result = ma()
-	}
-	// returns our memoized wrapper
-	return func() A {
-		once.Do(gen)
-		return result
-	}
+	return *new(GA)
 }
+
+// callback
+
+// returns our memoized wrapper

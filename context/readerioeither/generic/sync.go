@@ -19,8 +19,6 @@ import (
 	"context"
 
 	E "github.com/IBM/fp-go/either"
-	F "github.com/IBM/fp-go/function"
-	IO "github.com/IBM/fp-go/io/generic"
 )
 
 // WithLock executes the provided IO operation in the scope of a lock
@@ -30,15 +28,6 @@ func WithLock[
 	GRCANCEL ~func(context.Context) GIOCANCEL,
 	GIOCANCEL ~func() E.Either[error, context.CancelFunc],
 	A any](lock GRCANCEL) func(fa GRA) GRA {
-
-	type GRANY func(ctx context.Context) func() E.Either[error, any]
-	type IOANY func() any
-
-	return F.Flow2(
-		F.Constant1[context.CancelFunc, GRA],
-		WithResource[GRA, GRCANCEL, GRANY](lock, F.Flow2(
-			IO.FromImpure[IOANY, context.CancelFunc],
-			FromIO[GRANY, IOANY],
-		)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

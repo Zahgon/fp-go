@@ -15,12 +15,6 @@
 
 package option
 
-import (
-	"bytes"
-	"encoding/json"
-	"reflect"
-)
-
 var (
 	// jsonNull is the cached representation of the `null` serialization in JSON
 	jsonNull = []byte("null")
@@ -54,38 +48,25 @@ type (
 //
 //	Some(42).String() // "Some[int](42)"
 //	None[int]().String() // "None[int]"
-func (s Option[A]) String() string {
-	return optString(s.isSome, s.value)
-}
+func (s Option[A]) String() string { _ = "STUB: not implemented"; return "" }
 
 func optMarshalJSON(isSome bool, value any) ([]byte, error) {
-	if isSome {
-		return json.Marshal(value)
-	}
-	return jsonNull, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (s Option[A]) MarshalJSON() ([]byte, error) {
-	return optMarshalJSON(s.isSome, s.value)
-}
+func (s Option[A]) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // optUnmarshalJSON unmarshals the [Option] from a JSON string
 //
 //go:noinline
 func optUnmarshalJSON(isSome *bool, value any, data []byte) error {
+	_ = "STUB: not implemented"
 	// decode the value
-	if bytes.Equal(data, jsonNull) {
-		*isSome = false
-		reflect.ValueOf(value).Elem().SetZero()
-		return nil
-	}
-	*isSome = true
-	return json.Unmarshal(data, value)
+	return nil
 }
 
-func (s *Option[A]) UnmarshalJSON(data []byte) error {
-	return optUnmarshalJSON(&s.isSome, &s.value, data)
-}
+func (s *Option[A]) UnmarshalJSON(data []byte) error { _ = "STUB: not implemented"; return nil }
 
 // IsNone checks if an Option is None (contains no value).
 //
@@ -98,20 +79,20 @@ func (s *Option[A]) UnmarshalJSON(data []byte) error {
 //
 //go:inline
 func IsNone[T any](val Option[T]) bool {
-	return !val.isSome
+	_ = "STUB: not implemented"
+
+	// Some creates an Option that contains a value.
+	//
+	// Example:
+	//
+	//	opt := Some(42) // Option containing 42
+	//	opt := Some("hello") // Option containing "hello"
+	//
+	//go:inline
+	return false
 }
 
-// Some creates an Option that contains a value.
-//
-// Example:
-//
-//	opt := Some(42) // Option containing 42
-//	opt := Some("hello") // Option containing "hello"
-//
-//go:inline
-func Some[T any](value T) Option[T] {
-	return Option[T]{isSome: true, value: value}
-}
+func Some[T any](value T) Option[T] { _ = "STUB: not implemented"; return nil }
 
 // Of creates an Option that contains a value.
 // This is an alias for Some and is used in monadic contexts.
@@ -122,20 +103,20 @@ func Some[T any](value T) Option[T] {
 //
 //go:inline
 func Of[T any](value T) Option[T] {
-	return Some(value)
+	_ = "STUB: not implemented"
+
+	// None creates an Option that contains no value.
+	//
+	// Example:
+	//
+	//	opt := None[int]() // Empty Option of type int
+	//	opt := None[string]() // Empty Option of type string
+	//
+	//go:inline
+	return nil
 }
 
-// None creates an Option that contains no value.
-//
-// Example:
-//
-//	opt := None[int]() // Empty Option of type int
-//	opt := None[string]() // Empty Option of type string
-//
-//go:inline
-func None[T any]() Option[T] {
-	return Option[T]{isSome: false}
-}
+func None[T any]() Option[T] { _ = "STUB: not implemented"; return nil }
 
 // IsSome checks if an Option contains a value.
 //
@@ -148,25 +129,25 @@ func None[T any]() Option[T] {
 //
 //go:inline
 func IsSome[T any](val Option[T]) bool {
-	return val.isSome
+	_ = "STUB: not implemented"
+
+	// MonadFold performs a fold operation on an Option.
+	// If the Option is Some, applies onSome to the value.
+	// If the Option is None, calls onNone.
+	//
+	// Example:
+	//
+	//	opt := Some(42)
+	//	result := MonadFold(opt,
+	//	    func() string { return "no value" },
+	//	    func(x int) string { return fmt.Sprintf("value: %d", x) },
+	//	) // "value: 42"
+	return false
 }
 
-// MonadFold performs a fold operation on an Option.
-// If the Option is Some, applies onSome to the value.
-// If the Option is None, calls onNone.
-//
-// Example:
-//
-//	opt := Some(42)
-//	result := MonadFold(opt,
-//	    func() string { return "no value" },
-//	    func(x int) string { return fmt.Sprintf("value: %d", x) },
-//	) // "value: 42"
 func MonadFold[A, B any](ma Option[A], onNone func() B, onSome func(A) B) B {
-	if IsSome(ma) {
-		return onSome(ma.value)
-	}
-	return onNone()
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 // Unwrap extracts the value and presence flag from an Option.
@@ -180,6 +161,4 @@ func MonadFold[A, B any](ma Option[A], onNone func() B, onSome func(A) B) B {
 //	val, ok := Unwrap(opt) // val = 0, ok = false
 //
 //go:inline
-func Unwrap[A any](ma Option[A]) (A, bool) {
-	return ma.value, ma.isSome
-}
+func Unwrap[A any](ma Option[A]) (A, bool) { _ = "STUB: not implemented"; return *new(A), false }

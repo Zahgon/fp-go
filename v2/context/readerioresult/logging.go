@@ -25,12 +25,7 @@ import (
 
 	"github.com/IBM/fp-go/v2/context/readerio"
 	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/io"
-	"github.com/IBM/fp-go/v2/logging"
 	"github.com/IBM/fp-go/v2/option"
-	"github.com/IBM/fp-go/v2/pair"
-	"github.com/IBM/fp-go/v2/reader"
-	"github.com/IBM/fp-go/v2/result"
 )
 
 type (
@@ -74,9 +69,8 @@ var (
 // getDefaultLoggingContext returns a default logging context with the global logger.
 // This is used when no logging context is found in the context.Context.
 func getDefaultLoggingContext() loggingContext {
-	return loggingContext{
-		logger: logging.GetLogger(),
-	}
+	_ = "STUB: not implemented"
+	return *new(loggingContext)
 }
 
 // withLoggingContext creates an endomorphism that adds a logging context to a context.Context.
@@ -88,67 +82,45 @@ func getDefaultLoggingContext() loggingContext {
 // Returns:
 //   - An endomorphism that adds the logging context to a context.Context
 func withLoggingContext(lctx loggingContext) Endomorphism[context.Context] {
-	return F.Bind2nd(withLoggingContextValue, any(lctx))
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func noop() {}
+func noop() {
+	_ = "STUB: not implemented"
 
-// onEntry creates a ReaderIO that handles the entry logging for an operation.
-// It generates a unique logging ID, captures the start time, and logs the entry message.
-// The logging context is stored in the context.Context for later retrieval.
-//
-// Parameters:
-//   - logLevel: The slog.Level to use for logging (e.g., slog.LevelInfo, slog.LevelDebug)
-//   - cb: Callback function to retrieve the logger from the context
-//   - nameAttr: The slog.Attr containing the operation name
-//
-// Returns:
-//   - A ReaderIO that prepares the context with logging information and logs the entry
+	// onEntry creates a ReaderIO that handles the entry logging for an operation.
+	// It generates a unique logging ID, captures the start time, and logs the entry message.
+	// The logging context is stored in the context.Context for later retrieval.
+	//
+	// Parameters:
+	//   - logLevel: The slog.Level to use for logging (e.g., slog.LevelInfo, slog.LevelDebug)
+	//   - cb: Callback function to retrieve the logger from the context
+	//   - nameAttr: The slog.Attr containing the operation name
+	//
+	// Returns:
+	//   - A ReaderIO that prepares the context with logging information and logs the entry
+	return
+}
+
 func onEntry(
 	logLevel slog.Level,
 	cb Reader[context.Context, *slog.Logger],
 	nameAttr slog.Attr,
 ) ReaderIO[ContextCancel] {
-
-	return func(ctx context.Context) IO[ContextCancel] {
-		// logger
-		logger := cb(ctx)
-
-		return func() ContextCancel {
-			// check if the logger is enabled
-			if logger.Enabled(ctx, logLevel) {
-				// Generate unique logging ID and capture start time
-				contextID := LoggingID(loggingCounter.Add(1))
-				startTime := time.Now()
-
-				newLogger := logger.With("ID", contextID)
-
-				// log using ID
-				newLogger.LogAttrs(ctx, logLevel, "[entering]", nameAttr)
-
-				withCtx := withLoggingContext(loggingContext{
-					contextID: contextID,
-					startTime: startTime,
-					logger:    newLogger,
-					isEnabled: true,
-				})
-				withLogger := logging.WithLogger(newLogger)
-
-				return F.Pipe2(
-					ctx,
-					withLogger,
-					pair.Map[context.CancelFunc](withCtx),
-				)
-			}
-			// logging disabled
-			withCtx := withLoggingContext(loggingContext{
-				logger:    logger,
-				isEnabled: false,
-			})
-			return pair.MakePair[context.CancelFunc](noop, withCtx(ctx))
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// logger
+
+// check if the logger is enabled
+
+// Generate unique logging ID and capture start time
+
+// log using ID
+
+// logging disabled
 
 // onExitVoid creates a Kleisli function that handles exit logging for an operation.
 // It logs either success or error based on the Result, including the operation duration.
@@ -164,42 +136,17 @@ func onExitVoid(
 	logLevel slog.Level,
 	nameAttr slog.Attr,
 ) readerio.Kleisli[Result[Void], Void] {
-	return func(res Result[Void]) ReaderIO[Void] {
-		return func(ctx context.Context) IO[Void] {
-			value := getLoggingContext(ctx)
-
-			if value.isEnabled {
-
-				return func() Void {
-					// Retrieve logging information from context
-					durationAttr := slog.Duration("duration", time.Since(value.startTime))
-
-					// Log error with ID and duration
-					onError := func(err error) Void {
-						value.logger.LogAttrs(ctx, logLevel, "[throwing]",
-							nameAttr,
-							durationAttr,
-							slog.Any("error", err))
-						return F.VOID
-					}
-
-					// Log success with ID and duration
-					onSuccess := func(v Void) Void {
-						value.logger.LogAttrs(ctx, logLevel, "[exiting ]", nameAttr, durationAttr)
-						return v
-					}
-
-					return F.Pipe1(
-						res,
-						result.Fold(onError, onSuccess),
-					)
-				}
-			}
-			// nothing to do
-			return io.Of(F.VOID)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// Retrieve logging information from context
+
+// Log error with ID and duration
+
+// Log success with ID and duration
+
+// nothing to do
 
 // LogEntryExitWithCallback creates an operator that logs entry and exit of a ReaderIOResult computation
 // using a custom logger callback and log level. This provides more control than LogEntryExit.
@@ -251,24 +198,8 @@ func LogEntryExitWithCallback[A any](
 	logLevel slog.Level,
 	cb Reader[context.Context, *slog.Logger],
 	name string) Operator[A, A] {
-
-	nameAttr := slog.String("name", name)
-
-	entry := F.Pipe1(
-		onEntry(logLevel, cb, nameAttr),
-		readerio.LocalIOK[Result[A]],
-	)
-
-	exit := readerio.Tap(F.Flow2(
-		result.MapTo[A](F.VOID),
-		onExitVoid(logLevel, nameAttr),
-	))
-
-	return F.Flow2(
-		exit,
-		entry,
-	)
-
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LogEntryExit creates an operator that logs the entry and exit of a ReaderIOResult computation with timing and correlation IDs.
@@ -380,21 +311,14 @@ func LogEntryExitWithCallback[A any](
 //   - Troubleshooting: Quickly identify where errors occur and correlate with entry logs
 //
 //go:inline
-func LogEntryExit[A any](name string) Operator[A, A] {
-	return LogEntryExitWithCallback[A](slog.LevelInfo, logging.GetLoggerFromContext, name)
-}
+func LogEntryExit[A any](name string) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 func curriedLog(
 	logLevel slog.Level,
 	cb func(context.Context) *slog.Logger,
 	message string) func(slog.Attr) ReaderIO[Void] {
-	return F.Curry2(func(a slog.Attr, ctx context.Context) IO[Void] {
-		logger := cb(ctx)
-		return func() Void {
-			logger.LogAttrs(ctx, logLevel, message, a)
-			return F.VOID
-		}
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SLogWithCallback creates a Kleisli arrow that logs a Result value (success or error) with a custom logger and log level.
@@ -461,18 +385,15 @@ func SLogWithCallback[A any](
 	logLevel slog.Level,
 	cb Reader[context.Context, *slog.Logger],
 	message string) Kleisli[Result[A], A] {
-
-	return F.Pipe1(
-		F.Flow2(
-			// create the attribute to log depending on the condition
-			result.ToSLogAttr[A](),
-			// create an `IO` that logs the attribute
-			curriedLog(logLevel, cb, message),
-		),
-		// preserve the original context
-		reader.Chain(reader.Sequence(readerio.MapTo[Void, Result[A]])),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// create the attribute to log depending on the condition
+
+// create an `IO` that logs the attribute
+
+// preserve the original context
 
 // SLog creates a Kleisli arrow that logs a Result value (success or error) with a message.
 //
@@ -536,9 +457,7 @@ func SLogWithCallback[A any](
 // For logging only successful values, use TapSLog instead.
 //
 //go:inline
-func SLog[A any](message string) Kleisli[Result[A], A] {
-	return SLogWithCallback[A](slog.LevelInfo, logging.GetLoggerFromContext, message)
-}
+func SLog[A any](message string) Kleisli[Result[A], A] { _ = "STUB: not implemented"; return nil }
 
 // TapSLog creates an operator that logs both successful values and errors with a message,
 // and passes the ReaderIOResult through unchanged.
@@ -642,6 +561,4 @@ func SLog[A any](message string) Kleisli[Result[A], A] {
 // but expressed as an Operator for direct use in F.Pipe pipelines on ReaderIOResult values.
 //
 //go:inline
-func TapSLog[A any](message string) Operator[A, A] {
-	return readerio.ChainFirst(SLog[A](message))
-}
+func TapSLog[A any](message string) Operator[A, A] { _ = "STUB: not implemented"; return nil }

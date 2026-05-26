@@ -82,22 +82,14 @@ import (
 //	result2 := apv(goodValue)(goodFn)
 //	// Right(10)
 func ApV[B, A any](sg S.Semigroup[error]) func(A, error) Operator[func(A) B, B] {
-	return func(a A, aerr error) Operator[func(A) B, B] {
-		return func(fab func(A) B, faberr error) (B, error) {
-			// Both have errors: combine them using the semigroup
-			if aerr != nil {
-				if faberr != nil {
-					return Left[B](sg.Concat(faberr, aerr))
-				}
-				// Only value has error
-				return Left[B](aerr)
-			}
-			// Only function has error
-			if faberr != nil {
-				return Left[B](faberr)
-			}
-			// Both are successful: apply function to value
-			return Of(fab(a))
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// Both have errors: combine them using the semigroup
+
+// Only value has error
+
+// Only function has error
+
+// Both are successful: apply function to value

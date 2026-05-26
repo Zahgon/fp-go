@@ -16,10 +16,7 @@
 package option
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
-	"reflect"
 )
 
 var (
@@ -36,91 +33,50 @@ type Option[A any] struct {
 // optString prints some debug info for the object
 //
 //go:noinline
-func optString(isSome bool, value any) string {
-	if isSome {
-		return fmt.Sprintf("Some[%T](%v)", value, value)
-	}
-	return fmt.Sprintf("None[%T]", value)
-}
+func optString(isSome bool, value any) string { _ = "STUB: not implemented"; return "" }
 
 // optFormat prints some debug info for the object
 //
 //go:noinline
-func optFormat(isSome bool, value any, f fmt.State, c rune) {
-	switch c {
-	case 's':
-		fmt.Fprint(f, optString(isSome, value))
-	default:
-		fmt.Fprint(f, optString(isSome, value))
-	}
-}
+func optFormat(isSome bool, value any, f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 // String prints some debug info for the object
-func (s Option[A]) String() string {
-	return optString(s.isSome, s.value)
-}
+func (s Option[A]) String() string { _ = "STUB: not implemented"; return "" }
 
 // Format prints some debug info for the object
-func (s Option[A]) Format(f fmt.State, c rune) {
-	optFormat(s.isSome, s.value, f, c)
-}
+func (s Option[A]) Format(f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 func optMarshalJSON(isSome bool, value any) ([]byte, error) {
-	if isSome {
-		return json.Marshal(value)
-	}
-	return jsonNull, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (s Option[A]) MarshalJSON() ([]byte, error) {
-	return optMarshalJSON(s.isSome, s.value)
-}
+func (s Option[A]) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // optUnmarshalJSON unmarshals the [Option] from a JSON string
 //
 //go:noinline
 func optUnmarshalJSON(isSome *bool, value any, data []byte) error {
+	_ = "STUB: not implemented"
 	// decode the value
-	if bytes.Equal(data, jsonNull) {
-		*isSome = false
-		reflect.ValueOf(value).Elem().SetZero()
-		return nil
-	}
-	*isSome = true
-	return json.Unmarshal(data, value)
+	return nil
 }
 
-func (s *Option[A]) UnmarshalJSON(data []byte) error {
-	return optUnmarshalJSON(&s.isSome, &s.value, data)
-}
+func (s *Option[A]) UnmarshalJSON(data []byte) error { _ = "STUB: not implemented"; return nil }
 
-func IsNone[T any](val Option[T]) bool {
-	return !val.isSome
-}
+func IsNone[T any](val Option[T]) bool { _ = "STUB: not implemented"; return false }
 
-func Some[T any](value T) Option[T] {
-	return Option[T]{isSome: true, value: value}
-}
+func Some[T any](value T) Option[T] { _ = "STUB: not implemented"; return nil }
 
-func Of[T any](value T) Option[T] {
-	return Some(value)
-}
+func Of[T any](value T) Option[T] { _ = "STUB: not implemented"; return nil }
 
-func None[T any]() Option[T] {
-	return Option[T]{isSome: false}
-}
+func None[T any]() Option[T] { _ = "STUB: not implemented"; return nil }
 
-func IsSome[T any](val Option[T]) bool {
-	return val.isSome
-}
+func IsSome[T any](val Option[T]) bool { _ = "STUB: not implemented"; return false }
 
 func MonadFold[A, B any](ma Option[A], onNone func() B, onSome func(A) B) B {
-	if IsSome(ma) {
-		return onSome(ma.value)
-	}
-	return onNone()
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
-func Unwrap[A any](ma Option[A]) (A, bool) {
-	return ma.value, ma.isSome
-}
+func Unwrap[A any](ma Option[A]) (A, bool) { _ = "STUB: not implemented"; return *new(A), false }

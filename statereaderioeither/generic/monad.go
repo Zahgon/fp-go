@@ -68,39 +68,48 @@ type stateReaderIOEitherMonad[
 ] struct{}
 
 func (o *stateReaderIOEitherPointed[SRIOEA, RIOEA, IOEA, S, R, E, A]) Of(a A) SRIOEA {
-	return Of[SRIOEA](a)
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 func (o *stateReaderIOEitherMonad[SRIOEA, SRIOEB, SRIOEAB, RIOEA, RIOEB, RIOEAB, IOEA, IOEB, IOEAB, S, R, E, A, B]) Of(a A) SRIOEA {
-	return Of[SRIOEA](a)
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 func (o *stateReaderIOEitherApplicative[SRIOEA, SRIOEB, SRIOEAB, RIOEA, RIOEB, RIOEAB, IOEA, IOEB, IOEAB, S, R, E, A, B]) Of(a A) SRIOEA {
-	return Of[SRIOEA](a)
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 func (o *stateReaderIOEitherMonad[SRIOEA, SRIOEB, SRIOEAB, RIOEA, RIOEB, RIOEAB, IOEA, IOEB, IOEAB, S, R, E, A, B]) Map(f func(A) B) func(SRIOEA) SRIOEB {
-	return Map[SRIOEA, SRIOEB](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateReaderIOEitherApplicative[SRIOEA, SRIOEB, SRIOEAB, RIOEA, RIOEB, RIOEAB, IOEA, IOEB, IOEAB, S, R, E, A, B]) Map(f func(A) B) func(SRIOEA) SRIOEB {
-	return Map[SRIOEA, SRIOEB](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateReaderIOEitherFunctor[SRIOEA, SRIOEB, RIOEA, RIOEB, IOEA, IOEB, S, R, E, A, B]) Map(f func(A) B) func(SRIOEA) SRIOEB {
-	return Map[SRIOEA, SRIOEB](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateReaderIOEitherMonad[SRIOEA, SRIOEB, SRIOEAB, RIOEA, RIOEB, RIOEAB, IOEA, IOEB, IOEAB, S, R, E, A, B]) Chain(f func(A) SRIOEB) func(SRIOEA) SRIOEB {
-	return Chain[SRIOEA, SRIOEB](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateReaderIOEitherMonad[SRIOEA, SRIOEB, SRIOEAB, RIOEA, RIOEB, RIOEAB, IOEA, IOEB, IOEAB, S, R, E, A, B]) Ap(fa SRIOEA) func(SRIOEAB) SRIOEB {
-	return Ap[SRIOEA, SRIOEB, SRIOEAB, RIOEA, RIOEB, RIOEAB, IOEA, IOEB, IOEAB, S, R, E, A, B](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateReaderIOEitherApplicative[SRIOEA, SRIOEB, SRIOEAB, RIOEA, RIOEB, RIOEAB, IOEA, IOEB, IOEAB, S, R, E, A, B]) Ap(fa SRIOEA) func(SRIOEAB) SRIOEB {
-	return Ap[SRIOEA, SRIOEB, SRIOEAB, RIOEA, RIOEB, RIOEAB, IOEA, IOEB, IOEAB, S, R, E, A, B](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pointed implements the pointed operations for [StateReaderIOEither]
@@ -110,7 +119,8 @@ func Pointed[
 	IOEA ~func() ET.Either[E, P.Pair[A, S]],
 	S, R, E, A any,
 ]() pointed.Pointed[A, SRIOEA] {
-	return &stateReaderIOEitherPointed[SRIOEA, RIOEA, IOEA, S, R, E, A]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Functor implements the functor operations for [StateReaderIOEither]
@@ -123,7 +133,8 @@ func Functor[
 	IOEB ~func() ET.Either[E, P.Pair[B, S]],
 	S, R, E, A, B any,
 ]() functor.Functor[A, B, SRIOEA, SRIOEB] {
-	return &stateReaderIOEitherFunctor[SRIOEA, SRIOEB, RIOEA, RIOEB, IOEA, IOEB, S, R, E, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Applicative implements the applicative operations for [StateReaderIOEither]
@@ -139,7 +150,8 @@ func Applicative[
 	IOEAB ~func() ET.Either[E, P.Pair[func(A) B, S]],
 	S, R, E, A, B any,
 ]() applicative.Applicative[A, B, SRIOEA, SRIOEB, SRIOEAB] {
-	return &stateReaderIOEitherApplicative[SRIOEA, SRIOEB, SRIOEAB, RIOEA, RIOEB, RIOEAB, IOEA, IOEB, IOEAB, S, R, E, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad implements the monadic operations for [StateReaderIOEither]
@@ -155,5 +167,6 @@ func Monad[
 	IOEAB ~func() ET.Either[E, P.Pair[func(A) B, S]],
 	S, R, E, A, B any,
 ]() monad.Monad[A, B, SRIOEA, SRIOEB, SRIOEAB] {
-	return &stateReaderIOEitherMonad[SRIOEA, SRIOEB, SRIOEAB, RIOEA, RIOEB, RIOEAB, IOEA, IOEB, IOEAB, S, R, E, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }

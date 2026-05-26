@@ -30,62 +30,65 @@ type eitherApplicative[E, A, B any] struct {
 
 // Of lifts a pure value into a Right context.
 func (o *eitherApplicative[E, A, B]) Of(a A) Either[E, A] {
-	return o.fof(a)
+	_ = "STUB: not implemented"
+
+	// Map applies a transformation function to the Right value, preserving Left values.
+	return nil
 }
 
-// Map applies a transformation function to the Right value, preserving Left values.
 func (o *eitherApplicative[E, A, B]) Map(f func(A) B) Operator[E, A, B] {
-	return o.fmap(f)
+	_ = "STUB: not implemented"
+
+	// Ap applies a wrapped function to a wrapped value.
+	// The behavior depends on which Ap implementation is used (fail-fast or validation).
+	return nil
 }
 
-// Ap applies a wrapped function to a wrapped value.
-// The behavior depends on which Ap implementation is used (fail-fast or validation).
 func (o *eitherApplicative[E, A, B]) Ap(fa Either[E, A]) Operator[E, func(A) B, B] {
-	return o.fap(fa)
+	_ = "STUB: not implemented"
+
+	// Applicative creates a standard Applicative instance for Either with fail-fast error handling.
+	//
+	// This returns a lawful Applicative that satisfies all applicative laws:
+	//   - Identity: Ap(Of(identity))(v) == v
+	//   - Homomorphism: Ap(Of(f))(Of(x)) == Of(f(x))
+	//   - Interchange: Ap(Of(f))(u) == Ap(Map(f => f(y))(u))(Of(y))
+	//   - Composition: Ap(Ap(Map(compose)(f))(g))(x) == Ap(f)(Ap(g)(x))
+	//
+	// The Applicative operations behave as follows:
+	//   - Of: lifts a value into Right
+	//   - Map: transforms Right values, preserves Left (standard functor)
+	//   - Ap: fails fast - if either operand is Left, returns the first Left encountered
+	//
+	// This is the standard Either applicative that stops at the first error, making it
+	// suitable for computations where you want to short-circuit on failure.
+	//
+	// Example - Fail-Fast Behavior:
+	//
+	//	app := either.Applicative[error, int, string]()
+	//
+	//	// Both succeed - function application works
+	//	value := either.Right[error](42)
+	//	fn := either.Right[error](strconv.Itoa)
+	//	result := app.Ap(value)(fn)
+	//	// result is Right("42")
+	//
+	//	// First error stops computation
+	//	err1 := either.Left[func(int) string](errors.New("error 1"))
+	//	err2 := either.Left[int](errors.New("error 2"))
+	//	result2 := app.Ap(err2)(err1)
+	//	// result2 is Left(error 1) - only first error is returned
+	//
+	// Type Parameters:
+	//   - E: The error type (Left value)
+	//   - A: The input value type (Right value)
+	//   - B: The output value type after transformation
+	return nil
 }
 
-// Applicative creates a standard Applicative instance for Either with fail-fast error handling.
-//
-// This returns a lawful Applicative that satisfies all applicative laws:
-//   - Identity: Ap(Of(identity))(v) == v
-//   - Homomorphism: Ap(Of(f))(Of(x)) == Of(f(x))
-//   - Interchange: Ap(Of(f))(u) == Ap(Map(f => f(y))(u))(Of(y))
-//   - Composition: Ap(Ap(Map(compose)(f))(g))(x) == Ap(f)(Ap(g)(x))
-//
-// The Applicative operations behave as follows:
-//   - Of: lifts a value into Right
-//   - Map: transforms Right values, preserves Left (standard functor)
-//   - Ap: fails fast - if either operand is Left, returns the first Left encountered
-//
-// This is the standard Either applicative that stops at the first error, making it
-// suitable for computations where you want to short-circuit on failure.
-//
-// Example - Fail-Fast Behavior:
-//
-//	app := either.Applicative[error, int, string]()
-//
-//	// Both succeed - function application works
-//	value := either.Right[error](42)
-//	fn := either.Right[error](strconv.Itoa)
-//	result := app.Ap(value)(fn)
-//	// result is Right("42")
-//
-//	// First error stops computation
-//	err1 := either.Left[func(int) string](errors.New("error 1"))
-//	err2 := either.Left[int](errors.New("error 2"))
-//	result2 := app.Ap(err2)(err1)
-//	// result2 is Left(error 1) - only first error is returned
-//
-// Type Parameters:
-//   - E: The error type (Left value)
-//   - A: The input value type (Right value)
-//   - B: The output value type after transformation
 func Applicative[E, A, B any]() applicative.Applicative[A, B, Either[E, A], Either[E, B], Either[E, func(A) B]] {
-	return &eitherApplicative[E, A, B]{
-		Of[E, A],
-		Map[E, A, B],
-		Ap[B, E, A],
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeV creates an Applicative with validation-style error accumulation.
@@ -182,9 +185,6 @@ func Applicative[E, A, B any]() applicative.Applicative[A, B, Either[E, A], Eith
 //   - B: The output value type after transformation
 //   - sg: Semigroup instance for combining Left values when both operands of Ap are Left
 func ApplicativeV[E, A, B any](sg S.Semigroup[E]) applicative.Applicative[A, B, Either[E, A], Either[E, B], Either[E, func(A) B]] {
-	return &eitherApplicative[E, A, B]{
-		Of[E, A],
-		Map[E, A, B],
-		ApV[B, A](sg),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

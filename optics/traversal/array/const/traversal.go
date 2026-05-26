@@ -18,11 +18,11 @@ package identity
 import (
 	C "github.com/IBM/fp-go/constant"
 	M "github.com/IBM/fp-go/monoid"
-	AR "github.com/IBM/fp-go/optics/traversal/array/generic/const"
 	G "github.com/IBM/fp-go/optics/traversal/generic"
 )
 
 // FromArray returns a traversal from an array for the identity [Monoid]
 func FromArray[E, A any](m M.Monoid[E]) G.Traversal[[]A, A, C.Const[E, []A], C.Const[E, A]] {
-	return AR.FromArray[[]A, E, A](m)
+	_ = "STUB: not implemented"
+	return nil
 }

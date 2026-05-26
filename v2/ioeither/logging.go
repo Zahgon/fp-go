@@ -16,27 +16,13 @@
 package ioeither
 
 import (
-	"log"
-	"time"
-
-	"github.com/IBM/fp-go/v2/bytes"
-	"github.com/IBM/fp-go/v2/either"
-	"github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/io"
-	"github.com/IBM/fp-go/v2/json"
 	"github.com/IBM/fp-go/v2/pair"
 )
 
 // LogJSON converts the argument to pretty printed JSON and then logs it via the format string
 // Can be used with [ChainFirst] and [Tap]
-func LogJSON[A any](prefix string) Kleisli[error, A, string] {
-	return function.Flow4(
-		json.MarshalIndent[A],
-		either.Map[error](bytes.ToString),
-		FromEither[error, string],
-		ChainIOK[error](io.Logf[string](prefix)),
-	)
-}
+func LogJSON[A any](prefix string) Kleisli[error, A, string] { _ = "STUB: not implemented"; return nil }
 
 // LogEntryExitF creates a customizable operator that wraps an IOEither computation with entry/exit callbacks.
 //
@@ -208,33 +194,26 @@ func LogEntryExitF[E, A, STARTTOKEN, ANY any](
 	onEntry IO[STARTTOKEN],
 	onExit io.Kleisli[pair.Pair[STARTTOKEN, Either[E, A]], ANY],
 ) Operator[E, A, A] {
+	_ = "STUB: not implemented"
 
 	// release: Invokes the onExit callback with the start token and computation result
 	// This function is called by the bracket pattern after the computation completes,
 	// regardless of whether it succeeded or failed. It pairs the start token (from onEntry)
 	// with the computation result and passes them to the onExit callback.
-	release := func(start pair.Pair[STARTTOKEN, IOEither[E, A]], result Either[E, A]) IO[ANY] {
-		return function.Pipe1(
-			pair.MakePair(pair.Head(start), result), // Pair the start token with the result
-			onExit,                                  // Pass to the exit callback
-		)
-	}
-
-	return func(src IOEither[E, A]) IOEither[E, A] {
-		return io.Bracket(
-			// Acquire: Execute onEntry to get the start token, then pair it with the source IOEither
-			function.Pipe1(
-				onEntry,                                // Execute entry callback to get start token
-				io.Map(pair.FromTail[STARTTOKEN](src)), // Pair the token with the source computation
-			),
-			// Use: Extract and execute the IOEither computation from the pair
-			pair.Tail[STARTTOKEN, IOEither[E, A]],
-			// Release: Call onExit with the start token and result (always executed)
-			release,
-		)
-
-	}
+	return nil
 }
+
+// Pair the start token with the result
+// Pass to the exit callback
+
+// Acquire: Execute onEntry to get the start token, then pair it with the source IOEither
+
+// Execute entry callback to get start token
+// Pair the token with the source computation
+
+// Use: Extract and execute the IOEither computation from the pair
+
+// Release: Call onExit with the start token and result (always executed)
 
 // LogEntryExit creates an operator that logs the entry and exit of an IOEither computation with timing information.
 //
@@ -366,35 +345,4 @@ func LogEntryExitF[E, A, STARTTOKEN, ANY any](
 // Note: This function uses Go's standard log package. For production systems,
 // consider using a structured logging library and adapting this pattern to
 // support different log levels and structured fields.
-func LogEntryExit[E, A any](name string) Operator[E, A, A] {
-
-	return LogEntryExitF(
-		func() time.Time {
-			log.Printf("[entering] %s", name)
-			return time.Now()
-		},
-		func(res pair.Pair[time.Time, Either[E, A]]) IO[any] {
-
-			duration := time.Since(pair.Head(res)).Seconds()
-
-			return func() any {
-
-				onError := func(err E) any {
-					log.Printf("[throwing] %s [%.1fs]: %v", name, duration, err)
-					return nil
-				}
-
-				onSuccess := func(_ A) any {
-					log.Printf("[exiting ] %s [%.1fs]", name, duration)
-					return nil
-				}
-
-				return function.Pipe2(
-					res,
-					pair.Tail,
-					either.Fold(onError, onSuccess),
-				)
-			}
-		},
-	)
-}
+func LogEntryExit[E, A any](name string) Operator[E, A, A] { _ = "STUB: not implemented"; return nil }

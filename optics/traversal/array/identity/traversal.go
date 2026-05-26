@@ -16,11 +16,8 @@
 package identity
 
 import (
-	AR "github.com/IBM/fp-go/optics/traversal/array/generic/identity"
 	G "github.com/IBM/fp-go/optics/traversal/generic"
 )
 
 // FromArray returns a traversal from an array for the identity monad
-func FromArray[A any]() G.Traversal[[]A, A, []A, A] {
-	return AR.FromArray[[]A, A]()
-}
+func FromArray[A any]() G.Traversal[[]A, A, []A, A] { _ = "STUB: not implemented"; return nil }

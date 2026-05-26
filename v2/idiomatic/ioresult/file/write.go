@@ -17,34 +17,18 @@ package file
 
 import (
 	"io"
-
-	"github.com/IBM/fp-go/v2/idiomatic/ioresult"
 )
 
-func onWriteAll[W io.Writer](data []byte) Kleisli[W, []byte] {
-	return func(w W) IOResult[[]byte] {
-		return func() ([]byte, error) {
-			_, err := w.Write(data)
-			return data, err
-		}
-	}
-}
+func onWriteAll[W io.Writer](data []byte) Kleisli[W, []byte] { _ = "STUB: not implemented"; return nil }
 
 // WriteAll uses a generator function to create a stream, writes data to it and closes it
 func WriteAll[W io.WriteCloser](data []byte) Operator[W, []byte] {
-	onWrite := onWriteAll[W](data)
-	return func(onCreate IOResult[W]) IOResult[[]byte] {
-		return ioresult.WithResource[[]byte](
-			onCreate,
-			Close[W])(
-			onWrite,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Write uses a generator function to create a stream, writes data to it and closes it
 func Write[R any, W io.WriteCloser](acquire IOResult[W]) Kleisli[Kleisli[W, R], R] {
-	return ioresult.WithResource[R](
-		acquire,
-		Close[W])
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -18,12 +18,10 @@ package readerioresult
 import (
 	"context"
 
-	"github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/ioresult"
 	"github.com/IBM/fp-go/v2/pair"
 	RIOR "github.com/IBM/fp-go/v2/readerioresult"
-	"github.com/IBM/fp-go/v2/result"
 )
 
 // Promap is the profunctor map operation that transforms both the input and output of a context-based ReaderIOResult.
@@ -54,10 +52,8 @@ import (
 //
 //go:inline
 func Promap[R, A, B any](f pair.Kleisli[context.CancelFunc, R, context.Context], g func(A) B) RIOR.Kleisli[R, ReaderIOResult[A], B] {
-	return function.Flow2(
-		Local[A](f),
-		RIOR.Map[R](g),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Contramap changes the context during the execution of a ReaderIOResult.
@@ -82,86 +78,91 @@ func Promap[R, A, B any](f pair.Kleisli[context.CancelFunc, R, context.Context],
 //
 //go:inline
 func Contramap[A, R any](f pair.Kleisli[context.CancelFunc, R, context.Context]) RIOR.Kleisli[R, ReaderIOResult[A], A] {
-	return Local[A](f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// ContramapIOK changes the context during the execution of a ReaderIOResult using an IO effect.
+	// This is the contravariant functor operation with IO effects.
+	//
+	// ContramapIOK is an alias for LocalIOK and is useful for adapting a ReaderIOResult to work with
+	// a modified context when the transformation itself requires side effects.
+	//
+	// Type Parameters:
+	//   - A: The success type (unchanged)
+	//
+	// Parameters:
+	//   - f: An IO Kleisli arrow that transforms the context with side effects
+	//
+	// Returns:
+	//   - An Operator that takes a ReaderIOResult[A] and returns a ReaderIOResult[A]
+	//
+	// See Also:
+	//   - Contramap: For pure context transformations
+	//   - LocalIOK: The underlying implementation
+	//
+	//go:inline
 }
 
-// ContramapIOK changes the context during the execution of a ReaderIOResult using an IO effect.
-// This is the contravariant functor operation with IO effects.
-//
-// ContramapIOK is an alias for LocalIOK and is useful for adapting a ReaderIOResult to work with
-// a modified context when the transformation itself requires side effects.
-//
-// Type Parameters:
-//   - A: The success type (unchanged)
-//
-// Parameters:
-//   - f: An IO Kleisli arrow that transforms the context with side effects
-//
-// Returns:
-//   - An Operator that takes a ReaderIOResult[A] and returns a ReaderIOResult[A]
-//
-// See Also:
-//   - Contramap: For pure context transformations
-//   - LocalIOK: The underlying implementation
-//
-//go:inline
 func ContramapIOK[A any](f io.Kleisli[context.Context, ContextCancel]) Operator[A, A] {
-	return LocalIOK[A](f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// LocalIOK transforms the context using an IO-based function before passing it to a ReaderIOResult.
+	// This is similar to Local but the context transformation itself is wrapped in an IO effect.
+	//
+	// The function f takes a context and returns an IO effect that produces a ContextCancel
+	// (a pair of CancelFunc and the new Context). This allows the context transformation to
+	// perform side effects.
+	//
+	// # Use Cases
+	//
+	// This function is useful for sharing information via the Context that is computed through
+	// side effects that cannot fail, such as:
+	//   - Generating unique request IDs or trace IDs
+	//   - Recording timestamps or metrics
+	//   - Logging context information
+	//   - Computing derived values from existing context data
+	//
+	// The side effect is executed during the context transformation, and the resulting data is
+	// stored in the context for downstream computations to access.
+	//
+	// # Type Parameters
+	//
+	//   - A: The success type (unchanged through the transformation)
+	//
+	// # Parameters
+	//
+	//   - f: An IO-based Kleisli function that transforms the context
+	//
+	// # Returns
+	//
+	//   - An Operator that applies the context transformation before executing the ReaderIOResult
+	//
+	// # Example Usage
+	//
+	//	// Generate a request ID via side effect and add to context
+	//	addRequestID := func(ctx context.Context) io.IO[ContextCancel] {
+	//	    return func() ContextCancel {
+	//	        // Side effect: generate unique ID
+	//	        requestID := uuid.New().String()
+	//	        // Share the ID via context
+	//	        newCtx := context.WithValue(ctx, "requestID", requestID)
+	//	        return pair.MakePair(func() {}, newCtx)
+	//	    }
+	//	}
+	//	adapted := LocalIOK[int](addRequestID)(computation)
+	//
+	// # See Also
+	//
+	//   - Local: For pure context transformations
+	//   - LocalIOResultK: For context transformations that can fail
+	//
+	//go:inline
 }
 
-// LocalIOK transforms the context using an IO-based function before passing it to a ReaderIOResult.
-// This is similar to Local but the context transformation itself is wrapped in an IO effect.
-//
-// The function f takes a context and returns an IO effect that produces a ContextCancel
-// (a pair of CancelFunc and the new Context). This allows the context transformation to
-// perform side effects.
-//
-// # Use Cases
-//
-// This function is useful for sharing information via the Context that is computed through
-// side effects that cannot fail, such as:
-//   - Generating unique request IDs or trace IDs
-//   - Recording timestamps or metrics
-//   - Logging context information
-//   - Computing derived values from existing context data
-//
-// The side effect is executed during the context transformation, and the resulting data is
-// stored in the context for downstream computations to access.
-//
-// # Type Parameters
-//
-//   - A: The success type (unchanged through the transformation)
-//
-// # Parameters
-//
-//   - f: An IO-based Kleisli function that transforms the context
-//
-// # Returns
-//
-//   - An Operator that applies the context transformation before executing the ReaderIOResult
-//
-// # Example Usage
-//
-//	// Generate a request ID via side effect and add to context
-//	addRequestID := func(ctx context.Context) io.IO[ContextCancel] {
-//	    return func() ContextCancel {
-//	        // Side effect: generate unique ID
-//	        requestID := uuid.New().String()
-//	        // Share the ID via context
-//	        newCtx := context.WithValue(ctx, "requestID", requestID)
-//	        return pair.MakePair(func() {}, newCtx)
-//	    }
-//	}
-//	adapted := LocalIOK[int](addRequestID)(computation)
-//
-// # See Also
-//
-//   - Local: For pure context transformations
-//   - LocalIOResultK: For context transformations that can fail
-//
-//go:inline
 func LocalIOK[A any](f io.Kleisli[context.Context, ContextCancel]) Operator[A, A] {
-	return LocalIOResultK[A](function.Flow2(f, ioresult.FromIO))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalIOResultK transforms the context using an IOResult-based function before passing it to a ReaderIOResult.
@@ -217,21 +218,8 @@ func LocalIOK[A any](f io.Kleisli[context.Context, ContextCancel]) Operator[A, A
 //   - Local: For pure context transformations
 //   - LocalIOK: For context transformations with side effects that cannot fail
 func LocalIOResultK[A any](f ioresult.Kleisli[context.Context, ContextCancel]) Operator[A, A] {
-	return func(rr ReaderIOResult[A]) ReaderIOResult[A] {
-		return func(ctx context.Context) IOResult[A] {
-			return func() Result[A] {
-				if ctx.Err() != nil {
-					return result.Left[A](context.Cause(ctx))
-				}
-				p, err := result.Unwrap(f(ctx)())
-				if err != nil {
-					return result.Left[A](err)
-				}
-				// unwrap
-				otherCancel, otherCtx := pair.Unpack(p)
-				defer otherCancel()
-				return rr(otherCtx)()
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// unwrap

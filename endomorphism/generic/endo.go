@@ -15,23 +15,13 @@
 
 package generic
 
-import (
-	F "github.com/IBM/fp-go/function"
-	I "github.com/IBM/fp-go/identity/generic"
-)
+func MonadAp[GA ~func(A) A, A any](fab GA, fa A) A { _ = "STUB: not implemented"; return *new(A) }
 
-func MonadAp[GA ~func(A) A, A any](fab GA, fa A) A {
-	return I.MonadAp[GA, A, A](fab, fa)
-}
+func Ap[GA ~func(A) A, A any](fa A) func(GA) A { _ = "STUB: not implemented"; return nil }
 
-func Ap[GA ~func(A) A, A any](fa A) func(GA) A {
-	return I.Ap[GA, A, A](fa)
-}
-
-func MonadChain[GA ~func(A) A, A any](ma GA, f GA) GA {
-	return Compose(ma, f)
-}
+func MonadChain[GA ~func(A) A, A any](ma GA, f GA) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func Chain[ENDO ~func(GA) GA, GA ~func(A) A, A any](f GA) ENDO {
-	return Of[ENDO](F.Bind2nd(Compose[GA], f))
+	_ = "STUB: not implemented"
+	return *new(ENDO)
 }

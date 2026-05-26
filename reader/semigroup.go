@@ -26,7 +26,8 @@ func ApplySemigroup[R, A any](
 
 	s S.Semigroup[A],
 ) S.Semigroup[func(R) A] {
-	return S.ApplySemigroup(_map, _ap, s)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ApplicativeMonoid[R, A any](
@@ -36,5 +37,6 @@ func ApplicativeMonoid[R, A any](
 
 	m M.Monoid[A],
 ) M.Monoid[func(R) A] {
-	return M.ApplicativeMonoid(_of, _map, _ap, m)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,7 +16,6 @@
 package effect
 
 import (
-	"github.com/IBM/fp-go/v2/context/readerreaderioresult"
 	"github.com/IBM/fp-go/v2/option"
 )
 
@@ -64,7 +63,8 @@ import (
 func Filter[C, HKTA, A any](
 	filter func(Predicate[A]) Endomorphism[HKTA],
 ) func(Predicate[A]) Operator[C, HKTA, HKTA] {
-	return readerreaderioresult.Filter[C](filter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterArray creates an operator that filters array elements within an Effect based on a predicate.
@@ -103,7 +103,8 @@ func Filter[C, HKTA, A any](
 //
 //go:inline
 func FilterArray[C, A any](p Predicate[A]) Operator[C, []A, []A] {
-	return readerreaderioresult.FilterArray[C](p)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterIter creates an operator that filters iterator elements within an Effect based on a predicate.
@@ -142,7 +143,8 @@ func FilterArray[C, A any](p Predicate[A]) Operator[C, []A, []A] {
 //
 //go:inline
 func FilterIter[C, A any](p Predicate[A]) Operator[C, Seq[A], Seq[A]] {
-	return readerreaderioresult.FilterIter[C](p)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterMap lifts a filter-map operation on a higher-kinded type into an Effect operator.
@@ -197,7 +199,8 @@ func FilterIter[C, A any](p Predicate[A]) Operator[C, Seq[A], Seq[A]] {
 func FilterMap[C, HKTA, HKTB, A, B any](
 	filter func(option.Kleisli[A, B]) Reader[HKTA, HKTB],
 ) func(option.Kleisli[A, B]) Operator[C, HKTA, HKTB] {
-	return readerreaderioresult.FilterMap[C](filter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterMapArray creates an operator that filters and maps array elements within an Effect.
@@ -244,7 +247,8 @@ func FilterMap[C, HKTA, HKTB, A, B any](
 //
 //go:inline
 func FilterMapArray[C, A, B any](p option.Kleisli[A, B]) Operator[C, []A, []B] {
-	return readerreaderioresult.FilterMapArray[C](p)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterMapIter creates an operator that filters and maps iterator elements within an Effect.
@@ -292,5 +296,6 @@ func FilterMapArray[C, A, B any](p option.Kleisli[A, B]) Operator[C, []A, []B] {
 //
 //go:inline
 func FilterMapIter[C, A, B any](p option.Kleisli[A, B]) Operator[C, Seq[A], Seq[B]] {
-	return readerreaderioresult.FilterMapIter[C](p)
+	_ = "STUB: not implemented"
+	return nil
 }

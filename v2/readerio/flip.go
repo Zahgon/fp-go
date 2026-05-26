@@ -16,8 +16,6 @@
 package readerio
 
 import (
-	"github.com/IBM/fp-go/v2/internal/readert"
-	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/reader"
 )
 
@@ -72,10 +70,8 @@ import (
 //	result := configReader(cfg)
 //	// result is IO[string]
 func Sequence[R1, R2, A any](ma ReaderIO[R2, ReaderIO[R1, A]]) Kleisli[R2, R1, A] {
-	return readert.Sequence(
-		io.Chain,
-		ma,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceReader swaps the order of environment parameters when the inner computation is a Reader.
@@ -138,28 +134,20 @@ func Sequence[R1, R2, A any](ma ReaderIO[R2, ReaderIO[R1, A]]) Kleisli[R2, R1, A
 //   - Building pipelines that need pure outer layers with effectful inner computations
 //   - Optimizing by controlling which environment access triggers IO effects
 func SequenceReader[R1, R2, A any](ma ReaderIO[R2, Reader[R1, A]]) Kleisli[R2, R1, A] {
-	return readert.SequenceReader(
-		io.Map,
-		ma,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Traverse[R2, R1, A, B any](
 	f Kleisli[R1, A, B],
 ) func(ReaderIO[R2, A]) Kleisli[R2, R1, B] {
-	return readert.Traverse[ReaderIO[R2, A]](
-		io.Map,
-		io.Chain,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraverseReader[R2, R1, A, B any](
 	f reader.Kleisli[R1, A, B],
 ) func(ReaderIO[R2, A]) Kleisli[R2, R1, B] {
-	return readert.TraverseReader[ReaderIO[R2, A]](
-		io.Map,
-		io.Map,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

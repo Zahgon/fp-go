@@ -16,7 +16,6 @@
 package effect
 
 import (
-	"github.com/IBM/fp-go/v2/context/readerreaderioresult"
 	"github.com/IBM/fp-go/v2/monoid"
 )
 
@@ -49,7 +48,8 @@ import (
 //	combined := effectMonoid.Concat(eff1, eff2)
 //	// combined produces "Hello World"
 func ApplicativeMonoid[C, A any](m monoid.Monoid[A]) Monoid[Effect[C, A]] {
-	return readerreaderioresult.ApplicativeMonoid[C](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AlternativeMonoid creates a monoid for effects using alternative semantics.
@@ -81,5 +81,6 @@ func ApplicativeMonoid[C, A any](m monoid.Monoid[A]) Monoid[Effect[C, A]] {
 //	combined := effectMonoid.Concat(eff1, eff2)
 //	// combined produces "fallback" (first failed, so second is used)
 func AlternativeMonoid[C, A any](m monoid.Monoid[A]) Monoid[Effect[C, A]] {
-	return readerreaderioresult.AlternativeMonoid[C](m)
+	_ = "STUB: not implemented"
+	return nil
 }

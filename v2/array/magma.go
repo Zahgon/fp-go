@@ -35,6 +35,4 @@ import (
 //	result2 := concatStrings([]string{"Hello", " ", "World"}) // "Hello World"
 //
 //go:inline
-func ConcatAll[A any](m M.Monoid[A]) func([]A) A {
-	return Reduce(m.Concat, m.Empty())
-}
+func ConcatAll[A any](m M.Monoid[A]) func([]A) A { _ = "STUB: not implemented"; return nil }

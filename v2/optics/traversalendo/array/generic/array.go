@@ -17,10 +17,8 @@ package generic
 
 import (
 	"github.com/IBM/fp-go/v2/internal/apply"
-	AR "github.com/IBM/fp-go/v2/internal/array"
 	"github.com/IBM/fp-go/v2/internal/functor"
 	"github.com/IBM/fp-go/v2/internal/pointed"
-	TG "github.com/IBM/fp-go/v2/optics/traversalendo/traversable/generic"
 )
 
 // FromArrayLens creates a traversal endomorphism from a lens that focuses on an array.
@@ -109,5 +107,6 @@ func FromArrayLens[GA ~[]A, S, A, HKTS, HKTA, HKTAA, HKTRA any](
 	fmapEndo functor.MapType[GA, Endomorphism[S], HKTRA, HKTS],
 	fap apply.ApType[HKTA, HKTRA, HKTAA],
 ) func(Lens[S, GA]) Traversal[S, A, HKTS, HKTA] {
-	return TG.FromTraversableLens[A, HKTA](fmapEndo)(AR.MakeTraversable[GA](fof, fmap, fap))
+	_ = "STUB: not implemented"
+	return nil
 }

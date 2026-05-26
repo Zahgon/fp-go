@@ -31,17 +31,8 @@ package result
 //
 //go:inline
 func TraverseRecordG[GA ~map[K]A, GB ~map[K]B, K comparable, A, B any](f Kleisli[A, B]) Kleisli[GA, GB] {
-	return func(ga GA) (GB, error) {
-		bs := make(GB)
-		for k, a := range ga {
-			b, err := f(a)
-			if err != nil {
-				return Left[GB](err)
-			}
-			bs[k] = b
-		}
-		return Of(bs)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecord transforms a map by applying a function that returns an Either to each value.
@@ -59,7 +50,8 @@ func TraverseRecordG[GA ~map[K]A, GB ~map[K]B, K comparable, A, B any](f Kleisli
 //
 //go:inline
 func TraverseRecord[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, map[K]B] {
-	return TraverseRecordG[map[K]A, map[K]B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndexG transforms a map by applying an indexed function that returns an Either.
@@ -80,17 +72,8 @@ func TraverseRecord[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, ma
 //
 //go:inline
 func TraverseRecordWithIndexG[GA ~map[K]A, GB ~map[K]B, K comparable, A, B any](f func(K, A) (B, error)) Kleisli[GA, GB] {
-	return func(ga GA) (GB, error) {
-		bs := make(GB)
-		for k, a := range ga {
-			b, err := f(k, a)
-			if err != nil {
-				return Left[GB](err)
-			}
-			bs[k] = b
-		}
-		return Of(bs)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndex transforms a map by applying an indexed function that returns an Either.
@@ -110,5 +93,6 @@ func TraverseRecordWithIndexG[GA ~map[K]A, GB ~map[K]B, K comparable, A, B any](
 //
 //go:inline
 func TraverseRecordWithIndex[K comparable, A, B any](f func(K, A) (B, error)) Kleisli[map[K]A, map[K]B] {
-	return TraverseRecordWithIndexG[map[K]A, map[K]B](f)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,13 +16,6 @@
 // Package readerresult implements a specialization of the Reader monad assuming a golang context as the context of the monad and a standard golang error
 package readerresult
 
-import (
-	"context"
-
-	"github.com/IBM/fp-go/v2/either"
-	"github.com/IBM/fp-go/v2/result"
-)
-
 // TailRec implements tail-recursive computation for ReaderResult with context cancellation support.
 //
 // TailRec takes a Kleisli function that returns Trampoline[A, B] and converts it into a stack-safe,
@@ -81,25 +74,8 @@ import (
 //
 //go:inline
 func TailRec[A, B any](f Kleisli[A, Trampoline[A, B]]) Kleisli[A, B] {
-	return func(a A) ReaderResult[B] {
-		initialReader := f(a)
-		return func(ctx context.Context) result.Result[B] {
-			rdr := initialReader
-			for {
-				// short circuit
-				if ctx.Err() != nil {
-					return result.Left[B](context.Cause(ctx))
-				}
-				current := rdr(ctx)
-				rec, e := either.Unwrap(current)
-				if either.IsLeft(current) {
-					return result.Left[B](e)
-				}
-				if rec.Landed {
-					return result.Of(rec.Land)
-				}
-				rdr = f(rec.Bounce)
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// short circuit

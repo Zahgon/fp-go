@@ -16,8 +16,6 @@
 package readerioresult
 
 import (
-	"github.com/IBM/fp-go/v2/idiomatic/ioresult"
-	"github.com/IBM/fp-go/v2/internal/readert"
 	"github.com/IBM/fp-go/v2/reader"
 )
 
@@ -76,10 +74,8 @@ import (
 //	result, err := sequenced(db)(cfg)()
 //	// result: "Query on localhost:5432 with timeout 30"
 func Sequence[R1, R2, A any](ma ReaderIOResult[R2, ReaderIOResult[R1, A]]) reader.Kleisli[R2, R1, IOResult[A]] {
-	return readert.Sequence(
-		ioresult.Chain,
-		ma,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceReader swaps the order of environment parameters when the inner computation is a pure Reader.
@@ -126,10 +122,8 @@ func Sequence[R1, R2, A any](ma ReaderIOResult[R2, ReaderIOResult[R1, A]]) reade
 //	result, err := sequenced(cfg)(10)()
 //	// result: 50, err: nil
 func SequenceReader[R1, R2, A any](ma ReaderIOResult[R2, Reader[R1, A]]) reader.Kleisli[R2, R1, IOResult[A]] {
-	return readert.SequenceReader(
-		ioresult.Map,
-		ma,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Traverse transforms a ReaderIOResult computation by applying a Kleisli arrow that introduces
@@ -190,11 +184,8 @@ func SequenceReader[R1, R2, A any](ma ReaderIOResult[R2, Reader[R1, A]]) reader.
 func Traverse[R2, R1, A, B any](
 	f Kleisli[R1, A, B],
 ) func(ReaderIOResult[R2, A]) Kleisli[R2, R1, B] {
-	return readert.Traverse[ReaderIOResult[R2, A]](
-		ioresult.Map,
-		ioresult.Chain,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseReader transforms a ReaderIOResult computation by applying a Reader-based Kleisli arrow,
@@ -253,9 +244,6 @@ func Traverse[R2, R1, A, B any](
 func TraverseReader[R2, R1, A, B any](
 	f reader.Kleisli[R1, A, B],
 ) func(ReaderIOResult[R2, A]) Kleisli[R2, R1, B] {
-	return readert.TraverseReader[ReaderIOResult[R2, A]](
-		ioresult.Map,
-		ioresult.Map,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

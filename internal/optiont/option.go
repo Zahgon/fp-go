@@ -16,34 +16,36 @@
 package optiont
 
 import (
-	F "github.com/IBM/fp-go/function"
-	"github.com/IBM/fp-go/internal/apply"
-	FC "github.com/IBM/fp-go/internal/functor"
 	O "github.com/IBM/fp-go/option"
 )
 
 func Of[A, HKTA any](fof func(O.Option[A]) HKTA, a A) HKTA {
-	return F.Pipe2(a, O.Of[A], fof)
+	_ = "STUB: not implemented"
+	return *new(HKTA)
 }
 
 func None[A, HKTA any](fof func(O.Option[A]) HKTA) HKTA {
-	return F.Pipe1(O.None[A](), fof)
+	_ = "STUB: not implemented"
+	return *new(HKTA)
 }
 
 func OfF[A, HKTA, HKTEA any](fmap func(HKTA, func(A) O.Option[A]) HKTEA, fa HKTA) HKTEA {
-	return fmap(fa, O.Of[A])
+	_ = "STUB: not implemented"
+	return *new(HKTEA)
 }
 
 func MonadMap[A, B, HKTFA, HKTFB any](fmap func(HKTFA, func(O.Option[A]) O.Option[B]) HKTFB, fa HKTFA, f func(A) B) HKTFB {
+	_ = "STUB: not implemented"
 	// HKTGA = Either[E, A]
 	// HKTGB = Either[E, B]
-	return FC.MonadMap(fmap, O.MonadMap[A, B], fa, f)
+	return *new(HKTFB)
 }
 
 func Map[A, B, HKTFA, HKTFB any](fmap func(func(O.Option[A]) O.Option[B]) func(HKTFA) HKTFB, f func(A) B) func(HKTFA) HKTFB {
+	_ = "STUB: not implemented"
 	// HKTGA = Either[E, A]
 	// HKTGB = Either[E, B]
-	return FC.Map(fmap, O.Map[A, B], f)
+	return nil
 }
 
 func MonadChain[A, B, HKTFA, HKTFB any](
@@ -51,16 +53,18 @@ func MonadChain[A, B, HKTFA, HKTFB any](
 	fof func(O.Option[B]) HKTFB,
 	ma HKTFA,
 	f func(A) HKTFB) HKTFB {
+	_ = "STUB: not implemented"
 	// dispatch to the even more generic implementation
-	return fchain(ma, O.Fold(F.Nullary2(O.None[B], fof), f))
+	return *new(HKTFB)
 }
 
 func Chain[A, B, HKTFA, HKTFB any](
 	fchain func(func(O.Option[A]) HKTFB) func(HKTFA) HKTFB,
 	fof func(O.Option[B]) HKTFB,
 	f func(A) HKTFB) func(ma HKTFA) HKTFB {
+	_ = "STUB: not implemented"
 	// dispatch to the even more generic implementation
-	return fchain(O.Fold(F.Nullary2(O.None[B], fof), f))
+	return nil
 }
 
 func MonadAp[A, B, HKTFAB, HKTFGAB, HKTFA, HKTFB any](
@@ -68,24 +72,28 @@ func MonadAp[A, B, HKTFAB, HKTFGAB, HKTFA, HKTFB any](
 	fmap func(HKTFAB, func(O.Option[func(A) B]) func(O.Option[A]) O.Option[B]) HKTFGAB,
 	fab HKTFAB,
 	fa HKTFA) HKTFB {
-	return apply.MonadAp(fap, fmap, O.MonadAp[B, A], fab, fa)
+	_ = "STUB: not implemented"
+	return *new(HKTFB)
 }
 
 func Ap[A, B, HKTFAB, HKTFGAB, HKTFA, HKTFB any](
 	fap func(HKTFA) func(HKTFGAB) HKTFB,
 	fmap func(func(O.Option[func(A) B]) func(O.Option[A]) O.Option[B]) func(HKTFAB) HKTFGAB,
 	fa HKTFA) func(HKTFAB) HKTFB {
-	return apply.Ap(fap, fmap, O.Ap[B, A], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MatchE[A, HKTEA, HKTB any](mchain func(HKTEA, func(O.Option[A]) HKTB) HKTB, onNone func() HKTB, onSome func(A) HKTB) func(HKTEA) HKTB {
-	return F.Bind2nd(mchain, O.Fold(onNone, onSome))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FromOptionK[A, B, HKTB any](
 	fof func(O.Option[B]) HKTB,
 	f func(A) O.Option[B]) func(A) HKTB {
-	return F.Flow2(f, fof)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainOptionK[A, B, HKTA, HKTB any](
@@ -94,7 +102,8 @@ func MonadChainOptionK[A, B, HKTA, HKTB any](
 	ma HKTA,
 	f func(A) O.Option[B],
 ) HKTB {
-	return MonadChain(fchain, fof, ma, FromOptionK(fof, f))
+	_ = "STUB: not implemented"
+	return *new(HKTB)
 }
 
 func ChainOptionK[A, B, HKTA, HKTB any](
@@ -102,7 +111,8 @@ func ChainOptionK[A, B, HKTA, HKTB any](
 	fof func(O.Option[B]) HKTB,
 	f func(A) O.Option[B],
 ) func(HKTA) HKTB {
-	return Chain(fchain, fof, FromOptionK(fof, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadAlt[LAZY ~func() HKTFA, A, HKTFA any](
@@ -111,8 +121,8 @@ func MonadAlt[LAZY ~func() HKTFA, A, HKTFA any](
 
 	first HKTFA,
 	second LAZY) HKTFA {
-
-	return fchain(first, O.Fold(second, F.Flow2(O.Of[A], fof)))
+	_ = "STUB: not implemented"
+	return *new(HKTFA)
 }
 
 func Alt[LAZY ~func() HKTFA, A, HKTFA any](
@@ -120,6 +130,6 @@ func Alt[LAZY ~func() HKTFA, A, HKTFA any](
 	fchain func(func(O.Option[A]) HKTFA) func(HKTFA) HKTFA,
 
 	second LAZY) func(HKTFA) HKTFA {
-
-	return fchain(O.Fold(second, F.Flow2(O.Of[A], fof)))
+	_ = "STUB: not implemented"
+	return nil
 }

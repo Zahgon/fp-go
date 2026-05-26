@@ -17,7 +17,6 @@ package array
 
 import (
 	L "github.com/IBM/fp-go/optics/lens"
-	G "github.com/IBM/fp-go/optics/lens/array/generic"
 	O "github.com/IBM/fp-go/option"
 )
 
@@ -25,6 +24,4 @@ import (
 // - if the new value is none, the result will be an empty array
 // - if the new value is some and the array is empty, it creates a new array with one element
 // - if the new value is some and the array is not empty, it replaces the head
-func AtHead[A any]() L.Lens[[]A, O.Option[A]] {
-	return G.AtHead[[]A]()
-}
+func AtHead[A any]() L.Lens[[]A, O.Option[A]] { _ = "STUB: not implemented"; return nil }

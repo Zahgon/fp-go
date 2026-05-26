@@ -16,18 +16,12 @@
 package lens
 
 import (
-	EM "github.com/IBM/fp-go/endomorphism"
-	F "github.com/IBM/fp-go/function"
 	I "github.com/IBM/fp-go/optics/iso"
 	L "github.com/IBM/fp-go/optics/lens"
 )
 
 // IsoAsLens converts an `Iso` to a `Lens`
-func IsoAsLens[S, A any](sa I.Iso[S, A]) L.Lens[S, A] {
-	return L.MakeLensCurried(sa.Get, F.Flow2(sa.ReverseGet, F.Flow2(F.Constant1[S, S], EM.Of[func(S) S])))
-}
+func IsoAsLens[S, A any](sa I.Iso[S, A]) L.Lens[S, A] { _ = "STUB: not implemented"; return nil }
 
 // IsoAsLensRef converts an `Iso` to a `Lens`
-func IsoAsLensRef[S, A any](sa I.Iso[*S, A]) L.Lens[*S, A] {
-	return L.MakeLensRefCurried(sa.Get, F.Flow2(sa.ReverseGet, F.Flow2(F.Constant1[*S, *S], EM.Of[func(*S) *S])))
-}
+func IsoAsLensRef[S, A any](sa I.Iso[*S, A]) L.Lens[*S, A] { _ = "STUB: not implemented"; return nil }

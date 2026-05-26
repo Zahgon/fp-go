@@ -32,69 +32,44 @@ type (
 // String prints some debug info for the object
 //
 //go:noinline
-func eitherString(s *either) string {
-	if s.isLeft {
-		return fmt.Sprintf("Left[%T](%v)", s.value, s.value)
-	}
-	return fmt.Sprintf("Right[%T](%v)", s.value, s.value)
-}
+func eitherString(s *either) string { _ = "STUB: not implemented"; return "" }
 
 // Format prints some debug info for the object
 //
 //go:noinline
-func eitherFormat(e *either, f fmt.State, c rune) {
-	switch c {
-	case 's':
-		fmt.Fprint(f, eitherString(e))
-	default:
-		fmt.Fprint(f, eitherString(e))
-	}
-}
+func eitherFormat(e *either, f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 // String prints some debug info for the object
-func (s Either[E, A]) String() string {
-	return eitherString((*either)(&s))
-}
+func (s Either[E, A]) String() string { _ = "STUB: not implemented"; return "" }
 
 // Format prints some debug info for the object
-func (s Either[E, A]) Format(f fmt.State, c rune) {
-	eitherFormat((*either)(&s), f, c)
-}
+func (s Either[E, A]) Format(f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 // IsLeft tests if the [Either] is a left value. Rather use [Fold] if you need to access the values. Inverse is [IsRight].
 func IsLeft[E, A any](val Either[E, A]) bool {
-	return val.isLeft
+	_ = "STUB: not implemented"
+
+	// IsLeft tests if the [Either] is a right value. Rather use [Fold] if you need to access the values. Inverse is [IsLeft].
+	return false
 }
 
-// IsLeft tests if the [Either] is a right value. Rather use [Fold] if you need to access the values. Inverse is [IsLeft].
 func IsRight[E, A any](val Either[E, A]) bool {
-	return !val.isLeft
+	_ = "STUB: not implemented"
+
+	// Left creates a new instance of an [Either] representing the left value.
+	return false
 }
 
-// Left creates a new instance of an [Either] representing the left value.
-func Left[A, E any](value E) Either[E, A] {
-	return Either[E, A]{value, true}
-}
+func Left[A, E any](value E) Either[E, A] { _ = "STUB: not implemented"; return nil }
 
 // Right creates a new instance of an [Either] representing the right value.
-func Right[E, A any](value A) Either[E, A] {
-	return Either[E, A]{value, false}
-}
+func Right[E, A any](value A) Either[E, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadFold extracts the values from an [Either] by invoking the [onLeft] callback or the [onRight] callback depending on the case
 func MonadFold[E, A, B any](ma Either[E, A], onLeft func(e E) B, onRight func(a A) B) B {
-	if ma.isLeft {
-		return onLeft(ma.value.(E))
-	}
-	return onRight(ma.value.(A))
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 // Unwrap converts an [Either] into the idiomatic tuple
-func Unwrap[E, A any](ma Either[E, A]) (A, E) {
-	if ma.isLeft {
-		var a A
-		return a, ma.value.(E)
-	}
-	var e E
-	return ma.value.(A), e
-}
+func Unwrap[E, A any](ma Either[E, A]) (A, E) { _ = "STUB: not implemented"; return *new(A), *new(E) }

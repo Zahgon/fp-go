@@ -16,7 +16,6 @@
 package ioeither
 
 import (
-	"github.com/IBM/fp-go/v2/either"
 	"github.com/IBM/fp-go/v2/tailrec"
 )
 
@@ -95,20 +94,6 @@ import (
 //
 //	result := processItems(ProcessState{items: []string{"1", "2", "3"}, sum: 0})() // Right(6)
 func TailRec[E, A, B any](f Kleisli[E, A, tailrec.Trampoline[A, B]]) Kleisli[E, A, B] {
-	return func(a A) IOEither[E, B] {
-		initial := f(a)
-		return func() either.Either[E, B] {
-			current := initial()
-			for {
-				r, e := either.Unwrap(current)
-				if either.IsLeft(current) {
-					return either.Left[B](e)
-				}
-				if r.Landed {
-					return either.Right[E](r.Land)
-				}
-				current = f(r.Bounce)()
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

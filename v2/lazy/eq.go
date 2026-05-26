@@ -17,10 +17,7 @@ package lazy
 
 import (
 	EQ "github.com/IBM/fp-go/v2/eq"
-	IO "github.com/IBM/fp-go/v2/io"
 )
 
 // Eq implements the equals predicate for values contained in the IO monad
-func Eq[A any](e EQ.Eq[A]) EQ.Eq[Lazy[A]] {
-	return IO.Eq(e)
-}
+func Eq[A any](e EQ.Eq[A]) EQ.Eq[Lazy[A]] { _ = "STUB: not implemented"; return nil }

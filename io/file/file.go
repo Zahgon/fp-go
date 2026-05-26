@@ -17,23 +17,16 @@ package file
 
 import (
 	"io"
-	"os"
 
 	IO "github.com/IBM/fp-go/io"
 )
 
 // Close closes a closeable resource and ignores a potential error
-func Close[R io.Closer](r R) IO.IO[R] {
-	return IO.MakeIO[R](func() R {
-		r.Close() // #nosec: G104
-		return r
-	})
-}
+func Close[R io.Closer](r R) IO.IO[R] { _ = "STUB: not implemented"; return nil }
+
+// #nosec: G104
 
 // Remove removes a resource and ignores a potential error
-func Remove(name string) IO.IO[string] {
-	return IO.MakeIO[string](func() string {
-		os.Remove(name) // #nosec: G104
-		return name
-	})
-}
+func Remove(name string) IO.IO[string] { _ = "STUB: not implemented"; return nil }
+
+// #nosec: G104

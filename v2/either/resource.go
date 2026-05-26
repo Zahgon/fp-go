@@ -43,20 +43,6 @@ func WithResource[A, E, R, ANY any](
 	onCreate func() Either[E, R],
 	onRelease Kleisli[E, R, ANY],
 ) Kleisli[E, Kleisli[E, R, A], A] {
-	return func(f func(R) Either[E, A]) Either[E, A] {
-		r := onCreate()
-		if r.isLeft {
-			return Left[A](r.l)
-		}
-		a := f(r.r)
-		n := onRelease(r.r)
-		if a.isLeft {
-			return Left[A](a.l)
-		}
-		if n.isLeft {
-			return Left[A](n.l)
-
-		}
-		return Of[E](a.r)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

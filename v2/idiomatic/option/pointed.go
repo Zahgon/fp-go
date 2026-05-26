@@ -24,16 +24,16 @@ type (
 )
 
 func (o optionPointed[A]) Of(a A) (A, bool) {
-	return Of(a)
+	_ = "STUB: not implemented"
+
+	// Pointed implements the Pointed operations for Option.
+	// A pointed functor is a functor with an Of operation that wraps a value.
+	//
+	// Example:
+	//
+	//	p := Pointed[int]()
+	//	result := p.Of(42) // Some(42)
+	return *new(A), false
 }
 
-// Pointed implements the Pointed operations for Option.
-// A pointed functor is a functor with an Of operation that wraps a value.
-//
-// Example:
-//
-//	p := Pointed[int]()
-//	result := p.Of(42) // Some(42)
-func MakePointed[A any]() Pointed[A] {
-	return optionPointed[A]{}
-}
+func MakePointed[A any]() Pointed[A] { _ = "STUB: not implemented"; return nil }

@@ -17,16 +17,17 @@ package record
 
 import (
 	L "github.com/IBM/fp-go/v2/optics/lens"
-	G "github.com/IBM/fp-go/v2/optics/lens/record/generic"
 	O "github.com/IBM/fp-go/v2/option"
 )
 
 // AtRecord returns a lens that focusses on a value in a record
 func AtRecord[V any, K comparable](key K) L.Lens[map[K]V, O.Option[V]] {
-	return G.AtRecord[map[K]V](key)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AtKey returns a `Lens` focused on a required key of a `ReadonlyRecord`
 func AtKey[S any, V any, K comparable](key K) func(sa L.Lens[S, map[K]V]) L.Lens[S, O.Option[V]] {
-	return G.AtKey[map[K]V, S](key)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,42 +16,39 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/function"
 	M "github.com/IBM/fp-go/monoid"
 	S "github.com/IBM/fp-go/semigroup"
 )
 
 // Of converts any function to an [Endomorphism]
 func Of[ENDO ~func(A) A, F ~func(A) A, A any](f F) ENDO {
-	return func(a A) A {
-		return f(a)
-	}
+	_ = "STUB: not implemented"
+	return *new(ENDO)
 }
 
 // Wrap converts any function to an [Endomorphism]
 func Wrap[ENDO ~func(A) A, F ~func(A) A, A any](f F) ENDO {
-	return Of[ENDO](f)
+	_ = "STUB: not implemented"
+	return *
+
+	// Unwrap converts any [Endomorphism] to a normal function
+	new(ENDO)
 }
 
-// Unwrap converts any [Endomorphism] to a normal function
 func Unwrap[F ~func(A) A, ENDO ~func(A) A, A any](f ENDO) F {
-	return Of[F](f)
+	_ = "STUB: not implemented"
+	return *new(F)
 }
 
-func Identity[ENDO ~func(A) A, A any]() ENDO {
-	return Of[ENDO](F.Identity[A])
-}
+func Identity[ENDO ~func(A) A, A any]() ENDO { _ = "STUB: not implemented"; return *new(ENDO) }
 
 func Compose[ENDO ~func(A) A, A any](f1, f2 ENDO) ENDO {
-	return Of[ENDO](F.Flow2(f1, f2))
+	_ = "STUB: not implemented"
+	return *new(ENDO)
 }
 
 // Semigroup for the Endomorphism where the `concat` operation is the usual function composition.
-func Semigroup[ENDO ~func(A) A, A any]() S.Semigroup[ENDO] {
-	return S.MakeSemigroup(Compose[ENDO])
-}
+func Semigroup[ENDO ~func(A) A, A any]() S.Semigroup[ENDO] { _ = "STUB: not implemented"; return nil }
 
 // Monoid for the Endomorphism where the `concat` operation is the usual function composition.
-func Monoid[ENDO ~func(A) A, A any]() M.Monoid[ENDO] {
-	return M.MakeMonoid(Compose[ENDO], Identity[ENDO]())
-}
+func Monoid[ENDO ~func(A) A, A any]() M.Monoid[ENDO] { _ = "STUB: not implemented"; return nil }

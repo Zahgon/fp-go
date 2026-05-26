@@ -18,8 +18,6 @@ package option
 import (
 	"fmt"
 	"log/slog"
-
-	"github.com/IBM/fp-go/v2/internal/formatting"
 )
 
 const (
@@ -39,12 +37,7 @@ const (
 //	None[int]().GoString() // "option.None[int]()"
 //
 //go:noinline
-func (s Option[A]) GoString() string {
-	if s.isSome {
-		return fmt.Sprintf(someGoTemplate, formatting.TypeInfo(s.value), s.value)
-	}
-	return fmt.Sprintf(noneGoTemplate, formatting.TypeInfo(new(A)))
-}
+func (s Option[A]) GoString() string { _ = "STUB: not implemented"; return "" }
 
 // LogValue implements slog.LogValuer for Option.
 // Returns a slog.Value that represents the Option for structured logging.
@@ -62,12 +55,7 @@ func (s Option[A]) GoString() string {
 //	// Logs: {"msg":"empty","value":{"none":{}}}
 //
 //go:noinline
-func (s Option[A]) LogValue() slog.Value {
-	if s.isSome {
-		return slog.GroupValue(slog.Any("some", s.value))
-	}
-	return slog.GroupValue(slog.Any("none", struct{}{}))
-}
+func (s Option[A]) LogValue() slog.Value { _ = "STUB: not implemented"; return *new(slog.Value) }
 
 // Format implements fmt.Formatter for Option.
 // Supports all standard format verbs:
@@ -84,17 +72,11 @@ func (s Option[A]) LogValue() slog.Value {
 //	fmt.Printf("%#v", opt)  // "option.Some[int](42)"
 //
 //go:noinline
-func (s Option[A]) Format(f fmt.State, c rune) {
-	formatting.FmtString(s, f, c)
-}
+func (s Option[A]) Format(f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 // optString prints some debug info for the object
 //
 //go:noinline
-func optString(isSome bool, value any) string {
-	if isSome {
-		return fmt.Sprintf(someFmtTemplate, formatting.TypeInfo(value), value)
-	}
-	// For None, just show the type without ()
-	return fmt.Sprintf(noneFmtTemplate, formatting.TypeInfo(value))
-}
+func optString(isSome bool, value any) string { _ = "STUB: not implemented"; return "" }
+
+// For None, just show the type without ()

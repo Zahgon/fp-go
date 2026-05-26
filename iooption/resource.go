@@ -15,13 +15,10 @@
 
 package iooption
 
-import (
-	G "github.com/IBM/fp-go/iooption/generic"
-)
-
 // WithResource constructs a function that creates a resource, then operates on it and then releases the resource
 func WithResource[
 	R, A, ANY any](onCreate IOOption[R], onRelease func(R) IOOption[ANY]) func(func(R) IOOption[A]) IOOption[A] {
+	_ = "STUB: not implemented"
 	// just dispatch
-	return G.WithResource[IOOption[A], IOOption[R], IOOption[ANY]](onCreate, onRelease)
+	return nil
 }

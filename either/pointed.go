@@ -22,10 +22,10 @@ import (
 type eitherPointed[E, A any] struct{}
 
 func (o *eitherPointed[E, A]) Of(a A) Either[E, A] {
-	return Of[E, A](a)
+	_ = "STUB: not implemented"
+
+	// Pointed implements the pointedic operations for [Either]
+	return nil
 }
 
-// Pointed implements the pointedic operations for [Either]
-func Pointed[E, A any]() pointed.Pointed[A, Either[E, A]] {
-	return &eitherPointed[E, A]{}
-}
+func Pointed[E, A any]() pointed.Pointed[A, Either[E, A]] { _ = "STUB: not implemented"; return nil }

@@ -20,13 +20,9 @@ import (
 
 	E "github.com/IBM/fp-go/eq"
 	"github.com/IBM/fp-go/internal/applicative"
-	LA "github.com/IBM/fp-go/internal/applicative/testing"
-	"github.com/IBM/fp-go/internal/chain"
-	LC "github.com/IBM/fp-go/internal/chain/testing"
 	"github.com/IBM/fp-go/internal/functor"
 	"github.com/IBM/fp-go/internal/monad"
 	"github.com/IBM/fp-go/internal/pointed"
-	"github.com/stretchr/testify/assert"
 )
 
 // Apply monad left identity law
@@ -44,17 +40,8 @@ func AssertLeftIdentity[HKTA, HKTB, A, B any](t *testing.T,
 
 	ab func(A) B,
 ) func(a A) bool {
-	return func(a A) bool {
-
-		f := func(a A) HKTB {
-			return fofb(ab(a))
-		}
-
-		left := fchain(fofa(a), f)
-		right := f(a)
-
-		return assert.True(t, eq.Equals(left, right), "Monad left identity")
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Apply monad left identity law
@@ -69,17 +56,8 @@ func MonadAssertLeftIdentity[HKTA, HKTB, HKTFAB, A, B any](t *testing.T,
 
 	ab func(A) B,
 ) func(a A) bool {
-	return func(a A) bool {
-
-		f := func(a A) HKTB {
-			return fofb.Of(ab(a))
-		}
-
-		left := ma.Chain(f)(ma.Of(a))
-		right := f(a)
-
-		return assert.True(t, eq.Equals(left, right), "Monad left identity")
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Apply monad right identity law
@@ -94,13 +72,8 @@ func AssertRightIdentity[HKTA, A any](t *testing.T,
 
 	fchain func(HKTA, func(A) HKTA) HKTA,
 ) func(fa HKTA) bool {
-	return func(fa HKTA) bool {
-
-		left := fchain(fa, fofa)
-		right := fa
-
-		return assert.True(t, eq.Equals(left, right), "Monad right identity")
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Apply monad right identity law
@@ -112,13 +85,8 @@ func MonadAssertRightIdentity[HKTA, HKTAA, A any](t *testing.T,
 	ma monad.Monad[A, A, HKTA, HKTA, HKTAA],
 
 ) func(fa HKTA) bool {
-	return func(fa HKTA) bool {
-
-		left := ma.Chain(ma.Of)(fa)
-		right := fa
-
-		return assert.True(t, eq.Equals(left, right), "Monad right identity")
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AssertLaws asserts the apply laws `identity`, `composition`, `associative composition`, 'applicative identity', 'homomorphism', 'interchange', `associativity`, `left identity`, `right identity`
@@ -161,19 +129,14 @@ func AssertLaws[HKTA, HKTB, HKTC, HKTAA, HKTAB, HKTBC, HKTAC, HKTABB, HKTABAC, A
 	ab func(A) B,
 	bc func(B) C,
 ) func(a A) bool {
+	_ = "STUB: not implemented"
 	// applicative laws
-	applicative := LA.AssertLaws(t, eqa, eqb, eqc, fofa, fofb, fofaa, fofab, fofbc, fofabb, faa, fab, fac, fbc, fmap, fapaa, fapab, fapbc, fapac, fapabb, fapabac, ab, bc)
-	// chain laws
-	chain := LC.AssertLaws(t, eqa, eqc, fofb, fofc, fofab, fofbc, faa, fab, fac, fbc, fmap, chainab, chainac, chainbc, fapab, fapbc, fapac, fapabac, ab, bc)
-	// monad laws
-	leftIdentity := AssertLeftIdentity(t, eqb, fofa, fofb, chainab, ab)
-	rightIdentity := AssertRightIdentity(t, eqa, fofa, chainaa)
-
-	return func(a A) bool {
-		fa := fofa(a)
-		return applicative(a) && chain(fa) && leftIdentity(a) && rightIdentity(fa)
-	}
+	return nil
 }
+
+// chain laws
+
+// monad laws
 
 // MonadAssertLaws asserts the apply laws `identity`, `composition`, `associative composition`, 'applicative identity', 'homomorphism', 'interchange', `associativity`, `left identity`, `right identity`
 func MonadAssertLaws[HKTA, HKTB, HKTC, HKTAA, HKTAB, HKTBC, HKTAC, HKTABB, HKTABAC, A, B, C any](t *testing.T,
@@ -199,30 +162,13 @@ func MonadAssertLaws[HKTA, HKTB, HKTC, HKTAA, HKTAB, HKTBC, HKTAC, HKTABB, HKTAB
 	ab func(A) B,
 	bc func(B) C,
 ) func(a A) bool {
+	_ = "STUB: not implemented"
 	// derivations
-	fofa := monad.ToPointed(maa)
-	fofb := monad.ToPointed(mbc)
-	fofab := applicative.ToPointed(fapabb)
-	fapaa := monad.ToApplicative(maa)
-	fapab := monad.ToApplicative(mab)
-	chainab := monad.ToChainable(mab)
-	chainac := monad.ToChainable(mac)
-	chainbc := monad.ToChainable(mbc)
-	fapbc := chain.ToApply(chainbc)
-	fapac := chain.ToApply(chainac)
-
-	faa := monad.ToFunctor(maa)
-
-	// applicative laws
-	apLaw := LA.ApplicativeAssertLaws(t, eqa, eqb, eqc, fofb, fofaa, fofbc, fofabb, faa, fmap, fapaa, fapab, fapbc, fapac, fapabb, fapabac, ab, bc)
-	// chain laws
-	chainLaw := LC.ChainAssertLaws(t, eqa, eqc, fofb, fofc, fofab, fofbc, faa, fmap, chainab, chainac, chainbc, applicative.ToApply(fapabac), ab, bc)
-	// monad laws
-	leftIdentity := MonadAssertLeftIdentity(t, eqb, fofb, mab, ab)
-	rightIdentity := MonadAssertRightIdentity(t, eqa, maa)
-
-	return func(a A) bool {
-		fa := fofa.Of(a)
-		return apLaw(a) && chainLaw(fa) && leftIdentity(a) && rightIdentity(fa)
-	}
+	return nil
 }
+
+// applicative laws
+
+// chain laws
+
+// monad laws

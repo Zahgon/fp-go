@@ -16,7 +16,6 @@
 package array
 
 import (
-	G "github.com/IBM/fp-go/v2/array/generic"
 	"github.com/IBM/fp-go/v2/pair"
 )
 
@@ -36,7 +35,8 @@ import (
 //
 //go:inline
 func ZipWith[FCT ~func(A, B) C, A, B, C any](fa []A, fb []B, f FCT) []C {
-	return G.ZipWith[[]A, []B, []C](fa, fb, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Zip takes two arrays and returns an array of corresponding pairs (tuples).
@@ -55,9 +55,7 @@ func ZipWith[FCT ~func(A, B) C, A, B, C any](fa []A, fb []B, f FCT) []C {
 //	// Result: [(a, 1), (b, 2)]
 //
 //go:inline
-func Zip[A, B any](fb []B) func([]A) []pair.Pair[A, B] {
-	return G.Zip[[]A, []B, []pair.Pair[A, B]](fb)
-}
+func Zip[A, B any](fb []B) func([]A) []pair.Pair[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Unzip is the reverse of Zip. It takes an array of pairs (tuples) and returns
 // two corresponding arrays, one containing all first elements and one containing all second elements.
@@ -79,5 +77,6 @@ func Zip[A, B any](fb []B) func([]A) []pair.Pair[A, B] {
 //
 //go:inline
 func Unzip[A, B any](cs []pair.Pair[A, B]) pair.Pair[[]A, []B] {
-	return G.Unzip[[]A, []B](cs)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -17,15 +17,16 @@ package state
 
 import (
 	EQ "github.com/IBM/fp-go/eq"
-	G "github.com/IBM/fp-go/state/generic"
 )
 
 // Constructs an equal predicate for a [State]
 func Eq[S, A any](w EQ.Eq[S], a EQ.Eq[A]) func(S) EQ.Eq[State[S, A]] {
-	return G.Eq[State[S, A]](w, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
 func FromStrictEquals[S, A comparable]() func(S) EQ.Eq[State[S, A]] {
-	return G.FromStrictEquals[State[S, A]]()
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -1,14 +1,5 @@
 package option
 
-import (
-	"github.com/IBM/fp-go/v2/endomorphism"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/lazy"
-	"github.com/IBM/fp-go/v2/optics/lens"
-
-	O "github.com/IBM/fp-go/v2/option"
-)
-
 // Compose composes two lenses that both return optional values.
 //
 // This handles the case where both the intermediate structure A and the inner focus B are optional.
@@ -54,38 +45,15 @@ import (
 //	configRetriesLens := F.Pipe1(settingsLens,
 //	    lens.Compose[Config, *int](defaultSettings)(retriesLens))
 func Compose[S, B, A any](defaultA A) func(LensO[A, B]) Operator[S, A, B] {
-	noneb := O.None[B]()
-	return func(ab LensO[A, B]) Operator[S, A, B] {
-		abGet := ab.Get
-		abSetNone := ab.Set(noneb)
-		return func(sa LensO[S, A]) LensO[S, B] {
-			saGet := sa.Get
-			// Pre-compute setter for Some[A]
-			setSomeA := F.Flow2(O.Some[A], sa.Set)
-			return lens.MakeLensCurried(
-				F.Flow2(saGet, O.Chain(abGet)),
-				F.Flow2(
-					O.Fold(
-						// optB is None
-						lazy.Of(F.Flow2(
-							saGet,
-							O.Fold(endomorphism.Identity[S], F.Flow2(abSetNone, setSomeA)),
-						)),
-						// optB is Some
-						func(b B) func(S) Endomorphism[S] {
-							setB := ab.Set(O.Some(b))
-							return F.Flow2(
-								saGet,
-								O.Fold(lazy.Of(setSomeA(setB(defaultA))), F.Flow2(setB, setSomeA)),
-							)
-						},
-					),
-					endomorphism.Join[S],
-				),
-			)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// Pre-compute setter for Some[A]
+
+// optB is None
+
+// optB is Some
 
 // ComposeOption composes a lens returning an optional value with a lens returning a definite value.
 //
@@ -136,32 +104,12 @@ func Compose[S, B, A any](defaultA A) func(LensO[A, B]) Operator[S, A, B] {
 //	updated := configPortLens.Set(O.Some(3306))(config)
 //	// updated.Database.Port == 3306, Host == "localhost" (from default)
 func ComposeOption[S, B, A any](defaultA A) func(Lens[A, B]) Operator[S, A, B] {
-	return func(ab Lens[A, B]) Operator[S, A, B] {
-		abGet := ab.Get
-		abSet := ab.Set
-		return func(sa LensO[S, A]) LensO[S, B] {
-			saGet := sa.Get
-			saSet := sa.Set
-			// Pre-compute setters
-			setNoneA := saSet(O.None[A]())
-			setSomeA := F.Flow2(O.Some[A], saSet)
-			return lens.MakeLensCurried(
-				F.Flow2(saGet, O.Map(abGet)),
-				O.Fold(
-					// optB is None - remove A entirely
-					lazy.Of(setNoneA),
-					// optB is Some - set B
-					func(b B) Endomorphism[S] {
-						absetB := abSet(b)
-						abSetA := absetB(defaultA)
-						return endomorphism.Join(F.Flow3(
-							saGet,
-							O.Fold(lazy.Of(abSetA), absetB),
-							setSomeA,
-						))
-					},
-				),
-			)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// Pre-compute setters
+
+// optB is None - remove A entirely
+
+// optB is Some - set B

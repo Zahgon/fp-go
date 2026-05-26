@@ -16,11 +16,11 @@
 package array
 
 import (
-	G "github.com/IBM/fp-go/array/generic"
 	"github.com/IBM/fp-go/internal/monad"
 )
 
 // Monad returns the monadic operations for an array
 func Monad[A, B any]() monad.Monad[A, B, []A, []B, []func(A) B] {
-	return G.Monad[A, B, []A, []B, []func(A) B]()
+	_ = "STUB: not implemented"
+	return nil
 }

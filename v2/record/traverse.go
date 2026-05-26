@@ -15,10 +15,6 @@
 
 package record
 
-import (
-	G "github.com/IBM/fp-go/v2/internal/record"
-)
-
 // TraverseWithIndex transforms a map of values into a value of a map by applying an effectful function
 // to each key-value pair. The function has access to both the key and value.
 //
@@ -55,7 +51,8 @@ func TraverseWithIndex[A any, K comparable, B, HKTB, HKTAB, HKTRB any](
 	fap func(HKTB) func(HKTAB) HKTRB,
 
 	f func(K, A) HKTB) func(map[K]A) HKTRB {
-	return G.TraverseWithIndex[map[K]A](fof, fmap, fap, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Traverse transforms a map of values into a value of a map by applying an effectful function
@@ -93,7 +90,8 @@ func Traverse[A any, K comparable, B, HKTB, HKTAB, HKTRB any](
 	fmap func(func(map[K]B) func(B) map[K]B) func(HKTRB) HKTAB,
 	fap func(HKTB) func(HKTAB) HKTRB,
 	f func(A) HKTB) func(map[K]A) HKTRB {
-	return G.Traverse[map[K]A](fof, fmap, fap, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Sequence transforms a map of effects into an effect of a map.
@@ -134,8 +132,8 @@ func Sequence[K comparable, A, HKTA, HKTAA, HKTRA any](
 	fmap func(func(map[K]A) func(A) map[K]A) func(HKTRA) HKTAA,
 	fap func(HKTA) func(HKTAA) HKTRA,
 	ma map[K]HKTA) HKTRA {
-	return G.Sequence(fof, fmap, fap, ma)
-
+	_ = "STUB: not implemented"
+	return *new(HKTRA)
 }
 
 // MakeTraversable creates a fully curried traversal function for record types.
@@ -206,5 +204,6 @@ func MakeTraversable[A any, K comparable, B, HKTB, HKTAB, HKTRB any](
 	fof func(map[K]B) HKTRB,
 	fmap func(func(map[K]B) func(B) map[K]B) func(HKTRB) HKTAB,
 	fap func(HKTB) func(HKTAB) HKTRB) func(func(A) HKTB) func(map[K]A) HKTRB {
-	return G.MakeTraversable[map[K]A](fof, fmap, fap)
+	_ = "STUB: not implemented"
+	return nil
 }

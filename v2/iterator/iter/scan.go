@@ -98,15 +98,6 @@ package iter
 //	result := runningSum(seq)
 //	// yields: 52
 func Scan[FCT ~func(V, U) V, U, V any](f FCT, initial V) Operator[U, V] {
-	return func(s Seq[U]) Seq[V] {
-		return func(yield func(V) bool) {
-			current := initial
-			for u := range s {
-				current = f(current, u)
-				if !yield(current) {
-					return
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

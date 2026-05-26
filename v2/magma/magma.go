@@ -23,77 +23,40 @@ type magma[A any] struct {
 	c func(A, A) A
 }
 
-func (m magma[A]) Concat(x, y A) A {
-	return m.c(x, y)
-}
+func (m magma[A]) Concat(x, y A) A { _ = "STUB: not implemented"; return *new(A) }
 
-func MakeMagma[A any](c func(A, A) A) Magma[A] {
-	return magma[A]{c: c}
-}
+func MakeMagma[A any](c func(A, A) A) Magma[A] { _ = "STUB: not implemented"; return nil }
 
-func Reverse[A any](m Magma[A]) Magma[A] {
-	return MakeMagma(func(x A, y A) A {
-		return m.Concat(y, x)
-	})
-}
+func Reverse[A any](m Magma[A]) Magma[A] { _ = "STUB: not implemented"; return nil }
 
 func filterFirst[A any](p func(A) bool, c func(A, A) A, x, y A) A {
-	if p(x) {
-		return c(x, y)
-	}
-	return y
+	_ = "STUB: not implemented"
+	return *new(A)
 }
 
 func filterSecond[A any](p func(A) bool, c func(A, A) A, x, y A) A {
-	if p(y) {
-		return c(x, y)
-	}
-	return x
+	_ = "STUB: not implemented"
+	return *new(A)
 }
 
 func FilterFirst[A any](p func(A) bool) func(Magma[A]) Magma[A] {
-	return func(m Magma[A]) Magma[A] {
-		c := m.Concat
-		return MakeMagma(func(x A, y A) A {
-			return filterFirst(p, c, x, y)
-		})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FilterSecond[A any](p func(A) bool) func(Magma[A]) Magma[A] {
-	return func(m Magma[A]) Magma[A] {
-		c := m.Concat
-		return MakeMagma(func(x, y A) A {
-			return filterSecond(p, c, x, y)
-		})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func first[A any](x, _ A) A {
-	return x
-}
+func first[A any](x, _ A) A { _ = "STUB: not implemented"; return *new(A) }
 
-func second[A any](_, y A) A {
-	return y
-}
+func second[A any](_, y A) A { _ = "STUB: not implemented"; return *new(A) }
 
-func First[A any]() Magma[A] {
-	return MakeMagma(first[A])
-}
+func First[A any]() Magma[A] { _ = "STUB: not implemented"; return nil }
 
-func Second[A any]() Magma[A] {
-	return MakeMagma(second[A])
-}
+func Second[A any]() Magma[A] { _ = "STUB: not implemented"; return nil }
 
-func endo[A any](f func(A) A, c func(A, A) A, x, y A) A {
-	return c(f(x), f(y))
-}
+func endo[A any](f func(A) A, c func(A, A) A, x, y A) A { _ = "STUB: not implemented"; return *new(A) }
 
-func Endo[A any](f func(A) A) func(Magma[A]) Magma[A] {
-	return func(m Magma[A]) Magma[A] {
-		c := m.Concat
-		return MakeMagma(func(x A, y A) A {
-			return endo(f, c, x, y)
-		})
-	}
-}
+func Endo[A any](f func(A) A) func(Magma[A]) Magma[A] { _ = "STUB: not implemented"; return nil }

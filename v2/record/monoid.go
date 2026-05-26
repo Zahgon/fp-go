@@ -16,7 +16,6 @@
 package record
 
 import (
-	G "github.com/IBM/fp-go/v2/record/generic"
 	S "github.com/IBM/fp-go/v2/semigroup"
 )
 
@@ -24,26 +23,27 @@ import (
 //
 //go:inline
 func UnionMonoid[K comparable, V any](s S.Semigroup[V]) Monoid[Record[K, V]] {
-	return G.UnionMonoid[Record[K, V]](s)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // UnionLastMonoid computes the union of two maps of the same type giving the last map precedence
 //
 //go:inline
 func UnionLastMonoid[K comparable, V any]() Monoid[Record[K, V]] {
-	return G.UnionLastMonoid[Record[K, V]]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // UnionFirstMonoid computes the union of two maps of the same type giving the first map precedence
 //
 //go:inline
 func UnionFirstMonoid[K comparable, V any]() Monoid[Record[K, V]] {
-	return G.UnionFirstMonoid[Record[K, V]]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MergeMonoid computes the union of two maps of the same type giving the last map precedence
 //
 //go:inline
-func MergeMonoid[K comparable, V any]() Monoid[Record[K, V]] {
-	return G.UnionLastMonoid[Record[K, V]]()
-}
+func MergeMonoid[K comparable, V any]() Monoid[Record[K, V]] { _ = "STUB: not implemented"; return nil }

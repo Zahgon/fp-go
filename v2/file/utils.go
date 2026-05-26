@@ -21,70 +21,74 @@ type nopWriteCloser struct {
 	delegate io.Writer
 }
 
-func (_ *nopWriteCloser) Close() error {
-	return nil
-}
+func (_ *nopWriteCloser) Close() error { _ = "STUB: not implemented"; return nil }
 
 func (nc *nopWriteCloser) Write(p []byte) (n int, err error) {
-	return nc.delegate.Write(p)
+	_ = "STUB: not implemented"
+	return 0, nil
+
+	// NopReadCloser wraps an io.Reader with a no-op Close method, converting it to an io.ReadCloser.
+	// This is useful when you need to satisfy an io.ReadCloser interface but don't need actual
+	// close functionality, such as when working with in-memory buffers or strings.
+	//
+	// This function is a generic wrapper around io.NopCloser that preserves type information
+	// for better type inference in functional pipelines.
+	//
+	// Type Parameters:
+	//   - R: Any type that implements io.Reader
+	//
+	// Parameters:
+	//   - r: The io.Reader to wrap
+	//
+	// Returns:
+	//   - io.ReadCloser: A ReadCloser that delegates Read calls to r and has a no-op Close
+	//
+	// Example:
+	//
+	//	reader := strings.NewReader("hello world")
+	//	readCloser := NopReadCloser(reader)
+	//	defer readCloser.Close() // no-op, safe to call
+	//	data, _ := io.ReadAll(readCloser)
+	//
+	// See Also:
+	//   - NopWriteCloser: Similar wrapper for io.Writer
 }
 
-// NopReadCloser wraps an io.Reader with a no-op Close method, converting it to an io.ReadCloser.
-// This is useful when you need to satisfy an io.ReadCloser interface but don't need actual
-// close functionality, such as when working with in-memory buffers or strings.
-//
-// This function is a generic wrapper around io.NopCloser that preserves type information
-// for better type inference in functional pipelines.
-//
-// Type Parameters:
-//   - R: Any type that implements io.Reader
-//
-// Parameters:
-//   - r: The io.Reader to wrap
-//
-// Returns:
-//   - io.ReadCloser: A ReadCloser that delegates Read calls to r and has a no-op Close
-//
-// Example:
-//
-//   reader := strings.NewReader("hello world")
-//   readCloser := NopReadCloser(reader)
-//   defer readCloser.Close() // no-op, safe to call
-//   data, _ := io.ReadAll(readCloser)
-//
-// See Also:
-//   - NopWriteCloser: Similar wrapper for io.Writer
 func NopReadCloser[R io.Reader](r R) io.ReadCloser {
-	return io.NopCloser(r)
+	_ = "STUB: not implemented"
+	return *
+
+	// NopWriteCloser wraps an io.Writer with a no-op Close method, converting it to an io.WriteCloser.
+	// This is useful when you need to satisfy an io.WriteCloser interface but don't need actual
+	// close functionality, such as when writing to in-memory buffers or when the underlying
+	// writer doesn't require cleanup.
+	//
+	// The returned WriteCloser delegates all Write calls to the underlying writer and returns
+	// nil from Close without performing any cleanup operations.
+	//
+	// Type Parameters:
+	//   - W: Any type that implements io.Writer
+	//
+	// Parameters:
+	//   - w: The io.Writer to wrap
+	//
+	// Returns:
+	//   - io.WriteCloser: A WriteCloser that delegates Write calls to w and has a no-op Close
+	//
+	// Example:
+	//
+	//	var buf bytes.Buffer
+	//	writeCloser := NopWriteCloser(&buf)
+	//	writeCloser.Write([]byte("hello"))
+	//	writeCloser.Close() // no-op, safe to call
+	//	fmt.Println(buf.String()) // prints: hello
+	//
+	// See Also:
+	//   - NopReadCloser: Similar wrapper for io.Reader
+	new(io.ReadCloser)
 }
 
-// NopWriteCloser wraps an io.Writer with a no-op Close method, converting it to an io.WriteCloser.
-// This is useful when you need to satisfy an io.WriteCloser interface but don't need actual
-// close functionality, such as when writing to in-memory buffers or when the underlying
-// writer doesn't require cleanup.
-//
-// The returned WriteCloser delegates all Write calls to the underlying writer and returns
-// nil from Close without performing any cleanup operations.
-//
-// Type Parameters:
-//   - W: Any type that implements io.Writer
-//
-// Parameters:
-//   - w: The io.Writer to wrap
-//
-// Returns:
-//   - io.WriteCloser: A WriteCloser that delegates Write calls to w and has a no-op Close
-//
-// Example:
-//
-//   var buf bytes.Buffer
-//   writeCloser := NopWriteCloser(&buf)
-//   writeCloser.Write([]byte("hello"))
-//   writeCloser.Close() // no-op, safe to call
-//   fmt.Println(buf.String()) // prints: hello
-//
-// See Also:
-//   - NopReadCloser: Similar wrapper for io.Reader
 func NopWriteCloser[W io.Writer](w W) io.WriteCloser {
-	return &nopWriteCloser{w}
+	_ = "STUB: not implemented"
+	return *new(io.WriteCloser)
 }

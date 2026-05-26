@@ -16,13 +16,9 @@
 package generic
 
 import (
-	"github.com/IBM/fp-go/v2/endomorphism"
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/apply"
 	"github.com/IBM/fp-go/v2/internal/functor"
 	"github.com/IBM/fp-go/v2/internal/pointed"
-	M "github.com/IBM/fp-go/v2/monoid"
-	"github.com/IBM/fp-go/v2/reader"
 )
 
 // Empty creates an empty traversal endomorphism that focuses on no values.
@@ -75,7 +71,8 @@ import (
 func Empty[A, HKTA, S, HKTES any](
 	fof pointed.OfType[Endomorphism[S], HKTES],
 ) Traversal[S, A, HKTES, HKTA] {
-	return reader.Of[func(A) HKTA](reader.Of[S](fof(endomorphism.Identity[S]())))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Concat combines two traversal endomorphisms into a single traversal that focuses on all values from both.
@@ -146,32 +143,8 @@ func Concat[A, HKTA, S, HKTES, HKTESES any](
 	fmap functor.MapType[Endomorphism[S], Endomorphism[Endomorphism[S]], HKTES, HKTESES],
 	fap apply.ApType[HKTES, HKTES, HKTESES],
 ) func(l, r Traversal[S, A, HKTES, HKTA]) Traversal[S, A, HKTES, HKTA] {
-	mp := F.Pipe2(
-		endomorphism.Compose[S],
-		fmap,
-		reader.Map[S],
-	)
-	ap := F.Pipe1(
-		fap,
-		reader.Map[S],
-	)
-	return func(l, r Traversal[S, A, HKTES, HKTA]) Traversal[S, A, HKTES, HKTA] {
-		return func(f func(A) HKTA) func(S) HKTES {
-			return F.Pipe1(
-				F.Pipe2(
-					f,
-					l,
-					ap,
-				),
-				F.Pipe3(
-					f,
-					r,
-					mp,
-					reader.Ap[HKTES],
-				),
-			)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeMonoid creates a monoid instance for traversal endomorphisms.
@@ -253,8 +226,6 @@ func MakeMonoid[A, HKTA, S, HKTES, HKTESES any](
 	fmap functor.MapType[Endomorphism[S], Endomorphism[Endomorphism[S]], HKTES, HKTESES],
 	fap apply.ApType[HKTES, HKTES, HKTESES],
 ) Monoid[Traversal[S, A, HKTES, HKTA]] {
-	return M.MakeMonoid(
-		Concat[A, HKTA](fmap, fap),
-		Empty[A, HKTA](fof),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -17,7 +17,6 @@ package array
 
 import (
 	"github.com/IBM/fp-go/v2/internal/apply"
-	"github.com/IBM/fp-go/v2/internal/array"
 	"github.com/IBM/fp-go/v2/internal/functor"
 	"github.com/IBM/fp-go/v2/internal/pointed"
 	"github.com/IBM/fp-go/v2/internal/traversable"
@@ -64,7 +63,8 @@ func Traverse[A, B, HKTB, HKTAB, HKTRB any](
 	fap apply.ApType[HKTB, HKTRB, HKTAB],
 
 	f func(A) HKTB) func([]A) HKTRB {
-	return array.Traverse[[]A](fof, fmap, fap, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTraverse is the monadic version of Traverse that takes the array as a parameter.
@@ -81,8 +81,8 @@ func MonadTraverse[A, B, HKTB, HKTAB, HKTRB any](
 
 	ta []A,
 	f func(A) HKTB) HKTRB {
-
-	return array.MonadTraverse(fof, fmap, fap, ta, f)
+	_ = "STUB: not implemented"
+	return *new(HKTRB)
 }
 
 //go:inline
@@ -92,7 +92,8 @@ func TraverseWithIndex[A, B, HKTB, HKTAB, HKTRB any](
 	fap func(HKTB) func(HKTAB) HKTRB,
 
 	f func(int, A) HKTB) func([]A) HKTRB {
-	return array.TraverseWithIndex[[]A](fof, fmap, fap, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -103,27 +104,15 @@ func MonadTraverseWithIndex[A, B, HKTB, HKTAB, HKTRB any](
 
 	ta []A,
 	f func(int, A) HKTB) HKTRB {
-
-	return array.MonadTraverseWithIndex(fof, fmap, fap, ta, f)
+	_ = "STUB: not implemented"
+	return *new(HKTRB)
 }
 
 func MakeTraverseType[A, B, HKT_F_B, HKT_F_T_B, HKT_F_B_T_B any]() traversable.TraverseType[A, B, []A, []B, HKT_F_B, HKT_F_T_B, HKT_F_B_T_B] {
-	return func(
-		// ap
-		fof_b pointed.OfType[[]B, HKT_F_T_B],
-		fmap_b functor.MapType[[]B, func(B) []B, HKT_F_T_B, HKT_F_B_T_B],
-		fap_b apply.ApType[HKT_F_B, HKT_F_T_B, HKT_F_B_T_B],
+	_ = "STUB: not implemented"
 
-	) func(func(A) HKT_F_B) func([]A) HKT_F_T_B {
-		return func(f func(A) HKT_F_B) func([]A) HKT_F_T_B {
-			return Traverse(
-				fof_b,
-				fmap_b,
-				fap_b,
-				f,
-			)
-		}
-	}
+	// ap
+	return nil
 }
 
 // MakeTraversable creates a fully curried traversal function that can be specialized for different effects.
@@ -179,5 +168,6 @@ func MakeTraversable[A, B, HKTB, HKTAB, HKTRB any](
 	fmap func(func([]B) func(B) []B) func(HKTRB) HKTAB,
 	fap func(HKTB) func(HKTAB) HKTRB,
 ) func(func(A) HKTB) func([]A) HKTRB {
-	return array.MakeTraversable[[]A](fof, fmap, fap)
+	_ = "STUB: not implemented"
+	return nil
 }

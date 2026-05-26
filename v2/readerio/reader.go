@@ -91,15 +91,8 @@
 package readerio
 
 import (
-	"sync"
 	"time"
 
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/chain"
-	"github.com/IBM/fp-go/v2/internal/fromio"
-	"github.com/IBM/fp-go/v2/internal/fromreader"
-	"github.com/IBM/fp-go/v2/internal/functor"
-	"github.com/IBM/fp-go/v2/internal/readert"
 	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/reader"
 )
@@ -122,9 +115,7 @@ import (
 //	ioAction := io.Of(42)
 //	readerIO := readerio.FromIO[Config](ioAction)
 //	result := readerIO(config)() // Returns 42
-func FromIO[R, A any](t IO[A]) ReaderIO[R, A] {
-	return reader.Of[R](t)
-}
+func FromIO[R, A any](t IO[A]) ReaderIO[R, A] { _ = "STUB: not implemented"; return nil }
 
 // FromReader converts a [Reader] to a [ReaderIO] by lifting the pure computation into IO.
 // This allows you to use Reader computations in a ReaderIO context.
@@ -144,9 +135,7 @@ func FromIO[R, A any](t IO[A]) ReaderIO[R, A] {
 //	reader := func(config Config) int { return config.Port }
 //	readerIO := readerio.FromReader(reader)
 //	result := readerIO(config)() // Returns config.Port
-func FromReader[R, A any](r Reader[R, A]) ReaderIO[R, A] {
-	return readert.MonadFromReader[Reader[R, A], ReaderIO[R, A]](io.Of[A], r)
-}
+func FromReader[R, A any](r Reader[R, A]) ReaderIO[R, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap applies a function to the value inside a ReaderIO context.
 // This is the monadic version that takes the ReaderIO as the first parameter.
@@ -169,7 +158,8 @@ func FromReader[R, A any](r Reader[R, A]) ReaderIO[R, A] {
 //	doubled := readerio.MonadMap(rio, N.Mul(2))
 //	result := doubled(config)() // Returns 10
 func MonadMap[R, A, B any](fa ReaderIO[R, A], f func(A) B) ReaderIO[R, B] {
-	return readert.MonadMap[ReaderIO[R, A], ReaderIO[R, B]](io.MonadMap[A, B], fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMapTo executes a ReaderIO computation, discards its result, and returns a constant value.
@@ -203,7 +193,8 @@ func MonadMap[R, A, B any](fa ReaderIO[R, A], f func(A) B) ReaderIO[R, B] {
 //	replaced := readerio.MonadMapTo(logAndCompute, "done")
 //	result := replaced(config)() // Prints "Computing...", returns "done"
 func MonadMapTo[R, A, B any](fa ReaderIO[R, A], b B) ReaderIO[R, B] {
-	return MonadMap(fa, reader.Of[A](b))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map creates a function that applies a transformation to a ReaderIO value.
@@ -226,9 +217,7 @@ func MonadMapTo[R, A, B any](fa ReaderIO[R, A], b B) ReaderIO[R, B] {
 //	    readerio.Of[Config](5),
 //	    readerio.Map[Config](N.Mul(2)),
 //	)(config)() // Returns 10
-func Map[R, A, B any](f func(A) B) Operator[R, A, B] {
-	return readert.Map[ReaderIO[R, A], ReaderIO[R, B]](io.Map[A, B], f)
-}
+func Map[R, A, B any](f func(A) B) Operator[R, A, B] { _ = "STUB: not implemented"; return nil }
 
 // MapTo creates an operator that executes a ReaderIO computation, discards its result,
 // and returns a constant value. This is the curried version of [MonadMapTo], suitable for use in pipelines.
@@ -261,9 +250,7 @@ func Map[R, A, B any](f func(A) B) Operator[R, A, B] {
 //	    logStep,
 //	    readerio.MapTo[Config, int]("complete"),
 //	)(config)() // Prints "Step executed", returns "complete"
-func MapTo[R, A, B any](b B) Operator[R, A, B] {
-	return Map[R](reader.Of[A](b))
-}
+func MapTo[R, A, B any](b B) Operator[R, A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChain sequences two ReaderIO computations, where the second depends on the result of the first.
 // This is the monadic bind operation for ReaderIO.
@@ -287,7 +274,8 @@ func MapTo[R, A, B any](b B) Operator[R, A, B] {
 //	    return readerio.Of[Config](n * 2)
 //	})
 func MonadChain[R, A, B any](ma ReaderIO[R, A], f Kleisli[R, A, B]) ReaderIO[R, B] {
-	return readert.MonadChain(io.MonadChain[A, B], ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainFirst sequences two ReaderIO computations but returns the result of the first.
@@ -314,12 +302,8 @@ func MonadChain[R, A, B any](ma ReaderIO[R, A], f Kleisli[R, A, B]) ReaderIO[R, 
 //	})
 //	value := result(config)() // Returns 42, but logging happened
 func MonadChainFirst[R, A, B any](ma ReaderIO[R, A], f Kleisli[R, A, B]) ReaderIO[R, A] {
-	return chain.MonadChainFirst(
-		MonadChain,
-		MonadMap,
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTap executes a side-effect computation but returns the original value.
@@ -347,7 +331,8 @@ func MonadChainFirst[R, A, B any](ma ReaderIO[R, A], f Kleisli[R, A, B]) ReaderI
 //	    },
 //	)
 func MonadTap[R, A, B any](ma ReaderIO[R, A], f Kleisli[R, A, B]) ReaderIO[R, A] {
-	return MonadChainFirst(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain creates a function that sequences ReaderIO computations.
@@ -373,7 +358,8 @@ func MonadTap[R, A, B any](ma ReaderIO[R, A], f Kleisli[R, A, B]) ReaderIO[R, A]
 //	    }),
 //	)(config)() // Returns 10
 func Chain[R, A, B any](f Kleisli[R, A, B]) Operator[R, A, B] {
-	return readert.Chain[ReaderIO[R, A]](io.Chain[A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirst creates a function that sequences ReaderIO computations but returns the first result.
@@ -399,11 +385,8 @@ func Chain[R, A, B any](f Kleisli[R, A, B]) Operator[R, A, B] {
 //	    }),
 //	)(config)() // Returns 42
 func ChainFirst[R, A, B any](f Kleisli[R, A, B]) Operator[R, A, A] {
-	return chain.ChainFirst(
-		Chain[R, A, A],
-		Map[R, B, A],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Tap creates a function that executes a side-effect computation but returns the original value.
@@ -428,9 +411,7 @@ func ChainFirst[R, A, B any](f Kleisli[R, A, B]) Operator[R, A, A] {
 //	        return readerio.FromIO[Config](io.Of(func() { fmt.Println(n) }))
 //	    }),
 //	)(config)() // Returns 42, prints 42
-func Tap[R, A, B any](f Kleisli[R, A, B]) Operator[R, A, A] {
-	return ChainFirst(f)
-}
+func Tap[R, A, B any](f Kleisli[R, A, B]) Operator[R, A, A] { _ = "STUB: not implemented"; return nil }
 
 // Of creates a ReaderIO that returns a pure value, ignoring the environment.
 // This is the monadic return/pure operation for ReaderIO.
@@ -449,9 +430,7 @@ func Tap[R, A, B any](f Kleisli[R, A, B]) Operator[R, A, A] {
 //
 //	rio := readerio.Of[Config](42)
 //	result := rio(config)() // Returns 42
-func Of[R, A any](a A) ReaderIO[R, A] {
-	return readert.MonadOf[ReaderIO[R, A]](io.Of[A], a)
-}
+func Of[R, A any](a A) ReaderIO[R, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadAp applies a function wrapped in a ReaderIO to a value wrapped in a ReaderIO.
 // This is the applicative apply operation for ReaderIO.
@@ -475,7 +454,8 @@ func Of[R, A any](a A) ReaderIO[R, A] {
 //	faIO := readerio.Of[Config](5)
 //	result := readerio.MonadAp(fabIO, faIO)(config)() // Returns 10
 func MonadAp[B, R, A any](fab ReaderIO[R, func(A) B], fa ReaderIO[R, A]) ReaderIO[R, B] {
-	return readert.MonadAp[ReaderIO[R, A], ReaderIO[R, B], ReaderIO[R, func(A) B], R, A](io.MonadAp[A, B], fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadApSeq is like MonadAp but ensures sequential execution of effects.
@@ -492,7 +472,8 @@ func MonadAp[B, R, A any](fab ReaderIO[R, func(A) B], fa ReaderIO[R, A]) ReaderI
 // Returns:
 //   - A ReaderIO containing the result, with sequential execution guaranteed
 func MonadApSeq[B, R, A any](fab ReaderIO[R, func(A) B], fa ReaderIO[R, A]) ReaderIO[R, B] {
-	return readert.MonadAp[ReaderIO[R, A], ReaderIO[R, B], ReaderIO[R, func(A) B], R, A](io.MonadApSeq[A, B], fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadApPar is like MonadAp but allows parallel execution of effects where possible.
@@ -509,7 +490,8 @@ func MonadApSeq[B, R, A any](fab ReaderIO[R, func(A) B], fa ReaderIO[R, A]) Read
 // Returns:
 //   - A ReaderIO containing the result, with potential parallel execution
 func MonadApPar[B, R, A any](fab ReaderIO[R, func(A) B], fa ReaderIO[R, A]) ReaderIO[R, B] {
-	return readert.MonadAp[ReaderIO[R, A], ReaderIO[R, B], ReaderIO[R, func(A) B], R, A](io.MonadApPar[A, B], fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap creates a function that applies a ReaderIO value to a ReaderIO function.
@@ -533,7 +515,8 @@ func MonadApPar[B, R, A any](fab ReaderIO[R, func(A) B], fa ReaderIO[R, A]) Read
 //	    readerio.Ap[int](readerio.Of[Config](5)),
 //	)(config)() // Returns 10
 func Ap[B, R, A any](fa ReaderIO[R, A]) Operator[R, func(A) B, B] {
-	return function.Bind2nd(MonadAp[B, R, A], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ask retrieves the current environment.
@@ -551,9 +534,7 @@ func Ap[B, R, A any](fa ReaderIO[R, A]) Operator[R, func(A) B, B] {
 //	rio := readerio.Ask[Config]()
 //	config := Config{Port: 8080}
 //	result := rio(config)() // Returns Config{Port: 8080}
-func Ask[R any]() ReaderIO[R, R] {
-	return fromreader.Ask(FromReader[R, R])()
-}
+func Ask[R any]() ReaderIO[R, R] { _ = "STUB: not implemented"; return nil }
 
 // Asks retrieves a value derived from the environment using a Reader function.
 // This allows you to extract specific information from the environment.
@@ -575,9 +556,7 @@ func Ask[R any]() ReaderIO[R, R] {
 //	    return io.Of(c.Port)
 //	})
 //	result := rio(Config{Port: 8080})() // Returns 8080
-func Asks[R, A any](r Reader[R, A]) ReaderIO[R, A] {
-	return fromreader.Asks(FromReader[R, A])(r)
-}
+func Asks[R, A any](r Reader[R, A]) ReaderIO[R, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainIOK chains a ReaderIO with a function that returns an IO.
 // This is useful for integrating IO operations into a ReaderIO pipeline.
@@ -601,11 +580,8 @@ func Asks[R, A any](r Reader[R, A]) ReaderIO[R, A] {
 //	    return io.Of(n * 2)
 //	})
 func MonadChainIOK[R, A, B any](ma ReaderIO[R, A], f io.Kleisli[A, B]) ReaderIO[R, B] {
-	return fromio.MonadChainIOK(
-		MonadChain[R, A, B],
-		FromIO[R, B],
-		ma, f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainFirstIOK chains a ReaderIO with an IO-returning function but keeps the original value.
@@ -631,12 +607,8 @@ func MonadChainIOK[R, A, B any](ma ReaderIO[R, A], f io.Kleisli[A, B]) ReaderIO[
 //	})
 //	value := result(config)() // Returns 42
 func MonadChainFirstIOK[R, A, B any](ma ReaderIO[R, A], f io.Kleisli[A, B]) ReaderIO[R, A] {
-	return fromio.MonadChainFirstIOK(
-		MonadChain[R, A, A],
-		MonadMap[R, B, A],
-		FromIO[R, B],
-		ma, f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTapIOK chains a ReaderIO with an IO-returning function but keeps the original value.
@@ -663,7 +635,8 @@ func MonadChainFirstIOK[R, A, B any](ma ReaderIO[R, A], f io.Kleisli[A, B]) Read
 //	    },
 //	)
 func MonadTapIOK[R, A, B any](ma ReaderIO[R, A], f io.Kleisli[A, B]) ReaderIO[R, A] {
-	return MonadChainFirstIOK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainIOK creates a function that chains a ReaderIO with an IO operation.
@@ -689,11 +662,8 @@ func MonadTapIOK[R, A, B any](ma ReaderIO[R, A], f io.Kleisli[A, B]) ReaderIO[R,
 //	    }),
 //	)(config)() // Returns 10
 func ChainIOK[R, A, B any](f io.Kleisli[A, B]) Operator[R, A, B] {
-	return fromio.ChainIOK(
-		Chain[R, A, B],
-		FromIO[R, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstIOK creates a function that chains a ReaderIO with an IO operation but keeps the original value.
@@ -719,12 +689,8 @@ func ChainIOK[R, A, B any](f io.Kleisli[A, B]) Operator[R, A, B] {
 //	    }),
 //	)(config)() // Returns 42
 func ChainFirstIOK[R, A, B any](f io.Kleisli[A, B]) Operator[R, A, A] {
-	return fromio.ChainFirstIOK(
-		Chain[R, A, A],
-		Map[R, B, A],
-		FromIO[R, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TapIOK creates a function that chains a ReaderIO with an IO operation but keeps the original value.
@@ -750,38 +716,37 @@ func ChainFirstIOK[R, A, B any](f io.Kleisli[A, B]) Operator[R, A, A] {
 //	    }),
 //	)(config)() // Returns 42, prints 42
 func TapIOK[R, A, B any](f io.Kleisli[A, B]) Operator[R, A, A] {
-	return ChainFirstIOK[R](f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Defer creates a ReaderIO by calling a generator function each time it's executed.
+	// This allows for lazy evaluation and ensures a fresh computation on each invocation.
+	// Useful for operations that should not be cached or memoized.
+	//
+	// Type Parameters:
+	//   - R: Reader environment type
+	//   - A: Result type
+	//
+	// Parameters:
+	//   - gen: Generator function that creates a new ReaderIO on each call
+	//
+	// Returns:
+	//   - A ReaderIO that calls the generator function on each execution
+	//
+	// Example:
+	//
+	//	counter := 0
+	//	rio := readerio.Defer(func() readerio.ReaderIO[Config, int] {
+	//	    counter++
+	//	    return readerio.Of[Config](counter)
+	//	})
+	//	result1 := rio(config)() // Returns 1
+	//	result2 := rio(config)() // Returns 2 (fresh computation)
 }
 
-// Defer creates a ReaderIO by calling a generator function each time it's executed.
-// This allows for lazy evaluation and ensures a fresh computation on each invocation.
-// Useful for operations that should not be cached or memoized.
-//
-// Type Parameters:
-//   - R: Reader environment type
-//   - A: Result type
-//
-// Parameters:
-//   - gen: Generator function that creates a new ReaderIO on each call
-//
-// Returns:
-//   - A ReaderIO that calls the generator function on each execution
-//
-// Example:
-//
-//	counter := 0
-//	rio := readerio.Defer(func() readerio.ReaderIO[Config, int] {
-//	    counter++
-//	    return readerio.Of[Config](counter)
-//	})
-//	result1 := rio(config)() // Returns 1
-//	result2 := rio(config)() // Returns 2 (fresh computation)
 func Defer[R, A any](gen func() ReaderIO[R, A]) ReaderIO[R, A] {
-	return func(r R) IO[A] {
-		return func() A {
-			return gen()(r)()
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Memoize computes the value of the provided [ReaderIO] monad lazily but exactly once.
@@ -808,24 +773,14 @@ func Defer[R, A any](gen func() ReaderIO[R, A]) ReaderIO[R, A] {
 //	result1 := memoized(config)() // Computes the value
 //	result2 := memoized(config)() // Returns cached value (no recomputation)
 func Memoize[R, A any](rdr ReaderIO[R, A]) ReaderIO[R, A] {
+	_ = "STUB: not implemented"
 	// synchronization primitives
-	var once sync.Once
-	var result A
-	// callback
-	gen := func(r R) func() {
-		return func() {
-			result = rdr(r)()
-		}
-	}
-	// returns our memoized wrapper
-	return func(r R) IO[A] {
-		io := gen(r)
-		return func() A {
-			once.Do(io)
-			return result
-		}
-	}
+	return nil
 }
+
+// callback
+
+// returns our memoized wrapper
 
 // Flatten removes one level of nesting from a ReaderIO structure.
 // Converts ReaderIO[R, ReaderIO[R, A]] to ReaderIO[R, A].
@@ -847,7 +802,8 @@ func Memoize[R, A any](rdr ReaderIO[R, A]) ReaderIO[R, A] {
 //	flattened := readerio.Flatten(nested)
 //	result := flattened(config)() // Returns 42
 func Flatten[R, A any](mma ReaderIO[R, ReaderIO[R, A]]) ReaderIO[R, A] {
-	return MonadChain(mma, function.Identity[ReaderIO[R, A]])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFlap applies a value to a function wrapped in a ReaderIO.
@@ -870,7 +826,8 @@ func Flatten[R, A any](mma ReaderIO[R, ReaderIO[R, A]]) ReaderIO[R, A] {
 //	fabIO := readerio.Of[Config](N.Mul(2))
 //	result := readerio.MonadFlap(fabIO, 5)(config)() // Returns 10
 func MonadFlap[R, B, A any](fab ReaderIO[R, func(A) B], a A) ReaderIO[R, B] {
-	return functor.MonadFlap(MonadMap[R, func(A) B, B], fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flap creates a function that applies a value to a ReaderIO function.
@@ -895,9 +852,7 @@ func MonadFlap[R, B, A any](fab ReaderIO[R, func(A) B], a A) ReaderIO[R, B] {
 //	)(config)() // Returns 10
 //
 //go:inline
-func Flap[R, B, A any](a A) Operator[R, func(A) B, B] {
-	return functor.Flap(Map[R, func(A) B, B], a)
-}
+func Flap[R, B, A any](a A) Operator[R, func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainReaderK chains a ReaderIO with a function that returns a Reader.
 // The Reader is lifted into the ReaderIO context, allowing composition of
@@ -924,12 +879,8 @@ func Flap[R, B, A any](a A) Operator[R, func(A) B, B] {
 //
 //go:inline
 func MonadChainReaderK[R, A, B any](ma ReaderIO[R, A], f reader.Kleisli[R, A, B]) ReaderIO[R, B] {
-	return fromreader.MonadChainReaderK(
-		MonadChain,
-		FromReader,
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainReaderK creates a function that chains a ReaderIO with a Reader-returning function.
@@ -957,11 +908,8 @@ func MonadChainReaderK[R, A, B any](ma ReaderIO[R, A], f reader.Kleisli[R, A, B]
 //
 //go:inline
 func ChainReaderK[R, A, B any](f reader.Kleisli[R, A, B]) Operator[R, A, B] {
-	return fromreader.ChainReaderK(
-		Chain,
-		FromReader,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainFirstReaderK chains a function that returns a Reader but keeps the original value.
@@ -989,12 +937,8 @@ func ChainReaderK[R, A, B any](f reader.Kleisli[R, A, B]) Operator[R, A, B] {
 //
 //go:inline
 func MonadChainFirstReaderK[R, A, B any](ma ReaderIO[R, A], f reader.Kleisli[R, A, B]) ReaderIO[R, A] {
-	return fromreader.MonadChainFirstReaderK(
-		MonadChainFirst[R, A, B],
-		FromReader[R, B],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstReaderK creates a function that chains a Reader but keeps the original value.
@@ -1022,11 +966,8 @@ func MonadChainFirstReaderK[R, A, B any](ma ReaderIO[R, A], f reader.Kleisli[R, 
 //
 //go:inline
 func ChainFirstReaderK[R, A, B any](f reader.Kleisli[R, A, B]) Operator[R, A, A] {
-	return fromreader.ChainFirstReaderK(
-		ChainFirst[R, A, B],
-		FromReader[R, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTapReaderK chains a function that returns a Reader but keeps the original value.
@@ -1055,7 +996,8 @@ func ChainFirstReaderK[R, A, B any](f reader.Kleisli[R, A, B]) Operator[R, A, A]
 //
 //go:inline
 func MonadTapReaderK[R, A, B any](ma ReaderIO[R, A], f reader.Kleisli[R, A, B]) ReaderIO[R, A] {
-	return MonadChainFirstReaderK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TapReaderK creates a function that chains a Reader but keeps the original value.
@@ -1083,7 +1025,8 @@ func MonadTapReaderK[R, A, B any](ma ReaderIO[R, A], f reader.Kleisli[R, A, B]) 
 //
 //go:inline
 func TapReaderK[R, A, B any](f reader.Kleisli[R, A, B]) Operator[R, A, A] {
-	return ChainFirstReaderK(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Read executes a ReaderIO with a given environment, returning the resulting IO.
@@ -1108,9 +1051,7 @@ func TapReaderK[R, A, B any](f reader.Kleisli[R, A, B]) Operator[R, A, A] {
 //	result := ioAction() // Returns 42
 //
 //go:inline
-func Read[A, R any](r R) func(ReaderIO[R, A]) IO[A] {
-	return reader.Read[IO[A]](r)
-}
+func Read[A, R any](r R) func(ReaderIO[R, A]) IO[A] { _ = "STUB: not implemented"; return nil }
 
 // ReadIO executes a ReaderIO computation by providing an environment wrapped in an IO effect.
 // This is useful when the environment itself needs to be computed or retrieved through side effects.
@@ -1162,23 +1103,14 @@ func Read[A, R any](r R) func(ReaderIO[R, A]) IO[A] {
 //   - [ReadIO]: Takes an IO[R] and chains the effects together
 //
 //go:inline
-func ReadIO[A, R any](r IO[R]) func(ReaderIO[R, A]) IO[A] {
-	return function.Flow2(
-		io.Chain[R, A],
-		Read[A](r),
-	)
-}
+func ReadIO[A, R any](r IO[R]) func(ReaderIO[R, A]) IO[A] { _ = "STUB: not implemented"; return nil }
 
 // Delay creates an operation that passes in the value after some delay
 //
 //go:inline
-func Delay[R, A any](delay time.Duration) Operator[R, A, A] {
-	return function.Bind2nd(function.Flow2[ReaderIO[R, A]], io.Delay[A](delay))
-}
+func Delay[R, A any](delay time.Duration) Operator[R, A, A] { _ = "STUB: not implemented"; return nil }
 
 // After creates an operation that passes after the given [time.Time]
 //
 //go:inline
-func After[R, A any](timestamp time.Time) Operator[R, A, A] {
-	return function.Bind2nd(function.Flow2[ReaderIO[R, A]], io.After[A](timestamp))
-}
+func After[R, A any](timestamp time.Time) Operator[R, A, A] { _ = "STUB: not implemented"; return nil }

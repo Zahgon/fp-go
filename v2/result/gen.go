@@ -13,7 +13,6 @@
 package result
 
 import (
-	"github.com/IBM/fp-go/v2/either"
 	T "github.com/IBM/fp-go/v2/tuple"
 )
 
@@ -22,7 +21,8 @@ import (
 //
 //go:inline
 func Eitherize0[F ~func() (R, error), R any](f F) func() Result[R] {
-	return either.Eitherize0(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize0 converts a function with 0 parameters returning an Either into a function with 0 parameters returning a tuple
@@ -30,7 +30,8 @@ func Eitherize0[F ~func() (R, error), R any](f F) func() Result[R] {
 //
 //go:inline
 func Uneitherize0[F ~func() Result[R], R any](f F) func() (R, error) {
-	return either.Uneitherize0(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize1 converts a function with 1 parameters returning a tuple into a function with 1 parameters returning an Either
@@ -38,7 +39,8 @@ func Uneitherize0[F ~func() Result[R], R any](f F) func() (R, error) {
 //
 //go:inline
 func Eitherize1[F ~func(T0) (R, error), T0, R any](f F) func(T0) Result[R] {
-	return either.Eitherize1(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize1 converts a function with 1 parameters returning an Either into a function with 1 parameters returning a tuple
@@ -46,28 +48,29 @@ func Eitherize1[F ~func(T0) (R, error), T0, R any](f F) func(T0) Result[R] {
 //
 //go:inline
 func Uneitherize1[F ~func(T0) Result[R], T0, R any](f F) func(T0) (R, error) {
-	return either.Uneitherize1(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT1 converts 1 parameters of [Result[T]] into a [Result[Tuple1]].
 //
 //go:inline
-func SequenceT1[T1 any](t1 Result[T1]) Result[T.Tuple1[T1]] {
-	return either.SequenceT1(t1)
-}
+func SequenceT1[T1 any](t1 Result[T1]) Result[T.Tuple1[T1]] { _ = "STUB: not implemented"; return nil }
 
 // SequenceTuple1 converts a [Tuple1] of [Result[T]] into an [Result[Tuple1]].
 //
 //go:inline
 func SequenceTuple1[T1 any](t T.Tuple1[Result[T1]]) Result[T.Tuple1[T1]] {
-	return either.SequenceTuple1(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple1 converts a [Tuple1] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple1]].
 //
 //go:inline
 func TraverseTuple1[F1 ~func(A1) Result[T1], A1, T1 any](f1 F1) func(T.Tuple1[A1]) Result[T.Tuple1[T1]] {
-	return either.TraverseTuple1(f1)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize2 converts a function with 2 parameters returning a tuple into a function with 2 parameters returning an Either
@@ -75,7 +78,8 @@ func TraverseTuple1[F1 ~func(A1) Result[T1], A1, T1 any](f1 F1) func(T.Tuple1[A1
 //
 //go:inline
 func Eitherize2[F ~func(T0, T1) (R, error), T0, T1, R any](f F) func(T0, T1) Result[R] {
-	return either.Eitherize2(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize2 converts a function with 2 parameters returning an Either into a function with 2 parameters returning a tuple
@@ -83,28 +87,32 @@ func Eitherize2[F ~func(T0, T1) (R, error), T0, T1, R any](f F) func(T0, T1) Res
 //
 //go:inline
 func Uneitherize2[F ~func(T0, T1) Result[R], T0, T1, R any](f F) func(T0, T1) (R, error) {
-	return either.Uneitherize2(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT2 converts 2 parameters of [Result[T]] into a [Result[Tuple2]].
 //
 //go:inline
 func SequenceT2[T1, T2 any](t1 Result[T1], t2 Result[T2]) Result[T.Tuple2[T1, T2]] {
-	return either.SequenceT2(t1, t2)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple2 converts a [Tuple2] of [Result[T]] into an [Result[Tuple2]].
 //
 //go:inline
 func SequenceTuple2[T1, T2 any](t T.Tuple2[Result[T1], Result[T2]]) Result[T.Tuple2[T1, T2]] {
-	return either.SequenceTuple2(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple2 converts a [Tuple2] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple2]].
 //
 //go:inline
 func TraverseTuple2[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], A1, T1, A2, T2 any](f1 F1, f2 F2) func(T.Tuple2[A1, A2]) Result[T.Tuple2[T1, T2]] {
-	return either.TraverseTuple2(f1, f2)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize3 converts a function with 3 parameters returning a tuple into a function with 3 parameters returning an Either
@@ -112,7 +120,8 @@ func TraverseTuple2[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], A1, T1, A2
 //
 //go:inline
 func Eitherize3[F ~func(T0, T1, T2) (R, error), T0, T1, T2, R any](f F) func(T0, T1, T2) Result[R] {
-	return either.Eitherize3(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize3 converts a function with 3 parameters returning an Either into a function with 3 parameters returning a tuple
@@ -120,28 +129,32 @@ func Eitherize3[F ~func(T0, T1, T2) (R, error), T0, T1, T2, R any](f F) func(T0,
 //
 //go:inline
 func Uneitherize3[F ~func(T0, T1, T2) Result[R], T0, T1, T2, R any](f F) func(T0, T1, T2) (R, error) {
-	return either.Uneitherize3(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT3 converts 3 parameters of [Result[T]] into a [Result[Tuple3]].
 //
 //go:inline
 func SequenceT3[T1, T2, T3 any](t1 Result[T1], t2 Result[T2], t3 Result[T3]) Result[T.Tuple3[T1, T2, T3]] {
-	return either.SequenceT3(t1, t2, t3)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple3 converts a [Tuple3] of [Result[T]] into an [Result[Tuple3]].
 //
 //go:inline
 func SequenceTuple3[T1, T2, T3 any](t T.Tuple3[Result[T1], Result[T2], Result[T3]]) Result[T.Tuple3[T1, T2, T3]] {
-	return either.SequenceTuple3(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple3 converts a [Tuple3] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple3]].
 //
 //go:inline
 func TraverseTuple3[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A3) Result[T3], A1, T1, A2, T2, A3, T3 any](f1 F1, f2 F2, f3 F3) func(T.Tuple3[A1, A2, A3]) Result[T.Tuple3[T1, T2, T3]] {
-	return either.TraverseTuple3(f1, f2, f3)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize4 converts a function with 4 parameters returning a tuple into a function with 4 parameters returning an Either
@@ -149,7 +162,8 @@ func TraverseTuple3[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A
 //
 //go:inline
 func Eitherize4[F ~func(T0, T1, T2, T3) (R, error), T0, T1, T2, T3, R any](f F) func(T0, T1, T2, T3) Result[R] {
-	return either.Eitherize4(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize4 converts a function with 4 parameters returning an Either into a function with 4 parameters returning a tuple
@@ -157,28 +171,32 @@ func Eitherize4[F ~func(T0, T1, T2, T3) (R, error), T0, T1, T2, T3, R any](f F) 
 //
 //go:inline
 func Uneitherize4[F ~func(T0, T1, T2, T3) Result[R], T0, T1, T2, T3, R any](f F) func(T0, T1, T2, T3) (R, error) {
-	return either.Uneitherize4(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT4 converts 4 parameters of [Result[T]] into a [Result[Tuple4]].
 //
 //go:inline
 func SequenceT4[T1, T2, T3, T4 any](t1 Result[T1], t2 Result[T2], t3 Result[T3], t4 Result[T4]) Result[T.Tuple4[T1, T2, T3, T4]] {
-	return either.SequenceT4(t1, t2, t3, t4)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple4 converts a [Tuple4] of [Result[T]] into an [Result[Tuple4]].
 //
 //go:inline
 func SequenceTuple4[T1, T2, T3, T4 any](t T.Tuple4[Result[T1], Result[T2], Result[T3], Result[T4]]) Result[T.Tuple4[T1, T2, T3, T4]] {
-	return either.SequenceTuple4(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple4 converts a [Tuple4] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple4]].
 //
 //go:inline
 func TraverseTuple4[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A3) Result[T3], F4 ~func(A4) Result[T4], A1, T1, A2, T2, A3, T3, A4, T4 any](f1 F1, f2 F2, f3 F3, f4 F4) func(T.Tuple4[A1, A2, A3, A4]) Result[T.Tuple4[T1, T2, T3, T4]] {
-	return either.TraverseTuple4(f1, f2, f3, f4)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize5 converts a function with 5 parameters returning a tuple into a function with 5 parameters returning an Either
@@ -186,7 +204,8 @@ func TraverseTuple4[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A
 //
 //go:inline
 func Eitherize5[F ~func(T0, T1, T2, T3, T4) (R, error), T0, T1, T2, T3, T4, R any](f F) func(T0, T1, T2, T3, T4) Result[R] {
-	return either.Eitherize5(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize5 converts a function with 5 parameters returning an Either into a function with 5 parameters returning a tuple
@@ -194,28 +213,32 @@ func Eitherize5[F ~func(T0, T1, T2, T3, T4) (R, error), T0, T1, T2, T3, T4, R an
 //
 //go:inline
 func Uneitherize5[F ~func(T0, T1, T2, T3, T4) Result[R], T0, T1, T2, T3, T4, R any](f F) func(T0, T1, T2, T3, T4) (R, error) {
-	return either.Uneitherize5(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT5 converts 5 parameters of [Result[T]] into a [Result[Tuple5]].
 //
 //go:inline
 func SequenceT5[T1, T2, T3, T4, T5 any](t1 Result[T1], t2 Result[T2], t3 Result[T3], t4 Result[T4], t5 Result[T5]) Result[T.Tuple5[T1, T2, T3, T4, T5]] {
-	return either.SequenceT5(t1, t2, t3, t4, t5)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple5 converts a [Tuple5] of [Result[T]] into an [Result[Tuple5]].
 //
 //go:inline
 func SequenceTuple5[T1, T2, T3, T4, T5 any](t T.Tuple5[Result[T1], Result[T2], Result[T3], Result[T4], Result[T5]]) Result[T.Tuple5[T1, T2, T3, T4, T5]] {
-	return either.SequenceTuple5(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple5 converts a [Tuple5] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple5]].
 //
 //go:inline
 func TraverseTuple5[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A3) Result[T3], F4 ~func(A4) Result[T4], F5 ~func(A5) Result[T5], A1, T1, A2, T2, A3, T3, A4, T4, A5, T5 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5) func(T.Tuple5[A1, A2, A3, A4, A5]) Result[T.Tuple5[T1, T2, T3, T4, T5]] {
-	return either.TraverseTuple5(f1, f2, f3, f4, f5)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize6 converts a function with 6 parameters returning a tuple into a function with 6 parameters returning an Either
@@ -223,7 +246,8 @@ func TraverseTuple5[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A
 //
 //go:inline
 func Eitherize6[F ~func(T0, T1, T2, T3, T4, T5) (R, error), T0, T1, T2, T3, T4, T5, R any](f F) func(T0, T1, T2, T3, T4, T5) Result[R] {
-	return either.Eitherize6(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize6 converts a function with 6 parameters returning an Either into a function with 6 parameters returning a tuple
@@ -231,28 +255,32 @@ func Eitherize6[F ~func(T0, T1, T2, T3, T4, T5) (R, error), T0, T1, T2, T3, T4, 
 //
 //go:inline
 func Uneitherize6[F ~func(T0, T1, T2, T3, T4, T5) Result[R], T0, T1, T2, T3, T4, T5, R any](f F) func(T0, T1, T2, T3, T4, T5) (R, error) {
-	return either.Uneitherize6(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT6 converts 6 parameters of [Result[T]] into a [Result[Tuple6]].
 //
 //go:inline
 func SequenceT6[T1, T2, T3, T4, T5, T6 any](t1 Result[T1], t2 Result[T2], t3 Result[T3], t4 Result[T4], t5 Result[T5], t6 Result[T6]) Result[T.Tuple6[T1, T2, T3, T4, T5, T6]] {
-	return either.SequenceT6(t1, t2, t3, t4, t5, t6)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple6 converts a [Tuple6] of [Result[T]] into an [Result[Tuple6]].
 //
 //go:inline
 func SequenceTuple6[T1, T2, T3, T4, T5, T6 any](t T.Tuple6[Result[T1], Result[T2], Result[T3], Result[T4], Result[T5], Result[T6]]) Result[T.Tuple6[T1, T2, T3, T4, T5, T6]] {
-	return either.SequenceTuple6(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple6 converts a [Tuple6] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple6]].
 //
 //go:inline
 func TraverseTuple6[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A3) Result[T3], F4 ~func(A4) Result[T4], F5 ~func(A5) Result[T5], F6 ~func(A6) Result[T6], A1, T1, A2, T2, A3, T3, A4, T4, A5, T5, A6, T6 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6) func(T.Tuple6[A1, A2, A3, A4, A5, A6]) Result[T.Tuple6[T1, T2, T3, T4, T5, T6]] {
-	return either.TraverseTuple6(f1, f2, f3, f4, f5, f6)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize7 converts a function with 7 parameters returning a tuple into a function with 7 parameters returning an Either
@@ -260,7 +288,8 @@ func TraverseTuple6[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A
 //
 //go:inline
 func Eitherize7[F ~func(T0, T1, T2, T3, T4, T5, T6) (R, error), T0, T1, T2, T3, T4, T5, T6, R any](f F) func(T0, T1, T2, T3, T4, T5, T6) Result[R] {
-	return either.Eitherize7(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize7 converts a function with 7 parameters returning an Either into a function with 7 parameters returning a tuple
@@ -268,28 +297,32 @@ func Eitherize7[F ~func(T0, T1, T2, T3, T4, T5, T6) (R, error), T0, T1, T2, T3, 
 //
 //go:inline
 func Uneitherize7[F ~func(T0, T1, T2, T3, T4, T5, T6) Result[R], T0, T1, T2, T3, T4, T5, T6, R any](f F) func(T0, T1, T2, T3, T4, T5, T6) (R, error) {
-	return either.Uneitherize7(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT7 converts 7 parameters of [Result[T]] into a [Result[Tuple7]].
 //
 //go:inline
 func SequenceT7[T1, T2, T3, T4, T5, T6, T7 any](t1 Result[T1], t2 Result[T2], t3 Result[T3], t4 Result[T4], t5 Result[T5], t6 Result[T6], t7 Result[T7]) Result[T.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-	return either.SequenceT7(t1, t2, t3, t4, t5, t6, t7)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple7 converts a [Tuple7] of [Result[T]] into an [Result[Tuple7]].
 //
 //go:inline
 func SequenceTuple7[T1, T2, T3, T4, T5, T6, T7 any](t T.Tuple7[Result[T1], Result[T2], Result[T3], Result[T4], Result[T5], Result[T6], Result[T7]]) Result[T.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-	return either.SequenceTuple7(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple7 converts a [Tuple7] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple7]].
 //
 //go:inline
 func TraverseTuple7[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A3) Result[T3], F4 ~func(A4) Result[T4], F5 ~func(A5) Result[T5], F6 ~func(A6) Result[T6], F7 ~func(A7) Result[T7], A1, T1, A2, T2, A3, T3, A4, T4, A5, T5, A6, T6, A7, T7 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7) func(T.Tuple7[A1, A2, A3, A4, A5, A6, A7]) Result[T.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-	return either.TraverseTuple7(f1, f2, f3, f4, f5, f6, f7)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize8 converts a function with 8 parameters returning a tuple into a function with 8 parameters returning an Either
@@ -297,7 +330,8 @@ func TraverseTuple7[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A
 //
 //go:inline
 func Eitherize8[F ~func(T0, T1, T2, T3, T4, T5, T6, T7) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7) Result[R] {
-	return either.Eitherize8(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize8 converts a function with 8 parameters returning an Either into a function with 8 parameters returning a tuple
@@ -305,28 +339,32 @@ func Eitherize8[F ~func(T0, T1, T2, T3, T4, T5, T6, T7) (R, error), T0, T1, T2, 
 //
 //go:inline
 func Uneitherize8[F ~func(T0, T1, T2, T3, T4, T5, T6, T7) Result[R], T0, T1, T2, T3, T4, T5, T6, T7, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7) (R, error) {
-	return either.Uneitherize8(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT8 converts 8 parameters of [Result[T]] into a [Result[Tuple8]].
 //
 //go:inline
 func SequenceT8[T1, T2, T3, T4, T5, T6, T7, T8 any](t1 Result[T1], t2 Result[T2], t3 Result[T3], t4 Result[T4], t5 Result[T5], t6 Result[T6], t7 Result[T7], t8 Result[T8]) Result[T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-	return either.SequenceT8(t1, t2, t3, t4, t5, t6, t7, t8)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple8 converts a [Tuple8] of [Result[T]] into an [Result[Tuple8]].
 //
 //go:inline
 func SequenceTuple8[T1, T2, T3, T4, T5, T6, T7, T8 any](t T.Tuple8[Result[T1], Result[T2], Result[T3], Result[T4], Result[T5], Result[T6], Result[T7], Result[T8]]) Result[T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-	return either.SequenceTuple8(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple8 converts a [Tuple8] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple8]].
 //
 //go:inline
 func TraverseTuple8[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A3) Result[T3], F4 ~func(A4) Result[T4], F5 ~func(A5) Result[T5], F6 ~func(A6) Result[T6], F7 ~func(A7) Result[T7], F8 ~func(A8) Result[T8], A1, T1, A2, T2, A3, T3, A4, T4, A5, T5, A6, T6, A7, T7, A8, T8 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8) func(T.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) Result[T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-	return either.TraverseTuple8(f1, f2, f3, f4, f5, f6, f7, f8)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize9 converts a function with 9 parameters returning a tuple into a function with 9 parameters returning an Either
@@ -334,7 +372,8 @@ func TraverseTuple8[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A
 //
 //go:inline
 func Eitherize9[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, T8, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8) Result[R] {
-	return either.Eitherize9(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize9 converts a function with 9 parameters returning an Either into a function with 9 parameters returning a tuple
@@ -342,28 +381,32 @@ func Eitherize9[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8) (R, error), T0, T1, 
 //
 //go:inline
 func Uneitherize9[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8) Result[R], T0, T1, T2, T3, T4, T5, T6, T7, T8, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8) (R, error) {
-	return either.Uneitherize9(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT9 converts 9 parameters of [Result[T]] into a [Result[Tuple9]].
 //
 //go:inline
 func SequenceT9[T1, T2, T3, T4, T5, T6, T7, T8, T9 any](t1 Result[T1], t2 Result[T2], t3 Result[T3], t4 Result[T4], t5 Result[T5], t6 Result[T6], t7 Result[T7], t8 Result[T8], t9 Result[T9]) Result[T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-	return either.SequenceT9(t1, t2, t3, t4, t5, t6, t7, t8, t9)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple9 converts a [Tuple9] of [Result[T]] into an [Result[Tuple9]].
 //
 //go:inline
 func SequenceTuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9 any](t T.Tuple9[Result[T1], Result[T2], Result[T3], Result[T4], Result[T5], Result[T6], Result[T7], Result[T8], Result[T9]]) Result[T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-	return either.SequenceTuple9(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple9 converts a [Tuple9] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple9]].
 //
 //go:inline
 func TraverseTuple9[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A3) Result[T3], F4 ~func(A4) Result[T4], F5 ~func(A5) Result[T5], F6 ~func(A6) Result[T6], F7 ~func(A7) Result[T7], F8 ~func(A8) Result[T8], F9 ~func(A9) Result[T9], A1, T1, A2, T2, A3, T3, A4, T4, A5, T5, A6, T6, A7, T7, A8, T8, A9, T9 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9) func(T.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) Result[T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-	return either.TraverseTuple9(f1, f2, f3, f4, f5, f6, f7, f8, f9)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize10 converts a function with 10 parameters returning a tuple into a function with 10 parameters returning an Either
@@ -371,7 +414,8 @@ func TraverseTuple9[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A
 //
 //go:inline
 func Eitherize10[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) Result[R] {
-	return either.Eitherize10(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize10 converts a function with 10 parameters returning an Either into a function with 10 parameters returning a tuple
@@ -379,28 +423,32 @@ func Eitherize10[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) (R, error), T0,
 //
 //go:inline
 func Uneitherize10[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) Result[R], T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) (R, error) {
-	return either.Uneitherize10(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT10 converts 10 parameters of [Result[T]] into a [Result[Tuple10]].
 //
 //go:inline
 func SequenceT10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](t1 Result[T1], t2 Result[T2], t3 Result[T3], t4 Result[T4], t5 Result[T5], t6 Result[T6], t7 Result[T7], t8 Result[T8], t9 Result[T9], t10 Result[T10]) Result[T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-	return either.SequenceT10(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple10 converts a [Tuple10] of [Result[T]] into an [Result[Tuple10]].
 //
 //go:inline
 func SequenceTuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](t T.Tuple10[Result[T1], Result[T2], Result[T3], Result[T4], Result[T5], Result[T6], Result[T7], Result[T8], Result[T9], Result[T10]]) Result[T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-	return either.SequenceTuple10(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple10 converts a [Tuple10] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple10]].
 //
 //go:inline
 func TraverseTuple10[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A3) Result[T3], F4 ~func(A4) Result[T4], F5 ~func(A5) Result[T5], F6 ~func(A6) Result[T6], F7 ~func(A7) Result[T7], F8 ~func(A8) Result[T8], F9 ~func(A9) Result[T9], F10 ~func(A10) Result[T10], A1, T1, A2, T2, A3, T3, A4, T4, A5, T5, A6, T6, A7, T7, A8, T8, A9, T9, A10, T10 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10) func(T.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) Result[T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-	return either.TraverseTuple10(f1, f2, f3, f4, f5, f6, f7, f8, f9, f10)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize11 converts a function with 11 parameters returning a tuple into a function with 11 parameters returning an Either
@@ -408,7 +456,8 @@ func TraverseTuple10[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(
 //
 //go:inline
 func Eitherize11[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) Result[R] {
-	return either.Eitherize11(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize11 converts a function with 11 parameters returning an Either into a function with 11 parameters returning a tuple
@@ -416,28 +465,32 @@ func Eitherize11[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) (R, error)
 //
 //go:inline
 func Uneitherize11[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) Result[R], T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) (R, error) {
-	return either.Uneitherize11(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT11 converts 11 parameters of [Result[T]] into a [Result[Tuple11]].
 //
 //go:inline
 func SequenceT11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 any](t1 Result[T1], t2 Result[T2], t3 Result[T3], t4 Result[T4], t5 Result[T5], t6 Result[T6], t7 Result[T7], t8 Result[T8], t9 Result[T9], t10 Result[T10], t11 Result[T11]) Result[T.Tuple11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11]] {
-	return either.SequenceT11(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple11 converts a [Tuple11] of [Result[T]] into an [Result[Tuple11]].
 //
 //go:inline
 func SequenceTuple11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 any](t T.Tuple11[Result[T1], Result[T2], Result[T3], Result[T4], Result[T5], Result[T6], Result[T7], Result[T8], Result[T9], Result[T10], Result[T11]]) Result[T.Tuple11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11]] {
-	return either.SequenceTuple11(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple11 converts a [Tuple11] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple11]].
 //
 //go:inline
 func TraverseTuple11[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A3) Result[T3], F4 ~func(A4) Result[T4], F5 ~func(A5) Result[T5], F6 ~func(A6) Result[T6], F7 ~func(A7) Result[T7], F8 ~func(A8) Result[T8], F9 ~func(A9) Result[T9], F10 ~func(A10) Result[T10], F11 ~func(A11) Result[T11], A1, T1, A2, T2, A3, T3, A4, T4, A5, T5, A6, T6, A7, T7, A8, T8, A9, T9, A10, T10, A11, T11 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11) func(T.Tuple11[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11]) Result[T.Tuple11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11]] {
-	return either.TraverseTuple11(f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize12 converts a function with 12 parameters returning a tuple into a function with 12 parameters returning an Either
@@ -445,7 +498,8 @@ func TraverseTuple11[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(
 //
 //go:inline
 func Eitherize12[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11) Result[R] {
-	return either.Eitherize12(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize12 converts a function with 12 parameters returning an Either into a function with 12 parameters returning a tuple
@@ -453,28 +507,32 @@ func Eitherize12[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11) (R, e
 //
 //go:inline
 func Uneitherize12[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11) Result[R], T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11) (R, error) {
-	return either.Uneitherize12(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT12 converts 12 parameters of [Result[T]] into a [Result[Tuple12]].
 //
 //go:inline
 func SequenceT12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 any](t1 Result[T1], t2 Result[T2], t3 Result[T3], t4 Result[T4], t5 Result[T5], t6 Result[T6], t7 Result[T7], t8 Result[T8], t9 Result[T9], t10 Result[T10], t11 Result[T11], t12 Result[T12]) Result[T.Tuple12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]] {
-	return either.SequenceT12(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple12 converts a [Tuple12] of [Result[T]] into an [Result[Tuple12]].
 //
 //go:inline
 func SequenceTuple12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 any](t T.Tuple12[Result[T1], Result[T2], Result[T3], Result[T4], Result[T5], Result[T6], Result[T7], Result[T8], Result[T9], Result[T10], Result[T11], Result[T12]]) Result[T.Tuple12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]] {
-	return either.SequenceTuple12(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple12 converts a [Tuple12] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple12]].
 //
 //go:inline
 func TraverseTuple12[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A3) Result[T3], F4 ~func(A4) Result[T4], F5 ~func(A5) Result[T5], F6 ~func(A6) Result[T6], F7 ~func(A7) Result[T7], F8 ~func(A8) Result[T8], F9 ~func(A9) Result[T9], F10 ~func(A10) Result[T10], F11 ~func(A11) Result[T11], F12 ~func(A12) Result[T12], A1, T1, A2, T2, A3, T3, A4, T4, A5, T5, A6, T6, A7, T7, A8, T8, A9, T9, A10, T10, A11, T11, A12, T12 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12) func(T.Tuple12[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12]) Result[T.Tuple12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]] {
-	return either.TraverseTuple12(f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize13 converts a function with 13 parameters returning a tuple into a function with 13 parameters returning an Either
@@ -482,7 +540,8 @@ func TraverseTuple12[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(
 //
 //go:inline
 func Eitherize13[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12) Result[R] {
-	return either.Eitherize13(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize13 converts a function with 13 parameters returning an Either into a function with 13 parameters returning a tuple
@@ -490,28 +549,32 @@ func Eitherize13[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12) 
 //
 //go:inline
 func Uneitherize13[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12) Result[R], T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12) (R, error) {
-	return either.Uneitherize13(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT13 converts 13 parameters of [Result[T]] into a [Result[Tuple13]].
 //
 //go:inline
 func SequenceT13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13 any](t1 Result[T1], t2 Result[T2], t3 Result[T3], t4 Result[T4], t5 Result[T5], t6 Result[T6], t7 Result[T7], t8 Result[T8], t9 Result[T9], t10 Result[T10], t11 Result[T11], t12 Result[T12], t13 Result[T13]) Result[T.Tuple13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]] {
-	return either.SequenceT13(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple13 converts a [Tuple13] of [Result[T]] into an [Result[Tuple13]].
 //
 //go:inline
 func SequenceTuple13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13 any](t T.Tuple13[Result[T1], Result[T2], Result[T3], Result[T4], Result[T5], Result[T6], Result[T7], Result[T8], Result[T9], Result[T10], Result[T11], Result[T12], Result[T13]]) Result[T.Tuple13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]] {
-	return either.SequenceTuple13(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple13 converts a [Tuple13] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple13]].
 //
 //go:inline
 func TraverseTuple13[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A3) Result[T3], F4 ~func(A4) Result[T4], F5 ~func(A5) Result[T5], F6 ~func(A6) Result[T6], F7 ~func(A7) Result[T7], F8 ~func(A8) Result[T8], F9 ~func(A9) Result[T9], F10 ~func(A10) Result[T10], F11 ~func(A11) Result[T11], F12 ~func(A12) Result[T12], F13 ~func(A13) Result[T13], A1, T1, A2, T2, A3, T3, A4, T4, A5, T5, A6, T6, A7, T7, A8, T8, A9, T9, A10, T10, A11, T11, A12, T12, A13, T13 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13) func(T.Tuple13[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13]) Result[T.Tuple13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]] {
-	return either.TraverseTuple13(f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize14 converts a function with 14 parameters returning a tuple into a function with 14 parameters returning an Either
@@ -519,7 +582,8 @@ func TraverseTuple13[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(
 //
 //go:inline
 func Eitherize14[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13) Result[R] {
-	return either.Eitherize14(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize14 converts a function with 14 parameters returning an Either into a function with 14 parameters returning a tuple
@@ -527,28 +591,32 @@ func Eitherize14[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, 
 //
 //go:inline
 func Uneitherize14[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13) Result[R], T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13) (R, error) {
-	return either.Uneitherize14(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT14 converts 14 parameters of [Result[T]] into a [Result[Tuple14]].
 //
 //go:inline
 func SequenceT14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14 any](t1 Result[T1], t2 Result[T2], t3 Result[T3], t4 Result[T4], t5 Result[T5], t6 Result[T6], t7 Result[T7], t8 Result[T8], t9 Result[T9], t10 Result[T10], t11 Result[T11], t12 Result[T12], t13 Result[T13], t14 Result[T14]) Result[T.Tuple14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14]] {
-	return either.SequenceT14(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple14 converts a [Tuple14] of [Result[T]] into an [Result[Tuple14]].
 //
 //go:inline
 func SequenceTuple14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14 any](t T.Tuple14[Result[T1], Result[T2], Result[T3], Result[T4], Result[T5], Result[T6], Result[T7], Result[T8], Result[T9], Result[T10], Result[T11], Result[T12], Result[T13], Result[T14]]) Result[T.Tuple14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14]] {
-	return either.SequenceTuple14(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple14 converts a [Tuple14] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple14]].
 //
 //go:inline
 func TraverseTuple14[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A3) Result[T3], F4 ~func(A4) Result[T4], F5 ~func(A5) Result[T5], F6 ~func(A6) Result[T6], F7 ~func(A7) Result[T7], F8 ~func(A8) Result[T8], F9 ~func(A9) Result[T9], F10 ~func(A10) Result[T10], F11 ~func(A11) Result[T11], F12 ~func(A12) Result[T12], F13 ~func(A13) Result[T13], F14 ~func(A14) Result[T14], A1, T1, A2, T2, A3, T3, A4, T4, A5, T5, A6, T6, A7, T7, A8, T8, A9, T9, A10, T10, A11, T11, A12, T12, A13, T13, A14, T14 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14) func(T.Tuple14[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13, A14]) Result[T.Tuple14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14]] {
-	return either.TraverseTuple14(f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize15 converts a function with 15 parameters returning a tuple into a function with 15 parameters returning an Either
@@ -556,7 +624,8 @@ func TraverseTuple14[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(
 //
 //go:inline
 func Eitherize15[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14) Result[R] {
-	return either.Eitherize15(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize15 converts a function with 15 parameters returning an Either into a function with 15 parameters returning a tuple
@@ -564,26 +633,30 @@ func Eitherize15[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, 
 //
 //go:inline
 func Uneitherize15[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14) Result[R], T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14) (R, error) {
-	return either.Uneitherize15(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT15 converts 15 parameters of [Result[T]] into a [Result[Tuple15]].
 //
 //go:inline
 func SequenceT15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15 any](t1 Result[T1], t2 Result[T2], t3 Result[T3], t4 Result[T4], t5 Result[T5], t6 Result[T6], t7 Result[T7], t8 Result[T8], t9 Result[T9], t10 Result[T10], t11 Result[T11], t12 Result[T12], t13 Result[T13], t14 Result[T14], t15 Result[T15]) Result[T.Tuple15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15]] {
-	return either.SequenceT15(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple15 converts a [Tuple15] of [Result[T]] into an [Result[Tuple15]].
 //
 //go:inline
 func SequenceTuple15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15 any](t T.Tuple15[Result[T1], Result[T2], Result[T3], Result[T4], Result[T5], Result[T6], Result[T7], Result[T8], Result[T9], Result[T10], Result[T11], Result[T12], Result[T13], Result[T14], Result[T15]]) Result[T.Tuple15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15]] {
-	return either.SequenceTuple15(t)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple15 converts a [Tuple15] of [A] via transformation functions transforming [A] to [Result[A]] into a [Result[Tuple15]].
 //
 //go:inline
 func TraverseTuple15[F1 ~func(A1) Result[T1], F2 ~func(A2) Result[T2], F3 ~func(A3) Result[T3], F4 ~func(A4) Result[T4], F5 ~func(A5) Result[T5], F6 ~func(A6) Result[T6], F7 ~func(A7) Result[T7], F8 ~func(A8) Result[T8], F9 ~func(A9) Result[T9], F10 ~func(A10) Result[T10], F11 ~func(A11) Result[T11], F12 ~func(A12) Result[T12], F13 ~func(A13) Result[T13], F14 ~func(A14) Result[T14], F15 ~func(A15) Result[T15], A1, T1, A2, T2, A3, T3, A4, T4, A5, T5, A6, T6, A7, T7, A8, T8, A9, T9, A10, T10, A11, T11, A12, T12, A13, T13, A14, T14, A15, T15 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15) func(T.Tuple15[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13, A14, A15]) Result[T.Tuple15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15]] {
-	return either.TraverseTuple15(f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15)
+	_ = "STUB: not implemented"
+	return nil
 }

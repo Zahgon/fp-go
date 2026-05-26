@@ -15,18 +15,14 @@
 
 package fromio
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	C "github.com/IBM/fp-go/v2/internal/chain"
-)
-
 func MonadChainFirstIOK[A, B, HKTA, HKTB any, GIOB ~func() B](
 	mchain func(HKTA, func(A) HKTA) HKTA,
 	mmap func(HKTB, func(B) A) HKTA,
 	fromio func(GIOB) HKTB,
 	first HKTA, f func(A) GIOB) HKTA {
+	_ = "STUB: not implemented"
 	// chain
-	return C.MonadChainFirst(mchain, mmap, first, F.Flow2(f, fromio))
+	return *new(HKTA)
 }
 
 func ChainFirstIOK[A, B, HKTA, HKTB any, GIOB ~func() B](
@@ -34,22 +30,25 @@ func ChainFirstIOK[A, B, HKTA, HKTB any, GIOB ~func() B](
 	mmap func(func(B) A) func(HKTB) HKTA,
 	fromio func(GIOB) HKTB,
 	f func(A) GIOB) func(HKTA) HKTA {
+	_ = "STUB: not implemented"
 	// chain
-	return C.ChainFirst(mchain, mmap, F.Flow2(f, fromio))
+	return nil
 }
 
 func MonadChainIOK[GR ~func() B, A, B, HKTA, HKTB any](
 	mchain func(HKTA, func(A) HKTB) HKTB,
 	fromio func(GR) HKTB,
 	first HKTA, f func(A) GR) HKTB {
+	_ = "STUB: not implemented"
 	// chain
-	return C.MonadChain[A, B](mchain, first, F.Flow2(f, fromio))
+	return *new(HKTB)
 }
 
 func ChainIOK[GR ~func() B, A, B, HKTA, HKTB any](
 	mchain func(func(A) HKTB) func(HKTA) HKTB,
 	fromio func(GR) HKTB,
 	f func(A) GR) func(HKTA) HKTB {
+	_ = "STUB: not implemented"
 	// chain
-	return C.Chain[A, B](mchain, F.Flow2(f, fromio))
+	return nil
 }

@@ -16,52 +16,11 @@
 package builder
 
 import (
-	"bytes"
-	"net/http"
-	"strconv"
-
-	F "github.com/IBM/fp-go/v2/function"
 	R "github.com/IBM/fp-go/v2/http/builder"
-	H "github.com/IBM/fp-go/v2/http/headers"
-	"github.com/IBM/fp-go/v2/idiomatic/ioresult"
 	IOEH "github.com/IBM/fp-go/v2/idiomatic/ioresult/http"
-	"github.com/IBM/fp-go/v2/lazy"
-	"github.com/IBM/fp-go/v2/option"
-	"github.com/IBM/fp-go/v2/result"
 )
 
 func Requester(builder *R.Builder) IOEH.Requester {
-
-	withBody := F.Curry3(func(data []byte, url string, method string) IOResult[*http.Request] {
-		return func() (*http.Request, error) {
-			req, err := http.NewRequest(method, url, bytes.NewReader(data))
-			if err == nil {
-				req.Header.Set(H.ContentLength, strconv.Itoa(len(data)))
-				H.Monoid.Concat(req.Header, builder.GetHeaders())
-			}
-			return req, err
-		}
-	})
-
-	withoutBody := F.Curry2(func(url string, method string) IOResult[*http.Request] {
-		return func() (*http.Request, error) {
-			req, err := http.NewRequest(method, url, http.NoBody)
-			if err == nil {
-				H.Monoid.Concat(req.Header, builder.GetHeaders())
-			}
-			return req, err
-		}
-	})
-
-	return F.Pipe5(
-		builder.GetBody(),
-		option.Fold(lazy.Of(result.Of(withoutBody)), result.Map(withBody)),
-		result.Ap[func(string) IOResult[*http.Request]](builder.GetTargetURL()),
-		result.Flap[IOResult[*http.Request]](builder.GetMethod()),
-		result.GetOrElse(ioresult.Left[*http.Request]),
-		ioresult.Map(func(req *http.Request) *http.Request {
-			req.Header = H.Monoid.Concat(req.Header, builder.GetHeaders())
-			return req
-		}),
-	)
+	_ = "STUB: not implemented"
+	return *new(IOEH.Requester)
 }

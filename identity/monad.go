@@ -21,23 +21,13 @@ import (
 
 type identityMonad[A, B any] struct{}
 
-func (o *identityMonad[A, B]) Of(a A) A {
-	return Of[A](a)
-}
+func (o *identityMonad[A, B]) Of(a A) A { _ = "STUB: not implemented"; return *new(A) }
 
-func (o *identityMonad[A, B]) Map(f func(A) B) func(A) B {
-	return Map[A, B](f)
-}
+func (o *identityMonad[A, B]) Map(f func(A) B) func(A) B { _ = "STUB: not implemented"; return nil }
 
-func (o *identityMonad[A, B]) Chain(f func(A) B) func(A) B {
-	return Chain[A, B](f)
-}
+func (o *identityMonad[A, B]) Chain(f func(A) B) func(A) B { _ = "STUB: not implemented"; return nil }
 
-func (o *identityMonad[A, B]) Ap(fa A) func(func(A) B) B {
-	return Ap[B, A](fa)
-}
+func (o *identityMonad[A, B]) Ap(fa A) func(func(A) B) B { _ = "STUB: not implemented"; return nil }
 
 // Monad implements the monadic operations for [Option]
-func Monad[A, B any]() monad.Monad[A, B, A, B, func(A) B] {
-	return &identityMonad[A, B]{}
-}
+func Monad[A, B any]() monad.Monad[A, B, A, B, func(A) B] { _ = "STUB: not implemented"; return nil }

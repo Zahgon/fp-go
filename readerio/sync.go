@@ -17,11 +17,10 @@ package readerio
 
 import (
 	"context"
-
-	G "github.com/IBM/fp-go/readerio/generic"
 )
 
 // WithLock executes the provided IO operation in the scope of a lock
 func WithLock[R, A any](lock func() context.CancelFunc) func(fa ReaderIO[R, A]) ReaderIO[R, A] {
-	return G.WithLock[ReaderIO[R, A]](lock)
+	_ = "STUB: not implemented"
+	return nil
 }

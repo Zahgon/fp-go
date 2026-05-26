@@ -15,11 +15,6 @@
 
 package endomorphism
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	A "github.com/IBM/fp-go/v2/internal/array"
-)
-
 // Build applies an endomorphism to the zero value of type A, effectively using
 // the endomorphism as a builder pattern.
 //
@@ -197,104 +192,104 @@ import (
 //   - Allows for more flexible composition patterns
 //   - Integrates naturally with other functional programming constructs
 func Build[A any](e Endomorphism[A]) A {
-	var a A
-	return e(a)
+	_ = "STUB: not implemented"
+	return *
+
+	// ConcatAll combines multiple endomorphisms into a single endomorphism using composition.
+	//
+	// This function takes a slice of endomorphisms and combines them using the monoid's
+	// concat operation (which is composition). The resulting endomorphism, when applied,
+	// will execute all the input endomorphisms in RIGHT-TO-LEFT order (mathematical composition order).
+	//
+	// IMPORTANT: Execution order is RIGHT-TO-LEFT:
+	//   - ConcatAll([]Endomorphism{f, g, h}) creates an endomorphism that applies h, then g, then f
+	//   - This is equivalent to f ∘ g ∘ h in mathematical notation
+	//   - The last endomorphism in the slice is applied first
+	//
+	// If the slice is empty, returns the identity endomorphism.
+	//
+	// # Type Parameters
+	//
+	//   - T: The type that the endomorphisms operate on
+	//
+	// # Parameters
+	//
+	//   - es: A slice of endomorphisms to combine
+	//
+	// # Returns
+	//
+	//	A single endomorphism that represents the composition of all input endomorphisms
+	//
+	// # Example - Basic Composition
+	//
+	//	double := N.Mul(2)
+	//	increment := N.Add(1)
+	//	square := func(x int) int { return x * x }
+	//
+	//	// Combine endomorphisms (RIGHT-TO-LEFT execution)
+	//	combined := ConcatAll([]Endomorphism[int]{double, increment, square})
+	//	result := combined(5)
+	//	// Execution: square(5) = 25, increment(25) = 26, double(26) = 52
+	//	// Result: 52
+	//
+	// # Example - Building with ConcatAll
+	//
+	//	type Config struct {
+	//	    Host string
+	//	    Port int
+	//	}
+	//
+	//	withHost := func(host string) Endomorphism[Config] {
+	//	    return func(c Config) Config {
+	//	        c.Host = host
+	//	        return c
+	//	    }
+	//	}
+	//
+	//	withPort := func(port int) Endomorphism[Config] {
+	//	    return func(c Config) Config {
+	//	        c.Port = port
+	//	        return c
+	//	    }
+	//	}
+	//
+	//	// Combine configuration builders
+	//	configBuilder := ConcatAll([]Endomorphism[Config]{
+	//	    withHost("localhost"),
+	//	    withPort(8080),
+	//	})
+	//
+	//	// Apply to zero value
+	//	config := Build(configBuilder)
+	//	// Result: Config{Host: "localhost", Port: 8080}
+	//
+	// # Example - Empty Slice
+	//
+	//	// Empty slice returns identity
+	//	identity := ConcatAll([]Endomorphism[int]{})
+	//	result := identity(42) // Returns: 42
+	//
+	// # Relationship to Monoid
+	//
+	// ConcatAll is equivalent to using M.ConcatAll with the endomorphism Monoid:
+	//
+	//	import M "github.com/IBM/fp-go/v2/monoid"
+	//
+	//	// These are equivalent:
+	//	result1 := ConcatAll(endomorphisms)
+	//	result2 := M.ConcatAll(Monoid[T]())(endomorphisms)
+	//
+	// # Use Cases
+	//
+	//  1. **Pipeline Construction**: Build transformation pipelines from individual steps
+	//  2. **Configuration Building**: Combine multiple configuration setters
+	//  3. **Data Transformation**: Chain multiple data transformations
+	//  4. **Middleware Composition**: Combine middleware functions
+	//  5. **Validation Chains**: Compose multiple validation functions
+	new(A)
 }
 
-// ConcatAll combines multiple endomorphisms into a single endomorphism using composition.
-//
-// This function takes a slice of endomorphisms and combines them using the monoid's
-// concat operation (which is composition). The resulting endomorphism, when applied,
-// will execute all the input endomorphisms in RIGHT-TO-LEFT order (mathematical composition order).
-//
-// IMPORTANT: Execution order is RIGHT-TO-LEFT:
-//   - ConcatAll([]Endomorphism{f, g, h}) creates an endomorphism that applies h, then g, then f
-//   - This is equivalent to f ∘ g ∘ h in mathematical notation
-//   - The last endomorphism in the slice is applied first
-//
-// If the slice is empty, returns the identity endomorphism.
-//
-// # Type Parameters
-//
-//   - T: The type that the endomorphisms operate on
-//
-// # Parameters
-//
-//   - es: A slice of endomorphisms to combine
-//
-// # Returns
-//
-//	A single endomorphism that represents the composition of all input endomorphisms
-//
-// # Example - Basic Composition
-//
-//	double := N.Mul(2)
-//	increment := N.Add(1)
-//	square := func(x int) int { return x * x }
-//
-//	// Combine endomorphisms (RIGHT-TO-LEFT execution)
-//	combined := ConcatAll([]Endomorphism[int]{double, increment, square})
-//	result := combined(5)
-//	// Execution: square(5) = 25, increment(25) = 26, double(26) = 52
-//	// Result: 52
-//
-// # Example - Building with ConcatAll
-//
-//	type Config struct {
-//	    Host string
-//	    Port int
-//	}
-//
-//	withHost := func(host string) Endomorphism[Config] {
-//	    return func(c Config) Config {
-//	        c.Host = host
-//	        return c
-//	    }
-//	}
-//
-//	withPort := func(port int) Endomorphism[Config] {
-//	    return func(c Config) Config {
-//	        c.Port = port
-//	        return c
-//	    }
-//	}
-//
-//	// Combine configuration builders
-//	configBuilder := ConcatAll([]Endomorphism[Config]{
-//	    withHost("localhost"),
-//	    withPort(8080),
-//	})
-//
-//	// Apply to zero value
-//	config := Build(configBuilder)
-//	// Result: Config{Host: "localhost", Port: 8080}
-//
-// # Example - Empty Slice
-//
-//	// Empty slice returns identity
-//	identity := ConcatAll([]Endomorphism[int]{})
-//	result := identity(42) // Returns: 42
-//
-// # Relationship to Monoid
-//
-// ConcatAll is equivalent to using M.ConcatAll with the endomorphism Monoid:
-//
-//	import M "github.com/IBM/fp-go/v2/monoid"
-//
-//	// These are equivalent:
-//	result1 := ConcatAll(endomorphisms)
-//	result2 := M.ConcatAll(Monoid[T]())(endomorphisms)
-//
-// # Use Cases
-//
-//  1. **Pipeline Construction**: Build transformation pipelines from individual steps
-//  2. **Configuration Building**: Combine multiple configuration setters
-//  3. **Data Transformation**: Chain multiple data transformations
-//  4. **Middleware Composition**: Combine middleware functions
-//  5. **Validation Chains**: Compose multiple validation functions
-func ConcatAll[T any](es []Endomorphism[T]) Endomorphism[T] {
-	return A.Reduce(es, MonadCompose[T], function.Identity[T])
-}
+func ConcatAll[T any](es []Endomorphism[T]) Endomorphism[T] { _ = "STUB: not implemented"; return nil }
 
 // Reduce applies a slice of endomorphisms to the zero value of type T in LEFT-TO-RIGHT order.
 //
@@ -400,7 +395,4 @@ func ConcatAll[T any](es []Endomorphism[T]) Endomorphism[T] {
 //  3. **Builder Pattern**: Build objects step by step
 //  4. **State Machines**: Apply state transitions in sequence
 //  5. **Data Flow**: Transform data through multiple stages
-func Reduce[T any](es []Endomorphism[T]) T {
-	var t T
-	return A.Reduce(es, func(t T, e Endomorphism[T]) T { return e(t) }, t)
-}
+func Reduce[T any](es []Endomorphism[T]) T { _ = "STUB: not implemented"; return *new(T) }

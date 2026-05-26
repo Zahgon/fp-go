@@ -17,16 +17,11 @@ package di
 
 import (
 	DIE "github.com/IBM/fp-go/v2/di/erasure"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/identity"
-	IOR "github.com/IBM/fp-go/v2/ioresult"
 	RIOR "github.com/IBM/fp-go/v2/readerioresult"
 )
 
 // Resolve performs a type safe resolution of a dependency
 func Resolve[T any](token InjectionToken[T]) RIOR.ReaderIOResult[DIE.InjectableFactory, T] {
-	return F.Flow2(
-		identity.Ap[IOResult[any]](asDependency(token)),
-		IOR.ChainResultK(token.Unerase),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

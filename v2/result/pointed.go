@@ -22,16 +22,16 @@ import (
 type eitherPointed[A any] struct{}
 
 func (o *eitherPointed[A]) Of(a A) Result[A] {
-	return Of(a)
+	_ = "STUB: not implemented"
+
+	// Pointed implements the pointed functor operations for Either.
+	// A pointed functor provides the Of operation to lift a value into the Either context.
+	//
+	// Example:
+	//
+	//	p := either.Pointed[error, int]()
+	//	result := p.Of(42) // Right(42)
+	return nil
 }
 
-// Pointed implements the pointed functor operations for Either.
-// A pointed functor provides the Of operation to lift a value into the Either context.
-//
-// Example:
-//
-//	p := either.Pointed[error, int]()
-//	result := p.Of(42) // Right(42)
-func Pointed[A any]() pointed.Pointed[A, Result[A]] {
-	return &eitherPointed[A]{}
-}
+func Pointed[A any]() pointed.Pointed[A, Result[A]] { _ = "STUB: not implemented"; return nil }

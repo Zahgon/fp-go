@@ -16,11 +16,8 @@
 package readerioeither
 
 import (
-	"github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/ioeither"
-	"github.com/IBM/fp-go/v2/reader"
-	"github.com/IBM/fp-go/v2/readerio"
 )
 
 // Promap is the profunctor map operation that transforms both the input and output of a ReaderIOEither.
@@ -50,7 +47,8 @@ import (
 //
 //go:inline
 func Promap[R, E, A, D, B any](f func(D) R, g func(A) B) Kleisli[D, E, ReaderIOEither[R, E, A], B] {
-	return reader.Promap(f, ioeither.Map[E](g))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Contramap changes the value of the local environment during the execution of a ReaderIOEither.
@@ -75,7 +73,8 @@ func Promap[R, E, A, D, B any](f func(D) R, g func(A) B) Kleisli[D, E, ReaderIOE
 //
 //go:inline
 func Contramap[E, A, R1, R2 any](f func(R2) R1) Kleisli[R2, E, ReaderIOEither[R1, E, A], A] {
-	return reader.Contramap[IOEither[E, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalIOK transforms the environment of a ReaderIOEither using an IO-based Kleisli arrow.
@@ -127,7 +126,8 @@ func Contramap[E, A, R1, R2 any](f func(R2) R1) Kleisli[R2, E, ReaderIOEither[R1
 //
 //go:inline
 func LocalIOK[E, A, R1, R2 any](f io.Kleisli[R2, R1]) Kleisli[R2, E, ReaderIOEither[R1, E, A], A] {
-	return readerio.LocalIOK[Either[E, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalIOEitherK transforms the environment of a ReaderIOEither using an IOEither-based Kleisli arrow.
@@ -184,10 +184,6 @@ func LocalIOK[E, A, R1, R2 any](f io.Kleisli[R2, R1]) Kleisli[R2, E, ReaderIOEit
 //
 //go:inline
 func LocalIOEitherK[A, R1, R2, E any](f ioeither.Kleisli[E, R2, R1]) Kleisli[R2, E, ReaderIOEither[R1, E, A], A] {
-	return func(ri ReaderIOEither[R1, E, A]) ReaderIOEither[R2, E, A] {
-		return function.Flow2(
-			f,
-			ioeither.Chain(ri),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -17,7 +17,6 @@ package ioresult
 
 import (
 	"github.com/IBM/fp-go/v2/io"
-	"github.com/IBM/fp-go/v2/ioeither"
 	"github.com/IBM/fp-go/v2/pair"
 )
 
@@ -25,19 +24,16 @@ import (
 // Can be used with [ChainFirst]
 //
 //go:inline
-func LogJSON[A any](prefix string) Kleisli[A, string] {
-	return ioeither.LogJSON[A](prefix)
-}
+func LogJSON[A any](prefix string) Kleisli[A, string] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
 func LogEntryExitF[A, STARTTOKEN, ANY any](
 	onEntry IO[STARTTOKEN],
 	onExit io.Kleisli[pair.Pair[STARTTOKEN, Result[A]], ANY],
 ) Operator[A, A] {
-	return ioeither.LogEntryExitF(onEntry, onExit)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
-func LogEntryExit[A any](name string) Operator[A, A] {
-	return ioeither.LogEntryExit[error, A](name)
-}
+func LogEntryExit[A any](name string) Operator[A, A] { _ = "STUB: not implemented"; return nil }

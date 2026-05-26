@@ -15,10 +15,6 @@
 
 package record
 
-import (
-	G "github.com/IBM/fp-go/v2/record/generic"
-)
-
 // Do creates an empty context of type [S] to be used with the [Bind] operation.
 // This is the starting point for do-notation style composition.
 //
@@ -29,9 +25,7 @@ import (
 //	    Count int
 //	}
 //	result := record.Do[string, State]()
-func Do[K comparable, S any]() Record[K, S] {
-	return G.Do[Record[K, S]]()
-}
+func Do[K comparable, S any]() Record[K, S] { _ = "STUB: not implemented"; return nil }
 
 // Bind attaches the result of a computation to a context [S1] to produce a context [S2].
 // This enables sequential composition where each step can depend on the results of previous steps.
@@ -71,7 +65,8 @@ func Bind[S1, T any, K comparable, S2 any](m Monoid[Record[K, S2]]) func(
 	setter func(T) func(S1) S2,
 	f Kleisli[K, S1, T],
 ) Operator[K, S1, S2] {
-	return G.Bind[Record[K, S1], Record[K, S2], Record[K, T]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2].
@@ -101,7 +96,8 @@ func Let[S1, T any, K comparable, S2 any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[K, S1, S2] {
-	return G.Let[Record[K, S1], Record[K, S2]](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches a constant value to a context [S1] to produce a context [S2].
@@ -129,7 +125,8 @@ func LetTo[S1, T any, K comparable, S2 any](
 	setter func(T) func(S1) S2,
 	b T,
 ) Operator[K, S1, S2] {
-	return G.LetTo[Record[K, S1], Record[K, S2]](setter, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T].
@@ -147,7 +144,8 @@ func LetTo[S1, T any, K comparable, S2 any](
 //	    record.BindTo(func(name string) State { return State{Name: name} }),
 //	) // map[string]State{"a": {Name: "Alice"}, "b": {Name: "Bob"}}
 func BindTo[S1, T any, K comparable](setter func(T) S1) Operator[K, T, S1] {
-	return G.BindTo[Record[K, S1], Record[K, T]](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering
@@ -187,5 +185,6 @@ func ApS[S1, T any, K comparable, S2 any](m Monoid[Record[K, S2]]) func(
 	setter func(T) func(S1) S2,
 	fa Record[K, T],
 ) Operator[K, S1, S2] {
-	return G.ApS[Record[K, S1], Record[K, S2], Record[K, T]](m)
+	_ = "STUB: not implemented"
+	return nil
 }

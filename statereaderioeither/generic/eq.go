@@ -18,9 +18,7 @@ package generic
 import (
 	ET "github.com/IBM/fp-go/either"
 	EQ "github.com/IBM/fp-go/eq"
-	F "github.com/IBM/fp-go/function"
 	P "github.com/IBM/fp-go/pair"
-	G "github.com/IBM/fp-go/readerioeither/generic"
 )
 
 // Eq implements the equals predicate for values contained in the [StateReaderIOEither] monad
@@ -29,11 +27,8 @@ func Eq[
 	RIOEA ~func(R) IOEA,
 	IOEA ~func() ET.Either[E, P.Pair[A, S]],
 	S, R, E, A any](eqr EQ.Eq[RIOEA]) func(S) EQ.Eq[SRIOEA] {
-	return func(s S) EQ.Eq[SRIOEA] {
-		return EQ.FromEquals(func(l, r SRIOEA) bool {
-			return eqr.Equals(l(s), r(s))
-		})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
@@ -42,8 +37,6 @@ func FromStrictEquals[
 	RIOEA ~func(R) IOEA,
 	IOEA ~func() ET.Either[E, P.Pair[A, S]],
 	S, R any, E, A comparable]() func(R) func(S) EQ.Eq[SRIOEA] {
-	return F.Flow2(
-		G.FromStrictEquals[RIOEA](),
-		Eq[SRIOEA, RIOEA, IOEA, S, R, E, A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

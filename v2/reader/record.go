@@ -15,54 +15,32 @@
 
 package reader
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	RR "github.com/IBM/fp-go/v2/internal/record"
-)
-
 //go:inline
 func MonadTraverseRecord[K comparable, R, A, B any](ma map[K]A, f Kleisli[R, A, B]) Reader[R, map[K]B] {
-	return RR.MonadTraverse[map[K]A, map[K]B](
-		Of,
-		Map,
-		Ap,
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func TraverseRecord[K comparable, R, A, B any](f Kleisli[R, A, B]) func(map[K]A) Reader[R, map[K]B] {
-	return RR.Traverse[map[K]A, map[K]B](
-		Of,
-		Map,
-		Ap,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MonadTraverseRecordWithIndex[K comparable, R, A, B any](ma map[K]A, f func(K, A) Reader[R, B]) Reader[R, map[K]B] {
-	return RR.MonadTraverseWithIndex[map[K]A, map[K]B](
-		Of,
-		Map,
-		Ap,
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func TraverseRecordWithIndex[K comparable, R, A, B any](f func(K, A) Reader[R, B]) func(map[K]A) Reader[R, map[K]B] {
-	return RR.TraverseWithIndex[map[K]A, map[K]B](
-		Of,
-		Map,
-		Ap,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func SequenceRecord[K comparable, R, A any](ma map[K]Reader[R, A]) Reader[R, map[K]A] {
-	return MonadTraverseRecord(ma, function.Identity[Reader[R, A]])
+	_ = "STUB: not implemented"
+	return nil
 }

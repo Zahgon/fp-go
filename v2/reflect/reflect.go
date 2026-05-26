@@ -23,28 +23,17 @@ package reflect
 
 import (
 	R "reflect"
-
-	"github.com/IBM/fp-go/v2/array"
-	F "github.com/IBM/fp-go/v2/function"
 )
 
 func MonadReduceWithIndex[A any](val R.Value, f func(int, A, R.Value) A, initial A) A {
-
-	kind := val.Kind()
+	_ = "STUB: not implemented"
+	return *
 
 	// Check if it supports Len() and Index()
-	if kind != R.Slice && kind != R.Array && kind != R.String {
-		// Not a sequential iterable, return initial
-		return initial
-	}
-
-	count := val.Len()
-	current := initial
-	for i := range count {
-		current = f(i, current, val.Index(i))
-	}
-	return current
+	new(A)
 }
+
+// Not a sequential iterable, return initial
 
 // ReduceWithIndex applies a reducer function to each element of a reflect.Value (representing a slice or array),
 // accumulating a result value. The reducer function receives the current index, the accumulated value,
@@ -69,9 +58,8 @@ func MonadReduceWithIndex[A any](val R.Value, f func(int, A, R.Value) A, initial
 //	result := sumWithIndex(reflect.ValueOf([]int{10, 20, 30}))
 //	// result = 0 + (0+10) + (1+20) + (2+30) = 63
 func ReduceWithIndex[A any](f func(int, A, R.Value) A, initial A) func(R.Value) A {
-	return func(val R.Value) A {
-		return MonadReduceWithIndex(val, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Reduce applies a reducer function to each element of a reflect.Value (representing a slice or array),
@@ -96,7 +84,8 @@ func ReduceWithIndex[A any](f func(int, A, R.Value) A, initial A) func(R.Value) 
 //	result := sum(reflect.ValueOf([]int{10, 20, 30}))
 //	// result = 60
 func Reduce[A any](f func(A, R.Value) A, initial A) func(R.Value) A {
-	return ReduceWithIndex(F.Ignore1of3[int](f), initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMapWithIndex is the non-curried version of MapWithIndex. It transforms each element of a
@@ -123,22 +112,13 @@ func Reduce[A any](f func(A, R.Value) A, initial A) func(R.Value) A {
 //	})
 //	// result = []string{"[0]=10", "[1]=20", "[2]=30"}
 func MonadMapWithIndex[A any](val R.Value, f func(int, R.Value) A) []A {
-
-	kind := val.Kind()
+	_ = "STUB: not implemented"
+	return nil
 
 	// Check if it supports Len() and Index()
-	if kind != R.Slice && kind != R.Array && kind != R.String {
-		// Not a sequential iterable, return initial
-		return array.Empty[A]()
-	}
-
-	l := val.Len()
-	res := make([]A, l)
-	for i := l - 1; i >= 0; i-- {
-		res[i] = f(i, val.Index(i))
-	}
-	return res
 }
+
+// Not a sequential iterable, return initial
 
 // MapWithIndex transforms each element of a reflect.Value (representing a slice or array) using the provided
 // function that receives both the index and the element, returning a new slice containing the transformed values.
@@ -161,7 +141,8 @@ func MonadMapWithIndex[A any](val R.Value, f func(int, R.Value) A) []A {
 //	result := indexedLabels(reflect.ValueOf([]int{10, 20, 30}))
 //	// result = []string{"[0]: 10", "[1]: 20", "[2]: 30"}
 func MapWithIndex[A any](f func(int, R.Value) A) func(R.Value) []A {
-	return F.Bind2nd(MonadMapWithIndex, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map transforms each element of a reflect.Value (representing a slice or array) using the provided
@@ -184,6 +165,4 @@ func MapWithIndex[A any](f func(int, R.Value) A) func(R.Value) []A {
 //	})
 //	result := doubleInts(reflect.ValueOf([]int{1, 2, 3}))
 //	// result = []int{2, 4, 6}
-func Map[A any](f func(R.Value) A) func(R.Value) []A {
-	return MapWithIndex(F.Ignore1of2[int](f))
-}
+func Map[A any](f func(R.Value) A) func(R.Value) []A { _ = "STUB: not implemented"; return nil }

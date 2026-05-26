@@ -16,7 +16,6 @@
 package statet
 
 import (
-	"github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/pair"
 )
 
@@ -28,11 +27,8 @@ func Of[
 	fof func(pair.Pair[S, A]) HKTA,
 
 	a A) HKTSA {
-
-	return function.Flow2(
-		function.Bind2nd(pair.MakePair[S, A], a),
-		fof,
-	)
+	_ = "STUB: not implemented"
+	return *new(HKTSA)
 }
 
 func MonadMap[
@@ -47,11 +43,8 @@ func MonadMap[
 	fa HKTSA,
 	f func(A) B,
 ) HKTSB {
-
-	return function.Flow2(
-		fa,
-		function.Bind2nd(fmap, pair.Map[S](f)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKTSB)
 }
 
 func Map[
@@ -65,14 +58,8 @@ func Map[
 
 	f func(A) B,
 ) func(HKTSA) HKTSB {
-	mp := fmap(pair.Map[S](f))
-
-	return func(fa HKTSA) HKTSB {
-		return function.Flow2(
-			fa,
-			mp,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChain[
@@ -87,12 +74,8 @@ func MonadChain[
 	fa HKTSA,
 	f func(A) HKTSB,
 ) HKTSB {
-	return function.Flow2(
-		fa,
-		function.Bind2nd(fchain, func(a pair.Pair[S, A]) HKTB {
-			return f(pair.Tail(a))(pair.Head(a))
-		}),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKTSB)
 }
 
 func Chain[
@@ -106,16 +89,8 @@ func Chain[
 
 	f func(A) HKTSB,
 ) func(HKTSA) HKTSB {
-	mp := fchain(func(a pair.Pair[S, A]) HKTB {
-		return f(pair.Tail(a))(pair.Head(a))
-	})
-
-	return func(fa HKTSA) HKTSB {
-		return function.Flow2(
-			fa,
-			mp,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadAp[
@@ -134,11 +109,8 @@ func MonadAp[
 	fab HKTSAB,
 	fa HKTSA,
 ) HKTSB {
-	return func(s S) HKTB {
-		return fchain(fab(s), func(ab pair.Pair[S, func(A) B]) HKTB {
-			return fmap(fa(pair.Head(ab)), pair.Map[S](pair.Tail(ab)))
-		})
-	}
+	_ = "STUB: not implemented"
+	return *new(HKTSB)
 }
 
 func Ap[
@@ -156,14 +128,8 @@ func Ap[
 
 	fa HKTSA,
 ) func(HKTSAB) HKTSB {
-	return func(fab HKTSAB) HKTSB {
-		return function.Flow2(
-			fab,
-			fchain(func(ab pair.Pair[S, func(A) B]) HKTB {
-				return fmap(pair.Map[S](pair.Tail(ab)))(fa(pair.Head(ab)))
-			}),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FromF[
@@ -176,12 +142,8 @@ func FromF[
 ](
 	fmap func(HKTFA, func(A) pair.Pair[S, A]) HKTA,
 	ma HKTFA) HKTSA {
-
-	f1 := function.Bind1st(fmap, ma)
-
-	return func(s S) HKTA {
-		return f1(function.Bind1st(pair.MakePair[S, A], s))
-	}
+	_ = "STUB: not implemented"
+	return *new(HKTSA)
 }
 
 func FromState[
@@ -194,5 +156,6 @@ func FromState[
 	fof func(pair.Pair[S, A]) HKTA,
 	sa ST,
 ) HKTSA {
-	return function.Flow2(sa, fof)
+	_ = "STUB: not implemented"
+	return *new(HKTSA)
 }

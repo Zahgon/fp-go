@@ -16,8 +16,6 @@
 package readeroption
 
 import (
-	"github.com/IBM/fp-go/v2/internal/readert"
-	"github.com/IBM/fp-go/v2/option"
 	"github.com/IBM/fp-go/v2/reader"
 )
 
@@ -78,10 +76,8 @@ import (
 //	result := configReader(cfg)
 //	// result is Option[string]
 func Sequence[R1, R2, A any](ma ReaderOption[R2, ReaderOption[R1, A]]) reader.Kleisli[R2, R1, Option[A]] {
-	return readert.Sequence(
-		option.Chain,
-		ma,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceReader swaps the order of environment parameters when the inner computation is a Reader.
@@ -136,28 +132,20 @@ func Sequence[R1, R2, A any](ma ReaderOption[R2, ReaderOption[R1, A]]) reader.Kl
 //	result := configReader(cfg)
 //	// result is Option[string]
 func SequenceReader[R1, R2, A any](ma ReaderOption[R2, Reader[R1, A]]) reader.Kleisli[R2, R1, Option[A]] {
-	return readert.SequenceReader(
-		option.Map,
-		ma,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Traverse[R2, R1, A, B any](
 	f Kleisli[R1, A, B],
 ) func(ReaderOption[R2, A]) Kleisli[R2, R1, B] {
-	return readert.Traverse[ReaderOption[R2, A]](
-		option.Map,
-		option.Chain,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraverseReader[R2, R1, A, B any](
 	f reader.Kleisli[R1, A, B],
 ) func(ReaderOption[R2, A]) Kleisli[R2, R1, B] {
-	return readert.TraverseReader[ReaderOption[R2, A]](
-		option.Map,
-		option.Map,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

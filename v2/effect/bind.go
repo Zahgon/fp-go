@@ -16,7 +16,6 @@
 package effect
 
 import (
-	"github.com/IBM/fp-go/v2/context/readerreaderioresult"
 	"github.com/IBM/fp-go/v2/either"
 	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/ioeither"
@@ -54,7 +53,8 @@ import (
 func Do[C, S any](
 	empty S,
 ) Effect[C, S] {
-	return readerreaderioresult.Of[C](empty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Bind executes an effectful computation and binds its result to the state.
@@ -96,7 +96,8 @@ func Bind[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[C, S1, T],
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.Bind(setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let computes a pure value from the current state and binds it to the state.
@@ -137,7 +138,8 @@ func Let[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.Let[C](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo binds a constant value to the state.
@@ -176,7 +178,8 @@ func LetTo[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.LetTo[C](setter, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo wraps a value in an initial state structure.
@@ -207,7 +210,8 @@ func LetTo[C, S1, S2, T any](
 func BindTo[C, S1, T any](
 	setter func(T) S1,
 ) Operator[C, T, S1] {
-	return readerreaderioresult.BindTo[C](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS applies an effect and binds its result to the state using a setter function.
@@ -248,7 +252,8 @@ func ApS[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa Effect[C, T],
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.ApS(setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL applies an effect and updates a field in the state using a lens.
@@ -283,7 +288,8 @@ func ApSL[C, S, T any](
 	lens Lens[S, T],
 	fa Effect[C, T],
 ) Operator[C, S, S] {
-	return readerreaderioresult.ApSL(lens, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindL executes an effectful computation on a field and updates it using a lens.
@@ -322,7 +328,8 @@ func BindL[C, S, T any](
 	lens Lens[S, T],
 	f func(T) Effect[C, T],
 ) Operator[C, S, S] {
-	return readerreaderioresult.BindL(lens, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL computes a new field value from the current value using a lens.
@@ -359,7 +366,8 @@ func LetL[C, S, T any](
 	lens Lens[S, T],
 	f func(T) T,
 ) Operator[C, S, S] {
-	return readerreaderioresult.LetL[C](lens, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL sets a field to a constant value using a lens.
@@ -392,7 +400,8 @@ func LetToL[C, S, T any](
 	lens Lens[S, T],
 	b T,
 ) Operator[C, S, S] {
-	return readerreaderioresult.LetToL[C](lens, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -400,7 +409,8 @@ func BindIOEitherK[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f ioeither.Kleisli[error, S1, T],
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.BindIOEitherK[C](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -408,7 +418,8 @@ func BindIOResultK[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f ioresult.Kleisli[S1, T],
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.BindIOResultK[C](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -416,7 +427,8 @@ func BindIOK[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f io.Kleisli[S1, T],
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.BindIOK[C](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -424,7 +436,8 @@ func BindReaderK[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f reader.Kleisli[C, S1, T],
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.BindReaderK(setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -432,7 +445,8 @@ func BindReaderIOK[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f readerio.Kleisli[C, S1, T],
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.BindReaderIOK(setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -440,7 +454,8 @@ func BindEitherK[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f either.Kleisli[error, S1, T],
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.BindEitherK[C](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -448,7 +463,8 @@ func BindIOEitherKL[C, S, T any](
 	lens Lens[S, T],
 	f ioeither.Kleisli[error, T, T],
 ) Operator[C, S, S] {
-	return readerreaderioresult.BindIOEitherKL[C](lens, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -456,7 +472,8 @@ func BindIOKL[C, S, T any](
 	lens Lens[S, T],
 	f io.Kleisli[T, T],
 ) Operator[C, S, S] {
-	return readerreaderioresult.BindIOKL[C](lens, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -464,7 +481,8 @@ func BindReaderKL[C, S, T any](
 	lens Lens[S, T],
 	f reader.Kleisli[C, T, T],
 ) Operator[C, S, S] {
-	return readerreaderioresult.BindReaderKL(lens, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -472,7 +490,8 @@ func BindReaderIOKL[C, S, T any](
 	lens Lens[S, T],
 	f readerio.Kleisli[C, T, T],
 ) Operator[C, S, S] {
-	return readerreaderioresult.BindReaderIOKL(lens, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -480,7 +499,8 @@ func ApIOEitherS[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa IOEither[error, T],
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.ApIOEitherS[C](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -488,7 +508,8 @@ func ApIOS[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa IO[T],
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.ApIOS[C](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -496,7 +517,8 @@ func ApReaderS[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa Reader[C, T],
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.ApReaderS(setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -504,7 +526,8 @@ func ApReaderIOS[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa ReaderIO[C, T],
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.ApReaderIOS(setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -512,7 +535,8 @@ func ApEitherS[C, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa Either[error, T],
 ) Operator[C, S1, S2] {
-	return readerreaderioresult.ApEitherS[C](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -520,7 +544,8 @@ func ApIOEitherSL[C, S, T any](
 	lens Lens[S, T],
 	fa IOEither[error, T],
 ) Operator[C, S, S] {
-	return readerreaderioresult.ApIOEitherSL[C](lens, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -528,7 +553,8 @@ func ApIOSL[C, S, T any](
 	lens Lens[S, T],
 	fa IO[T],
 ) Operator[C, S, S] {
-	return readerreaderioresult.ApIOSL[C](lens, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -536,7 +562,8 @@ func ApReaderSL[C, S, T any](
 	lens Lens[S, T],
 	fa Reader[C, T],
 ) Operator[C, S, S] {
-	return readerreaderioresult.ApReaderSL(lens, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -544,7 +571,8 @@ func ApReaderIOSL[C, S, T any](
 	lens Lens[S, T],
 	fa ReaderIO[C, T],
 ) Operator[C, S, S] {
-	return readerreaderioresult.ApReaderIOSL(lens, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -552,5 +580,6 @@ func ApEitherSL[C, S, T any](
 	lens Lens[S, T],
 	fa Either[error, T],
 ) Operator[C, S, S] {
-	return readerreaderioresult.ApEitherSL[C](lens, fa)
+	_ = "STUB: not implemented"
+	return nil
 }

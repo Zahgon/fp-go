@@ -15,10 +15,6 @@
 
 package apply
 
-import (
-	F "github.com/IBM/fp-go/function"
-)
-
 func MonadAp[HKTGA, HKTGB, HKTGAB, HKTFGAB, HKTFGGAB, HKTFGA, HKTFGB any](
 	fap func(HKTFGGAB, HKTFGA) HKTFGB,
 	fmap func(HKTFGAB, func(HKTGAB) func(HKTGA) HKTGB) HKTFGGAB,
@@ -26,8 +22,8 @@ func MonadAp[HKTGA, HKTGB, HKTGAB, HKTFGAB, HKTFGGAB, HKTFGA, HKTFGB any](
 
 	fab HKTFGAB,
 	fa HKTFGA) HKTFGB {
-
-	return fap(fmap(fab, F.Bind1st(F.Bind1st[HKTGAB, HKTGA, HKTGB], gap)), fa)
+	_ = "STUB: not implemented"
+	return *new(HKTFGB)
 }
 
 func Ap[HKTGA, HKTGB, HKTGAB, HKTFGAB, HKTFGGAB, HKTFGA, HKTFGB any](
@@ -36,11 +32,8 @@ func Ap[HKTGA, HKTGB, HKTGAB, HKTFGAB, HKTFGGAB, HKTFGA, HKTFGB any](
 	gap func(HKTGA) func(HKTGAB) HKTGB,
 
 	fa HKTFGA) func(HKTFGAB) HKTFGB {
-
-	return F.Flow2(
-		fmap(F.Flip(gap)),
-		fap(fa),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // func Ap[HKTGA, HKTGB, HKTGAB, HKTFGAB, HKTFGGAB, HKTFGA, HKTFGB any](
@@ -83,10 +76,8 @@ func MonadApFirst[HKTGA, HKTGB, HKTGBA, A, B any](
 	first HKTGA,
 	second HKTGB,
 ) HKTGA {
-	return fap(
-		fmap(first, F.Constant1[B, A]),
-		second,
-	)
+	_ = "STUB: not implemented"
+	return *new(HKTGA)
 }
 
 func ApFirst[HKTGA, HKTGB, HKTGBA, A, B any](
@@ -95,9 +86,8 @@ func ApFirst[HKTGA, HKTGB, HKTGBA, A, B any](
 
 	second HKTGB,
 ) func(HKTGA) HKTGA {
-	return func(first HKTGA) HKTGA {
-		return MonadApFirst(fap, fmap, first, second)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadApSecond[HKTGA, HKTGB, HKTGBB, A, B any](
@@ -107,10 +97,8 @@ func MonadApSecond[HKTGA, HKTGB, HKTGBB, A, B any](
 	first HKTGA,
 	second HKTGB,
 ) HKTGB {
-	return fap(
-		fmap(first, F.Constant1[A](F.Identity[B])),
-		second,
-	)
+	_ = "STUB: not implemented"
+	return *new(HKTGB)
 }
 
 func ApSecond[HKTGA, HKTGB, HKTGBB, A, B any](
@@ -119,9 +107,8 @@ func ApSecond[HKTGA, HKTGB, HKTGBB, A, B any](
 
 	second HKTGB,
 ) func(HKTGA) HKTGB {
-	return func(first HKTGA) HKTGB {
-		return MonadApSecond(fap, fmap, first, second)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadApS[S1, S2, B, HKTBGBS2, HKTS1, HKTS2, HKTB any](
@@ -131,7 +118,8 @@ func MonadApS[S1, S2, B, HKTBGBS2, HKTS1, HKTS2, HKTB any](
 	key func(B) func(S1) S2,
 	fb HKTB,
 ) HKTS2 {
-	return fap(fmap(fa, F.Flip(key)), fb)
+	_ = "STUB: not implemented"
+	return *new(HKTS2)
 }
 
 func ApS[S1, S2, B, HKTBGBS2, HKTS1, HKTS2, HKTB any](
@@ -140,8 +128,6 @@ func ApS[S1, S2, B, HKTBGBS2, HKTS1, HKTS2, HKTB any](
 	key func(B) func(S1) S2,
 	fb HKTB,
 ) func(HKTS1) HKTS2 {
-	return F.Flow2(
-		fmap(F.Flip(key)),
-		fap(fb),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

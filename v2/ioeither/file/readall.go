@@ -18,8 +18,6 @@ package file
 import (
 	"io"
 
-	FL "github.com/IBM/fp-go/v2/file"
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/ioeither"
 )
 
@@ -39,11 +37,6 @@ var (
 //	readOp := ReadAll(Open("input.txt"))
 //	result := readOp() // Either[error, []byte]
 func ReadAll[R io.ReadCloser](acquire IOEither[error, R]) IOEither[error, []byte] {
-	return F.Pipe1(
-		F.Flow2(
-			FL.ToReader[R],
-			readAll,
-		),
-		ioeither.WithResource[[]byte](acquire, Close[R]),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

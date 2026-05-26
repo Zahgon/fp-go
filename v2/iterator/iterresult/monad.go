@@ -19,20 +19,19 @@ import (
 	"github.com/IBM/fp-go/v2/internal/functor"
 	"github.com/IBM/fp-go/v2/internal/monad"
 	"github.com/IBM/fp-go/v2/internal/pointed"
-	"github.com/IBM/fp-go/v2/iterator/itereither"
 )
 
 // Pointed implements the pointed operations for [SeqResult]
-func Pointed[A any]() pointed.Pointed[A, SeqResult[A]] {
-	return itereither.Pointed[error, A]()
-}
+func Pointed[A any]() pointed.Pointed[A, SeqResult[A]] { _ = "STUB: not implemented"; return nil }
 
 // Functor implements the monadic operations for [SeqResult]
 func Functor[A, B any]() functor.Functor[A, B, SeqResult[A], SeqResult[B]] {
-	return itereither.Functor[error, A, B]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad implements the monadic operations for [SeqResult]
 func Monad[A, B any]() monad.Monad[A, B, SeqResult[A], SeqResult[B], SeqResult[func(A) B]] {
-	return itereither.Monad[error, A, B]()
+	_ = "STUB: not implemented"
+	return nil
 }

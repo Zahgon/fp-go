@@ -20,9 +20,6 @@
 package result
 
 import (
-	"fmt"
-
-	"github.com/IBM/fp-go/v2/either"
 	"github.com/IBM/fp-go/v2/option"
 )
 
@@ -35,9 +32,7 @@ import (
 //	result := either.Of[error](42) // Right(42)
 //
 //go:inline
-func Of[A any](value A) Result[A] {
-	return either.Of[error](value)
-}
+func Of[A any](value A) Result[A] { _ = "STUB: not implemented"; return nil }
 
 // FromIO executes an IO operation and wraps the result in a Right value.
 // This is useful for lifting pure IO operations into the Either context.
@@ -48,9 +43,7 @@ func Of[A any](value A) Result[A] {
 //	result := either.FromIO[error](getValue) // Right(42)
 //
 //go:inline
-func FromIO[IO ~func() A, A any](f IO) Result[A] {
-	return either.FromIO[error](f)
-}
+func FromIO[IO ~func() A, A any](f IO) Result[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadAp applies a function wrapped in Either to a value wrapped in Either.
 // If either the function or the value is Left, returns Left.
@@ -64,16 +57,15 @@ func FromIO[IO ~func() A, A any](f IO) Result[A] {
 //
 //go:inline
 func MonadAp[B, A any](fab Result[func(a A) B], fa Result[A]) Result[B] {
-	return either.MonadAp(fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap is the curried version of [MonadAp].
 // Returns a function that applies a wrapped function to the given wrapped value.
 //
 //go:inline
-func Ap[B, A any](fa Result[A]) Operator[func(A) B, B] {
-	return either.Ap[B](fa)
-}
+func Ap[B, A any](fa Result[A]) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap transforms the Right value using the provided function.
 // If the Either is Left, returns Left unchanged.
@@ -88,7 +80,8 @@ func Ap[B, A any](fa Result[A]) Operator[func(A) B, B] {
 //
 //go:inline
 func MonadMap[A, B any](fa Result[A], f func(a A) B) Result[B] {
-	return either.MonadMap(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadBiMap applies two functions: one to transform a Left value, another to transform a Right value.
@@ -104,7 +97,8 @@ func MonadMap[A, B any](fa Result[A], f func(a A) B) Result[B] {
 //
 //go:inline
 func MonadBiMap[E, A, B any](fa Result[A], f func(error) E, g func(a A) B) Either[E, B] {
-	return either.MonadBiMap(fa, f, g)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BiMap is the curried version of [MonadBiMap].
@@ -112,27 +106,25 @@ func MonadBiMap[E, A, B any](fa Result[A], f func(error) E, g func(a A) B) Eithe
 //
 //go:inline
 func BiMap[E, A, B any](f func(error) E, g func(a A) B) func(Result[A]) Either[E, B] {
-	return either.BiMap(f, g)
+	_ = "STUB: not implemented"
+	return nil
+
+	// MonadMapTo replaces the Right value with a constant value.
+	// If the Either is Left, returns Left unchanged.
+	//
+	// Example:
+	//
+	//	result := either.MonadMapTo(either.Right[error](21), "success") // Right("success")
+	//
+	//go:inline
 }
 
-// MonadMapTo replaces the Right value with a constant value.
-// If the Either is Left, returns Left unchanged.
-//
-// Example:
-//
-//	result := either.MonadMapTo(either.Right[error](21), "success") // Right("success")
-//
-//go:inline
-func MonadMapTo[A, B any](fa Result[A], b B) Result[B] {
-	return either.MonadMapTo(fa, b)
-}
+func MonadMapTo[A, B any](fa Result[A], b B) Result[B] { _ = "STUB: not implemented"; return nil }
 
 // MapTo is the curried version of [MonadMapTo].
 //
 //go:inline
-func MapTo[A, B any](b B) Operator[A, B] {
-	return either.MapTo[error, A](b)
-}
+func MapTo[A, B any](b B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadMapLeft applies a transformation function to the Left (error) value.
 // If the Either is Right, returns Right unchanged.
@@ -146,23 +138,23 @@ func MapTo[A, B any](b B) Operator[A, B] {
 //
 //go:inline
 func MonadMapLeft[A, E any](fa Result[A], f func(error) E) Either[E, A] {
-	return either.MonadMapLeft(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map is the curried version of [MonadMap].
 // Transforms the Right value using the provided function.
 //
 //go:inline
-func Map[A, B any](f func(a A) B) Operator[A, B] {
-	return either.Map[error](f)
-}
+func Map[A, B any](f func(a A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MapLeft is the curried version of [MonadMapLeft].
 // Applies a mapping function to the Left (error) channel.
 //
 //go:inline
 func MapLeft[A, E any](f func(error) E) func(fa Result[A]) Either[E, A] {
-	return either.MapLeft[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChain sequences two computations, where the second depends on the result of the first.
@@ -180,7 +172,8 @@ func MapLeft[A, E any](f func(error) E) func(fa Result[A]) Either[E, A] {
 //
 //go:inline
 func MonadChain[A, B any](fa Result[A], f Kleisli[A, B]) Result[B] {
-	return either.MonadChain(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainFirst executes a side-effect computation but returns the original value.
@@ -198,7 +191,8 @@ func MonadChain[A, B any](fa Result[A], f Kleisli[A, B]) Result[B] {
 //
 //go:inline
 func MonadChainFirst[A, B any](ma Result[A], f Kleisli[A, B]) Result[A] {
-	return either.MonadChainFirst(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainTo ignores the first Either and returns the second.
@@ -206,7 +200,8 @@ func MonadChainFirst[A, B any](ma Result[A], f Kleisli[A, B]) Result[A] {
 //
 //go:inline
 func MonadChainTo[A, B any](ma Result[A], mb Result[B]) Result[B] {
-	return either.MonadChainTo(ma, mb)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainOptionK chains a function that returns an Option, converting None to Left.
@@ -224,37 +219,33 @@ func MonadChainTo[A, B any](ma Result[A], mb Result[B]) Result[B] {
 //
 //go:inline
 func MonadChainOptionK[A, B any](onNone func() error, ma Result[A], f option.Kleisli[A, B]) Result[B] {
-	return either.MonadChainOptionK(onNone, ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainOptionK is the curried version of [MonadChainOptionK].
 //
 //go:inline
 func ChainOptionK[A, B any](onNone func() error) func(option.Kleisli[A, B]) Operator[A, B] {
-	return either.ChainOptionK[A, B](onNone)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainTo is the curried version of [MonadChainTo].
 //
 //go:inline
-func ChainTo[A, B any](mb Result[B]) Operator[A, B] {
-	return either.ChainTo[A](mb)
-}
+func ChainTo[A, B any](mb Result[B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Chain is the curried version of [MonadChain].
 // Sequences two computations where the second depends on the first.
 //
 //go:inline
-func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] {
-	return either.Chain(f)
-}
+func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // ChainFirst is the curried version of [MonadChainFirst].
 //
 //go:inline
-func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] {
-	return either.ChainFirst(f)
-}
+func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Flatten removes one level of nesting from a nested Either.
 //
@@ -264,9 +255,7 @@ func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] {
 //	result := either.Flatten(nested) // Right(42)
 //
 //go:inline
-func Flatten[A any](mma Result[Result[A]]) Result[A] {
-	return either.Flatten(mma)
-}
+func Flatten[A any](mma Result[Result[A]]) Result[A] { _ = "STUB: not implemented"; return nil }
 
 // TryCatch converts a (value, error) tuple into an Either, applying a transformation to the error.
 //
@@ -279,7 +268,8 @@ func Flatten[A any](mma Result[Result[A]]) Result[A] {
 //
 //go:inline
 func TryCatch[FE Endomorphism[error], A any](val A, err error, onThrow FE) Result[A] {
-	return either.TryCatch(val, err, onThrow)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TryCatchError is a specialized version of [TryCatch] for error types.
@@ -291,36 +281,39 @@ func TryCatch[FE Endomorphism[error], A any](val A, err error, onThrow FE) Resul
 //	result := either.TryCatchError(0, errors.New("fail")) // Left(error)
 //
 //go:inline
-func TryCatchError[A any](val A, err error) Result[A] {
-	return either.TryCatchError(val, err)
-}
+func TryCatchError[A any](val A, err error) Result[A] { _ = "STUB: not implemented"; return nil }
 
 // Sequence2 sequences two Either values using a combining function.
 // Short-circuits on the first Left encountered.
 //
 //go:inline
 func Sequence2[T1, T2, R any](f func(T1, T2) Result[R]) func(Result[T1], Result[T2]) Result[R] {
-	return either.Sequence2(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Sequence3 sequences three Either values using a combining function.
+	// Short-circuits on the first Left encountered.
+	//
+	//go:inline
 }
 
-// Sequence3 sequences three Either values using a combining function.
-// Short-circuits on the first Left encountered.
-//
-//go:inline
 func Sequence3[T1, T2, T3, R any](f func(T1, T2, T3) Result[R]) func(Result[T1], Result[T2], Result[T3]) Result[R] {
-	return either.Sequence3(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// FromOption converts an Option to an Either, using the provided function to generate a Left value for None.
+	//
+	// Example:
+	//
+	//	opt := option.Some(42)
+	//	result := either.FromOption[int](func() error { return errors.New("none") })(opt) // Right(42)
+	//
+	//go:inline
 }
 
-// FromOption converts an Option to an Either, using the provided function to generate a Left value for None.
-//
-// Example:
-//
-//	opt := option.Some(42)
-//	result := either.FromOption[int](func() error { return errors.New("none") })(opt) // Right(42)
-//
-//go:inline
 func FromOption[A any](onNone func() error) func(Option[A]) Result[A] {
-	return either.FromOption[A](onNone)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ToOption converts an Either to an Option, discarding the Left value.
@@ -331,9 +324,7 @@ func FromOption[A any](onNone func() error) func(Option[A]) Result[A] {
 //	result := either.ToOption(either.Left[int](errors.New("err"))) // None
 //
 //go:inline
-func ToOption[A any](ma Result[A]) Option[A] {
-	return either.ToOption(ma)
-}
+func ToOption[A any](ma Result[A]) Option[A] { _ = "STUB: not implemented"; return nil }
 
 // FromError creates an Either from a function that may return an error.
 //
@@ -347,9 +338,7 @@ func ToOption[A any](ma Result[A]) Option[A] {
 //	result := toEither(42) // Right(42)
 //
 //go:inline
-func FromError[A any](f func(a A) error) Kleisli[A, A] {
-	return either.FromError(f)
-}
+func FromError[A any](f func(a A) error) Kleisli[A, A] { _ = "STUB: not implemented"; return nil }
 
 // ToError converts an Result[A] to an error, returning nil for Right values.
 //
@@ -359,9 +348,7 @@ func FromError[A any](f func(a A) error) Kleisli[A, A] {
 //	err := either.ToError(either.Right[error](42)) // nil
 //
 //go:inline
-func ToError[A any](e Result[A]) error {
-	return either.ToError(e)
-}
+func ToError[A any](e Result[A]) error { _ = "STUB: not implemented"; return nil }
 
 // Fold is the curried version of [MonadFold].
 // Extracts the value from an Either by providing handlers for both cases.
@@ -375,7 +362,8 @@ func ToError[A any](e Result[A]) error {
 //
 //go:inline
 func Fold[A, B any](onLeft func(error) B, onRight func(A) B) func(Result[A]) B {
-	return either.Fold(onLeft, onRight)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // UnwrapError converts an Result[A] into the idiomatic Go tuple (A, error).
@@ -386,9 +374,7 @@ func Fold[A, B any](onLeft func(error) B, onRight func(A) B) func(Result[A]) B {
 //	val, err := either.UnwrapError(either.Left[int](errors.New("fail"))) // zero, error
 //
 //go:inline
-func UnwrapError[A any](ma Result[A]) (A, error) {
-	return either.UnwrapError(ma)
-}
+func UnwrapError[A any](ma Result[A]) (A, error) { _ = "STUB: not implemented"; return *new(A), nil }
 
 // FromPredicate creates an Either based on a predicate.
 // If the predicate returns true, creates a Right; otherwise creates a Left using onFalse.
@@ -404,7 +390,8 @@ func UnwrapError[A any](ma Result[A]) (A, error) {
 //
 //go:inline
 func FromPredicate[A any](pred func(A) bool, onFalse func(A) error) Kleisli[A, A] {
-	return either.FromPredicate(pred, onFalse)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromNillable creates an Either from a pointer, using the provided error for nil pointers.
@@ -417,9 +404,7 @@ func FromPredicate[A any](pred func(A) bool, onFalse func(A) error) Kleisli[A, A
 //	result := either.FromNillable[int](errors.New("nil"))(&val) // Right(&42)
 //
 //go:inline
-func FromNillable[A any](e error) func(*A) Result[*A] {
-	return either.FromNillable[A](e)
-}
+func FromNillable[A any](e error) func(*A) Result[*A] { _ = "STUB: not implemented"; return nil }
 
 // GetOrElse extracts the Right value or computes a default from the Left value.
 //
@@ -430,7 +415,8 @@ func FromNillable[A any](e error) func(*A) Result[*A] {
 //
 //go:inline
 func GetOrElse[A any](onLeft func(error) A) func(Result[A]) A {
-	return either.GetOrElse(onLeft)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Reduce folds an Either into a single value using a reducer function.
@@ -438,7 +424,8 @@ func GetOrElse[A any](onLeft func(error) A) func(Result[A]) A {
 //
 //go:inline
 func Reduce[A, B any](f func(B, A) B, initial B) func(Result[A]) B {
-	return either.Reduce[error](f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltW provides an alternative Either if the first is Left, allowing different error types.
@@ -453,7 +440,8 @@ func Reduce[A, B any](f func(B, A) B, initial B) func(Result[A]) B {
 //
 //go:inline
 func AltW[E1, A any](that Lazy[Either[E1, A]]) func(Result[A]) Either[E1, A] {
-	return either.AltW[error](that)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Alt provides an alternative Either if the first is Left.
@@ -466,9 +454,7 @@ func AltW[E1, A any](that Lazy[Either[E1, A]]) func(Result[A]) Either[E1, A] {
 //	result := alternative(either.Left[int](errors.New("fail"))) // Right(99)
 //
 //go:inline
-func Alt[A any](that Lazy[Result[A]]) Operator[A, A] {
-	return either.Alt(that)
-}
+func Alt[A any](that Lazy[Result[A]]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // OrElse recovers from a Left (error) by providing an alternative computation.
 // If the Result is Right, it returns the value unchanged.
@@ -492,9 +478,7 @@ func Alt[A any](that Lazy[Result[A]]) Operator[A, A] {
 //	result := recover(either.Right[error](42)) // Right(42) - unchanged
 //
 //go:inline
-func OrElse[A any](onLeft Kleisli[error, A]) Operator[A, A] {
-	return either.OrElse(onLeft)
-}
+func OrElse[A any](onLeft Kleisli[error, A]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // ToType attempts to convert an any value to a specific type, returning Either.
 //
@@ -507,23 +491,20 @@ func OrElse[A any](onLeft Kleisli[error, A]) Operator[A, A] {
 //	result := convert("string") // Left(error)
 //
 //go:inline
-func ToType[A any](onError func(any) error) Kleisli[any, A] {
-	return either.ToType[A](onError)
-}
+func ToType[A any](onError func(any) error) Kleisli[any, A] { _ = "STUB: not implemented"; return nil }
 
 // Memoize returns the Either unchanged (Either values are already memoized).
 //
 //go:inline
-func Memoize[A any](val Result[A]) Result[A] {
-	return either.Memoize(val)
-}
+func Memoize[A any](val Result[A]) Result[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadSequence2 sequences two Either values using a combining function.
 // Short-circuits on the first Left encountered.
 //
 //go:inline
 func MonadSequence2[T1, T2, R any](e1 Result[T1], e2 Result[T2], f func(T1, T2) Result[R]) Result[R] {
-	return either.MonadSequence2(e1, e2, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadSequence3 sequences three Either values using a combining function.
@@ -531,7 +512,8 @@ func MonadSequence2[T1, T2, R any](e1 Result[T1], e2 Result[T2], f func(T1, T2) 
 //
 //go:inline
 func MonadSequence3[T1, T2, T3, R any](e1 Result[T1], e2 Result[T2], e3 Result[T3], f func(T1, T2, T3) Result[R]) Result[R] {
-	return either.MonadSequence3(e1, e2, e3, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Swap exchanges the Left and Right type parameters.
@@ -542,31 +524,29 @@ func MonadSequence3[T1, T2, T3, R any](e1 Result[T1], e2 Result[T2], e3 Result[T
 //	result := either.Swap(either.Left[int](errors.New("err"))) // Right(error)
 //
 //go:inline
-func Swap[A any](val Result[A]) Either[A, error] {
-	return either.Swap(val)
-}
+func Swap[A any](val Result[A]) Either[A, error] { _ = "STUB: not implemented"; return nil }
 
 // MonadFlap applies a value to a function wrapped in Either.
 // This is the reverse of [MonadAp].
 //
 //go:inline
 func MonadFlap[B, A any](fab Result[func(A) B], a A) Result[B] {
-	return either.MonadFlap(fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flap is the curried version of [MonadFlap].
 //
 //go:inline
-func Flap[B, A any](a A) Operator[func(A) B, B] {
-	return either.Flap[error, B](a)
-}
+func Flap[B, A any](a A) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadAlt provides an alternative Either if the first is Left.
 // This is the monadic version of [Alt].
 //
 //go:inline
 func MonadAlt[A any](fa Result[A], that Lazy[Result[A]]) Result[A] {
-	return either.MonadAlt(fa, that)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Zero returns the zero value of a [Result], which is a Right containing the zero value of type A.
@@ -604,9 +584,7 @@ func MonadAlt[A any](fa Result[A], that Lazy[Result[A]]) Result[A] {
 //	assert.False(t, either.IsLeft(r))  // false
 //
 //go:inline
-func Zero[A any]() Result[A] {
-	return either.Zero[error, A]()
-}
+func Zero[A any]() Result[A] { _ = "STUB: not implemented"; return nil }
 
 // InstanceOf attempts to perform a type assertion on an any value to convert it to type A.
 // If the type assertion succeeds, it returns a Right containing the converted value.
@@ -651,13 +629,7 @@ func Zero[A any]() Result[A] {
 //	) // Right(20)
 //
 //go:inline
-func InstanceOf[A any](a any) Result[A] {
-	var res, ok = a.(A)
-	if ok {
-		return Of(res)
-	}
-	return Left[A](fmt.Errorf("expected %T, got %T", res, a))
-}
+func InstanceOf[A any](a any) Result[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainLeft sequences a computation on the Left (error) channel.
 // If the Result is Left, applies the function to transform or recover from the error.
@@ -709,7 +681,8 @@ func InstanceOf[A any](a any) Result[A] {
 //
 //go:inline
 func MonadChainLeft[A any](fa Result[A], f Kleisli[error, A]) Result[A] {
-	return either.MonadChainLeft(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainLeft is the curried version of [MonadChainLeft].
@@ -770,6 +743,4 @@ func MonadChainLeft[A any](fa Result[A], f Kleisli[error, A]) Result[A] {
 //	) // Left(Error: failed)
 //
 //go:inline
-func ChainLeft[A any](f Kleisli[error, A]) Operator[A, A] {
-	return either.ChainLeft(f)
-}
+func ChainLeft[A any](f Kleisli[error, A]) Operator[A, A] { _ = "STUB: not implemented"; return nil }

@@ -17,7 +17,6 @@ package io
 
 import (
 	EQ "github.com/IBM/fp-go/v2/eq"
-	INTE "github.com/IBM/fp-go/v2/internal/eq"
 )
 
 // Eq implements the equals predicate for values contained in the IO monad.
@@ -30,17 +29,12 @@ import (
 //	ioEq := io.Eq(intEq)
 //	result := ioEq.Equals(io.Of(42), io.Of(42)) // true
 func Eq[A any](e EQ.Eq[A]) EQ.Eq[IO[A]] {
+	_ = "STUB: not implemented"
 	// comparator for the monad
-	eq := INTE.Eq(
-		MonadMap[A, func(A) bool],
-		MonadAp[A, bool],
-		e,
-	)
-	// eagerly execute
-	return EQ.FromEquals(func(l, r IO[A]) bool {
-		return eq(l, r)()
-	})
+	return nil
 }
+
+// eagerly execute
 
 // FromStrictEquals constructs an Eq[IO[A]] from the canonical comparison function
 // for comparable types. This is a convenience function that combines Eq with
@@ -50,6 +44,4 @@ func Eq[A any](e EQ.Eq[A]) EQ.Eq[IO[A]] {
 //
 //	ioEq := io.FromStrictEquals[int]()
 //	result := ioEq.Equals(io.Of(42), io.Of(42)) // true
-func FromStrictEquals[A comparable]() EQ.Eq[IO[A]] {
-	return Eq(EQ.FromStrictEquals[A]())
-}
+func FromStrictEquals[A comparable]() EQ.Eq[IO[A]] { _ = "STUB: not implemented"; return nil }

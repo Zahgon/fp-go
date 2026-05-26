@@ -15,16 +15,8 @@
 
 package generic
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	O "github.com/IBM/fp-go/v2/option"
-	P "github.com/IBM/fp-go/v2/pair"
-)
-
 // First returns the first item in an iterator if such an item exists
 func First[GU ~func() Option[Pair[GU, U]], U any](mu GU) Option[U] {
-	return F.Pipe1(
-		mu(),
-		O.Map(P.Tail[GU, U]),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

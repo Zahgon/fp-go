@@ -15,60 +15,46 @@
 
 package either
 
-import (
-	F "github.com/IBM/fp-go/function"
-	RA "github.com/IBM/fp-go/internal/array"
-)
-
 // TraverseArrayG transforms an array
 func TraverseArrayG[GA ~[]A, GB ~[]B, E, A, B any](f func(A) Either[E, B]) func(GA) Either[E, GB] {
-	return RA.Traverse[GA](
-		Of[E, GB],
-		Map[E, GB, func(B) GB],
-		Ap[GB, E, B],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArray transforms an array
 func TraverseArray[E, A, B any](f func(A) Either[E, B]) func([]A) Either[E, []B] {
-	return TraverseArrayG[[]A, []B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndexG transforms an array
 func TraverseArrayWithIndexG[GA ~[]A, GB ~[]B, E, A, B any](f func(int, A) Either[E, B]) func(GA) Either[E, GB] {
-	return RA.TraverseWithIndex[GA](
-		Of[E, GB],
-		Map[E, GB, func(B) GB],
-		Ap[GB, E, B],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms an array
 func TraverseArrayWithIndex[E, A, B any](f func(int, A) Either[E, B]) func([]A) Either[E, []B] {
-	return TraverseArrayWithIndexG[[]A, []B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func SequenceArrayG[GA ~[]A, GOA ~[]Either[E, A], E, A any](ma GOA) Either[E, GA] {
-	return TraverseArrayG[GOA, GA](F.Identity[Either[E, A]])(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts a homogeneous sequence of either into an either of sequence
 func SequenceArray[E, A any](ma []Either[E, A]) Either[E, []A] {
-	return SequenceArrayG[[]A](ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // CompactArrayG discards the none values and keeps the right values
 func CompactArrayG[A1 ~[]Either[E, A], A2 ~[]A, E, A any](fa A1) A2 {
-	return RA.Reduce(fa, func(out A2, value Either[E, A]) A2 {
-		return MonadFold(value, F.Constant1[E](out), F.Bind1st(RA.Append[A2, A], out))
-	}, make(A2, 0, len(fa)))
+	_ = "STUB: not implemented"
+	return *new(A2)
 }
 
 // CompactArray discards the none values and keeps the right values
-func CompactArray[E, A any](fa []Either[E, A]) []A {
-	return CompactArrayG[[]Either[E, A], []A](fa)
-}
+func CompactArray[E, A any](fa []Either[E, A]) []A { _ = "STUB: not implemented"; return nil }

@@ -32,33 +32,23 @@ type bounded[T any] struct {
 	b T
 }
 
-func (b bounded[T]) Equals(x, y T) bool {
-	return b.e(x, y)
-}
+func (b bounded[T]) Equals(x, y T) bool { _ = "STUB: not implemented"; return false }
 
-func (b bounded[T]) Compare(x, y T) int {
-	return b.c(x, y)
-}
+func (b bounded[T]) Compare(x, y T) int { _ = "STUB: not implemented"; return 0 }
 
-func (b bounded[T]) Top() T {
-	return b.t
-}
+func (b bounded[T]) Top() T { _ = "STUB: not implemented"; return *new(T) }
 
 func (b bounded[T]) Bottom() T {
-	return b.b
+	_ = "STUB: not implemented"
+
+	// MakeBounded creates an instance of a bounded type
+	return *new(T)
 }
 
-// MakeBounded creates an instance of a bounded type
-func MakeBounded[T any](o O.Ord[T], t, b T) Bounded[T] {
-	return bounded[T]{c: o.Compare, e: o.Equals, t: t, b: b}
-}
+func MakeBounded[T any](o O.Ord[T], t, b T) Bounded[T] { _ = "STUB: not implemented"; return nil }
 
 // Clamp returns a function that clamps against the bounds defined in the bounded type
-func Clamp[T any](b Bounded[T]) func(T) T {
-	return O.Clamp[T](b)(b.Bottom(), b.Top())
-}
+func Clamp[T any](b Bounded[T]) func(T) T { _ = "STUB: not implemented"; return nil }
 
 // Reverse reverses the ordering and swaps the bounds
-func Reverse[T any](b Bounded[T]) Bounded[T] {
-	return MakeBounded(O.Reverse[T](b), b.Bottom(), b.Top())
-}
+func Reverse[T any](b Bounded[T]) Bounded[T] { _ = "STUB: not implemented"; return nil }

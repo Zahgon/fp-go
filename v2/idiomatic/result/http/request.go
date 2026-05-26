@@ -17,7 +17,6 @@
 package http
 
 import (
-	"bytes"
 	"net/http"
 )
 
@@ -56,15 +55,11 @@ var (
 )
 
 func bodyRequest(method string) func(string) func([]byte) (*http.Request, error) {
-	return func(url string) func([]byte) (*http.Request, error) {
-		return func(body []byte) (*http.Request, error) {
-			return http.NewRequest(method, url, bytes.NewReader(body))
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func noBodyRequest(method string) func(string) (*http.Request, error) {
-	return func(url string) (*http.Request, error) {
-		return http.NewRequest(method, url, http.NoBody)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

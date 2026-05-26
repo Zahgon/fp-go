@@ -15,8 +15,6 @@
 
 package effect
 
-import "github.com/IBM/fp-go/v2/context/readerreaderioresult"
-
 // TraverseArray applies an effectful function to each element of an array,
 // collecting the results into a new array. If any effect fails, the entire
 // traversal fails and returns the first error encountered.
@@ -51,5 +49,6 @@ import "github.com/IBM/fp-go/v2/context/readerreaderioresult"
 //	eff := effect.TraverseArray[MyContext](parseIntEff)(input)
 //	// eff produces []int{1, 2, 3}
 func TraverseArray[C, A, B any](f Kleisli[C, A, B]) Kleisli[C, []A, []B] {
-	return readerreaderioresult.TraverseArray(f)
+	_ = "STUB: not implemented"
+	return nil
 }

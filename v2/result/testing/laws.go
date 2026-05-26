@@ -20,7 +20,6 @@ package testing
 import (
 	"testing"
 
-	ET "github.com/IBM/fp-go/v2/either/testing"
 	EQ "github.com/IBM/fp-go/v2/eq"
 )
 
@@ -59,5 +58,6 @@ func AssertLaws[A, B, C any](t *testing.T,
 	ab func(A) B,
 	bc func(B) C,
 ) func(a A) bool {
-	return ET.AssertLaws(t, EQ.FromStrictEquals[error](), eqa, eqb, eqc, ab, bc)
+	_ = "STUB: not implemented"
+	return nil
 }

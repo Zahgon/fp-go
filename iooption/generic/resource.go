@@ -16,7 +16,6 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/function"
 	O "github.com/IBM/fp-go/option"
 )
 
@@ -26,6 +25,7 @@ func WithResource[
 	GR ~func() O.Option[R],
 	GANY ~func() O.Option[ANY],
 	R, A, ANY any](onCreate GR, onRelease func(R) GANY) func(func(R) GA) GA {
+	_ = "STUB: not implemented"
 	// simply map to implementation of bracket
-	return F.Bind13of3(Bracket[GR, GA, GANY, R, A, ANY])(onCreate, F.Ignore2of2[O.Option[A]](onRelease))
+	return nil
 }

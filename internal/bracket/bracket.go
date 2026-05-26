@@ -15,10 +15,6 @@
 
 package bracket
 
-import (
-	F "github.com/IBM/fp-go/function"
-)
-
 // Bracket makes sure that a resource is cleaned up in the event of an error. The release action is called regardless of
 // whether the body action returns and error or not.
 func Bracket[
@@ -40,13 +36,6 @@ func Bracket[
 	use func(A) GB,
 	release func(A, EB) GANY,
 ) GB {
-	return chainab(acquire,
-		func(a A) GB {
-			return chainebb(use(a), func(eb EB) GB {
-				return chainany(
-					release(a, eb),
-					F.Constant1[ANY](ofeb(eb)),
-				)
-			})
-		})
+	_ = "STUB: not implemented"
+	return *new(GB)
 }

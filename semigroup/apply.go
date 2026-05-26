@@ -15,10 +15,6 @@
 
 package semigroup
 
-import (
-	F "github.com/IBM/fp-go/function"
-)
-
 /*
 *
 HKTA = HKT<A>
@@ -30,9 +26,6 @@ func ApplySemigroup[A, HKTA, HKTFA any](
 
 	s Semigroup[A],
 ) Semigroup[HKTA] {
-
-	cb := F.Curry2(s.Concat)
-	return MakeSemigroup(func(first HKTA, second HKTA) HKTA {
-		return fap(fmap(first, cb), second)
-	})
+	_ = "STUB: not implemented"
+	return nil
 }

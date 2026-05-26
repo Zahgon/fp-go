@@ -16,7 +16,6 @@
 package endomorphism
 
 import (
-	"github.com/IBM/fp-go/v2/function"
 	M "github.com/IBM/fp-go/v2/monoid"
 	S "github.com/IBM/fp-go/v2/semigroup"
 )
@@ -38,49 +37,53 @@ import (
 //	myFunc := N.Mul(2)
 //	endo := endomorphism.Of(myFunc)
 func Of[F ~func(A) A, A any](f F) Endomorphism[A] {
-	return f
+	_ = "STUB: not implemented"
+
+	// Wrap converts any function to an Endomorphism.
+	//
+	// Deprecated: This function is no longer needed due to Go's type compatibility.
+	// You can directly use functions where Endomorphism is expected.
+	return nil
 }
 
-// Wrap converts any function to an Endomorphism.
-//
-// Deprecated: This function is no longer needed due to Go's type compatibility.
-// You can directly use functions where Endomorphism is expected.
 func Wrap[F ~func(A) A, A any](f F) Endomorphism[A] {
-	return f
+	_ = "STUB: not implemented"
+
+	// Unwrap converts any Endomorphism to a function.
+	//
+	// Deprecated: This function is no longer needed due to Go's type compatibility.
+	// Endomorphisms can be used directly as functions.
+	return nil
 }
 
-// Unwrap converts any Endomorphism to a function.
-//
-// Deprecated: This function is no longer needed due to Go's type compatibility.
-// Endomorphisms can be used directly as functions.
 func Unwrap[F ~func(A) A, A any](f Endomorphism[A]) F {
-	return f
+	_ = "STUB: not implemented"
+
+	// Identity returns the identity endomorphism.
+	//
+	// The identity endomorphism is a function that returns its input unchanged.
+	// It serves as the identity element for endomorphism composition, meaning:
+	//   - Compose(Identity(), f) = f
+	//   - Compose(f, Identity()) = f
+	//
+	// This is the empty element of the endomorphism monoid.
+	//
+	// Returns:
+	//   - An endomorphism that returns its input unchanged
+	//
+	// Example:
+	//
+	//	id := endomorphism.Identity[int]()
+	//	result := id(42) // Returns: 42
+	//
+	//	// Identity is neutral for composition
+	//	double := N.Mul(2)
+	//	composed := endomorphism.Compose(id, double)
+	//	// composed behaves exactly like double
+	return *new(F)
 }
 
-// Identity returns the identity endomorphism.
-//
-// The identity endomorphism is a function that returns its input unchanged.
-// It serves as the identity element for endomorphism composition, meaning:
-//   - Compose(Identity(), f) = f
-//   - Compose(f, Identity()) = f
-//
-// This is the empty element of the endomorphism monoid.
-//
-// Returns:
-//   - An endomorphism that returns its input unchanged
-//
-// Example:
-//
-//	id := endomorphism.Identity[int]()
-//	result := id(42) // Returns: 42
-//
-//	// Identity is neutral for composition
-//	double := N.Mul(2)
-//	composed := endomorphism.Compose(id, double)
-//	// composed behaves exactly like double
-func Identity[A any]() Endomorphism[A] {
-	return function.Identity[A]
-}
+func Identity[A any]() Endomorphism[A] { _ = "STUB: not implemented"; return nil }
 
 // Semigroup returns a Semigroup for endomorphisms where the concat operation is function composition.
 //
@@ -109,9 +112,7 @@ func Identity[A any]() Endomorphism[A] {
 //	// Combine using the semigroup (RIGHT-TO-LEFT execution)
 //	combined := sg.Concat(double, increment)
 //	result := combined(5) // (5 + 1) * 2 = 12 (increment first, then double)
-func Semigroup[A any]() S.Semigroup[Endomorphism[A]] {
-	return S.MakeSemigroup(MonadCompose[A])
-}
+func Semigroup[A any]() S.Semigroup[Endomorphism[A]] { _ = "STUB: not implemented"; return nil }
 
 // Monoid returns a Monoid for endomorphisms where concat is composition and empty is identity.
 //
@@ -146,6 +147,4 @@ func Semigroup[A any]() S.Semigroup[Endomorphism[A]] {
 //	// Combine multiple endomorphisms (RIGHT-TO-LEFT execution)
 //	combined := M.ConcatAll(monoid)([]Endomorphism[int]{double, increment, square})
 //	result := combined(5) // double(increment(square(5))) = double(increment(25)) = double(26) = 52
-func Monoid[A any]() M.Monoid[Endomorphism[A]] {
-	return M.MakeMonoid(MonadCompose[A], Identity[A]())
-}
+func Monoid[A any]() M.Monoid[Endomorphism[A]] { _ = "STUB: not implemented"; return nil }

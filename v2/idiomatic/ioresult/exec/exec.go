@@ -101,11 +101,8 @@
 package exec
 
 import (
-	"context"
-
 	"github.com/IBM/fp-go/v2/exec"
 	"github.com/IBM/fp-go/v2/function"
-	INTE "github.com/IBM/fp-go/v2/internal/exec"
 )
 
 var (
@@ -146,7 +143,6 @@ var (
 )
 
 func command(name string, args []string, in []byte) IOResult[exec.CommandOutput] {
-	return func() (exec.CommandOutput, error) {
-		return INTE.Exec(context.Background(), name, args, in)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

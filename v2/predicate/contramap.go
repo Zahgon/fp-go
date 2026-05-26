@@ -15,10 +15,6 @@
 
 package predicate
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-)
-
 // ContraMap creates a new predicate by transforming the input before applying an existing predicate.
 //
 // This is a contravariant functor operation that allows you to adapt a predicate for type A
@@ -42,11 +38,4 @@ import (
 //	isPersonAdult := F.Pipe1(isAdult, ContraMap(getAge))
 //	isPersonAdult(Person{Age: 25}) // true
 //	isPersonAdult(Person{Age: 15}) // false
-func ContraMap[A, B any](f func(B) A) Operator[A, B] {
-	return func(pred Predicate[A]) Predicate[B] {
-		return F.Flow2(
-			f,
-			pred,
-		)
-	}
-}
+func ContraMap[A, B any](f func(B) A) Operator[A, B] { _ = "STUB: not implemented"; return nil }

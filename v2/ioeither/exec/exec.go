@@ -16,11 +16,8 @@
 package exec
 
 import (
-	"context"
-
 	"github.com/IBM/fp-go/v2/exec"
 	"github.com/IBM/fp-go/v2/function"
-	INTE "github.com/IBM/fp-go/v2/internal/exec"
 	"github.com/IBM/fp-go/v2/ioeither"
 )
 
@@ -30,7 +27,6 @@ var (
 )
 
 func command(name string, args []string, in []byte) ioeither.IOEither[error, exec.CommandOutput] {
-	return ioeither.TryCatchError(func() (exec.CommandOutput, error) {
-		return INTE.Exec(context.Background(), name, args, in)
-	})
+	_ = "STUB: not implemented"
+	return nil
 }

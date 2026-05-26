@@ -19,7 +19,6 @@ import (
 	Mg "github.com/IBM/fp-go/v2/magma"
 	"github.com/IBM/fp-go/v2/option"
 	"github.com/IBM/fp-go/v2/ord"
-	G "github.com/IBM/fp-go/v2/record/generic"
 )
 
 // IsEmpty tests if a record is empty (contains no entries).
@@ -37,9 +36,7 @@ import (
 //
 //	nonEmpty := Record[string, int]{"a": 1}
 //	IsEmpty(nonEmpty) // false
-func IsEmpty[K comparable, V any](r Record[K, V]) bool {
-	return G.IsEmpty(r)
-}
+func IsEmpty[K comparable, V any](r Record[K, V]) bool { _ = "STUB: not implemented"; return false }
 
 // IsNonEmpty tests if a record is not empty (contains at least one entry).
 //
@@ -53,9 +50,7 @@ func IsEmpty[K comparable, V any](r Record[K, V]) bool {
 //
 //	var nilMap Record[string, int]
 //	IsNonEmpty(nilMap) // false
-func IsNonEmpty[K comparable, V any](r Record[K, V]) bool {
-	return G.IsNonEmpty(r)
-}
+func IsNonEmpty[K comparable, V any](r Record[K, V]) bool { _ = "STUB: not implemented"; return false }
 
 // Keys returns all keys from a record as a slice.
 //
@@ -76,9 +71,7 @@ func IsNonEmpty[K comparable, V any](r Record[K, V]) bool {
 //
 //	emptyRecord := Record[string, int]{}
 //	emptyKeys := Keys(emptyRecord) // nil or []string{}
-func Keys[K comparable, V any](r Record[K, V]) []K {
-	return G.Keys[Record[K, V], []K](r)
-}
+func Keys[K comparable, V any](r Record[K, V]) []K { _ = "STUB: not implemented"; return nil }
 
 // Values returns all values from a record as a slice.
 //
@@ -95,9 +88,7 @@ func Keys[K comparable, V any](r Record[K, V]) []K {
 //
 //	emptyRecord := Record[string, int]{}
 //	emptyValues := Values(emptyRecord) // nil or []int{}
-func Values[K comparable, V any](r Record[K, V]) []V {
-	return G.Values[Record[K, V], []V](r)
-}
+func Values[K comparable, V any](r Record[K, V]) []V { _ = "STUB: not implemented"; return nil }
 
 // Collect transforms each key-value pair in a record using a collector function
 // and returns the results as a slice.
@@ -113,7 +104,8 @@ func Values[K comparable, V any](r Record[K, V]) []V {
 //	})
 //	result := toStrings(record) // ["a=1", "b=2"] in any order
 func Collect[K comparable, V, R any](f func(K, V) R) func(Record[K, V]) []R {
-	return G.Collect[Record[K, V], []R](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // CollectOrd transforms each key-value pair in a record using a collector function
@@ -135,7 +127,8 @@ func Collect[K comparable, V, R any](f func(K, V) R) func(Record[K, V]) []R {
 //	emptyRecord := Record[string, int]{}
 //	emptyResult := toStrings(emptyRecord) // nil or []string{}
 func CollectOrd[V, R any, K comparable](o ord.Ord[K]) func(func(K, V) R) func(Record[K, V]) []R {
-	return G.CollectOrd[Record[K, V], []R](o)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Reduce reduces a record to a single value by applying a reducer function to each value.
@@ -151,7 +144,8 @@ func CollectOrd[V, R any, K comparable](o ord.Ord[K]) func(func(K, V) R) func(Re
 //	}, 0)
 //	result := sum(record) // 6
 func Reduce[K comparable, V, R any](f func(R, V) R, initial R) func(Record[K, V]) R {
-	return G.Reduce[Record[K, V]](f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReduceWithIndex reduces a record to a single value by applying a reducer function
@@ -169,7 +163,8 @@ func Reduce[K comparable, V, R any](f func(R, V) R, initial R) func(Record[K, V]
 //	}, 0)
 //	result := weightedSum(record) // 1 + 2 + 3 = 6
 func ReduceWithIndex[K comparable, V, R any](f func(K, R, V) R, initial R) func(Record[K, V]) R {
-	return G.ReduceWithIndex[Record[K, V]](f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReduceRef reduces a record to a single value by applying a reducer function
@@ -185,7 +180,8 @@ func ReduceWithIndex[K comparable, V, R any](f func(K, R, V) R, initial R) func(
 //	    return acc + v.Size
 //	}, 0)(record)
 func ReduceRef[K comparable, V, R any](f func(R, *V) R, initial R) func(Record[K, V]) R {
-	return G.ReduceRef[Record[K, V]](f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReduceRefWithIndex reduces a record to a single value by applying a reducer function
@@ -201,7 +197,8 @@ func ReduceRef[K comparable, V, R any](f func(R, *V) R, initial R) func(Record[K
 //	    return acc + len(k) * v.Size
 //	}, 0)(record)
 func ReduceRefWithIndex[K comparable, V, R any](f func(K, R, *V) R, initial R) func(Record[K, V]) R {
-	return G.ReduceRefWithIndex[Record[K, V]](f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMap transforms each value in a record using the provided function.
@@ -215,7 +212,8 @@ func ReduceRefWithIndex[K comparable, V, R any](f func(K, R, *V) R, initial R) f
 //	result := MonadMap(record, func(v int) int { return v * 2 })
 //	// result: {"a": 2, "b": 4}
 func MonadMap[K comparable, V, R any](r Record[K, V], f func(V) R) Record[K, R] {
-	return G.MonadMap[Record[K, V], Record[K, R]](r, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMapWithIndex transforms each key-value pair in a record using the provided function.
@@ -230,7 +228,8 @@ func MonadMap[K comparable, V, R any](r Record[K, V], f func(V) R) Record[K, R] 
 //	})
 //	// result: {"a": "a=1", "b": "b=2"}
 func MonadMapWithIndex[K comparable, V, R any](r Record[K, V], f func(K, V) R) Record[K, R] {
-	return G.MonadMapWithIndex[Record[K, V], Record[K, R]](r, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMapRefWithIndex transforms each key-value pair in a record using the provided
@@ -245,7 +244,8 @@ func MonadMapWithIndex[K comparable, V, R any](r Record[K, V], f func(K, V) R) R
 //	    return len(k) + v.Size
 //	})
 func MonadMapRefWithIndex[K comparable, V, R any](r Record[K, V], f func(K, *V) R) Record[K, R] {
-	return G.MonadMapRefWithIndex[Record[K, V], Record[K, R]](r, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMapRef transforms each value in a record using the provided function with value references.
@@ -259,7 +259,8 @@ func MonadMapRefWithIndex[K comparable, V, R any](r Record[K, V], f func(K, *V) 
 //	    return v.Size
 //	})
 func MonadMapRef[K comparable, V, R any](r Record[K, V], f func(*V) R) Record[K, R] {
-	return G.MonadMapRef[Record[K, V], Record[K, R]](r, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map returns a function that transforms each value in a record using the provided function.
@@ -273,7 +274,8 @@ func MonadMapRef[K comparable, V, R any](r Record[K, V], f func(*V) R) Record[K,
 //	double := Map(func(v int) int { return v * 2 })
 //	result := double(record) // {"a": 2, "b": 4, "c": 6}
 func Map[K comparable, V, R any](f func(V) R) Operator[K, V, R] {
-	return G.Map[Record[K, V], Record[K, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MapRef returns a function that transforms each value in a record using the provided
@@ -287,7 +289,8 @@ func Map[K comparable, V, R any](f func(V) R) Operator[K, V, R] {
 //	extractSize := MapRef(func(v *LargeStruct) int { return v.Size })
 //	result := extractSize(record)
 func MapRef[K comparable, V, R any](f func(*V) R) Operator[K, V, R] {
-	return G.MapRef[Record[K, V], Record[K, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MapWithIndex returns a function that transforms each key-value pair in a record
@@ -303,7 +306,8 @@ func MapRef[K comparable, V, R any](f func(*V) R) Operator[K, V, R] {
 //	})
 //	result := prefixWithKey(record) // {"a": "a:1", "b": "b:2"}
 func MapWithIndex[K comparable, V, R any](f func(K, V) R) Operator[K, V, R] {
-	return G.MapWithIndex[Record[K, V], Record[K, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MapRefWithIndex returns a function that transforms each key-value pair in a record
@@ -320,7 +324,8 @@ func MapWithIndex[K comparable, V, R any](f func(K, V) R) Operator[K, V, R] {
 //	})
 //	result := transform(record)
 func MapRefWithIndex[K comparable, V, R any](f func(K, *V) R) Operator[K, V, R] {
-	return G.MapRefWithIndex[Record[K, V], Record[K, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Lookup returns a function that retrieves the value for a key in a record if it exists.
@@ -337,7 +342,8 @@ func MapRefWithIndex[K comparable, V, R any](f func(K, *V) R) Operator[K, V, R] 
 //	lookupC := Lookup[int]("c")
 //	result2 := lookupC(record) // None
 func Lookup[V any, K comparable](k K) option.Kleisli[Record[K, V], V] {
-	return G.Lookup[Record[K, V]](k)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadLookup retrieves the value for a key in a record if it exists.
@@ -351,38 +357,43 @@ func Lookup[V any, K comparable](k K) option.Kleisli[Record[K, V], V] {
 //	result := MonadLookup(record, "a") // Some(1)
 //	result2 := MonadLookup(record, "c") // None
 func MonadLookup[V any, K comparable](m Record[K, V], k K) Option[V] {
-	return G.MonadLookup(m, k)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Has tests if a key exists in a record.
+	//
+	// Returns true if the key is present in the record, false otherwise.
+	//
+	// Example:
+	//
+	//	record := Record[string, int]{"a": 1, "b": 2}
+	//	Has("a", record) // true
+	//	Has("c", record) // false
 }
 
-// Has tests if a key exists in a record.
-//
-// Returns true if the key is present in the record, false otherwise.
-//
-// Example:
-//
-//	record := Record[string, int]{"a": 1, "b": 2}
-//	Has("a", record) // true
-//	Has("c", record) // false
 func Has[K comparable, V any](k K, r Record[K, V]) bool {
-	return G.Has(k, r)
+	_ = "STUB: not implemented"
+
+	// Union combines two records using the provided Magma to resolve conflicts for duplicate keys.
+	//
+	// The Magma defines how to combine values when the same key exists in both records.
+	// This is useful for custom merge strategies beyond simple replacement.
+	//
+	// Example:
+	//
+	//	// Sum values for duplicate keys
+	//	sumMagma := Mg.MakeMagma(func(a, b int) int { return a + b })
+	//	unionSum := Union(sumMagma)
+	//
+	//	r1 := Record[string, int]{"a": 1, "b": 2}
+	//	r2 := Record[string, int]{"b": 3, "c": 4}
+	//	result := unionSum(r1)(r2) // {"a": 1, "b": 5, "c": 4}
+	return false
 }
 
-// Union combines two records using the provided Magma to resolve conflicts for duplicate keys.
-//
-// The Magma defines how to combine values when the same key exists in both records.
-// This is useful for custom merge strategies beyond simple replacement.
-//
-// Example:
-//
-//	// Sum values for duplicate keys
-//	sumMagma := Mg.MakeMagma(func(a, b int) int { return a + b })
-//	unionSum := Union(sumMagma)
-//
-//	r1 := Record[string, int]{"a": 1, "b": 2}
-//	r2 := Record[string, int]{"b": 3, "c": 4}
-//	result := unionSum(r1)(r2) // {"a": 1, "b": 5, "c": 4}
 func Union[K comparable, V any](m Mg.Magma[V]) func(Record[K, V]) Operator[K, V, V] {
-	return G.Union[Record[K, V]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Merge combines two records, giving precedence to values in the right record for duplicate keys.
@@ -396,21 +407,21 @@ func Union[K comparable, V any](m Mg.Magma[V]) func(Record[K, V]) Operator[K, V,
 //	r2 := Record[string, int]{"b": 3, "c": 4}
 //	result := Merge(r2)(r1) // {"a": 1, "b": 3, "c": 4}
 func Merge[K comparable, V any](right Record[K, V]) Operator[K, V, V] {
-	return G.Merge(right)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Empty creates an empty record with no entries.
+	//
+	// This is useful as an identity element for record operations or as a starting point
+	// for building records incrementally.
+	//
+	// Example:
+	//
+	//	empty := Empty[string, int]()
+	//	IsEmpty(empty) // true
 }
 
-// Empty creates an empty record with no entries.
-//
-// This is useful as an identity element for record operations or as a starting point
-// for building records incrementally.
-//
-// Example:
-//
-//	empty := Empty[string, int]()
-//	IsEmpty(empty) // true
-func Empty[K comparable, V any]() Record[K, V] {
-	return G.Empty[Record[K, V]]()
-}
+func Empty[K comparable, V any]() Record[K, V] { _ = "STUB: not implemented"; return nil }
 
 // Size returns the number of key-value pairs in a record.
 //
@@ -422,20 +433,23 @@ func Empty[K comparable, V any]() Record[K, V] {
 //	empty := Empty[string, int]()
 //	Size(empty) // 0
 func Size[K comparable, V any](r Record[K, V]) int {
-	return G.Size(r)
+	_ = "STUB: not implemented"
+
+	// ToArray converts a record to a slice of key-value pairs (entries).
+	//
+	// The order of entries is non-deterministic due to Go's map iteration behavior.
+	//
+	// Example:
+	//
+	//	record := Record[string, int]{"a": 1, "b": 2}
+	//	entries := ToArray(record)
+	//	// entries: []Entry[string, int]{{F1: "a", F2: 1}, {F1: "b", F2: 2}} in any order
+	return 0
 }
 
-// ToArray converts a record to a slice of key-value pairs (entries).
-//
-// The order of entries is non-deterministic due to Go's map iteration behavior.
-//
-// Example:
-//
-//	record := Record[string, int]{"a": 1, "b": 2}
-//	entries := ToArray(record)
-//	// entries: []Entry[string, int]{{F1: "a", F2: 1}, {F1: "b", F2: 2}} in any order
 func ToArray[K comparable, V any](r Record[K, V]) Entries[K, V] {
-	return G.ToArray[Record[K, V], Entries[K, V]](r)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ToEntries converts a record to a slice of key-value pairs (entries).
@@ -447,7 +461,8 @@ func ToArray[K comparable, V any](r Record[K, V]) Entries[K, V] {
 //	record := Record[string, int]{"a": 1, "b": 2}
 //	entries := ToEntries(record)
 func ToEntries[K comparable, V any](r Record[K, V]) Entries[K, V] {
-	return G.ToEntries[Record[K, V], Entries[K, V]](r)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromEntries creates a record from a slice of key-value pairs.
@@ -462,7 +477,8 @@ func ToEntries[K comparable, V any](r Record[K, V]) Entries[K, V] {
 //	}
 //	record := FromEntries(entries) // {"a": 1, "b": 2}
 func FromEntries[K comparable, V any](fa Entries[K, V]) Record[K, V] {
-	return G.FromEntries[Record[K, V]](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // UpsertAt returns a function that inserts or updates a key-value pair in a record.
@@ -479,7 +495,8 @@ func FromEntries[K comparable, V any](fa Entries[K, V]) Record[K, V] {
 //	updateA := UpsertAt("a", 10)
 //	result2 := updateA(record) // {"a": 10, "b": 2}
 func UpsertAt[K comparable, V any](k K, v V) Operator[K, V, V] {
-	return G.UpsertAt[Record[K, V]](k, v)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // DeleteAt returns a function that removes a key from a record.
@@ -499,9 +516,7 @@ func UpsertAt[K comparable, V any](k K, v V) Operator[K, V, V] {
 //	// Deleting from empty map returns empty map
 //	emptyRecord := Record[string, int]{}
 //	result2 := removeB(emptyRecord) // {}
-func DeleteAt[K comparable, V any](k K) Operator[K, V, V] {
-	return G.DeleteAt[Record[K, V]](k)
-}
+func DeleteAt[K comparable, V any](k K) Operator[K, V, V] { _ = "STUB: not implemented"; return nil }
 
 // Singleton creates a new record with a single key-value pair.
 //
@@ -512,9 +527,7 @@ func DeleteAt[K comparable, V any](k K) Operator[K, V, V] {
 //
 //	record := Singleton("key", 42)
 //	// record: {"key": 42}
-func Singleton[K comparable, V any](k K, v V) Record[K, V] {
-	return G.Singleton[Record[K, V]](k, v)
-}
+func Singleton[K comparable, V any](k K, v V) Record[K, V] { _ = "STUB: not implemented"; return nil }
 
 // FilterMapWithIndex filters and transforms a record simultaneously.
 //
@@ -532,7 +545,8 @@ func Singleton[K comparable, V any](k K, v V) Record[K, V] {
 //	})
 //	result := evenDoubled(record) // {"b": 4}
 func FilterMapWithIndex[K comparable, V1, V2 any](f func(K, V1) Option[V2]) Operator[K, V1, V2] {
-	return G.FilterMapWithIndex[Record[K, V1], Record[K, V2]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterMap filters and transforms a record based on values only.
@@ -551,7 +565,8 @@ func FilterMapWithIndex[K comparable, V1, V2 any](f func(K, V1) Option[V2]) Oper
 //	})
 //	result := evenDoubled(record) // {"b": 4}
 func FilterMap[K comparable, V1, V2 any](f option.Kleisli[V1, V2]) Operator[K, V1, V2] {
-	return G.FilterMap[Record[K, V1], Record[K, V2]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Filter creates a new record with only the entries whose keys match the predicate.
@@ -566,7 +581,8 @@ func FilterMap[K comparable, V1, V2 any](f option.Kleisli[V1, V2]) Operator[K, V
 //	})
 //	result := startsWithA(record) // {"apple": 1}
 func Filter[K comparable, V any](f Predicate[K]) Operator[K, V, V] {
-	return G.Filter[Record[K, V]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterWithIndex creates a new record with only the entries that match the predicate.
@@ -581,7 +597,8 @@ func Filter[K comparable, V any](f Predicate[K]) Operator[K, V, V] {
 //	})
 //	result := evenValues(record) // {"b": 2}
 func FilterWithIndex[K comparable, V any](f PredicateWithIndex[K, V]) Operator[K, V, V] {
-	return G.FilterWithIndex[Record[K, V]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // IsNil checks if the record is nil (not initialized).
@@ -596,20 +613,20 @@ func FilterWithIndex[K comparable, V any](f PredicateWithIndex[K, V]) Operator[K
 //	record = Record[string, int]{}
 //	IsNil(record) // false
 func IsNil[K comparable, V any](m Record[K, V]) bool {
-	return G.IsNil(m)
+	_ = "STUB: not implemented"
+
+	// IsNonNil checks if the record is not nil (is initialized).
+	//
+	// This is the logical negation of IsNil.
+	//
+	// Example:
+	//
+	//	record := Record[string, int]{"a": 1}
+	//	IsNonNil(record) // true
+	return false
 }
 
-// IsNonNil checks if the record is not nil (is initialized).
-//
-// This is the logical negation of IsNil.
-//
-// Example:
-//
-//	record := Record[string, int]{"a": 1}
-//	IsNonNil(record) // true
-func IsNonNil[K comparable, V any](m Record[K, V]) bool {
-	return G.IsNonNil(m)
-}
+func IsNonNil[K comparable, V any](m Record[K, V]) bool { _ = "STUB: not implemented"; return false }
 
 // ConstNil returns a nil record.
 //
@@ -620,9 +637,7 @@ func IsNonNil[K comparable, V any](m Record[K, V]) bool {
 //
 //	nilRecord := ConstNil[string, int]()
 //	IsNil(nilRecord) // true
-func ConstNil[K comparable, V any]() Record[K, V] {
-	return Record[K, V](nil)
-}
+func ConstNil[K comparable, V any]() Record[K, V] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainWithIndex chains a record transformation that produces records, combining results using a Monoid.
 //
@@ -642,7 +657,8 @@ func ConstNil[K comparable, V any]() Record[K, V] {
 //	result := MonadChainWithIndex(MergeMonoid[string, int](), record, expand)
 //	// result: {"a_double": 2, "a_triple": 3, "b_double": 4, "b_triple": 6}
 func MonadChainWithIndex[V1 any, K comparable, V2 any](m Monoid[Record[K, V2]], r Record[K, V1], f KleisliWithIndex[K, V1, V2]) Record[K, V2] {
-	return G.MonadChainWithIndex(m, r, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChain chains a record transformation that produces records, combining results using a Monoid.
@@ -661,7 +677,8 @@ func MonadChainWithIndex[V1 any, K comparable, V2 any](m Monoid[Record[K, V2]], 
 //	}
 //	result := MonadChain(MergeMonoid[string, int](), record, expand)
 func MonadChain[V1 any, K comparable, V2 any](m Monoid[Record[K, V2]], r Record[K, V1], f Kleisli[K, V1, V2]) Record[K, V2] {
-	return G.MonadChain(m, r, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainWithIndex returns a function that chains record transformations with key-value access.
@@ -677,7 +694,8 @@ func MonadChain[V1 any, K comparable, V2 any](m Monoid[Record[K, V2]], r Record[
 //	)
 //	result := expand(Record[string, int]{"a": 1})
 func ChainWithIndex[V1 any, K comparable, V2 any](m Monoid[Record[K, V2]]) func(KleisliWithIndex[K, V1, V2]) Operator[K, V1, V2] {
-	return G.ChainWithIndex[Record[K, V1]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain returns a function that chains record transformations.
@@ -694,7 +712,8 @@ func ChainWithIndex[V1 any, K comparable, V2 any](m Monoid[Record[K, V2]]) func(
 //	)
 //	result := expand(Record[string, int]{"a": 1})
 func Chain[V1 any, K comparable, V2 any](m Monoid[Record[K, V2]]) func(Kleisli[K, V1, V2]) Operator[K, V1, V2] {
-	return G.Chain[Record[K, V1]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flatten converts a nested record (record of records) into a flat record.
@@ -711,7 +730,8 @@ func Chain[V1 any, K comparable, V2 any](m Monoid[Record[K, V2]]) func(Kleisli[K
 //	flat := Flatten(MergeMonoid[string, int]())(nested)
 //	// flat: {"a": 1, "b": 2, "c": 3, "d": 4}
 func Flatten[K comparable, V any](m Monoid[Record[K, V]]) func(Record[K, Record[K, V]]) Record[K, V] {
-	return G.Flatten[Record[K, Record[K, V]]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterChainWithIndex filters and chains transformations that produce records.
@@ -732,7 +752,8 @@ func Flatten[K comparable, V any](m Monoid[Record[K, V]]) func(Record[K, Record[
 //	)
 //	result := expandEven(record) // {"b_doubled": 4}
 func FilterChainWithIndex[V1 any, K comparable, V2 any](m Monoid[Record[K, V2]]) func(func(K, V1) Option[Record[K, V2]]) Operator[K, V1, V2] {
-	return G.FilterChainWithIndex[Record[K, V1]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterChain filters and chains transformations that produce records.
@@ -752,7 +773,8 @@ func FilterChainWithIndex[V1 any, K comparable, V2 any](m Monoid[Record[K, V2]])
 //	)
 //	result := expandEven(record)
 func FilterChain[V1 any, K comparable, V2 any](m Monoid[Record[K, V2]]) func(option.Kleisli[V1, Record[K, V2]]) Operator[K, V1, V2] {
-	return G.FilterChain[Record[K, V1]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FoldMap maps each value in a record and folds the results using a Monoid.
@@ -768,7 +790,8 @@ func FilterChain[V1 any, K comparable, V2 any](m Monoid[Record[K, V2]]) func(opt
 //	})
 //	result := sumDoubled(record) // 12 (2 + 4 + 6)
 func FoldMap[K comparable, A, B any](m Monoid[B]) func(func(A) B) func(Record[K, A]) B {
-	return G.FoldMap[Record[K, A]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FoldMapWithIndex maps each key-value pair in a record and folds the results using a Monoid.
@@ -783,7 +806,8 @@ func FoldMap[K comparable, A, B any](m Monoid[B]) func(func(A) B) func(Record[K,
 //	})
 //	result := weightedSum(record) // 1*1 + 1*2 = 3
 func FoldMapWithIndex[K comparable, A, B any](m Monoid[B]) func(func(K, A) B) func(Record[K, A]) B {
-	return G.FoldMapWithIndex[Record[K, A]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Fold combines all values in a record using a Monoid.
@@ -797,7 +821,8 @@ func FoldMapWithIndex[K comparable, A, B any](m Monoid[B]) func(func(K, A) B) fu
 //	sum := Fold(N.MonoidSum[int]())
 //	result := sum(record) // 6
 func Fold[K comparable, A any](m Monoid[A]) func(Record[K, A]) A {
-	return G.Fold[Record[K, A]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReduceOrdWithIndex reduces a record to a single value with keys processed in order.
@@ -813,7 +838,8 @@ func Fold[K comparable, A any](m Monoid[A]) func(Record[K, A]) A {
 //	}, "")
 //	result := concat(record) // "a1b2c3" (alphabetical order)
 func ReduceOrdWithIndex[V, R any, K comparable](o ord.Ord[K]) func(func(K, R, V) R, R) func(Record[K, V]) R {
-	return G.ReduceOrdWithIndex[Record[K, V], K, V, R](o)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReduceOrd reduces a record to a single value with keys processed in order.
@@ -828,7 +854,8 @@ func ReduceOrdWithIndex[V, R any, K comparable](o ord.Ord[K]) func(func(K, R, V)
 //	}, 0)
 //	result := sum(record) // 6 (order doesn't affect sum)
 func ReduceOrd[V, R any, K comparable](o ord.Ord[K]) func(func(R, V) R, R) func(Record[K, V]) R {
-	return G.ReduceOrd[Record[K, V], K, V, R](o)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FoldMapOrd maps and folds a record with keys processed in order.
@@ -844,7 +871,8 @@ func ReduceOrd[V, R any, K comparable](o ord.Ord[K]) func(func(R, V) R, R) func(
 //	})
 //	result := concat(record) // "123" (alphabetical key order)
 func FoldMapOrd[A, B any, K comparable](o ord.Ord[K]) func(m Monoid[B]) func(func(A) B) func(Record[K, A]) B {
-	return G.FoldMapOrd[Record[K, A], K, A, B](o)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FoldOrd combines all values in a record using a Monoid with keys processed in order.
@@ -857,7 +885,8 @@ func FoldMapOrd[A, B any, K comparable](o ord.Ord[K]) func(m Monoid[B]) func(fun
 //	concat := FoldOrd(S.Ord)(S.MonoidConcat)
 //	result := concat(record) // "123" (alphabetical key order)
 func FoldOrd[A any, K comparable](o ord.Ord[K]) func(m Monoid[A]) func(Record[K, A]) A {
-	return G.FoldOrd[Record[K, A]](o)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FoldMapOrdWithIndex maps and folds a record with key-value access and ordered processing.
@@ -872,7 +901,8 @@ func FoldOrd[A any, K comparable](o ord.Ord[K]) func(m Monoid[A]) func(Record[K,
 //	})
 //	result := concat(record) // "a1b2c3" (alphabetical key order)
 func FoldMapOrdWithIndex[K comparable, A, B any](o ord.Ord[K]) func(m Monoid[B]) func(func(K, A) B) func(Record[K, A]) B {
-	return G.FoldMapOrdWithIndex[Record[K, A], K, A, B](o)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // KeysOrd returns the keys from a record in the order specified by the Ord instance.
@@ -885,7 +915,8 @@ func FoldMapOrdWithIndex[K comparable, A, B any](o ord.Ord[K]) func(m Monoid[B])
 //	getKeys := KeysOrd(S.Ord)
 //	keys := getKeys(record) // ["a", "b", "c"]
 func KeysOrd[V any, K comparable](o ord.Ord[K]) func(r Record[K, V]) []K {
-	return G.KeysOrd[Record[K, V], []K](o)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ValuesOrd returns the values from a record ordered by their keys.
@@ -898,7 +929,8 @@ func KeysOrd[V any, K comparable](o ord.Ord[K]) func(r Record[K, V]) []K {
 //	getValues := ValuesOrd(S.Ord)
 //	values := getValues(record) // [1, 2, 3] (ordered by key: a, b, c)
 func ValuesOrd[V any, K comparable](o ord.Ord[K]) func(r Record[K, V]) []V {
-	return G.ValuesOrd[Record[K, V], []V](o)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFlap applies a value to a record of functions, producing a record of results.
@@ -915,7 +947,8 @@ func ValuesOrd[V any, K comparable](o ord.Ord[K]) func(r Record[K, V]) []V {
 //	result := MonadFlap(funcs, 5)
 //	// result: {"double": 10, "triple": 15}
 func MonadFlap[B any, K comparable, A any](fab Record[K, func(A) B], a A) Record[K, B] {
-	return G.MonadFlap[Record[K, func(A) B], Record[K, B]](fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flap returns a function that applies a value to a record of functions.
@@ -932,7 +965,8 @@ func MonadFlap[B any, K comparable, A any](fab Record[K, func(A) B], a A) Record
 //	applyFive := Flap[int, string, int](5)
 //	result := applyFive(funcs) // {"double": 10, "triple": 15}
 func Flap[B any, K comparable, A any](a A) Operator[K, func(A) B, B] {
-	return G.Flap[Record[K, func(A) B], Record[K, B]](a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Copy creates a shallow copy of a record.
@@ -946,23 +980,26 @@ func Flap[B any, K comparable, A any](a A) Operator[K, func(A) B, B] {
 //	copy := Copy(original)
 //	// Modifying copy doesn't affect original
 func Copy[K comparable, V any](m Record[K, V]) Record[K, V] {
-	return G.Copy(m)
+	_ = "STUB: not implemented"
+
+	// Clone creates a deep copy of a record using the provided endomorphism to clone values.
+	//
+	// The endomorphism is applied to each value to create a deep copy. This is useful
+	// when values contain pointers or other references that need to be duplicated.
+	//
+	// Example:
+	//
+	//	type Data struct { Value int }
+	//	cloneData := func(d Data) Data { return Data{Value: d.Value} }
+	//
+	//	original := Record[string, Data]{"a": {Value: 1}}
+	//	deepCopy := Clone(cloneData)(original)
+	return nil
 }
 
-// Clone creates a deep copy of a record using the provided endomorphism to clone values.
-//
-// The endomorphism is applied to each value to create a deep copy. This is useful
-// when values contain pointers or other references that need to be duplicated.
-//
-// Example:
-//
-//	type Data struct { Value int }
-//	cloneData := func(d Data) Data { return Data{Value: d.Value} }
-//
-//	original := Record[string, Data]{"a": {Value: 1}}
-//	deepCopy := Clone(cloneData)(original)
 func Clone[K comparable, V any](f Endomorphism[V]) Endomorphism[Record[K, V]] {
-	return G.Clone[Record[K, V]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromFoldableMap converts a foldable structure to a record by mapping elements to entries.
@@ -987,7 +1024,8 @@ func FromFoldableMap[
 	HKTA any,
 	K comparable,
 	V any](m Mg.Magma[V], red FOLDABLE) func(f func(A) Entry[K, V]) Kleisli[K, HKTA, V] {
-	return G.FromFoldableMap[func(A) Entry[K, V]](m, red)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromArrayMap converts an array to a record by mapping elements to entries.
@@ -1009,7 +1047,8 @@ func FromArrayMap[
 	A any,
 	K comparable,
 	V any](m Mg.Magma[V]) func(f func(A) Entry[K, V]) Kleisli[K, []A, V] {
-	return G.FromArrayMap[func(A) Entry[K, V], []A, Record[K, V]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromFoldable converts a foldable structure of entries to a record.
@@ -1032,7 +1071,8 @@ func FromFoldable[
 	FOLDABLE ~func(func(Record[K, V], Entry[K, V]) Record[K, V], Record[K, V]) func(HKTA) Record[K, V], // the reduce function
 	K comparable,
 	V any](m Mg.Magma[V], red FOLDABLE) Kleisli[K, HKTA, V] {
-	return G.FromFoldable(m, red)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromArray converts an array of entries to a record.
@@ -1053,7 +1093,8 @@ func FromFoldable[
 func FromArray[
 	K comparable,
 	V any](m Mg.Magma[V]) Kleisli[K, Entries[K, V], V] {
-	return G.FromArray[Entries[K, V], Record[K, V]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAp applies a record of functions to a record of values, producing a record of results.
@@ -1072,7 +1113,8 @@ func FromArray[
 //	result := MonadAp(MergeMonoid[string, int](), funcs, values)
 //	// result: {"double": 10, "triple": 21}
 func MonadAp[A any, K comparable, B any](m Monoid[Record[K, B]], fab Record[K, func(A) B], fa Record[K, A]) Record[K, B] {
-	return G.MonadAp(m, fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap returns a function that applies a record of functions to a record of values.
@@ -1089,7 +1131,8 @@ func MonadAp[A any, K comparable, B any](m Monoid[Record[K, B]], fab Record[K, f
 //	values := Record[string, int]{"double": 5}
 //	result := applyFuncs(values)(funcs) // {"double": 10}
 func Ap[A any, K comparable, B any](m Monoid[Record[K, B]]) func(fa Record[K, A]) Operator[K, func(A) B, B] {
-	return G.Ap[Record[K, B], Record[K, func(A) B], Record[K, A]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Of creates a record with a single key-value pair.
@@ -1101,6 +1144,4 @@ func Ap[A any, K comparable, B any](m Monoid[Record[K, B]]) func(fa Record[K, A]
 //
 //	record := Of("key", 42)
 //	// record: {"key": 42}
-func Of[K comparable, A any](k K, a A) Record[K, A] {
-	return Record[K, A]{k: a}
-}
+func Of[K comparable, A any](k K, a A) Record[K, A] { _ = "STUB: not implemented"; return nil }

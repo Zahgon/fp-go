@@ -16,7 +16,6 @@
 package generic
 
 import (
-	R "github.com/IBM/fp-go/v2/internal/record"
 	G "github.com/IBM/fp-go/v2/optics/traversal/generic"
 )
 
@@ -26,9 +25,6 @@ func FromRecord[MA ~map[K]A, MB ~map[K]B, K comparable, A, B, HKTB, HKTAB, HKTRB
 	fmap func(func(MB) func(B) MB) func(HKTRB) HKTAB,
 	fap func(HKTB) func(HKTAB) HKTRB,
 ) G.Traversal[MA, A, HKTRB, HKTB] {
-	return func(f func(A) HKTB) func(s MA) HKTRB {
-		return func(s MA) HKTRB {
-			return R.MonadTraverse(fof, fmap, fap, s, f)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

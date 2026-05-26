@@ -15,10 +15,6 @@
 
 package generic
 
-import (
-	G "github.com/IBM/fp-go/internal/bracket"
-)
-
 // Bracket makes sure that a resource is cleaned up in the event of an error. The release action is called regardless of
 // whether the body action returns and error or not.
 func Bracket[
@@ -31,14 +27,6 @@ func Bracket[
 	use func(A) GB,
 	release func(A, B) GANY,
 ) GB {
-	return G.Bracket[GA, GB, GANY, B, A, B](
-		Of[GB, B],
-		MonadChain[GA, GB, A, B],
-		MonadChain[GB, GB, B, B],
-		MonadChain[GANY, GB, ANY, B],
-
-		acquire,
-		use,
-		release,
-	)
+	_ = "STUB: not implemented"
+	return *new(GB)
 }

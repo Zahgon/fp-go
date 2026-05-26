@@ -16,7 +16,6 @@
 package iterresult
 
 import (
-	"github.com/IBM/fp-go/v2/iterator/itereither"
 	L "github.com/IBM/fp-go/v2/optics/lens"
 )
 
@@ -33,7 +32,8 @@ import (
 func Do[S any](
 	empty S,
 ) SeqResult[S] {
-	return itereither.Do[error](empty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Bind attaches the result of a computation to a context S1 to produce a context S2.
@@ -72,7 +72,8 @@ func Bind[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[S1, T],
 ) Operator[S1, S2] {
-	return itereither.Bind(setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context S1 to produce a context S2
@@ -80,7 +81,8 @@ func Let[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[S1, S2] {
-	return itereither.Let[error](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches a value to a context S1 to produce a context S2
@@ -88,14 +90,16 @@ func LetTo[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) Operator[S1, S2] {
-	return itereither.LetTo[error](setter, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state S1 from a value T
 func BindTo[S1, T any](
 	setter func(T) S1,
 ) Operator[T, S1] {
-	return itereither.BindTo[error](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context S1 to produce a context S2 by considering
@@ -135,7 +139,8 @@ func ApS[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa SeqResult[T],
 ) Operator[S1, S2] {
-	return itereither.ApS(setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL attaches a value to a context using a lens-based setter.
@@ -165,7 +170,8 @@ func ApSL[S, T any](
 	lens L.Lens[S, T],
 	fa SeqResult[T],
 ) Operator[S, S] {
-	return itereither.ApSL(lens, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindL attaches the result of a computation to a context using a lens-based setter.
@@ -204,7 +210,8 @@ func BindL[S, T any](
 	lens L.Lens[S, T],
 	f Kleisli[T, T],
 ) Operator[S, S] {
-	return itereither.BindL(lens, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL attaches the result of a pure computation to a context using a lens-based setter.
@@ -236,7 +243,8 @@ func LetL[S, T any](
 	lens L.Lens[S, T],
 	f Endomorphism[T],
 ) Operator[S, S] {
-	return itereither.LetL[error](lens, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL attaches a constant value to a context using a lens-based setter.
@@ -267,5 +275,6 @@ func LetToL[S, T any](
 	lens L.Lens[S, T],
 	b T,
 ) Operator[S, S] {
-	return itereither.LetToL[error](lens, b)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,9 +16,7 @@
 package ioref
 
 import (
-	"github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/io"
-	"github.com/IBM/fp-go/v2/pair"
 	"github.com/IBM/fp-go/v2/readerio"
 )
 
@@ -45,11 +43,7 @@ import (
 //	strRef := strRefIO()
 //
 //go:inline
-func MakeIORef[A any](a A) IO[IORef[A]] {
-	return func() IORef[A] {
-		return &ioRef[A]{a: a}
-	}
-}
+func MakeIORef[A any](a A) IO[IORef[A]] { _ = "STUB: not implemented"; return nil }
 
 // Write atomically writes a new value to an IORef and returns the written value.
 //
@@ -78,17 +72,7 @@ func MakeIORef[A any](a A) IO[IORef[A]] {
 //	)()  // ref now contains 75
 //
 //go:inline
-func Write[A any](a A) io.Kleisli[IORef[A], A] {
-	return func(ref IORef[A]) IO[A] {
-		return func() A {
-			ref.mu.Lock()
-			defer ref.mu.Unlock()
-
-			ref.a = a
-			return a
-		}
-	}
-}
+func Write[A any](a A) io.Kleisli[IORef[A], A] { _ = "STUB: not implemented"; return nil }
 
 // Read atomically reads the current value from an IORef.
 //
@@ -117,14 +101,7 @@ func Write[A any](a A) io.Kleisli[IORef[A], A] {
 //	)()
 //
 //go:inline
-func Read[A any](ref IORef[A]) IO[A] {
-	return func() A {
-		ref.mu.RLock()
-		defer ref.mu.RUnlock()
-
-		return ref.a
-	}
-}
+func Read[A any](ref IORef[A]) IO[A] { _ = "STUB: not implemented"; return nil }
 
 // Modify atomically modifies the value in an IORef using the given function.
 //
@@ -153,7 +130,8 @@ func Read[A any](ref IORef[A]) IO[A] {
 //	    io.Chain(ioref.Modify(N.Mul(2))),
 //	)()
 func Modify[A any](f Endomorphism[A]) io.Kleisli[IORef[A], A] {
-	return ModifyIOK(function.Flow2(f, io.Of))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ModifyIOK atomically modifies the value in an IORef using an IO-based transformation.
@@ -196,15 +174,8 @@ func Modify[A any](f Endomorphism[A]) io.Kleisli[IORef[A], A] {
 //	    })),
 //	)()
 func ModifyIOK[A any](f io.Kleisli[A, A]) io.Kleisli[IORef[A], A] {
-	return func(ref IORef[A]) IO[A] {
-		return func() A {
-			ref.mu.Lock()
-			defer ref.mu.Unlock()
-
-			ref.a = f(ref.a)()
-			return ref.a
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ModifyReaderIOK atomically modifies the value in an IORef using a ReaderIO-based transformation.
@@ -245,17 +216,8 @@ func ModifyIOK[A any](f io.Kleisli[A, A]) io.Kleisli[IORef[A], A] {
 //	config := Config{multiplier: 5}
 //	newValue := modifyWithConfig(ref)(config)()  // Returns 50, ref now contains 50
 func ModifyReaderIOK[R, A any](f readerio.Kleisli[R, A, A]) readerio.Kleisli[R, IORef[A], A] {
-	return func(ref IORef[A]) ReaderIO[R, A] {
-		return func(r R) readerio.IO[A] {
-			return func() A {
-				ref.mu.Lock()
-				defer ref.mu.Unlock()
-
-				ref.a = f(ref.a)(r)()
-				return ref.a
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ModifyWithResult atomically modifies the value in an IORef and returns both
@@ -287,7 +249,8 @@ func ModifyReaderIOK[R, A any](f readerio.Kleisli[R, A, A]) readerio.Kleisli[R, 
 //
 //go:inline
 func ModifyWithResult[A, B any](f func(A) Pair[A, B]) io.Kleisli[IORef[A], B] {
-	return ModifyIOKWithResult(function.Flow2(f, io.Of))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ModifyIOKWithResult atomically modifies the value in an IORef and returns a result,
@@ -336,16 +299,8 @@ func ModifyWithResult[A, B any](f func(A) Pair[A, B]) io.Kleisli[IORef[A], B] {
 //	})
 //	message := swapWithValidation(ref)()
 func ModifyIOKWithResult[A, B any](f io.Kleisli[A, Pair[A, B]]) io.Kleisli[IORef[A], B] {
-	return func(ref IORef[A]) IO[B] {
-		return func() B {
-			ref.mu.Lock()
-			defer ref.mu.Unlock()
-
-			result := f(ref.a)()
-			ref.a = pair.Head(result)
-			return pair.Tail(result)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ModifyReaderIOKWithResult atomically modifies the value in an IORef and returns a result,
@@ -393,16 +348,6 @@ func ModifyIOKWithResult[A, B any](f io.Kleisli[A, Pair[A, B]]) io.Kleisli[IORef
 //	config := Config{logEnabled: true}
 //	oldValue := incrementWithLog(ref)(config)()  // Logs and returns 42, ref now contains 43
 func ModifyReaderIOKWithResult[R, A, B any](f readerio.Kleisli[R, A, Pair[A, B]]) readerio.Kleisli[R, IORef[A], B] {
-	return func(ref IORef[A]) ReaderIO[R, B] {
-		return func(r R) readerio.IO[B] {
-			return func() B {
-				ref.mu.Lock()
-				defer ref.mu.Unlock()
-
-				result := f(ref.a)(r)()
-				ref.a = pair.Head(result)
-				return pair.Tail(result)
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

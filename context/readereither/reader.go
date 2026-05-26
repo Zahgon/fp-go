@@ -20,81 +20,87 @@ import (
 
 	ET "github.com/IBM/fp-go/either"
 	O "github.com/IBM/fp-go/option"
-	RE "github.com/IBM/fp-go/readereither/generic"
 )
 
 func MakeReaderEither[A any](f func(context.Context) ET.Either[error, A]) ReaderEither[A] {
-	return RE.MakeReaderEither[ReaderEither[A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FromEither[A any](e ET.Either[error, A]) ReaderEither[A] {
-	return RE.FromEither[ReaderEither[A]](e)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Left[A any](l error) ReaderEither[A] {
-	return RE.Left[ReaderEither[A]](l)
-}
+func Left[A any](l error) ReaderEither[A] { _ = "STUB: not implemented"; return nil }
 
-func Right[A any](r A) ReaderEither[A] {
-	return RE.Right[ReaderEither[A]](r)
-}
+func Right[A any](r A) ReaderEither[A] { _ = "STUB: not implemented"; return nil }
 
 func MonadMap[A, B any](fa ReaderEither[A], f func(A) B) ReaderEither[B] {
-	return RE.MonadMap[ReaderEither[A], ReaderEither[B]](fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Map[A, B any](f func(A) B) func(ReaderEither[A]) ReaderEither[B] {
-	return RE.Map[ReaderEither[A], ReaderEither[B]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChain[A, B any](ma ReaderEither[A], f func(A) ReaderEither[B]) ReaderEither[B] {
-	return RE.MonadChain(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Chain[A, B any](f func(A) ReaderEither[B]) func(ReaderEither[A]) ReaderEither[B] {
-	return RE.Chain[ReaderEither[A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Of[A any](a A) ReaderEither[A] {
-	return RE.Of[ReaderEither[A]](a)
-}
+func Of[A any](a A) ReaderEither[A] { _ = "STUB: not implemented"; return nil }
 
 func MonadAp[A, B any](fab ReaderEither[func(A) B], fa ReaderEither[A]) ReaderEither[B] {
-	return RE.MonadAp[ReaderEither[A], ReaderEither[B]](fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Ap[A, B any](fa ReaderEither[A]) func(ReaderEither[func(A) B]) ReaderEither[B] {
-	return RE.Ap[ReaderEither[A], ReaderEither[B], ReaderEither[func(A) B]](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FromPredicate[A any](pred func(A) bool, onFalse func(A) error) func(A) ReaderEither[A] {
-	return RE.FromPredicate[ReaderEither[A]](pred, onFalse)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func OrElse[A any](onLeft func(error) ReaderEither[A]) func(ReaderEither[A]) ReaderEither[A] {
-	return RE.OrElse[ReaderEither[A]](onLeft)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Ask() ReaderEither[context.Context] {
-	return RE.Ask[ReaderEither[context.Context]]()
-}
+func Ask() ReaderEither[context.Context] { _ = "STUB: not implemented"; return nil }
 
 func MonadChainEitherK[A, B any](ma ReaderEither[A], f func(A) ET.Either[error, B]) ReaderEither[B] {
-	return RE.MonadChainEitherK[ReaderEither[A], ReaderEither[B]](ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainEitherK[A, B any](f func(A) ET.Either[error, B]) func(ma ReaderEither[A]) ReaderEither[B] {
-	return RE.ChainEitherK[ReaderEither[A], ReaderEither[B]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainOptionK[A, B any](onNone func() error) func(func(A) O.Option[B]) func(ReaderEither[A]) ReaderEither[B] {
-	return RE.ChainOptionK[ReaderEither[A], ReaderEither[B]](onNone)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadFlap[B, A any](fab ReaderEither[func(A) B], a A) ReaderEither[B] {
-	return RE.MonadFlap[ReaderEither[func(A) B], ReaderEither[B]](fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Flap[B, A any](a A) func(ReaderEither[func(A) B]) ReaderEither[B] {
-	return RE.Flap[ReaderEither[func(A) B], ReaderEither[B]](a)
+	_ = "STUB: not implemented"
+	return nil
 }

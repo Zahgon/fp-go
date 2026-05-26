@@ -16,7 +16,6 @@
 package iooption
 
 import (
-	G "github.com/IBM/fp-go/iooption/generic"
 	O "github.com/IBM/fp-go/option"
 )
 
@@ -27,5 +26,6 @@ func Bracket[E, A, B, ANY any](
 	use func(A) IOOption[B],
 	release func(A, O.Option[B]) IOOption[ANY],
 ) IOOption[B] {
-	return G.Bracket(acquire, use, release)
+	_ = "STUB: not implemented"
+	return nil
 }

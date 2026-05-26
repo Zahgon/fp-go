@@ -24,50 +24,26 @@ type Number interface {
 }
 
 // Add is a curried function used to add two numbers
-func Add[T Number](right T) func(T) T {
-	return func(left T) T {
-		return left + right
-	}
-}
+func Add[T Number](right T) func(T) T { _ = "STUB: not implemented"; return nil }
 
 // Sub is a curried function used to subtract two numbers
-func Sub[T Number](right T) func(T) T {
-	return func(left T) T {
-		return left - right
-	}
-}
+func Sub[T Number](right T) func(T) T { _ = "STUB: not implemented"; return nil }
 
 // Mul is a curried function used to multiply two numbers
-func Mul[T Number](right T) func(T) T {
-	return func(left T) T {
-		return left * right
-	}
-}
+func Mul[T Number](right T) func(T) T { _ = "STUB: not implemented"; return nil }
 
 // Div is a curried function used to divide two numbers
-func Div[T Number](right T) func(T) T {
-	return func(left T) T {
-		return left / right
-	}
-}
+func Div[T Number](right T) func(T) T { _ = "STUB: not implemented"; return nil }
 
 // Inc is a function that increments a number
 func Inc[T Number](value T) T {
-	return value + 1
+	_ = "STUB: not implemented"
+
+	// Min takes the minimum of two values. If they are considered equal, the first argument is chosen
+	return *new(T)
 }
 
-// Min takes the minimum of two values. If they are considered equal, the first argument is chosen
-func Min[A C.Ordered](a, b A) A {
-	if a < b {
-		return a
-	}
-	return b
-}
+func Min[A C.Ordered](a, b A) A { _ = "STUB: not implemented"; return *new(A) }
 
 // Max takes the maximum of two values. If they are considered equal, the first argument is chosen
-func Max[A C.Ordered](a, b A) A {
-	if a > b {
-		return a
-	}
-	return b
-}
+func Max[A C.Ordered](a, b A) A { _ = "STUB: not implemented"; return *new(A) }

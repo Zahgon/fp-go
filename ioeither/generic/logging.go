@@ -16,30 +16,16 @@
 package generic
 
 import (
-	"encoding/json"
-	"log"
-
-	B "github.com/IBM/fp-go/bytes"
 	ET "github.com/IBM/fp-go/either"
-	F "github.com/IBM/fp-go/function"
 )
 
 // LogJSON converts the argument to JSON and then logs it via the format string
 // Can be used with [ChainFirst]
 func LogJSON[GA ~func() ET.Either[error, any], A any](prefix string) func(A) GA {
-	return func(a A) GA {
-		// log this
-		return F.Pipe3(
-			ET.TryCatchError(json.MarshalIndent(a, "", "  ")),
-			ET.Map[error](B.ToString),
-			FromEither[func() ET.Either[error, string]],
-			Chain[func() ET.Either[error, string], GA](func(data string) GA {
-				return FromImpure[GA](func() {
-					log.Printf(prefix, data)
-				})
-			}),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
+
+	// log this
 }
 
 // LogJson converts the argument to JSON and then logs it via the format string
@@ -47,5 +33,6 @@ func LogJSON[GA ~func() ET.Either[error, any], A any](prefix string) func(A) GA 
 //
 // Deprecated: use [LogJSON] instead
 func LogJson[GA ~func() ET.Either[error, any], A any](prefix string) func(A) GA {
-	return LogJSON[GA, A](prefix)
+	_ = "STUB: not implemented"
+	return nil
 }

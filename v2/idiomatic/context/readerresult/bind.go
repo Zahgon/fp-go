@@ -18,10 +18,7 @@ package readerresult
 import (
 	"context"
 
-	RR "github.com/IBM/fp-go/v2/idiomatic/readerresult"
 	"github.com/IBM/fp-go/v2/idiomatic/result"
-	AP "github.com/IBM/fp-go/v2/internal/apply"
-	C "github.com/IBM/fp-go/v2/internal/chain"
 	"github.com/IBM/fp-go/v2/reader"
 	RES "github.com/IBM/fp-go/v2/result"
 )
@@ -45,7 +42,8 @@ import (
 func Do[S any](
 	empty S,
 ) ReaderResult[S] {
-	return RR.Do[context.Context](empty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Bind sequences an EFFECTFUL ReaderResult computation and updates the state with its result.
@@ -78,12 +76,8 @@ func Bind[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[S1, T],
 ) Operator[S1, S2] {
-	return C.Bind(
-		Chain[S1, S2],
-		Map[T, S2],
-		setter,
-		WithContextK(f),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a PURE computation to a state.
@@ -118,7 +112,8 @@ func Let[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[S1, S2] {
-	return RR.Let[context.Context](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches a constant value to a state.
@@ -144,7 +139,8 @@ func LetTo[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) Operator[S1, S2] {
-	return RR.LetTo[context.Context](setter, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes do-notation by binding a value to a state.
@@ -166,7 +162,8 @@ func LetTo[S1, S2, T any](
 func BindTo[S1, T any](
 	setter func(T) S1,
 ) Operator[T, S1] {
-	return RR.BindTo[context.Context](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindToP initializes do-notation by binding a value to a state using a Prism.
@@ -188,7 +185,8 @@ func BindTo[S1, T any](
 func BindToP[S1, T any](
 	setter Prism[S1, T],
 ) Operator[T, S1] {
-	return BindTo(setter.ReverseGet)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context using applicative style.
@@ -216,12 +214,8 @@ func ApS[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa ReaderResult[T],
 ) Operator[S1, S2] {
-	return AP.ApS(
-		Ap[S2, T],
-		Map[S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL is a variant of ApS that uses a lens to focus on a specific field in the state.
@@ -248,36 +242,39 @@ func ApSL[S, T any](
 	lens Lens[S, T],
 	fa ReaderResult[T],
 ) Operator[S, S] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL is a variant of Bind that uses a lens to focus on a specific field in the state.
+	//
+	// IMPORTANT: BindL is for EFFECTFUL FUNCTIONS that depend on context.Context.
+	// The Kleisli parameter returns a ReaderResult, which is effectful.
+	//
+	// It combines lens-based field access with monadic composition, allowing you to:
+	// 1. Extract a field value using the lens
+	// 2. Use that value in an effectful computation that may fail
+	// 3. Update the field with the result
+	//
+	// Type Parameters:
+	//   - S: The state type
+	//   - T: The type of the field to update
+	//
+	// Parameters:
+	//   - lens: A lens that focuses on a field of type T within state S
+	//   - f: An effectful Kleisli arrow that transforms the field value
+	//
+	// Returns:
+	//   - An Operator that transforms ReaderResult[S] to ReaderResult[S]
+	//
+	//go:inline
 }
 
-// BindL is a variant of Bind that uses a lens to focus on a specific field in the state.
-//
-// IMPORTANT: BindL is for EFFECTFUL FUNCTIONS that depend on context.Context.
-// The Kleisli parameter returns a ReaderResult, which is effectful.
-//
-// It combines lens-based field access with monadic composition, allowing you to:
-// 1. Extract a field value using the lens
-// 2. Use that value in an effectful computation that may fail
-// 3. Update the field with the result
-//
-// Type Parameters:
-//   - S: The state type
-//   - T: The type of the field to update
-//
-// Parameters:
-//   - lens: A lens that focuses on a field of type T within state S
-//   - f: An effectful Kleisli arrow that transforms the field value
-//
-// Returns:
-//   - An Operator that transforms ReaderResult[S] to ReaderResult[S]
-//
-//go:inline
 func BindL[S, T any](
 	lens Lens[S, T],
 	f Kleisli[T, T],
 ) Operator[S, S] {
-	return RR.BindL(lens, WithContextK(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL is a variant of Let that uses a lens to focus on a specific field in the state.
@@ -303,7 +300,8 @@ func LetL[S, T any](
 	lens Lens[S, T],
 	f Endomorphism[T],
 ) Operator[S, S] {
-	return RR.LetL[context.Context](lens, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL is a variant of LetTo that uses a lens to focus on a specific field in the state.
@@ -328,7 +326,8 @@ func LetToL[S, T any](
 	lens Lens[S, T],
 	b T,
 ) Operator[S, S] {
-	return RR.LetToL[context.Context](lens, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindReaderK binds a Reader computation (context-dependent but error-free) into the do-notation chain.
@@ -342,7 +341,8 @@ func BindReaderK[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f reader.Kleisli[context.Context, S1, T],
 ) Operator[S1, S2] {
-	return RR.BindReaderK(setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindEitherK binds a Result (Either) computation into the do-notation chain.
@@ -356,7 +356,8 @@ func BindEitherK[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f RES.Kleisli[S1, T],
 ) Operator[S1, S2] {
-	return RR.BindEitherK[context.Context](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindResultK binds an idiomatic Go function (returning value and error) into the do-notation chain.
@@ -372,7 +373,8 @@ func BindResultK[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f result.Kleisli[S1, T],
 ) Operator[S1, S2] {
-	return RR.BindResultK[context.Context](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindToReader converts a Reader computation into a ReaderResult and binds it to create an initial state.
@@ -385,7 +387,8 @@ func BindToReader[
 	S1, T any](
 	setter func(T) S1,
 ) func(Reader[context.Context, T]) ReaderResult[S1] {
-	return RR.BindToReader[context.Context](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindToEither converts a Result (Either) into a ReaderResult and binds it to create an initial state.
@@ -398,7 +401,8 @@ func BindToEither[
 	S1, T any](
 	setter func(T) S1,
 ) func(Result[T]) ReaderResult[S1] {
-	return RR.BindToEither[context.Context](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindToResult converts an idiomatic Go tuple (value, error) into a ReaderResult and binds it to create an initial state.
@@ -411,7 +415,8 @@ func BindToResult[
 	S1, T any](
 	setter func(T) S1,
 ) func(T, error) ReaderResult[S1] {
-	return RR.BindToResult[context.Context](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApReaderS applies a Reader computation in applicative style, combining it with the current state.
@@ -425,7 +430,8 @@ func ApReaderS[
 	setter func(T) func(S1) S2,
 	fa Reader[context.Context, T],
 ) Operator[S1, S2] {
-	return RR.ApReaderS(setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApResultS applies an idiomatic Go tuple (value, error) in applicative style.
@@ -438,7 +444,8 @@ func ApResultS[
 	S1, S2, T any](
 	setter func(T) func(S1) S2,
 ) func(T, error) Operator[S1, S2] {
-	return RR.ApResultS[context.Context](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApEitherS applies a Result (Either) in applicative style, combining it with the current state.
@@ -452,5 +459,6 @@ func ApEitherS[
 	setter func(T) func(S1) S2,
 	fa Result[T],
 ) Operator[S1, S2] {
-	return RR.ApEitherS[context.Context](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }

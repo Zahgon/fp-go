@@ -15,26 +15,10 @@
 
 package ioresult
 
-import (
-	"encoding/json"
-	"log"
-
-	"github.com/IBM/fp-go/v2/idiomatic/result"
-)
-
 // LogJSON converts the argument to pretty printed JSON and then logs it via the format string
 // Can be used with [ChainFirst]
-func LogJSON[A any](prefix string) Kleisli[A, any] {
-	return func(a A) IOResult[any] {
-		// convert to a string
-		b, jsonerr := json.MarshalIndent(a, "", "  ")
-		// log this
-		return func() (any, error) {
-			if jsonerr != nil {
-				return result.Left[any](jsonerr)
-			}
-			log.Printf(prefix, string(b))
-			return result.Of[any](b)
-		}
-	}
-}
+func LogJSON[A any](prefix string) Kleisli[A, any] { _ = "STUB: not implemented"; return nil }
+
+// convert to a string
+
+// log this

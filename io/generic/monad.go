@@ -21,23 +21,22 @@ import (
 
 type ioMonad[A, B any, GA ~func() A, GB ~func() B, GAB ~func() func(A) B] struct{}
 
-func (o *ioMonad[A, B, GA, GB, GAB]) Of(a A) GA {
-	return Of[GA, A](a)
-}
+func (o *ioMonad[A, B, GA, GB, GAB]) Of(a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func (o *ioMonad[A, B, GA, GB, GAB]) Map(f func(A) B) func(GA) GB {
-	return Map[GA, GB, A, B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *ioMonad[A, B, GA, GB, GAB]) Chain(f func(A) GB) func(GA) GB {
-	return Chain[GA, GB, A, B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (o *ioMonad[A, B, GA, GB, GAB]) Ap(fa GA) func(GAB) GB {
-	return Ap[GB, GAB, GA, B, A](fa)
-}
+func (o *ioMonad[A, B, GA, GB, GAB]) Ap(fa GA) func(GAB) GB { _ = "STUB: not implemented"; return nil }
 
 // Monad implements the monadic operations for [Option]
 func Monad[A, B any, GA ~func() A, GB ~func() B, GAB ~func() func(A) B]() monad.Monad[A, B, GA, GB, GAB] {
-	return &ioMonad[A, B, GA, GB, GAB]{}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -19,7 +19,6 @@
 package option
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/optics/iso"
 	"github.com/IBM/fp-go/v2/option"
 )
@@ -75,10 +74,4 @@ import (
 // Note: This isomorphism satisfies the round-trip laws:
 //   - ReverseGet(Get(t)) == t for all t: T
 //   - Get(ReverseGet(opt)) == opt for all opt: Option[T]
-func FromZero[T comparable]() iso.Iso[T, option.Option[T]] {
-	var zero T
-	return iso.MakeIso(
-		option.FromPredicate(func(t T) bool { return t != zero }),
-		option.GetOrElse(F.Constant(zero)),
-	)
-}
+func FromZero[T comparable]() iso.Iso[T, option.Option[T]] { _ = "STUB: not implemented"; return nil }

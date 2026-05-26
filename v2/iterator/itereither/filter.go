@@ -15,11 +15,6 @@
 
 package itereither
 
-import (
-	"github.com/IBM/fp-go/v2/either"
-	"github.com/IBM/fp-go/v2/iterator/iter"
-)
-
 // FilterOrElse filters a SeqEither value based on a predicate.
 // If the predicate returns true for the Right value, it passes through unchanged.
 // If the predicate returns false, it transforms the Right value into a Left using onFalse.
@@ -59,7 +54,8 @@ import (
 //
 //go:inline
 func FilterOrElse[E, A any](pred Predicate[A], onFalse func(A) E) Operator[E, A, A] {
-	return ChainEitherK(either.FromPredicate(pred, onFalse))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFilter filters a SeqEither sequence, keeping only Right values that satisfy the predicate.
@@ -111,7 +107,8 @@ func FilterOrElse[E, A any](pred Predicate[A], onFalse func(A) E) Operator[E, A,
 // Filter is the curried version of MonadFilter.
 // FilterOrElse converts failing values to Left instead of removing them.
 func MonadFilter[E, A any](as SeqEither[E, A], pred Predicate[A]) SeqEither[E, A] {
-	return iter.MonadFilter(as, either.ForAll[E](pred))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Filter returns a function that filters SeqEither elements based on a predicate.
@@ -150,6 +147,4 @@ func MonadFilter[E, A any](as SeqEither[E, A], pred Predicate[A]) SeqEither[E, A
 // FilterOrElse converts failing values to Left instead of removing them.
 //
 //go:inline
-func Filter[E, A any](pred func(A) bool) Operator[E, A, A] {
-	return iter.Filter(either.ForAll[E](pred))
-}
+func Filter[E, A any](pred func(A) bool) Operator[E, A, A] { _ = "STUB: not implemented"; return nil }

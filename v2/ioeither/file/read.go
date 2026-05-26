@@ -17,8 +17,6 @@ package file
 
 import (
 	"io"
-
-	"github.com/IBM/fp-go/v2/ioeither"
 )
 
 // Read uses a generator function to create a stream, reads data from it using a provided
@@ -74,7 +72,6 @@ import (
 // The Read function ensures that the file is closed even if the reading operation fails,
 // providing safe and composable resource management in a functional style.
 func Read[R any, RD io.ReadCloser](acquire IOEither[error, RD]) Kleisli[error, Kleisli[error, RD, R], R] {
-	return ioeither.WithResource[R](
-		acquire,
-		Close[RD])
+	_ = "STUB: not implemented"
+	return nil
 }

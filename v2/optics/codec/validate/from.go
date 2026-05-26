@@ -15,13 +15,6 @@
 
 package validate
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/optics/codec/validation"
-	"github.com/IBM/fp-go/v2/reader"
-	"github.com/IBM/fp-go/v2/readerresult"
-)
-
 // FromReaderResult converts a ReaderResult into a Validate.
 //
 // This function bridges the gap between simple error-based validation (ReaderResult)
@@ -121,15 +114,6 @@ import (
 //   - validation.FailureWithError: Creates validation failures with cause
 //   - Context: Validation context for error reporting
 func FromReaderResult[I, A any](r ReaderResult[I, A]) Validate[I, A] {
-	return F.Pipe2(
-		r,
-		readerresult.Map[I](F.Flow2(
-			validation.Success[A],
-			reader.Of[Context],
-		)),
-		readerresult.GetOrElse(F.Pipe1(
-			reader.Asks(F.Flip(F.Bind2nd(validation.FailureWithError[A], "unable to decode"))),
-			reader.Map[error](reader.Local[Decode[Context, A]](F.ToAny[I])),
-		)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

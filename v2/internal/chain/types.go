@@ -66,17 +66,21 @@ type Chainable[A, B, HKTA, HKTB, HKTFAB any] interface {
 
 // ToFunctor converts from [Chainable] to [functor.Functor]
 func ToFunctor[A, B, HKTA, HKTB, HKTFAB any](ap Chainable[A, B, HKTA, HKTB, HKTFAB]) functor.Functor[A, B, HKTA, HKTB] {
-	return ap
+	_ = "STUB: not implemented"
+
+	// ToApply converts from [Chainable] to [functor.Functor]
+	return nil
 }
 
-// ToApply converts from [Chainable] to [functor.Functor]
 func ToApply[A, B, HKTA, HKTB, HKTFAB any](ap Chainable[A, B, HKTA, HKTB, HKTFAB]) apply.Apply[A, B, HKTA, HKTB, HKTFAB] {
-	return ap
+	_ = "STUB: not implemented"
+
+	// Kleisli represents a Kleisli arrow - a function from A to a monadic value HKTB.
+	// It's used for composing monadic computations where each step depends on the previous result.
+	return nil
 }
 
 type (
-	// Kleisli represents a Kleisli arrow - a function from A to a monadic value HKTB.
-	// It's used for composing monadic computations where each step depends on the previous result.
 	Kleisli[A, HKTB any] = func(A) HKTB
 
 	// Operator represents a transformation from one monadic value to another.

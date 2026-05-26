@@ -18,7 +18,6 @@ package iterresult
 import (
 	"github.com/IBM/fp-go/v2/either"
 	"github.com/IBM/fp-go/v2/iterator/iter"
-	"github.com/IBM/fp-go/v2/iterator/itereither"
 	O "github.com/IBM/fp-go/v2/option"
 	R "github.com/IBM/fp-go/v2/reader"
 	"github.com/IBM/fp-go/v2/result"
@@ -117,9 +116,7 @@ type (
 //   - FromLazy: Converts a Lazy computation to SeqResult
 //   - FromIOResult: Converts an IOResult to SeqResult
 //   - Of: Creates a SeqResult from a pure value
-func FromIO[A any](mr IO[A]) SeqResult[A] {
-	return itereither.FromIO[error](mr)
-}
+func FromIO[A any](mr IO[A]) SeqResult[A] { _ = "STUB: not implemented"; return nil }
 
 // FromLazy converts a Lazy computation into a single-element SeqResult containing a success value.
 // The Lazy computation is executed when the sequence is consumed, and its result is wrapped
@@ -151,9 +148,7 @@ func FromIO[A any](mr IO[A]) SeqResult[A] {
 //   - FromIO: Converts an IO computation to SeqResult
 //   - FromIOResult: Converts an IOResult to SeqResult
 //   - Of: Creates a SeqResult from a pure value
-func FromLazy[A any](mr Lazy[A]) SeqResult[A] {
-	return itereither.FromLazy[error](mr)
-}
+func FromLazy[A any](mr Lazy[A]) SeqResult[A] { _ = "STUB: not implemented"; return nil }
 
 // FromIOResult converts an IOResult computation into a single-element SeqResult.
 // The IOResult computation is executed when the sequence is consumed, and its result
@@ -187,74 +182,62 @@ func FromLazy[A any](mr Lazy[A]) SeqResult[A] {
 //   - FromIO: Converts an IO computation to SeqResult (always success)
 //   - FromLazy: Converts a Lazy computation to SeqResult (always success)
 //   - FromResult: Converts a pure Result to SeqResult
-func FromIOResult[A any](mr IOResult[A]) SeqResult[A] {
-	return itereither.FromIOEither(mr)
-}
+func FromIOResult[A any](mr IOResult[A]) SeqResult[A] { _ = "STUB: not implemented"; return nil }
 
 // Left constructs a SeqResult that represents a failure with an error value
-func Left[A any](l error) SeqResult[A] {
-	return itereither.Left[A](l)
-}
+func Left[A any](l error) SeqResult[A] { _ = "STUB: not implemented"; return nil }
 
 // Right constructs a SeqResult that represents a successful computation with a value of type A
-func Right[A any](r A) SeqResult[A] {
-	return itereither.Right[error](r)
-}
+func Right[A any](r A) SeqResult[A] { _ = "STUB: not implemented"; return nil }
 
 // Of constructs a SeqResult that represents a successful computation with a value of type A.
 // This is an alias for Right and is the canonical way to lift a pure value into the SeqResult context.
-func Of[A any](r A) SeqResult[A] {
-	return itereither.Of[error](r)
-}
+func Of[A any](r A) SeqResult[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadOf is an alias for Of, provided for consistency with monad naming conventions
-func MonadOf[A any](r A) SeqResult[A] {
-	return itereither.MonadOf[error](r)
-}
+func MonadOf[A any](r A) SeqResult[A] { _ = "STUB: not implemented"; return nil }
 
 // LeftSeq constructs a SeqResult from a Seq that produces an error value
-func LeftSeq[A any](ml Seq[error]) SeqResult[A] {
-	return itereither.LeftSeq[A](ml)
-}
+func LeftSeq[A any](ml Seq[error]) SeqResult[A] { _ = "STUB: not implemented"; return nil }
 
 // RightSeq constructs a SeqResult from a Seq that produces a success value
-func RightSeq[A any](mr Seq[A]) SeqResult[A] {
-	return itereither.RightSeq[error](mr)
-}
+func RightSeq[A any](mr Seq[A]) SeqResult[A] { _ = "STUB: not implemented"; return nil }
 
 // FromEither lifts a Result value into the SeqResult context
-func FromEither[A any](e Result[A]) SeqResult[A] {
-	return itereither.FromEither(e)
-}
+func FromEither[A any](e Result[A]) SeqResult[A] { _ = "STUB: not implemented"; return nil }
 
 func FromOption[A any](onNone Lazy[error]) Kleisli[O.Option[A], A] {
-	return itereither.FromOption[A](onNone)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainOptionK[A, B any](onNone Lazy[error]) func(O.Kleisli[A, B]) Operator[A, B] {
-	return itereither.ChainOptionK[A, B](onNone)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainSeqK[A, B any](ma SeqResult[A], f iter.Kleisli[A, B]) SeqResult[B] {
-	return itereither.MonadChainSeqK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainSeqK[A, B any](f iter.Kleisli[A, B]) Operator[A, B] {
-	return itereither.ChainSeqK[error](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadMergeMapSeqK[A, B any](ma SeqResult[A], f iter.Kleisli[A, B]) SeqResult[B] {
-	return itereither.MonadMergeMapSeqK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MergeMapSeqK[A, B any](f iter.Kleisli[A, B]) Operator[A, B] {
-	return itereither.MergeMapSeqK[error](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromSeq creates a SeqResult from a Seq instance, invoking Seq for each invocation of SeqResult
-func FromSeq[A any](mr Seq[A]) SeqResult[A] {
-	return itereither.FromSeq[error](mr)
-}
+func FromSeq[A any](mr Seq[A]) SeqResult[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap applies a function to the value inside a successful SeqResult, leaving errors unchanged.
 //
@@ -266,7 +249,8 @@ func FromSeq[A any](mr Seq[A]) SeqResult[A] {
 //
 // Where R(x) represents Right(x) and L(e) represents Left(e).
 func MonadMap[A, B any](fa SeqResult[A], f func(A) B) SeqResult[B] {
-	return itereither.MonadMap(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map returns a function that applies a transformation to the value inside a successful SeqResult.
@@ -278,19 +262,13 @@ func MonadMap[A, B any](fa SeqResult[A], f func(A) B) SeqResult[B] {
 //	Output: ---R(2)---R(4)---L(e)---R(6)---|
 //
 // Where R(x) represents Right(x) and L(e) represents Left(e).
-func Map[A, B any](f func(A) B) Operator[A, B] {
-	return itereither.Map[error](f)
-}
+func Map[A, B any](f func(A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadMapTo replaces the value inside a successful SeqResult with a constant value
-func MonadMapTo[A, B any](fa SeqResult[A], b B) SeqResult[B] {
-	return itereither.MonadMapTo(fa, b)
-}
+func MonadMapTo[A, B any](fa SeqResult[A], b B) SeqResult[B] { _ = "STUB: not implemented"; return nil }
 
 // MapTo returns a function that replaces the value inside a successful SeqResult with a constant value
-func MapTo[A, B any](b B) Operator[A, B] {
-	return itereither.MapTo[error, A](b)
-}
+func MapTo[A, B any](b B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChain sequences two SeqResult computations, where the second depends on the result of the first.
 //
@@ -304,7 +282,8 @@ func MapTo[A, B any](b B) Operator[A, B] {
 // Each Right value is transformed into a sequence, which is then flattened.
 // Left values pass through unchanged and stop further processing.
 func MonadChain[A, B any](fa SeqResult[A], f Kleisli[A, B]) SeqResult[B] {
-	return itereither.MonadChain(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMergeMap sequences two SeqResult computations, where the second depends on the result of the first.
@@ -319,41 +298,40 @@ func MonadChain[A, B any](fa SeqResult[A], f Kleisli[A, B]) SeqResult[B] {
 //
 // Results are interleaved as they become available, rather than waiting for each sequence to complete.
 func MonadMergeMap[A, B any](fa SeqResult[A], f Kleisli[A, B]) SeqResult[B] {
-	return itereither.MonadMergeMap(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain returns a function that sequences two SeqResult computations
-func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] {
-	return itereither.Chain(f)
-}
+func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MergeMap returns a function that sequences two SeqResult computations
-func MergeMap[A, B any](f Kleisli[A, B]) Operator[A, B] {
-	return itereither.MergeMap(f)
-}
+func MergeMap[A, B any](f Kleisli[A, B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 func MonadChainEitherK[A, B any](ma SeqResult[A], f result.Kleisli[A, B]) SeqResult[B] {
-	return itereither.MonadChainEitherK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainEitherK[A, B any](f result.Kleisli[A, B]) Operator[A, B] {
-	return itereither.ChainEitherK(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAp applies a function wrapped in a SeqResult to a value wrapped in a SeqResult
 func MonadAp[B, A any](mab SeqResult[func(A) B], ma SeqResult[A]) SeqResult[B] {
-	return itereither.MonadAp(mab, ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap applies a function wrapped in a SeqResult to a value wrapped in a SeqResult.
 // This is an alias of ApPar which applies the function and value in parallel.
-func Ap[B, A any](ma SeqResult[A]) Operator[func(A) B, B] {
-	return itereither.Ap[B](ma)
-}
+func Ap[B, A any](ma SeqResult[A]) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // Flatten removes one level of nesting from a nested SeqResult
 func Flatten[A any](mma SeqResult[SeqResult[A]]) SeqResult[A] {
-	return itereither.Flatten(mma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMapLeft applies a function to the error value of a failed SeqResult, leaving successful values unchanged.
@@ -366,13 +344,12 @@ func Flatten[A any](mma SeqResult[SeqResult[A]]) SeqResult[A] {
 //
 // Where R(x) represents Right(x) and L(e) represents Left(e).
 func MonadMapLeft[A any](fa SeqResult[A], f Endomorphism[error]) SeqResult[A] {
-	return itereither.MonadMapLeft(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MapLeft returns a function that applies a transformation to the error value of a failed SeqResult
-func MapLeft[A any](f Endomorphism[error]) Operator[A, A] {
-	return itereither.MapLeft[A](f)
-}
+func MapLeft[A any](f Endomorphism[error]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadBiMap applies one function to the error value and another to the success value of a SeqResult.
 //
@@ -384,138 +361,153 @@ func MapLeft[A any](f Endomorphism[error]) Operator[A, A] {
 //
 // Both Left and Right values are transformed according to their respective functions.
 func MonadBiMap[A, B any](fa SeqResult[A], f Endomorphism[error], g func(A) B) SeqResult[B] {
-	return itereither.MonadBiMap(fa, f, g)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BiMap returns a function that maps a pair of functions over the two type arguments of the bifunctor
 func BiMap[A, B any](f Endomorphism[error], g func(A) B) Operator[A, B] {
-	return itereither.BiMap(f, g)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Fold converts a SeqResult into a Seq by providing handlers for both the error and success cases
 func Fold[A, B any](onLeft iter.Kleisli[error, B], onRight iter.Kleisli[A, B]) func(SeqResult[A]) Seq[B] {
-	return itereither.Fold(onLeft, onRight)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetOrElse extracts the value from a successful SeqResult or computes a default value from the error
 func GetOrElse[A any](onLeft iter.Kleisli[error, A]) func(SeqResult[A]) Seq[A] {
-	return itereither.GetOrElse(onLeft)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetOrElseOf extracts the value from a successful SeqResult or computes a default value from the error
 func GetOrElseOf[A any](onLeft func(error) A) func(SeqResult[A]) Seq[A] {
-	return itereither.GetOrElseOf(onLeft)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainTo sequences two SeqResult computations, discarding the result of the first
 func MonadChainTo[A, B any](fa SeqResult[A], fb SeqResult[B]) SeqResult[B] {
-	return itereither.MonadChainTo(fa, fb)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainTo returns a function that sequences two SeqResult computations, discarding the result of the first
-func ChainTo[A, B any](fb SeqResult[B]) Operator[A, B] {
-	return itereither.ChainTo[A](fb)
-}
+func ChainTo[A, B any](fb SeqResult[B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainToSeq sequences a SeqResult with a Seq, discarding the result of the first
 func MonadChainToSeq[A, B any](fa SeqResult[A], fb Seq[B]) SeqResult[B] {
-	return itereither.MonadChainToSeq(fa, fb)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainToSeq returns a function that sequences a SeqResult with a Seq, discarding the result of the first
-func ChainToSeq[A, B any](fb Seq[B]) Operator[A, B] {
-	return itereither.ChainToSeq[error, A](fb)
-}
+func ChainToSeq[A, B any](fb Seq[B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainFirst executes a side-effecting SeqResult computation but returns the original value
 func MonadChainFirst[A, B any](ma SeqResult[A], f Kleisli[A, B]) SeqResult[A] {
-	return itereither.MonadChainFirst(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTap is an alias for MonadChainFirst, executing a side effect while preserving the original value
 func MonadTap[A, B any](ma SeqResult[A], f Kleisli[A, B]) SeqResult[A] {
-	return itereither.MonadTap(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirst returns a function that executes a side-effecting SeqResult computation but returns the original value
-func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] {
-	return itereither.ChainFirst(f)
-}
+func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Tap is an alias for ChainFirst, executing a side effect while preserving the original value
-func Tap[A, B any](f Kleisli[A, B]) Operator[A, A] {
-	return itereither.Tap(f)
-}
+func Tap[A, B any](f Kleisli[A, B]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainFirstEitherK executes a side-effecting Result computation but returns the original SeqResult value
 func MonadChainFirstEitherK[A, B any](ma SeqResult[A], f either.Kleisli[error, A, B]) SeqResult[A] {
-	return itereither.MonadChainFirstEitherK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstEitherK returns a function that executes a side-effecting Result computation but returns the original value
 func ChainFirstEitherK[A, B any](f either.Kleisli[error, A, B]) Operator[A, A] {
-	return itereither.ChainFirstEitherK(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainFirstResultK executes a side-effecting Result computation but returns the original SeqResult value
 func MonadChainFirstResultK[A, B any](ma SeqResult[A], f result.Kleisli[A, B]) SeqResult[A] {
-	return itereither.MonadChainFirstEitherK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstResultK returns a function that executes a side-effecting Result computation but returns the original value
 func ChainFirstResultK[A, B any](f result.Kleisli[A, B]) Operator[A, A] {
-	return itereither.ChainFirstEitherK(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMergeMapFirstEitherK executes a side-effecting Result computation but returns the original SeqResult value
 func MonadMergeMapFirstEitherK[A, B any](ma SeqResult[A], f either.Kleisli[error, A, B]) SeqResult[A] {
-	return itereither.MonadMergeMapFirstEitherK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MergeMapFirstEitherK returns a function that executes a side-effecting Result computation but returns the original value
 func MergeMapFirstEitherK[A, B any](f either.Kleisli[error, A, B]) Operator[A, A] {
-	return itereither.MergeMapFirstEitherK(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMergeMapFirstResultK executes a side-effecting Result computation but returns the original SeqResult value
 func MonadMergeMapFirstResultK[A, B any](ma SeqResult[A], f result.Kleisli[A, B]) SeqResult[A] {
-	return itereither.MonadMergeMapFirstEitherK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MergeMapFirstResultK returns a function that executes a side-effecting Result computation but returns the original value
 func MergeMapFirstResultK[A, B any](f result.Kleisli[A, B]) Operator[A, A] {
-	return itereither.MergeMapFirstEitherK(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTapEitherK is an alias for MonadChainFirstEitherK, executing a Result side effect while preserving the original value
 func MonadTapEitherK[A, B any](ma SeqResult[A], f either.Kleisli[error, A, B]) SeqResult[A] {
-	return itereither.MonadTapEitherK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TapEitherK is an alias for ChainFirstEitherK, executing a Result side effect while preserving the original value
 func TapEitherK[A, B any](f either.Kleisli[error, A, B]) Operator[A, A] {
-	return itereither.TapEitherK(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTapResultK is an alias for MonadChainFirstEitherK, executing a Result side effect while preserving the original value
 func MonadTapResultK[A, B any](ma SeqResult[A], f result.Kleisli[A, B]) SeqResult[A] {
-	return itereither.MonadTapEitherK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TapResultK is an alias for ChainFirstEitherK, executing a Result side effect while preserving the original value
 func TapResultK[A, B any](f result.Kleisli[A, B]) Operator[A, A] {
-	return itereither.TapEitherK(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFold eliminates a SeqResult by providing handlers for both error and success cases, returning a Seq
 func MonadFold[A, B any](ma SeqResult[A], onLeft iter.Kleisli[error, B], onRight iter.Kleisli[A, B]) Seq[B] {
-	return itereither.MonadFold(ma, onLeft, onRight)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WithResource constructs a function that safely manages a resource with automatic cleanup.
 // It creates a resource, operates on it, and ensures the resource is released even if an error occurs.
 func WithResource[A, R, ANY any](onCreate SeqResult[R], onRelease Kleisli[R, ANY]) Kleisli[Kleisli[R, A], A] {
-	return itereither.WithResource[A](onCreate, onRelease)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAlt provides an alternative SeqResult computation if the first one fails.
@@ -529,23 +521,21 @@ func WithResource[A, R, ANY any](onCreate SeqResult[R], onRelease Kleisli[R, ANY
 // When a Left is encountered, it's replaced with values from the second sequence.
 // Right values from the first sequence pass through unchanged.
 func MonadAlt[A any](first SeqResult[A], second Lazy[SeqResult[A]]) SeqResult[A] {
-	return itereither.MonadAlt(first, second)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Alt returns a function that provides an alternative SeqResult computation if the first one fails
-func Alt[A any](second Lazy[SeqResult[A]]) Operator[A, A] {
-	return itereither.Alt(second)
-}
+func Alt[A any](second Lazy[SeqResult[A]]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadFlap applies a value to a function wrapped in a SeqResult
 func MonadFlap[B, A any](fab SeqResult[func(A) B], a A) SeqResult[B] {
-	return itereither.MonadFlap(fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flap returns a function that applies a value to a function wrapped in a SeqResult
-func Flap[B, A any](a A) Operator[func(A) B, B] {
-	return itereither.Flap[error, B](a)
-}
+func Flap[B, A any](a A) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainLeft chains a computation on the left (error) side of a SeqResult.
 // If the input is a Left value, it applies the function f to transform the error and potentially
@@ -576,7 +566,8 @@ func Flap[B, A any](a A) Operator[func(A) B, B] {
 //	    },
 //	)
 func MonadChainLeft[A any](fa SeqResult[A], f Kleisli[error, A]) SeqResult[A] {
-	return itereither.MonadChainLeft(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainLeft is the curried version of MonadChainLeft.
@@ -607,9 +598,7 @@ func MonadChainLeft[A any](fa SeqResult[A], f Kleisli[error, A]) SeqResult[A] {
 //	    Left[int](errors.New("network timeout")),
 //	    recoverFromNetworkError,
 //	)
-func ChainLeft[A any](f Kleisli[error, A]) Operator[A, A] {
-	return itereither.ChainLeft(f)
-}
+func ChainLeft[A any](f Kleisli[error, A]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainFirstLeft chains a computation on the left (error) side but always returns the original error.
 // If the input is a Left value, it applies the function f to the error and executes the resulting computation,
@@ -638,12 +627,14 @@ func ChainLeft[A any](f Kleisli[error, A]) Operator[A, A] {
 //	)
 //	// result will always be Left(error: "database error"), even though f returns Right
 func MonadChainFirstLeft[A, B any](ma SeqResult[A], f Kleisli[error, B]) SeqResult[A] {
-	return itereither.MonadChainFirstLeft(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MonadTapLeft[A, B any](ma SeqResult[A], f Kleisli[error, B]) SeqResult[A] {
-	return itereither.MonadTapLeft(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstLeft is the curried version of MonadChainFirstLeft.
@@ -673,13 +664,12 @@ func MonadTapLeft[A, B any](ma SeqResult[A], f Kleisli[error, B]) SeqResult[A] {
 //	)
 //	// result is always Left(error: "validation failed"), even though f returns Right
 func ChainFirstLeft[A, B any](f Kleisli[error, B]) Operator[A, A] {
-	return itereither.ChainFirstLeft[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
-func TapLeft[A, B any](f Kleisli[error, B]) Operator[A, A] {
-	return itereither.TapLeft[A](f)
-}
+func TapLeft[A, B any](f Kleisli[error, B]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // OrElse recovers from a Left (error) by providing an alternative computation.
 // If the SeqResult is Right, it returns the value unchanged.
@@ -704,9 +694,7 @@ func TapLeft[A, B any](f Kleisli[error, B]) Operator[A, A] {
 //	result := recover(Right(42)) // Right(42) - unchanged
 //
 //go:inline
-func OrElse[A any](onLeft Kleisli[error, A]) Operator[A, A] {
-	return itereither.OrElse(onLeft)
-}
+func OrElse[A any](onLeft Kleisli[error, A]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadReduce reduces a SeqResult to a single Result value by applying a function to each
 // Right element and an accumulator, starting with an initial value. If any Left is encountered,
@@ -755,7 +743,8 @@ func OrElse[A any](onLeft Kleisli[error, A]) Operator[A, A] {
 //
 //go:inline
 func MonadReduce[A, B any](fa SeqResult[A], f func(B, A) B, initial B) IOResult[B] {
-	return itereither.MonadReduce(fa, f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Reduce returns a function that reduces a SeqResult to a single Result value.
@@ -789,7 +778,8 @@ func MonadReduce[A, B any](fa SeqResult[A], f func(B, A) B, initial B) IOResult[
 //	result := resultIO()
 //	// returns: Right(6)
 func Reduce[A, B any](f func(B, A) B, initial B) func(SeqResult[A]) IOResult[B] {
-	return itereither.Reduce[error](f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Collect materializes a SeqResult into a Result containing a slice.
@@ -844,6 +834,4 @@ func Reduce[A, B any](f func(B, A) B, initial B) func(SeqResult[A]) IOResult[B] 
 //   - MonadReduce: Reduces a SeqResult to a single value
 //   - Fold: Converts SeqResult to Seq by handling both cases
 //   - GetOrElse: Extracts value or provides default
-func Collect[T any](fa SeqResult[T]) IOResult[[]T] {
-	return itereither.Collect(fa)
-}
+func Collect[T any](fa SeqResult[T]) IOResult[[]T] { _ = "STUB: not implemented"; return nil }

@@ -17,8 +17,6 @@ package stateio
 
 import (
 	"github.com/IBM/fp-go/v2/eq"
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/io"
 )
 
 // Eq constructs an equality checker for StateIO values.
@@ -36,11 +34,8 @@ import (
 //	areEqual := eqStateIO(initialState).Equals(stateIO1, stateIO2)
 func Eq[
 	S, A any](eqr eq.Eq[IO[Pair[S, A]]]) func(S) eq.Eq[StateIO[S, A]] {
-	return func(s S) eq.Eq[StateIO[S, A]] {
-		return eq.FromEquals(func(l, r StateIO[S, A]) bool {
-			return eqr.Equals(l(s), r(s))
-		})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromStrictEquals constructs an equality checker for StateIO values where both
@@ -57,8 +52,6 @@ func Eq[
 //	areEqual := eqStateIO(initialState).Equals(stateIO1, stateIO2)
 func FromStrictEquals[
 	S, A comparable]() func(S) eq.Eq[StateIO[S, A]] {
-	return function.Pipe1(
-		io.FromStrictEquals[Pair[S, A]](),
-		Eq[S, A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

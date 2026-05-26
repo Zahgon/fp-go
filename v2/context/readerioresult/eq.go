@@ -19,7 +19,6 @@ import (
 	"context"
 
 	"github.com/IBM/fp-go/v2/eq"
-	RIOE "github.com/IBM/fp-go/v2/readerioeither"
 )
 
 // Eq implements the equals predicate for values contained in the [ReaderIOResult] monad.
@@ -42,5 +41,6 @@ import (
 //
 //go:inline
 func Eq[A any](eq eq.Eq[Either[A]]) func(context.Context) eq.Eq[ReaderIOResult[A]] {
-	return RIOE.Eq[context.Context](eq)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,24 +16,13 @@
 package option
 
 import (
-	F "github.com/IBM/fp-go/function"
 	M "github.com/IBM/fp-go/monoid"
 	S "github.com/IBM/fp-go/semigroup"
 )
 
 func Semigroup[A any]() func(S.Semigroup[A]) S.Semigroup[Option[A]] {
-	return func(s S.Semigroup[A]) S.Semigroup[Option[A]] {
-		concat := s.Concat
-		return S.MakeSemigroup(
-			func(x, y Option[A]) Option[A] {
-				return MonadFold(x, F.Constant(y), func(left A) Option[A] {
-					return MonadFold(y, F.Constant(x), func(right A) Option[A] {
-						return Some(concat(left, right))
-					})
-				})
-			},
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monoid returning the left-most non-`None` value. If both operands are `Some`s then the inner values are
@@ -46,27 +35,15 @@ func Semigroup[A any]() func(S.Semigroup[A]) S.Semigroup[Option[A]] {
 // | none    | some(b) | some(b)            |
 // | some(a) | some(b) | some(concat(a, b)) |
 func Monoid[A any]() func(S.Semigroup[A]) M.Monoid[Option[A]] {
-	sg := Semigroup[A]()
-	return func(s S.Semigroup[A]) M.Monoid[Option[A]] {
-		return M.MakeMonoid(sg(s).Concat, None[A]())
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AlternativeMonoid is the alternative [Monoid] for an [Option]
 func AlternativeMonoid[A any](m M.Monoid[A]) M.Monoid[Option[A]] {
-	return M.AlternativeMonoid(
-		Of[A],
-		MonadMap[A, func(A) A],
-		MonadAp[A, A],
-		MonadAlt[A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltMonoid is the alternative [Monoid] for an [Option]
-func AltMonoid[A any]() M.Monoid[Option[A]] {
-	return M.AltMonoid(
-		None[A],
-		MonadAlt[A],
-	)
-}
+func AltMonoid[A any]() M.Monoid[Option[A]] { _ = "STUB: not implemented"; return nil }

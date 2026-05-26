@@ -17,11 +17,10 @@ package readerioeither
 
 import (
 	"context"
-
-	G "github.com/IBM/fp-go/readerioeither/generic"
 )
 
 // WithLock executes the provided IO operation in the scope of a lock
 func WithLock[R, E, A any](lock func() context.CancelFunc) func(fa ReaderIOEither[R, E, A]) ReaderIOEither[R, E, A] {
-	return G.WithLock[ReaderIOEither[R, E, A]](lock)
+	_ = "STUB: not implemented"
+	return nil
 }

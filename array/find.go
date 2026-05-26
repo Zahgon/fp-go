@@ -16,46 +16,53 @@
 package array
 
 import (
-	G "github.com/IBM/fp-go/array/generic"
 	O "github.com/IBM/fp-go/option"
 )
 
 // FindFirst finds the first element which satisfies a predicate (or a refinement) function
 func FindFirst[A any](pred func(A) bool) func([]A) O.Option[A] {
-	return G.FindFirst[[]A](pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindFirstWithIndex finds the first element which satisfies a predicate (or a refinement) function
 func FindFirstWithIndex[A any](pred func(int, A) bool) func([]A) O.Option[A] {
-	return G.FindFirstWithIndex[[]A](pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindFirstMap finds the first element returned by an [O.Option] based selector function
 func FindFirstMap[A, B any](sel func(A) O.Option[B]) func([]A) O.Option[B] {
-	return G.FindFirstMap[[]A](sel)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindFirstMapWithIndex finds the first element returned by an [O.Option] based selector function
 func FindFirstMapWithIndex[A, B any](sel func(int, A) O.Option[B]) func([]A) O.Option[B] {
-	return G.FindFirstMapWithIndex[[]A](sel)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindLast finds the Last element which satisfies a predicate (or a refinement) function
 func FindLast[A any](pred func(A) bool) func([]A) O.Option[A] {
-	return G.FindLast[[]A](pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindLastWithIndex finds the Last element which satisfies a predicate (or a refinement) function
 func FindLastWithIndex[A any](pred func(int, A) bool) func([]A) O.Option[A] {
-	return G.FindLastWithIndex[[]A](pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindLastMap finds the Last element returned by an [O.Option] based selector function
 func FindLastMap[A, B any](sel func(A) O.Option[B]) func([]A) O.Option[B] {
-	return G.FindLastMap[[]A](sel)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindLastMapWithIndex finds the Last element returned by an [O.Option] based selector function
 func FindLastMapWithIndex[A, B any](sel func(int, A) O.Option[B]) func([]A) O.Option[B] {
-	return G.FindLastMapWithIndex[[]A](sel)
+	_ = "STUB: not implemented"
+	return nil
 }

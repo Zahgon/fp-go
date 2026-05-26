@@ -25,8 +25,6 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
-	FC "github.com/IBM/fp-go/v2/internal/functor"
 	T "github.com/IBM/fp-go/v2/tuple"
 )
 
@@ -36,33 +34,36 @@ import (
 //
 // Deprecated:
 func MakeReader[GA ~func(R) A, R, A any](r GA) GA {
-	return r
+	_ = "STUB: not implemented"
+
+	// Ask reads the current context
+	//
+	// Deprecated:
+	return *new(GA)
 }
 
-// Ask reads the current context
-//
-// Deprecated:
-func Ask[GR ~func(R) R, R any]() GR {
-	return MakeReader(F.Identity[R])
-}
+func Ask[GR ~func(R) R, R any]() GR { _ = "STUB: not implemented"; return *new(GR) }
 
 // Asks projects a value from the global context in a Reader
 //
 // Deprecated:
 func Asks[GA ~func(R) A, R, A any](f GA) GA {
-	return MakeReader(f)
+	_ = "STUB: not implemented"
+	return *
+
+	// Deprecated:
+	new(GA)
 }
 
-// Deprecated:
 func AsksReader[GA ~func(R) A, R, A any](f func(R) GA) GA {
-	return MakeReader(func(r R) A {
-		return f(r)(r)
-	})
+	_ = "STUB: not implemented"
+	return *new(GA)
 }
 
 // Deprecated:
 func MonadMap[GA ~func(E) A, GB ~func(E) B, E, A, B any](fa GA, f func(A) B) GB {
-	return MakeReader(F.Flow2(fa, f))
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // Map can be used to turn functions `func(A)B` into functions `(fa F[A])F[B]` whose argument and return types
@@ -70,73 +71,74 @@ func MonadMap[GA ~func(E) A, GB ~func(E) B, E, A, B any](fa GA, f func(A) B) GB 
 //
 // Deprecated:
 func Map[GA ~func(E) A, GB ~func(E) B, E, A, B any](f func(A) B) func(GA) GB {
-	return F.Bind2nd(MonadMap[GA, GB, E, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Deprecated:
 func MonadAp[GA ~func(R) A, GB ~func(R) B, GAB ~func(R) func(A) B, R, A, B any](fab GAB, fa GA) GB {
-	return MakeReader(func(r R) B {
-		return fab(r)(fa(r))
-	})
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // Ap applies a function to an argument under a type constructor.
 //
 // Deprecated:
 func Ap[GA ~func(R) A, GB ~func(R) B, GAB ~func(R) func(A) B, R, A, B any](fa GA) func(GAB) GB {
-	return F.Bind2nd(MonadAp[GA, GB, GAB, R, A, B], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Deprecated:
 func Of[GA ~func(R) A, R, A any](a A) GA {
-	return F.Constant1[R](a)
+	_ = "STUB: not implemented"
+	return *
+
+	// Deprecated:
+	new(GA)
 }
 
-// Deprecated:
 func MonadChain[GA ~func(R) A, GB ~func(R) B, R, A, B any](ma GA, f func(A) GB) GB {
-	return MakeReader(func(r R) B {
-		return f(ma(r))(r)
-	})
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // Chain composes computations in sequence, using the return value of one computation to determine the next computation.
 //
 // Deprecated:
 func Chain[GA ~func(R) A, GB ~func(R) B, R, A, B any](f func(A) GB) func(GA) GB {
-	return F.Bind2nd(MonadChain[GA, GB, R, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Deprecated:
 func Flatten[GA ~func(R) A, GGA ~func(R) GA, R, A any](mma GGA) GA {
-	return MonadChain(mma, F.Identity[GA])
+	_ = "STUB: not implemented"
+	return *new(GA)
 }
 
 // Deprecated:
 func Compose[AB ~func(A) B, BC ~func(B) C, AC ~func(A) C, A, B, C any](ab AB) func(BC) AC {
-	return func(bc BC) AC {
-		return F.Flow2(ab, bc)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Deprecated:
 func First[GAB ~func(A) B, GABC ~func(T.Tuple2[A, C]) T.Tuple2[B, C], A, B, C any](pab GAB) GABC {
-	return MakeReader(func(tac T.Tuple2[A, C]) T.Tuple2[B, C] {
-		return T.MakeTuple2(pab(tac.F1), tac.F2)
-	})
+	_ = "STUB: not implemented"
+	return *new(GABC)
 }
 
 // Deprecated:
 func Second[GBC ~func(B) C, GABC ~func(T.Tuple2[A, B]) T.Tuple2[A, C], A, B, C any](pbc GBC) GABC {
-	return MakeReader(func(tab T.Tuple2[A, B]) T.Tuple2[A, C] {
-		return T.MakeTuple2(tab.F1, pbc(tab.F2))
-	})
+	_ = "STUB: not implemented"
+	return *new(GABC)
 }
 
 // Deprecated:
 func Promap[GA ~func(E) A, GB ~func(D) B, E, A, D, B any](f func(D) E, g func(A) B) func(GA) GB {
-	return func(fea GA) GB {
-		return MakeReader(F.Flow3(f, fea, g))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Local changes the value of the local context during the execution of the action `ma` (similar to `Contravariant`'s
@@ -144,17 +146,18 @@ func Promap[GA ~func(E) A, GB ~func(D) B, E, A, D, B any](f func(D) E, g func(A)
 //
 // Deprecated:
 func Local[GA1 ~func(R1) A, GA2 ~func(R2) A, R2, R1, A any](f func(R2) R1) func(GA1) GA2 {
-	return func(r1 GA1) GA2 {
-		return F.Flow2(f, r1)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Deprecated:
 func MonadFlap[GAB ~func(R) func(A) B, GB ~func(R) B, R, A, B any](fab GAB, a A) GB {
-	return FC.MonadFlap(MonadMap[GAB, GB], fab, a)
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // Deprecated:
 func Flap[GAB ~func(R) func(A) B, GB ~func(R) B, R, A, B any](a A) func(GAB) GB {
-	return FC.Flap(Map[GAB, GB], a)
+	_ = "STUB: not implemented"
+	return nil
 }

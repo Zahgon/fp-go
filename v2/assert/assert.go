@@ -97,14 +97,9 @@
 package assert
 
 import (
-	"fmt"
-	"testing"
-
-	"github.com/IBM/fp-go/v2/boolean"
 	"github.com/IBM/fp-go/v2/eq"
 	"github.com/IBM/fp-go/v2/option"
 	"github.com/IBM/fp-go/v2/reader"
-	"github.com/IBM/fp-go/v2/result"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -128,11 +123,8 @@ var (
 // Returns:
 //   - A Kleisli function that takes the actual value and returns a Reader
 func wrap1[T any](wrapped func(t assert.TestingT, expected, actual any, msgAndArgs ...any) bool, expected T, msgAndArgs ...any) Kleisli[T] {
-	return func(actual T) Reader {
-		return func(t *testing.T) bool {
-			return wrapped(t, expected, actual, msgAndArgs...)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // NotEqual tests if the expected and the actual values are not equal.
@@ -147,9 +139,7 @@ func wrap1[T any](wrapped func(t assert.TestingT, expected, actual any, msgAndAr
 //	    assert.NotEqual(10)(value)(t)  // Passes: 42 != 10
 //	    assert.NotEqual(42)(value)(t)  // Fails: 42 == 42
 //	}
-func NotEqual[T any](expected T) Kleisli[T] {
-	return wrap1(assert.NotEqual, expected)
-}
+func NotEqual[T any](expected T) Kleisli[T] { _ = "STUB: not implemented"; return nil }
 
 // Equal tests if the expected and the actual values are equal.
 //
@@ -173,9 +163,7 @@ func NotEqual[T any](expected T) Kleisli[T] {
 //	    })
 //	    assertions(t)
 //	}
-func Equal[T any](expected T) Kleisli[T] {
-	return wrap1(assert.Equal, expected)
-}
+func Equal[T any](expected T) Kleisli[T] { _ = "STUB: not implemented"; return nil }
 
 // ArrayNotEmpty checks if an array is not empty.
 //
@@ -188,11 +176,7 @@ func Equal[T any](expected T) Kleisli[T] {
 //	    empty := []int{}
 //	    assert.ArrayNotEmpty(empty)(t)  // Fails
 //	}
-func ArrayNotEmpty[T any](arr []T) Reader {
-	return func(t *testing.T) bool {
-		return assert.NotEmpty(t, arr)
-	}
-}
+func ArrayNotEmpty[T any](arr []T) Reader { _ = "STUB: not implemented"; return *new(Reader) }
 
 // ArrayEmpty checks if an array is empty.
 //
@@ -207,11 +191,7 @@ func ArrayNotEmpty[T any](arr []T) Reader {
 //	    numbers := []int{1, 2, 3}
 //	    assert.ArrayEmpty(numbers)(t)  // Fails
 //	}
-func ArrayEmpty[T any](arr []T) Reader {
-	return func(t *testing.T) bool {
-		return assert.Empty(t, arr)
-	}
-}
+func ArrayEmpty[T any](arr []T) Reader { _ = "STUB: not implemented"; return *new(Reader) }
 
 // RecordNotEmpty checks if a map is not empty.
 //
@@ -225,9 +205,8 @@ func ArrayEmpty[T any](arr []T) Reader {
 //	    assert.RecordNotEmpty(empty)(t)  // Fails
 //	}
 func RecordNotEmpty[K comparable, T any](mp map[K]T) Reader {
-	return func(t *testing.T) bool {
-		return assert.NotEmpty(t, mp)
-	}
+	_ = "STUB: not implemented"
+	return *new(Reader)
 }
 
 // RecordEmpty checks if a map is empty.
@@ -244,9 +223,8 @@ func RecordNotEmpty[K comparable, T any](mp map[K]T) Reader {
 //	    assert.RecordEmpty(config)(t)  // Fails
 //	}
 func RecordEmpty[K comparable, T any](mp map[K]T) Reader {
-	return func(t *testing.T) bool {
-		return assert.Empty(t, mp)
-	}
+	_ = "STUB: not implemented"
+	return *new(Reader)
 }
 
 // StringNotEmpty checks if a string is not empty.
@@ -260,11 +238,7 @@ func RecordEmpty[K comparable, T any](mp map[K]T) Reader {
 //	    empty := ""
 //	    assert.StringNotEmpty(empty)(t)  // Fails
 //	}
-func StringNotEmpty(s string) Reader {
-	return func(t *testing.T) bool {
-		return assert.NotEmpty(t, s)
-	}
-}
+func StringNotEmpty(s string) Reader { _ = "STUB: not implemented"; return *new(Reader) }
 
 // ArrayLength tests if an array has the expected length.
 //
@@ -275,13 +249,7 @@ func StringNotEmpty(s string) Reader {
 //	    assert.ArrayLength[int](5)(numbers)(t)  // Passes
 //	    assert.ArrayLength[int](3)(numbers)(t)  // Fails
 //	}
-func ArrayLength[T any](expected int) Kleisli[[]T] {
-	return func(actual []T) Reader {
-		return func(t *testing.T) bool {
-			return assert.Len(t, actual, expected)
-		}
-	}
-}
+func ArrayLength[T any](expected int) Kleisli[[]T] { _ = "STUB: not implemented"; return nil }
 
 // RecordLength tests if a map has the expected length.
 //
@@ -293,11 +261,8 @@ func ArrayLength[T any](expected int) Kleisli[[]T] {
 //	    assert.RecordLength[string, string](3)(config)(t)  // Fails
 //	}
 func RecordLength[K comparable, T any](expected int) Kleisli[map[K]T] {
-	return func(actual map[K]T) Reader {
-		return func(t *testing.T) bool {
-			return assert.Len(t, actual, expected)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // StringLength tests if a string has the expected length.
@@ -310,11 +275,8 @@ func RecordLength[K comparable, T any](expected int) Kleisli[map[K]T] {
 //	    assert.StringLength[any, any](10)(message)(t)  // Fails
 //	}
 func StringLength[K comparable, T any](expected int) Kleisli[string] {
-	return func(actual string) Reader {
-		return func(t *testing.T) bool {
-			return assert.Len(t, actual, expected)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // NoError validates that there is no error.
@@ -333,11 +295,7 @@ func StringLength[K comparable, T any](expected int) Kleisli[string] {
 //	    })
 //	    assert.Success(result)(t)  // Uses NoError internally
 //	}
-func NoError(err error) Reader {
-	return func(t *testing.T) bool {
-		return assert.NoError(t, err)
-	}
-}
+func NoError(err error) Reader { _ = "STUB: not implemented"; return *new(Reader) }
 
 // Error validates that there is an error.
 //
@@ -352,11 +310,7 @@ func NoError(err error) Reader {
 //	    err2 := validateInput("valid")
 //	    assert.Error(err2)(t)  // Fails if err2 is nil
 //	}
-func Error(err error) Reader {
-	return func(t *testing.T) bool {
-		return assert.Error(t, err)
-	}
-}
+func Error(err error) Reader { _ = "STUB: not implemented"; return *new(Reader) }
 
 // Success checks if a [Result] represents success.
 //
@@ -371,9 +325,7 @@ func Error(err error) Reader {
 //	    failedRes := result.Error[int](errors.New("failed"))
 //	    assert.Success(failedRes)(t)  // Fails
 //	}
-func Success[T any](res Result[T]) Reader {
-	return NoError(result.ToError(res))
-}
+func Success[T any](res Result[T]) Reader { _ = "STUB: not implemented"; return *new(Reader) }
 
 // Failure checks if a [Result] represents failure.
 //
@@ -388,9 +340,7 @@ func Success[T any](res Result[T]) Reader {
 //	    successRes := result.Of[int](42)
 //	    assert.Failure(successRes)(t)  // Fails
 //	}
-func Failure[T any](res Result[T]) Reader {
-	return Error(result.ToError(res))
-}
+func Failure[T any](res Result[T]) Reader { _ = "STUB: not implemented"; return *new(Reader) }
 
 // ArrayContains tests if a value is contained in an array.
 //
@@ -404,13 +354,7 @@ func Failure[T any](res Result[T]) Reader {
 //	    names := []string{"Alice", "Bob", "Charlie"}
 //	    assert.ArrayContains("Bob")(names)(t)  // Passes
 //	}
-func ArrayContains[T any](expected T) Kleisli[[]T] {
-	return func(actual []T) Reader {
-		return func(t *testing.T) bool {
-			return assert.Contains(t, actual, expected)
-		}
-	}
-}
+func ArrayContains[T any](expected T) Kleisli[[]T] { _ = "STUB: not implemented"; return nil }
 
 // ContainsKey tests if a key is contained in a map.
 //
@@ -422,11 +366,8 @@ func ArrayContains[T any](expected T) Kleisli[[]T] {
 //	    assert.ContainsKey[int]("maxSize")(config)(t)  // Fails
 //	}
 func ContainsKey[T any, K comparable](expected K) Kleisli[map[K]T] {
-	return func(actual map[K]T) Reader {
-		return func(t *testing.T) bool {
-			return assert.Contains(t, actual, expected)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // NotContainsKey tests if a key is not contained in a map.
@@ -439,11 +380,8 @@ func ContainsKey[T any, K comparable](expected K) Kleisli[map[K]T] {
 //	    assert.NotContainsKey[int]("timeout")(config)(t)  // Fails
 //	}
 func NotContainsKey[T any, K comparable](expected K) Kleisli[map[K]T] {
-	return func(actual map[K]T) Reader {
-		return func(t *testing.T) bool {
-			return assert.NotContains(t, actual, expected)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // That asserts that a particular predicate matches.
@@ -471,16 +409,7 @@ func NotContainsKey[T any, K comparable](expected K) Kleisli[map[K]T] {
 //	    user := User{Age: 25}
 //	    ageIsAdult(user)(t)  // Passes
 //	}
-func That[T any](pred Predicate[T]) Kleisli[T] {
-	return func(a T) Reader {
-		return func(t *testing.T) bool {
-			if pred(a) {
-				return true
-			}
-			return assert.Fail(t, fmt.Sprintf("Preficate %v does not match value %v", pred, a))
-		}
-	}
-}
+func That[T any](pred Predicate[T]) Kleisli[T] { _ = "STUB: not implemented"; return nil }
 
 // AllOf combines multiple assertion Readers into a single Reader that passes
 // only if all assertions pass.
@@ -510,9 +439,7 @@ func That[T any](pred Predicate[T]) Kleisli[T] {
 //	}
 //
 //go:inline
-func AllOf(readers []Reader) Reader {
-	return reader.MonadReduceArrayM(readers, boolean.MonoidAll)
-}
+func AllOf(readers []Reader) Reader { _ = "STUB: not implemented"; return *new(Reader) }
 
 // RunAll executes a map of named test cases, running each as a subtest.
 //
@@ -541,9 +468,7 @@ func AllOf(readers []Reader) Reader {
 //	}
 //
 //go:inline
-func RunAll(testcases map[string]Reader) Reader {
-	return SequenceRecord(testcases)
-}
+func RunAll(testcases map[string]Reader) Reader { _ = "STUB: not implemented"; return *new(Reader) }
 
 // Local transforms a Reader that works on type R1 into a Reader that works on type R2,
 // by providing a function that converts R2 to R1. This allows you to focus a test on a
@@ -581,7 +506,8 @@ func RunAll(testcases map[string]Reader) Reader {
 //
 //go:inline
 func Local[R1, R2 any](f func(R2) R1) func(Kleisli[R1]) Kleisli[R2] {
-	return reader.Local[Reader](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalL is similar to Local but uses a Lens to focus on a specific property.
@@ -622,17 +548,15 @@ func Local[R1, R2 any](f func(R2) R1) func(Kleisli[R1]) Kleisli[R2] {
 //
 //go:inline
 func LocalL[S, T any](l Lens[S, T]) func(Kleisli[T]) Kleisli[S] {
-	return reader.Local[Reader](l.Get)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // fromOptionalGetter is an internal helper that creates an assertion Reader from
 // an optional getter function. It asserts that the optional value is present (Some).
 func fromOptionalGetter[S, T any](getter func(S) option.Option[T], msgAndArgs ...any) Kleisli[S] {
-	return func(s S) Reader {
-		return func(t *testing.T) bool {
-			return assert.True(t, option.IsSome(getter(s)), msgAndArgs...)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromOptional creates an assertion that checks if an Optional can successfully extract a value.
@@ -687,7 +611,8 @@ func fromOptionalGetter[S, T any](getter func(S) option.Option[T], msgAndArgs ..
 //
 //go:inline
 func FromOptional[S, T any](opt Optional[S, T]) reader.Reader[S, Reader] {
-	return fromOptionalGetter(opt.GetOption, "Optional: %s", opt)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromPrism creates an assertion that checks if a Prism can successfully extract a value.
@@ -738,5 +663,6 @@ func FromOptional[S, T any](opt Optional[S, T]) reader.Reader[S, Reader] {
 //
 //go:inline
 func FromPrism[S, T any](p Prism[S, T]) reader.Reader[S, Reader] {
-	return fromOptionalGetter(p.GetOption, "Prism: %s", p)
+	_ = "STUB: not implemented"
+	return nil
 }

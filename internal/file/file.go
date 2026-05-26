@@ -16,7 +16,6 @@
 package file
 
 import (
-	"bytes"
 	"context"
 	"io"
 
@@ -31,22 +30,21 @@ type (
 )
 
 func (rdr *readerWithContext) Read(p []byte) (int, error) {
+	_ = "STUB: not implemented"
 	// check for cancellarion
-	if err := rdr.ctx.Err(); err != nil {
-		return 0, err
-	}
-	// simply dispatch
-	return rdr.delegate.Read(p)
+	return 0, nil
 }
+
+// simply dispatch
 
 // MakeReader creates a context aware reader
 func MakeReader(ctx context.Context, rdr io.Reader) io.Reader {
-	return &readerWithContext{ctx, rdr}
+	_ = "STUB: not implemented"
+	return *new(io.Reader)
 }
 
 // ReadAll reads the content of a reader and allows it to be canceled
 func ReadAll(ctx context.Context, rdr io.Reader) E.Either[error, []byte] {
-	var buffer bytes.Buffer
-	_, err := io.Copy(&buffer, MakeReader(ctx, rdr))
-	return E.TryCatchError(buffer.Bytes(), err)
+	_ = "STUB: not implemented"
+	return nil
 }

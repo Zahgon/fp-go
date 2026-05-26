@@ -1,7 +1,5 @@
 package readerioresult
 
-import "github.com/IBM/fp-go/v2/io"
-
 // ChainConsumer chains a consumer function into a ReaderIOResult computation, discarding the original value.
 // This is useful for performing side effects (like logging or metrics) that consume a value
 // but don't produce a meaningful result. The computation continues with an empty struct.
@@ -28,7 +26,8 @@ import "github.com/IBM/fp-go/v2/io"
 //
 //go:inline
 func ChainConsumer[A any](c Consumer[A]) Operator[A, struct{}] {
-	return ChainIOK(io.FromConsumer(c))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstConsumer chains a consumer function into a ReaderIOResult computation, preserving the original value.
@@ -58,6 +57,4 @@ func ChainConsumer[A any](c Consumer[A]) Operator[A, struct{}] {
 //	)
 //
 //go:inline
-func ChainFirstConsumer[A any](c Consumer[A]) Operator[A, A] {
-	return ChainFirstIOK(io.FromConsumer(c))
-}
+func ChainFirstConsumer[A any](c Consumer[A]) Operator[A, A] { _ = "STUB: not implemented"; return nil }

@@ -16,17 +16,7 @@
 package iso
 
 import (
-	"strings"
 	"time"
-
-	"github.com/IBM/fp-go/v2/array"
-	"github.com/IBM/fp-go/v2/array/nonempty"
-	B "github.com/IBM/fp-go/v2/bytes"
-	"github.com/IBM/fp-go/v2/either"
-	F "github.com/IBM/fp-go/v2/function"
-	N "github.com/IBM/fp-go/v2/number"
-	"github.com/IBM/fp-go/v2/pair"
-	S "github.com/IBM/fp-go/v2/string"
 )
 
 // UTF8String creates an isomorphism between byte slices and UTF-8 strings.
@@ -65,9 +55,7 @@ import (
 // Note: This isomorphism assumes valid UTF-8 encoding. Invalid UTF-8 sequences
 // in the byte slice will be handled according to Go's string conversion rules
 // (typically replaced with the Unicode replacement character U+FFFD).
-func UTF8String() Iso[[]byte, string] {
-	return MakeIso(B.ToString, S.ToBytes)
-}
+func UTF8String() Iso[[]byte, string] { _ = "STUB: not implemented"; return nil }
 
 // lines creates an isomorphism between a slice of strings and a single string
 // with lines separated by the specified separator.
@@ -82,9 +70,7 @@ func UTF8String() Iso[[]byte, string] {
 // Behavior:
 //   - Get direction: Joins the string slice into a single string with separators
 //   - ReverseGet direction: Splits the string by the separator into a slice
-func lines(sep string) Iso[[]string, string] {
-	return MakeIso(S.Join(sep), F.Bind2nd(strings.Split, sep))
-}
+func lines(sep string) Iso[[]string, string] { _ = "STUB: not implemented"; return nil }
 
 // Lines creates an isomorphism between a slice of strings and a single string
 // with newline-separated lines.
@@ -135,61 +121,61 @@ func lines(sep string) Iso[[]string, string] {
 //	text := "a\nb\n"
 //	lines := iso.ReverseGet(text)  // []string{"a", "b", ""}
 func Lines() Iso[[]string, string] {
-	return lines("\n")
+	_ = "STUB: not implemented"
+
+	// UnixMilli creates an isomorphism between Unix millisecond timestamps and time.Time values.
+	// This isomorphism provides bidirectional conversion between int64 milliseconds since
+	// the Unix epoch (January 1, 1970 UTC) and Go's time.Time type.
+	//
+	// Returns:
+	//   - An Iso[int64, time.Time] where:
+	//   - Get: Converts Unix milliseconds (int64) to time.Time
+	//   - ReverseGet: Converts time.Time to Unix milliseconds (int64)
+	//
+	// Behavior:
+	//   - Get direction: Creates a time.Time from milliseconds since Unix epoch
+	//   - ReverseGet direction: Extracts milliseconds since Unix epoch from time.Time
+	//
+	// Example:
+	//
+	//	iso := UnixMilli()
+	//
+	//	// Convert milliseconds to time.Time
+	//	millis := int64(1609459200000)  // 2021-01-01 00:00:00 UTC
+	//	t := iso.Get(millis)
+	//
+	//	// Convert time.Time to milliseconds
+	//	now := time.Now()
+	//	millis := iso.ReverseGet(now)
+	//
+	//	// Round-trip conversion
+	//	original := int64(1234567890000)
+	//	result := iso.ReverseGet(iso.Get(original))  // 1234567890000
+	//
+	// Use cases:
+	//   - Working with APIs that use Unix millisecond timestamps (e.g., JavaScript Date.now())
+	//   - Database storage where timestamps are stored as integers
+	//   - JSON serialization/deserialization of timestamps
+	//   - Converting between different time representations in distributed systems
+	//
+	// Precision notes:
+	//   - Millisecond precision is maintained in both directions
+	//   - Sub-millisecond precision in time.Time is lost when converting to int64
+	//   - The conversion is timezone-aware (time.Time includes location information)
+	//
+	// Example with precision:
+	//
+	//	iso := UnixMilli()
+	//	t := time.Date(2021, 1, 1, 12, 30, 45, 123456789, time.UTC)
+	//	millis := iso.ReverseGet(t)  // Nanoseconds are truncated to milliseconds
+	//	restored := iso.Get(millis)   // Nanoseconds will be 123000000
+	//
+	// Note: This isomorphism uses UTC for the time.Time values. If you need to preserve
+	// timezone information, consider storing it separately or using a different representation.
+	return nil
 }
 
-// UnixMilli creates an isomorphism between Unix millisecond timestamps and time.Time values.
-// This isomorphism provides bidirectional conversion between int64 milliseconds since
-// the Unix epoch (January 1, 1970 UTC) and Go's time.Time type.
-//
-// Returns:
-//   - An Iso[int64, time.Time] where:
-//   - Get: Converts Unix milliseconds (int64) to time.Time
-//   - ReverseGet: Converts time.Time to Unix milliseconds (int64)
-//
-// Behavior:
-//   - Get direction: Creates a time.Time from milliseconds since Unix epoch
-//   - ReverseGet direction: Extracts milliseconds since Unix epoch from time.Time
-//
-// Example:
-//
-//	iso := UnixMilli()
-//
-//	// Convert milliseconds to time.Time
-//	millis := int64(1609459200000)  // 2021-01-01 00:00:00 UTC
-//	t := iso.Get(millis)
-//
-//	// Convert time.Time to milliseconds
-//	now := time.Now()
-//	millis := iso.ReverseGet(now)
-//
-//	// Round-trip conversion
-//	original := int64(1234567890000)
-//	result := iso.ReverseGet(iso.Get(original))  // 1234567890000
-//
-// Use cases:
-//   - Working with APIs that use Unix millisecond timestamps (e.g., JavaScript Date.now())
-//   - Database storage where timestamps are stored as integers
-//   - JSON serialization/deserialization of timestamps
-//   - Converting between different time representations in distributed systems
-//
-// Precision notes:
-//   - Millisecond precision is maintained in both directions
-//   - Sub-millisecond precision in time.Time is lost when converting to int64
-//   - The conversion is timezone-aware (time.Time includes location information)
-//
-// Example with precision:
-//
-//	iso := UnixMilli()
-//	t := time.Date(2021, 1, 1, 12, 30, 45, 123456789, time.UTC)
-//	millis := iso.ReverseGet(t)  // Nanoseconds are truncated to milliseconds
-//	restored := iso.Get(millis)   // Nanoseconds will be 123000000
-//
-// Note: This isomorphism uses UTC for the time.Time values. If you need to preserve
-// timezone information, consider storing it separately or using a different representation.
-func UnixMilli() Iso[int64, time.Time] {
-	return MakeIso(time.UnixMilli, time.Time.UnixMilli)
-}
+func UnixMilli() Iso[int64, time.Time] { _ = "STUB: not implemented"; return nil }
 
 // Add creates an isomorphism that adds a constant value to a number.
 // This isomorphism provides bidirectional conversion by adding a value in one direction
@@ -256,12 +242,7 @@ func UnixMilli() Iso[int64, time.Time] {
 // Note: This isomorphism satisfies the round-trip laws:
 //   - ReverseGet(Get(x)) == x (because (x + n) - n == x)
 //   - Get(ReverseGet(x)) == x (because (x - n) + n == x)
-func Add[T Number](n T) Iso[T, T] {
-	return MakeIso(
-		N.Add(n),
-		N.Sub(n),
-	)
-}
+func Add[T Number](n T) Iso[T, T] { _ = "STUB: not implemented"; return nil }
 
 // Sub creates an isomorphism that subtracts a constant value from a number.
 // This isomorphism provides bidirectional conversion by subtracting a value in one direction
@@ -337,12 +318,7 @@ func Add[T Number](n T) Iso[T, T] {
 // Note: This isomorphism satisfies the round-trip laws:
 //   - ReverseGet(Get(x)) == x (because (x - n) + n == x)
 //   - Get(ReverseGet(x)) == x (because (x + n) - n == x)
-func Sub[T Number](n T) Iso[T, T] {
-	return MakeIso(
-		N.Sub(n),
-		N.Add(n),
-	)
-}
+func Sub[T Number](n T) Iso[T, T] { _ = "STUB: not implemented"; return nil }
 
 // SwapPair creates an isomorphism that swaps the elements of a Pair.
 // This isomorphism provides bidirectional conversion between Pair[A, B] and Pair[B, A],
@@ -415,12 +391,7 @@ func Sub[T Number](n T) Iso[T, T] {
 //
 // Note: SwapPair is self-inverse, meaning applying it twice returns the original value.
 // This makes it particularly useful for symmetric transformations.
-func SwapPair[A, B any]() Iso[Pair[A, B], Pair[B, A]] {
-	return MakeIso(
-		pair.Swap[A, B],
-		pair.Swap[B, A],
-	)
-}
+func SwapPair[A, B any]() Iso[Pair[A, B], Pair[B, A]] { _ = "STUB: not implemented"; return nil }
 
 // SwapEither creates an isomorphism that swaps the type parameters of an Either.
 // This isomorphism provides bidirectional conversion between Either[E, A] and Either[A, E],
@@ -504,12 +475,7 @@ func SwapPair[A, B any]() Iso[Pair[A, B], Pair[B, A]] {
 // Note: SwapEither is self-inverse, meaning applying it twice returns the original value.
 // The swap operation preserves which side (Left/Right) the value is on, only changing
 // the type parameter positions.
-func SwapEither[E, A any]() Iso[Either[E, A], Either[A, E]] {
-	return MakeIso(
-		either.Swap[E, A],
-		either.Swap[A, E],
-	)
-}
+func SwapEither[E, A any]() Iso[Either[E, A], Either[A, E]] { _ = "STUB: not implemented"; return nil }
 
 // ReverseArray creates an isomorphism that reverses the order of elements in a slice.
 // This isomorphism is self-inverse, meaning applying it twice returns the original slice.
@@ -591,12 +557,7 @@ func SwapEither[E, A any]() Iso[Either[E, A], Either[A, E]] {
 //   - Time complexity: O(n) where n is the length of the slice
 //   - Space complexity: O(n) for the new slice
 //   - Both Get and ReverseGet have the same performance characteristics
-func ReverseArray[A any]() Iso[[]A, []A] {
-	return MakeIso(
-		array.Reverse[A],
-		array.Reverse[A],
-	)
-}
+func ReverseArray[A any]() Iso[[]A, []A] { _ = "STUB: not implemented"; return nil }
 
 // Head creates an isomorphism between a single element and a non-empty array containing that element.
 // This isomorphism provides bidirectional conversion between a value and a singleton non-empty array,
@@ -694,9 +655,4 @@ func ReverseArray[A any]() Iso[[]A, []A] {
 //	// If you have a non-empty array with multiple elements
 //	arr := nonempty.From(1, 2, 3, 4, 5)
 //	head := iso.ReverseGet(arr)  // 1 (only the head is extracted)
-func Head[A any]() Iso[A, NonEmptyArray[A]] {
-	return MakeIso(
-		nonempty.Of[A],
-		nonempty.Head[A],
-	)
-}
+func Head[A any]() Iso[A, NonEmptyArray[A]] { _ = "STUB: not implemented"; return nil }

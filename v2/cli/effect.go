@@ -19,10 +19,7 @@ import (
 	"context"
 
 	E "github.com/IBM/fp-go/v2/effect"
-	ET "github.com/IBM/fp-go/v2/either"
 	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/io"
-	R "github.com/IBM/fp-go/v2/result"
 	C "github.com/urfave/cli/v3"
 )
 
@@ -63,17 +60,13 @@ type CommandEffect = E.Effect[*C.Command, F.Void]
 //	    Action: action,
 //	}
 func ToAction(effect CommandEffect) func(context.Context, *C.Command) error {
-	return func(ctx context.Context, cmd *C.Command) error {
-		// Execute the effect: cmd -> ctx -> IO -> Result
-		return F.Pipe3(
-			ctx,
-			effect(cmd),
-			io.Run,
-			// Convert Result[Void] to error
-			ET.Fold(F.Identity[error], F.Constant1[F.Void, error](nil)),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// Execute the effect: cmd -> ctx -> IO -> Result
+
+// Convert Result[Void] to error
 
 // FromAction converts a standard urfave/cli Action function into a CommandEffect.
 // This allows existing cli/v3 action handlers to be lifted into the Effect type.
@@ -100,17 +93,8 @@ func ToAction(effect CommandEffect) func(context.Context, *C.Command) error {
 //	effect := FromAction(standardAction)
 //	// Now can be composed with other Effects
 func FromAction(action func(context.Context, *C.Command) error) CommandEffect {
-	return func(cmd *C.Command) E.Thunk[F.Void] {
-		return func(ctx context.Context) E.IOResult[F.Void] {
-			return func() R.Result[F.Void] {
-				err := action(ctx, cmd)
-				if err != nil {
-					return R.Left[F.Void](err)
-				}
-				return R.Of(F.Void{})
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return *new(CommandEffect)
 }
 
 // MakeCommand creates a new Command with an Effect-based action.
@@ -151,12 +135,8 @@ func MakeCommand(
 	flags []C.Flag,
 	effect CommandEffect,
 ) *C.Command {
-	return &C.Command{
-		Name:   name,
-		Usage:  usage,
-		Flags:  flags,
-		Action: ToAction(effect),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeCommandWithSubcommands creates a new Command with subcommands and an Effect-based action.
@@ -189,11 +169,6 @@ func MakeCommandWithSubcommands(
 	commands []*C.Command,
 	effect CommandEffect,
 ) *C.Command {
-	return &C.Command{
-		Name:     name,
-		Usage:    usage,
-		Flags:    flags,
-		Commands: commands,
-		Action:   ToAction(effect),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

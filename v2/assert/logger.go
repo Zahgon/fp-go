@@ -18,7 +18,6 @@ package assert
 import (
 	"testing"
 
-	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/readerio"
 )
 
@@ -197,11 +196,6 @@ import (
 //   - fmt package format verbs: https://pkg.go.dev/fmt
 //   - ReaderIO pattern: Combines Reader (context dependency) with IO (side effects)
 func Logf[T any](prefix string) func(T) readerio.ReaderIO[*testing.T, Void] {
-	return func(a T) readerio.ReaderIO[*testing.T, Void] {
-		return func(t *testing.T) IO[Void] {
-			return io.FromImpure(func() {
-				t.Logf(prefix, a)
-			})
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

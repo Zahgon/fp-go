@@ -129,16 +129,6 @@ package io
 //
 //	result := fibonacci(FibState{n: 10, prev: 0, curr: 1})() // 55
 func TailRec[A, B any](f Kleisli[A, Trampoline[A, B]]) Kleisli[A, B] {
-	return func(a A) IO[B] {
-		initial := f(a)
-		return func() B {
-			current := initial()
-			for {
-				if current.Landed {
-					return current.Land
-				}
-				current = f(current.Bounce)()
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

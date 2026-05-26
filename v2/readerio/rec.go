@@ -142,19 +142,6 @@ package readerio
 //   - [Ask]: For accessing the environment
 //   - [Asks]: For extracting values from the environment
 func TailRec[R, A, B any](f Kleisli[R, A, Trampoline[A, B]]) Kleisli[R, A, B] {
-	return func(a A) ReaderIO[R, B] {
-		initialReader := f(a)
-		return func(r R) IO[B] {
-			initialB := initialReader(r)
-			return func() B {
-				current := initialB()
-				for {
-					if current.Landed {
-						return current.Land
-					}
-					current = f(current.Bounce)(r)()
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

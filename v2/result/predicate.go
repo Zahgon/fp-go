@@ -15,8 +15,6 @@
 
 package result
 
-import "github.com/IBM/fp-go/v2/either"
-
 // Exists creates a predicate that tests whether a Result value is Ok and its value satisfies the given predicate.
 // It returns a function that takes a Result[T] and returns true only if the Result is Ok and the predicate p
 // returns true for the Ok value.
@@ -79,9 +77,7 @@ import "github.com/IBM/fp-go/v2/either"
 //   - ExistsError: Tests if Result is an error and satisfies a predicate
 //   - Filter: Converts Ok values that fail a predicate to errors
 //   - either.Exists: The underlying implementation for Either types
-func Exists[T any](p Predicate[T]) Predicate[Result[T]] {
-	return either.Exists[error](p)
-}
+func Exists[T any](p Predicate[T]) Predicate[Result[T]] { _ = "STUB: not implemented"; return nil }
 
 // ExistsError creates a predicate that tests whether a Result value is an error and the error satisfies the given predicate.
 // It returns a function that takes a Result[T] and returns true only if the Result is an error and the predicate p
@@ -148,7 +144,8 @@ func Exists[T any](p Predicate[T]) Predicate[Result[T]] {
 //   - IsError: Tests if Result is an error without checking the error value
 //   - either.ExistsLeft: The underlying implementation for Either types
 func ExistsError[T any](p Predicate[error]) Predicate[Result[T]] {
-	return either.ExistsLeft[T](p)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ForAll creates a predicate that tests whether a Result value is an error or its Ok value satisfies the given predicate.
@@ -169,13 +166,14 @@ func ExistsError[T any](p Predicate[error]) Predicate[Result[T]] {
 //
 // In Haskell, this corresponds to the all function for the Either type when viewed as a Foldable:
 //
-//   all :: Foldable t => (a -> Bool) -> t a -> Bool
-//   all p (Right x) = p x
-//   all p (Left _)  = True
+//	all :: Foldable t => (a -> Bool) -> t a -> Bool
+//	all p (Right x) = p x
+//	all p (Left _)  = True
 //
 // For Result, which is Either[error, T]:
-//   all p (Ok x)  = p x
-//   all p (Err _) = True
+//
+//	all p (Ok x)  = p x
+//	all p (Err _) = True
 //
 // From a category theory perspective, Result[T] is a coproduct (sum type) in the category of types.
 // ForAll implements a natural transformation from predicates on T to predicates on Result[T],
@@ -248,6 +246,4 @@ func ExistsError[T any](p Predicate[error]) Predicate[Result[T]] {
 //   - ExistsError: Tests if Result is an error and satisfies a predicate
 //   - Filter: Converts Ok values that fail a predicate to errors
 //   - either.ForAll: The underlying implementation for Either types
-func ForAll[T any](p Predicate[T]) Predicate[Result[T]] {
-	return either.ForAll[error](p)
-}
+func ForAll[T any](p Predicate[T]) Predicate[Result[T]] { _ = "STUB: not implemented"; return nil }

@@ -16,7 +16,6 @@
 package result
 
 import (
-	"github.com/IBM/fp-go/v2/either"
 	S "github.com/IBM/fp-go/v2/semigroup"
 )
 
@@ -32,6 +31,4 @@ import (
 //	// result2 is Right(1) - first Right wins
 //
 //go:inline
-func AltSemigroup[A any]() S.Semigroup[Result[A]] {
-	return either.AltSemigroup[error, A]()
-}
+func AltSemigroup[A any]() S.Semigroup[Result[A]] { _ = "STUB: not implemented"; return nil }

@@ -16,7 +16,6 @@
 package iter
 
 import (
-	G "github.com/IBM/fp-go/v2/internal/iter"
 	M "github.com/IBM/fp-go/v2/monoid"
 )
 
@@ -38,9 +37,7 @@ import (
 //	// yields: 1, 2, 3, 4
 //
 //go:inline
-func Monoid[T any]() M.Monoid[Seq[T]] {
-	return G.Monoid[Seq[T]]()
-}
+func Monoid[T any]() M.Monoid[Seq[T]] { _ = "STUB: not implemented"; return nil }
 
 // ConcatMonoid returns a Monoid instance for Seq[T] that concatenates sequences sequentially.
 // This is an alias for Monoid that makes the sequential concatenation behavior explicit.
@@ -165,6 +162,4 @@ func Monoid[T any]() M.Monoid[Seq[T]] {
 //   - Empty: Creates an empty sequence
 //
 //go:inline
-func ConcatMonoid[T any]() M.Monoid[Seq[T]] {
-	return Monoid[T]()
-}
+func ConcatMonoid[T any]() M.Monoid[Seq[T]] { _ = "STUB: not implemented"; return nil }

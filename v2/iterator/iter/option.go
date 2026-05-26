@@ -70,7 +70,8 @@ import (
 //	result := I.MonadChainOptionK(seq, parseNum)
 //	// yields: 1, 2, 3 (invalid strings are filtered out)
 func MonadChainOptionK[A, B any](as Seq[A], f option.Kleisli[A, B]) Seq[B] {
-	return MonadFilterMap(as, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainOptionK returns an operator that chains a function returning an Option into a sequence,
@@ -124,49 +125,52 @@ func MonadChainOptionK[A, B any](as Seq[A], f option.Kleisli[A, B]) Seq[B] {
 //
 //go:inline
 func ChainOptionK[A, B any](f option.Kleisli[A, B]) Operator[A, B] {
-	return FilterMap(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// FlatMapOptionK is an alias for [ChainOptionK].
+	//
+	// This provides a more familiar name for developers coming from other functional
+	// programming languages or libraries where "flatMap" is the standard terminology
+	// for the monadic bind operation.
+	//
+	// Type parameters:
+	//   - A: The element type of the input sequence
+	//   - B: The element type of the output sequence (wrapped in Option by the function)
+	//
+	// Parameters:
+	//   - f: A function that takes an element and returns an Option[B]
+	//
+	// Returns:
+	//
+	//	An Operator that transforms Seq[A] to Seq[B], filtering out None values
+	//
+	// Example:
+	//
+	//	import (
+	//	    F "github.com/IBM/fp-go/v2/function"
+	//	    O "github.com/IBM/fp-go/v2/option"
+	//	    I "github.com/IBM/fp-go/v2/iterator/iter"
+	//	)
+	//
+	//	// Validate and transform data
+	//	validateAge := I.FlatMapOptionK(func(age int) O.Option[string] {
+	//	    if age >= 18 && age <= 120 {
+	//	        return O.Some(fmt.Sprintf("Valid age: %d", age))
+	//	    }
+	//	    return O.None[string]()
+	//	})
+	//
+	//	result := F.Pipe1(
+	//	    I.From(15, 25, 150, 30),
+	//	    validateAge,
+	//	)
+	//	// yields: "Valid age: 25", "Valid age: 30"
+	//
+	//go:inline
 }
 
-// FlatMapOptionK is an alias for [ChainOptionK].
-//
-// This provides a more familiar name for developers coming from other functional
-// programming languages or libraries where "flatMap" is the standard terminology
-// for the monadic bind operation.
-//
-// Type parameters:
-//   - A: The element type of the input sequence
-//   - B: The element type of the output sequence (wrapped in Option by the function)
-//
-// Parameters:
-//   - f: A function that takes an element and returns an Option[B]
-//
-// Returns:
-//
-//	An Operator that transforms Seq[A] to Seq[B], filtering out None values
-//
-// Example:
-//
-//	import (
-//	    F "github.com/IBM/fp-go/v2/function"
-//	    O "github.com/IBM/fp-go/v2/option"
-//	    I "github.com/IBM/fp-go/v2/iterator/iter"
-//	)
-//
-//	// Validate and transform data
-//	validateAge := I.FlatMapOptionK(func(age int) O.Option[string] {
-//	    if age >= 18 && age <= 120 {
-//	        return O.Some(fmt.Sprintf("Valid age: %d", age))
-//	    }
-//	    return O.None[string]()
-//	})
-//
-//	result := F.Pipe1(
-//	    I.From(15, 25, 150, 30),
-//	    validateAge,
-//	)
-//	// yields: "Valid age: 25", "Valid age: 30"
-//
-//go:inline
 func FlatMapOptionK[A, B any](f option.Kleisli[A, B]) Operator[A, B] {
-	return ChainOptionK(f)
+	_ = "STUB: not implemented"
+	return nil
 }

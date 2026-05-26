@@ -61,14 +61,7 @@ var (
 )
 
 // WithValue creates a [FormBuilder] for a certain field
-func WithValue(name string) func(value string) Endomorphism {
-	return F.Flow2(
-		O.Of[string],
-		AtValue(name).Set,
-	)
-}
+func WithValue(name string) func(value string) Endomorphism { _ = "STUB: not implemented"; return nil }
 
 // WithoutValue creates a [FormBuilder] that removes a field
-func WithoutValue(name string) Endomorphism {
-	return AtValue(name).Set(noField)
-}
+func WithoutValue(name string) Endomorphism { _ = "STUB: not implemented"; return *new(Endomorphism) }

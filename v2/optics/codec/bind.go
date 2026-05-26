@@ -15,17 +15,6 @@
 
 package codec
 
-import (
-	"fmt"
-
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/lazy"
-	"github.com/IBM/fp-go/v2/optics/codec/validate"
-	"github.com/IBM/fp-go/v2/option"
-	"github.com/IBM/fp-go/v2/reader"
-	"github.com/IBM/fp-go/v2/semigroup"
-)
-
 // Do creates the initial empty codec to be used as the starting point for
 // do-notation style codec construction.
 //
@@ -100,127 +89,106 @@ import (
 //
 //go:inline
 func Do[I, A, O any](e Lazy[Pair[O, A]]) Type[A, O, I] {
-	return Empty[I](e)
+	_ = "STUB: not implemented"
+
+	// ApSL creates an applicative sequencing operator for codecs using a lens.
+	//
+	// This function implements the "ApS" (Applicative Sequencing) pattern for codecs,
+	// allowing you to build up complex codecs by combining a base codec with a field
+	// accessed through a lens. It's particularly useful for building struct codecs
+	// field-by-field in a composable way.
+	//
+	// The function combines:
+	//   - Encoding: Extracts the field value using the lens, encodes it with fa, and
+	//     combines it with the base encoding using the monoid
+	//   - Validation: Validates the field using the lens and combines the validation
+	//     with the base validation
+	//
+	// # Type Parameters
+	//
+	//   - S: The source struct type (what we're building a codec for)
+	//   - T: The field type accessed by the lens
+	//   - O: The output type for encoding (must have a monoid)
+	//   - I: The input type for decoding
+	//
+	// # Parameters
+	//
+	//   - m: A Monoid[O] for combining encoded outputs
+	//   - l: A Lens[S, T] that focuses on a specific field in S
+	//   - fa: A Type[T, O, I] codec for the field type T
+	//
+	// # Returns
+	//
+	// An Operator[S, S, O, I] that transforms a base codec by adding the field
+	// specified by the lens.
+	//
+	// # How It Works
+	//
+	// 1. **Encoding**: When encoding a value of type S:
+	//   - Extract the field T using l.Get
+	//   - Encode T to O using fa.Encode
+	//   - Combine with the base encoding using the monoid
+	//
+	// 2. **Validation**: When validating input I:
+	//   - Validate the field using fa.Validate through the lens
+	//   - Combine with the base validation
+	//
+	// 3. **Type Checking**: Preserves the base type checker
+	//
+	// # Example
+	//
+	//	import (
+	//	    "github.com/IBM/fp-go/v2/optics/codec"
+	//	    "github.com/IBM/fp-go/v2/optics/lens"
+	//	    S "github.com/IBM/fp-go/v2/string"
+	//	)
+	//
+	//	type Person struct {
+	//	    Name string
+	//	    Age  int
+	//	}
+	//
+	//	// Lenses for Person fields
+	//	nameLens := lens.MakeLens(
+	//	    func(p *Person) string { return p.Name },
+	//	    func(p *Person, name string) *Person { p.Name = name; return p },
+	//	)
+	//
+	//	// Build a Person codec field by field
+	//	personCodec := F.Pipe1(
+	//	    codec.Struct[Person]("Person"),
+	//	    codec.ApSL(S.Monoid, nameLens, codec.String),
+	//	    // ... add more fields
+	//	)
+	//
+	// # Use Cases
+	//
+	//   - Building struct codecs incrementally
+	//   - Composing codecs for nested structures
+	//   - Creating type-safe serialization/deserialization
+	//   - Implementing Do-notation style codec construction
+	//
+	// # Notes
+	//
+	//   - The monoid determines how encoded outputs are combined
+	//   - The lens must be total (handle all cases safely)
+	//   - This is typically used with other ApS functions to build complete codecs
+	//   - The name is automatically generated for debugging purposes
+	//
+	// See also:
+	//   - validate.ApSL: The underlying validation combinator
+	//   - reader.ApplicativeMonoid: The monoid-based applicative instance
+	//   - Lens: The optic for accessing struct fields
+	return nil
 }
 
-// ApSL creates an applicative sequencing operator for codecs using a lens.
-//
-// This function implements the "ApS" (Applicative Sequencing) pattern for codecs,
-// allowing you to build up complex codecs by combining a base codec with a field
-// accessed through a lens. It's particularly useful for building struct codecs
-// field-by-field in a composable way.
-//
-// The function combines:
-//   - Encoding: Extracts the field value using the lens, encodes it with fa, and
-//     combines it with the base encoding using the monoid
-//   - Validation: Validates the field using the lens and combines the validation
-//     with the base validation
-//
-// # Type Parameters
-//
-//   - S: The source struct type (what we're building a codec for)
-//   - T: The field type accessed by the lens
-//   - O: The output type for encoding (must have a monoid)
-//   - I: The input type for decoding
-//
-// # Parameters
-//
-//   - m: A Monoid[O] for combining encoded outputs
-//   - l: A Lens[S, T] that focuses on a specific field in S
-//   - fa: A Type[T, O, I] codec for the field type T
-//
-// # Returns
-//
-// An Operator[S, S, O, I] that transforms a base codec by adding the field
-// specified by the lens.
-//
-// # How It Works
-//
-// 1. **Encoding**: When encoding a value of type S:
-//   - Extract the field T using l.Get
-//   - Encode T to O using fa.Encode
-//   - Combine with the base encoding using the monoid
-//
-// 2. **Validation**: When validating input I:
-//   - Validate the field using fa.Validate through the lens
-//   - Combine with the base validation
-//
-// 3. **Type Checking**: Preserves the base type checker
-//
-// # Example
-//
-//	import (
-//	    "github.com/IBM/fp-go/v2/optics/codec"
-//	    "github.com/IBM/fp-go/v2/optics/lens"
-//	    S "github.com/IBM/fp-go/v2/string"
-//	)
-//
-//	type Person struct {
-//	    Name string
-//	    Age  int
-//	}
-//
-//	// Lenses for Person fields
-//	nameLens := lens.MakeLens(
-//	    func(p *Person) string { return p.Name },
-//	    func(p *Person, name string) *Person { p.Name = name; return p },
-//	)
-//
-//	// Build a Person codec field by field
-//	personCodec := F.Pipe1(
-//	    codec.Struct[Person]("Person"),
-//	    codec.ApSL(S.Monoid, nameLens, codec.String),
-//	    // ... add more fields
-//	)
-//
-// # Use Cases
-//
-//   - Building struct codecs incrementally
-//   - Composing codecs for nested structures
-//   - Creating type-safe serialization/deserialization
-//   - Implementing Do-notation style codec construction
-//
-// # Notes
-//
-//   - The monoid determines how encoded outputs are combined
-//   - The lens must be total (handle all cases safely)
-//   - This is typically used with other ApS functions to build complete codecs
-//   - The name is automatically generated for debugging purposes
-//
-// See also:
-//   - validate.ApSL: The underlying validation combinator
-//   - reader.ApplicativeMonoid: The monoid-based applicative instance
-//   - Lens: The optic for accessing struct fields
 func ApSL[S, T, O, I any](
 	m Monoid[O],
 	l Lens[S, T],
 	fa Type[T, O, I],
 ) Operator[S, S, O, I] {
-	name := fmt.Sprintf("ApS[%s x %s]", l, fa)
-	rm := reader.ApplicativeMonoid[S](m)
-
-	encConcat := F.Pipe1(
-		F.Flow2(
-			l.Get,
-			fa.Encode,
-		),
-		semigroup.AppendTo(rm),
-	)
-
-	valConcat := validate.ApSL(l, fa.Validate)
-
-	return func(t Type[S, O, I]) Type[S, O, I] {
-
-		return MakeType(
-			name,
-			t.Is,
-			F.Pipe1(
-				t.Validate,
-				valConcat,
-			),
-			encConcat(t.Encode),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSO creates an applicative sequencing operator for codecs using an optional.
@@ -342,37 +310,8 @@ func ApSO[S, T, O, I any](
 	o Optional[S, T],
 	fa Type[T, O, I],
 ) Operator[S, S, O, I] {
-	name := fmt.Sprintf("ApS[%s x %s]", o, fa)
-
-	encConcat := F.Flow2(
-		o.GetOption,
-		option.Map(F.Flow2(
-			fa.Encode,
-			semigroup.AppendTo(m),
-		)),
-	)
-
-	valConcat := validate.ApS(o.Set, fa.Validate)
-
-	return func(t Type[S, O, I]) Type[S, O, I] {
-
-		return MakeType(
-			name,
-			t.Is,
-			F.Pipe1(
-				t.Validate,
-				valConcat,
-			),
-			func(s S) O {
-				to := t.Encode(s)
-				return F.Pipe2(
-					encConcat(s),
-					option.Flap[O](to),
-					option.GetOrElse(lazy.Of(to)),
-				)
-			},
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Bind creates a monadic sequencing operator for codecs using a lens and a Kleisli arrow.
@@ -485,21 +424,6 @@ func Bind[S, T, O, I any](
 	l Lens[S, T],
 	f Kleisli[S, T, O, I],
 ) Operator[S, S, O, I] {
-	name := fmt.Sprintf("Bind[%s]", l)
-	val := F.Curry2(Type[T, O, I].Validate)
-
-	return func(t Type[S, O, I]) Type[S, O, I] {
-
-		return MakeType(
-			name,
-			t.Is,
-			F.Pipe1(
-				t.Validate,
-				validate.Bind(l.Set, F.Flow2(f, val)),
-			),
-			func(s S) O {
-				return m.Concat(t.Encode(s), f(s).Encode(l.Get(s)))
-			},
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

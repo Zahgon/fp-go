@@ -16,7 +16,6 @@
 package ioeither
 
 import (
-	G "github.com/IBM/fp-go/ioeither/generic"
 	M "github.com/IBM/fp-go/monoid"
 )
 
@@ -24,19 +23,22 @@ import (
 func ApplicativeMonoid[E, A any](
 	m M.Monoid[A],
 ) M.Monoid[IOEither[E, A]] {
-	return G.ApplicativeMonoid[IOEither[E, A], IOEither[E, func(A) A]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoid returns a [Monoid] that concatenates [IOEither] instances via their applicative
 func ApplicativeMonoidSeq[E, A any](
 	m M.Monoid[A],
 ) M.Monoid[IOEither[E, A]] {
-	return G.ApplicativeMonoidSeq[IOEither[E, A], IOEither[E, func(A) A]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoid returns a [Monoid] that concatenates [IOEither] instances via their applicative
 func ApplicativeMonoidPar[E, A any](
 	m M.Monoid[A],
 ) M.Monoid[IOEither[E, A]] {
-	return G.ApplicativeMonoid[IOEither[E, A], IOEither[E, func(A) A]](m)
+	_ = "STUB: not implemented"
+	return nil
 }

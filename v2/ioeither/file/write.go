@@ -17,17 +17,11 @@ package file
 
 import (
 	"io"
-
-	"github.com/IBM/fp-go/v2/ioeither"
 )
 
 func onWriteAll[W io.Writer](data []byte) Kleisli[error, W, []byte] {
-	return func(w W) IOEither[error, []byte] {
-		return ioeither.TryCatchError(func() ([]byte, error) {
-			_, err := w.Write(data)
-			return data, err
-		})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WriteAll writes data to a WriteCloser and ensures it is properly closed.
@@ -43,14 +37,8 @@ func onWriteAll[W io.Writer](data []byte) Kleisli[error, W, []byte] {
 //	)
 //	result := writeOp() // Either[error, []byte]
 func WriteAll[W io.WriteCloser](data []byte) Operator[error, W, []byte] {
-	onWrite := onWriteAll[W](data)
-	return func(onCreate IOEither[error, W]) IOEither[error, []byte] {
-		return ioeither.WithResource[[]byte](
-			onCreate,
-			Close[W])(
-			onWrite,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Write creates a resource-safe writer that automatically manages the lifecycle of a WriteCloser.
@@ -69,7 +57,6 @@ func WriteAll[W io.WriteCloser](data []byte) Operator[error, W, []byte] {
 //		})
 //	})
 func Write[R any, W io.WriteCloser](acquire IOEither[error, W]) Kleisli[error, Kleisli[error, W, R], R] {
-	return ioeither.WithResource[R](
-		acquire,
-		Close[W])
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,10 +15,7 @@
 
 package option
 
-func toType[T any](a any) (T, bool) {
-	b, ok := a.(T)
-	return b, ok
-}
+func toType[T any](a any) (T, bool) { _ = "STUB: not implemented"; return *new(T), false }
 
 // ToType attempts to convert a value of type any to a specific type T using type assertion.
 // Returns Some(value) if the type assertion succeeds, None if it fails.
@@ -33,18 +30,19 @@ func toType[T any](a any) (T, bool) {
 //
 //go:inline
 func ToType[T any](src any) (T, bool) {
-	return toType[T](src)
+	_ = "STUB: not implemented"
+	return *
+
+	// ToAny converts a value of any type to Option[any].
+	// This always succeeds and returns Some containing the value as any.
+	//
+	// Example:
+	//
+	//	result := ToAny(42) // Some(any(42))
+	//	result := ToAny("hello") // Some(any("hello"))
+	//
+	//go:inline
+	new(T), false
 }
 
-// ToAny converts a value of any type to Option[any].
-// This always succeeds and returns Some containing the value as any.
-//
-// Example:
-//
-//	result := ToAny(42) // Some(any(42))
-//	result := ToAny("hello") // Some(any("hello"))
-//
-//go:inline
-func ToAny[T any](src T) (any, bool) {
-	return Of(any(src))
-}
+func ToAny[T any](src T) (any, bool) { _ = "STUB: not implemented"; return *new(any), false }

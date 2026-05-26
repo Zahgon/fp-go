@@ -15,10 +15,6 @@
 
 package reader
 
-import (
-	INTI "github.com/IBM/fp-go/v2/internal/iter"
-)
-
 // TraverseIter traverses an iterator sequence, applying a Reader-producing function to each element
 // and collecting the results in a Reader that produces an iterator.
 //
@@ -64,15 +60,8 @@ import (
 //	result := traversed(Config{Multiplier: 10})
 //	// result is an iterator that yields: 10, 20, 30
 func TraverseIter[R, A, B any](f Kleisli[R, A, B]) Kleisli[R, Seq[A], Seq[B]] {
-	return INTI.Traverse[Seq[A]](
-		Map[R, B],
-
-		Of[R, Seq[B]],
-		Map[R, Seq[B]],
-		Ap[Seq[B]],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceIter sequences an iterator of Readers into a Reader that produces an iterator.
@@ -113,9 +102,6 @@ func TraverseIter[R, A, B any](f Kleisli[R, A, B]) Kleisli[R, Seq[A], Seq[B]] {
 //	result := sequenced(Config{Base: 10})
 //	// result is an iterator that yields: 11, 12, 13
 func SequenceIter[R, A any](as Seq[Reader[R, A]]) Reader[R, Seq[A]] {
-	return INTI.MonadSequence(
-		Map[R](INTI.Of[Seq[A]]),
-		ApplicativeMonoid[R](INTI.Monoid[Seq[A]]()),
-		as,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

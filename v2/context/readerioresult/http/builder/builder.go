@@ -46,19 +46,8 @@
 package builder
 
 import (
-	"bytes"
-	"context"
-	"net/http"
-	"strconv"
-
-	RIOE "github.com/IBM/fp-go/v2/context/readerioresult"
 	RIOEH "github.com/IBM/fp-go/v2/context/readerioresult/http"
-	F "github.com/IBM/fp-go/v2/function"
 	R "github.com/IBM/fp-go/v2/http/builder"
-	H "github.com/IBM/fp-go/v2/http/headers"
-	LZ "github.com/IBM/fp-go/v2/lazy"
-	O "github.com/IBM/fp-go/v2/option"
-	"github.com/IBM/fp-go/v2/result"
 )
 
 // Requester converts an http/builder.Builder into a ReaderIOResult that produces HTTP requests.
@@ -115,41 +104,6 @@ import (
 //	requester := RB.Requester(builder)
 //	result := requester(t.Context())()
 func Requester(builder *R.Builder) RIOEH.Requester {
-
-	withBody := F.Curry3(func(data []byte, url string, method string) RIOE.ReaderIOResult[*http.Request] {
-		return RIOE.TryCatch(func(ctx context.Context) func() (*http.Request, error) {
-			return func() (*http.Request, error) {
-				req, err := http.NewRequestWithContext(ctx, method, url, bytes.NewReader(data))
-				if err == nil {
-					req.Header.Set(H.ContentLength, strconv.Itoa(len(data)))
-					H.Monoid.Concat(req.Header, builder.GetHeaders())
-				}
-				return req, err
-			}
-		})
-	})
-
-	withoutBody := F.Curry2(func(url string, method string) RIOE.ReaderIOResult[*http.Request] {
-		return RIOE.TryCatch(func(ctx context.Context) func() (*http.Request, error) {
-			return func() (*http.Request, error) {
-				req, err := http.NewRequestWithContext(ctx, method, url, nil)
-				if err == nil {
-					H.Monoid.Concat(req.Header, builder.GetHeaders())
-				}
-				return req, err
-			}
-		})
-	})
-
-	return F.Pipe5(
-		builder.GetBody(),
-		O.Fold(LZ.Of(result.Of(withoutBody)), result.Map(withBody)),
-		result.Ap[RIOE.Kleisli[string, *http.Request]](builder.GetTargetURL()),
-		result.Flap[RIOE.ReaderIOResult[*http.Request]](builder.GetMethod()),
-		result.GetOrElse(RIOE.Left[*http.Request]),
-		RIOE.Map(func(req *http.Request) *http.Request {
-			req.Header = H.Monoid.Concat(req.Header, builder.GetHeaders())
-			return req
-		}),
-	)
+	_ = "STUB: not implemented"
+	return *new(RIOEH.Requester)
 }

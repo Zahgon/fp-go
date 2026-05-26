@@ -16,11 +16,8 @@
 package readerresult
 
 import (
-	"github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/idiomatic/option"
 	"github.com/IBM/fp-go/v2/idiomatic/result"
-	"github.com/IBM/fp-go/v2/internal/fromreader"
-	"github.com/IBM/fp-go/v2/internal/functor"
 	"github.com/IBM/fp-go/v2/reader"
 	RES "github.com/IBM/fp-go/v2/result"
 )
@@ -33,21 +30,13 @@ import (
 //	res := result.Of(42)
 //	rr := readerresult.FromEither[Config](res)
 //	// rr(anyConfig) will always return (42, nil)
-func FromEither[R, A any](e Result[A]) ReaderResult[R, A] {
-	return func(_ R) (A, error) {
-		return RES.Unwrap(e)
-	}
-}
+func FromEither[R, A any](e Result[A]) ReaderResult[R, A] { _ = "STUB: not implemented"; return nil }
 
 // FromResult is an alias for FromEither.
 // It lifts a Result[A] into a ReaderResult[R, A] that ignores the environment.
 //
 //go:inline
-func FromResult[R, A any](a A, err error) ReaderResult[R, A] {
-	return func(_ R) (A, error) {
-		return a, err
-	}
-}
+func FromResult[R, A any](a A, err error) ReaderResult[R, A] { _ = "STUB: not implemented"; return nil }
 
 // RightReader lifts a Reader[R, A] into a ReaderResult[R, A] that always succeeds.
 // The resulting computation reads a value from the environment and wraps it in a successful Result.
@@ -58,9 +47,8 @@ func FromResult[R, A any](a A, err error) ReaderResult[R, A] {
 //	rr := readerresult.RightReader[Config](getPort)
 //	// rr(cfg) returns (cfg.Port, nil)
 func RightReader[R, A any](rdr Reader[R, A]) ReaderResult[R, A] {
-	return func(r R) (A, error) {
-		return result.Of(rdr(r))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LeftReader lifts a Reader[R, error] into a ReaderResult[R, A] that always fails.
@@ -72,9 +60,8 @@ func RightReader[R, A any](rdr Reader[R, A]) ReaderResult[R, A] {
 //	rr := readerresult.LeftReader[User](getError)
 //	// rr(cfg) returns (nil, cfg.InitError)
 func LeftReader[A, R any](l Reader[R, error]) ReaderResult[R, A] {
-	return func(r R) (A, error) {
-		return result.Left[A](l(r))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Left creates a ReaderResult that always fails with the given error, ignoring the environment.
@@ -83,11 +70,7 @@ func LeftReader[A, R any](l Reader[R, error]) ReaderResult[R, A] {
 //
 //	rr := readerresult.Left[Config, User](errors.New("not found"))
 //	// rr(anyConfig) always returns (nil, error)
-func Left[R, A any](err error) ReaderResult[R, A] {
-	return func(_ R) (A, error) {
-		return result.Left[A](err)
-	}
-}
+func Left[R, A any](err error) ReaderResult[R, A] { _ = "STUB: not implemented"; return nil }
 
 // Right creates a ReaderResult that always succeeds with the given value, ignoring the environment.
 // This is the "pure" or "return" operation for the ReaderResult monad.
@@ -96,19 +79,13 @@ func Left[R, A any](err error) ReaderResult[R, A] {
 //
 //	rr := readerresult.Right[Config](42)
 //	// rr(anyConfig) always returns (42, nil)
-func Right[R, A any](a A) ReaderResult[R, A] {
-	return func(_ R) (A, error) {
-		return result.Of(a)
-	}
-}
+func Right[R, A any](a A) ReaderResult[R, A] { _ = "STUB: not implemented"; return nil }
 
 // FromReader is an alias for RightReader.
 // It lifts a Reader[R, A] into a ReaderResult[R, A] that always succeeds.
 //
 //go:inline
-func FromReader[R, A any](r Reader[R, A]) ReaderResult[R, A] {
-	return RightReader(r)
-}
+func FromReader[R, A any](r Reader[R, A]) ReaderResult[R, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap transforms the success value of a ReaderResult using the given function.
 // If the computation fails, the error is propagated unchanged.
@@ -119,10 +96,8 @@ func FromReader[R, A any](r Reader[R, A]) ReaderResult[R, A] {
 //	doubled := readerresult.MonadMap(rr, N.Mul(2))
 //	// doubled(cfg) returns (10, nil)
 func MonadMap[R, A, B any](fa ReaderResult[R, A], f func(A) B) ReaderResult[R, B] {
-	mp := result.Map(f)
-	return func(r R) (B, error) {
-		return mp(fa(r))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map is the curried version of MonadMap.
@@ -132,14 +107,7 @@ func MonadMap[R, A, B any](fa ReaderResult[R, A], f func(A) B) ReaderResult[R, B
 //
 //	double := readerresult.Map[Config](N.Mul(2))
 //	result := F.Pipe1(readerresult.Of[Config](5), double)
-func Map[R, A, B any](f func(A) B) Operator[R, A, B] {
-	mp := result.Map(f)
-	return func(rr ReaderResult[R, A]) ReaderResult[R, B] {
-		return func(r R) (B, error) {
-			return mp(rr(r))
-		}
-	}
-}
+func Map[R, A, B any](f func(A) B) Operator[R, A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChain sequences two ReaderResult computations, where the second depends on the result of the first.
 // This is also known as "flatMap" or "bind". If the first computation fails, the second is not executed.
@@ -150,13 +118,8 @@ func Map[R, A, B any](f func(A) B) Operator[R, A, B] {
 //	getPosts := func(user User) readerresult.ReaderResult[DB, []Post] { ... }
 //	userPosts := readerresult.MonadChain(getUser(42), getPosts)
 func MonadChain[R, A, B any](ma ReaderResult[R, A], f Kleisli[R, A, B]) ReaderResult[R, B] {
-	return func(r R) (B, error) {
-		a, err := ma(r)
-		if err != nil {
-			return result.Left[B](err)
-		}
-		return f(a)(r)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain is the curried version of MonadChain.
@@ -169,7 +132,8 @@ func MonadChain[R, A, B any](ma ReaderResult[R, A], f Kleisli[R, A, B]) ReaderRe
 //
 //go:inline
 func Chain[R, A, B any](f Kleisli[R, A, B]) Operator[R, A, B] {
-	return function.Bind2nd(MonadChain[R, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Of creates a ReaderResult that always succeeds with the given value.
@@ -181,11 +145,7 @@ func Chain[R, A, B any](f Kleisli[R, A, B]) Operator[R, A, B] {
 //	// rr(anyConfig) always returns (42, nil)
 //
 //go:inline
-func Of[R, A any](a A) ReaderResult[R, A] {
-	return func(_ R) (A, error) {
-		return result.Of(a)
-	}
-}
+func Of[R, A any](a A) ReaderResult[R, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadAp applies a function wrapped in a ReaderResult to a value wrapped in a ReaderResult.
 // Both computations share the same environment. This is useful for combining independent
@@ -198,17 +158,8 @@ func Of[R, A any](a A) ReaderResult[R, A] {
 //	fa := readerresult.Of[Config](3)
 //	result := readerresult.MonadAp(fabr, fa)  // Returns (8, nil)
 func MonadAp[B, R, A any](fab ReaderResult[R, func(A) B], fa ReaderResult[R, A]) ReaderResult[R, B] {
-	return func(r R) (B, error) {
-		ab, aberr := fab(r)
-		if aberr != nil {
-			return result.Left[B](aberr)
-		}
-		a, aerr := fa(r)
-		if aerr != nil {
-			return result.Left[B](aerr)
-		}
-		return result.Of(ab(a))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap is the curried version of MonadAp.
@@ -216,7 +167,8 @@ func MonadAp[B, R, A any](fab ReaderResult[R, func(A) B], fa ReaderResult[R, A])
 //
 //go:inline
 func Ap[B, R, A any](fa ReaderResult[R, A]) Operator[R, func(A) B, B] {
-	return function.Bind2nd(MonadAp[B, R, A], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromPredicate creates a Kleisli arrow that tests a predicate and returns either the input value
@@ -232,13 +184,8 @@ func Ap[B, R, A any](fa ReaderResult[R, A]) Operator[R, func(A) B, B] {
 //	result := isPositive(5)  // Returns ReaderResult that succeeds with 5
 //	result := isPositive(-1) // Returns ReaderResult that fails with error
 func FromPredicate[R, A any](pred func(A) bool, onFalse func(A) error) Kleisli[R, A, A] {
-	return func(a A) ReaderResult[R, A] {
-		ok := pred(a)
-		if ok {
-			return Of[R](a)
-		}
-		return Left[R, A](onFalse(a))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Fold handles both success and failure cases by providing functions for each.
@@ -255,15 +202,8 @@ func FromPredicate[R, A any](pred func(A) bool, onFalse func(A) error) Kleisli[R
 //	}
 //	result := readerresult.Fold[Config, User, string](handleError, handleSuccess)(getUserRR)
 func Fold[R, A, B any](onLeft reader.Kleisli[R, error, B], onRight reader.Kleisli[R, A, B]) func(ReaderResult[R, A]) Reader[R, B] {
-	return func(rr ReaderResult[R, A]) Reader[R, B] {
-		return func(r R) B {
-			a, err := rr(r)
-			if err != nil {
-				return onLeft(err)(r)
-			}
-			return onRight(a)(r)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetOrElse extracts the success value or computes a default value from the error.
@@ -278,7 +218,8 @@ func Fold[R, A, B any](onLeft reader.Kleisli[R, error, B], onRight reader.Kleisl
 //
 //go:inline
 func GetOrElse[R, A any](onLeft reader.Kleisli[R, error, A]) func(ReaderResult[R, A]) Reader[R, A] {
-	return Fold(onLeft, reader.Of[R, A])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // OrElse provides an alternative ReaderResult computation if the first one fails.
@@ -294,15 +235,8 @@ func GetOrElse[R, A any](onLeft reader.Kleisli[R, error, A]) func(ReaderResult[R
 //
 //go:inline
 func OrElse[R, A any](onLeft Kleisli[R, error, A]) Operator[R, A, A] {
-	return func(rr ReaderResult[R, A]) ReaderResult[R, A] {
-		return func(r R) (A, error) {
-			a, err := rr(r)
-			if err != nil {
-				return onLeft(err)(r)
-			}
-			return result.Of(a)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // OrLeft transforms the error value if the computation fails, leaving successful values unchanged.
@@ -317,15 +251,8 @@ func OrElse[R, A any](onLeft Kleisli[R, error, A]) Operator[R, A, A] {
 //	}
 //	result := F.Pipe1(getUserRR, readerresult.OrLeft[Config](enrichError))
 func OrLeft[A, R any](onLeft reader.Kleisli[R, error, error]) Operator[R, A, A] {
-	return func(rr ReaderResult[R, A]) ReaderResult[R, A] {
-		return func(r R) (A, error) {
-			a, err := rr(r)
-			if err != nil {
-				return result.Left[A](onLeft(err)(r))
-			}
-			return result.Of(a)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ask retrieves the current environment as a successful ReaderResult.
@@ -340,9 +267,7 @@ func OrLeft[A, R any](onLeft reader.Kleisli[R, error, error]) Operator[R, A, A] 
 //	// result(cfg) returns (cfg.Port, nil)
 //
 //go:inline
-func Ask[R any]() ReaderResult[R, R] {
-	return fromreader.Ask(FromReader[R, R])()
-}
+func Ask[R any]() ReaderResult[R, R] { _ = "STUB: not implemented"; return nil }
 
 // Asks retrieves a value from the environment using the provided Reader function.
 // This lifts a Reader computation into a ReaderResult that always succeeds.
@@ -354,9 +279,7 @@ func Ask[R any]() ReaderResult[R, R] {
 //	// result(cfg) returns (cfg.Port, nil)
 //
 //go:inline
-func Asks[R, A any](r Reader[R, A]) ReaderResult[R, A] {
-	return fromreader.Asks(FromReader[R, A])(r)
-}
+func Asks[R, A any](r Reader[R, A]) ReaderResult[R, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainEitherK chains a ReaderResult with a function that returns a plain Result.
 // This is useful for integrating functions that don't need environment access.
@@ -366,13 +289,8 @@ func Asks[R, A any](r Reader[R, A]) ReaderResult[R, A] {
 //	parseUser := func(data string) result.Result[User] { ... }
 //	result := readerresult.MonadChainEitherK(getUserDataRR, parseUser)
 func MonadChainEitherK[R, A, B any](ma ReaderResult[R, A], f RES.Kleisli[A, B]) ReaderResult[R, B] {
-	return func(r R) (B, error) {
-		a, err := ma(r)
-		if err != nil {
-			return result.Left[B](err)
-		}
-		return RES.Unwrap(f(a))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainEitherK is the curried version of MonadChainEitherK.
@@ -385,7 +303,8 @@ func MonadChainEitherK[R, A, B any](ma ReaderResult[R, A], f RES.Kleisli[A, B]) 
 //
 //go:inline
 func ChainEitherK[R, A, B any](f RES.Kleisli[A, B]) Operator[R, A, B] {
-	return function.Bind2nd(MonadChainEitherK[R, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainReaderK chains a ReaderResult with a function that returns a plain Result.
@@ -396,13 +315,8 @@ func ChainEitherK[R, A, B any](f RES.Kleisli[A, B]) Operator[R, A, B] {
 //	parseUser := func(data string) result.Result[User] { ... }
 //	result := readerresult.MonadChainReaderK(getUserDataRR, parseUser)
 func MonadChainReaderK[R, A, B any](ma ReaderResult[R, A], f result.Kleisli[A, B]) ReaderResult[R, B] {
-	return func(r R) (B, error) {
-		a, err := ma(r)
-		if err != nil {
-			return result.Left[B](err)
-		}
-		return f(a)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainReaderK is the curried version of MonadChainEitherK.
@@ -415,7 +329,8 @@ func MonadChainReaderK[R, A, B any](ma ReaderResult[R, A], f result.Kleisli[A, B
 //
 //go:inline
 func ChainReaderK[R, A, B any](f result.Kleisli[A, B]) Operator[R, A, B] {
-	return function.Bind2nd(MonadChainReaderK[R, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainOptionK chains with a function that returns an Option, converting None to an error.
@@ -428,18 +343,8 @@ func ChainReaderK[R, A, B any](f result.Kleisli[A, B]) Operator[R, A, B] {
 //	chain := readerresult.ChainOptionK[Config, int, User](notFound)
 //	result := F.Pipe1(readerresult.Of[Config](42), chain(findUser))
 func ChainOptionK[R, A, B any](onNone Lazy[error]) func(option.Kleisli[A, B]) Operator[R, A, B] {
-	fo := result.FromOption[B](onNone)
-	return func(k option.Kleisli[A, B]) Operator[R, A, B] {
-		return func(rr ReaderResult[R, A]) ReaderResult[R, B] {
-			return func(r R) (B, error) {
-				a, err := rr(r)
-				if err != nil {
-					return result.Left[B](err)
-				}
-				return fo(k(a))
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flatten removes one level of nesting from a nested ReaderResult.
@@ -453,7 +358,8 @@ func ChainOptionK[R, A, B any](onNone Lazy[error]) func(option.Kleisli[A, B]) Op
 //
 //go:inline
 func Flatten[R, A any](mma ReaderResult[R, ReaderResult[R, A]]) ReaderResult[R, A] {
-	return MonadChain(mma, function.Identity[ReaderResult[R, A]])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadBiMap maps functions over both the error and success channels simultaneously.
@@ -467,13 +373,8 @@ func Flatten[R, A any](mma ReaderResult[R, ReaderResult[R, A]]) ReaderResult[R, 
 //
 //go:inline
 func MonadBiMap[R, A, B any](fa ReaderResult[R, A], f Endomorphism[error], g func(A) B) ReaderResult[R, B] {
-	return func(r R) (B, error) {
-		a, err := fa(r)
-		if err != nil {
-			return result.Left[B](f(err))
-		}
-		return result.Of(g(a))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BiMap is the curried version of MonadBiMap.
@@ -485,9 +386,8 @@ func MonadBiMap[R, A, B any](fa ReaderResult[R, A], f Endomorphism[error], g fun
 //	double := N.Mul(2)
 //	result := F.Pipe1(rr, readerresult.BiMap[Config](enrichErr, double))
 func BiMap[R, A, B any](f Endomorphism[error], g func(A) B) Operator[R, A, B] {
-	return func(fa ReaderResult[R, A]) ReaderResult[R, B] {
-		return MonadBiMap(fa, f, g)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Local changes the environment type during execution of a ReaderResult.
@@ -502,11 +402,8 @@ func BiMap[R, A, B any](f Endomorphism[error], g func(A) B) Operator[R, A, B] {
 //	adapted := readerresult.Local[int](toConfig)(rr)
 //	// adapted now accepts DB instead of Config
 func Local[A, R1, R2 any](f func(R2) R1) func(ReaderResult[R1, A]) ReaderResult[R2, A] {
-	return func(rr ReaderResult[R1, A]) ReaderResult[R2, A] {
-		return func(r R2) (A, error) {
-			return rr(f(r))
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Read applies an environment value to a ReaderResult to execute it and obtain the Result.
@@ -519,11 +416,7 @@ func Local[A, R1, R2 any](f func(R2) R1) func(ReaderResult[R1, A]) ReaderResult[
 //	port, err := run(rr)  // Returns (int, error)
 //
 //go:inline
-func Read[A, R any](r R) func(ReaderResult[R, A]) (A, error) {
-	return func(rr ReaderResult[R, A]) (A, error) {
-		return rr(r)
-	}
-}
+func Read[A, R any](r R) func(ReaderResult[R, A]) (A, error) { _ = "STUB: not implemented"; return nil }
 
 // MonadFlap applies a wrapped function to a concrete value (reverse of Ap).
 // This is useful when you have a function in a context and a plain value.
@@ -535,15 +428,14 @@ func Read[A, R any](r R) func(ReaderResult[R, A]) (A, error) {
 //
 //go:inline
 func MonadFlap[R, A, B any](fab ReaderResult[R, func(A) B], a A) ReaderResult[R, B] {
-	return functor.MonadFlap(MonadMap[R, func(A) B, B], fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flap is the curried version of MonadFlap.
 //
 //go:inline
-func Flap[R, B, A any](a A) Operator[R, func(A) B, B] {
-	return functor.Flap(Map[R, func(A) B, B], a)
-}
+func Flap[R, B, A any](a A) Operator[R, func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadMapLeft transforms the error value without affecting successful results.
 // This is useful for error enrichment, wrapping, or transformation.
@@ -553,13 +445,8 @@ func Flap[R, B, A any](a A) Operator[R, func(A) B, B] {
 //	enrichErr := func(e error) error { return fmt.Errorf("DB error: %w", e) }
 //	result := readerresult.MonadMapLeft(getUserRR, enrichErr)
 func MonadMapLeft[R, A any](fa ReaderResult[R, A], f Endomorphism[error]) ReaderResult[R, A] {
-	return func(r R) (A, error) {
-		a, err := fa(r)
-		if err != nil {
-			return result.Left[A](f(err))
-		}
-		return result.Of(a)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MapLeft is the curried version of MonadMapLeft.
@@ -572,19 +459,15 @@ func MonadMapLeft[R, A any](fa ReaderResult[R, A], f Endomorphism[error]) Reader
 //
 //go:inline
 func MapLeft[R, A any](f Endomorphism[error]) Operator[R, A, A] {
-	return function.Bind2nd(MonadMapLeft[R, A], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAlt tries the first computation, and if it fails, tries the second.
 // This implements the Alternative pattern for error recovery.
 func MonadAlt[R, A any](first ReaderResult[R, A], second Lazy[ReaderResult[R, A]]) ReaderResult[R, A] {
-	return func(r R) (A, error) {
-		a, err := first(r)
-		if err != nil {
-			return second()(r)
-		}
-		return result.Of(a)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Alt tries the first computation, and if it fails, tries the second.
@@ -592,5 +475,6 @@ func MonadAlt[R, A any](first ReaderResult[R, A], second Lazy[ReaderResult[R, A]
 //
 //go:inline
 func Alt[R, A any](second Lazy[ReaderResult[R, A]]) Operator[R, A, A] {
-	return function.Bind2nd(MonadAlt[R, A], second)
+	_ = "STUB: not implemented"
+	return nil
 }

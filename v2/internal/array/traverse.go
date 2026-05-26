@@ -15,10 +15,6 @@
 
 package array
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-)
-
 // MonadSequenceSegment sequences a segment of an array of effects using a divide-and-conquer approach.
 // It recursively splits the array segment in half, sequences each half, and concatenates the results.
 //
@@ -51,19 +47,8 @@ func MonadSequenceSegment[HKTB, HKTRB any](
 	fbs []HKTB,
 	start, end int,
 ) HKTRB {
-
-	switch end - start {
-	case 0:
-		return empty()
-	case 1:
-		return fof(fbs[start])
-	default:
-		mid := (start + end) / 2
-		return concat(
-			MonadSequenceSegment(fof, empty, concat, fbs, start, mid),
-			MonadSequenceSegment(fof, empty, concat, fbs, mid, end),
-		)
-	}
+	_ = "STUB: not implemented"
+	return *new(HKTRB)
 }
 
 // SequenceSegment creates a function that sequences a segment of an array of effects.
@@ -88,44 +73,11 @@ func SequenceSegment[HKTB, HKTRB any](
 	empty HKTRB,
 	concat func(HKTRB, HKTRB) HKTRB,
 ) func([]HKTB) HKTRB {
-
-	concat_f := func(left, right func([]HKTB) HKTRB) func([]HKTB) HKTRB {
-		return func(fbs []HKTB) HKTRB {
-			return concat(left(fbs), right(fbs))
-		}
-	}
-	empty_f := F.Constant1[[]HKTB](empty)
-	at := func(idx int) func([]HKTB) HKTRB {
-		return func(fbs []HKTB) HKTRB {
-			return fof(fbs[idx])
-		}
-	}
-
-	var divide func(start, end int) func([]HKTB) HKTRB
-	divide = func(start, end int) func([]HKTB) HKTRB {
-		switch end - start {
-		case 0:
-			return empty_f
-		case 1:
-			return at(start)
-		default:
-			mid := (start + end) / 2
-			left := divide(start, mid)
-			right := divide(mid, end)
-
-			return concat_f(left, right)
-		}
-	}
-
-	// TODO this could be cached by length
-	get_divide := func(len int) func([]HKTB) HKTRB {
-		return divide(0, len)
-	}
-
-	return func(fbs []HKTB) HKTRB {
-		return get_divide(len(fbs))(fbs)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// TODO this could be cached by length
 
 // MonadTraverse maps each element of an array to an effect, then sequences the results.
 // This is the monadic version that takes the array as a direct parameter.
@@ -167,7 +119,8 @@ func MonadTraverse[GA ~[]A, GB ~[]B, A, B, HKTB, HKTAB, HKTRB any](
 
 	ta GA,
 	f func(A) HKTB) HKTRB {
-	return MonadTraverseReduce(fof, fmap, fap, ta, f, Append[GB, B], Empty[GB]())
+	_ = "STUB: not implemented"
+	return *new(HKTRB)
 }
 
 // MonadTraverseWithIndex is like MonadTraverse but the transformation function also receives the index.
@@ -191,7 +144,8 @@ func MonadTraverseWithIndex[GA ~[]A, GB ~[]B, A, B, HKTB, HKTAB, HKTRB any](
 
 	ta GA,
 	f func(int, A) HKTB) HKTRB {
-	return MonadTraverseReduceWithIndex(fof, fmap, fap, ta, f, Append[GB, B], Empty[GB]())
+	_ = "STUB: not implemented"
+	return *new(HKTRB)
 }
 
 // Traverse creates a curried function that maps each element to an effect and sequences the results.
@@ -213,10 +167,8 @@ func Traverse[GA ~[]A, GB ~[]B, A, B, HKTB, HKTAB, HKTRB any](
 	fap func(HKTB) func(HKTAB) HKTRB,
 
 	f func(A) HKTB) func(GA) HKTRB {
-
-	return func(ma GA) HKTRB {
-		return MonadTraverse(fof, fmap, fap, ma, f)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeTraversable creates a fully curried traversal function that can be specialized for different effects.
@@ -273,9 +225,8 @@ func MakeTraversable[GA ~[]A, GB ~[]B, A, B, HKTB, HKTAB, HKTRB any](
 	fmap func(func(GB) func(B) GB) func(HKTRB) HKTAB,
 	fap func(HKTB) func(HKTAB) HKTRB,
 ) func(func(A) HKTB) func(GA) HKTRB {
-	return func(f func(A) HKTB) func(GA) HKTRB {
-		return Traverse[GA](fof, fmap, fap, f)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseWithIndex creates a curried function like Traverse but with index-aware transformation.
@@ -297,10 +248,8 @@ func TraverseWithIndex[GA ~[]A, GB ~[]B, A, B, HKTB, HKTAB, HKTRB any](
 	fap func(HKTB) func(HKTAB) HKTRB,
 
 	f func(int, A) HKTB) func(GA) HKTRB {
-
-	return func(ma GA) HKTRB {
-		return MonadTraverseWithIndex(fof, fmap, fap, ma, f)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 /*
@@ -317,7 +266,8 @@ func MonadSequence[GA ~[]HKTA, HKTA, HKTRA any](
 	concat func(HKTRA, HKTRA) HKTRA,
 
 	ta GA) HKTRA {
-	return MonadSequenceSegment(fof, empty, concat, ta, 0, len(ta))
+	_ = "STUB: not implemented"
+	return *new(HKTRA)
 }
 
 func Sequence[GA ~[]HKTA, HKTA, HKTRA any](
@@ -325,10 +275,8 @@ func Sequence[GA ~[]HKTA, HKTA, HKTRA any](
 	empty func() HKTRA,
 	concat func(HKTRA, HKTRA) HKTRA,
 ) func(GA) HKTRA {
-
-	return func(ma GA) HKTRA {
-		return MonadSequence(fof, empty, concat, ma)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadTraverseReduce[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
@@ -342,15 +290,8 @@ func MonadTraverseReduce[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
 	reduce func(GB, B) GB,
 	initial GB,
 ) HKTRB {
-	mmap := fmap(F.Curry2(reduce))
-
-	return Reduce(ta, func(r HKTRB, a A) HKTRB {
-		return F.Pipe2(
-			r,
-			mmap,
-			fap(transform(a)),
-		)
-	}, fof(initial))
+	_ = "STUB: not implemented"
+	return *new(HKTRB)
 }
 
 func MonadTraverseReduceWithIndex[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
@@ -364,15 +305,8 @@ func MonadTraverseReduceWithIndex[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
 	reduce func(GB, B) GB,
 	initial GB,
 ) HKTRB {
-	mmap := fmap(F.Curry2(reduce))
-
-	return ReduceWithIndex(ta, func(idx int, r HKTRB, a A) HKTRB {
-		return F.Pipe2(
-			r,
-			mmap,
-			fap(transform(idx, a)),
-		)
-	}, fof(initial))
+	_ = "STUB: not implemented"
+	return *new(HKTRB)
 }
 
 func TraverseReduce[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
@@ -384,9 +318,8 @@ func TraverseReduce[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
 	reduce func(GB, B) GB,
 	initial GB,
 ) func(GA) HKTRB {
-	return func(ta GA) HKTRB {
-		return MonadTraverseReduce(fof, fmap, fap, ta, transform, reduce, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseReduceWithIndex creates a curried function for index-aware custom reduction during traversal.
@@ -408,7 +341,6 @@ func TraverseReduceWithIndex[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
 	reduce func(GB, B) GB,
 	initial GB,
 ) func(GA) HKTRB {
-	return func(ta GA) HKTRB {
-		return MonadTraverseReduceWithIndex(fof, fmap, fap, ta, transform, reduce, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

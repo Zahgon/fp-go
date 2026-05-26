@@ -16,9 +16,7 @@
 package readerio
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/io"
-	"github.com/IBM/fp-go/v2/reader"
 )
 
 // Promap is the profunctor map operation that transforms both the input and output of a ReaderIO.
@@ -103,7 +101,8 @@ import (
 //
 //go:inline
 func Promap[E, A, D, B any](f func(D) E, g func(A) B) Kleisli[D, ReaderIO[E, A], B] {
-	return reader.Promap(f, io.Map(g))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Local changes the value of the local environment during the execution of a ReaderIO.
@@ -183,7 +182,8 @@ func Promap[E, A, D, B any](f func(D) E, g func(A) B) Kleisli[D, ReaderIO[E, A],
 //
 //go:inline
 func Local[A, R1, R2 any](f func(R2) R1) Kleisli[R2, ReaderIO[R1, A], A] {
-	return reader.Local[IO[A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Contramap is an alias for Local.
@@ -233,7 +233,8 @@ func Local[A, R1, R2 any](f func(R2) R1) Kleisli[R2, ReaderIO[R1, A], A] {
 //
 //go:inline
 func Contramap[A, R1, R2 any](f func(R2) R1) Kleisli[R2, ReaderIO[R1, A], A] {
-	return reader.Contramap[IO[A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalIOK transforms the environment of a ReaderIO using an IO-based Kleisli arrow.
@@ -279,10 +280,6 @@ func Contramap[A, R1, R2 any](f func(R2) R1) Kleisli[R2, ReaderIO[R1, A], A] {
 //
 //go:inline
 func LocalIOK[A, R1, R2 any](f io.Kleisli[R2, R1]) Kleisli[R2, ReaderIO[R1, A], A] {
-	return func(ri ReaderIO[R1, A]) ReaderIO[R2, A] {
-		return F.Flow2(
-			f,
-			io.Chain(ri),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

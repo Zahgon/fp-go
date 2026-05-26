@@ -4,7 +4,6 @@
 package generic
 
 import (
-	A "github.com/IBM/fp-go/internal/apply"
 	T "github.com/IBM/fp-go/tuple"
 )
 
@@ -15,10 +14,8 @@ func SequenceT1[
 	T1 any](
 	t1 G_T1,
 ) G_TUPLE1 {
-	return A.SequenceT1(
-		Map[G_T1, G_TUPLE1, T1, T.Tuple1[T1]],
-		t1,
-	)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE1)
 }
 
 // SequenceTuple1 converts a [T.Tuple1[func() T]] into a [func() T.Tuple1[T1]]
@@ -26,9 +23,8 @@ func SequenceTuple1[
 	G_TUPLE1 ~func() T.Tuple1[T1],
 	G_T1 ~func() T1,
 	T1 any](t T.Tuple1[G_T1]) G_TUPLE1 {
-	return A.SequenceTuple1(
-		Map[G_T1, G_TUPLE1, T1, T.Tuple1[T1]],
-		t)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE1)
 }
 
 // TraverseTuple1 converts a [T.Tuple1[func() T]] into a [func() T.Tuple1[T1]]
@@ -37,12 +33,8 @@ func TraverseTuple1[
 	F1 ~func(A1) G_T1,
 	G_T1 ~func() T1,
 	A1, T1 any](f1 F1) func(T.Tuple1[A1]) G_TUPLE1 {
-	return func(t T.Tuple1[A1]) G_TUPLE1 {
-		return A.TraverseTuple1(
-			Map[G_T1, G_TUPLE1, T1, T.Tuple1[T1]],
-			f1,
-			t)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT2 converts 2 [func() T] into a [func() T.Tuple2[T1, T2]]
@@ -54,12 +46,8 @@ func SequenceT2[
 	t1 G_T1,
 	t2 G_T2,
 ) G_TUPLE2 {
-	return A.SequenceT2(
-		Map[G_T1, func() func(T2) T.Tuple2[T1, T2], T1, func(T2) T.Tuple2[T1, T2]],
-		Ap[G_TUPLE2, func() func(T2) T.Tuple2[T1, T2], G_T2],
-		t1,
-		t2,
-	)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE2)
 }
 
 // SequenceTuple2 converts a [T.Tuple2[func() T]] into a [func() T.Tuple2[T1, T2]]
@@ -68,10 +56,8 @@ func SequenceTuple2[
 	G_T1 ~func() T1,
 	G_T2 ~func() T2,
 	T1, T2 any](t T.Tuple2[G_T1, G_T2]) G_TUPLE2 {
-	return A.SequenceTuple2(
-		Map[G_T1, func() func(T2) T.Tuple2[T1, T2], T1, func(T2) T.Tuple2[T1, T2]],
-		Ap[G_TUPLE2, func() func(T2) T.Tuple2[T1, T2], G_T2],
-		t)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE2)
 }
 
 // TraverseTuple2 converts a [T.Tuple2[func() T]] into a [func() T.Tuple2[T1, T2]]
@@ -82,14 +68,8 @@ func TraverseTuple2[
 	G_T1 ~func() T1,
 	G_T2 ~func() T2,
 	A1, A2, T1, T2 any](f1 F1, f2 F2) func(T.Tuple2[A1, A2]) G_TUPLE2 {
-	return func(t T.Tuple2[A1, A2]) G_TUPLE2 {
-		return A.TraverseTuple2(
-			Map[G_T1, func() func(T2) T.Tuple2[T1, T2], T1, func(T2) T.Tuple2[T1, T2]],
-			Ap[G_TUPLE2, func() func(T2) T.Tuple2[T1, T2], G_T2],
-			f1,
-			f2,
-			t)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT3 converts 3 [func() T] into a [func() T.Tuple3[T1, T2, T3]]
@@ -103,14 +83,8 @@ func SequenceT3[
 	t2 G_T2,
 	t3 G_T3,
 ) G_TUPLE3 {
-	return A.SequenceT3(
-		Map[G_T1, func() func(T2) func(T3) T.Tuple3[T1, T2, T3], T1, func(T2) func(T3) T.Tuple3[T1, T2, T3]],
-		Ap[func() func(T3) T.Tuple3[T1, T2, T3], func() func(T2) func(T3) T.Tuple3[T1, T2, T3], G_T2],
-		Ap[G_TUPLE3, func() func(T3) T.Tuple3[T1, T2, T3], G_T3],
-		t1,
-		t2,
-		t3,
-	)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE3)
 }
 
 // SequenceTuple3 converts a [T.Tuple3[func() T]] into a [func() T.Tuple3[T1, T2, T3]]
@@ -120,11 +94,8 @@ func SequenceTuple3[
 	G_T2 ~func() T2,
 	G_T3 ~func() T3,
 	T1, T2, T3 any](t T.Tuple3[G_T1, G_T2, G_T3]) G_TUPLE3 {
-	return A.SequenceTuple3(
-		Map[G_T1, func() func(T2) func(T3) T.Tuple3[T1, T2, T3], T1, func(T2) func(T3) T.Tuple3[T1, T2, T3]],
-		Ap[func() func(T3) T.Tuple3[T1, T2, T3], func() func(T2) func(T3) T.Tuple3[T1, T2, T3], G_T2],
-		Ap[G_TUPLE3, func() func(T3) T.Tuple3[T1, T2, T3], G_T3],
-		t)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE3)
 }
 
 // TraverseTuple3 converts a [T.Tuple3[func() T]] into a [func() T.Tuple3[T1, T2, T3]]
@@ -137,16 +108,8 @@ func TraverseTuple3[
 	G_T2 ~func() T2,
 	G_T3 ~func() T3,
 	A1, A2, A3, T1, T2, T3 any](f1 F1, f2 F2, f3 F3) func(T.Tuple3[A1, A2, A3]) G_TUPLE3 {
-	return func(t T.Tuple3[A1, A2, A3]) G_TUPLE3 {
-		return A.TraverseTuple3(
-			Map[G_T1, func() func(T2) func(T3) T.Tuple3[T1, T2, T3], T1, func(T2) func(T3) T.Tuple3[T1, T2, T3]],
-			Ap[func() func(T3) T.Tuple3[T1, T2, T3], func() func(T2) func(T3) T.Tuple3[T1, T2, T3], G_T2],
-			Ap[G_TUPLE3, func() func(T3) T.Tuple3[T1, T2, T3], G_T3],
-			f1,
-			f2,
-			f3,
-			t)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT4 converts 4 [func() T] into a [func() T.Tuple4[T1, T2, T3, T4]]
@@ -162,16 +125,8 @@ func SequenceT4[
 	t3 G_T3,
 	t4 G_T4,
 ) G_TUPLE4 {
-	return A.SequenceT4(
-		Map[G_T1, func() func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4], T1, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]],
-		Ap[func() func(T3) func(T4) T.Tuple4[T1, T2, T3, T4], func() func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4], G_T2],
-		Ap[func() func(T4) T.Tuple4[T1, T2, T3, T4], func() func(T3) func(T4) T.Tuple4[T1, T2, T3, T4], G_T3],
-		Ap[G_TUPLE4, func() func(T4) T.Tuple4[T1, T2, T3, T4], G_T4],
-		t1,
-		t2,
-		t3,
-		t4,
-	)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE4)
 }
 
 // SequenceTuple4 converts a [T.Tuple4[func() T]] into a [func() T.Tuple4[T1, T2, T3, T4]]
@@ -182,12 +137,8 @@ func SequenceTuple4[
 	G_T3 ~func() T3,
 	G_T4 ~func() T4,
 	T1, T2, T3, T4 any](t T.Tuple4[G_T1, G_T2, G_T3, G_T4]) G_TUPLE4 {
-	return A.SequenceTuple4(
-		Map[G_T1, func() func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4], T1, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]],
-		Ap[func() func(T3) func(T4) T.Tuple4[T1, T2, T3, T4], func() func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4], G_T2],
-		Ap[func() func(T4) T.Tuple4[T1, T2, T3, T4], func() func(T3) func(T4) T.Tuple4[T1, T2, T3, T4], G_T3],
-		Ap[G_TUPLE4, func() func(T4) T.Tuple4[T1, T2, T3, T4], G_T4],
-		t)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE4)
 }
 
 // TraverseTuple4 converts a [T.Tuple4[func() T]] into a [func() T.Tuple4[T1, T2, T3, T4]]
@@ -202,18 +153,8 @@ func TraverseTuple4[
 	G_T3 ~func() T3,
 	G_T4 ~func() T4,
 	A1, A2, A3, A4, T1, T2, T3, T4 any](f1 F1, f2 F2, f3 F3, f4 F4) func(T.Tuple4[A1, A2, A3, A4]) G_TUPLE4 {
-	return func(t T.Tuple4[A1, A2, A3, A4]) G_TUPLE4 {
-		return A.TraverseTuple4(
-			Map[G_T1, func() func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4], T1, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]],
-			Ap[func() func(T3) func(T4) T.Tuple4[T1, T2, T3, T4], func() func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4], G_T2],
-			Ap[func() func(T4) T.Tuple4[T1, T2, T3, T4], func() func(T3) func(T4) T.Tuple4[T1, T2, T3, T4], G_T3],
-			Ap[G_TUPLE4, func() func(T4) T.Tuple4[T1, T2, T3, T4], G_T4],
-			f1,
-			f2,
-			f3,
-			f4,
-			t)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT5 converts 5 [func() T] into a [func() T.Tuple5[T1, T2, T3, T4, T5]]
@@ -231,18 +172,8 @@ func SequenceT5[
 	t4 G_T4,
 	t5 G_T5,
 ) G_TUPLE5 {
-	return A.SequenceT5(
-		Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], T1, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]],
-		Ap[func() func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], func() func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], G_T2],
-		Ap[func() func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], func() func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], G_T3],
-		Ap[func() func(T5) T.Tuple5[T1, T2, T3, T4, T5], func() func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], G_T4],
-		Ap[G_TUPLE5, func() func(T5) T.Tuple5[T1, T2, T3, T4, T5], G_T5],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-	)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE5)
 }
 
 // SequenceTuple5 converts a [T.Tuple5[func() T]] into a [func() T.Tuple5[T1, T2, T3, T4, T5]]
@@ -254,13 +185,8 @@ func SequenceTuple5[
 	G_T4 ~func() T4,
 	G_T5 ~func() T5,
 	T1, T2, T3, T4, T5 any](t T.Tuple5[G_T1, G_T2, G_T3, G_T4, G_T5]) G_TUPLE5 {
-	return A.SequenceTuple5(
-		Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], T1, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]],
-		Ap[func() func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], func() func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], G_T2],
-		Ap[func() func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], func() func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], G_T3],
-		Ap[func() func(T5) T.Tuple5[T1, T2, T3, T4, T5], func() func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], G_T4],
-		Ap[G_TUPLE5, func() func(T5) T.Tuple5[T1, T2, T3, T4, T5], G_T5],
-		t)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE5)
 }
 
 // TraverseTuple5 converts a [T.Tuple5[func() T]] into a [func() T.Tuple5[T1, T2, T3, T4, T5]]
@@ -277,20 +203,8 @@ func TraverseTuple5[
 	G_T4 ~func() T4,
 	G_T5 ~func() T5,
 	A1, A2, A3, A4, A5, T1, T2, T3, T4, T5 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5) func(T.Tuple5[A1, A2, A3, A4, A5]) G_TUPLE5 {
-	return func(t T.Tuple5[A1, A2, A3, A4, A5]) G_TUPLE5 {
-		return A.TraverseTuple5(
-			Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], T1, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]],
-			Ap[func() func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], func() func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], G_T2],
-			Ap[func() func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], func() func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], G_T3],
-			Ap[func() func(T5) T.Tuple5[T1, T2, T3, T4, T5], func() func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5], G_T4],
-			Ap[G_TUPLE5, func() func(T5) T.Tuple5[T1, T2, T3, T4, T5], G_T5],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			t)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT6 converts 6 [func() T] into a [func() T.Tuple6[T1, T2, T3, T4, T5, T6]]
@@ -310,20 +224,8 @@ func SequenceT6[
 	t5 G_T5,
 	t6 G_T6,
 ) G_TUPLE6 {
-	return A.SequenceT6(
-		Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], T1, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]],
-		Ap[func() func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], func() func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T2],
-		Ap[func() func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], func() func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T3],
-		Ap[func() func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], func() func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T4],
-		Ap[func() func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], func() func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T5],
-		Ap[G_TUPLE6, func() func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T6],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-	)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE6)
 }
 
 // SequenceTuple6 converts a [T.Tuple6[func() T]] into a [func() T.Tuple6[T1, T2, T3, T4, T5, T6]]
@@ -336,14 +238,8 @@ func SequenceTuple6[
 	G_T5 ~func() T5,
 	G_T6 ~func() T6,
 	T1, T2, T3, T4, T5, T6 any](t T.Tuple6[G_T1, G_T2, G_T3, G_T4, G_T5, G_T6]) G_TUPLE6 {
-	return A.SequenceTuple6(
-		Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], T1, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]],
-		Ap[func() func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], func() func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T2],
-		Ap[func() func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], func() func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T3],
-		Ap[func() func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], func() func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T4],
-		Ap[func() func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], func() func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T5],
-		Ap[G_TUPLE6, func() func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T6],
-		t)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE6)
 }
 
 // TraverseTuple6 converts a [T.Tuple6[func() T]] into a [func() T.Tuple6[T1, T2, T3, T4, T5, T6]]
@@ -362,22 +258,8 @@ func TraverseTuple6[
 	G_T5 ~func() T5,
 	G_T6 ~func() T6,
 	A1, A2, A3, A4, A5, A6, T1, T2, T3, T4, T5, T6 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6) func(T.Tuple6[A1, A2, A3, A4, A5, A6]) G_TUPLE6 {
-	return func(t T.Tuple6[A1, A2, A3, A4, A5, A6]) G_TUPLE6 {
-		return A.TraverseTuple6(
-			Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], T1, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]],
-			Ap[func() func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], func() func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T2],
-			Ap[func() func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], func() func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T3],
-			Ap[func() func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], func() func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T4],
-			Ap[func() func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], func() func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T5],
-			Ap[G_TUPLE6, func() func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6], G_T6],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			t)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT7 converts 7 [func() T] into a [func() T.Tuple7[T1, T2, T3, T4, T5, T6, T7]]
@@ -399,22 +281,8 @@ func SequenceT7[
 	t6 G_T6,
 	t7 G_T7,
 ) G_TUPLE7 {
-	return A.SequenceT7(
-		Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]],
-		Ap[func() func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T2],
-		Ap[func() func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T3],
-		Ap[func() func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T4],
-		Ap[func() func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T5],
-		Ap[func() func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T6],
-		Ap[G_TUPLE7, func() func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T7],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-	)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE7)
 }
 
 // SequenceTuple7 converts a [T.Tuple7[func() T]] into a [func() T.Tuple7[T1, T2, T3, T4, T5, T6, T7]]
@@ -428,15 +296,8 @@ func SequenceTuple7[
 	G_T6 ~func() T6,
 	G_T7 ~func() T7,
 	T1, T2, T3, T4, T5, T6, T7 any](t T.Tuple7[G_T1, G_T2, G_T3, G_T4, G_T5, G_T6, G_T7]) G_TUPLE7 {
-	return A.SequenceTuple7(
-		Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]],
-		Ap[func() func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T2],
-		Ap[func() func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T3],
-		Ap[func() func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T4],
-		Ap[func() func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T5],
-		Ap[func() func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T6],
-		Ap[G_TUPLE7, func() func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T7],
-		t)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE7)
 }
 
 // TraverseTuple7 converts a [T.Tuple7[func() T]] into a [func() T.Tuple7[T1, T2, T3, T4, T5, T6, T7]]
@@ -457,24 +318,8 @@ func TraverseTuple7[
 	G_T6 ~func() T6,
 	G_T7 ~func() T7,
 	A1, A2, A3, A4, A5, A6, A7, T1, T2, T3, T4, T5, T6, T7 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7) func(T.Tuple7[A1, A2, A3, A4, A5, A6, A7]) G_TUPLE7 {
-	return func(t T.Tuple7[A1, A2, A3, A4, A5, A6, A7]) G_TUPLE7 {
-		return A.TraverseTuple7(
-			Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]],
-			Ap[func() func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T2],
-			Ap[func() func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T3],
-			Ap[func() func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T4],
-			Ap[func() func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T5],
-			Ap[func() func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], func() func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T6],
-			Ap[G_TUPLE7, func() func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7], G_T7],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			t)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT8 converts 8 [func() T] into a [func() T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]]
@@ -498,24 +343,8 @@ func SequenceT8[
 	t7 G_T7,
 	t8 G_T8,
 ) G_TUPLE8 {
-	return A.SequenceT8(
-		Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]],
-		Ap[func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T2],
-		Ap[func() func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T3],
-		Ap[func() func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T4],
-		Ap[func() func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T5],
-		Ap[func() func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T6],
-		Ap[func() func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T7],
-		Ap[G_TUPLE8, func() func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T8],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-	)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE8)
 }
 
 // SequenceTuple8 converts a [T.Tuple8[func() T]] into a [func() T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]]
@@ -530,16 +359,8 @@ func SequenceTuple8[
 	G_T7 ~func() T7,
 	G_T8 ~func() T8,
 	T1, T2, T3, T4, T5, T6, T7, T8 any](t T.Tuple8[G_T1, G_T2, G_T3, G_T4, G_T5, G_T6, G_T7, G_T8]) G_TUPLE8 {
-	return A.SequenceTuple8(
-		Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]],
-		Ap[func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T2],
-		Ap[func() func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T3],
-		Ap[func() func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T4],
-		Ap[func() func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T5],
-		Ap[func() func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T6],
-		Ap[func() func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T7],
-		Ap[G_TUPLE8, func() func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T8],
-		t)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE8)
 }
 
 // TraverseTuple8 converts a [T.Tuple8[func() T]] into a [func() T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]]
@@ -562,26 +383,8 @@ func TraverseTuple8[
 	G_T7 ~func() T7,
 	G_T8 ~func() T8,
 	A1, A2, A3, A4, A5, A6, A7, A8, T1, T2, T3, T4, T5, T6, T7, T8 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8) func(T.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) G_TUPLE8 {
-	return func(t T.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) G_TUPLE8 {
-		return A.TraverseTuple8(
-			Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]],
-			Ap[func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T2],
-			Ap[func() func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T3],
-			Ap[func() func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T4],
-			Ap[func() func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T5],
-			Ap[func() func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T6],
-			Ap[func() func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], func() func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T7],
-			Ap[G_TUPLE8, func() func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], G_T8],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			t)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT9 converts 9 [func() T] into a [func() T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]]
@@ -607,26 +410,8 @@ func SequenceT9[
 	t8 G_T8,
 	t9 G_T9,
 ) G_TUPLE9 {
-	return A.SequenceT9(
-		Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]],
-		Ap[func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T2],
-		Ap[func() func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T3],
-		Ap[func() func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T4],
-		Ap[func() func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T5],
-		Ap[func() func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T6],
-		Ap[func() func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T7],
-		Ap[func() func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T8],
-		Ap[G_TUPLE9, func() func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T9],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-	)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE9)
 }
 
 // SequenceTuple9 converts a [T.Tuple9[func() T]] into a [func() T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]]
@@ -642,17 +427,8 @@ func SequenceTuple9[
 	G_T8 ~func() T8,
 	G_T9 ~func() T9,
 	T1, T2, T3, T4, T5, T6, T7, T8, T9 any](t T.Tuple9[G_T1, G_T2, G_T3, G_T4, G_T5, G_T6, G_T7, G_T8, G_T9]) G_TUPLE9 {
-	return A.SequenceTuple9(
-		Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]],
-		Ap[func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T2],
-		Ap[func() func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T3],
-		Ap[func() func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T4],
-		Ap[func() func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T5],
-		Ap[func() func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T6],
-		Ap[func() func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T7],
-		Ap[func() func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T8],
-		Ap[G_TUPLE9, func() func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T9],
-		t)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE9)
 }
 
 // TraverseTuple9 converts a [T.Tuple9[func() T]] into a [func() T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]]
@@ -677,28 +453,8 @@ func TraverseTuple9[
 	G_T8 ~func() T8,
 	G_T9 ~func() T9,
 	A1, A2, A3, A4, A5, A6, A7, A8, A9, T1, T2, T3, T4, T5, T6, T7, T8, T9 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9) func(T.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) G_TUPLE9 {
-	return func(t T.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) G_TUPLE9 {
-		return A.TraverseTuple9(
-			Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]],
-			Ap[func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T2],
-			Ap[func() func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T3],
-			Ap[func() func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T4],
-			Ap[func() func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T5],
-			Ap[func() func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T6],
-			Ap[func() func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T7],
-			Ap[func() func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], func() func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T8],
-			Ap[G_TUPLE9, func() func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], G_T9],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			t)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT10 converts 10 [func() T] into a [func() T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]]
@@ -726,28 +482,8 @@ func SequenceT10[
 	t9 G_T9,
 	t10 G_T10,
 ) G_TUPLE10 {
-	return A.SequenceT10(
-		Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]],
-		Ap[func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T2],
-		Ap[func() func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T3],
-		Ap[func() func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T4],
-		Ap[func() func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T5],
-		Ap[func() func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T6],
-		Ap[func() func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T7],
-		Ap[func() func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T8],
-		Ap[func() func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T9],
-		Ap[G_TUPLE10, func() func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T10],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-		t10,
-	)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE10)
 }
 
 // SequenceTuple10 converts a [T.Tuple10[func() T]] into a [func() T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]]
@@ -764,18 +500,8 @@ func SequenceTuple10[
 	G_T9 ~func() T9,
 	G_T10 ~func() T10,
 	T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](t T.Tuple10[G_T1, G_T2, G_T3, G_T4, G_T5, G_T6, G_T7, G_T8, G_T9, G_T10]) G_TUPLE10 {
-	return A.SequenceTuple10(
-		Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]],
-		Ap[func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T2],
-		Ap[func() func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T3],
-		Ap[func() func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T4],
-		Ap[func() func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T5],
-		Ap[func() func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T6],
-		Ap[func() func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T7],
-		Ap[func() func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T8],
-		Ap[func() func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T9],
-		Ap[G_TUPLE10, func() func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T10],
-		t)
+	_ = "STUB: not implemented"
+	return *new(G_TUPLE10)
 }
 
 // TraverseTuple10 converts a [T.Tuple10[func() T]] into a [func() T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]]
@@ -802,28 +528,6 @@ func TraverseTuple10[
 	G_T9 ~func() T9,
 	G_T10 ~func() T10,
 	A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10) func(T.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) G_TUPLE10 {
-	return func(t T.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) G_TUPLE10 {
-		return A.TraverseTuple10(
-			Map[G_T1, func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]],
-			Ap[func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T2],
-			Ap[func() func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T3],
-			Ap[func() func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T4],
-			Ap[func() func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T5],
-			Ap[func() func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T6],
-			Ap[func() func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T7],
-			Ap[func() func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T8],
-			Ap[func() func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], func() func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T9],
-			Ap[G_TUPLE10, func() func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], G_T10],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			f10,
-			t)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

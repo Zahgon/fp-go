@@ -16,10 +16,6 @@
 package ioresult
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/apply"
-	"github.com/IBM/fp-go/v2/internal/chain"
-	"github.com/IBM/fp-go/v2/internal/functor"
 	L "github.com/IBM/fp-go/v2/optics/lens"
 )
 
@@ -30,23 +26,21 @@ import (
 func Do[S any](
 	empty S,
 ) IOResult[S] {
-	return Of(empty)
+	_ = "STUB: not implemented"
+
+	// Bind adds a computation step in do-notation, extending the state with a new field.
+	// The setter function determines how the new value is added to the state.
+	//
+	//go:inline
+	return nil
 }
 
-// Bind adds a computation step in do-notation, extending the state with a new field.
-// The setter function determines how the new value is added to the state.
-//
-//go:inline
 func Bind[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[S1, T],
 ) Operator[S1, S2] {
-	return chain.Bind(
-		Chain[S1, S2],
-		Map[T, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let adds a pure transformation step in do-notation.
@@ -57,11 +51,8 @@ func Let[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[S1, S2] {
-	return functor.Let(
-		Map[S1, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo adds a constant value to the state in do-notation.
@@ -69,11 +60,8 @@ func LetTo[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) Operator[S1, S2] {
-	return functor.LetTo(
-		Map[S1, S2],
-		setter,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo wraps a value in an initial state structure.
@@ -81,10 +69,8 @@ func LetTo[S1, S2, T any](
 func BindTo[S1, T any](
 	setter func(T) S1,
 ) Operator[T, S1] {
-	return chain.BindTo(
-		Map[T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS applies an IOResult to extend the state in do-notation.
@@ -93,12 +79,8 @@ func ApS[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa IOResult[T],
 ) Operator[S1, S2] {
-	return apply.ApS(
-		Ap[S2, T],
-		Map[S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL applies an IOResult using a lens to update a specific field in the state.
@@ -106,15 +88,18 @@ func ApSL[S, T any](
 	lens L.Lens[S, T],
 	fa IOResult[T],
 ) Operator[S, S] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL binds a computation using a lens to focus on a specific field.
 }
 
-// BindL binds a computation using a lens to focus on a specific field.
 func BindL[S, T any](
 	lens L.Lens[S, T],
 	f Kleisli[T, T],
 ) Operator[S, S] {
-	return Bind(lens.Set, F.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL applies a pure transformation using a lens to update a specific field.
@@ -122,7 +107,8 @@ func LetL[S, T any](
 	lens L.Lens[S, T],
 	f func(T) T,
 ) Operator[S, S] {
-	return Let(lens.Set, F.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL sets a field to a constant value using a lens.
@@ -130,5 +116,6 @@ func LetToL[S, T any](
 	lens L.Lens[S, T],
 	b T,
 ) Operator[S, S] {
-	return LetTo(lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }

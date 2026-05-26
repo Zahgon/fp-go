@@ -52,12 +52,10 @@
 package retry
 
 import (
-	"math"
 	"time"
 
 	F "github.com/IBM/fp-go/v2/function"
 	M "github.com/IBM/fp-go/v2/monoid"
-	N "github.com/IBM/fp-go/v2/number"
 	L "github.com/IBM/fp-go/v2/optics/lens"
 	O "github.com/IBM/fp-go/v2/option"
 	"github.com/IBM/fp-go/v2/ord"
@@ -129,9 +127,7 @@ var PreviousDelayLens = L.MakeLensWithName(
 //
 //	status := RetryStatus{IterNumber: 3, CumulativeDelay: 0, PreviousDelay: O.None[time.Duration]()}
 //	iter := IterNumber(status) // returns 3
-func IterNumber(rs RetryStatus) uint {
-	return rs.IterNumber
-}
+func IterNumber(rs RetryStatus) uint { _ = "STUB: not implemented"; return 0 }
 
 // Monoid is the Monoid instance for RetryPolicy. You can collapse multiple
 // retry strategies into one using the monoid's Concat operation.
@@ -175,13 +171,7 @@ var Monoid = M.FunctionMonoid[RetryStatus](O.ApplicativeMonoid(M.MakeMonoid(
 //		LimitRetries(3),
 //		ConstantDelay(1*time.Second),
 //	)(Monoid)
-func LimitRetries(i uint) RetryPolicy {
-	return F.Flow3(
-		IterNumber,
-		O.FromPredicate(N.LessThan(i)),
-		O.Map(F.Constant1[uint](emptyDuration)),
-	)
-}
+func LimitRetries(i uint) RetryPolicy { _ = "STUB: not implemented"; return *new(RetryPolicy) }
 
 // ConstantDelay creates a retry policy that always returns the same delay
 // duration, allowing unlimited retries. This policy never returns None,
@@ -195,7 +185,8 @@ func LimitRetries(i uint) RetryPolicy {
 //		ConstantDelay(500*time.Millisecond),
 //	)(Monoid)
 func ConstantDelay(delay time.Duration) RetryPolicy {
-	return F.Constant1[RetryStatus](O.Of(delay))
+	_ = "STUB: not implemented"
+	return *new(RetryPolicy)
 }
 
 // CapDelay sets an upper bound on the delay returned by a retry policy.
@@ -215,10 +206,8 @@ func ConstantDelay(delay time.Duration) RetryPolicy {
 //		CapDelay(5*time.Second, ExponentialBackoff(100*time.Millisecond)),
 //	)(Monoid)
 func CapDelay(maxDelay time.Duration, policy RetryPolicy) RetryPolicy {
-	return F.Flow2(
-		policy,
-		O.Map(F.Bind1st(ord.Min(ordDuration), maxDelay)),
-	)
+	_ = "STUB: not implemented"
+	return *new(RetryPolicy)
 }
 
 // ExponentialBackoff creates a retry policy where the delay grows exponentially
@@ -244,9 +233,8 @@ func CapDelay(maxDelay time.Duration, policy RetryPolicy) RetryPolicy {
 //		CapDelay(10*time.Second, ExponentialBackoff(100*time.Millisecond)),
 //	)(Monoid)
 func ExponentialBackoff(delay time.Duration) RetryPolicy {
-	return func(status RetryStatus) Option[time.Duration] {
-		return O.Some(delay * time.Duration(math.Pow(2, float64(status.IterNumber))))
-	}
+	_ = "STUB: not implemented"
+	return *new(RetryPolicy)
 }
 
 // DefaultRetryStatus is the initial retry status used when starting a retry operation.
@@ -292,12 +280,8 @@ var getOrElseDelay = O.GetOrElse(F.Constant(emptyDuration))
 //	status = ApplyPolicy(policy, status)
 //	// status.IterNumber == 2, status.PreviousDelay == Some(200ms)
 func ApplyPolicy(policy RetryPolicy, status RetryStatus) RetryStatus {
-	previousDelay := policy(status)
-	return RetryStatus{
-		IterNumber:      status.IterNumber + 1,
-		CumulativeDelay: status.CumulativeDelay + getOrElseDelay(previousDelay),
-		PreviousDelay:   previousDelay,
-	}
+	_ = "STUB: not implemented"
+	return *new(RetryStatus)
 }
 
 // Always creates a constant function that always returns the same value,
@@ -343,6 +327,4 @@ func ApplyPolicy(policy RetryPolicy, status RetryStatus) RetryStatus {
 //	shouldRetry := neverRetry(status) // always returns false
 //
 //go:inline
-func Always[A any](a A) func(RetryStatus) A {
-	return F.Constant1[RetryStatus](a)
-}
+func Always[A any](a A) func(RetryStatus) A { _ = "STUB: not implemented"; return nil }

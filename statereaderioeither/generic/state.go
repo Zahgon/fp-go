@@ -17,10 +17,7 @@ package generic
 
 import (
 	ET "github.com/IBM/fp-go/either"
-	F "github.com/IBM/fp-go/function"
-	ST "github.com/IBM/fp-go/internal/statet"
 	P "github.com/IBM/fp-go/pair"
-	G "github.com/IBM/fp-go/readerioeither/generic"
 )
 
 func Left[
@@ -29,7 +26,8 @@ func Left[
 	IOEA ~func() ET.Either[E, P.Pair[A, S]],
 	S, R, E, A any,
 ](e E) SRIOEA {
-	return F.Constant1[S](G.Left[RIOEA](e))
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 func Right[
@@ -38,10 +36,8 @@ func Right[
 	IOEA ~func() ET.Either[E, P.Pair[A, S]],
 	S, R, E, A any,
 ](a A) SRIOEA {
-	return ST.Of[SRIOEA](
-		G.Of[RIOEA],
-		a,
-	)
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 func Of[
@@ -50,7 +46,8 @@ func Of[
 	IOEA ~func() ET.Either[E, P.Pair[A, S]],
 	S, R, E, A any,
 ](a A) SRIOEA {
-	return Right[SRIOEA](a)
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 func MonadMap[
@@ -62,11 +59,8 @@ func MonadMap[
 	IOEB ~func() ET.Either[E, P.Pair[B, S]],
 	S, R, E, A, B any,
 ](fa SRIOEA, f func(A) B) SRIOEB {
-	return ST.MonadMap[SRIOEA, SRIOEB](
-		G.MonadMap[RIOEA, RIOEB],
-		fa,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return *new(SRIOEB)
 }
 
 func Map[
@@ -78,10 +72,8 @@ func Map[
 	IOEB ~func() ET.Either[E, P.Pair[B, S]],
 	S, R, E, A, B any,
 ](f func(A) B) func(SRIOEA) SRIOEB {
-	return ST.Map[SRIOEA, SRIOEB](
-		G.Map[RIOEA, RIOEB],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChain[
@@ -93,11 +85,8 @@ func MonadChain[
 	IOEB ~func() ET.Either[E, P.Pair[B, S]],
 	S, R, E, A, B any,
 ](fa SRIOEA, f func(A) SRIOEB) SRIOEB {
-	return ST.MonadChain[SRIOEA, SRIOEB](
-		G.MonadChain[RIOEA, RIOEB],
-		fa,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return *new(SRIOEB)
 }
 
 func Chain[
@@ -109,10 +98,8 @@ func Chain[
 	IOEB ~func() ET.Either[E, P.Pair[B, S]],
 	S, R, E, A, B any,
 ](f func(A) SRIOEB) func(SRIOEA) SRIOEB {
-	return ST.Chain[SRIOEA, SRIOEB](
-		G.Chain[RIOEA, RIOEB],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadAp[
@@ -127,12 +114,8 @@ func MonadAp[
 	IOEAB ~func() ET.Either[E, P.Pair[func(A) B, S]],
 	S, R, E, A, B any,
 ](fab SRIOEAB, fa SRIOEA) SRIOEB {
-	return ST.MonadAp[SRIOEA, SRIOEB, SRIOEAB](
-		G.MonadMap[RIOEA, RIOEB],
-		G.MonadChain[RIOEAB, RIOEB],
-		fab,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return *new(SRIOEB)
 }
 
 func Ap[
@@ -147,11 +130,8 @@ func Ap[
 	IOEAB ~func() ET.Either[E, P.Pair[func(A) B, S]],
 	S, R, E, A, B any,
 ](fa SRIOEA) func(SRIOEAB) SRIOEB {
-	return ST.Ap[SRIOEA, SRIOEB, SRIOEAB](
-		G.Map[RIOEA, RIOEB],
-		G.Chain[RIOEAB, RIOEB],
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Conversions
@@ -167,10 +147,8 @@ func FromReaderIOEither[
 
 	S, R, E, A any,
 ](fa RIOEA_IN) SRIOEA {
-	return ST.FromF[SRIOEA](
-		G.MonadMap[RIOEA_IN, RIOEA],
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 func FromReaderEither[
@@ -185,7 +163,8 @@ func FromReaderEither[
 
 	S, R, E, A any,
 ](fa REA_IN) SRIOEA {
-	return FromReaderIOEither[SRIOEA](G.FromReaderEither[REA_IN, RIOEA_IN](fa))
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 func FromIOEither[
@@ -198,7 +177,8 @@ func FromIOEither[
 
 	S, R, E, A any,
 ](fa IOEA_IN) SRIOEA {
-	return FromReaderIOEither[SRIOEA](G.FromIOEither[RIOEA_IN](fa))
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 func FromIO[
@@ -214,7 +194,8 @@ func FromIO[
 
 	S, R, E, A any,
 ](fa IO_IN) SRIOEA {
-	return FromReaderIOEither[SRIOEA](G.FromIO[RIOEA_IN](fa))
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 func FromReader[
@@ -230,7 +211,8 @@ func FromReader[
 
 	S, R, E, A any,
 ](fa R_IN) SRIOEA {
-	return FromReaderIOEither[SRIOEA](G.FromReader[R_IN, RIOEA_IN](fa))
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 func FromEither[
@@ -242,7 +224,8 @@ func FromEither[
 
 	S, R, E, A any,
 ](ma ET.Either[E, A]) SRIOEA {
-	return ET.MonadFold(ma, Left[SRIOEA], Right[SRIOEA])
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 func FromState[
@@ -254,7 +237,8 @@ func FromState[
 
 	S, R, E, A any,
 ](fa STATE) SRIOEA {
-	return ST.FromState[SRIOEA](G.Of[RIOEA], fa)
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 // Combinators
@@ -267,9 +251,8 @@ func Local[
 	IOEA ~func() ET.Either[E, P.Pair[A, S]],
 	S, R1, R2, E, A any,
 ](f func(R2) R1) func(SR1IOEA) SR2IOEA {
-	return func(ma SR1IOEA) SR2IOEA {
-		return F.Flow2(ma, G.Local[R1IOEA, R2IOEA](f))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Asks[
@@ -278,11 +261,8 @@ func Asks[
 	IOEA ~func() ET.Either[E, P.Pair[A, S]],
 	S, R, E, A any,
 ](f func(R) SRIOEA) SRIOEA {
-	return func(s S) RIOEA {
-		return func(r R) IOEA {
-			return f(r)(s)(r)
-		}
-	}
+	_ = "STUB: not implemented"
+	return *new(SRIOEA)
 }
 
 func FromIOEitherK[
@@ -293,10 +273,8 @@ func FromIOEitherK[
 	IOEB ~func() ET.Either[E, P.Pair[B, S]],
 	S, R, E, A, B any,
 ](f func(A) IOEB_IN) func(A) SRIOEB {
-	return F.Flow2(
-		f,
-		FromIOEither[SRIOEB, RIOEB_IN],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FromEitherK[
@@ -305,10 +283,8 @@ func FromEitherK[
 	IOEB ~func() ET.Either[E, P.Pair[B, S]],
 	S, R, E, A, B any,
 ](f func(A) ET.Either[E, B]) func(A) SRIOEB {
-	return F.Flow2(
-		f,
-		FromEither[SRIOEB],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FromIOK[
@@ -324,10 +300,8 @@ func FromIOK[
 
 	S, R, E, A, B any,
 ](f func(A) IOB_IN) func(A) SRIOEB {
-	return F.Flow2(
-		f,
-		FromIO[SRIOEB, RIOEB_IN, IOB_IN],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FromReaderIOEitherK[
@@ -338,10 +312,8 @@ func FromReaderIOEitherK[
 	IOEB ~func() ET.Either[E, P.Pair[B, S]],
 	S, R, E, A, B any,
 ](f func(A) RIOEB_IN) func(A) SRIOEB {
-	return F.Flow2(
-		f,
-		FromReaderIOEither[SRIOEB, RIOEB_IN],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainReaderIOEitherK[
@@ -355,7 +327,8 @@ func MonadChainReaderIOEitherK[
 	IOEB_IN ~func() ET.Either[E, B],
 	S, R, E, A, B any,
 ](ma SRIOEA, f func(A) RIOEB_IN) SRIOEB {
-	return MonadChain(ma, FromReaderIOEitherK[SRIOEB, RIOEB_IN](f))
+	_ = "STUB: not implemented"
+	return *new(SRIOEB)
 }
 
 func ChainReaderIOEitherK[
@@ -369,7 +342,8 @@ func ChainReaderIOEitherK[
 	IOEB_IN ~func() ET.Either[E, B],
 	S, R, E, A, B any,
 ](f func(A) RIOEB_IN) func(SRIOEA) SRIOEB {
-	return Chain[SRIOEA](FromReaderIOEitherK[SRIOEB, RIOEB_IN](f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainIOEitherK[
@@ -383,7 +357,8 @@ func MonadChainIOEitherK[
 	IOEB ~func() ET.Either[E, P.Pair[B, S]],
 	S, R, E, A, B any,
 ](ma SRIOEA, f func(A) IOEB_IN) SRIOEB {
-	return MonadChain(ma, FromIOEitherK[SRIOEB, RIOEB_IN](f))
+	_ = "STUB: not implemented"
+	return *new(SRIOEB)
 }
 
 func ChainIOEitherK[
@@ -397,7 +372,8 @@ func ChainIOEitherK[
 	IOEB ~func() ET.Either[E, P.Pair[B, S]],
 	S, R, E, A, B any,
 ](f func(A) IOEB_IN) func(SRIOEA) SRIOEB {
-	return Chain[SRIOEA](FromIOEitherK[SRIOEB, RIOEB_IN](f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainEitherK[
@@ -409,7 +385,8 @@ func MonadChainEitherK[
 	IOEB ~func() ET.Either[E, P.Pair[B, S]],
 	S, R, E, A, B any,
 ](ma SRIOEA, f func(A) ET.Either[E, B]) SRIOEB {
-	return MonadChain(ma, FromEitherK[SRIOEB](f))
+	_ = "STUB: not implemented"
+	return *new(SRIOEB)
 }
 
 func ChainEitherK[
@@ -421,5 +398,6 @@ func ChainEitherK[
 	IOEB ~func() ET.Either[E, P.Pair[B, S]],
 	S, R, E, A, B any,
 ](f func(A) ET.Either[E, B]) func(SRIOEA) SRIOEB {
-	return Chain[SRIOEA](FromEitherK[SRIOEB](f))
+	_ = "STUB: not implemented"
+	return nil
 }

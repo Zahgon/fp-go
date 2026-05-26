@@ -16,10 +16,6 @@
 package validate
 
 import (
-	"github.com/IBM/fp-go/v2/function"
-	A "github.com/IBM/fp-go/v2/internal/apply"
-	C "github.com/IBM/fp-go/v2/internal/chain"
-	F "github.com/IBM/fp-go/v2/internal/functor"
 	L "github.com/IBM/fp-go/v2/optics/lens"
 )
 
@@ -36,34 +32,32 @@ import (
 func Do[I, S any](
 	empty S,
 ) Validate[I, S] {
-	return Of[I](empty)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Bind attaches the result of a computation to a context S1 to produce a context S2.
+	// This is used in do-notation style to sequentially build up a context.
+	//
+	// Example:
+	//
+	//	type State struct { x int; y int }
+	//	decoder := F.Pipe2(
+	//	    Do[string](State{}),
+	//	    Bind(func(x int) func(State) State {
+	//	        return func(s State) State { s.x = x; return s }
+	//	    }, func(s State) Validate[string, int] {
+	//	        return Of[string](42)
+	//	    }),
+	//	)
+	//	result := decoder("input") // Returns validation.Success(State{x: 42})
 }
 
-// Bind attaches the result of a computation to a context S1 to produce a context S2.
-// This is used in do-notation style to sequentially build up a context.
-//
-// Example:
-//
-//	type State struct { x int; y int }
-//	decoder := F.Pipe2(
-//	    Do[string](State{}),
-//	    Bind(func(x int) func(State) State {
-//	        return func(s State) State { s.x = x; return s }
-//	    }, func(s State) Validate[string, int] {
-//	        return Of[string](42)
-//	    }),
-//	)
-//	result := decoder("input") // Returns validation.Success(State{x: 42})
 func Bind[I, S1, S2, A any](
 	setter func(A) func(S1) S2,
 	f Kleisli[I, S1, A],
 ) Operator[I, S1, S2] {
-	return C.Bind(
-		Chain[I, S1, S2],
-		Map[I, A, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a pure computation to a context S1 to produce a context S2.
@@ -83,11 +77,8 @@ func Let[I, S1, S2, B any](
 	key func(B) func(S1) S2,
 	f func(S1) B,
 ) Operator[I, S1, S2] {
-	return F.Let(
-		Map[I, S1, S2],
-		key,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches a constant value to a context S1 to produce a context S2.
@@ -105,11 +96,8 @@ func LetTo[I, S1, S2, B any](
 	key func(B) func(S1) S2,
 	b B,
 ) Operator[I, S1, S2] {
-	return F.LetTo(
-		Map[I, S1, S2],
-		key,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state S1 from a value T.
@@ -126,10 +114,8 @@ func LetTo[I, S1, S2, B any](
 func BindTo[I, S1, T any](
 	setter func(T) S1,
 ) Operator[I, T, S1] {
-	return C.BindTo(
-		Map[I, T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context S1 to produce a context S2 by considering the context and the value concurrently.
@@ -165,12 +151,8 @@ func ApS[I, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa Validate[I, T],
 ) Operator[I, S1, S2] {
-	return A.ApS(
-		Ap[S2, I, T],
-		Map[I, S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL attaches a value to a context using a lens-based setter.
@@ -215,51 +197,54 @@ func ApSL[I, S, T any](
 	lens L.Lens[S, T],
 	fa Validate[I, T],
 ) Operator[I, S, S] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL attaches the result of a computation to a context using a lens-based setter.
+	// This is a convenience function that combines Bind with a lens, allowing you to use
+	// optics to update nested structures based on their current values.
+	//
+	// The lens parameter provides both the getter and setter for a field within the structure S.
+	// The computation function f receives the current value of the focused field and returns
+	// a Validation that produces the new value.
+	//
+	// Unlike ApSL, BindL uses monadic sequencing, meaning the computation f can depend on
+	// the current value of the focused field.
+	//
+	// Example:
+	//
+	//	type Counter struct {
+	//	    Value int
+	//	}
+	//
+	//	valueLens := lens.MakeLens(
+	//	    func(c Counter) int { return c.Value },
+	//	    func(c Counter, v int) Counter { c.Value = v; return c },
+	//	)
+	//
+	//	// Increment the counter, but fail if it would exceed 100
+	//	increment := func(v int) Validate[string, int] {
+	//	    return func(input string) Validation[int] {
+	//	        if v >= 100 {
+	//	            return validation.Failures[int](/* errors */)
+	//	        }
+	//	        return validation.Success(v + 1)
+	//	    }
+	//	}
+	//
+	//	decoder := F.Pipe1(
+	//	    Of[string](Counter{Value: 42}),
+	//	    BindL(valueLens, increment),
+	//	)
+	//	result := decoder("input") // Returns validation.Success(Counter{Value: 43})
 }
 
-// BindL attaches the result of a computation to a context using a lens-based setter.
-// This is a convenience function that combines Bind with a lens, allowing you to use
-// optics to update nested structures based on their current values.
-//
-// The lens parameter provides both the getter and setter for a field within the structure S.
-// The computation function f receives the current value of the focused field and returns
-// a Validation that produces the new value.
-//
-// Unlike ApSL, BindL uses monadic sequencing, meaning the computation f can depend on
-// the current value of the focused field.
-//
-// Example:
-//
-//	type Counter struct {
-//	    Value int
-//	}
-//
-//	valueLens := lens.MakeLens(
-//	    func(c Counter) int { return c.Value },
-//	    func(c Counter, v int) Counter { c.Value = v; return c },
-//	)
-//
-//	// Increment the counter, but fail if it would exceed 100
-//	increment := func(v int) Validate[string, int] {
-//	    return func(input string) Validation[int] {
-//	        if v >= 100 {
-//	            return validation.Failures[int](/* errors */)
-//	        }
-//	        return validation.Success(v + 1)
-//	    }
-//	}
-//
-//	decoder := F.Pipe1(
-//	    Of[string](Counter{Value: 42}),
-//	    BindL(valueLens, increment),
-//	)
-//	result := decoder("input") // Returns validation.Success(Counter{Value: 43})
 func BindL[I, S, T any](
 	lens L.Lens[S, T],
 	f Kleisli[I, T, T],
 ) Operator[I, S, S] {
-	return Bind(lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL attaches the result of a pure computation to a context using a lens-based setter.
@@ -296,7 +281,8 @@ func LetL[I, S, T any](
 	lens L.Lens[S, T],
 	f Endomorphism[T],
 ) Operator[I, S, S] {
-	return Let[I](lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL attaches a constant value to a context using a lens-based setter.
@@ -331,5 +317,6 @@ func LetToL[I, S, T any](
 	lens L.Lens[S, T],
 	b T,
 ) Operator[I, S, S] {
-	return LetTo[I](lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }

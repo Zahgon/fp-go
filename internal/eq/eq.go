@@ -17,7 +17,6 @@ package eq
 
 import (
 	EQ "github.com/IBM/fp-go/eq"
-	F "github.com/IBM/fp-go/function"
 )
 
 // Eq implements an equals predicate on the basis of `map` and `ap`
@@ -27,8 +26,6 @@ func Eq[HKTA, HKTABOOL, HKTBOOL, A any](
 
 	e EQ.Eq[A],
 ) func(l, r HKTA) HKTBOOL {
-	c := F.Curry2(e.Equals)
-	return func(fl, fr HKTA) HKTBOOL {
-		return fap(fmap(fl, c), fr)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -79,13 +79,7 @@ import (
 //   - Combining multiple field comparisons for struct equality
 //   - Building complex equality predicates from simpler ones
 //   - Ensuring all conditions are met (logical AND of predicates)
-func Semigroup[A any]() S.Semigroup[Eq[A]] {
-	return S.MakeSemigroup(func(x, y Eq[A]) Eq[A] {
-		return FromEquals(func(a, b A) bool {
-			return x.Equals(a, b) && y.Equals(a, b)
-		})
-	})
-}
+func Semigroup[A any]() S.Semigroup[Eq[A]] { _ = "STUB: not implemented"; return nil }
 
 // Monoid returns a Monoid instance for Eq[A].
 // A Monoid extends Semigroup with an identity element (Empty).
@@ -148,6 +142,4 @@ func Semigroup[A any]() S.Semigroup[Eq[A]] {
 //   - Generic algorithms that require a Monoid instance
 //   - Folding multiple equality predicates into one
 //   - Default "accept everything" equality predicate
-func Monoid[A any]() M.Monoid[Eq[A]] {
-	return M.MakeMonoid(Semigroup[A]().Concat, Empty[A]())
-}
+func Monoid[A any]() M.Monoid[Eq[A]] { _ = "STUB: not implemented"; return nil }

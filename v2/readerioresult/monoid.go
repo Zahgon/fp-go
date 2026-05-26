@@ -18,7 +18,6 @@ package readerioresult
 import (
 	"github.com/IBM/fp-go/v2/lazy"
 	"github.com/IBM/fp-go/v2/monoid"
-	RIOE "github.com/IBM/fp-go/v2/readerioeither"
 )
 
 type (
@@ -36,7 +35,8 @@ type (
 //
 // Returns a Monoid for ReaderIOResult[A].
 func ApplicativeMonoid[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
-	return RIOE.ApplicativeMonoid[R, error](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoidSeq returns a [Monoid] that concatenates [ReaderIOResult] instances via their applicative.
@@ -47,7 +47,8 @@ func ApplicativeMonoid[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
 //
 // Returns a Monoid for ReaderIOResult[A] with sequential execution.
 func ApplicativeMonoidSeq[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
-	return RIOE.ApplicativeMonoidSeq[R, error](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoidPar returns a [Monoid] that concatenates [ReaderIOResult] instances via their applicative.
@@ -58,7 +59,8 @@ func ApplicativeMonoidSeq[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
 //
 // Returns a Monoid for ReaderIOResult[A] with parallel execution.
 func ApplicativeMonoidPar[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
-	return RIOE.ApplicativeMonoidPar[R, error](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AlternativeMonoid is the alternative [Monoid] for [ReaderIOResult].
@@ -70,7 +72,8 @@ func ApplicativeMonoidPar[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
 //
 // Returns a Monoid for ReaderIOResult[A] with alternative semantics.
 func AlternativeMonoid[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
-	return RIOE.AlternativeMonoid[R, error](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltMonoid is the alternative [Monoid] for a [ReaderIOResult].
@@ -82,5 +85,6 @@ func AlternativeMonoid[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
 //
 // Returns a Monoid for ReaderIOResult[A] with Alt-based combination.
 func AltMonoid[R, A any](zero lazy.Lazy[ReaderIOResult[R, A]]) Monoid[R, A] {
-	return RIOE.AltMonoid(zero)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -20,25 +20,25 @@ import (
 	"github.com/IBM/fp-go/internal/functor"
 	"github.com/IBM/fp-go/internal/monad"
 	"github.com/IBM/fp-go/internal/pointed"
-	G "github.com/IBM/fp-go/state/generic"
 )
 
 // Pointed implements the pointed operations for [State]
-func Pointed[S, A any]() pointed.Pointed[A, State[S, A]] {
-	return G.Pointed[State[S, A], S, A]()
-}
+func Pointed[S, A any]() pointed.Pointed[A, State[S, A]] { _ = "STUB: not implemented"; return nil }
 
 // Functor implements the pointed operations for [State]
 func Functor[S, A, B any]() functor.Functor[A, B, State[S, A], State[S, B]] {
-	return G.Functor[State[S, B], State[S, A], S, A, B]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Applicative implements the applicative operations for [State]
 func Applicative[S, A, B any]() applicative.Applicative[A, B, State[S, A], State[S, B], State[S, func(A) B]] {
-	return G.Applicative[State[S, B], State[S, func(A) B], State[S, A]]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad implements the monadic operations for [State]
 func Monad[S, A, B any]() monad.Monad[A, B, State[S, A], State[S, B], State[S, func(A) B]] {
-	return G.Monad[State[S, B], State[S, func(A) B], State[S, A]]()
+	_ = "STUB: not implemented"
+	return nil
 }

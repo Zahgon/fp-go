@@ -16,7 +16,6 @@
 package ioresult
 
 import (
-	"github.com/IBM/fp-go/v2/ioeither"
 	R "github.com/IBM/fp-go/v2/retry"
 )
 
@@ -32,5 +31,6 @@ func Retrying[A any](
 	action Kleisli[R.RetryStatus, A],
 	check Predicate[Result[A]],
 ) IOResult[A] {
-	return ioeither.Retrying(policy, action, check)
+	_ = "STUB: not implemented"
+	return nil
 }

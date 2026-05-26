@@ -16,13 +16,9 @@
 package exec
 
 import (
-	"context"
-
 	RIOE "github.com/IBM/fp-go/v2/context/readerioresult"
 	"github.com/IBM/fp-go/v2/exec"
 	F "github.com/IBM/fp-go/v2/function"
-	GE "github.com/IBM/fp-go/v2/internal/exec"
-	IOE "github.com/IBM/fp-go/v2/ioeither"
 )
 
 var (
@@ -31,9 +27,6 @@ var (
 )
 
 func command(name string, args []string, in []byte) RIOE.ReaderIOResult[exec.CommandOutput] {
-	return func(ctx context.Context) IOE.IOEither[error, exec.CommandOutput] {
-		return IOE.TryCatchError(func() (exec.CommandOutput, error) {
-			return GE.Exec(ctx, name, args, in)
-		})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

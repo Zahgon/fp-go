@@ -29,41 +29,42 @@ type (
 	ioEitherFunctor[A, B any] struct{}
 )
 
-func (o *ioEitherPointed[A]) Of(a A) IOResult[A] {
-	return Of(a)
-}
+func (o *ioEitherPointed[A]) Of(a A) IOResult[A] { _ = "STUB: not implemented"; return nil }
 
-func (o *ioEitherMonad[A, B]) Of(a A) IOResult[A] {
-	return Of(a)
-}
+func (o *ioEitherMonad[A, B]) Of(a A) IOResult[A] { _ = "STUB: not implemented"; return nil }
 
 func (o *ioEitherMonad[A, B]) Map(f func(A) B) Operator[A, B] {
-	return Map(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *ioEitherMonad[A, B]) Chain(f Kleisli[A, B]) Operator[A, B] {
-	return Chain(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *ioEitherMonad[A, B]) Ap(fa IOResult[A]) Operator[func(A) B, B] {
-	return Ap[B](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *ioEitherFunctor[A, B]) Map(f func(A) B) Operator[A, B] {
-	return Map(f)
+	_ = "STUB: not implemented"
+
+	// Pointed implements the pointed operations for [IOResult]
+	return nil
 }
 
-// Pointed implements the pointed operations for [IOResult]
-func Pointed[A any]() pointed.Pointed[A, IOResult[A]] {
-	return &ioEitherPointed[A]{}
-}
+func Pointed[A any]() pointed.Pointed[A, IOResult[A]] { _ = "STUB: not implemented"; return nil }
 
 // Functor implements the monadic operations for [IOResult]
 func Functor[A, B any]() functor.Functor[A, B, IOResult[A], IOResult[B]] {
-	return &ioEitherFunctor[A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad implements the monadic operations for [IOResult]
 func Monad[A, B any]() monad.Monad[A, B, IOResult[A], IOResult[B], IOResult[func(A) B]] {
-	return &ioEitherMonad[A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }

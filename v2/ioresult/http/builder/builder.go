@@ -17,11 +17,11 @@ package builder
 
 import (
 	R "github.com/IBM/fp-go/v2/http/builder"
-	IOEHB "github.com/IBM/fp-go/v2/ioeither/http/builder"
 	IORH "github.com/IBM/fp-go/v2/ioresult/http"
 )
 
 //go:inline
 func Requester(builder *R.Builder) IORH.Requester {
-	return IOEHB.Requester(builder)
+	_ = "STUB: not implemented"
+	return *new(IORH.Requester)
 }

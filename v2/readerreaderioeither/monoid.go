@@ -24,45 +24,26 @@ type (
 )
 
 func ApplicativeMonoid[R, C, E, A any](m monoid.Monoid[A]) Monoid[R, C, E, A] {
-	return monoid.ApplicativeMonoid(
-		Of[R, C, E, A],
-		MonadMap[R, C, E, A, func(A) A],
-		MonadAp[R, C, E, A, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ApplicativeMonoidSeq[R, C, E, A any](m monoid.Monoid[A]) Monoid[R, C, E, A] {
-	return monoid.ApplicativeMonoid(
-		Of[R, C, E, A],
-		MonadMap[R, C, E, A, func(A) A],
-		MonadApSeq[R, C, E, A, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ApplicativeMonoidPar[R, C, E, A any](m monoid.Monoid[A]) Monoid[R, C, E, A] {
-	return monoid.ApplicativeMonoid(
-		Of[R, C, E, A],
-		MonadMap[R, C, E, A, func(A) A],
-		MonadApPar[R, C, E, A, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func AlternativeMonoid[R, C, E, A any](m monoid.Monoid[A]) Monoid[R, C, E, A] {
-	return monoid.AlternativeMonoid(
-		Of[R, C, E, A],
-		MonadMap[R, C, E, A, func(A) A],
-		MonadAp[R, C, E, A, A],
-		MonadAlt[R, C, E, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func AltMonoid[R, C, E, A any](zero Lazy[ReaderReaderIOEither[R, C, E, A]]) Monoid[R, C, E, A] {
-	return monoid.AltMonoid(
-		zero,
-		MonadAlt[R, C, E, A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

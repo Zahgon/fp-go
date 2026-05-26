@@ -62,7 +62,6 @@ package file
 
 import (
 	"io"
-	"os"
 
 	IO "github.com/IBM/fp-go/v2/io"
 )
@@ -97,12 +96,9 @@ import (
 //
 // Note: The #nosec comment is intentional - errors are deliberately ignored
 // for cleanup operations where failure should not interrupt the flow.
-func Close[R io.Closer](r R) IO.IO[R] {
-	return func() R {
-		r.Close() // #nosec: G104
-		return r
-	}
-}
+func Close[R io.Closer](r R) IO.IO[R] { _ = "STUB: not implemented"; return nil }
+
+// #nosec: G104
 
 // Remove removes a file or directory and ignores any potential error.
 // Returns an IO that, when executed, removes the named file or directory
@@ -140,9 +136,6 @@ func Close[R io.Closer](r R) IO.IO[R] {
 // for cleanup operations where failure should not interrupt the flow.
 // This function only removes the named file or empty directory. To remove
 // a directory and its contents, use os.RemoveAll wrapped in an IO.
-func Remove(name string) IO.IO[string] {
-	return func() string {
-		os.Remove(name) // #nosec: G104
-		return name
-	}
-}
+func Remove(name string) IO.IO[string] { _ = "STUB: not implemented"; return nil }
+
+// #nosec: G104

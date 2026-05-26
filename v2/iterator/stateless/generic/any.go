@@ -15,16 +15,8 @@
 
 package generic
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	O "github.com/IBM/fp-go/v2/option"
-)
-
 // Any returns `true` if any element of the iterable is `true`. If the iterable is empty, return `false`
 func Any[GU ~func() Option[Pair[GU, U]], FCT ~Predicate[U], U any](pred FCT) func(ma GU) bool {
-	return F.Flow3(
-		Filter[GU](pred),
-		First[GU],
-		O.IsSome[U],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

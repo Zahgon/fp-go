@@ -24,18 +24,18 @@ type (
 )
 
 func (o optionFunctor[A, B]) Map(f func(A) B) Operator[A, B] {
-	return Map(f)
+	_ = "STUB: not implemented"
+
+	// Functor implements the functoric operations for Option.
+	// A functor is a type that can be mapped over, transforming the contained value
+	// while preserving the structure.
+	//
+	// Example:
+	//
+	//	f := Functor[int, string]()
+	//	mapper := f.Map(strconv.Itoa)
+	//	result := mapper(Some(42)) // Some("42")
+	return nil
 }
 
-// Functor implements the functoric operations for Option.
-// A functor is a type that can be mapped over, transforming the contained value
-// while preserving the structure.
-//
-// Example:
-//
-//	f := Functor[int, string]()
-//	mapper := f.Map(strconv.Itoa)
-//	result := mapper(Some(42)) // Some("42")
-func MakeFunctor[A, B any]() Functor[A, B] {
-	return optionFunctor[A, B]{}
-}
+func MakeFunctor[A, B any]() Functor[A, B] { _ = "STUB: not implemented"; return nil }

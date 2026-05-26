@@ -15,45 +15,16 @@
 
 package errors
 
-import (
-	"fmt"
-
-	A "github.com/IBM/fp-go/array"
-)
-
 // OnNone generates a nullary function that produces a formatted error
-func OnNone(msg string, args ...any) func() error {
-	return func() error {
-		return fmt.Errorf(msg, args...)
-	}
-}
+func OnNone(msg string, args ...any) func() error { _ = "STUB: not implemented"; return nil }
 
 // OnSome generates a unary function that produces a formatted error
-func OnSome[T any](msg string, args ...any) func(T) error {
-	l := len(args)
-	if l == 0 {
-		return func(value T) error {
-			return fmt.Errorf(msg, value)
-		}
-	}
-	return func(value T) error {
-		data := make([]any, l)
-		copy(data[1:], args)
-		data[0] = value
-		return fmt.Errorf(msg, data...)
-	}
-}
+func OnSome[T any](msg string, args ...any) func(T) error { _ = "STUB: not implemented"; return nil }
 
 // OnError generates a unary function that produces a formatted error. The argument
 // to that function is the root cause of the error and the message will be augmented with
 // a format string containing %w
-func OnError(msg string, args ...any) func(error) error {
-	return func(err error) error {
-		return fmt.Errorf(msg+", Caused By: %w", A.ArrayConcatAll(args, A.Of[any](err))...)
-	}
-}
+func OnError(msg string, args ...any) func(error) error { _ = "STUB: not implemented"; return nil }
 
 // ToString converts an error to a string
-func ToString(err error) string {
-	return err.Error()
-}
+func ToString(err error) string { _ = "STUB: not implemented"; return "" }

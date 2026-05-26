@@ -16,17 +16,12 @@
 package http
 
 import (
-	"io"
 	"net/http"
 
-	B "github.com/IBM/fp-go/bytes"
 	RIOE "github.com/IBM/fp-go/context/readerioeither"
 	F "github.com/IBM/fp-go/function"
 	H "github.com/IBM/fp-go/http"
 	IOE "github.com/IBM/fp-go/ioeither"
-	IOEF "github.com/IBM/fp-go/ioeither/file"
-	J "github.com/IBM/fp-go/json"
-	P "github.com/IBM/fp-go/pair"
 )
 
 type (
@@ -54,76 +49,46 @@ var (
 )
 
 func (client client) Do(req Requester) RIOE.ReaderIOEither[*http.Response] {
-	return F.Pipe1(
-		req,
-		RIOE.ChainIOEitherK(client.doIOE),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeClient creates an HTTP client proxy
-func MakeClient(httpClient *http.Client) Client {
-	return client{delegate: httpClient, doIOE: IOE.Eitherize1(httpClient.Do)}
-}
+func MakeClient(httpClient *http.Client) Client { _ = "STUB: not implemented"; return *new(Client) }
 
 // ReadFullResponse sends a request,  reads the response as a byte array and represents the result as a tuple
 func ReadFullResponse(client Client) func(Requester) RIOE.ReaderIOEither[H.FullResponse] {
-	return func(req Requester) RIOE.ReaderIOEither[H.FullResponse] {
-		return F.Flow3(
-			client.Do(req),
-			IOE.ChainEitherK(H.ValidateResponse),
-			IOE.Chain(func(resp *http.Response) IOE.IOEither[error, H.FullResponse] {
-				return F.Pipe1(
-					F.Pipe3(
-						resp,
-						H.GetBody,
-						IOE.Of[error, io.ReadCloser],
-						IOEF.ReadAll[io.ReadCloser],
-					),
-					IOE.Map[error](F.Bind1st(P.MakePair[*http.Response, []byte], resp)),
-				)
-			}),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadAll sends a request and reads the response as bytes
 func ReadAll(client Client) func(Requester) RIOE.ReaderIOEither[[]byte] {
-	return F.Flow2(
-		ReadFullResponse(client),
-		RIOE.Map(H.Body),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadText sends a request, reads the response and represents the response as a text string
 func ReadText(client Client) func(Requester) RIOE.ReaderIOEither[string] {
-	return F.Flow2(
-		ReadAll(client),
-		RIOE.Map(B.ToString),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadJson sends a request, reads the response and parses the response as JSON
 //
 // Deprecated: use [ReadJSON] instead
 func ReadJson[A any](client Client) func(Requester) RIOE.ReaderIOEither[A] {
-	return ReadJSON[A](client)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func readJSON(client Client) func(Requester) RIOE.ReaderIOEither[[]byte] {
-	return F.Flow3(
-		ReadFullResponse(client),
-		RIOE.ChainFirstEitherK(F.Flow2(
-			H.Response,
-			H.ValidateJSONResponse,
-		)),
-		RIOE.Map(H.Body),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadJSON sends a request, reads the response and parses the response as JSON
 func ReadJSON[A any](client Client) func(Requester) RIOE.ReaderIOEither[A] {
-	return F.Flow2(
-		readJSON(client),
-		RIOE.ChainEitherK(J.Unmarshal[A]),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

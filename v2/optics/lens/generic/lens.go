@@ -16,7 +16,6 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/functor"
 	L "github.com/IBM/fp-go/v2/optics/lens"
 )
@@ -25,16 +24,6 @@ import (
 func AsTraversal[R ~func(func(A) HKTA) func(S) HKTS, S, A, HKTS, HKTA any](
 	fmap functor.MapType[A, S, HKTA, HKTS],
 ) func(L.Lens[S, A]) R {
-	return func(sa L.Lens[S, A]) R {
-		return func(f func(A) HKTA) func(S) HKTS {
-			return func(s S) HKTS {
-				return F.Pipe1(
-					f(sa.Get(s)),
-					fmap(func(a A) S {
-						return sa.Set(a)(s)
-					}),
-				)
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

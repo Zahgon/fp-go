@@ -115,9 +115,6 @@ package function
 //   - Curry2: For converting binary functions to curried form
 //   - Uncurry2: For converting curried functions back to binary form
 func Flip[T1, T2, R any](f func(T1) func(T2) R) func(T2) func(T1) R {
-	return func(t2 T2) func(T1) R {
-		return func(t1 T1) R {
-			return f(t1)(t2)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,156 +16,143 @@
 package readereither
 
 import (
-	ET "github.com/IBM/fp-go/v2/either"
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/eithert"
-	"github.com/IBM/fp-go/v2/internal/fromeither"
-	"github.com/IBM/fp-go/v2/internal/fromreader"
-	"github.com/IBM/fp-go/v2/internal/functor"
-	"github.com/IBM/fp-go/v2/internal/readert"
-	"github.com/IBM/fp-go/v2/lazy"
 	"github.com/IBM/fp-go/v2/reader"
 )
 
 func FromEither[E, L, A any](e Either[L, A]) ReaderEither[E, L, A] {
-	return reader.Of[E](e)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func RightReader[L, E, A any](r Reader[E, A]) ReaderEither[E, L, A] {
-	return eithert.RightF(reader.MonadMap[E, A, Either[L, A]], r)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func LeftReader[A, E, L any](l Reader[E, L]) ReaderEither[E, L, A] {
-	return eithert.LeftF(reader.MonadMap[E, L, Either[L, A]], l)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Left[E, A, L any](l L) ReaderEither[E, L, A] {
-	return eithert.Left(reader.Of[E, Either[L, A]], l)
-}
+func Left[E, A, L any](l L) ReaderEither[E, L, A] { _ = "STUB: not implemented"; return nil }
 
-func Right[E, L, A any](r A) ReaderEither[E, L, A] {
-	return eithert.Right(reader.Of[E, Either[L, A]], r)
-}
+func Right[E, L, A any](r A) ReaderEither[E, L, A] { _ = "STUB: not implemented"; return nil }
 
-func OfLazy[E, L, A any](r Lazy[A]) ReaderEither[E, L, A] {
-	return reader.OfLazy[E](function.Pipe1(
-		r,
-		lazy.Map(ET.Of[L, A]),
-	))
-}
+func OfLazy[E, L, A any](r Lazy[A]) ReaderEither[E, L, A] { _ = "STUB: not implemented"; return nil }
 
 func FromReader[L, E, A any](r Reader[E, A]) ReaderEither[E, L, A] {
-	return RightReader[L](r)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadMap[E, L, A, B any](fa ReaderEither[E, L, A], f func(A) B) ReaderEither[E, L, B] {
-	return readert.MonadMap[ReaderEither[E, L, A], ReaderEither[E, L, B]](ET.MonadMap[L, A, B], fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Map[E, L, A, B any](f func(A) B) func(ReaderEither[E, L, A]) ReaderEither[E, L, B] {
-	return readert.Map[ReaderEither[E, L, A], ReaderEither[E, L, B]](ET.Map[L, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChain[E, L, A, B any](ma ReaderEither[E, L, A], f func(A) ReaderEither[E, L, B]) ReaderEither[E, L, B] {
-	return readert.MonadChain(ET.MonadChain[L, A, B], ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Chain[E, L, A, B any](f func(A) ReaderEither[E, L, B]) func(ReaderEither[E, L, A]) ReaderEither[E, L, B] {
-	return readert.Chain[ReaderEither[E, L, A]](ET.Chain[L, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainReaderK[L, E, A, B any](ma ReaderEither[E, L, A], f reader.Kleisli[E, A, B]) ReaderEither[E, L, B] {
-	return MonadChain(ma, function.Flow2(f, FromReader[L, E, B]))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainReaderK[L, E, A, B any](f reader.Kleisli[E, A, B]) func(ReaderEither[E, L, A]) ReaderEither[E, L, B] {
-	return Chain(function.Flow2(f, FromReader[L, E, B]))
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Of[E, L, A any](a A) ReaderEither[E, L, A] {
-	return readert.MonadOf[ReaderEither[E, L, A]](ET.Of[L, A], a)
-}
+func Of[E, L, A any](a A) ReaderEither[E, L, A] { _ = "STUB: not implemented"; return nil }
 
 func MonadAp[B, E, L, A any](fab ReaderEither[E, L, func(A) B], fa ReaderEither[E, L, A]) ReaderEither[E, L, B] {
-	return readert.MonadAp[ReaderEither[E, L, A], ReaderEither[E, L, B], ReaderEither[E, L, func(A) B], E, A](ET.MonadAp[B, L, A], fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Ap[B, E, L, A any](fa ReaderEither[E, L, A]) func(ReaderEither[E, L, func(A) B]) ReaderEither[E, L, B] {
-	return readert.Ap[ReaderEither[E, L, A], ReaderEither[E, L, B], ReaderEither[E, L, func(A) B], E, A](ET.Ap[B, L, A], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FromPredicate[E, L, A any](pred func(A) bool, onFalse func(A) L) func(A) ReaderEither[E, L, A] {
-	return fromeither.FromPredicate(FromEither[E, L, A], pred, onFalse)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Fold[E, L, A, B any](onLeft func(L) Reader[E, B], onRight func(A) Reader[E, B]) func(ReaderEither[E, L, A]) Reader[E, B] {
-	return eithert.MatchE(reader.MonadChain[E, Either[L, A], B], onLeft, onRight)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func GetOrElse[E, L, A any](onLeft func(L) Reader[E, A]) func(ReaderEither[E, L, A]) Reader[E, A] {
-	return eithert.GetOrElse(reader.MonadChain[E, Either[L, A], A], reader.Of[E, A], onLeft)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func OrLeft[A, L1, E, L2 any](onLeft func(L1) Reader[E, L2]) func(ReaderEither[E, L1, A]) ReaderEither[E, L2, A] {
-	return eithert.OrLeft(
-		reader.MonadChain[E, Either[L1, A], Either[L2, A]],
-		reader.MonadMap[E, L2, Either[L2, A]],
-		reader.Of[E, Either[L2, A]],
-		onLeft,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Ask[E, L any]() ReaderEither[E, L, E] {
-	return fromreader.Ask(FromReader[L, E, E])()
-}
+func Ask[E, L any]() ReaderEither[E, L, E] { _ = "STUB: not implemented"; return nil }
 
-func Asks[L, E, A any](r Reader[E, A]) ReaderEither[E, L, A] {
-	return fromreader.Asks(FromReader[L, E, A])(r)
-}
+func Asks[L, E, A any](r Reader[E, A]) ReaderEither[E, L, A] { _ = "STUB: not implemented"; return nil }
 
 func MonadChainEitherK[E, L, A, B any](ma ReaderEither[E, L, A], f func(A) Either[L, B]) ReaderEither[E, L, B] {
-	return fromeither.MonadChainEitherK(
-		MonadChain[E, L, A, B],
-		FromEither[E, L, B],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainEitherK[E, L, A, B any](f func(A) Either[L, B]) func(ma ReaderEither[E, L, A]) ReaderEither[E, L, B] {
-	return fromeither.ChainEitherK(
-		Chain[E, L, A, B],
-		FromEither[E, L, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainOptionK[E, A, B, L any](onNone func() L) func(func(A) Option[B]) func(ReaderEither[E, L, A]) ReaderEither[E, L, B] {
-	return fromeither.ChainOptionK(MonadChain[E, L, A, B], FromEither[E, L, B], onNone)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Flatten[E, L, A any](mma ReaderEither[E, L, ReaderEither[E, L, A]]) ReaderEither[E, L, A] {
-	return MonadChain(mma, function.Identity[ReaderEither[E, L, A]])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadBiMap[E, E1, E2, A, B any](fa ReaderEither[E, E1, A], f func(E1) E2, g func(A) B) ReaderEither[E, E2, B] {
-	return eithert.MonadBiMap(reader.MonadMap[E, Either[E1, A], Either[E2, B]], fa, f, g)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BiMap maps a pair of functions over the two type arguments of the bifunctor.
 func BiMap[E, E1, E2, A, B any](f func(E1) E2, g func(A) B) func(ReaderEither[E, E1, A]) ReaderEither[E, E2, B] {
-	return eithert.BiMap(reader.Map[E, Either[E1, A], Either[E2, B]], f, g)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Local changes the value of the local context during the execution of the action `ma` (similar to `Contravariant`'s
 // `contramap`).
 func Local[E, A, R1, R2 any](f func(R2) R1) func(ReaderEither[R1, E, A]) ReaderEither[R2, E, A] {
-	return reader.Local[Either[E, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Read applies a context to a reader to obtain its value
 func Read[E1, A, E any](e E) func(ReaderEither[E, E1, A]) Either[E1, A] {
-	return reader.Read[Either[E1, A]](e)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadEither applies a context wrapped in an Either to a ReaderEither to obtain its result.
@@ -222,27 +209,29 @@ func Read[E1, A, E any](e E) func(ReaderEither[E, E1, A]) Either[E1, A] {
 //
 //go:inline
 func ReadEither[E1, A, E any](e Either[E1, E]) func(ReaderEither[E, E1, A]) Either[E1, A] {
-	return function.Flow2(
-		ET.Chain[E1, E],
-		Read[E1, A](e),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadFlap[L, E, A, B any](fab ReaderEither[L, E, func(A) B], a A) ReaderEither[L, E, B] {
-	return functor.MonadFlap(MonadMap[L, E, func(A) B, B], fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Flap[L, E, B, A any](a A) func(ReaderEither[L, E, func(A) B]) ReaderEither[L, E, B] {
-	return functor.Flap(Map[L, E, func(A) B, B], a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadMapLeft[C, E1, E2, A any](fa ReaderEither[C, E1, A], f func(E1) E2) ReaderEither[C, E2, A] {
-	return eithert.MonadMapLeft(reader.MonadMap[C, Either[E1, A], Either[E2, A]], fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MapLeft applies a mapping function to the error channel
 func MapLeft[C, E1, E2, A any](f func(E1) E2) func(ReaderEither[C, E1, A]) ReaderEither[C, E2, A] {
-	return eithert.MapLeft(reader.Map[C, Either[E1, A], Either[E2, A]], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // OrElse recovers from a Left (error) by providing an alternative computation with access to the reader context.
@@ -270,7 +259,8 @@ func MapLeft[C, E1, E2, A any](f func(E1) E2) func(ReaderEither[C, E1, A]) Reade
 //
 //go:inline
 func OrElse[R, E1, E2, A any](onLeft Kleisli[R, E2, E1, A]) Kleisli[R, E2, ReaderEither[R, E1, A], A] {
-	return Fold(onLeft, Of[R, E2, A])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainLeft chains a computation on the left (error) side of a ReaderEither.
@@ -311,12 +301,8 @@ func OrElse[R, E1, E2, A any](onLeft Kleisli[R, E2, E1, A]) Kleisli[R, E2, Reade
 //
 //go:inline
 func MonadChainLeft[R, EA, EB, A any](fa ReaderEither[R, EA, A], f Kleisli[R, EB, EA, A]) ReaderEither[R, EB, A] {
-	return func(r R) Either[EB, A] {
-		return ET.Fold(
-			func(ea EA) Either[EB, A] { return f(ea)(r) },
-			ET.Right[EB, A],
-		)(fa(r))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainLeft is the curried version of [MonadChainLeft].
@@ -359,9 +345,8 @@ func MonadChainLeft[R, EA, EB, A any](fa ReaderEither[R, EA, A], f Kleisli[R, EB
 //
 //go:inline
 func ChainLeft[R, EA, EB, A any](f Kleisli[R, EB, EA, A]) func(ReaderEither[R, EA, A]) ReaderEither[R, EB, A] {
-	return func(fa ReaderEither[R, EA, A]) ReaderEither[R, EB, A] {
-		return MonadChainLeft(fa, f)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainFirstLeft chains a computation on the left (error) side but always returns the original error.
@@ -399,18 +384,14 @@ func ChainLeft[R, EA, EB, A any](f Kleisli[R, EB, EA, A]) func(ReaderEither[R, E
 //
 //go:inline
 func MonadChainFirstLeft[A, R, EA, EB, B any](ma ReaderEither[R, EA, A], f Kleisli[R, EB, EA, B]) ReaderEither[R, EA, A] {
-	return eithert.MonadChainFirstLeft(
-		reader.MonadChain[R, Either[EA, A], Either[EA, A]],
-		reader.MonadMap[R, Either[EB, B], Either[EA, A]],
-		reader.Of[R, Either[EA, A]],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MonadTapLeft[A, R, EA, EB, B any](ma ReaderEither[R, EA, A], f Kleisli[R, EB, EA, B]) ReaderEither[R, EA, A] {
-	return MonadChainFirstLeft(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstLeft is the curried version of [MonadChainFirstLeft].
@@ -448,17 +429,14 @@ func MonadTapLeft[A, R, EA, EB, B any](ma ReaderEither[R, EA, A], f Kleisli[R, E
 //
 //go:inline
 func ChainFirstLeft[A, R, EA, EB, B any](f Kleisli[R, EB, EA, B]) Operator[R, EA, A, A] {
-	return eithert.ChainFirstLeft(
-		reader.Chain[R, Either[EA, A], Either[EA, A]],
-		reader.Map[R, Either[EB, B], Either[EA, A]],
-		reader.Of[R, Either[EA, A]],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func TapLeft[A, R, EA, EB, B any](f Kleisli[R, EB, EA, B]) Operator[R, EA, A, A] {
-	return ChainFirstLeft[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFold applies one of two functions depending on the Either value.
@@ -467,26 +445,18 @@ func TapLeft[A, R, EA, EB, B any](f Kleisli[R, EB, EA, B]) Operator[R, EA, A, A]
 //
 //go:inline
 func MonadFold[E, L, A, B any](ma ReaderEither[E, L, A], onLeft func(L) Reader[E, B], onRight func(A) Reader[E, B]) Reader[E, B] {
-	return Fold(onLeft, onRight)(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MonadAlt[R, E, A any](first ReaderEither[R, E, A], second Lazy[ReaderEither[R, E, A]]) ReaderEither[R, E, A] {
-	return eithert.MonadAlt(
-		reader.Of[R, Either[E, A]],
-		reader.MonadChain[R, Either[E, A], Either[E, A]],
-
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func Alt[R, E, A any](second Lazy[ReaderEither[R, E, A]]) Operator[R, E, A, A] {
-	return eithert.Alt(
-		reader.Of[R, Either[E, A]],
-		reader.Chain[R, Either[E, A], Either[E, A]],
-
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

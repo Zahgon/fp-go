@@ -5,13 +5,10 @@ package lenses
 // 2026-01-27 16:08:47.5483589 +0100 CET m=+0.003380301
 
 import (
-	"net"
 	url "net/url"
 
-	__iso_option "github.com/IBM/fp-go/v2/optics/iso/option"
 	__lens "github.com/IBM/fp-go/v2/optics/lens"
 	__lens_option "github.com/IBM/fp-go/v2/optics/lens/option"
-	__option "github.com/IBM/fp-go/v2/option"
 )
 
 // ErrorLenses provides lenses for accessing fields of url.Error
@@ -40,71 +37,29 @@ type ErrorRefLenses struct {
 
 // MakeErrorLenses creates a new ErrorLenses with lenses for all fields
 func MakeErrorLenses() ErrorLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensOp := __lens.MakeLensWithName(
-		func(s url.Error) string { return s.Op },
-		func(s url.Error, v string) url.Error { s.Op = v; return s },
-		"Error.Op",
-	)
-	lensURL := __lens.MakeLensWithName(
-		func(s url.Error) string { return s.URL },
-		func(s url.Error, v string) url.Error { s.URL = v; return s },
-		"Error.URL",
-	)
-	lensErr := __lens.MakeLensWithName(
-		func(s url.Error) error { return s.Err },
-		func(s url.Error, v error) url.Error { s.Err = v; return s },
-		"Error.Err",
-	)
-	// optional lenses
-	lensOpO := __lens_option.FromIso[url.Error](__iso_option.FromZero[string]())(lensOp)
-	lensURLO := __lens_option.FromIso[url.Error](__iso_option.FromZero[string]())(lensURL)
-	lensErrO := __lens_option.FromIso[url.Error](__iso_option.FromZero[error]())(lensErr)
-	return ErrorLenses{
-		// mandatory lenses
-		Op:  lensOp,
-		URL: lensURL,
-		Err: lensErr,
-		// optional lenses
-		OpO:  lensOpO,
-		URLO: lensURLO,
-		ErrO: lensErrO,
-	}
+	return *new(ErrorLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeErrorRefLenses creates a new ErrorRefLenses with lenses for all fields
 func MakeErrorRefLenses() ErrorRefLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensOp := __lens.MakeLensStrictWithName(
-		func(s *url.Error) string { return s.Op },
-		func(s *url.Error, v string) *url.Error { s.Op = v; return s },
-		"(*url.Error).Op",
-	)
-	lensURL := __lens.MakeLensStrictWithName(
-		func(s *url.Error) string { return s.URL },
-		func(s *url.Error, v string) *url.Error { s.URL = v; return s },
-		"(*url.Error).url.URL",
-	)
-	lensErr := __lens.MakeLensStrictWithName(
-		func(s *url.Error) error { return s.Err },
-		func(s *url.Error, v error) *url.Error { s.Err = v; return s },
-		"(*url.Error).Err",
-	)
-	// optional lenses
-	lensOpO := __lens_option.FromIso[*url.Error](__iso_option.FromZero[string]())(lensOp)
-	lensURLO := __lens_option.FromIso[*url.Error](__iso_option.FromZero[string]())(lensURL)
-	lensErrO := __lens_option.FromIso[*url.Error](__iso_option.FromZero[error]())(lensErr)
-	return ErrorRefLenses{
-		// mandatory lenses
-		Op:  lensOp,
-		URL: lensURL,
-		Err: lensErr,
-		// optional lenses
-		OpO:  lensOpO,
-		URLO: lensURLO,
-		ErrO: lensErrO,
-	}
+	return *new(ErrorRefLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // URLLenses provides lenses for accessing fields of url.URL
 type URLLenses struct {
@@ -172,275 +127,29 @@ type URLRefLenses struct {
 
 // MakeURLLenses creates a new URLLenses with lenses for all fields
 func MakeURLLenses() URLLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensScheme := __lens.MakeLensWithName(
-		func(s url.URL) string { return s.Scheme },
-		func(s url.URL, v string) url.URL { s.Scheme = v; return s },
-		"URL.Scheme",
-	)
-	lensOpaque := __lens.MakeLensWithName(
-		func(s url.URL) string { return s.Opaque },
-		func(s url.URL, v string) url.URL { s.Opaque = v; return s },
-		"URL.Opaque",
-	)
-	lensUser := __lens.MakeLensWithName(
-		func(s url.URL) *url.Userinfo { return s.User },
-		func(s url.URL, v *url.Userinfo) url.URL { s.User = v; return s },
-		"URL.User",
-	)
-	lensHost := __lens.MakeLensWithName(
-		func(s url.URL) string { return s.Host },
-		func(s url.URL, v string) url.URL { s.Host = v; return s },
-		"URL.Host",
-	)
-	lensPath := __lens.MakeLensWithName(
-		func(s url.URL) string { return s.Path },
-		func(s url.URL, v string) url.URL { s.Path = v; return s },
-		"URL.Path",
-	)
-	lensRawPath := __lens.MakeLensWithName(
-		func(s url.URL) string { return s.RawPath },
-		func(s url.URL, v string) url.URL { s.RawPath = v; return s },
-		"URL.RawPath",
-	)
-	lensOmitHost := __lens.MakeLensWithName(
-		func(s url.URL) bool { return s.OmitHost },
-		func(s url.URL, v bool) url.URL { s.OmitHost = v; return s },
-		"URL.OmitHost",
-	)
-	lensForceQuery := __lens.MakeLensWithName(
-		func(s url.URL) bool { return s.ForceQuery },
-		func(s url.URL, v bool) url.URL { s.ForceQuery = v; return s },
-		"URL.ForceQuery",
-	)
-	lensRawQuery := __lens.MakeLensWithName(
-		func(s url.URL) string { return s.RawQuery },
-		func(s url.URL, v string) url.URL { s.RawQuery = v; return s },
-		"URL.RawQuery",
-	)
-	lensFragment := __lens.MakeLensWithName(
-		func(s url.URL) string { return s.Fragment },
-		func(s url.URL, v string) url.URL { s.Fragment = v; return s },
-		"URL.Fragment",
-	)
-	lensRawFragment := __lens.MakeLensWithName(
-		func(s url.URL) string { return s.RawFragment },
-		func(s url.URL, v string) url.URL { s.RawFragment = v; return s },
-		"URL.RawFragment",
-	)
-	lensHostname := __lens.MakeLensWithName(
-		func(s url.URL) string {
-			host, _, err := net.SplitHostPort(s.Host)
-			if err != nil {
-				return s.Host
-			}
-			return host
-		},
-		func(s url.URL, v string) url.URL {
-			_, port, err := net.SplitHostPort(s.Host)
-			if err != nil {
-				s.Host = v
-			} else {
-				s.Host = net.JoinHostPort(v, port)
-			}
-			return s
-		},
-		"URL.Hostname",
-	)
-	lensPort := __lens.MakeLensWithName(
-		func(s url.URL) string { return s.Port() },
-		func(s url.URL, v string) url.URL {
-			host, _, err := net.SplitHostPort(s.Host)
-			if err != nil {
-				s.Host = net.JoinHostPort(s.Host, v)
-			} else {
-				s.Host = net.JoinHostPort(host, v)
-			}
-			return s
-		},
-		"URL.Port",
-	)
-	// optional lenses
-	lensSchemeO := __lens_option.FromIso[url.URL](__iso_option.FromZero[string]())(lensScheme)
-	lensOpaqueO := __lens_option.FromIso[url.URL](__iso_option.FromZero[string]())(lensOpaque)
-	lensUserO := __lens_option.FromIso[url.URL](__iso_option.FromZero[*url.Userinfo]())(lensUser)
-	lensHostO := __lens_option.FromIso[url.URL](__iso_option.FromZero[string]())(lensHost)
-	lensPathO := __lens_option.FromIso[url.URL](__iso_option.FromZero[string]())(lensPath)
-	lensRawPathO := __lens_option.FromIso[url.URL](__iso_option.FromZero[string]())(lensRawPath)
-	lensOmitHostO := __lens_option.FromIso[url.URL](__iso_option.FromZero[bool]())(lensOmitHost)
-	lensForceQueryO := __lens_option.FromIso[url.URL](__iso_option.FromZero[bool]())(lensForceQuery)
-	lensRawQueryO := __lens_option.FromIso[url.URL](__iso_option.FromZero[string]())(lensRawQuery)
-	lensFragmentO := __lens_option.FromIso[url.URL](__iso_option.FromZero[string]())(lensFragment)
-	lensRawFragmentO := __lens_option.FromIso[url.URL](__iso_option.FromZero[string]())(lensRawFragment)
-	lensHostnameO := __lens_option.FromIso[url.URL](__iso_option.FromZero[string]())(lensHostname)
-	lensPortO := __lens_option.FromIso[url.URL](__iso_option.FromZero[string]())(lensPort)
-	return URLLenses{
-		// mandatory lenses
-		Scheme:      lensScheme,
-		Opaque:      lensOpaque,
-		User:        lensUser,
-		Host:        lensHost,
-		Path:        lensPath,
-		RawPath:     lensRawPath,
-		OmitHost:    lensOmitHost,
-		ForceQuery:  lensForceQuery,
-		RawQuery:    lensRawQuery,
-		Fragment:    lensFragment,
-		RawFragment: lensRawFragment,
-		Hostname:    lensHostname,
-		Port:        lensPort,
-		// optional lenses
-		SchemeO:      lensSchemeO,
-		OpaqueO:      lensOpaqueO,
-		UserO:        lensUserO,
-		HostO:        lensHostO,
-		PathO:        lensPathO,
-		RawPathO:     lensRawPathO,
-		OmitHostO:    lensOmitHostO,
-		ForceQueryO:  lensForceQueryO,
-		RawQueryO:    lensRawQueryO,
-		FragmentO:    lensFragmentO,
-		RawFragmentO: lensRawFragmentO,
-		HostnameO:    lensHostnameO,
-		PortO:        lensPortO,
-	}
+	return *new(URLLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeURLRefLenses creates a new URLRefLenses with lenses for all fields
 func MakeURLRefLenses() URLRefLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensScheme := __lens.MakeLensStrictWithName(
-		func(s *url.URL) string { return s.Scheme },
-		func(s *url.URL, v string) *url.URL { s.Scheme = v; return s },
-		"(*url.URL).Scheme",
-	)
-	lensOpaque := __lens.MakeLensStrictWithName(
-		func(s *url.URL) string { return s.Opaque },
-		func(s *url.URL, v string) *url.URL { s.Opaque = v; return s },
-		"(*url.URL).Opaque",
-	)
-	lensUser := __lens.MakeLensStrictWithName(
-		func(s *url.URL) *url.Userinfo { return s.User },
-		func(s *url.URL, v *url.Userinfo) *url.URL { s.User = v; return s },
-		"(*url.URL).User",
-	)
-	lensHost := __lens.MakeLensStrictWithName(
-		func(s *url.URL) string { return s.Host },
-		func(s *url.URL, v string) *url.URL { s.Host = v; return s },
-		"(*url.URL).Host",
-	)
-	lensPath := __lens.MakeLensStrictWithName(
-		func(s *url.URL) string { return s.Path },
-		func(s *url.URL, v string) *url.URL { s.Path = v; return s },
-		"(*url.URL).Path",
-	)
-	lensRawPath := __lens.MakeLensStrictWithName(
-		func(s *url.URL) string { return s.RawPath },
-		func(s *url.URL, v string) *url.URL { s.RawPath = v; return s },
-		"(*url.URL).RawPath",
-	)
-	lensOmitHost := __lens.MakeLensStrictWithName(
-		func(s *url.URL) bool { return s.OmitHost },
-		func(s *url.URL, v bool) *url.URL { s.OmitHost = v; return s },
-		"(*url.URL).OmitHost",
-	)
-	lensForceQuery := __lens.MakeLensStrictWithName(
-		func(s *url.URL) bool { return s.ForceQuery },
-		func(s *url.URL, v bool) *url.URL { s.ForceQuery = v; return s },
-		"(*url.URL).ForceQuery",
-	)
-	lensRawQuery := __lens.MakeLensStrictWithName(
-		func(s *url.URL) string { return s.RawQuery },
-		func(s *url.URL, v string) *url.URL { s.RawQuery = v; return s },
-		"(*url.URL).RawQuery",
-	)
-	lensFragment := __lens.MakeLensStrictWithName(
-		func(s *url.URL) string { return s.Fragment },
-		func(s *url.URL, v string) *url.URL { s.Fragment = v; return s },
-		"(*url.URL).Fragment",
-	)
-	lensRawFragment := __lens.MakeLensStrictWithName(
-		func(s *url.URL) string { return s.RawFragment },
-		func(s *url.URL, v string) *url.URL { s.RawFragment = v; return s },
-		"(*url.URL).RawFragment",
-	)
-	lensHostname := __lens.MakeLensStrictWithName(
-		func(s *url.URL) string {
-			host, _, err := net.SplitHostPort(s.Host)
-			if err != nil {
-				return s.Host
-			}
-			return host
-		},
-		func(s *url.URL, v string) *url.URL {
-			_, port, err := net.SplitHostPort(s.Host)
-			if err != nil {
-				s.Host = v
-			} else {
-				s.Host = net.JoinHostPort(v, port)
-			}
-			return s
-		},
-		"URL.Hostname",
-	)
-	lensPort := __lens.MakeLensStrictWithName(
-		(*url.URL).Port,
-		func(s *url.URL, v string) *url.URL {
-			host, _, err := net.SplitHostPort(s.Host)
-			if err != nil {
-				s.Host = net.JoinHostPort(s.Host, v)
-			} else {
-				s.Host = net.JoinHostPort(host, v)
-			}
-			return s
-		},
-		"URL.Port",
-	)
-	// optional lenses
-	lensSchemeO := __lens_option.FromIso[*url.URL](__iso_option.FromZero[string]())(lensScheme)
-	lensOpaqueO := __lens_option.FromIso[*url.URL](__iso_option.FromZero[string]())(lensOpaque)
-	lensUserO := __lens_option.FromIso[*url.URL](__iso_option.FromZero[*url.Userinfo]())(lensUser)
-	lensHostO := __lens_option.FromIso[*url.URL](__iso_option.FromZero[string]())(lensHost)
-	lensPathO := __lens_option.FromIso[*url.URL](__iso_option.FromZero[string]())(lensPath)
-	lensRawPathO := __lens_option.FromIso[*url.URL](__iso_option.FromZero[string]())(lensRawPath)
-	lensOmitHostO := __lens_option.FromIso[*url.URL](__iso_option.FromZero[bool]())(lensOmitHost)
-	lensForceQueryO := __lens_option.FromIso[*url.URL](__iso_option.FromZero[bool]())(lensForceQuery)
-	lensRawQueryO := __lens_option.FromIso[*url.URL](__iso_option.FromZero[string]())(lensRawQuery)
-	lensFragmentO := __lens_option.FromIso[*url.URL](__iso_option.FromZero[string]())(lensFragment)
-	lensRawFragmentO := __lens_option.FromIso[*url.URL](__iso_option.FromZero[string]())(lensRawFragment)
-	lensHostnameO := __lens_option.FromIso[*url.URL](__iso_option.FromZero[string]())(lensHostname)
-	lensPortO := __lens_option.FromIso[*url.URL](__iso_option.FromZero[string]())(lensPort)
-	return URLRefLenses{
-		// mandatory lenses
-		Scheme:      lensScheme,
-		Opaque:      lensOpaque,
-		User:        lensUser,
-		Host:        lensHost,
-		Path:        lensPath,
-		RawPath:     lensRawPath,
-		OmitHost:    lensOmitHost,
-		ForceQuery:  lensForceQuery,
-		RawQuery:    lensRawQuery,
-		Fragment:    lensFragment,
-		RawFragment: lensRawFragment,
-		Hostname:    lensHostname,
-		Port:        lensPort,
-		// optional lenses
-		SchemeO:      lensSchemeO,
-		OpaqueO:      lensOpaqueO,
-		UserO:        lensUserO,
-		HostO:        lensHostO,
-		PathO:        lensPathO,
-		RawPathO:     lensRawPathO,
-		OmitHostO:    lensOmitHostO,
-		ForceQueryO:  lensForceQueryO,
-		RawQueryO:    lensRawQueryO,
-		FragmentO:    lensFragmentO,
-		RawFragmentO: lensRawFragmentO,
-		HostnameO:    lensHostnameO,
-		PortO:        lensPortO,
-	}
+	return *new(URLRefLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // UserinfoRefLenses provides lenses for accessing fields of url.Userinfo via a reference to url.Userinfo
 type UserinfoRefLenses struct {
@@ -454,41 +163,13 @@ type UserinfoRefLenses struct {
 
 // MakeUserinfoRefLenses creates a new UserinfoRefLenses with lenses for all fields
 func MakeUserinfoRefLenses() UserinfoRefLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensUsername := __lens.MakeLensStrictWithName(
-		(*url.Userinfo).Username,
-		func(s *url.Userinfo, v string) *url.Userinfo {
-			pwd, ok := s.Password()
-			if ok {
-				return url.UserPassword(v, pwd)
-			}
-			return url.User(v)
-		},
-		"(*url.Userinfo).Username",
-	)
-	lensPassword := __lens.MakeLensStrictWithName(
-		func(s *url.Userinfo) string {
-			pwd, _ := s.Password()
-			return pwd
-		},
-		func(s *url.Userinfo, v string) *url.Userinfo { return url.UserPassword(s.Username(), v) },
-		"(*url.Userinfo).Password",
-	)
-	// optional lenses
-	lensUsernameO := __lens_option.FromIso[*url.Userinfo](__iso_option.FromZero[string]())(lensUsername)
-	lensPasswordO := __lens.MakeLensStrictWithName(
-		__option.FromValidation((*url.Userinfo).Password),
-		func(s *url.Userinfo, v __option.Option[string]) *url.Userinfo {
-			return __option.MonadFold(v, func() *url.Userinfo { return url.User(s.Username()) }, func(pwd string) *url.Userinfo { return url.UserPassword(s.Username(), pwd) })
-		},
-		"(*url.Userinfo).Password",
-	)
-	return UserinfoRefLenses{
-		// mandatory lenses
-		Username: lensUsername,
-		Password: lensPassword,
-		// optional lenses
-		UsernameO: lensUsernameO,
-		PasswordO: lensPasswordO,
-	}
+	return *new(UserinfoRefLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses

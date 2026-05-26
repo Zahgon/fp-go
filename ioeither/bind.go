@@ -15,15 +15,12 @@
 
 package ioeither
 
-import (
-	G "github.com/IBM/fp-go/ioeither/generic"
-)
-
 // Bind creates an empty context of type [S] to be used with the [Bind] operation
 func Do[E, S any](
 	empty S,
 ) IOEither[E, S] {
-	return G.Do[IOEither[E, S], E, S](empty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Bind attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -31,7 +28,8 @@ func Bind[E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) IOEither[E, T],
 ) func(IOEither[E, S1]) IOEither[E, S2] {
-	return G.Bind[IOEither[E, S1], IOEither[E, S2], IOEither[E, T], E, S1, S2, T](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -39,7 +37,8 @@ func Let[E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) func(IOEither[E, S1]) IOEither[E, S2] {
-	return G.Let[IOEither[E, S1], IOEither[E, S2], E, S1, S2, T](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches the a value to a context [S1] to produce a context [S2]
@@ -47,14 +46,16 @@ func LetTo[E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) func(IOEither[E, S1]) IOEither[E, S2] {
-	return G.LetTo[IOEither[E, S1], IOEither[E, S2], E, S1, S2, T](setter, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T]
 func BindTo[E, S1, T any](
 	setter func(T) S1,
 ) func(IOEither[E, T]) IOEither[E, S1] {
-	return G.BindTo[IOEither[E, S1], IOEither[E, T], E, S1, T](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering the context and the value concurrently
@@ -62,5 +63,6 @@ func ApS[E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa IOEither[E, T],
 ) func(IOEither[E, S1]) IOEither[E, S2] {
-	return G.ApS[IOEither[E, S1], IOEither[E, S2], IOEither[E, T], E, S1, S2, T](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }

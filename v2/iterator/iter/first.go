@@ -15,8 +15,6 @@
 
 package iter
 
-import "github.com/IBM/fp-go/v2/option"
-
 // First returns the first element from an [Iterator] wrapped in an [Option].
 //
 // This function attempts to retrieve the first element from the iterator. If the iterator
@@ -62,12 +60,4 @@ import "github.com/IBM/fp-go/v2/option"
 //	filtered := iter.Filter(func(x int) bool { return x > 3 })(seq)
 //	first := iter.First(filtered)
 //	// Returns: Some(4)
-func First[U any](mu Seq[U]) IOOption[U] {
-	none := option.None[U]()
-	return func() Option[U] {
-		for u := range mu {
-			return option.Some(u)
-		}
-		return none
-	}
-}
+func First[U any](mu Seq[U]) IOOption[U] { _ = "STUB: not implemented"; return nil }

@@ -16,34 +16,18 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/function"
-	I "github.com/IBM/fp-go/identity"
 	L "github.com/IBM/fp-go/optics/lens"
 	O "github.com/IBM/fp-go/option"
-	RR "github.com/IBM/fp-go/record/generic"
 )
 
 // AtRecord returns a lens that focusses on a value in a record
 func AtRecord[M ~map[K]V, V any, K comparable](key K) L.Lens[M, O.Option[V]] {
-	addKey := F.Bind1of2(RR.UpsertAt[M, K, V])(key)
-	delKey := F.Bind1of1(RR.DeleteAt[M, K, V])(key)
-	fold := O.Fold(
-		delKey,
-		addKey,
-	)
-	return L.MakeLens(
-		RR.Lookup[M](key),
-		func(m M, v O.Option[V]) M {
-			return F.Pipe2(
-				v,
-				fold,
-				I.Ap[M, M](m),
-			)
-		},
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AtKey returns a `Lens` focused on a required key of a `ReadonlyRecord`
 func AtKey[M ~map[K]V, S any, V any, K comparable](key K) func(sa L.Lens[S, M]) L.Lens[S, O.Option[V]] {
-	return L.Compose[S](AtRecord[M](key))
+	_ = "STUB: not implemented"
+	return nil
 }

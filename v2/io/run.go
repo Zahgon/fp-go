@@ -65,6 +65,4 @@ package io
 //
 // Note: Run should be used sparingly in application code. Prefer composing
 // IO computations and only calling Run at the application boundaries.
-func Run[A any](fa IO[A]) A {
-	return fa()
-}
+func Run[A any](fa IO[A]) A { _ = "STUB: not implemented"; return *new(A) }

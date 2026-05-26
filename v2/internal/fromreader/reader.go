@@ -15,26 +15,21 @@
 
 package fromreader
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	C "github.com/IBM/fp-go/v2/internal/chain"
-	G "github.com/IBM/fp-go/v2/reader/generic"
-)
-
 func Ask[GR ~func(R) R, R, HKTRA any](fromReader func(GR) HKTRA) func() HKTRA {
-	return func() HKTRA {
-		return fromReader(G.Ask[GR]())
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Asks[GA ~func(R) A, R, A, HKTRA any](fromReader func(GA) HKTRA) func(GA) HKTRA {
-	return fromReader
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FromReaderK[GB ~func(R) B, R, A, B, HKTRB any](
 	fromReader func(GB) HKTRB,
 	f func(A) GB) func(A) HKTRB {
-	return F.Flow2(f, fromReader)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainReaderK[GB ~func(R) B, R, A, B, HKTRA, HKTRB any](
@@ -43,7 +38,8 @@ func MonadChainReaderK[GB ~func(R) B, R, A, B, HKTRA, HKTRB any](
 	ma HKTRA,
 	f func(A) GB,
 ) HKTRB {
-	return mchain(ma, FromReaderK(fromReader, f))
+	_ = "STUB: not implemented"
+	return *new(HKTRB)
 }
 
 func ChainReaderK[GB ~func(R) B, R, A, B, HKTRA, HKTRB any](
@@ -51,7 +47,8 @@ func ChainReaderK[GB ~func(R) B, R, A, B, HKTRA, HKTRB any](
 	fromReader func(GB) HKTRB,
 	f func(A) GB,
 ) func(HKTRA) HKTRB {
-	return mchain(FromReaderK(fromReader, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainFirstReaderK[GB ~func(R) B, R, A, B, HKTRA, HKTRB any](
@@ -60,7 +57,8 @@ func MonadChainFirstReaderK[GB ~func(R) B, R, A, B, HKTRA, HKTRB any](
 	ma HKTRA,
 	f func(A) GB,
 ) HKTRA {
-	return mchain(ma, FromReaderK(fromReader, f))
+	_ = "STUB: not implemented"
+	return *new(HKTRA)
 }
 
 func ChainFirstReaderK[GB ~func(R) B, R, A, B, HKTRA, HKTRB any](
@@ -68,7 +66,8 @@ func ChainFirstReaderK[GB ~func(R) B, R, A, B, HKTRA, HKTRB any](
 	fromReader func(GB) HKTRB,
 	f func(A) GB,
 ) func(HKTRA) HKTRA {
-	return mchain(FromReaderK(fromReader, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -84,10 +83,6 @@ func BindReaderK[
 	setter func(T) func(S1) S2,
 	f func(S1) GT,
 ) func(HKTES1) HKTES2 {
-	return C.Bind(
-		mchain,
-		mmap,
-		setter,
-		FromReaderK(fromReader, f),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,7 +16,6 @@
 package readerioresult
 
 import (
-	RIOE "github.com/IBM/fp-go/v2/readerioeither"
 	T "github.com/IBM/fp-go/v2/tuple"
 )
 
@@ -33,26 +32,29 @@ import (
 //
 //go:inline
 func SequenceT1[R, A any](a ReaderIOResult[R, A]) ReaderIOResult[R, T.Tuple1[A]] {
-	return RIOE.SequenceT1(a)
+	_ = "STUB: not implemented"
+	return nil
+
+	// SequenceT2 combines two ReaderIOResult computations into a single ReaderIOResult of a 2-tuple.
+	// Both computations are executed, and if both succeed, their results are combined into a tuple.
+	// If either fails, the result is a Left with the first error encountered.
+	//
+	// This is useful for running multiple independent computations and collecting their results.
+	//
+	// Example:
+	//
+	//	result := SequenceT2(
+	//	    fetchUser(123),
+	//	    fetchProfile(123),
+	//	)
+	//	// result(cfg)() returns Right(Tuple2{user, profile}) or Left(error)
+	//
+	//go:inline
 }
 
-// SequenceT2 combines two ReaderIOResult computations into a single ReaderIOResult of a 2-tuple.
-// Both computations are executed, and if both succeed, their results are combined into a tuple.
-// If either fails, the result is a Left with the first error encountered.
-//
-// This is useful for running multiple independent computations and collecting their results.
-//
-// Example:
-//
-//	result := SequenceT2(
-//	    fetchUser(123),
-//	    fetchProfile(123),
-//	)
-//	// result(cfg)() returns Right(Tuple2{user, profile}) or Left(error)
-//
-//go:inline
 func SequenceT2[R, A, B any](a ReaderIOResult[R, A], b ReaderIOResult[R, B]) ReaderIOResult[R, T.Tuple2[A, B]] {
-	return RIOE.SequenceT2(a, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT3 combines three ReaderIOResult computations into a single ReaderIOResult of a 3-tuple.
@@ -70,7 +72,8 @@ func SequenceT2[R, A, B any](a ReaderIOResult[R, A], b ReaderIOResult[R, B]) Rea
 //
 //go:inline
 func SequenceT3[R, A, B, C any](a ReaderIOResult[R, A], b ReaderIOResult[R, B], c ReaderIOResult[R, C]) ReaderIOResult[R, T.Tuple3[A, B, C]] {
-	return RIOE.SequenceT3(a, b, c)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT4 combines four ReaderIOResult computations into a single ReaderIOResult of a 4-tuple.
@@ -89,5 +92,6 @@ func SequenceT3[R, A, B, C any](a ReaderIOResult[R, A], b ReaderIOResult[R, B], 
 //
 //go:inline
 func SequenceT4[R, A, B, C, D any](a ReaderIOResult[R, A], b ReaderIOResult[R, B], c ReaderIOResult[R, C], d ReaderIOResult[R, D]) ReaderIOResult[R, T.Tuple4[A, B, C, D]] {
-	return RIOE.SequenceT4(a, b, c, d)
+	_ = "STUB: not implemented"
+	return nil
 }

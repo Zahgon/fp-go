@@ -16,9 +16,6 @@
 package prism
 
 import (
-	"fmt"
-
-	F "github.com/IBM/fp-go/v2/function"
 	O "github.com/IBM/fp-go/v2/option"
 )
 
@@ -80,12 +77,14 @@ type (
 //
 //go:inline
 func MakePrism[S, A any](get O.Kleisli[S, A], rev func(A) S) Prism[S, A] {
-	return MakePrismWithName(get, rev, "GenericPrism")
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MakePrismWithName[S, A any](get O.Kleisli[S, A], rev func(A) S, name string) Prism[S, A] {
-	return Prism[S, A]{get, rev, name}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Id returns an identity prism that focuses on the entire value.
@@ -99,9 +98,7 @@ func MakePrismWithName[S, A any](get O.Kleisli[S, A], rev func(A) S, name string
 //	idPrism := Id[int]()
 //	value := idPrism.GetOption(42)    // Some(42)
 //	result := idPrism.ReverseGet(42)  // 42
-func Id[S any]() Prism[S, S] {
-	return MakePrismWithName(O.Some[S], F.Identity[S], "PrismIdentity")
-}
+func Id[S any]() Prism[S, S] { _ = "STUB: not implemented"; return nil }
 
 // FromPredicate creates a prism that matches values satisfying a predicate.
 // GetOption returns Some(s) if the predicate is true, None otherwise.
@@ -118,9 +115,7 @@ func Id[S any]() Prism[S, S] {
 //	positivePrism := FromPredicate(N.MoreThan(0))
 //	value := positivePrism.GetOption(42)  // Some(42)
 //	value = positivePrism.GetOption(-5)   // None[int]
-func FromPredicate[S any](pred func(S) bool) Prism[S, S] {
-	return MakePrismWithName(O.FromPredicate(pred), F.Identity[S], "PrismWithPredicate")
-}
+func FromPredicate[S any](pred func(S) bool) Prism[S, S] { _ = "STUB: not implemented"; return nil }
 
 // Compose composes two prisms to create a prism that focuses deeper into a structure.
 // The resulting prism first applies the outer prism (S → A), then the inner prism (A → B).
@@ -141,32 +136,14 @@ func FromPredicate[S any](pred func(S) bool) Prism[S, S] {
 //	outerPrism := MakePrism(...)  // Prism[Outer, Inner]
 //	innerPrism := MakePrism(...)  // Prism[Inner, Value]
 //	composed := Compose[Outer](innerPrism)(outerPrism)  // Prism[Outer, Value]
-func Compose[S, A, B any](ab Prism[A, B]) Operator[S, A, B] {
-	return func(sa Prism[S, A]) Prism[S, B] {
-		return MakePrismWithName(F.Flow2(
-			sa.GetOption,
-			O.Chain(ab.GetOption),
-		), F.Flow2(
-			ab.ReverseGet,
-			sa.ReverseGet,
-		),
-			fmt.Sprintf("PrismCompose[%s x %s]", ab, sa),
-		)
-	}
-}
+func Compose[S, A, B any](ab Prism[A, B]) Operator[S, A, B] { _ = "STUB: not implemented"; return nil }
 
 // prismModifyOption applies a transformation function through a prism,
 // returning Some(modified S) if the prism matches, None otherwise.
 // This is an internal helper function.
 func prismModifyOption[S, A any](f Endomorphism[A], sa Prism[S, A], s S) Option[S] {
-	return F.Pipe2(
-		s,
-		sa.GetOption,
-		O.Map(F.Flow2(
-			f,
-			sa.ReverseGet,
-		)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // prismModify applies a transformation function through a prism.
@@ -174,17 +151,16 @@ func prismModifyOption[S, A any](f Endomorphism[A], sa Prism[S, A], s S) Option[
 // and reconstructs the result. If the prism doesn't match, returns the original value.
 // This is an internal helper function.
 func prismModify[S, A any](f Endomorphism[A], sa Prism[S, A], s S) S {
-	return F.Pipe1(
-		prismModifyOption(f, sa, s),
-		O.GetOrElse(F.Constant(s)),
-	)
+	_ = "STUB: not implemented"
+	return *new(S)
 }
 
 // prismSet is an internal helper that creates a setter function.
 //
 // Deprecated: Use Set instead.
 func prismSet[S, A any](a A) func(Prism[S, A]) Endomorphism[S] {
-	return F.Curry3(prismModify[S, A])(F.Constant1[A](a))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Set creates a function that sets a value through a prism.
@@ -203,9 +179,7 @@ func prismSet[S, A any](a A) func(Prism[S, A]) Endomorphism[S] {
 //	setter := Set[Option[int], int](100)
 //	result := setter(somePrism)(Some(42))  // Some(100)
 //	result = setter(somePrism)(None[int]()) // None[int]() (unchanged)
-func Set[S, A any](a A) func(Prism[S, A]) Endomorphism[S] {
-	return F.Curry3(prismModify[S, A])(F.Constant1[A](a))
-}
+func Set[S, A any](a A) func(Prism[S, A]) Endomorphism[S] { _ = "STUB: not implemented"; return nil }
 
 // Some creates a prism that focuses on the Some variant of an Option within a structure.
 // It composes the provided prism (which focuses on an Option[A]) with a prism that
@@ -227,17 +201,12 @@ func Set[S, A any](a A) func(Prism[S, A]) Endomorphism[S] {
 //	configPrism := MakePrism(...)  // Prism[Config, Option[int]]
 //	timeoutPrism := Some(configPrism)  // Prism[Config, int]
 //	value := timeoutPrism.GetOption(Config{Timeout: Some(30)})  // Some(30)
-func Some[S, A any](soa Prism[S, Option[A]]) Prism[S, A] {
-	return Compose[S](FromOption[A]())(soa)
-}
+func Some[S, A any](soa Prism[S, Option[A]]) Prism[S, A] { _ = "STUB: not implemented"; return nil }
 
 // imap is an internal helper that bidirectionally maps a prism's focus type.
 func imap[S any, AB ~func(A) B, BA ~func(B) A, A, B any](sa Prism[S, A], ab AB, ba BA) Prism[S, B] {
-	return MakePrismWithName(
-		F.Flow2(sa.GetOption, O.Map(ab)),
-		F.Flow2(ba, sa.ReverseGet),
-		fmt.Sprintf("PrismIMap[%s]", sa),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // IMap bidirectionally maps the focus type of a prism.
@@ -266,7 +235,6 @@ func imap[S any, AB ~func(A) B, BA ~func(B) A, A, B any](sa Prism[S, A], ab AB, 
 //	    func(s string) int { n, _ := strconv.Atoi(s); return n },
 //	)(intPrism)  // Prism[Result, string]
 func IMap[S any, AB ~func(A) B, BA ~func(B) A, A, B any](ab AB, ba BA) Operator[S, A, B] {
-	return func(sa Prism[S, A]) Prism[S, B] {
-		return imap(sa, ab, ba)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

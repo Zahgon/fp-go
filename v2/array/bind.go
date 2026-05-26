@@ -15,10 +15,6 @@
 
 package array
 
-import (
-	G "github.com/IBM/fp-go/v2/array/generic"
-)
-
 // Do creates an empty context of type S to be used with the Bind operation.
 // This is the starting point for monadic do-notation style computations.
 //
@@ -34,31 +30,34 @@ import (
 func Do[S any](
 	empty S,
 ) []S {
-	return G.Do[[]S](empty)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Bind attaches the result of a computation to a context S1 to produce a context S2.
+	// The setter function defines how to update the context with the computation result.
+	// This enables monadic composition where each step can produce multiple results.
+	//
+	// Example:
+	//
+	//	result := F.Pipe2(
+	//	    array.Do(struct{ X, Y int }{}),
+	//	    array.Bind(
+	//	        func(x int) func(s struct{}) struct{ X int } {
+	//	            return func(s struct{}) struct{ X int } { return struct{ X int }{x} }
+	//	        },
+	//	        func(s struct{}) []int { return []int{1, 2} },
+	//	    ),
+	//	)
+	//
+	//go:inline
 }
 
-// Bind attaches the result of a computation to a context S1 to produce a context S2.
-// The setter function defines how to update the context with the computation result.
-// This enables monadic composition where each step can produce multiple results.
-//
-// Example:
-//
-//	result := F.Pipe2(
-//	    array.Do(struct{ X, Y int }{}),
-//	    array.Bind(
-//	        func(x int) func(s struct{}) struct{ X int } {
-//	            return func(s struct{}) struct{ X int } { return struct{ X int }{x} }
-//	        },
-//	        func(s struct{}) []int { return []int{1, 2} },
-//	    ),
-//	)
-//
-//go:inline
 func Bind[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[S1, T],
 ) Operator[S1, S2] {
-	return G.Bind[[]S1, []S2](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a pure computation to a context S1 to produce a context S2.
@@ -89,7 +88,8 @@ func Let[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[S1, S2] {
-	return G.Let[[]S1, []S2](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches a constant value to a context S1 to produce a context S2.
@@ -118,7 +118,8 @@ func LetTo[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) Operator[S1, S2] {
-	return G.LetTo[[]S1, []S2](setter, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state S1 from a value T.
@@ -141,7 +142,8 @@ func LetTo[S1, S2, T any](
 func BindTo[S1, T any](
 	setter func(T) S1,
 ) Operator[T, S1] {
-	return G.BindTo[[]S1, []T](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context S1 to produce a context S2 by considering
@@ -164,5 +166,6 @@ func ApS[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa []T,
 ) Operator[S1, S2] {
-	return G.ApS[[]S1, []S2](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,52 +15,25 @@
 
 package generic
 
-import (
-	F "github.com/IBM/fp-go/function"
-	C "github.com/IBM/fp-go/internal/chain"
-	FC "github.com/IBM/fp-go/internal/functor"
-)
+func MonadAp[GAB ~func(A) B, B, A any](fab GAB, fa A) B { _ = "STUB: not implemented"; return *new(B) }
 
-func MonadAp[GAB ~func(A) B, B, A any](fab GAB, fa A) B {
-	return fab(fa)
-}
+func Ap[GAB ~func(A) B, B, A any](fa A) func(GAB) B { _ = "STUB: not implemented"; return nil }
 
-func Ap[GAB ~func(A) B, B, A any](fa A) func(GAB) B {
-	return F.Bind2nd(MonadAp[GAB, B, A], fa)
-}
+func MonadMap[GAB ~func(A) B, A, B any](fa A, f GAB) B { _ = "STUB: not implemented"; return *new(B) }
 
-func MonadMap[GAB ~func(A) B, A, B any](fa A, f GAB) B {
-	return f(fa)
-}
+func Map[GAB ~func(A) B, A, B any](f GAB) func(A) B { _ = "STUB: not implemented"; return nil }
 
-func Map[GAB ~func(A) B, A, B any](f GAB) func(A) B {
-	return f
-}
+func MonadChain[GAB ~func(A) B, A, B any](ma A, f GAB) B { _ = "STUB: not implemented"; return *new(B) }
 
-func MonadChain[GAB ~func(A) B, A, B any](ma A, f GAB) B {
-	return f(ma)
-}
-
-func Chain[GAB ~func(A) B, A, B any](f GAB) func(A) B {
-	return f
-}
+func Chain[GAB ~func(A) B, A, B any](f GAB) func(A) B { _ = "STUB: not implemented"; return nil }
 
 func MonadChainFirst[GAB ~func(A) B, A, B any](fa A, f GAB) A {
-	return C.MonadChainFirst(MonadChain[func(A) A, A, A], MonadMap[func(B) A, B, A], fa, f)
+	_ = "STUB: not implemented"
+	return *new(A)
 }
 
-func ChainFirst[GAB ~func(A) B, A, B any](f GAB) func(A) A {
-	return C.ChainFirst(
-		Chain[func(A) A, A, A],
-		Map[func(B) A, B, A],
-		f,
-	)
-}
+func ChainFirst[GAB ~func(A) B, A, B any](f GAB) func(A) A { _ = "STUB: not implemented"; return nil }
 
-func MonadFlap[GAB ~func(A) B, A, B any](fab GAB, a A) B {
-	return FC.MonadFlap(MonadMap[func(GAB) B, GAB, B], fab, a)
-}
+func MonadFlap[GAB ~func(A) B, A, B any](fab GAB, a A) B { _ = "STUB: not implemented"; return *new(B) }
 
-func Flap[GAB ~func(A) B, B, A any](a A) func(GAB) B {
-	return FC.Flap(Map[func(GAB) B, GAB, B], a)
-}
+func Flap[GAB ~func(A) B, B, A any](a A) func(GAB) B { _ = "STUB: not implemented"; return nil }

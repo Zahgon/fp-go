@@ -41,5 +41,6 @@ package result
 //
 //go:inline
 func FilterOrElse[A any](pred Predicate[A], onFalse func(A) error) Operator[A, A] {
-	return Chain(FromPredicate(pred, onFalse))
+	_ = "STUB: not implemented"
+	return nil
 }

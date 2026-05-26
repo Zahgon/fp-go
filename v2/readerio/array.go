@@ -15,10 +15,6 @@
 
 package readerio
 
-import (
-	G "github.com/IBM/fp-go/v2/readerio/generic"
-)
-
 // TraverseArray transforms each element of an array using a function that returns a ReaderIO,
 // then collects the results into a single ReaderIO containing an array.
 //
@@ -46,7 +42,8 @@ import (
 //
 //go:inline
 func TraverseArray[R, A, B any](f func(A) ReaderIO[R, B]) func([]A) ReaderIO[R, []B] {
-	return G.TraverseArray[ReaderIO[R, B], ReaderIO[R, []B], IO[B], IO[[]B], []A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex is like TraverseArray but the transformation function also receives the index.
@@ -73,7 +70,8 @@ func TraverseArray[R, A, B any](f func(A) ReaderIO[R, B]) func([]A) ReaderIO[R, 
 //
 //go:inline
 func TraverseArrayWithIndex[R, A, B any](f func(int, A) ReaderIO[R, B]) func([]A) ReaderIO[R, []B] {
-	return G.TraverseArrayWithIndex[ReaderIO[R, B], ReaderIO[R, []B], IO[B], IO[[]B], []A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts an array of ReaderIO into a ReaderIO of an array.
@@ -104,5 +102,6 @@ func TraverseArrayWithIndex[R, A, B any](f func(int, A) ReaderIO[R, B]) func([]A
 //
 //go:inline
 func SequenceArray[R, A any](ma []ReaderIO[R, A]) ReaderIO[R, []A] {
-	return G.SequenceArray[ReaderIO[R, A], ReaderIO[R, []A]](ma)
+	_ = "STUB: not implemented"
+	return nil
 }

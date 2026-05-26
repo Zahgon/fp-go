@@ -15,15 +15,5 @@
 
 package monoid
 
-import (
-	F "github.com/IBM/fp-go/function"
-	S "github.com/IBM/fp-go/semigroup"
-)
-
 // FunctionMonoid forms a monoid as long as you can provide a monoid for the codomain.
-func FunctionMonoid[A, B any](m Monoid[B]) Monoid[func(A) B] {
-	return MakeMonoid(
-		S.FunctionSemigroup[A, B](m).Concat,
-		F.Constant1[A](m.Empty()),
-	)
-}
+func FunctionMonoid[A, B any](m Monoid[B]) Monoid[func(A) B] { _ = "STUB: not implemented"; return nil }

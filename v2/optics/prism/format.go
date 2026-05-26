@@ -18,8 +18,6 @@ package prism
 import (
 	"fmt"
 	"log/slog"
-
-	"github.com/IBM/fp-go/v2/internal/formatting"
 )
 
 // String returns the name of the prism for debugging and display purposes.
@@ -29,27 +27,27 @@ import (
 //	successPrism := prism.MakePrismWithName(..., "Result.Success")
 //	fmt.Println(successPrism)  // Prints: "Result.Success"
 func (p Prism[S, T]) String() string {
-	return p.name
+	_ = "STUB: not implemented"
+
+	// Format implements fmt.Formatter for Prism.
+	// Supports all standard format verbs:
+	//   - %s, %v, %+v: uses String() representation (prism name)
+	//   - %#v: uses GoString() representation
+	//   - %q: quoted String() representation
+	//   - other verbs: uses String() representation
+	//
+	// Example:
+	//
+	//	successPrism := prism.MakePrismWithName(..., "Result.Success")
+	//	fmt.Printf("%s", successPrism)   // "Result.Success"
+	//	fmt.Printf("%v", successPrism)   // "Result.Success"
+	//	fmt.Printf("%#v", successPrism)  // "prism.Prism[Result, int]{name: \"Result.Success\"}"
+	//
+	//go:noinline
+	return ""
 }
 
-// Format implements fmt.Formatter for Prism.
-// Supports all standard format verbs:
-//   - %s, %v, %+v: uses String() representation (prism name)
-//   - %#v: uses GoString() representation
-//   - %q: quoted String() representation
-//   - other verbs: uses String() representation
-//
-// Example:
-//
-//	successPrism := prism.MakePrismWithName(..., "Result.Success")
-//	fmt.Printf("%s", successPrism)   // "Result.Success"
-//	fmt.Printf("%v", successPrism)   // "Result.Success"
-//	fmt.Printf("%#v", successPrism)  // "prism.Prism[Result, int]{name: \"Result.Success\"}"
-//
-//go:noinline
-func (p Prism[S, T]) Format(f fmt.State, c rune) {
-	formatting.FmtString(p, f, c)
-}
+func (p Prism[S, T]) Format(f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 // GoString implements fmt.GoStringer for Prism.
 // Returns a Go-syntax representation of the Prism value.
@@ -60,13 +58,7 @@ func (p Prism[S, T]) Format(f fmt.State, c rune) {
 //	successPrism.GoString() // "prism.Prism[Result, int]{name: \"Result.Success\"}"
 //
 //go:noinline
-func (p Prism[S, T]) GoString() string {
-	return fmt.Sprintf("prism.Prism[%s, %s]{name: %q}",
-		formatting.TypeInfo(new(S)),
-		formatting.TypeInfo(new(T)),
-		p.name,
-	)
-}
+func (p Prism[S, T]) GoString() string { _ = "STUB: not implemented"; return "" }
 
 // LogValue implements slog.LogValuer for Prism.
 // Returns a slog.Value that represents the Prism for structured logging.
@@ -80,6 +72,4 @@ func (p Prism[S, T]) GoString() string {
 //	// Logs: {"msg":"using prism","prism":"Result.Success"}
 //
 //go:noinline
-func (p Prism[S, T]) LogValue() slog.Value {
-	return slog.StringValue(p.name)
-}
+func (p Prism[S, T]) LogValue() slog.Value { _ = "STUB: not implemented"; return *new(slog.Value) }

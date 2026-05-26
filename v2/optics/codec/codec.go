@@ -1,23 +1,9 @@
 package codec
 
 import (
-	"errors"
-	"fmt"
-	"reflect"
-	"strconv"
-
-	"github.com/IBM/fp-go/v2/array"
 	A "github.com/IBM/fp-go/v2/array"
 	"github.com/IBM/fp-go/v2/either"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/lazy"
-	"github.com/IBM/fp-go/v2/optics/codec/validate"
 	"github.com/IBM/fp-go/v2/optics/codec/validation"
-	"github.com/IBM/fp-go/v2/pair"
-	"github.com/IBM/fp-go/v2/reader"
-	"github.com/IBM/fp-go/v2/readereither"
-	R "github.com/IBM/fp-go/v2/reflect"
-	"github.com/IBM/fp-go/v2/result"
 )
 
 // typeImpl is the internal implementation of the Type interface.
@@ -46,130 +32,83 @@ func MakeType[A, O, I any](
 	validate Validate[I, A],
 	encode Encode[A, O],
 ) Type[A, O, I] {
-	return &typeImpl[A, O, I]{
-		name:     name,
-		is:       is,
-		validate: validate,
-		encode:   encode,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Validate validates the input value in the context of a validation path.
 // Returns a Reader that takes a Context and produces a Validation result.
-func (t *typeImpl[A, O, I]) Validate(i I) Decode[Context, A] {
-	return t.validate(i)
-}
+func (t *typeImpl[A, O, I]) Validate(i I) Decode[Context, A] { _ = "STUB: not implemented"; return nil }
 
 // Decode validates and decodes the input value, creating a new context with this type's name.
 // This is a convenience method that calls Validate with a fresh context.
-func (t *typeImpl[A, O, I]) Decode(i I) Validation[A] {
-	return t.validate(i)(array.Of(validation.ContextEntry{Type: t.name, Actual: i}))
-}
+func (t *typeImpl[A, O, I]) Decode(i I) Validation[A] { _ = "STUB: not implemented"; return nil }
 
 // Encode transforms a value of type A into the output format O.
 func (t *typeImpl[A, O, I]) Encode(a A) O {
-	return t.encode(a)
+	_ = "STUB: not implemented"
+
+	// AsDecoder returns this Type as a Decoder interface.
+	return *new(O)
 }
 
-// AsDecoder returns this Type as a Decoder interface.
 func (t *typeImpl[A, O, I]) AsDecoder() Decoder[I, A] {
-	return t
+	_ = "STUB: not implemented"
+
+	// AsEncoder returns this Type as an Encoder interface.
+	return nil
 }
 
-// AsEncoder returns this Type as an Encoder interface.
 func (t *typeImpl[A, O, I]) AsEncoder() Encoder[A, O] {
-	return t
+	_ = "STUB: not implemented"
+
+	// Name returns the descriptive name of this type.
+	return nil
 }
 
-// Name returns the descriptive name of this type.
-func (t *typeImpl[A, O, I]) Name() string {
-	return t.name
-}
+func (t *typeImpl[A, O, I]) Name() string { _ = "STUB: not implemented"; return "" }
 
 func (t *typeImpl[A, O, I]) Is(i any) Result[A] {
-	return t.is(i)
+	_ = "STUB: not implemented"
+
+	// Pipe composes two Types, creating a pipeline where:
+	//   - Decoding: I -> A -> B (decode with 'this', then validate with 'ab')
+	//   - Encoding: B -> A -> O (encode with 'ab', then encode with 'this')
+	//
+	// This allows building complex codecs from simpler ones.
+	//
+	// Example:
+	//
+	//	stringToInt := codec.MakeType(...)  // Type[int, string, string]
+	//	intToPositive := codec.MakeType(...) // Type[PositiveInt, int, int]
+	//	composed := codec.Pipe(intToPositive)(stringToInt) // Type[PositiveInt, string, string]
+	return nil
 }
 
-// Pipe composes two Types, creating a pipeline where:
-//   - Decoding: I -> A -> B (decode with 'this', then validate with 'ab')
-//   - Encoding: B -> A -> O (encode with 'ab', then encode with 'this')
-//
-// This allows building complex codecs from simpler ones.
-//
-// Example:
-//
-//	stringToInt := codec.MakeType(...)  // Type[int, string, string]
-//	intToPositive := codec.MakeType(...) // Type[PositiveInt, int, int]
-//	composed := codec.Pipe(intToPositive)(stringToInt) // Type[PositiveInt, string, string]
 func Pipe[O, I, A, B any](ab Type[B, A, A]) Operator[A, B, O, I] {
-	return func(this Type[A, O, I]) Type[B, O, I] {
-		return MakeType(
-			fmt.Sprintf("Pipe(%s, %s)", this.Name(), ab.Name()),
-			ab.Is,
-			F.Flow2(
-				this.Validate,
-				readereither.Chain(ab.Validate),
-			),
-			F.Flow2(
-				ab.Encode,
-				this.Encode,
-			),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // isNil checks if a value is nil, handling both typed and untyped nil values.
 // It uses reflection to detect nil pointers, maps, slices, channels, functions, and interfaces.
-func isNil(x any) bool {
-	if x == nil {
-		return true
-	}
-	v := reflect.ValueOf(x)
-	switch v.Kind() {
-	case reflect.Pointer, reflect.Map, reflect.Slice, reflect.Chan, reflect.Func, reflect.Interface:
-		return v.IsNil()
-	default:
-		return false
-	}
-}
+func isNil(x any) bool { _ = "STUB: not implemented"; return false }
 
 // isTypedNil checks if a value is nil and returns it as a typed nil pointer.
 // Returns Some(nil) if the value is nil, None otherwise.
-func isTypedNil[A any](x any) Result[*A] {
-	if isNil(x) {
-		return result.Of[*A](nil)
-	}
-	return result.Left[*A](errors.New("expecting nil"))
-}
+func isTypedNil[A any](x any) Result[*A] { _ = "STUB: not implemented"; return nil }
 
 func validateFromIs[A, I any](
 	is ReaderResult[I, A],
 	msg string,
 ) Validate[I, A] {
-	return func(i I) Decode[Context, A] {
-		return F.Pipe2(
-			i,
-			is,
-			result.Fold(
-				validation.FailureWithError[A](F.ToAny(i), msg),
-				F.Flow2(
-					validation.Success[A],
-					reader.Of[Context],
-				),
-			),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func isFromValidate[T, I any](val Validate[I, T]) ReaderResult[any, T] {
-	invalidType := result.Left[T](errors.New("invalid input type"))
-	return func(u any) Result[T] {
-		i, ok := u.(I)
-		if !ok {
-			return invalidType
-		}
-		return validation.ToResult(val(i)(emptyContext))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeNilType creates a Type that validates nil values.
@@ -180,29 +119,9 @@ func isFromValidate[T, I any](val Validate[I, T]) ReaderResult[any, T] {
 //	nilType := codec.MakeNilType[string]()
 //	result := nilType.Decode(nil)        // Success: Right((*string)(nil))
 //	result := nilType.Decode("not nil")  // Failure: Left(errors)
-func Nil[A any]() Type[*A, *A, any] {
+func Nil[A any]() Type[*A, *A, any] { _ = "STUB: not implemented"; return nil }
 
-	is := isTypedNil[A]
-
-	return MakeType(
-		"nil",
-		is,
-		validateFromIs(is, "nil"),
-		F.Identity[*A],
-	)
-}
-
-func MakeSimpleType[A any]() Type[A, A, any] {
-	name := fmt.Sprintf("%T", *new(A))
-	is := Is[A]()
-
-	return MakeType(
-		name,
-		is,
-		validateFromIs(is, name),
-		F.Identity[A],
-	)
-}
+func MakeSimpleType[A any]() Type[A, A, any] { _ = "STUB: not implemented"; return nil }
 
 // String creates a Type for string values.
 // It validates that input is a string type and provides identity encoding/decoding.
@@ -217,9 +136,7 @@ func MakeSimpleType[A any]() Type[A, A, any] {
 //	result := stringType.Decode("hello")     // Success: Right("hello")
 //	result := stringType.Decode(123)         // Failure: Left(validation errors)
 //	encoded := stringType.Encode("world")    // Returns: "world"
-func String() Type[string, string, any] {
-	return MakeSimpleType[string]()
-}
+func String() Type[string, string, any] { _ = "STUB: not implemented"; return nil }
 
 // Int creates a Type for int values.
 // It validates that input is an int type and provides identity encoding/decoding.
@@ -234,9 +151,7 @@ func String() Type[string, string, any] {
 //	result := intType.Decode(42)         // Success: Right(42)
 //	result := intType.Decode("42")       // Failure: Left(validation errors)
 //	encoded := intType.Encode(100)       // Returns: 100
-func Int() Type[int, int, any] {
-	return MakeSimpleType[int]()
-}
+func Int() Type[int, int, any] { _ = "STUB: not implemented"; return nil }
 
 // Bool creates a Type for bool values.
 // It validates that input is a bool type and provides identity encoding/decoding.
@@ -251,108 +166,28 @@ func Int() Type[int, int, any] {
 //	result := boolType.Decode(true)      // Success: Right(true)
 //	result := boolType.Decode(1)         // Failure: Left(validation errors)
 //	encoded := boolType.Encode(false)    // Returns: false
-func Bool() Type[bool, bool, any] {
-	return MakeSimpleType[bool]()
-}
+func Bool() Type[bool, bool, any] { _ = "STUB: not implemented"; return nil }
 
 func appendContext(key, typ string, actual any) Endomorphism[Context] {
-	return A.Push(validation.ContextEntry{Key: key, Type: typ, Actual: actual})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type validationPair[T any] = Pair[validation.Errors, T]
 
 func pairToValidation[T any](p validationPair[T]) Validation[T] {
-	errors, value := pair.Unpack(p)
-	if A.IsNonEmpty(errors) {
-		return either.Left[T](errors)
-	}
-	return either.Of[validation.Errors](value)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func validateArrayFromArray[T, O, I any](item Type[T, O, I]) Validate[[]I, []T] {
-
-	appendErrors := F.Flow2(
-		A.Concat,
-		pair.MapHead[[]T, validation.Errors],
-	)
-
-	appendValues := F.Flow2(
-		A.Push,
-		pair.MapTail[validation.Errors, []T],
-	)
-
-	itemName := item.Name()
-
-	zero := pair.Zero[validation.Errors, []T]()
-
-	return func(is []I) Decode[Context, []T] {
-
-		return func(c Context) Validation[[]T] {
-
-			return F.Pipe1(
-				A.MonadReduceWithIndex(is, func(i int, p validationPair[[]T], v I) validationPair[[]T] {
-					return either.MonadFold(
-						item.Validate(v)(appendContext(strconv.Itoa(i), itemName, v)(c)),
-						appendErrors,
-						appendValues,
-					)(p)
-				}, zero),
-				pairToValidation,
-			)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func validateArray[T, O any](item Type[T, O, any]) Validate[any, []T] {
-
-	appendErrors := F.Flow2(
-		A.Concat,
-		pair.MapHead[[]T, validation.Errors],
-	)
-
-	appendValues := F.Flow2(
-		A.Push,
-		pair.MapTail[validation.Errors, []T],
-	)
-
-	itemName := item.Name()
-
-	zero := pair.Zero[validation.Errors, []T]()
-
-	return func(i any) Decode[Context, []T] {
-
-		res, ok := i.([]T)
-		if ok {
-			return reader.Of[Context](validation.Success(res))
-		}
-
-		val := reflect.ValueOf(i)
-		if !val.IsValid() {
-			return validation.FailureWithMessage[[]T](val, "invalid value")
-		}
-		kind := val.Kind()
-
-		switch kind {
-		case reflect.Array, reflect.Slice, reflect.String:
-
-			return func(c Context) Validation[[]T] {
-
-				return F.Pipe1(
-					R.MonadReduceWithIndex(val, func(i int, p validationPair[[]T], v reflect.Value) validationPair[[]T] {
-						vIface := v.Interface()
-						return either.MonadFold(
-							item.Validate(vIface)(appendContext(strconv.Itoa(i), itemName, vIface)(c)),
-							appendErrors,
-							appendValues,
-						)(p)
-					}, zero),
-					pairToValidation,
-				)
-			}
-		default:
-			return validation.FailureWithMessage[[]T](val, fmt.Sprintf("type %s is not iterable", kind))
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Array creates a Type for array/slice values with elements of type T.
@@ -386,18 +221,8 @@ func validateArray[T, O any](item Type[T, O, any]) Validate[any, []T] {
 //	result := stringArray.Decode([]string{"a", "b"})    // Success: Right(["a", "b"])
 //	result := stringArray.Decode("hello")               // Success: Right(["h", "e", "l", "l", "o"])
 func Array[T, O any](item Type[T, O, any]) Type[[]T, []O, any] {
-
-	validate := validateArray(item)
-	is := isFromValidate(validate)
-	name := fmt.Sprintf("Array[%s]", item.Name())
-
-	return MakeType(
-		name,
-		is,
-		validate,
-		A.Map(item.Encode),
-	)
-
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TranscodeArray creates a Type for array/slice values with strongly-typed input.
@@ -452,41 +277,19 @@ func Array[T, O any](item Type[T, O, any]) Type[[]T, []O, any] {
 //   - You need to accept various input types (any, reflect.Value, etc.)
 //   - You're working with dynamic or unknown input types
 func TranscodeArray[T, O, I any](item Type[T, O, I]) Type[[]T, []O, []I] {
-	validate := validateArrayFromArray(item)
-	is := isFromValidate(validate)
-	name := fmt.Sprintf("Array[%s]", item.Name())
-
-	return MakeType(
-		name,
-		is,
-		validate,
-		A.Map(item.Encode),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func validateEitherFromEither[L, R, OL, OR, IL, IR any](
 	leftItem Type[L, OL, IL],
 	rightItem Type[R, OR, IR],
 ) Validate[either.Either[IL, IR], either.Either[L, R]] {
+	_ = "STUB: not implemented"
 
 	// leftName := left.Name()
 	// rightName := right.Name()
-
-	return func(is either.Either[IL, IR]) Decode[Context, either.Either[L, R]] {
-
-		return either.MonadFold(
-			is,
-			F.Flow2(
-				leftItem.Validate,
-				readereither.Map[Context, validation.Errors](either.Left[R, L]),
-			),
-			F.Flow2(
-				rightItem.Validate,
-				readereither.Map[Context, validation.Errors](either.Right[L, R]),
-			),
-		)
-
-	}
+	return nil
 }
 
 // TranscodeEither creates a Type for Either values with strongly-typed left and right branches.
@@ -553,27 +356,11 @@ func validateEitherFromEither[L, R, OL, OR, IL, IR any](
 //   - Optional with reason: Either[Reason, Value]
 //   - Validation results: Either[ValidationError, ValidatedData]
 func TranscodeEither[L, R, OL, OR, IL, IR any](leftItem Type[L, OL, IL], rightItem Type[R, OR, IR]) Type[either.Either[L, R], either.Either[OL, OR], either.Either[IL, IR]] {
-	validate := validateEitherFromEither(leftItem, rightItem)
-	is := isFromValidate(validate)
-	name := fmt.Sprintf("Either[%s, %s]", leftItem.Name(), rightItem.Name())
-
-	return MakeType(
-		name,
-		is,
-		validate,
-		either.Fold(F.Flow2(
-			leftItem.Encode,
-			either.Left[OR, OL],
-		), F.Flow2(
-			rightItem.Encode,
-			either.Right[OL, OR],
-		)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func validateAlways[T any](is T) Decode[Context, T] {
-	return reader.Of[Context](validation.Success(is))
-}
+func validateAlways[T any](is T) Decode[Context, T] { _ = "STUB: not implemented"; return nil }
 
 // Id creates an identity Type codec that performs no transformation or validation.
 //
@@ -623,52 +410,16 @@ func validateAlways[T any](is T) Decode[Context, T] {
 //
 // Note: Unlike MakeSimpleType which validates the type, Id always succeeds
 // in validation. It only checks the type during the Is operation.
-func Id[T any]() Type[T, T, T] {
-	return MakeType(
-		fmt.Sprintf("%T", *new(T)),
-		Is[T](),
-		validateAlways[T],
-		F.Identity[T],
-	)
-}
+func Id[T any]() Type[T, T, T] { _ = "STUB: not implemented"; return nil }
 
 func validateFromRefinement[A, B any](refinement Refinement[A, B]) Validate[A, B] {
-
-	return func(a A) Decode[Context, B] {
-
-		return func(ctx Context) Validation[B] {
-			return F.Pipe2(
-				a,
-				refinement.GetOption,
-				either.FromOption[B](func() validation.Errors {
-					return array.Of(&validation.ValidationError{
-						Value:    a,
-						Context:  ctx,
-						Messsage: fmt.Sprintf("type cannot be refined: %s", refinement),
-					})
-				}),
-			)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func isFromRefinement[A, B any](refinement Refinement[A, B]) ReaderResult[any, B] {
-
-	isA := Is[A]()
-	isB := Is[B]()
-
-	err := fmt.Errorf("type cannot be refined: %s", refinement)
-
-	isAtoB := F.Flow2(
-		isA,
-		result.ChainOptionK[A, B](lazy.Of(err))(refinement.GetOption),
-	)
-
-	return F.Pipe1(
-		isAtoB,
-		readereither.ChainLeft(reader.Of[error](isB)),
-	)
-
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromRefinement creates a Type codec from a Refinement (Prism).
@@ -741,12 +492,8 @@ func isFromRefinement[A, B any](refinement Refinement[A, B]) ReaderResult[any, B
 // with a message indicating the type cannot be refined. For more specific error messages,
 // consider using MakeType directly with custom validation logic.
 func FromRefinement[A, B any](refinement Refinement[A, B]) Type[B, A, A] {
-	return MakeType(
-		fmt.Sprintf("FromRefinement(%s)", refinement),
-		isFromRefinement(refinement),
-		validateFromRefinement(refinement),
-		refinement.ReverseGet,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Empty creates a Type codec that ignores input during decoding and uses a default value,
@@ -851,11 +598,4 @@ func FromRefinement[A, B any](refinement Refinement[A, B]) Type[B, A, A] {
 // See also:
 //   - Id: For identity codecs that preserve values
 //   - MakeType: For creating custom codecs with validation logic
-func Empty[I, A, O any](e Lazy[Pair[O, A]]) Type[A, O, I] {
-	return MakeType(
-		"Empty",
-		Is[A](),
-		validate.OfLazy[I](F.Pipe1(e, lazy.Map(pair.Tail[O, A]))),
-		reader.OfLazy[A](F.Pipe1(e, lazy.Map(pair.Head[O, A]))),
-	)
-}
+func Empty[I, A, O any](e Lazy[Pair[O, A]]) Type[A, O, I] { _ = "STUB: not implemented"; return nil }

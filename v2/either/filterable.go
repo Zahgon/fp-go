@@ -24,7 +24,6 @@ package either
 
 import (
 	"github.com/IBM/fp-go/v2/option"
-	"github.com/IBM/fp-go/v2/pair"
 )
 
 // Partition separates an [Either] value into a [Pair] based on a predicate function.
@@ -84,16 +83,8 @@ import (
 //	left3, right3 := P.Unpack(result3)
 //	// left3 = Left("error"), right3 = Left("error")
 func Partition[E, A any](p Predicate[A], empty E) func(Either[E, A]) Pair[Either[E, A], Either[E, A]] {
-	l := Left[A](empty)
-	return func(e Either[E, A]) Pair[Either[E, A], Either[E, A]] {
-		if e.isLeft {
-			return pair.Of(e)
-		}
-		if p(e.r) {
-			return pair.MakePair(l, e)
-		}
-		return pair.MakePair(e, l)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Filter creates a filtering operation for [Either] values based on a predicate function.
@@ -157,13 +148,8 @@ func Partition[E, A any](p Predicate[A], empty E) func(Either[E, A]) Pair[Either
 //	result5 := filterEven(filterPositive(E.Right[string](3)))
 //	// result5 = Left("not even") - passes first, fails second
 func Filter[E, A any](p Predicate[A], empty E) Operator[E, A, A] {
-	l := Left[A](empty)
-	return func(e Either[E, A]) Either[E, A] {
-		if e.isLeft || p(e.r) {
-			return e
-		}
-		return l
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterMap combines filtering and mapping operations for [Either] values using an [Option]-returning function.
@@ -236,16 +222,8 @@ func Filter[E, A any](p Predicate[A], empty E) Operator[E, A, A] {
 //	result5 := filterMapEmail(E.Right[string](Person{Name: "Bob", Email: O.None[string]()}))
 //	// result5 = Left("no email")
 func FilterMap[E, A, B any](f option.Kleisli[A, B], empty E) Operator[E, A, B] {
-	l := Left[B](empty)
-	return func(e Either[E, A]) Either[E, B] {
-		if e.isLeft {
-			return Left[B](e.l)
-		}
-		if b, ok := option.Unwrap(f(e.r)); ok {
-			return Right[E](b)
-		}
-		return l
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // PartitionMap separates and transforms an [Either] value into a [Pair] of Either values using a mapping function.
@@ -338,14 +316,6 @@ func FilterMap[E, A, B any](f option.Kleisli[A, B], empty E) Operator[E, A, B] {
 //	result5 := partitionUsers(E.Right[string](invalidInput))
 //	// result5 = Pair(Right(ValidationError{"age", "missing"}), Left(ValidationError{"", "not processed"}))
 func PartitionMap[E, A, B, C any](f Kleisli[B, A, C], empty E) func(Either[E, A]) Pair[Either[E, B], Either[E, C]] {
-	return func(e Either[E, A]) Pair[Either[E, B], Either[E, C]] {
-		if e.isLeft {
-			return pair.MakePair(Left[B](e.l), Left[C](e.l))
-		}
-		res := f(e.r)
-		if res.isLeft {
-			return pair.MakePair(Right[E](res.l), Left[C](empty))
-		}
-		return pair.MakePair(Left[B](empty), Right[E](res.r))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

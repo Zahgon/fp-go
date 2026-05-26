@@ -32,34 +32,35 @@ package function
 //	values := []int{1, 2, 3}
 //	mapped := Map(Identity[int])(values)  // [1, 2, 3]
 func Identity[A any](a A) A {
-	return a
+	_ = "STUB: not implemented"
+
+	// Constant creates a nullary function that always returns the same value.
+	//
+	// This creates a function with no parameters that returns the constant value 'a'.
+	// Useful for lazy evaluation or when you need a function that produces a fixed value.
+	//
+	// Parameters:
+	//   - a: The constant value to return
+	//
+	// Returns:
+	//   - A function that takes no arguments and returns 'a'
+	//
+	// Example:
+	//
+	//	getFortyTwo := Constant(42)
+	//	result := getFortyTwo()  // 42
+	//
+	//	getMessage := Constant("Hello")
+	//	msg := getMessage()  // "Hello"
+	//
+	//go:inline
+	return *new(A)
 }
 
-// Constant creates a nullary function that always returns the same value.
-//
-// This creates a function with no parameters that returns the constant value 'a'.
-// Useful for lazy evaluation or when you need a function that produces a fixed value.
-//
-// Parameters:
-//   - a: The constant value to return
-//
-// Returns:
-//   - A function that takes no arguments and returns 'a'
-//
-// Example:
-//
-//	getFortyTwo := Constant(42)
-//	result := getFortyTwo()  // 42
-//
-//	getMessage := Constant("Hello")
-//	msg := getMessage()  // "Hello"
-//
-//go:inline
 func Constant[A any](a A) func() A {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func() A {
-		return a
-	}
+	return nil
 }
 
 // Constant1 creates a unary function that always returns the same value, ignoring its input.
@@ -87,10 +88,9 @@ func Constant[A any](a A) func() A {
 //
 //go:inline
 func Constant1[B, A any](a A) func(B) A {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(_ B) A {
-		return a
-	}
+	return nil
 }
 
 // Constant2 creates a binary function that always returns the same value, ignoring its inputs.
@@ -116,10 +116,9 @@ func Constant1[B, A any](a A) func(B) A {
 //
 //go:inline
 func Constant2[B, C, A any](a A) func(B, C) A {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(_ B, _ C) A {
-		return a
-	}
+	return nil
 }
 
 // IsNil checks if a pointer is nil.
@@ -140,65 +139,65 @@ func Constant2[B, C, A any](a A) func(B, C) A {
 //
 //go:inline
 func IsNil[A any](a *A) bool {
-	return a == nil
+	_ = "STUB: not implemented"
+
+	// IsNonNil checks if a pointer is not nil.
+	//
+	// This is the logical negation of IsNil.
+	//
+	// Parameters:
+	//   - a: A pointer to check
+	//
+	// Returns:
+	//   - true if the pointer is not nil, false otherwise
+	//
+	// Example:
+	//
+	//	var ptr *int
+	//	IsNonNil(ptr)  // false
+	//
+	//	value := 42
+	//	IsNonNil(&value)  // true
+	//
+	//go:inline
+	return false
 }
 
-// IsNonNil checks if a pointer is not nil.
-//
-// This is the logical negation of IsNil.
-//
-// Parameters:
-//   - a: A pointer to check
-//
-// Returns:
-//   - true if the pointer is not nil, false otherwise
-//
-// Example:
-//
-//	var ptr *int
-//	IsNonNil(ptr)  // false
-//
-//	value := 42
-//	IsNonNil(&value)  // true
-//
-//go:inline
 func IsNonNil[A any](a *A) bool {
-	return a != nil
+	_ = "STUB: not implemented"
+
+	// Swap returns a new binary function with the parameter order reversed.
+	//
+	// Given a function f(a, b), Swap returns a function g(b, a) where g(b, a) = f(a, b).
+	// This is useful when you have a function but need to call it with arguments in
+	// a different order.
+	//
+	// Type Parameters:
+	//   - T1: The type of the first parameter (becomes second)
+	//   - T2: The type of the second parameter (becomes first)
+	//   - R: The return type
+	//
+	// Parameters:
+	//   - f: The function to swap
+	//
+	// Returns:
+	//   - A new function with swapped parameters
+	//
+	// Example:
+	//
+	//	divide := func(a, b float64) float64 { return a / b }
+	//	divideSwapped := Swap(divide)
+	//
+	//	result1 := divide(10, 2)         // 5.0 (10 / 2)
+	//	result2 := divideSwapped(10, 2)  // 0.2 (2 / 10)
+	//
+	//	subtract := func(a, b int) int { return a - b }
+	//	subtractSwapped := Swap(subtract)
+	//	result := subtractSwapped(5, 10)  // 5 (10 - 5)
+	return false
 }
 
-// Swap returns a new binary function with the parameter order reversed.
-//
-// Given a function f(a, b), Swap returns a function g(b, a) where g(b, a) = f(a, b).
-// This is useful when you have a function but need to call it with arguments in
-// a different order.
-//
-// Type Parameters:
-//   - T1: The type of the first parameter (becomes second)
-//   - T2: The type of the second parameter (becomes first)
-//   - R: The return type
-//
-// Parameters:
-//   - f: The function to swap
-//
-// Returns:
-//   - A new function with swapped parameters
-//
-// Example:
-//
-//	divide := func(a, b float64) float64 { return a / b }
-//	divideSwapped := Swap(divide)
-//
-//	result1 := divide(10, 2)         // 5.0 (10 / 2)
-//	result2 := divideSwapped(10, 2)  // 0.2 (2 / 10)
-//
-//	subtract := func(a, b int) int { return a - b }
-//	subtractSwapped := Swap(subtract)
-//	result := subtractSwapped(5, 10)  // 5 (10 - 5)
-func Swap[T1, T2, R any](f func(T1, T2) R) func(T2, T1) R {
-	return func(t2 T2, t1 T1) R {
-		return f(t1, t2)
-	}
-}
+func Swap[T1, T2, R any](f func(T1, T2) R) func(T2, T1) R { _ = "STUB: not implemented"; return nil }
 
 // First returns the first of two input values, ignoring the second.
 //
@@ -223,37 +222,38 @@ func Swap[T1, T2, R any](f func(T1, T2) R) func(T2, T1) R {
 //
 //go:inline
 func First[T1, T2 any](t1 T1, _ T2) T1 {
-	return t1
+	_ = "STUB: not implemented"
+
+	// Second returns the second of two input values, ignoring the first.
+	//
+	// This is a projection function that selects the second element of a pair.
+	// Identical to SK combinator in combinatory logic.
+	//
+	// Type Parameters:
+	//   - T1: The type of the first value (ignored)
+	//   - T2: The type of the second value (returned)
+	//
+	// Parameters:
+	//   - t1: The first value (ignored)
+	//   - t2: The second value
+	//
+	// Returns:
+	//   - The second value
+	//
+	// Example:
+	//
+	//	result := Second(42, "hello")  // "hello"
+	//	result := Second(true, 100)    // 100
+	//
+	//go:inline
+	return *new(T1)
 }
 
-// Second returns the second of two input values, ignoring the first.
-//
-// This is a projection function that selects the second element of a pair.
-// Identical to SK combinator in combinatory logic.
-//
-// Type Parameters:
-//   - T1: The type of the first value (ignored)
-//   - T2: The type of the second value (returned)
-//
-// Parameters:
-//   - t1: The first value (ignored)
-//   - t2: The second value
-//
-// Returns:
-//   - The second value
-//
-// Example:
-//
-//	result := Second(42, "hello")  // "hello"
-//	result := Second(true, 100)    // 100
-//
-//go:inline
 func Second[T1, T2 any](_ T1, t2 T2) T2 {
-	return t2
+	_ = "STUB: not implemented"
+
+	// Zero returns the zero value of the given type.
+	return *new(T2)
 }
 
-// Zero returns the zero value of the given type.
-func Zero[A any]() A {
-	var zero A
-	return zero
-}
+func Zero[A any]() A { _ = "STUB: not implemented"; return *new(A) }

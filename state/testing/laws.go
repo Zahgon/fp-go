@@ -19,8 +19,6 @@ import (
 	"testing"
 
 	EQ "github.com/IBM/fp-go/eq"
-	L "github.com/IBM/fp-go/internal/monad/testing"
-	ST "github.com/IBM/fp-go/state"
 )
 
 // AssertLaws asserts the apply monad laws for the `Either` monad
@@ -35,44 +33,6 @@ func AssertLaws[S, A, B, C any](t *testing.T,
 
 	s S,
 ) func(a A) bool {
-
-	fofc := ST.Pointed[S, C]()
-	fofaa := ST.Pointed[S, func(A) A]()
-	fofbc := ST.Pointed[S, func(B) C]()
-	fofabb := ST.Pointed[S, func(func(A) B) B]()
-
-	fmap := ST.Functor[S, func(B) C, func(func(A) B) func(A) C]()
-
-	fapabb := ST.Applicative[S, func(A) B, B]()
-	fapabac := ST.Applicative[S, func(A) B, func(A) C]()
-
-	maa := ST.Monad[S, A, A]()
-	mab := ST.Monad[S, A, B]()
-	mac := ST.Monad[S, A, C]()
-	mbc := ST.Monad[S, B, C]()
-
-	return L.MonadAssertLaws(t,
-		ST.Eq(eqw, eqa)(s),
-		ST.Eq(eqw, eqb)(s),
-		ST.Eq(eqw, eqc)(s),
-
-		fofc,
-		fofaa,
-		fofbc,
-		fofabb,
-
-		fmap,
-
-		fapabb,
-		fapabac,
-
-		maa,
-		mab,
-		mac,
-		mbc,
-
-		ab,
-		bc,
-	)
-
+	_ = "STUB: not implemented"
+	return nil
 }

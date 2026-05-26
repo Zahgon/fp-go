@@ -15,10 +15,6 @@
 
 package readereither
 
-import (
-	G "github.com/IBM/fp-go/v2/readereither/generic"
-)
-
 // TraverseArray transforms each element of an array using a function that returns a ReaderEither,
 // then collects the results into a single ReaderEither containing an array.
 //
@@ -48,7 +44,8 @@ import (
 //
 //go:inline
 func TraverseArray[E, L, A, B any](f func(A) ReaderEither[E, L, B]) func([]A) ReaderEither[E, L, []B] {
-	return G.TraverseArray[ReaderEither[E, L, B], ReaderEither[E, L, []B], []A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex is like TraverseArray but the transformation function also receives the index.
@@ -76,7 +73,8 @@ func TraverseArray[E, L, A, B any](f func(A) ReaderEither[E, L, B]) func([]A) Re
 //
 //go:inline
 func TraverseArrayWithIndex[E, L, A, B any](f func(int, A) ReaderEither[E, L, B]) func([]A) ReaderEither[E, L, []B] {
-	return G.TraverseArrayWithIndex[ReaderEither[E, L, B], ReaderEither[E, L, []B], []A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts an array of ReaderEither into a ReaderEither of an array.
@@ -108,5 +106,6 @@ func TraverseArrayWithIndex[E, L, A, B any](f func(int, A) ReaderEither[E, L, B]
 //
 //go:inline
 func SequenceArray[E, L, A any](ma []ReaderEither[E, L, A]) ReaderEither[E, L, []A] {
-	return G.SequenceArray[ReaderEither[E, L, A], ReaderEither[E, L, []A]](ma)
+	_ = "STUB: not implemented"
+	return nil
 }

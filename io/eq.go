@@ -17,15 +17,10 @@ package io
 
 import (
 	EQ "github.com/IBM/fp-go/eq"
-	G "github.com/IBM/fp-go/io/generic"
 )
 
 // Eq implements the equals predicate for values contained in the IO monad
-func Eq[A any](e EQ.Eq[A]) EQ.Eq[IO[A]] {
-	return G.Eq[IO[A]](e)
-}
+func Eq[A any](e EQ.Eq[A]) EQ.Eq[IO[A]] { _ = "STUB: not implemented"; return nil }
 
 // FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
-func FromStrictEquals[A comparable]() EQ.Eq[IO[A]] {
-	return G.FromStrictEquals[IO[A]]()
-}
+func FromStrictEquals[A comparable]() EQ.Eq[IO[A]] { _ = "STUB: not implemented"; return nil }

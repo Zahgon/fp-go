@@ -16,9 +16,6 @@
 package prism
 
 import (
-	"fmt"
-
-	F "github.com/IBM/fp-go/v2/function"
 	P "github.com/IBM/fp-go/v2/optics/prism"
 )
 
@@ -143,11 +140,6 @@ import (
 //   - github.com/IBM/fp-go/v2/optics/prism for prism operations
 //   - github.com/IBM/fp-go/v2/optics/prism/iso for the dual composition (transforming focus type)
 func Compose[S, A, B any](ab Prism[A, B]) P.Kleisli[S, Iso[S, A], B] {
-	return func(ia Iso[S, A]) Prism[S, B] {
-		return P.MakePrismWithName(
-			F.Flow2(ia.Get, ab.GetOption),
-			F.Flow2(ab.ReverseGet, ia.ReverseGet),
-			fmt.Sprintf("IsoCompose[%s -> %s]", ia, ab),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,215 +15,131 @@
 
 package generic
 
-import (
-	F "github.com/IBM/fp-go/function"
-	RA "github.com/IBM/fp-go/internal/array"
-	RR "github.com/IBM/fp-go/internal/record"
-)
-
 func MonadTraverseArray[GB ~func() B, GBS ~func() BBS, AAS ~[]A, BBS ~[]B, A, B any](tas AAS, f func(A) GB) GBS {
-	return RA.MonadTraverse(
-		Of[GBS, BBS],
-		Map[GBS, func() func(B) BBS, BBS, func(B) BBS],
-		Ap[GBS, func() func(B) BBS, GB],
-
-		tas,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GBS)
 }
 
 func MonadTraverseArraySeq[GB ~func() B, GBS ~func() BBS, AAS ~[]A, BBS ~[]B, A, B any](tas AAS, f func(A) GB) GBS {
-	return RA.MonadTraverse(
-		Of[GBS, BBS],
-		Map[GBS, func() func(B) BBS, BBS, func(B) BBS],
-		ApSeq[GBS, func() func(B) BBS, GB],
-
-		tas,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GBS)
 }
 
 func MonadTraverseArrayPar[GB ~func() B, GBS ~func() BBS, AAS ~[]A, BBS ~[]B, A, B any](tas AAS, f func(A) GB) GBS {
-	return RA.MonadTraverse(
-		Of[GBS, BBS],
-		Map[GBS, func() func(B) BBS, BBS, func(B) BBS],
-		ApPar[GBS, func() func(B) BBS, GB],
-
-		tas,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GBS)
 }
 
 func TraverseArray[GB ~func() B, GBS ~func() BBS, AAS ~[]A, BBS ~[]B, A, B any](f func(A) GB) func(AAS) GBS {
-	return RA.Traverse[AAS](
-		Of[GBS, BBS],
-		Map[GBS, func() func(B) BBS, BBS, func(B) BBS],
-		Ap[GBS, func() func(B) BBS, GB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraverseArraySeq[GB ~func() B, GBS ~func() BBS, AAS ~[]A, BBS ~[]B, A, B any](f func(A) GB) func(AAS) GBS {
-	return RA.Traverse[AAS](
-		Of[GBS, BBS],
-		Map[GBS, func() func(B) BBS, BBS, func(B) BBS],
-		ApSeq[GBS, func() func(B) BBS, GB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraverseArrayPar[GB ~func() B, GBS ~func() BBS, AAS ~[]A, BBS ~[]B, A, B any](f func(A) GB) func(AAS) GBS {
-	return RA.Traverse[AAS](
-		Of[GBS, BBS],
-		Map[GBS, func() func(B) BBS, BBS, func(B) BBS],
-		ApPar[GBS, func() func(B) BBS, GB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraverseArrayWithIndex[GB ~func() B, GBS ~func() BBS, AAS ~[]A, BBS ~[]B, A, B any](f func(int, A) GB) func(AAS) GBS {
-	return RA.TraverseWithIndex[AAS](
-		Of[GBS, BBS],
-		Map[GBS, func() func(B) BBS, BBS, func(B) BBS],
-		Ap[GBS, func() func(B) BBS, GB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraverseArrayWithIndexSeq[GB ~func() B, GBS ~func() BBS, AAS ~[]A, BBS ~[]B, A, B any](f func(int, A) GB) func(AAS) GBS {
-	return RA.TraverseWithIndex[AAS](
-		Of[GBS, BBS],
-		Map[GBS, func() func(B) BBS, BBS, func(B) BBS],
-		ApSeq[GBS, func() func(B) BBS, GB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraverseArrayWithIndexPar[GB ~func() B, GBS ~func() BBS, AAS ~[]A, BBS ~[]B, A, B any](f func(int, A) GB) func(AAS) GBS {
-	return RA.TraverseWithIndex[AAS](
-		Of[GBS, BBS],
-		Map[GBS, func() func(B) BBS, BBS, func(B) BBS],
-		ApPar[GBS, func() func(B) BBS, GB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func SequenceArray[GA ~func() A, GAS ~func() AAS, AAS ~[]A, GAAS ~[]GA, A any](tas GAAS) GAS {
-	return MonadTraverseArray[GA, GAS](tas, F.Identity[GA])
+	_ = "STUB: not implemented"
+	return *new(GAS)
 }
 
 func SequenceArraySeq[GA ~func() A, GAS ~func() AAS, AAS ~[]A, GAAS ~[]GA, A any](tas GAAS) GAS {
-	return MonadTraverseArraySeq[GA, GAS](tas, F.Identity[GA])
+	_ = "STUB: not implemented"
+	return *new(GAS)
 }
 
 func SequenceArrayPar[GA ~func() A, GAS ~func() AAS, AAS ~[]A, GAAS ~[]GA, A any](tas GAAS) GAS {
-	return MonadTraverseArrayPar[GA, GAS](tas, F.Identity[GA])
+	_ = "STUB: not implemented"
+	return *new(GAS)
 }
 
 // MonadTraverseRecord transforms a record using an IO transform an IO of a record
 func MonadTraverseRecord[GBS ~func() MB, MA ~map[K]A, GB ~func() B, MB ~map[K]B, K comparable, A, B any](ma MA, f func(A) GB) GBS {
-	return RR.MonadTraverse[MA](
-		Of[GBS, MB],
-		Map[GBS, func() func(B) MB, MB, func(B) MB],
-		Ap[GBS, func() func(B) MB, GB],
-		ma, f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GBS)
 }
 
 // TraverseRecord transforms a record using an IO transform an IO of a record
 func TraverseRecord[GBS ~func() MB, MA ~map[K]A, GB ~func() B, MB ~map[K]B, K comparable, A, B any](f func(A) GB) func(MA) GBS {
-	return RR.Traverse[MA](
-		Of[GBS, MB],
-		Map[GBS, func() func(B) MB, MB, func(B) MB],
-		Ap[GBS, func() func(B) MB, GB],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndex transforms a record using an IO transform an IO of a record
 func TraverseRecordWithIndex[GB ~func() B, GBS ~func() MB, MA ~map[K]A, MB ~map[K]B, K comparable, A, B any](f func(K, A) GB) func(MA) GBS {
-	return RR.TraverseWithIndex[MA](
-		Of[GBS, MB],
-		Map[GBS, func() func(B) MB, MB, func(B) MB],
-		Ap[GBS, func() func(B) MB, GB],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func SequenceRecord[GA ~func() A, GAS ~func() AAS, AAS ~map[K]A, GAAS ~map[K]GA, K comparable, A any](tas GAAS) GAS {
-	return MonadTraverseRecord[GAS](tas, F.Identity[GA])
+	_ = "STUB: not implemented"
+	return *new(GAS)
 }
 
 // MonadTraverseRecordSeq transforms a record using an IO transform an IO of a record
 func MonadTraverseRecordSeq[GBS ~func() MB, MA ~map[K]A, GB ~func() B, MB ~map[K]B, K comparable, A, B any](ma MA, f func(A) GB) GBS {
-	return RR.MonadTraverse[MA](
-		Of[GBS, MB],
-		Map[GBS, func() func(B) MB, MB, func(B) MB],
-		ApSeq[GBS, func() func(B) MB, GB],
-		ma, f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GBS)
 }
 
 // TraverseRecordSeq transforms a record using an IO transform an IO of a record
 func TraverseRecordSeq[GBS ~func() MB, MA ~map[K]A, GB ~func() B, MB ~map[K]B, K comparable, A, B any](f func(A) GB) func(MA) GBS {
-	return RR.Traverse[MA](
-		Of[GBS, MB],
-		Map[GBS, func() func(B) MB, MB, func(B) MB],
-		ApSeq[GBS, func() func(B) MB, GB],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndexSeq transforms a record using an IO transform an IO of a record
 func TraverseRecordWithIndexSeq[GB ~func() B, GBS ~func() MB, MA ~map[K]A, MB ~map[K]B, K comparable, A, B any](f func(K, A) GB) func(MA) GBS {
-	return RR.TraverseWithIndex[MA](
-		Of[GBS, MB],
-		Map[GBS, func() func(B) MB, MB, func(B) MB],
-		ApSeq[GBS, func() func(B) MB, GB],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func SequenceRecordSeq[GA ~func() A, GAS ~func() AAS, AAS ~map[K]A, GAAS ~map[K]GA, K comparable, A any](tas GAAS) GAS {
-	return MonadTraverseRecordSeq[GAS](tas, F.Identity[GA])
+	_ = "STUB: not implemented"
+	return *new(GAS)
 }
 
 // MonadTraverseRecordPar transforms a record using an IO transform an IO of a record
 func MonadTraverseRecordPar[GBS ~func() MB, MA ~map[K]A, GB ~func() B, MB ~map[K]B, K comparable, A, B any](ma MA, f func(A) GB) GBS {
-	return RR.MonadTraverse[MA](
-		Of[GBS, MB],
-		Map[GBS, func() func(B) MB, MB, func(B) MB],
-		ApPar[GBS, func() func(B) MB, GB],
-		ma, f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GBS)
 }
 
 // TraverseRecordPar transforms a record using an IO transform an IO of a record
 func TraverseRecordPar[GBS ~func() MB, MA ~map[K]A, GB ~func() B, MB ~map[K]B, K comparable, A, B any](f func(A) GB) func(MA) GBS {
-	return RR.Traverse[MA](
-		Of[GBS, MB],
-		Map[GBS, func() func(B) MB, MB, func(B) MB],
-		ApPar[GBS, func() func(B) MB, GB],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndexPar transforms a record using an IO transform an IO of a record
 func TraverseRecordWithIndexPar[GB ~func() B, GBS ~func() MB, MA ~map[K]A, MB ~map[K]B, K comparable, A, B any](f func(K, A) GB) func(MA) GBS {
-	return RR.TraverseWithIndex[MA](
-		Of[GBS, MB],
-		Map[GBS, func() func(B) MB, MB, func(B) MB],
-		ApPar[GBS, func() func(B) MB, GB],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func SequenceRecordPar[GA ~func() A, GAS ~func() AAS, AAS ~map[K]A, GAAS ~map[K]GA, K comparable, A any](tas GAAS) GAS {
-	return MonadTraverseRecordPar[GAS](tas, F.Identity[GA])
+	_ = "STUB: not implemented"
+	return *new(GAS)
 }

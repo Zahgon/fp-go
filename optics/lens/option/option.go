@@ -17,11 +17,10 @@ package option
 
 import (
 	L "github.com/IBM/fp-go/optics/lens"
-	LG "github.com/IBM/fp-go/optics/lens/generic"
 	T "github.com/IBM/fp-go/optics/traversal/option"
-	O "github.com/IBM/fp-go/option"
 )
 
 func AsTraversal[S, A any]() func(L.Lens[S, A]) T.Traversal[S, A] {
-	return LG.AsTraversal[T.Traversal[S, A]](O.MonadMap[A, S])
+	_ = "STUB: not implemented"
+	return nil
 }

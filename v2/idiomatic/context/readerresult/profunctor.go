@@ -2,8 +2,6 @@ package readerresult
 
 import (
 	"context"
-
-	"github.com/IBM/fp-go/v2/function"
 )
 
 // Promap is the profunctor map operation that transforms both the input and output of a ReaderResult.
@@ -30,10 +28,8 @@ import (
 //
 //go:inline
 func Promap[A, B any](f func(context.Context) (context.Context, context.CancelFunc), g func(A) B) Operator[A, B] {
-	return function.Flow2(
-		Local[A](f),
-		Map(g),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Contramap changes the value of the local context during the execution of a ReaderResult.
@@ -55,5 +51,6 @@ func Promap[A, B any](f func(context.Context) (context.Context, context.CancelFu
 //
 //go:inline
 func Contramap[A any](f func(context.Context) (context.Context, context.CancelFunc)) Kleisli[ReaderResult[A], A] {
-	return Local[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }

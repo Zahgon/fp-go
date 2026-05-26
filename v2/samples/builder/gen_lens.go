@@ -6,218 +6,125 @@ package builder
 
 import (
 	__lens "github.com/IBM/fp-go/v2/optics/lens"
-	__option "github.com/IBM/fp-go/v2/option"
-	__prism "github.com/IBM/fp-go/v2/optics/prism"
 	__lens_option "github.com/IBM/fp-go/v2/optics/lens/option"
-	__iso_option "github.com/IBM/fp-go/v2/optics/iso/option"
+	__prism "github.com/IBM/fp-go/v2/optics/prism"
 )
 
 // PartialPersonLenses provides lenses for accessing fields of PartialPerson
 type PartialPersonLenses struct {
 	// mandatory fields
 	name __lens.Lens[PartialPerson, string]
-	age __lens.Lens[PartialPerson, int]
+	age  __lens.Lens[PartialPerson, int]
 	// optional fields
 	nameO __lens_option.LensO[PartialPerson, string]
-	ageO __lens_option.LensO[PartialPerson, int]
+	ageO  __lens_option.LensO[PartialPerson, int]
 }
 
 // PartialPersonRefLenses provides lenses for accessing fields of PartialPerson via a reference to PartialPerson
 type PartialPersonRefLenses struct {
 	// mandatory fields
 	name __lens.Lens[*PartialPerson, string]
-	age __lens.Lens[*PartialPerson, int]
+	age  __lens.Lens[*PartialPerson, int]
 	// optional fields
 	nameO __lens_option.LensO[*PartialPerson, string]
-	ageO __lens_option.LensO[*PartialPerson, int]
+	ageO  __lens_option.LensO[*PartialPerson, int]
 	// prisms
 	nameP __prism.Prism[*PartialPerson, string]
-	ageP __prism.Prism[*PartialPerson, int]
+	ageP  __prism.Prism[*PartialPerson, int]
 }
 
 // PartialPersonPrisms provides prisms for accessing fields of PartialPerson
 type PartialPersonPrisms struct {
 	name __prism.Prism[PartialPerson, string]
-	age __prism.Prism[PartialPerson, int]
+	age  __prism.Prism[PartialPerson, int]
 }
 
 // MakePartialPersonLenses creates a new PartialPersonLenses with lenses for all fields
 func MakePartialPersonLenses() PartialPersonLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensname := __lens.MakeLensWithName(
-		func(s PartialPerson) string { return s.name },
-		func(s PartialPerson, v string) PartialPerson { s.name = v; return s },
-		"PartialPerson.name",
-	)
-	lensage := __lens.MakeLensWithName(
-		func(s PartialPerson) int { return s.age },
-		func(s PartialPerson, v int) PartialPerson { s.age = v; return s },
-		"PartialPerson.age",
-	)
-	// optional lenses
-	lensnameO := __lens_option.FromIso[PartialPerson](__iso_option.FromZero[string]())(lensname)
-	lensageO := __lens_option.FromIso[PartialPerson](__iso_option.FromZero[int]())(lensage)
-	return PartialPersonLenses{
-		// mandatory lenses
-		name: lensname,
-		age: lensage,
-		// optional lenses
-		nameO: lensnameO,
-		ageO: lensageO,
-	}
+	return *new(PartialPersonLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakePartialPersonRefLenses creates a new PartialPersonRefLenses with lenses for all fields
 func MakePartialPersonRefLenses() PartialPersonRefLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensname := __lens.MakeLensStrictWithName(
-		func(s *PartialPerson) string { return s.name },
-		func(s *PartialPerson, v string) *PartialPerson { s.name = v; return s },
-		"(*PartialPerson).name",
-	)
-	lensage := __lens.MakeLensStrictWithName(
-		func(s *PartialPerson) int { return s.age },
-		func(s *PartialPerson, v int) *PartialPerson { s.age = v; return s },
-		"(*PartialPerson).age",
-	)
-	// optional lenses
-	lensnameO := __lens_option.FromIso[*PartialPerson](__iso_option.FromZero[string]())(lensname)
-	lensageO := __lens_option.FromIso[*PartialPerson](__iso_option.FromZero[int]())(lensage)
-	return PartialPersonRefLenses{
-		// mandatory lenses
-		name: lensname,
-		age: lensage,
-		// optional lenses
-		nameO: lensnameO,
-		ageO: lensageO,
-	}
+	return *new(PartialPersonRefLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakePartialPersonPrisms creates a new PartialPersonPrisms with prisms for all fields
 func MakePartialPersonPrisms() PartialPersonPrisms {
-	_fromNonZeroname := __option.FromNonZero[string]()
-	_prismname := __prism.MakePrismWithName(
-		func(s PartialPerson) __option.Option[string] { return _fromNonZeroname(s.name) },
-		func(v string) PartialPerson {
-			return PartialPerson{ name: v }
-		},
-		"PartialPerson.name",
-	)
-	_fromNonZeroage := __option.FromNonZero[int]()
-	_prismage := __prism.MakePrismWithName(
-		func(s PartialPerson) __option.Option[int] { return _fromNonZeroage(s.age) },
-		func(v int) PartialPerson {
-			return PartialPerson{ age: v }
-		},
-		"PartialPerson.age",
-	)
-	return PartialPersonPrisms {
-		name: _prismname,
-		age: _prismage,
-	}
+	_ = "STUB: not implemented"
+	return *new(PartialPersonPrisms)
 }
 
 // PersonLenses provides lenses for accessing fields of Person
 type PersonLenses struct {
 	// mandatory fields
 	Name __lens.Lens[Person, NonEmptyString]
-	Age __lens.Lens[Person, AdultAge]
+	Age  __lens.Lens[Person, AdultAge]
 	// optional fields
 	NameO __lens_option.LensO[Person, NonEmptyString]
-	AgeO __lens_option.LensO[Person, AdultAge]
+	AgeO  __lens_option.LensO[Person, AdultAge]
 }
 
 // PersonRefLenses provides lenses for accessing fields of Person via a reference to Person
 type PersonRefLenses struct {
 	// mandatory fields
 	Name __lens.Lens[*Person, NonEmptyString]
-	Age __lens.Lens[*Person, AdultAge]
+	Age  __lens.Lens[*Person, AdultAge]
 	// optional fields
 	NameO __lens_option.LensO[*Person, NonEmptyString]
-	AgeO __lens_option.LensO[*Person, AdultAge]
+	AgeO  __lens_option.LensO[*Person, AdultAge]
 	// prisms
 	NameP __prism.Prism[*Person, NonEmptyString]
-	AgeP __prism.Prism[*Person, AdultAge]
+	AgeP  __prism.Prism[*Person, AdultAge]
 }
 
 // PersonPrisms provides prisms for accessing fields of Person
 type PersonPrisms struct {
 	Name __prism.Prism[Person, NonEmptyString]
-	Age __prism.Prism[Person, AdultAge]
+	Age  __prism.Prism[Person, AdultAge]
 }
 
 // MakePersonLenses creates a new PersonLenses with lenses for all fields
 func MakePersonLenses() PersonLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensName := __lens.MakeLensWithName(
-		func(s Person) NonEmptyString { return s.Name },
-		func(s Person, v NonEmptyString) Person { s.Name = v; return s },
-		"Person.Name",
-	)
-	lensAge := __lens.MakeLensWithName(
-		func(s Person) AdultAge { return s.Age },
-		func(s Person, v AdultAge) Person { s.Age = v; return s },
-		"Person.Age",
-	)
-	// optional lenses
-	lensNameO := __lens_option.FromIso[Person](__iso_option.FromZero[NonEmptyString]())(lensName)
-	lensAgeO := __lens_option.FromIso[Person](__iso_option.FromZero[AdultAge]())(lensAge)
-	return PersonLenses{
-		// mandatory lenses
-		Name: lensName,
-		Age: lensAge,
-		// optional lenses
-		NameO: lensNameO,
-		AgeO: lensAgeO,
-	}
+	return *new(PersonLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakePersonRefLenses creates a new PersonRefLenses with lenses for all fields
 func MakePersonRefLenses() PersonRefLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensName := __lens.MakeLensStrictWithName(
-		func(s *Person) NonEmptyString { return s.Name },
-		func(s *Person, v NonEmptyString) *Person { s.Name = v; return s },
-		"(*Person).Name",
-	)
-	lensAge := __lens.MakeLensStrictWithName(
-		func(s *Person) AdultAge { return s.Age },
-		func(s *Person, v AdultAge) *Person { s.Age = v; return s },
-		"(*Person).Age",
-	)
-	// optional lenses
-	lensNameO := __lens_option.FromIso[*Person](__iso_option.FromZero[NonEmptyString]())(lensName)
-	lensAgeO := __lens_option.FromIso[*Person](__iso_option.FromZero[AdultAge]())(lensAge)
-	return PersonRefLenses{
-		// mandatory lenses
-		Name: lensName,
-		Age: lensAge,
-		// optional lenses
-		NameO: lensNameO,
-		AgeO: lensAgeO,
-	}
+	return *new(PersonRefLenses)
 }
 
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
+
 // MakePersonPrisms creates a new PersonPrisms with prisms for all fields
-func MakePersonPrisms() PersonPrisms {
-	_fromNonZeroName := __option.FromNonZero[NonEmptyString]()
-	_prismName := __prism.MakePrismWithName(
-		func(s Person) __option.Option[NonEmptyString] { return _fromNonZeroName(s.Name) },
-		func(v NonEmptyString) Person {
-			return Person{ Name: v }
-		},
-		"Person.Name",
-	)
-	_fromNonZeroAge := __option.FromNonZero[AdultAge]()
-	_prismAge := __prism.MakePrismWithName(
-		func(s Person) __option.Option[AdultAge] { return _fromNonZeroAge(s.Age) },
-		func(v AdultAge) Person {
-			return Person{ Age: v }
-		},
-		"Person.Age",
-	)
-	return PersonPrisms {
-		Name: _prismName,
-		Age: _prismAge,
-	}
-}
+func MakePersonPrisms() PersonPrisms { _ = "STUB: not implemented"; return *new(PersonPrisms) }

@@ -16,114 +16,117 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
-	FO "github.com/IBM/fp-go/v2/internal/fromoption"
-	FR "github.com/IBM/fp-go/v2/internal/fromreader"
-	FC "github.com/IBM/fp-go/v2/internal/functor"
-	"github.com/IBM/fp-go/v2/internal/optiont"
-	"github.com/IBM/fp-go/v2/internal/readert"
 	O "github.com/IBM/fp-go/v2/option"
-	R "github.com/IBM/fp-go/v2/reader/generic"
 )
 
 //go:inline
 func MakeReaderOption[GEA ~func(E) O.Option[A], E, A any](f func(E) O.Option[A]) GEA {
-	return f
+	_ = "STUB: not implemented"
+
+	//go:inline
+	return *new(GEA)
 }
 
-//go:inline
 func FromOption[GEA ~func(E) O.Option[A], E, A any](e O.Option[A]) GEA {
-	return R.Of[GEA](e)
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
 func SomeReader[GA ~func(E) A, GEA ~func(E) O.Option[A], E, A any](r GA) GEA {
-	return optiont.SomeF(R.MonadMap[GA, GEA, E, A, O.Option[A]], r)
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
-func Some[GEA ~func(E) O.Option[A], E, A any](r A) GEA {
-	return optiont.Of(R.Of[GEA, E, O.Option[A]], r)
-}
+func Some[GEA ~func(E) O.Option[A], E, A any](r A) GEA { _ = "STUB: not implemented"; return *new(GEA) }
 
 //go:inline
 func FromReader[GA ~func(E) A, GEA ~func(E) O.Option[A], E, A any](r GA) GEA {
-	return SomeReader[GA, GEA](r)
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
 func MonadMap[GEA ~func(E) O.Option[A], GEB ~func(E) O.Option[B], E, A, B any](fa GEA, f func(A) B) GEB {
-	return readert.MonadMap[GEA, GEB](O.MonadMap[A, B], fa, f)
+	_ = "STUB: not implemented"
+	return *new(GEB)
 }
 
 func Map[GEA ~func(E) O.Option[A], GEB ~func(E) O.Option[B], E, A, B any](f func(A) B) func(GEA) GEB {
-	return readert.Map[GEA, GEB](O.Map[A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChain[GEA ~func(E) O.Option[A], GEB ~func(E) O.Option[B], E, A, B any](ma GEA, f func(A) GEB) GEB {
-	return readert.MonadChain(O.MonadChain[A, B], ma, f)
+	_ = "STUB: not implemented"
+	return *new(GEB)
 }
 
 func Chain[GEA ~func(E) O.Option[A], GEB ~func(E) O.Option[B], E, A, B any](f func(A) GEB) func(GEA) GEB {
-	return F.Bind2nd(MonadChain[GEA, GEB, E, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Of[GEA ~func(E) O.Option[A], E, A any](a A) GEA {
-	return readert.MonadOf[GEA](O.Of[A], a)
-}
+func Of[GEA ~func(E) O.Option[A], E, A any](a A) GEA { _ = "STUB: not implemented"; return *new(GEA) }
 
 func MonadAp[GEA ~func(E) O.Option[A], GEB ~func(E) O.Option[B], GEFAB ~func(E) O.Option[func(A) B], E, A, B any](fab GEFAB, fa GEA) GEB {
-	return readert.MonadAp[GEA, GEB, GEFAB, E, A](O.MonadAp[B, A], fab, fa)
+	_ = "STUB: not implemented"
+	return *new(GEB)
 }
 
 func Ap[GEA ~func(E) O.Option[A], GEB ~func(E) O.Option[B], GEFAB ~func(E) O.Option[func(A) B], E, A, B any](fa GEA) func(GEFAB) GEB {
-	return F.Bind2nd(MonadAp[GEA, GEB, GEFAB, E, A, B], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FromPredicate[GEA ~func(E) O.Option[A], E, A any](pred func(A) bool) func(A) GEA {
-	return FO.FromPredicate(FromOption[GEA, E, A], pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Fold[GEA ~func(E) O.Option[A], GB ~func(E) B, E, A, B any](onNone func() GB, onRight func(A) GB) func(GEA) GB {
-	return optiont.MatchE(R.Chain[GEA, GB, E, O.Option[A], B], onNone, onRight)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func GetOrElse[GEA ~func(E) O.Option[A], GA ~func(E) A, E, A any](onNone func() GA) func(GEA) GA {
-	return optiont.GetOrElse(R.Chain[GEA, GA, E, O.Option[A], A], onNone, R.Of[GA, E, A])
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Ask[GEE ~func(E) O.Option[E], E any]() GEE {
-	return FR.Ask(FromReader[func(E) E, GEE, E, E])()
-}
+func Ask[GEE ~func(E) O.Option[E], E any]() GEE { _ = "STUB: not implemented"; return *new(GEE) }
 
 func Asks[GA ~func(E) A, GEA ~func(E) O.Option[A], E, A any](r GA) GEA {
-	return FR.Asks(FromReader[GA, GEA, E, A])(r)
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
 func MonadChainOptionK[GEA ~func(E) O.Option[A], GEB ~func(E) O.Option[B], E, A, B any](ma GEA, f func(A) O.Option[B]) GEB {
-	return FO.MonadChainOptionK(
-		MonadChain[GEA, GEB, E, A, B],
-		FromOption[GEB, E, B],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GEB)
 }
 
 func ChainOptionK[GEA ~func(E) O.Option[A], GEB ~func(E) O.Option[B], E, A, B any](f func(A) O.Option[B]) func(ma GEA) GEB {
-	return F.Bind2nd(MonadChainOptionK[GEA, GEB, E, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Flatten[GEA ~func(E) O.Option[A], GGA ~func(E) O.Option[GEA], E, A any](mma GGA) GEA {
-	return MonadChain(mma, F.Identity[GEA])
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
 // Local changes the value of the local context during the execution of the action `ma` (similar to `Contravariant`'s
 // `contramap`).
 func Local[GA1 ~func(R1) O.Option[A], GA2 ~func(R2) O.Option[A], R2, R1, E, A any](f func(R2) R1) func(GA1) GA2 {
-	return R.Local[GA1, GA2](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadFlap[GEFAB ~func(E) O.Option[func(A) B], GEB ~func(E) O.Option[B], E, A, B any](fab GEFAB, a A) GEB {
-	return FC.MonadFlap(MonadMap[GEFAB, GEB], fab, a)
+	_ = "STUB: not implemented"
+	return *new(GEB)
 }
 
 func Flap[GEFAB ~func(E) O.Option[func(A) B], GEB ~func(E) O.Option[B], E, A, B any](a A) func(GEFAB) GEB {
-	return FC.Flap(Map[GEFAB, GEB], a)
+	_ = "STUB: not implemented"
+	return nil
 }

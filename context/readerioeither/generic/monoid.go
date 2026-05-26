@@ -25,32 +25,20 @@ import (
 func ApplicativeMonoid[GRA ~func(context.Context) GIOA, GRFA ~func(context.Context) GIOFA, GIOA ~func() ET.Either[error, A], GIOFA ~func() ET.Either[error, func(A) A], A any](
 	m M.Monoid[A],
 ) M.Monoid[GRA] {
-	return M.ApplicativeMonoid(
-		Of[GRA],
-		MonadMap[GRA, GRFA],
-		MonadAp[GRA, GRA, GRFA],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ApplicativeMonoidSeq[GRA ~func(context.Context) GIOA, GRFA ~func(context.Context) GIOFA, GIOA ~func() ET.Either[error, A], GIOFA ~func() ET.Either[error, func(A) A], A any](
 	m M.Monoid[A],
 ) M.Monoid[GRA] {
-	return M.ApplicativeMonoid(
-		Of[GRA],
-		MonadMap[GRA, GRFA],
-		MonadApSeq[GRA, GRA, GRFA],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ApplicativeMonoidPar[GRA ~func(context.Context) GIOA, GRFA ~func(context.Context) GIOFA, GIOA ~func() ET.Either[error, A], GIOFA ~func() ET.Either[error, func(A) A], A any](
 	m M.Monoid[A],
 ) M.Monoid[GRA] {
-	return M.ApplicativeMonoid(
-		Of[GRA],
-		MonadMap[GRA, GRFA],
-		MonadApPar[GRA, GRA, GRFA],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

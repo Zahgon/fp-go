@@ -26,8 +26,4 @@ type (
 // AltSemigroup is a [Semigroup] that tries the first item and then the second one using an alternative
 // AltSemigroup creates a Semigroup that tries the first IOResult, then the second on failure.
 // This implements the alternative operation for combining IOResults.
-func AltSemigroup[A any]() Semigroup[A] {
-	return semigroup.AltSemigroup(
-		MonadAlt[A],
-	)
-}
+func AltSemigroup[A any]() Semigroup[A] { _ = "STUB: not implemented"; return nil }

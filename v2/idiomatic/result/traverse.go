@@ -33,15 +33,8 @@ func Traverse[A, B, HKTB, HKTRB any](
 	mof func(B, error) HKTRB,
 	mmap func(Kleisli[B, B]) func(HKTB) HKTRB,
 ) func(func(A) HKTB) func(A, error) HKTRB {
-	return func(f func(A) HKTB) func(A, error) HKTRB {
-		right := mmap(Right[B])
-		return func(a A, err error) HKTRB {
-			if err != nil {
-				return mof(Left[B](err))
-			}
-			return right(f(a))
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Sequence converts an Either of some higher kinded type into the higher kinded type of an Either.
@@ -62,11 +55,6 @@ func Sequence[A, HKTA, HKTRA any](
 	mof func(A, error) HKTRA,
 	mmap func(Kleisli[A, A]) func(HKTA) HKTRA,
 ) func(hkta HKTA, err error) HKTRA {
-	right := mmap(Right[A])
-	return func(hkta HKTA, err error) HKTRA {
-		if err != nil {
-			return mof(Left[A](err))
-		}
-		return right(hkta)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

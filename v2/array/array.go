@@ -16,9 +16,6 @@
 package array
 
 import (
-	G "github.com/IBM/fp-go/v2/array/generic"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/array"
 	M "github.com/IBM/fp-go/v2/monoid"
 	"github.com/IBM/fp-go/v2/option"
 	"github.com/IBM/fp-go/v2/pair"
@@ -44,9 +41,7 @@ import (
 //	// arr: []int{1, 2, 3, 4, 5}
 //
 //go:inline
-func From[A any](data ...A) []A {
-	return G.From[[]A](data...)
-}
+func From[A any](data ...A) []A { _ = "STUB: not implemented"; return nil }
 
 // MakeBy returns an array of length n with element i initialized with f(i).
 //
@@ -70,9 +65,7 @@ func From[A any](data ...A) []A {
 //	// squares: []int{0, 1, 4, 9, 16}
 //
 //go:inline
-func MakeBy[F ~func(int) A, A any](n int, f F) []A {
-	return G.MakeBy[[]A](n, f)
-}
+func MakeBy[F ~func(int) A, A any](n int, f F) []A { _ = "STUB: not implemented"; return nil }
 
 // Replicate creates an array containing a value repeated the specified number of times.
 //
@@ -95,17 +88,13 @@ func MakeBy[F ~func(int) A, A any](n int, f F) []A {
 //	// zeros: []int{0, 0, 0, 0, 0}
 //
 //go:inline
-func Replicate[A any](n int, a A) []A {
-	return G.Replicate[[]A](n, a)
-}
+func Replicate[A any](n int, a A) []A { _ = "STUB: not implemented"; return nil }
 
 // MonadMap applies a function to each element of an array, returning a new array with the results.
 // This is the monadic version of Map that takes the array as the first parameter.
 //
 //go:inline
-func MonadMap[A, B any](as []A, f func(A) B) []B {
-	return G.MonadMap[[]A, []B](as, f)
-}
+func MonadMap[A, B any](as []A, f func(A) B) []B { _ = "STUB: not implemented"; return nil }
 
 // MonadMapRef applies a function to a pointer to each element of an array, returning a new array with the results.
 // This is useful when you need to access elements by reference without copying.
@@ -130,21 +119,12 @@ func MonadMap[A, B any](as []A, f func(A) B) []B {
 //	points := []Point{{1, 2}, {3, 4}}
 //	xs := array.MonadMapRef(points, func(p *Point) int { return p.X })
 //	// xs: []int{1, 3}
-func MonadMapRef[A, B any](as []A, f func(*A) B) []B {
-	count := len(as)
-	bs := make([]B, count)
-	for i := range count {
-		bs[i] = f(&as[i])
-	}
-	return bs
-}
+func MonadMapRef[A, B any](as []A, f func(*A) B) []B { _ = "STUB: not implemented"; return nil }
 
 // MapWithIndex applies a function to each element and its index in an array, returning a new array with the results.
 //
 //go:inline
-func MapWithIndex[A, B any](f func(int, A) B) Operator[A, B] {
-	return G.MapWithIndex[[]A, []B](f)
-}
+func MapWithIndex[A, B any](f func(int, A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Map applies a function to each element of an array, returning a new array with the results.
 // This is the curried version that returns a function.
@@ -155,9 +135,7 @@ func MapWithIndex[A, B any](f func(int, A) B) Operator[A, B] {
 //	result := double([]int{1, 2, 3}) // [2, 4, 6]
 //
 //go:inline
-func Map[A, B any](f func(A) B) Operator[A, B] {
-	return G.Map[[]A, []B](f)
-}
+func Map[A, B any](f func(A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MapRef applies a function to a pointer to each element of an array, returning a new array with the results.
 // This is the curried version that returns a function.
@@ -182,32 +160,13 @@ func Map[A, B any](f func(A) B) Operator[A, B] {
 //	points := []Point{{1, 2}, {3, 4}}
 //	xs := extractX(points)
 //	// xs: []int{1, 3}
-func MapRef[A, B any](f func(*A) B) Operator[A, B] {
-	return F.Bind2nd(MonadMapRef[A, B], f)
-}
+func MapRef[A, B any](f func(*A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
-func filterRef[A any](fa []A, pred func(*A) bool) []A {
-	count := len(fa)
-	var result []A = make([]A, 0, count)
-	for i := range count {
-		a := &fa[i]
-		if pred(a) {
-			result = append(result, *a)
-		}
-	}
-	return result
-}
+func filterRef[A any](fa []A, pred func(*A) bool) []A { _ = "STUB: not implemented"; return nil }
 
 func filterMapRef[A, B any](fa []A, pred func(*A) bool, f func(*A) B) []B {
-	count := len(fa)
-	var result []B = make([]B, 0, count)
-	for i := range count {
-		a := &fa[i]
-		if pred(a) {
-			result = append(result, f(a))
-		}
-	}
-	return result
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Filter returns a new array with all elements from the original array that match a predicate.
@@ -231,9 +190,7 @@ func filterMapRef[A, B any](fa []A, pred func(*A) bool, f func(*A) B) []B {
 //	// result: []int{2, 4, 6}
 //
 //go:inline
-func Filter[A any](pred func(A) bool) Operator[A, A] {
-	return G.Filter[[]A](pred)
-}
+func Filter[A any](pred func(A) bool) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // FilterWithIndex returns a new array with all elements from the original array that match a predicate.
 // The predicate receives both the index and the element.
@@ -258,7 +215,8 @@ func Filter[A any](pred func(A) bool) Operator[A, A] {
 //
 //go:inline
 func FilterWithIndex[A any](pred func(int, A) bool) Operator[A, A] {
-	return G.FilterWithIndex[[]A](pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterRef returns a new array with all elements from the original array that match a predicate operating on pointers.
@@ -282,16 +240,15 @@ func FilterWithIndex[A any](pred func(int, A) bool) Operator[A, A] {
 //	points := []Point{{-1, 2}, {3, 4}, {-5, 6}}
 //	result := filterPositiveX(points)
 //	// result: []Point{{3, 4}}
-func FilterRef[A any](pred func(*A) bool) Operator[A, A] {
-	return F.Bind2nd(filterRef[A], pred)
-}
+func FilterRef[A any](pred func(*A) bool) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadFilterMap maps an array with a function that returns an Option and keeps only the Some values.
 // This is the monadic version that takes the array as the first parameter.
 //
 //go:inline
 func MonadFilterMap[A, B any](fa []A, f option.Kleisli[A, B]) []B {
-	return G.MonadFilterMap[[]A, []B](fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFilterMapWithIndex maps an array with a function that takes an index and returns an Option,
@@ -299,7 +256,8 @@ func MonadFilterMap[A, B any](fa []A, f option.Kleisli[A, B]) []B {
 //
 //go:inline
 func MonadFilterMapWithIndex[A, B any](fa []A, f func(int, A) Option[B]) []B {
-	return G.MonadFilterMapWithIndex[[]A, []B](fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterMap maps an array with an iterating function that returns an Option and keeps only the Some values discarding the Nones.
@@ -330,7 +288,8 @@ func MonadFilterMapWithIndex[A, B any](fa []A, f func(int, A) Option[B]) []B {
 //
 //go:inline
 func FilterMap[A, B any](f option.Kleisli[A, B]) Operator[A, B] {
-	return G.FilterMap[[]A, []B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterMapWithIndex maps an array with an iterating function that returns an Option and keeps only the Some values discarding the Nones.
@@ -351,7 +310,8 @@ func FilterMap[A, B any](f option.Kleisli[A, B]) Operator[A, B] {
 //
 //go:inline
 func FilterMapWithIndex[A, B any](f func(int, A) Option[B]) Operator[A, B] {
-	return G.FilterMapWithIndex[[]A, []B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainOptionK maps an array with an iterating function that returns an Option of an array.
@@ -372,7 +332,8 @@ func FilterMapWithIndex[A, B any](f func(int, A) Option[B]) Operator[A, B] {
 //
 //go:inline
 func ChainOptionK[A, B any](f option.Kleisli[A, []B]) Operator[A, B] {
-	return G.ChainOptionK[[]A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterMapRef filters an array using a predicate on pointers and maps the matching elements using a function on pointers.
@@ -391,17 +352,13 @@ func ChainOptionK[A, B any](f option.Kleisli[A, []B]) Operator[A, B] {
 //
 //   - A function that filters and transforms an array
 func FilterMapRef[A, B any](pred func(a *A) bool, f func(*A) B) Operator[A, B] {
-	return func(fa []A) []B {
-		return filterMapRef(fa, pred, f)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func reduceRef[A, B any](fa []A, f func(B, *A) B, initial B) B {
-	current := initial
-	for i := range len(fa) {
-		current = f(current, &fa[i])
-	}
-	return current
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 // MonadReduce folds an array from left to right, applying a function to accumulate a result.
@@ -424,7 +381,8 @@ func reduceRef[A, B any](fa []A, f func(B, *A) B, initial B) B {
 //
 //go:inline
 func MonadReduce[A, B any](fa []A, f func(B, A) B, initial B) B {
-	return G.MonadReduce(fa, f, initial)
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 // MonadReduceWithIndex folds an array from left to right with access to the index,
@@ -448,7 +406,8 @@ func MonadReduce[A, B any](fa []A, f func(B, A) B, initial B) B {
 //
 //go:inline
 func MonadReduceWithIndex[A, B any](fa []A, f func(int, B, A) B, initial B) B {
-	return G.MonadReduceWithIndex(fa, f, initial)
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 // Reduce folds an array from left to right, applying a function to accumulate a result.
@@ -459,23 +418,23 @@ func MonadReduceWithIndex[A, B any](fa []A, f func(int, B, A) B, initial B) B {
 //	result := sum([]int{1, 2, 3, 4, 5}) // 15
 //
 //go:inline
-func Reduce[A, B any](f func(B, A) B, initial B) func([]A) B {
-	return G.Reduce[[]A](f, initial)
-}
+func Reduce[A, B any](f func(B, A) B, initial B) func([]A) B { _ = "STUB: not implemented"; return nil }
 
 // ReduceWithIndex folds an array from left to right with access to the index,
 // applying a function to accumulate a result.
 //
 //go:inline
 func ReduceWithIndex[A, B any](f func(int, B, A) B, initial B) func([]A) B {
-	return G.ReduceWithIndex[[]A](f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReduceRight folds an array from right to left, applying a function to accumulate a result.
 //
 //go:inline
 func ReduceRight[A, B any](f func(A, B) B, initial B) func([]A) B {
-	return G.ReduceRight[[]A](f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReduceRightWithIndex folds an array from right to left with access to the index,
@@ -483,7 +442,8 @@ func ReduceRight[A, B any](f func(A, B) B, initial B) func([]A) B {
 //
 //go:inline
 func ReduceRightWithIndex[A, B any](f func(int, A, B) B, initial B) func([]A) B {
-	return G.ReduceRightWithIndex[[]A](f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReduceRef folds an array from left to right using pointers to elements,
@@ -503,9 +463,8 @@ func ReduceRightWithIndex[A, B any](f func(int, A, B) B, initial B) func([]A) B 
 //
 //   - A function that reduces an array to a single value
 func ReduceRef[A, B any](f func(B, *A) B, initial B) func([]A) B {
-	return func(as []A) B {
-		return reduceRef(as, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Append adds an element to the end of an array, returning a new array.
@@ -521,9 +480,7 @@ func ReduceRef[A, B any](f func(B, *A) B, initial B) func([]A) B {
 // For a curried version, see Push.
 //
 //go:inline
-func Append[A any](as []A, a A) []A {
-	return G.Append(as, a)
-}
+func Append[A any](as []A, a A) []A { _ = "STUB: not implemented"; return nil }
 
 // IsEmpty checks if an array has no elements.
 //
@@ -540,9 +497,7 @@ func Append[A any](as []A, a A) []A {
 //   - true if the array is empty, false otherwise
 //
 //go:inline
-func IsEmpty[A any](as []A) bool {
-	return G.IsEmpty(as)
-}
+func IsEmpty[A any](as []A) bool { _ = "STUB: not implemented"; return false }
 
 // IsNonEmpty checks if an array has at least one element.
 //
@@ -558,37 +513,35 @@ func IsEmpty[A any](as []A) bool {
 //
 //   - true if the array has at least one element, false otherwise
 func IsNonEmpty[A any](as []A) bool {
-	return len(as) > 0
+	_ = "STUB: not implemented"
+
+	// Empty returns an empty array of type A.
+	//
+	//go:inline
+	return false
 }
 
-// Empty returns an empty array of type A.
-//
-//go:inline
-func Empty[A any]() []A {
-	return G.Empty[[]A]()
-}
+func Empty[A any]() []A { _ = "STUB: not implemented"; return nil }
 
 // Zero returns an empty array of type A (alias for Empty).
 //
 //go:inline
 func Zero[A any]() []A {
-	return Empty[A]()
+	_ = "STUB: not implemented"
+
+	// Of constructs a single element array
+	//
+	//go:inline
+	return nil
 }
 
-// Of constructs a single element array
-//
-//go:inline
-func Of[A any](a A) []A {
-	return G.Of[[]A](a)
-}
+func Of[A any](a A) []A { _ = "STUB: not implemented"; return nil }
 
 // MonadChain applies a function that returns an array to each element and flattens the results.
 // This is the monadic version that takes the array as the first parameter (also known as FlatMap).
 //
 //go:inline
-func MonadChain[A, B any](fa []A, f Kleisli[A, B]) []B {
-	return G.MonadChain(fa, f)
-}
+func MonadChain[A, B any](fa []A, f Kleisli[A, B]) []B { _ = "STUB: not implemented"; return nil }
 
 // Chain applies a function that returns an array to each element and flattens the results.
 // This is the curried version (also known as FlatMap).
@@ -599,38 +552,34 @@ func MonadChain[A, B any](fa []A, f Kleisli[A, B]) []B {
 //	result := duplicate([]int{1, 2, 3}) // [1, 1, 2, 2, 3, 3]
 //
 //go:inline
-func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] {
-	return G.Chain[[]A](f)
-}
+func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadAp applies an array of functions to an array of values, producing all combinations.
 // This is the monadic version that takes both arrays as parameters.
 //
 //go:inline
-func MonadAp[B, A any](fab []func(A) B, fa []A) []B {
-	return G.MonadAp[[]B](fab, fa)
-}
+func MonadAp[B, A any](fab []func(A) B, fa []A) []B { _ = "STUB: not implemented"; return nil }
 
 // Ap applies an array of functions to an array of values, producing all combinations.
 // This is the curried version.
 //
 //go:inline
-func Ap[B, A any](fa []A) Operator[func(A) B, B] {
-	return G.Ap[[]B, []func(A) B](fa)
-}
+func Ap[B, A any](fa []A) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // Match performs pattern matching on an array, calling onEmpty if empty or onNonEmpty if not.
 //
 //go:inline
 func Match[A, B any](onEmpty func() B, onNonEmpty func([]A) B) func([]A) B {
-	return G.Match(onEmpty, onNonEmpty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MatchLeft performs pattern matching on an array, calling onEmpty if empty or onNonEmpty with head and tail if not.
 //
 //go:inline
 func MatchLeft[A, B any](onEmpty func() B, onNonEmpty func(A, []A) B) func([]A) B {
-	return G.MatchLeft(onEmpty, onNonEmpty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Tail returns all elements except the first, wrapped in an Option.
@@ -638,65 +587,60 @@ func MatchLeft[A, B any](onEmpty func() B, onNonEmpty func(A, []A) B) func([]A) 
 //
 //go:inline
 func Tail[A any](as []A) Option[[]A] {
-	return G.Tail(as)
+	_ = "STUB: not implemented"
+
+	// Head returns the first element of an array, wrapped in an Option.
+	// Returns None if the array is empty.
+	//
+	//go:inline
+	return nil
 }
 
-// Head returns the first element of an array, wrapped in an Option.
-// Returns None if the array is empty.
-//
-//go:inline
 func Head[A any](as []A) Option[A] {
-	return G.Head(as)
+	_ = "STUB: not implemented"
+
+	// First returns the first element of an array, wrapped in an Option (alias for Head).
+	// Returns None if the array is empty.
+	//
+	//go:inline
+	return nil
 }
 
-// First returns the first element of an array, wrapped in an Option (alias for Head).
-// Returns None if the array is empty.
-//
-//go:inline
 func First[A any](as []A) Option[A] {
-	return G.First(as)
+	_ = "STUB: not implemented"
+
+	// Last returns the last element of an array, wrapped in an Option.
+	// Returns None if the array is empty.
+	//
+	//go:inline
+	return nil
 }
 
-// Last returns the last element of an array, wrapped in an Option.
-// Returns None if the array is empty.
-//
-//go:inline
 func Last[A any](as []A) Option[A] {
-	return G.Last(as)
+	_ = "STUB: not implemented"
+
+	// PrependAll inserts a separator before each element of an array.
+	//
+	// # Type Parameters
+	//
+	//   - A: The type of elements in the array
+	//
+	// # Parameters
+	//
+	//   - middle: The separator to insert before each element
+	//
+	// # Returns
+	//
+	//   - A function that transforms an array by prepending the separator to each element
+	//
+	// # Example
+	//
+	//	result := array.PrependAll(0)([]int{1, 2, 3})
+	//	// result: []int{0, 1, 0, 2, 0, 3}
+	return nil
 }
 
-// PrependAll inserts a separator before each element of an array.
-//
-// # Type Parameters
-//
-//   - A: The type of elements in the array
-//
-// # Parameters
-//
-//   - middle: The separator to insert before each element
-//
-// # Returns
-//
-//   - A function that transforms an array by prepending the separator to each element
-//
-// # Example
-//
-//	result := array.PrependAll(0)([]int{1, 2, 3})
-//	// result: []int{0, 1, 0, 2, 0, 3}
-func PrependAll[A any](middle A) Operator[A, A] {
-	return func(as []A) []A {
-		count := len(as)
-		dst := count * 2
-		result := make([]A, dst)
-		for i := count - 1; i >= 0; i-- {
-			dst--
-			result[dst] = as[i]
-			dst--
-			result[dst] = middle
-		}
-		return result
-	}
-}
+func PrependAll[A any](middle A) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Intersperse inserts a separator between each element of an array.
 //
@@ -716,15 +660,7 @@ func PrependAll[A any](middle A) Operator[A, A] {
 //
 //	result := array.Intersperse(0)([]int{1, 2, 3})
 //	// result: []int{1, 0, 2, 0, 3}
-func Intersperse[A any](middle A) Operator[A, A] {
-	prepend := PrependAll(middle)
-	return func(as []A) []A {
-		if IsEmpty(as) {
-			return as
-		}
-		return prepend(as)[1:]
-	}
-}
+func Intersperse[A any](middle A) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Intercalate inserts a separator between elements and concatenates them using a Monoid.
 //
@@ -739,11 +675,7 @@ func Intersperse[A any](middle A) Operator[A, A] {
 // # Returns
 //
 //   - A curried function that takes a separator and returns a function that reduces an array
-func Intercalate[A any](m M.Monoid[A]) func(A) func([]A) A {
-	return func(middle A) func([]A) A {
-		return Match(m.Empty, F.Flow2(Intersperse(middle), ConcatAll(m)))
-	}
-}
+func Intercalate[A any](m M.Monoid[A]) func(A) func([]A) A { _ = "STUB: not implemented"; return nil }
 
 // Flatten converts a nested array into a flat array by concatenating all inner arrays.
 //
@@ -765,9 +697,7 @@ func Intercalate[A any](m M.Monoid[A]) func(A) func([]A) A {
 //	// result: []int{1, 2, 3, 4, 5}
 //
 //go:inline
-func Flatten[A any](mma [][]A) []A {
-	return G.Flatten(mma)
-}
+func Flatten[A any](mma [][]A) []A { _ = "STUB: not implemented"; return nil }
 
 // Slice extracts a subarray from index low (inclusive) to high (exclusive).
 //
@@ -789,9 +719,7 @@ func Flatten[A any](mma [][]A) []A {
 //	middle := array.Slice[int](2, 5)
 //	result := middle([]int{0, 1, 2, 3, 4, 5, 6})
 //	// result: []int{2, 3, 4}
-func Slice[A any](low, high int) Operator[A, A] {
-	return array.Slice[[]A](low, high)
-}
+func Slice[A any](low, high int) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Lookup returns the element at the specified index, wrapped in an Option.
 // Returns None if the index is out of bounds.
@@ -815,9 +743,7 @@ func Slice[A any](low, high int) Operator[A, A] {
 //	// result: option.Some(20)
 //
 //go:inline
-func Lookup[A any](idx int) func([]A) Option[A] {
-	return G.Lookup[[]A](idx)
-}
+func Lookup[A any](idx int) func([]A) Option[A] { _ = "STUB: not implemented"; return nil }
 
 // UpsertAt returns a function that inserts or updates an element at a specific index.
 // If the index is out of bounds, the element is appended.
@@ -835,9 +761,7 @@ func Lookup[A any](idx int) func([]A) Option[A] {
 //   - A function that takes an index and returns a function that upserts at that index
 //
 //go:inline
-func UpsertAt[A any](a A) Operator[A, A] {
-	return G.UpsertAt[[]A](a)
-}
+func UpsertAt[A any](a A) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Size returns the number of elements in an array.
 //
@@ -855,16 +779,19 @@ func UpsertAt[A any](a A) Operator[A, A] {
 //
 //go:inline
 func Size[A any](as []A) int {
-	return G.Size(as)
+	_ = "STUB: not implemented"
+
+	// MonadPartition splits an array into two arrays based on a predicate.
+	// The first array contains elements for which the predicate returns false,
+	// the second contains elements for which it returns true.
+	//
+	//go:inline
+	return 0
 }
 
-// MonadPartition splits an array into two arrays based on a predicate.
-// The first array contains elements for which the predicate returns false,
-// the second contains elements for which it returns true.
-//
-//go:inline
 func MonadPartition[A any](as []A, pred func(A) bool) pair.Pair[[]A, []A] {
-	return G.MonadPartition(as, pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Partition creates two new arrays out of one. The left result contains the elements
@@ -890,7 +817,8 @@ func MonadPartition[A any](as []A, pred func(A) bool) pair.Pair[[]A, []A] {
 //
 //go:inline
 func Partition[A any](pred func(A) bool) func([]A) pair.Pair[[]A, []A] {
-	return G.Partition[[]A](pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // IsNil checks if the array is set to nil.
@@ -906,9 +834,7 @@ func Partition[A any](pred func(A) bool) func([]A) pair.Pair[[]A, []A] {
 // # Returns
 //
 //   - true if the array is nil, false otherwise
-func IsNil[A any](as []A) bool {
-	return array.IsNil(as)
-}
+func IsNil[A any](as []A) bool { _ = "STUB: not implemented"; return false }
 
 // IsNonNil checks if the array is not nil.
 //
@@ -923,9 +849,7 @@ func IsNil[A any](as []A) bool {
 // # Returns
 //
 //   - true if the array is not nil, false otherwise
-func IsNonNil[A any](as []A) bool {
-	return array.IsNonNil(as)
-}
+func IsNonNil[A any](as []A) bool { _ = "STUB: not implemented"; return false }
 
 // ConstNil returns a nil array.
 //
@@ -936,9 +860,7 @@ func IsNonNil[A any](as []A) bool {
 // # Returns
 //
 //   - A nil array of type A
-func ConstNil[A any]() []A {
-	return array.ConstNil[[]A]()
-}
+func ConstNil[A any]() []A { _ = "STUB: not implemented"; return nil }
 
 // SliceRight extracts a subarray from the specified start index to the end.
 //
@@ -961,9 +883,7 @@ func ConstNil[A any]() []A {
 //	// result: []int{2, 3, 4, 5}
 //
 //go:inline
-func SliceRight[A any](start int) Operator[A, A] {
-	return G.SliceRight[[]A](start)
-}
+func SliceRight[A any](start int) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Copy creates a shallow copy of the array.
 //
@@ -981,27 +901,27 @@ func SliceRight[A any](start int) Operator[A, A] {
 //
 //go:inline
 func Copy[A any](b []A) []A {
-	return G.Copy(b)
+	_ = "STUB: not implemented"
+
+	// Clone creates a deep copy of the array using the provided endomorphism to clone the values.
+	//
+	// # Type Parameters
+	//
+	//   - A: The type of elements in the array
+	//
+	// # Parameters
+	//
+	//   - f: Function to clone each element
+	//
+	// # Returns
+	//
+	//   - A function that creates a deep copy of an array
+	//
+	//go:inline
+	return nil
 }
 
-// Clone creates a deep copy of the array using the provided endomorphism to clone the values.
-//
-// # Type Parameters
-//
-//   - A: The type of elements in the array
-//
-// # Parameters
-//
-//   - f: Function to clone each element
-//
-// # Returns
-//
-//   - A function that creates a deep copy of an array
-//
-//go:inline
-func Clone[A any](f func(A) A) Operator[A, A] {
-	return G.Clone[[]A](f)
-}
+func Clone[A any](f func(A) A) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // FoldMap maps and folds an array. Maps each value using the iterating function,
 // then folds the results using the provided Monoid.
@@ -1021,28 +941,31 @@ func Clone[A any](f func(A) A) Operator[A, A] {
 //
 //go:inline
 func FoldMap[A, B any](m M.Monoid[B]) func(func(A) B) func([]A) B {
-	return G.FoldMap[[]A](m)
+	_ = "STUB: not implemented"
+	return nil
+
+	// FoldMapWithIndex maps and folds an array with access to indices. Maps each value using the iterating function,
+	// then folds the results using the provided Monoid.
+	//
+	// # Type Parameters
+	//
+	//   - A: The type of elements in the input array
+	//   - B: The type of elements after mapping
+	//
+	// # Parameters
+	//
+	//   - m: The Monoid to use for folding
+	//
+	// # Returns
+	//
+	//   - A curried function that takes a mapping function and returns a function that folds an array
+	//
+	//go:inline
 }
 
-// FoldMapWithIndex maps and folds an array with access to indices. Maps each value using the iterating function,
-// then folds the results using the provided Monoid.
-//
-// # Type Parameters
-//
-//   - A: The type of elements in the input array
-//   - B: The type of elements after mapping
-//
-// # Parameters
-//
-//   - m: The Monoid to use for folding
-//
-// # Returns
-//
-//   - A curried function that takes a mapping function and returns a function that folds an array
-//
-//go:inline
 func FoldMapWithIndex[A, B any](m M.Monoid[B]) func(func(int, A) B) func([]A) B {
-	return G.FoldMapWithIndex[[]A](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Fold folds the array using the provided Monoid.
@@ -1060,9 +983,7 @@ func FoldMapWithIndex[A, B any](m M.Monoid[B]) func(func(int, A) B) func([]A) B 
 //   - A function that folds an array to a single value
 //
 //go:inline
-func Fold[A any](m M.Monoid[A]) func([]A) A {
-	return G.Fold[[]A](m)
-}
+func Fold[A any](m M.Monoid[A]) func([]A) A { _ = "STUB: not implemented"; return nil }
 
 // Push adds an element to the end of an array (curried version of Append).
 //
@@ -1089,9 +1010,7 @@ func Fold[A any](m M.Monoid[A]) func([]A) A {
 //   - Append: Non-curried version
 //
 //go:inline
-func Push[A any](a A) Operator[A, A] {
-	return G.Push[Operator[A, A]](a)
-}
+func Push[A any](a A) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Concat concatenates two arrays by appending a suffix array to a base array.
 //
@@ -1217,9 +1136,7 @@ func Push[A any](a A) Operator[A, A] {
 //   - Flatten: For flattening nested arrays
 //
 //go:inline
-func Concat[A any](suffix []A) Operator[A, A] {
-	return F.Bind2nd(array.Concat[[]A, A], suffix)
-}
+func Concat[A any](suffix []A) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadFlap applies a value to an array of functions, producing an array of results.
 // This is the monadic version that takes both parameters.
@@ -1239,9 +1156,7 @@ func Concat[A any](suffix []A) Operator[A, A] {
 //   - An array of results from applying the value to each function
 //
 //go:inline
-func MonadFlap[B, A any](fab []func(A) B, a A) []B {
-	return G.MonadFlap[func(A) B, []func(A) B, []B](fab, a)
-}
+func MonadFlap[B, A any](fab []func(A) B, a A) []B { _ = "STUB: not implemented"; return nil }
 
 // Flap applies a value to an array of functions, producing an array of results.
 // This is the curried version.
@@ -1271,9 +1186,7 @@ func MonadFlap[B, A any](fab []func(A) B, a A) []B {
 //	// result: []int{10, 15, 25}
 //
 //go:inline
-func Flap[B, A any](a A) Operator[func(A) B, B] {
-	return G.Flap[func(A) B, []func(A) B, []B](a)
-}
+func Flap[B, A any](a A) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // Prepend adds an element to the beginning of an array, returning a new array.
 //
@@ -1296,9 +1209,7 @@ func Flap[B, A any](a A) Operator[func(A) B, B] {
 //	// result: []int{0, 1, 2, 3}
 //
 //go:inline
-func Prepend[A any](head A) Operator[A, A] {
-	return G.Prepend[Operator[A, A]](head)
-}
+func Prepend[A any](head A) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Reverse returns a new slice with elements in reverse order.
 // This function creates a new slice containing all elements from the input slice
@@ -1382,9 +1293,7 @@ func Prepend[A any](head A) Operator[A, A] {
 // or modifying the slice directly.
 //
 //go:inline
-func Reverse[A any](as []A) []A {
-	return G.Reverse(as)
-}
+func Reverse[A any](as []A) []A { _ = "STUB: not implemented"; return nil }
 
 // Extend applies a function to every suffix of an array, creating a new array of results.
 // This is the comonad extend operation for arrays.
@@ -1448,11 +1357,7 @@ func Reverse[A any](as []A) []A {
 //   - Associativity: Extend(f) ∘ Extend(g) == Extend(f ∘ Extend(g))
 //
 //go:inline
-func Extend[A, B any](f func([]A) B) Operator[A, B] {
-	return func(as []A) []B {
-		return G.MakeBy[[]B](len(as), func(i int) B { return f(as[i:]) })
-	}
-}
+func Extend[A, B any](f func([]A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Extract returns the first element of an array, or a zero value if empty.
 // This is the comonad extract operation for arrays.
@@ -1508,10 +1413,11 @@ func Extend[A, B any](f func([]A) B) Operator[A, B] {
 //
 //go:inline
 func Extract[A any](as []A) A {
-	return G.Extract(as)
+	_ = "STUB: not implemented"
+	return *
+
+	//go:inline
+	new(A)
 }
 
-//go:inline
-func UpdateAt[T any](i int, v T) func([]T) Option[[]T] {
-	return G.UpdateAt[[]T](i, v)
-}
+func UpdateAt[T any](i int, v T) func([]T) Option[[]T] { _ = "STUB: not implemented"; return nil }

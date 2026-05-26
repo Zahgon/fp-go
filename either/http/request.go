@@ -16,7 +16,6 @@
 package http
 
 import (
-	"bytes"
 	"net/http"
 
 	E "github.com/IBM/fp-go/either"
@@ -33,15 +32,11 @@ var (
 )
 
 func bodyRequest(method string) func(string) func([]byte) E.Either[error, *http.Request] {
-	return func(url string) func([]byte) E.Either[error, *http.Request] {
-		return func(body []byte) E.Either[error, *http.Request] {
-			return E.TryCatchError(http.NewRequest(method, url, bytes.NewReader(body)))
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func noBodyRequest(method string) func(string) E.Either[error, *http.Request] {
-	return func(url string) E.Either[error, *http.Request] {
-		return E.TryCatchError(http.NewRequest(method, url, nil))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

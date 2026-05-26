@@ -21,9 +21,7 @@ import (
 	E "github.com/IBM/fp-go/eq"
 	"github.com/IBM/fp-go/internal/apply"
 	"github.com/IBM/fp-go/internal/functor"
-	FCT "github.com/IBM/fp-go/internal/functor/testing"
 	"github.com/IBM/fp-go/internal/pointed"
-	"github.com/stretchr/testify/assert"
 )
 
 // Apply associative composition law
@@ -48,24 +46,8 @@ func AssertAssociativeComposition[HKTA, HKTB, HKTC, HKTAB, HKTBC, HKTAC, HKTABAC
 	ab func(A) B,
 	bc func(B) C,
 ) func(fa HKTA) bool {
-	t.Helper()
-	return func(fa HKTA) bool {
-
-		fab := fofab(ab)
-		fbc := fofbc(bc)
-
-		left := fapac(fapabac(fmap(fbc, func(bc func(B) C) func(func(A) B) func(A) C {
-			return func(ab func(A) B) func(A) C {
-				return func(a A) C {
-					return bc(ab(a))
-				}
-			}
-		}), fab), fa)
-
-		right := fapbc(fbc, fapab(fab, fa))
-
-		return assert.True(t, eq.Equals(left, right), "Apply associative composition")
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Apply associative composition law
@@ -88,24 +70,8 @@ func ApplyAssertAssociativeComposition[HKTA, HKTB, HKTC, HKTAB, HKTBC, HKTAC, HK
 	ab func(A) B,
 	bc func(B) C,
 ) func(fa HKTA) bool {
-	t.Helper()
-	return func(fa HKTA) bool {
-
-		fab := fofab.Of(ab)
-		fbc := fofbc.Of(bc)
-
-		left := fapac.Ap(fa)(fapabac.Ap(fab)(fmap.Map(func(bc func(B) C) func(func(A) B) func(A) C {
-			return func(ab func(A) B) func(A) C {
-				return func(a A) C {
-					return bc(ab(a))
-				}
-			}
-		})(fbc)))
-
-		right := fapbc.Ap(fapab.Ap(fa)(fab))(fbc)
-
-		return assert.True(t, eq.Equals(left, right), "Apply associative composition")
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AssertLaws asserts the apply laws `identity`, `composition` and `associative composition`
@@ -134,17 +100,14 @@ func AssertLaws[HKTA, HKTB, HKTC, HKTAB, HKTBC, HKTAC, HKTABAC, A, B, C any](t *
 	ab func(A) B,
 	bc func(B) C,
 ) func(fa HKTA) bool {
+	_ = "STUB: not implemented"
 	// mark as test helper
-	t.Helper()
-	// functor laws
-	functor := FCT.AssertLaws(t, eqa, eqc, faa, fab, fac, fbc, ab, bc)
-	// associative composition laws
-	composition := AssertAssociativeComposition(t, eqc, fofab, fofbc, fmap, fapab, fapbc, fapac, fapabac, ab, bc)
-
-	return func(fa HKTA) bool {
-		return functor(fa) && composition(fa)
-	}
+	return nil
 }
+
+// functor laws
+
+// associative composition laws
 
 // ApplyAssertLaws asserts the apply laws `identity`, `composition` and `associative composition`
 func ApplyAssertLaws[HKTA, HKTB, HKTC, HKTAB, HKTBC, HKTAC, HKTABAC, A, B, C any](t *testing.T,
@@ -167,14 +130,11 @@ func ApplyAssertLaws[HKTA, HKTB, HKTC, HKTAB, HKTBC, HKTAC, HKTABAC, A, B, C any
 	ab func(A) B,
 	bc func(B) C,
 ) func(fa HKTA) bool {
+	_ = "STUB: not implemented"
 	// mark as test helper
-	t.Helper()
-	// functor laws
-	functor := FCT.FunctorAssertLaws(t, eqa, eqc, faa, apply.ToFunctor(fapab), apply.ToFunctor(fapac), apply.ToFunctor(fapbc), ab, bc)
-	// associative composition laws
-	composition := ApplyAssertAssociativeComposition(t, eqc, fofab, fofbc, fmap, fapab, fapbc, fapac, fapabac, ab, bc)
-
-	return func(fa HKTA) bool {
-		return functor(fa) && composition(fa)
-	}
+	return nil
 }
+
+// functor laws
+
+// associative composition laws

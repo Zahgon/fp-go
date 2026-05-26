@@ -15,10 +15,6 @@
 
 package monoid
 
-import (
-	AR "github.com/IBM/fp-go/v2/internal/array"
-)
-
 // GenericConcatAll combines all elements in a generic slice using a monoid.
 //
 // This function works with custom slice types (types that are defined as ~[]A).
@@ -48,18 +44,8 @@ import (
 //	result := concatAll(IntSlice{1, 2, 3, 4, 5})  // 15
 //	empty := concatAll(IntSlice{})                 // 0
 func GenericConcatAll[GA ~[]A, A any](m Monoid[A]) func(GA) A {
-	return func(g GA) A {
-		switch len(g) {
-		case 0:
-			return m.Empty()
-		case 1:
-			return g[0]
-		case 2:
-			return m.Concat(g[0], g[1])
-		default:
-			return AR.Reduce(g[1:], m.Concat, g[0])
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ConcatAll combines all elements in a slice using a monoid.
@@ -93,9 +79,7 @@ func GenericConcatAll[GA ~[]A, A any](m Monoid[A]) func(GA) A {
 //	)
 //	concat := ConcatAll(stringMonoid)
 //	result := concat([]string{"Hello", " ", "World"})  // "Hello World"
-func ConcatAll[A any](m Monoid[A]) func([]A) A {
-	return GenericConcatAll[[]A](m)
-}
+func ConcatAll[A any](m Monoid[A]) func([]A) A { _ = "STUB: not implemented"; return nil }
 
 // Fold combines all elements in a slice using a monoid.
 //
@@ -119,6 +103,4 @@ func ConcatAll[A any](m Monoid[A]) func([]A) A {
 //	fold := Fold(mulMonoid)
 //	product := fold([]int{2, 3, 4})  // 24 (1 * 2 * 3 * 4)
 //	empty := fold([]int{})            // 1
-func Fold[A any](m Monoid[A]) func([]A) A {
-	return GenericConcatAll[[]A](m)
-}
+func Fold[A any](m Monoid[A]) func([]A) A { _ = "STUB: not implemented"; return nil }

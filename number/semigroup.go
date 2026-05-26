@@ -19,14 +19,6 @@ import (
 	S "github.com/IBM/fp-go/semigroup"
 )
 
-func SemigroupSum[A Number]() S.Semigroup[A] {
-	return S.MakeSemigroup(func(first A, second A) A {
-		return first + second
-	})
-}
+func SemigroupSum[A Number]() S.Semigroup[A] { _ = "STUB: not implemented"; return nil }
 
-func SemigroupProduct[A Number]() S.Semigroup[A] {
-	return S.MakeSemigroup(func(first A, second A) A {
-		return first * second
-	})
-}
+func SemigroupProduct[A Number]() S.Semigroup[A] { _ = "STUB: not implemented"; return nil }

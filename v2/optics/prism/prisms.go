@@ -17,18 +17,9 @@ package prism
 
 import (
 	"encoding/base64"
-	"fmt"
 	"net/url"
 	"regexp"
-	"strconv"
 	"time"
-
-	"github.com/IBM/fp-go/v2/array"
-	"github.com/IBM/fp-go/v2/either"
-	F "github.com/IBM/fp-go/v2/function"
-	J "github.com/IBM/fp-go/v2/json"
-	"github.com/IBM/fp-go/v2/option"
-	S "github.com/IBM/fp-go/v2/string"
 )
 
 // FromEncoding creates a prism for base64 encoding/decoding operations.
@@ -72,12 +63,8 @@ import (
 //   - Validating and transforming base64 data in pipelines
 //   - Using different encodings (Standard, URL-safe, RawStd, RawURL)
 func FromEncoding(enc *base64.Encoding) Prism[string, []byte] {
-	return MakePrismWithName(F.Flow2(
-		either.Eitherize1(enc.DecodeString),
-		either.Fold(F.Ignore1of1[error](option.None[[]byte]), option.Some),
-	), enc.EncodeToString,
-		"PrismFromEncoding",
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ParseURL creates a prism for parsing and formatting URLs.
@@ -120,14 +107,7 @@ func FromEncoding(enc *base64.Encoding) Prism[string, []byte] {
 //   - Working with API endpoints
 //   - Transforming URL strings in data pipelines
 //   - Extracting and modifying URL components safely
-func ParseURL() Prism[string, *url.URL] {
-	return MakePrismWithName(F.Flow2(
-		either.Eitherize1(url.Parse),
-		either.Fold(F.Ignore1of1[error](option.None[*url.URL]), option.Some),
-	), (*url.URL).String,
-		"PrismParseURL",
-	)
-}
+func ParseURL() Prism[string, *url.URL] { _ = "STUB: not implemented"; return nil }
 
 // InstanceOf creates a prism for type assertions on interface{}/any values.
 // It provides a safe way to extract values of a specific type from an any value,
@@ -169,10 +149,7 @@ func ParseURL() Prism[string, *url.URL] {
 //   - Working with heterogeneous data structures
 //   - Type-safe deserialization and validation
 //   - Pattern matching on interface{} values
-func InstanceOf[T any]() Prism[any, T] {
-	var t T
-	return MakePrismWithName(option.InstanceOf[T], F.ToAny[T], fmt.Sprintf("PrismInstanceOf[%T]", t))
-}
+func InstanceOf[T any]() Prism[any, T] { _ = "STUB: not implemented"; return nil }
 
 // ParseDate creates a prism for parsing and formatting dates with a specific layout.
 // It provides a safe way to work with date strings, handling parsing errors
@@ -221,14 +198,7 @@ func InstanceOf[T any]() Prism[any, T] {
 //   - Working with date strings in APIs
 //   - Converting between date formats
 //   - Safely handling user-provided date inputs
-func ParseDate(layout string) Prism[string, time.Time] {
-	return MakePrismWithName(F.Flow2(
-		F.Bind1st(either.Eitherize2(time.Parse), layout),
-		either.Fold(F.Ignore1of1[error](option.None[time.Time]), option.Some),
-	), F.Bind2nd(time.Time.Format, layout),
-		"PrismParseDate",
-	)
-}
+func ParseDate(layout string) Prism[string, time.Time] { _ = "STUB: not implemented"; return nil }
 
 // Deref creates a prism for safely dereferencing pointers.
 // It provides a safe way to work with nullable pointers, handling nil values
@@ -274,9 +244,7 @@ func ParseDate(layout string) Prism[string, time.Time] {
 //   - Validating non-nil pointers before operations
 //   - Filtering out nil values in data pipelines
 //   - Working with database nullable columns
-func Deref[T any]() Prism[*T, *T] {
-	return MakePrismWithName(option.FromNillable[T], F.Identity[*T], "PrismDeref")
-}
+func Deref[T any]() Prism[*T, *T] { _ = "STUB: not implemented"; return nil }
 
 // FromEither creates a prism for extracting Right values from Either types.
 // It provides a safe way to work with Either values, focusing on the success case
@@ -320,9 +288,7 @@ func Deref[T any]() Prism[*T, *T] {
 //   - Filtering out errors in data pipelines
 //   - Working with fallible operations
 //   - Composing with other prisms for complex error handling
-func FromEither[E, T any]() Prism[Either[E, T], T] {
-	return MakePrismWithName(either.ToOption[E, T], either.Of[E, T], "PrismFromEither")
-}
+func FromEither[E, T any]() Prism[Either[E, T], T] { _ = "STUB: not implemented"; return nil }
 
 // FromResult creates a prism for extracting values from Result types.
 // It provides a safe way to work with Result values (which are Either[error, T]),
@@ -369,9 +335,7 @@ func FromEither[E, T any]() Prism[Either[E, T], T] {
 //   - Composing with other prisms for complex error handling
 //
 //go:inline
-func FromResult[T any]() Prism[Result[T], T] {
-	return FromEither[error, T]()
-}
+func FromResult[T any]() Prism[Result[T], T] { _ = "STUB: not implemented"; return nil }
 
 // FromZero creates a prism that matches zero values of comparable types.
 // It provides a safe way to work with zero values, handling non-zero values
@@ -412,9 +376,7 @@ func FromResult[T any]() Prism[Result[T], T] {
 //   - Filtering zero values in data pipelines
 //   - Working with optional fields that use zero as "not set"
 //   - Replacing zero values with defaults
-func FromZero[T comparable]() Prism[T, T] {
-	return MakePrismWithName(option.FromZero[T](), F.Identity[T], "PrismFromZero")
-}
+func FromZero[T comparable]() Prism[T, T] { _ = "STUB: not implemented"; return nil }
 
 // FromNonZero creates a prism that matches non-zero values of comparable types.
 // It provides a safe way to work with non-zero values, handling zero values
@@ -455,9 +417,7 @@ func FromZero[T comparable]() Prism[T, T] {
 //   - Filtering non-zero values in data pipelines
 //   - Working with required fields that shouldn't be zero
 //   - Replacing non-zero values with new values
-func FromNonZero[T comparable]() Prism[T, T] {
-	return MakePrismWithName(option.FromNonZero[T](), F.Identity[T], "PrismFromNonZero")
-}
+func FromNonZero[T comparable]() Prism[T, T] { _ = "STUB: not implemented"; return nil }
 
 // Match represents a regex match result with full reconstruction capability.
 // It contains everything needed to reconstruct the original string, making it
@@ -498,9 +458,7 @@ type Match struct {
 //	    After: "!",
 //	}
 //	original := match.Reconstruct()  // "hello world!"
-func (m Match) Reconstruct() string {
-	return m.Before + m.Groups[0] + m.After
-}
+func (m Match) Reconstruct() string { _ = "STUB: not implemented"; return "" }
 
 // FullMatch returns the complete matched text (the entire regex match).
 // This is equivalent to Groups[0] and represents what the regex matched.
@@ -517,34 +475,31 @@ func (m Match) Reconstruct() string {
 //	}
 //	full := match.FullMatch()  // "$99.99"
 func (m Match) FullMatch() string {
-	return m.Groups[0]
-}
+	_ = "STUB: not implemented"
 
-// Group returns the nth capture group from the match (1-indexed).
-// Capture group 0 is the full match, groups 1+ are the parenthesized captures.
-// Returns an empty string if the group index is out of bounds.
-//
-// Parameters:
-//   - n: The capture group index (1-indexed)
-//
-// Returns:
-//   - The captured text, or empty string if index is invalid
-//
-// Example:
-//
-//	// Regex: `(\w+)@(\w+\.\w+)` matching "user@example.com"
-//	match := Match{
-//	    Groups: []string{"user@example.com", "user", "example.com"},
-//	}
-//	username := match.Group(1)  // "user"
-//	domain := match.Group(2)    // "example.com"
-//	invalid := match.Group(5)   // ""
-func (m Match) Group(n int) string {
-	if n < len(m.Groups) {
-		return m.Groups[n]
-	}
+	// Group returns the nth capture group from the match (1-indexed).
+	// Capture group 0 is the full match, groups 1+ are the parenthesized captures.
+	// Returns an empty string if the group index is out of bounds.
+	//
+	// Parameters:
+	//   - n: The capture group index (1-indexed)
+	//
+	// Returns:
+	//   - The captured text, or empty string if index is invalid
+	//
+	// Example:
+	//
+	//	// Regex: `(\w+)@(\w+\.\w+)` matching "user@example.com"
+	//	match := Match{
+	//	    Groups: []string{"user@example.com", "user", "example.com"},
+	//	}
+	//	username := match.Group(1)  // "user"
+	//	domain := match.Group(2)    // "example.com"
+	//	invalid := match.Group(5)   // ""
 	return ""
 }
+
+func (m Match) Group(n int) string { _ = "STUB: not implemented"; return "" }
 
 // RegexMatcher creates a prism for regex pattern matching with full reconstruction.
 // It provides a safe way to match strings against a regex pattern, extracting
@@ -594,39 +549,11 @@ func (m Match) Group(n int) string {
 //
 // Note: This prism is bijective - you can always reconstruct the original
 // string from a Match, making it suitable for round-trip transformations.
-func RegexMatcher(re *regexp.Regexp) Prism[string, Match] {
-	noMatch := option.None[Match]()
+func RegexMatcher(re *regexp.Regexp) Prism[string, Match] { _ = "STUB: not implemented"; return nil }
 
-	return MakePrismWithName(
-		// String -> Option[Match]
-		func(s string) Option[Match] {
-			loc := re.FindStringSubmatchIndex(s)
-			if loc == nil {
-				return noMatch
-			}
+// String -> Option[Match]
 
-			// Extract all capture groups
-			groups := make([]string, 0)
-			for i := 0; i < len(loc); i += 2 {
-				if loc[i] >= 0 {
-					groups = append(groups, s[loc[i]:loc[i+1]])
-				} else {
-					groups = append(groups, "")
-				}
-			}
-
-			match := Match{
-				Before: s[:loc[0]],
-				Groups: groups,
-				After:  s[loc[1]:],
-			}
-
-			return option.Some(match)
-		},
-		Match.Reconstruct,
-		fmt.Sprintf("PrismRegex[%s]", re),
-	)
-}
+// Extract all capture groups
 
 // NamedMatch represents a regex match result with named capture groups.
 // It provides access to captured text by name rather than by index, making
@@ -671,9 +598,7 @@ type NamedMatch struct {
 //	    After: "",
 //	}
 //	original := match.Reconstruct()  // "email: user@example.com"
-func (nm NamedMatch) Reconstruct() string {
-	return nm.Before + nm.Full + nm.After
-}
+func (nm NamedMatch) Reconstruct() string { _ = "STUB: not implemented"; return "" }
 
 // RegexNamedMatcher creates a prism for regex pattern matching with named capture groups.
 // It provides a safe way to match strings against a regex pattern with named groups,
@@ -736,53 +661,18 @@ func (nm NamedMatch) Reconstruct() string {
 // Note: Only named capture groups appear in the Groups map. Unnamed groups
 // are not included. The Full field always contains the complete matched text.
 func RegexNamedMatcher(re *regexp.Regexp) Prism[string, NamedMatch] {
-	names := re.SubexpNames()
-	noMatch := option.None[NamedMatch]()
-
-	return MakePrism(
-		func(s string) Option[NamedMatch] {
-			loc := re.FindStringSubmatchIndex(s)
-			if loc == nil {
-				return noMatch
-			}
-
-			groups := make(map[string]string)
-			for i := 1; i < len(loc)/2; i++ {
-				if S.IsNonEmpty(names[i]) && loc[2*i] >= 0 {
-					groups[names[i]] = s[loc[2*i]:loc[2*i+1]]
-				}
-			}
-
-			match := NamedMatch{
-				Before: s[:loc[0]],
-				Groups: groups,
-				Full:   s[loc[0]:loc[1]],
-				After:  s[loc[1]:],
-			}
-
-			return option.Some(match)
-		},
-		NamedMatch.Reconstruct,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func getFromEither[A, B any](f func(A) (B, error)) func(A) Option[B] {
-	return func(a A) Option[B] {
-		b, err := f(a)
-		if err != nil {
-			return option.None[B]()
-		}
-		return option.Of(b)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func atoi64(s string) (int64, error) {
-	return strconv.ParseInt(s, 10, 64)
-}
+func atoi64(s string) (int64, error) { _ = "STUB: not implemented"; return 0, nil }
 
-func itoa64(i int64) string {
-	return strconv.FormatInt(i, 10)
-}
+func itoa64(i int64) string { _ = "STUB: not implemented"; return "" }
 
 // ParseInt creates a prism for parsing and formatting integers.
 // It provides a safe way to convert between string and int, handling
@@ -822,9 +712,7 @@ func itoa64(i int64) string {
 //   - Working with numeric API parameters
 //
 //go:inline
-func ParseInt() Prism[string, int] {
-	return MakePrismWithName(getFromEither(strconv.Atoi), strconv.Itoa, "PrismParseInt")
-}
+func ParseInt() Prism[string, int] { _ = "STUB: not implemented"; return nil }
 
 // ParseInt64 creates a prism for parsing and formatting 64-bit integers.
 // It provides a safe way to convert between string and int64, handling
@@ -864,9 +752,7 @@ func ParseInt() Prism[string, int] {
 //   - Converting between string and int64 in data pipelines
 //
 //go:inline
-func ParseInt64() Prism[string, int64] {
-	return MakePrismWithName(getFromEither(atoi64), itoa64, "PrismParseInt64")
-}
+func ParseInt64() Prism[string, int64] { _ = "STUB: not implemented"; return nil }
 
 // ParseBool creates a prism for parsing and formatting boolean values.
 // It provides a safe way to convert between string and bool, handling
@@ -910,29 +796,15 @@ func ParseInt64() Prism[string, int64] {
 //   - Working with boolean API parameters or flags
 //
 //go:inline
-func ParseBool() Prism[string, bool] {
-	return MakePrismWithName(getFromEither(strconv.ParseBool), strconv.FormatBool, "PrismParseBool")
-}
+func ParseBool() Prism[string, bool] { _ = "STUB: not implemented"; return nil }
 
-func atof64(s string) (float64, error) {
-	return strconv.ParseFloat(s, 64)
-}
+func atof64(s string) (float64, error) { _ = "STUB: not implemented"; return 0, nil }
 
-func atof32(s string) (float32, error) {
-	f32, err := strconv.ParseFloat(s, 32)
-	if err != nil {
-		return 0, err
-	}
-	return float32(f32), nil
-}
+func atof32(s string) (float32, error) { _ = "STUB: not implemented"; return 0, nil }
 
-func f32toa(f float32) string {
-	return strconv.FormatFloat(float64(f), 'g', -1, 32)
-}
+func f32toa(f float32) string { _ = "STUB: not implemented"; return "" }
 
-func f64toa(f float64) string {
-	return strconv.FormatFloat(f, 'g', -1, 64)
-}
+func f64toa(f float64) string { _ = "STUB: not implemented"; return "" }
 
 // ParseFloat32 creates a prism for parsing and formatting 32-bit floating-point numbers.
 // It provides a safe way to convert between string and float32, handling
@@ -974,9 +846,7 @@ func f64toa(f float64) string {
 //   - Handling numeric API parameters with decimal precision
 //
 //go:inline
-func ParseFloat32() Prism[string, float32] {
-	return MakePrismWithName(getFromEither(atof32), f32toa, "ParseFloat32")
-}
+func ParseFloat32() Prism[string, float32] { _ = "STUB: not implemented"; return nil }
 
 // ParseFloat64 creates a prism for parsing and formatting 64-bit floating-point numbers.
 // It provides a safe way to convert between string and float64, handling
@@ -1018,9 +888,7 @@ func ParseFloat32() Prism[string, float32] {
 //   - Handling precise numeric API parameters
 //
 //go:inline
-func ParseFloat64() Prism[string, float64] {
-	return MakePrismWithName(getFromEither(atof64), f64toa, "PrismParseFloat64")
-}
+func ParseFloat64() Prism[string, float64] { _ = "STUB: not implemented"; return nil }
 
 // FromOption creates a prism for extracting values from Option types.
 // It provides a safe way to work with Option values, focusing on the Some case
@@ -1080,13 +948,7 @@ func ParseFloat64() Prism[string, float64] {
 // work with it when present and gracefully handle its absence when not.
 //
 //go:inline
-func FromOption[T any]() Prism[Option[T], T] {
-	return MakePrismWithName(
-		F.Identity[Option[T]],
-		option.Some[T],
-		"PrismFromOption",
-	)
-}
+func FromOption[T any]() Prism[Option[T], T] { _ = "STUB: not implemented"; return nil }
 
 // NonEmptyString creates a prism that matches non-empty strings.
 // It provides a safe way to work with non-empty string values, handling
@@ -1144,9 +1006,7 @@ func FromOption[T any]() Prism[Option[T], T] {
 // such cases gracefully through the Option type rather than with error handling.
 //
 //go:inline
-func NonEmptyString() Prism[string, string] {
-	return FromNonZero[string]()
-}
+func NonEmptyString() Prism[string, string] { _ = "STUB: not implemented"; return nil }
 
 // ErrorPrisms provides prisms for accessing fields of url.Error
 type ErrorPrisms struct {
@@ -1156,37 +1016,7 @@ type ErrorPrisms struct {
 }
 
 // MakeErrorPrisms creates a new ErrorPrisms with prisms for all fields
-func MakeErrorPrisms() ErrorPrisms {
-	_fromNonZeroOp := option.FromNonZero[string]()
-	_prismOp := MakePrismWithName(
-		func(s url.Error) Option[string] { return _fromNonZeroOp(s.Op) },
-		func(v string) url.Error {
-			return url.Error{Op: v}
-		},
-		"Error.Op",
-	)
-	_fromNonZeroURL := option.FromNonZero[string]()
-	_prismURL := MakePrismWithName(
-		func(s url.Error) Option[string] { return _fromNonZeroURL(s.URL) },
-		func(v string) url.Error {
-			return url.Error{URL: v}
-		},
-		"Error.URL",
-	)
-	_fromNonZeroErr := option.FromNonZero[error]()
-	_prismErr := MakePrismWithName(
-		func(s url.Error) Option[error] { return _fromNonZeroErr(s.Err) },
-		func(v error) url.Error {
-			return url.Error{Err: v}
-		},
-		"Error.Err",
-	)
-	return ErrorPrisms{
-		Op:  _prismOp,
-		URL: _prismURL,
-		Err: _prismErr,
-	}
-}
+func MakeErrorPrisms() ErrorPrisms { _ = "STUB: not implemented"; return *new(ErrorPrisms) }
 
 // URLPrisms provides prisms for accessing fields of url.URL
 type URLPrisms struct {
@@ -1204,109 +1034,7 @@ type URLPrisms struct {
 }
 
 // MakeURLPrisms creates a new URLPrisms with prisms for all fields
-func MakeURLPrisms() URLPrisms {
-	_fromNonZeroScheme := option.FromNonZero[string]()
-	_prismScheme := MakePrismWithName(
-		func(s url.URL) Option[string] { return _fromNonZeroScheme(s.Scheme) },
-		func(v string) url.URL {
-			return url.URL{Scheme: v}
-		},
-		"URL.Scheme",
-	)
-	_fromNonZeroOpaque := option.FromNonZero[string]()
-	_prismOpaque := MakePrismWithName(
-		func(s url.URL) Option[string] { return _fromNonZeroOpaque(s.Opaque) },
-		func(v string) url.URL {
-			return url.URL{Opaque: v}
-		},
-		"URL.Opaque",
-	)
-	_fromNonZeroUser := option.FromNonZero[*url.Userinfo]()
-	_prismUser := MakePrismWithName(
-		func(s url.URL) Option[*url.Userinfo] { return _fromNonZeroUser(s.User) },
-		func(v *url.Userinfo) url.URL {
-			return url.URL{User: v}
-		},
-		"URL.User",
-	)
-	_fromNonZeroHost := option.FromNonZero[string]()
-	_prismHost := MakePrismWithName(
-		func(s url.URL) Option[string] { return _fromNonZeroHost(s.Host) },
-		func(v string) url.URL {
-			return url.URL{Host: v}
-		},
-		"URL.Host",
-	)
-	_fromNonZeroPath := option.FromNonZero[string]()
-	_prismPath := MakePrismWithName(
-		func(s url.URL) Option[string] { return _fromNonZeroPath(s.Path) },
-		func(v string) url.URL {
-			return url.URL{Path: v}
-		},
-		"URL.Path",
-	)
-	_fromNonZeroRawPath := option.FromNonZero[string]()
-	_prismRawPath := MakePrismWithName(
-		func(s url.URL) Option[string] { return _fromNonZeroRawPath(s.RawPath) },
-		func(v string) url.URL {
-			return url.URL{RawPath: v}
-		},
-		"URL.RawPath",
-	)
-	_fromNonZeroOmitHost := option.FromNonZero[bool]()
-	_prismOmitHost := MakePrismWithName(
-		func(s url.URL) Option[bool] { return _fromNonZeroOmitHost(s.OmitHost) },
-		func(v bool) url.URL {
-			return url.URL{OmitHost: v}
-		},
-		"URL.OmitHost",
-	)
-	_fromNonZeroForceQuery := option.FromNonZero[bool]()
-	_prismForceQuery := MakePrismWithName(
-		func(s url.URL) Option[bool] { return _fromNonZeroForceQuery(s.ForceQuery) },
-		func(v bool) url.URL {
-			return url.URL{ForceQuery: v}
-		},
-		"URL.ForceQuery",
-	)
-	_fromNonZeroRawQuery := option.FromNonZero[string]()
-	_prismRawQuery := MakePrismWithName(
-		func(s url.URL) Option[string] { return _fromNonZeroRawQuery(s.RawQuery) },
-		func(v string) url.URL {
-			return url.URL{RawQuery: v}
-		},
-		"URL.RawQuery",
-	)
-	_fromNonZeroFragment := option.FromNonZero[string]()
-	_prismFragment := MakePrismWithName(
-		func(s url.URL) Option[string] { return _fromNonZeroFragment(s.Fragment) },
-		func(v string) url.URL {
-			return url.URL{Fragment: v}
-		},
-		"URL.Fragment",
-	)
-	_fromNonZeroRawFragment := option.FromNonZero[string]()
-	_prismRawFragment := MakePrismWithName(
-		func(s url.URL) Option[string] { return _fromNonZeroRawFragment(s.RawFragment) },
-		func(v string) url.URL {
-			return url.URL{RawFragment: v}
-		},
-		"URL.RawFragment",
-	)
-	return URLPrisms{
-		Scheme:      _prismScheme,
-		Opaque:      _prismOpaque,
-		User:        _prismUser,
-		Host:        _prismHost,
-		Path:        _prismPath,
-		RawPath:     _prismRawPath,
-		OmitHost:    _prismOmitHost,
-		ForceQuery:  _prismForceQuery,
-		RawQuery:    _prismRawQuery,
-		Fragment:    _prismFragment,
-		RawFragment: _prismRawFragment,
-	}
-}
+func MakeURLPrisms() URLPrisms { _ = "STUB: not implemented"; return *new(URLPrisms) }
 
 // ParseJSON creates a prism for parsing and marshaling JSON data.
 // It provides a safe way to convert between JSON bytes and Go types,
@@ -1362,16 +1090,4 @@ func MakeURLPrisms() URLPrisms {
 //   - Validating and transforming JSON data in pipelines
 //   - Type-safe JSON deserialization
 //   - Converting between JSON and Go structs
-func ParseJSON[A any]() Prism[[]byte, A] {
-	return MakePrismWithName(
-		F.Flow2(
-			J.Unmarshal[A],
-			either.ToOption[error, A],
-		),
-		F.Flow2(
-			J.Marshal[A],
-			either.GetOrElse(F.Constant1[error](array.Empty[byte]())),
-		),
-		"JSON",
-	)
-}
+func ParseJSON[A any]() Prism[[]byte, A] { _ = "STUB: not implemented"; return nil }

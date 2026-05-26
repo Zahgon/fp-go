@@ -17,36 +17,42 @@ package generic
 
 import (
 	O "github.com/IBM/fp-go/v2/option"
-	G "github.com/IBM/fp-go/v2/reader/generic"
 )
 
 // these functions curry a golang function with the context as the firsr parameter into a either reader with the context as the last parameter
 // this goes back to the advice in https://pkg.go.dev/context to put the context as a first parameter as a convention
 
 func Curry0[GEA ~func(R) O.Option[A], R, A any](f func(R) (A, bool)) GEA {
-	return G.Curry0[GEA](O.Optionize1(f))
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
 func Curry1[GEA ~func(R) O.Option[A], R, T1, A any](f func(R, T1) (A, bool)) func(T1) GEA {
-	return G.Curry1[GEA](O.Optionize2(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Curry2[GEA ~func(R) O.Option[A], R, T1, T2, A any](f func(R, T1, T2) (A, bool)) func(T1) func(T2) GEA {
-	return G.Curry2[GEA](O.Optionize3(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Curry3[GEA ~func(R) O.Option[A], R, T1, T2, T3, A any](f func(R, T1, T2, T3) (A, bool)) func(T1) func(T2) func(T3) GEA {
-	return G.Curry3[GEA](O.Optionize4(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Uncurry1[GEA ~func(R) O.Option[A], R, T1, A any](f func(T1) GEA) func(R, T1) (A, bool) {
-	return O.Unoptionize2(G.Uncurry1(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Uncurry2[GEA ~func(R) O.Option[A], R, T1, T2, A any](f func(T1) func(T2) GEA) func(R, T1, T2) (A, bool) {
-	return O.Unoptionize3(G.Uncurry2(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Uncurry3[GEA ~func(R) O.Option[A], R, T1, T2, T3, A any](f func(T1) func(T2) func(T3) GEA) func(R, T1, T2, T3) (A, bool) {
-	return O.Unoptionize4(G.Uncurry3(f))
+	_ = "STUB: not implemented"
+	return nil
 }

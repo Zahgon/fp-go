@@ -16,13 +16,10 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	M "github.com/IBM/fp-go/v2/monoid"
 )
 
 func Monoid[GU ~func() Option[Pair[GU, U]], U any]() M.Monoid[GU] {
-	return M.MakeMonoid(
-		F.Swap(concat[GU]),
-		Empty[GU](),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -117,70 +117,72 @@ type monoid[A any] struct {
 //	)
 //	result := addMonoid.Concat(5, 3)  // 8
 func (m monoid[A]) Concat(x, y A) A {
-	return m.c(x, y)
+	_ = "STUB: not implemented"
+
+	// Empty returns the identity element of the monoid.
+	//
+	// The identity element satisfies the monoid laws:
+	//   - Left identity: Concat(Empty(), x) = x
+	//   - Right identity: Concat(x, Empty()) = x
+	//
+	// Returns:
+	//   - The identity element for this monoid
+	//
+	// Example:
+	//
+	//	addMonoid := MakeMonoid(
+	//	    func(a, b int) int { return a + b },
+	//	    0,
+	//	)
+	//	identity := addMonoid.Empty()  // 0
+	//	result := addMonoid.Concat(identity, 5)  // 5
+	return *new(A)
 }
 
-// Empty returns the identity element of the monoid.
-//
-// The identity element satisfies the monoid laws:
-//   - Left identity: Concat(Empty(), x) = x
-//   - Right identity: Concat(x, Empty()) = x
-//
-// Returns:
-//   - The identity element for this monoid
-//
-// Example:
-//
-//	addMonoid := MakeMonoid(
-//	    func(a, b int) int { return a + b },
-//	    0,
-//	)
-//	identity := addMonoid.Empty()  // 0
-//	result := addMonoid.Concat(identity, 5)  // 5
 func (m monoid[A]) Empty() A {
-	return m.e
+	_ = "STUB: not implemented"
+
+	// MakeMonoid creates a monoid from a binary operation and an identity element.
+	//
+	// The provided concat function must be associative, and the empty element must
+	// satisfy the identity laws (left and right identity).
+	//
+	// This is the primary constructor for creating custom monoid instances. It's the
+	// equivalent of defining a Monoid instance in Haskell or implementing the Fantasy Land
+	// Monoid specification.
+	//
+	// Parameters:
+	//   - c: An associative binary operation func(A, A) A (equivalent to Haskell's mappend or <>)
+	//   - e: The identity element of type A (equivalent to Haskell's mempty)
+	//
+	// Returns:
+	//   - A Monoid[A] instance
+	//
+	// Example:
+	//
+	//	// Integer addition monoid (Sum in Haskell)
+	//	addMonoid := MakeMonoid(
+	//	    func(a, b int) int { return a + b },
+	//	    0,  // identity element
+	//	)
+	//	result := addMonoid.Concat(5, 3)  // 8
+	//	empty := addMonoid.Empty()         // 0
+	//
+	//	// String concatenation monoid
+	//	stringMonoid := MakeMonoid(
+	//	    func(a, b string) string { return a + b },
+	//	    "",  // identity element
+	//	)
+	//	result := stringMonoid.Concat("Hello", " World")  // "Hello World"
+	//
+	// References:
+	//
+	//   - Haskell Monoid instance: https://hackage.haskell.org/package/base/docs/Data-Monoid.html#t:Monoid
+	//   - Fantasy Land Monoid.empty: https://github.com/fantasyland/fantasy-land#monoid
+	return *new(A)
 }
 
-// MakeMonoid creates a monoid from a binary operation and an identity element.
-//
-// The provided concat function must be associative, and the empty element must
-// satisfy the identity laws (left and right identity).
-//
-// This is the primary constructor for creating custom monoid instances. It's the
-// equivalent of defining a Monoid instance in Haskell or implementing the Fantasy Land
-// Monoid specification.
-//
-// Parameters:
-//   - c: An associative binary operation func(A, A) A (equivalent to Haskell's mappend or <>)
-//   - e: The identity element of type A (equivalent to Haskell's mempty)
-//
-// Returns:
-//   - A Monoid[A] instance
-//
-// Example:
-//
-//	// Integer addition monoid (Sum in Haskell)
-//	addMonoid := MakeMonoid(
-//	    func(a, b int) int { return a + b },
-//	    0,  // identity element
-//	)
-//	result := addMonoid.Concat(5, 3)  // 8
-//	empty := addMonoid.Empty()         // 0
-//
-//	// String concatenation monoid
-//	stringMonoid := MakeMonoid(
-//	    func(a, b string) string { return a + b },
-//	    "",  // identity element
-//	)
-//	result := stringMonoid.Concat("Hello", " World")  // "Hello World"
-//
-// References:
-//
-//   - Haskell Monoid instance: https://hackage.haskell.org/package/base/docs/Data-Monoid.html#t:Monoid
-//   - Fantasy Land Monoid.empty: https://github.com/fantasyland/fantasy-land#monoid
-func MakeMonoid[A any](c func(A, A) A, e A) Monoid[A] {
-	return monoid[A]{c: c, e: e}
-}
+func MakeMonoid[A any](c func(A, A) A, e A) Monoid[A] { _ = "STUB: not implemented"; return nil }
 
 // Reverse returns the dual of a Monoid by swapping the arguments of Concat.
 //
@@ -220,9 +222,7 @@ func MakeMonoid[A any](c func(A, A) A, e A) Monoid[A] {
 // References:
 //
 //   - Haskell Data.Monoid.Dual: https://hackage.haskell.org/package/base/docs/Data-Monoid.html#t:Dual
-func Reverse[A any](m Monoid[A]) Monoid[A] {
-	return MakeMonoid(S.Reverse(m).Concat, m.Empty())
-}
+func Reverse[A any](m Monoid[A]) Monoid[A] { _ = "STUB: not implemented"; return nil }
 
 // ToSemigroup converts a Monoid to a Semigroup by discarding the identity element.
 //
@@ -252,6 +252,4 @@ func Reverse[A any](m Monoid[A]) Monoid[A] {
 //
 //   - Haskell Semigroup: https://hackage.haskell.org/package/base/docs/Data-Semigroup.html
 //   - Fantasy Land Semigroup: https://github.com/fantasyland/fantasy-land#semigroup
-func ToSemigroup[A any](m Monoid[A]) S.Semigroup[A] {
-	return S.Semigroup[A](m)
-}
+func ToSemigroup[A any](m Monoid[A]) S.Semigroup[A] { _ = "STUB: not implemented"; return nil }

@@ -16,8 +16,6 @@
 package generic
 
 import (
-	G "github.com/IBM/fp-go/internal/bracket"
-	I "github.com/IBM/fp-go/io/generic"
 	O "github.com/IBM/fp-go/option"
 )
 
@@ -33,14 +31,6 @@ func Bracket[
 	use func(A) GB,
 	release func(A, O.Option[B]) GANY,
 ) GB {
-	return G.Bracket[GA, GB, GANY, O.Option[B], A, B](
-		I.Of[GB, O.Option[B]],
-		MonadChain[GA, GB, A, B],
-		I.MonadChain[GB, GB, O.Option[B], O.Option[B]],
-		MonadChain[GANY, GB, ANY, B],
-
-		acquire,
-		use,
-		release,
-	)
+	_ = "STUB: not implemented"
+	return *new(GB)
 }

@@ -4,16 +4,13 @@
 
 package readerioresult
 
-import (
-	G "github.com/IBM/fp-go/v2/readerioeither/generic"
-)
-
 // From0 converts a function with 1 parameters returning a tuple into a function with 0 parameters returning a [ReaderIOResult[R]]
 // The first parameter is considered to be the context [C].
 //
 //go:inline
 func From0[F ~func(C) func() (R, error), C, R any](f F) func() ReaderIOResult[C, R] {
-	return G.From0[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize0 converts a function with 1 parameters returning a tuple into a function with 0 parameters returning a [ReaderIOResult[C, R]]
@@ -21,7 +18,8 @@ func From0[F ~func(C) func() (R, error), C, R any](f F) func() ReaderIOResult[C,
 //
 //go:inline
 func Eitherize0[F ~func(C) (R, error), C, R any](f F) func() ReaderIOResult[C, R] {
-	return G.Eitherize0[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize0 converts a function with 1 parameters returning a [ReaderIOResult[C, R]] into a function with 0 parameters returning a tuple.
@@ -29,7 +27,8 @@ func Eitherize0[F ~func(C) (R, error), C, R any](f F) func() ReaderIOResult[C, R
 //
 //go:inline
 func Uneitherize0[F ~func() ReaderIOResult[C, R], C, R any](f F) func(C) (R, error) {
-	return G.Uneitherize0[ReaderIOResult[C, R], func(C) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From1 converts a function with 2 parameters returning a tuple into a function with 1 parameters returning a [ReaderIOResult[R]]
@@ -37,7 +36,8 @@ func Uneitherize0[F ~func() ReaderIOResult[C, R], C, R any](f F) func(C) (R, err
 //
 //go:inline
 func From1[F ~func(C, T0) func() (R, error), T0, C, R any](f F) func(T0) ReaderIOResult[C, R] {
-	return G.From1[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize1 converts a function with 2 parameters returning a tuple into a function with 1 parameters returning a [ReaderIOResult[C, R]]
@@ -45,7 +45,8 @@ func From1[F ~func(C, T0) func() (R, error), T0, C, R any](f F) func(T0) ReaderI
 //
 //go:inline
 func Eitherize1[F ~func(C, T0) (R, error), T0, C, R any](f F) func(T0) ReaderIOResult[C, R] {
-	return G.Eitherize1[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize1 converts a function with 2 parameters returning a [ReaderIOResult[C, R]] into a function with 1 parameters returning a tuple.
@@ -53,7 +54,8 @@ func Eitherize1[F ~func(C, T0) (R, error), T0, C, R any](f F) func(T0) ReaderIOR
 //
 //go:inline
 func Uneitherize1[F ~func(T0) ReaderIOResult[C, R], T0, C, R any](f F) func(C, T0) (R, error) {
-	return G.Uneitherize1[ReaderIOResult[C, R], func(C, T0) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From2 converts a function with 3 parameters returning a tuple into a function with 2 parameters returning a [ReaderIOResult[R]]
@@ -61,7 +63,8 @@ func Uneitherize1[F ~func(T0) ReaderIOResult[C, R], T0, C, R any](f F) func(C, T
 //
 //go:inline
 func From2[F ~func(C, T0, T1) func() (R, error), T0, T1, C, R any](f F) func(T0, T1) ReaderIOResult[C, R] {
-	return G.From2[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize2 converts a function with 3 parameters returning a tuple into a function with 2 parameters returning a [ReaderIOResult[C, R]]
@@ -69,7 +72,8 @@ func From2[F ~func(C, T0, T1) func() (R, error), T0, T1, C, R any](f F) func(T0,
 //
 //go:inline
 func Eitherize2[F ~func(C, T0, T1) (R, error), T0, T1, C, R any](f F) func(T0, T1) ReaderIOResult[C, R] {
-	return G.Eitherize2[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize2 converts a function with 3 parameters returning a [ReaderIOResult[C, R]] into a function with 2 parameters returning a tuple.
@@ -77,7 +81,8 @@ func Eitherize2[F ~func(C, T0, T1) (R, error), T0, T1, C, R any](f F) func(T0, T
 //
 //go:inline
 func Uneitherize2[F ~func(T0, T1) ReaderIOResult[C, R], T0, T1, C, R any](f F) func(C, T0, T1) (R, error) {
-	return G.Uneitherize2[ReaderIOResult[C, R], func(C, T0, T1) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From3 converts a function with 4 parameters returning a tuple into a function with 3 parameters returning a [ReaderIOResult[R]]
@@ -85,7 +90,8 @@ func Uneitherize2[F ~func(T0, T1) ReaderIOResult[C, R], T0, T1, C, R any](f F) f
 //
 //go:inline
 func From3[F ~func(C, T0, T1, T2) func() (R, error), T0, T1, T2, C, R any](f F) func(T0, T1, T2) ReaderIOResult[C, R] {
-	return G.From3[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize3 converts a function with 4 parameters returning a tuple into a function with 3 parameters returning a [ReaderIOResult[C, R]]
@@ -93,7 +99,8 @@ func From3[F ~func(C, T0, T1, T2) func() (R, error), T0, T1, T2, C, R any](f F) 
 //
 //go:inline
 func Eitherize3[F ~func(C, T0, T1, T2) (R, error), T0, T1, T2, C, R any](f F) func(T0, T1, T2) ReaderIOResult[C, R] {
-	return G.Eitherize3[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize3 converts a function with 4 parameters returning a [ReaderIOResult[C, R]] into a function with 3 parameters returning a tuple.
@@ -101,7 +108,8 @@ func Eitherize3[F ~func(C, T0, T1, T2) (R, error), T0, T1, T2, C, R any](f F) fu
 //
 //go:inline
 func Uneitherize3[F ~func(T0, T1, T2) ReaderIOResult[C, R], T0, T1, T2, C, R any](f F) func(C, T0, T1, T2) (R, error) {
-	return G.Uneitherize3[ReaderIOResult[C, R], func(C, T0, T1, T2) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From4 converts a function with 5 parameters returning a tuple into a function with 4 parameters returning a [ReaderIOResult[R]]
@@ -109,7 +117,8 @@ func Uneitherize3[F ~func(T0, T1, T2) ReaderIOResult[C, R], T0, T1, T2, C, R any
 //
 //go:inline
 func From4[F ~func(C, T0, T1, T2, T3) func() (R, error), T0, T1, T2, T3, C, R any](f F) func(T0, T1, T2, T3) ReaderIOResult[C, R] {
-	return G.From4[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize4 converts a function with 5 parameters returning a tuple into a function with 4 parameters returning a [ReaderIOResult[C, R]]
@@ -117,7 +126,8 @@ func From4[F ~func(C, T0, T1, T2, T3) func() (R, error), T0, T1, T2, T3, C, R an
 //
 //go:inline
 func Eitherize4[F ~func(C, T0, T1, T2, T3) (R, error), T0, T1, T2, T3, C, R any](f F) func(T0, T1, T2, T3) ReaderIOResult[C, R] {
-	return G.Eitherize4[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize4 converts a function with 5 parameters returning a [ReaderIOResult[C, R]] into a function with 4 parameters returning a tuple.
@@ -125,7 +135,8 @@ func Eitherize4[F ~func(C, T0, T1, T2, T3) (R, error), T0, T1, T2, T3, C, R any]
 //
 //go:inline
 func Uneitherize4[F ~func(T0, T1, T2, T3) ReaderIOResult[C, R], T0, T1, T2, T3, C, R any](f F) func(C, T0, T1, T2, T3) (R, error) {
-	return G.Uneitherize4[ReaderIOResult[C, R], func(C, T0, T1, T2, T3) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From5 converts a function with 6 parameters returning a tuple into a function with 5 parameters returning a [ReaderIOResult[R]]
@@ -133,7 +144,8 @@ func Uneitherize4[F ~func(T0, T1, T2, T3) ReaderIOResult[C, R], T0, T1, T2, T3, 
 //
 //go:inline
 func From5[F ~func(C, T0, T1, T2, T3, T4) func() (R, error), T0, T1, T2, T3, T4, C, R any](f F) func(T0, T1, T2, T3, T4) ReaderIOResult[C, R] {
-	return G.From5[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize5 converts a function with 6 parameters returning a tuple into a function with 5 parameters returning a [ReaderIOResult[C, R]]
@@ -141,7 +153,8 @@ func From5[F ~func(C, T0, T1, T2, T3, T4) func() (R, error), T0, T1, T2, T3, T4,
 //
 //go:inline
 func Eitherize5[F ~func(C, T0, T1, T2, T3, T4) (R, error), T0, T1, T2, T3, T4, C, R any](f F) func(T0, T1, T2, T3, T4) ReaderIOResult[C, R] {
-	return G.Eitherize5[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize5 converts a function with 6 parameters returning a [ReaderIOResult[C, R]] into a function with 5 parameters returning a tuple.
@@ -149,7 +162,8 @@ func Eitherize5[F ~func(C, T0, T1, T2, T3, T4) (R, error), T0, T1, T2, T3, T4, C
 //
 //go:inline
 func Uneitherize5[F ~func(T0, T1, T2, T3, T4) ReaderIOResult[C, R], T0, T1, T2, T3, T4, C, R any](f F) func(C, T0, T1, T2, T3, T4) (R, error) {
-	return G.Uneitherize5[ReaderIOResult[C, R], func(C, T0, T1, T2, T3, T4) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From6 converts a function with 7 parameters returning a tuple into a function with 6 parameters returning a [ReaderIOResult[R]]
@@ -157,7 +171,8 @@ func Uneitherize5[F ~func(T0, T1, T2, T3, T4) ReaderIOResult[C, R], T0, T1, T2, 
 //
 //go:inline
 func From6[F ~func(C, T0, T1, T2, T3, T4, T5) func() (R, error), T0, T1, T2, T3, T4, T5, C, R any](f F) func(T0, T1, T2, T3, T4, T5) ReaderIOResult[C, R] {
-	return G.From6[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize6 converts a function with 7 parameters returning a tuple into a function with 6 parameters returning a [ReaderIOResult[C, R]]
@@ -165,7 +180,8 @@ func From6[F ~func(C, T0, T1, T2, T3, T4, T5) func() (R, error), T0, T1, T2, T3,
 //
 //go:inline
 func Eitherize6[F ~func(C, T0, T1, T2, T3, T4, T5) (R, error), T0, T1, T2, T3, T4, T5, C, R any](f F) func(T0, T1, T2, T3, T4, T5) ReaderIOResult[C, R] {
-	return G.Eitherize6[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize6 converts a function with 7 parameters returning a [ReaderIOResult[C, R]] into a function with 6 parameters returning a tuple.
@@ -173,7 +189,8 @@ func Eitherize6[F ~func(C, T0, T1, T2, T3, T4, T5) (R, error), T0, T1, T2, T3, T
 //
 //go:inline
 func Uneitherize6[F ~func(T0, T1, T2, T3, T4, T5) ReaderIOResult[C, R], T0, T1, T2, T3, T4, T5, C, R any](f F) func(C, T0, T1, T2, T3, T4, T5) (R, error) {
-	return G.Uneitherize6[ReaderIOResult[C, R], func(C, T0, T1, T2, T3, T4, T5) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From7 converts a function with 8 parameters returning a tuple into a function with 7 parameters returning a [ReaderIOResult[R]]
@@ -181,7 +198,8 @@ func Uneitherize6[F ~func(T0, T1, T2, T3, T4, T5) ReaderIOResult[C, R], T0, T1, 
 //
 //go:inline
 func From7[F ~func(C, T0, T1, T2, T3, T4, T5, T6) func() (R, error), T0, T1, T2, T3, T4, T5, T6, C, R any](f F) func(T0, T1, T2, T3, T4, T5, T6) ReaderIOResult[C, R] {
-	return G.From7[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize7 converts a function with 8 parameters returning a tuple into a function with 7 parameters returning a [ReaderIOResult[C, R]]
@@ -189,7 +207,8 @@ func From7[F ~func(C, T0, T1, T2, T3, T4, T5, T6) func() (R, error), T0, T1, T2,
 //
 //go:inline
 func Eitherize7[F ~func(C, T0, T1, T2, T3, T4, T5, T6) (R, error), T0, T1, T2, T3, T4, T5, T6, C, R any](f F) func(T0, T1, T2, T3, T4, T5, T6) ReaderIOResult[C, R] {
-	return G.Eitherize7[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize7 converts a function with 8 parameters returning a [ReaderIOResult[C, R]] into a function with 7 parameters returning a tuple.
@@ -197,7 +216,8 @@ func Eitherize7[F ~func(C, T0, T1, T2, T3, T4, T5, T6) (R, error), T0, T1, T2, T
 //
 //go:inline
 func Uneitherize7[F ~func(T0, T1, T2, T3, T4, T5, T6) ReaderIOResult[C, R], T0, T1, T2, T3, T4, T5, T6, C, R any](f F) func(C, T0, T1, T2, T3, T4, T5, T6) (R, error) {
-	return G.Uneitherize7[ReaderIOResult[C, R], func(C, T0, T1, T2, T3, T4, T5, T6) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From8 converts a function with 9 parameters returning a tuple into a function with 8 parameters returning a [ReaderIOResult[R]]
@@ -205,7 +225,8 @@ func Uneitherize7[F ~func(T0, T1, T2, T3, T4, T5, T6) ReaderIOResult[C, R], T0, 
 //
 //go:inline
 func From8[F ~func(C, T0, T1, T2, T3, T4, T5, T6, T7) func() (R, error), T0, T1, T2, T3, T4, T5, T6, T7, C, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7) ReaderIOResult[C, R] {
-	return G.From8[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize8 converts a function with 9 parameters returning a tuple into a function with 8 parameters returning a [ReaderIOResult[C, R]]
@@ -213,7 +234,8 @@ func From8[F ~func(C, T0, T1, T2, T3, T4, T5, T6, T7) func() (R, error), T0, T1,
 //
 //go:inline
 func Eitherize8[F ~func(C, T0, T1, T2, T3, T4, T5, T6, T7) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, C, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7) ReaderIOResult[C, R] {
-	return G.Eitherize8[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize8 converts a function with 9 parameters returning a [ReaderIOResult[C, R]] into a function with 8 parameters returning a tuple.
@@ -221,7 +243,8 @@ func Eitherize8[F ~func(C, T0, T1, T2, T3, T4, T5, T6, T7) (R, error), T0, T1, T
 //
 //go:inline
 func Uneitherize8[F ~func(T0, T1, T2, T3, T4, T5, T6, T7) ReaderIOResult[C, R], T0, T1, T2, T3, T4, T5, T6, T7, C, R any](f F) func(C, T0, T1, T2, T3, T4, T5, T6, T7) (R, error) {
-	return G.Uneitherize8[ReaderIOResult[C, R], func(C, T0, T1, T2, T3, T4, T5, T6, T7) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From9 converts a function with 10 parameters returning a tuple into a function with 9 parameters returning a [ReaderIOResult[R]]
@@ -229,7 +252,8 @@ func Uneitherize8[F ~func(T0, T1, T2, T3, T4, T5, T6, T7) ReaderIOResult[C, R], 
 //
 //go:inline
 func From9[F ~func(C, T0, T1, T2, T3, T4, T5, T6, T7, T8) func() (R, error), T0, T1, T2, T3, T4, T5, T6, T7, T8, C, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8) ReaderIOResult[C, R] {
-	return G.From9[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize9 converts a function with 10 parameters returning a tuple into a function with 9 parameters returning a [ReaderIOResult[C, R]]
@@ -237,7 +261,8 @@ func From9[F ~func(C, T0, T1, T2, T3, T4, T5, T6, T7, T8) func() (R, error), T0,
 //
 //go:inline
 func Eitherize9[F ~func(C, T0, T1, T2, T3, T4, T5, T6, T7, T8) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, T8, C, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8) ReaderIOResult[C, R] {
-	return G.Eitherize9[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize9 converts a function with 10 parameters returning a [ReaderIOResult[C, R]] into a function with 9 parameters returning a tuple.
@@ -245,7 +270,8 @@ func Eitherize9[F ~func(C, T0, T1, T2, T3, T4, T5, T6, T7, T8) (R, error), T0, T
 //
 //go:inline
 func Uneitherize9[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8) ReaderIOResult[C, R], T0, T1, T2, T3, T4, T5, T6, T7, T8, C, R any](f F) func(C, T0, T1, T2, T3, T4, T5, T6, T7, T8) (R, error) {
-	return G.Uneitherize9[ReaderIOResult[C, R], func(C, T0, T1, T2, T3, T4, T5, T6, T7, T8) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From10 converts a function with 11 parameters returning a tuple into a function with 10 parameters returning a [ReaderIOResult[R]]
@@ -253,7 +279,8 @@ func Uneitherize9[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8) ReaderIOResult[C, 
 //
 //go:inline
 func From10[F ~func(C, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) func() (R, error), T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, C, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) ReaderIOResult[C, R] {
-	return G.From10[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize10 converts a function with 11 parameters returning a tuple into a function with 10 parameters returning a [ReaderIOResult[C, R]]
@@ -261,7 +288,8 @@ func From10[F ~func(C, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) func() (R, error)
 //
 //go:inline
 func Eitherize10[F ~func(C, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, C, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) ReaderIOResult[C, R] {
-	return G.Eitherize10[ReaderIOResult[C, R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize10 converts a function with 11 parameters returning a [ReaderIOResult[C, R]] into a function with 10 parameters returning a tuple.
@@ -269,5 +297,6 @@ func Eitherize10[F ~func(C, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) (R, error), 
 //
 //go:inline
 func Uneitherize10[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) ReaderIOResult[C, R], T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, C, R any](f F) func(C, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) (R, error) {
-	return G.Uneitherize10[ReaderIOResult[C, R], func(C, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }

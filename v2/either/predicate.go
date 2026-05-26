@@ -76,9 +76,8 @@ package either
 //   - ExistsLeft: Tests if Either is Left and satisfies a predicate
 //   - Filter: Converts Right values that fail a predicate to Left
 func Exists[E, T any](p Predicate[T]) Predicate[Either[E, T]] {
-	return func(e Either[E, T]) bool {
-		return !e.isLeft && p(e.r)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ExistsLeft creates a predicate that tests whether an Either value is Left and its value satisfies the given predicate.
@@ -144,9 +143,8 @@ func Exists[E, T any](p Predicate[T]) Predicate[Either[E, T]] {
 //   - Exists: Tests if Either is Right and satisfies a predicate
 //   - IsLeft: Tests if Either is Left without checking the value
 func ExistsLeft[T, E any](p Predicate[E]) Predicate[Either[E, T]] {
-	return func(e Either[E, T]) bool {
-		return e.isLeft && p(e.l)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ForAll creates a predicate that tests whether an Either value is Left or its Right value satisfies the given predicate.
@@ -166,9 +164,9 @@ func ExistsLeft[T, E any](p Predicate[E]) Predicate[Either[E, T]] {
 //
 // In Haskell, this corresponds to the all function for the Either type when viewed as a Foldable:
 //
-//   all :: Foldable t => (a -> Bool) -> t a -> Bool
-//   all p (Right x) = p x
-//   all p (Left _)  = True
+//	all :: Foldable t => (a -> Bool) -> t a -> Bool
+//	all p (Right x) = p x
+//	all p (Left _)  = True
 //
 // From a category theory perspective, Either[E, T] is a coproduct (sum type) in the category of types.
 // ForAll implements a natural transformation from predicates on T to predicates on Either[E, T],
@@ -238,7 +236,6 @@ func ExistsLeft[T, E any](p Predicate[E]) Predicate[Either[E, T]] {
 //   - ExistsLeft: Tests if Either is Left and satisfies a predicate
 //   - Filter: Converts Right values that fail a predicate to Left
 func ForAll[E, T any](p Predicate[T]) Predicate[Either[E, T]] {
-	return func(e Either[E, T]) bool {
-		return e.isLeft || p(e.r)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,20 +15,14 @@
 
 package generic
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	O "github.com/IBM/fp-go/v2/option"
-)
-
 // AnyWithIndex tests if any of the elements in the array matches the predicate
 func AnyWithIndex[AS ~[]A, PRED ~func(int, A) bool, A any](pred PRED) func(AS) bool {
-	return F.Flow2(
-		FindFirstWithIndex[AS](pred),
-		O.IsSome[A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Any tests if any of the elements in the array matches the predicate
 func Any[AS ~[]A, PRED ~func(A) bool, A any](pred PRED) func(AS) bool {
-	return AnyWithIndex[AS](F.Ignore1of2[int](pred))
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,13 +15,6 @@
 
 package assert
 
-import (
-	"testing"
-
-	"github.com/IBM/fp-go/v2/pair"
-	"github.com/IBM/fp-go/v2/reader"
-)
-
 // TraverseArray transforms an array of values into a test suite by applying a function
 // that generates named test cases for each element.
 //
@@ -154,19 +147,8 @@ import (
 //   - Haskell traverse: https://hackage.haskell.org/package/base/docs/Data-Traversable.html#v:traverse
 //   - Go subtests: https://go.dev/blog/subtests
 func TraverseArray[T any](f func(T) Pair[string, Reader]) Kleisli[[]T] {
-	return func(ts []T) Reader {
-		return func(t *testing.T) bool {
-			ok := true
-			for _, src := range ts {
-				test := f(src)
-				res := t.Run(pair.Head(test), func(t *testing.T) {
-					pair.Tail(test)(t)
-				})
-				ok = ok && res
-			}
-			return ok
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeq2 executes a sequence of named test cases provided as a Go iterator.
@@ -309,16 +291,8 @@ func TraverseArray[T any](f func(T) Pair[string, Reader]) Kleisli[[]T] {
 //   - Go subtests: https://go.dev/blog/subtests
 //   - Haskell sequence: https://hackage.haskell.org/package/base/docs/Data-Traversable.html#v:sequence
 func SequenceSeq2[T any](s Seq2[string, Reader]) Reader {
-	return func(t *testing.T) bool {
-		ok := true
-		for name, test := range s {
-			res := t.Run(name, func(t *testing.T) {
-				test(t)
-			})
-			ok = ok && res
-		}
-		return ok
-	}
+	_ = "STUB: not implemented"
+	return *new(Reader)
 }
 
 // TraverseRecord transforms a map of values into a test suite by applying a function
@@ -470,18 +444,8 @@ func SequenceSeq2[T any](s Seq2[string, Reader]) Reader {
 //   - Haskell traverse: https://hackage.haskell.org/package/base/docs/Data-Traversable.html#v:traverse
 //   - Go subtests: https://go.dev/blog/subtests
 func TraverseRecord[T any](f Kleisli[T]) Kleisli[map[string]T] {
-	return func(m map[string]T) Reader {
-		return func(t *testing.T) bool {
-			ok := true
-			for name, src := range m {
-				res := t.Run(name, func(t *testing.T) {
-					f(src)(t)
-				})
-				ok = ok && res
-			}
-			return ok
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecord executes a map of named test cases as subtests.
@@ -645,6 +609,4 @@ func TraverseRecord[T any](f Kleisli[T]) Kleisli[map[string]T] {
 //
 //   - Go subtests: https://go.dev/blog/subtests
 //   - Haskell sequence: https://hackage.haskell.org/package/base/docs/Data-Traversable.html#v:sequence
-func SequenceRecord(m map[string]Reader) Reader {
-	return TraverseRecord(reader.Ask[Reader]())(m)
-}
+func SequenceRecord(m map[string]Reader) Reader { _ = "STUB: not implemented"; return *new(Reader) }

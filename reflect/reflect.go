@@ -17,26 +17,16 @@ package option
 
 import (
 	R "reflect"
-
-	F "github.com/IBM/fp-go/function"
-	G "github.com/IBM/fp-go/reflect/generic"
 )
 
 func ReduceWithIndex[A any](f func(int, A, R.Value) A, initial A) func(R.Value) A {
-	return func(val R.Value) A {
-		count := val.Len()
-		current := initial
-		for i := 0; i < count; i++ {
-			current = f(i, current, val.Index(i))
-		}
-		return current
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Reduce[A any](f func(A, R.Value) A, initial A) func(R.Value) A {
-	return ReduceWithIndex(F.Ignore1of3[int](f), initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Map[A any](f func(R.Value) A) func(R.Value) []A {
-	return G.Map[[]A](f)
-}
+func Map[A any](f func(R.Value) A) func(R.Value) []A { _ = "STUB: not implemented"; return nil }

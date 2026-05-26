@@ -15,8 +15,6 @@
 
 package statereaderioeither
 
-import "github.com/IBM/fp-go/v2/either"
-
 // FilterOrElse filters a StateReaderIOEither value based on a predicate.
 // If the predicate returns true for the Right value, it passes through unchanged.
 // If the predicate returns false, it transforms the Right value into a Left using onFalse.
@@ -60,5 +58,6 @@ import "github.com/IBM/fp-go/v2/either"
 //
 //go:inline
 func FilterOrElse[S, R, E, A any](pred Predicate[A], onFalse func(A) E) Operator[S, R, E, A, A] {
-	return ChainEitherK[S, R](either.FromPredicate(pred, onFalse))
+	_ = "STUB: not implemented"
+	return nil
 }

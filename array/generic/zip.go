@@ -16,37 +16,25 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/function"
-	N "github.com/IBM/fp-go/number"
 	T "github.com/IBM/fp-go/tuple"
 )
 
 // ZipWith applies a function to pairs of elements at the same index in two arrays, collecting the results in a new array. If one
 // input array is short, excess elements of the longer array are discarded.
 func ZipWith[AS ~[]A, BS ~[]B, CS ~[]C, FCT ~func(A, B) C, A, B, C any](fa AS, fb BS, f FCT) CS {
-	l := N.Min(len(fa), len(fb))
-	res := make(CS, l)
-	for i := l - 1; i >= 0; i-- {
-		res[i] = f(fa[i], fb[i])
-	}
-	return res
+	_ = "STUB: not implemented"
+	return *new(CS)
 }
 
 // Zip takes two arrays and returns an array of corresponding pairs. If one input array is short, excess elements of the
 // longer array are discarded
 func Zip[AS ~[]A, BS ~[]B, CS ~[]T.Tuple2[A, B], A, B any](fb BS) func(AS) CS {
-	return F.Bind23of3(ZipWith[AS, BS, CS, func(A, B) T.Tuple2[A, B]])(fb, T.MakeTuple2[A, B])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unzip is the function is reverse of [Zip]. Takes an array of pairs and return two corresponding arrays
 func Unzip[AS ~[]A, BS ~[]B, CS ~[]T.Tuple2[A, B], A, B any](cs CS) T.Tuple2[AS, BS] {
-	l := len(cs)
-	as := make(AS, l)
-	bs := make(BS, l)
-	for i := l - 1; i >= 0; i-- {
-		t := cs[i]
-		as[i] = t.F1
-		bs[i] = t.F2
-	}
-	return T.MakeTuple2(as, bs)
+	_ = "STUB: not implemented"
+	return nil
 }

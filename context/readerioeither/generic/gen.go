@@ -8,37 +8,35 @@ import (
 	"context"
 
 	E "github.com/IBM/fp-go/either"
-	A "github.com/IBM/fp-go/internal/apply"
-	RE "github.com/IBM/fp-go/readerioeither/generic"
 	T "github.com/IBM/fp-go/tuple"
 )
 
 // Eitherize0 converts a function with 0 parameters returning a tuple into a function with 0 parameters returning a [GRA]
 // The inverse function is [Uneitherize0]
 func Eitherize0[GRA ~func(context.Context) GIOA, F ~func(context.Context) (R, error), GIOA ~func() E.Either[error, R], R any](f F) func() GRA {
-	return RE.Eitherize0[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize0 converts a function with 0 parameters returning a [GRA] into a function with 0 parameters returning a tuple.
 // The first parameter is considered to be the [context.Context].
 func Uneitherize0[GRA ~func(context.Context) GIOA, F ~func(context.Context) (R, error), GIOA ~func() E.Either[error, R], R any](f func() GRA) F {
-	return func(c context.Context) (R, error) {
-		return E.UnwrapError(f()(c)())
-	}
+	_ = "STUB: not implemented"
+	return *new(F)
 }
 
 // Eitherize1 converts a function with 1 parameters returning a tuple into a function with 1 parameters returning a [GRA]
 // The inverse function is [Uneitherize1]
 func Eitherize1[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0) (R, error), GIOA ~func() E.Either[error, R], T0, R any](f F) func(T0) GRA {
-	return RE.Eitherize1[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize1 converts a function with 1 parameters returning a [GRA] into a function with 1 parameters returning a tuple.
 // The first parameter is considered to be the [context.Context].
 func Uneitherize1[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0) (R, error), GIOA ~func() E.Either[error, R], T0, R any](f func(T0) GRA) F {
-	return func(c context.Context, t0 T0) (R, error) {
-		return E.UnwrapError(f(t0)(c)())
-	}
+	_ = "STUB: not implemented"
+	return *new(F)
 }
 
 // SequenceT1 converts 1 readers into a reader of a [T.Tuple1].
@@ -50,10 +48,8 @@ func SequenceT1[
 	T1 any](
 	t1 GR_T1,
 ) GR_TUPLE1 {
-	return A.SequenceT1(
-		Map[GR_T1, GR_TUPLE1, GIO_T1],
-		t1,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE1)
 }
 
 // SequenceSeqT1 converts 1 readers into a reader of a [T.Tuple1].
@@ -65,10 +61,8 @@ func SequenceSeqT1[
 	T1 any](
 	t1 GR_T1,
 ) GR_TUPLE1 {
-	return A.SequenceT1(
-		Map[GR_T1, GR_TUPLE1, GIO_T1],
-		t1,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE1)
 }
 
 // SequenceParT1 converts 1 readers into a reader of a [T.Tuple1].
@@ -80,10 +74,8 @@ func SequenceParT1[
 	T1 any](
 	t1 GR_T1,
 ) GR_TUPLE1 {
-	return A.SequenceT1(
-		Map[GR_T1, GR_TUPLE1, GIO_T1],
-		t1,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE1)
 }
 
 // SequenceTuple1 converts a [T.Tuple1] of readers into a reader of a [T.Tuple1].
@@ -93,10 +85,8 @@ func SequenceTuple1[
 	GIO_TUPLE1 ~func() E.Either[error, T.Tuple1[T1]],
 	GIO_T1 ~func() E.Either[error, T1],
 	T1 any](t T.Tuple1[GR_T1]) GR_TUPLE1 {
-	return A.SequenceTuple1(
-		Map[GR_T1, GR_TUPLE1, GIO_T1],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE1)
 }
 
 // SequenceSeqTuple1 converts a [T.Tuple1] of readers into a reader of a [T.Tuple1].
@@ -106,10 +96,8 @@ func SequenceSeqTuple1[
 	GIO_TUPLE1 ~func() E.Either[error, T.Tuple1[T1]],
 	GIO_T1 ~func() E.Either[error, T1],
 	T1 any](t T.Tuple1[GR_T1]) GR_TUPLE1 {
-	return A.SequenceTuple1(
-		Map[GR_T1, GR_TUPLE1, GIO_T1],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE1)
 }
 
 // SequenceParTuple1 converts a [T.Tuple1] of readers into a reader of a [T.Tuple1].
@@ -119,10 +107,8 @@ func SequenceParTuple1[
 	GIO_TUPLE1 ~func() E.Either[error, T.Tuple1[T1]],
 	GIO_T1 ~func() E.Either[error, T1],
 	T1 any](t T.Tuple1[GR_T1]) GR_TUPLE1 {
-	return A.SequenceTuple1(
-		Map[GR_T1, GR_TUPLE1, GIO_T1],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE1)
 }
 
 // TraverseTuple1 converts a [T.Tuple1] of readers into a reader of a [T.Tuple1].
@@ -134,13 +120,8 @@ func TraverseTuple1[
 	GIO_T1 ~func() E.Either[error, T1],
 	A1,
 	T1 any](f1 F1) func(T.Tuple1[A1]) GR_TUPLE1 {
-	return func(t T.Tuple1[A1]) GR_TUPLE1 {
-		return A.TraverseTuple1(
-			Map[GR_T1, GR_TUPLE1, GIO_T1],
-			f1,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple1 converts a [T.Tuple1] of readers into a reader of a [T.Tuple1].
@@ -152,13 +133,8 @@ func TraverseSeqTuple1[
 	GIO_T1 ~func() E.Either[error, T1],
 	A1,
 	T1 any](f1 F1) func(T.Tuple1[A1]) GR_TUPLE1 {
-	return func(t T.Tuple1[A1]) GR_TUPLE1 {
-		return A.TraverseTuple1(
-			Map[GR_T1, GR_TUPLE1, GIO_T1],
-			f1,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple1 converts a [T.Tuple1] of readers into a reader of a [T.Tuple1].
@@ -170,27 +146,22 @@ func TraverseParTuple1[
 	GIO_T1 ~func() E.Either[error, T1],
 	A1,
 	T1 any](f1 F1) func(T.Tuple1[A1]) GR_TUPLE1 {
-	return func(t T.Tuple1[A1]) GR_TUPLE1 {
-		return A.TraverseTuple1(
-			Map[GR_T1, GR_TUPLE1, GIO_T1],
-			f1,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize2 converts a function with 2 parameters returning a tuple into a function with 2 parameters returning a [GRA]
 // The inverse function is [Uneitherize2]
 func Eitherize2[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1) (R, error), GIOA ~func() E.Either[error, R], T0, T1, R any](f F) func(T0, T1) GRA {
-	return RE.Eitherize2[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize2 converts a function with 2 parameters returning a [GRA] into a function with 2 parameters returning a tuple.
 // The first parameter is considered to be the [context.Context].
 func Uneitherize2[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1) (R, error), GIOA ~func() E.Either[error, R], T0, T1, R any](f func(T0, T1) GRA) F {
-	return func(c context.Context, t0 T0, t1 T1) (R, error) {
-		return E.UnwrapError(f(t0, t1)(c)())
-	}
+	_ = "STUB: not implemented"
+	return *new(F)
 }
 
 // SequenceT2 converts 2 readers into a reader of a [T.Tuple2].
@@ -206,12 +177,8 @@ func SequenceT2[
 	t1 GR_T1,
 	t2 GR_T2,
 ) GR_TUPLE2 {
-	return A.SequenceT2(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GIO_T1],
-		Ap[GR_TUPLE2, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GR_T2],
-		t1,
-		t2,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE2)
 }
 
 // SequenceSeqT2 converts 2 readers into a reader of a [T.Tuple2].
@@ -227,12 +194,8 @@ func SequenceSeqT2[
 	t1 GR_T1,
 	t2 GR_T2,
 ) GR_TUPLE2 {
-	return A.SequenceT2(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GIO_T1],
-		ApSeq[GR_TUPLE2, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GR_T2],
-		t1,
-		t2,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE2)
 }
 
 // SequenceParT2 converts 2 readers into a reader of a [T.Tuple2].
@@ -248,12 +211,8 @@ func SequenceParT2[
 	t1 GR_T1,
 	t2 GR_T2,
 ) GR_TUPLE2 {
-	return A.SequenceT2(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GIO_T1],
-		ApPar[GR_TUPLE2, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GR_T2],
-		t1,
-		t2,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE2)
 }
 
 // SequenceTuple2 converts a [T.Tuple2] of readers into a reader of a [T.Tuple2].
@@ -266,11 +225,8 @@ func SequenceTuple2[
 	GIO_T2 ~func() E.Either[error, T2],
 	T1,
 	T2 any](t T.Tuple2[GR_T1, GR_T2]) GR_TUPLE2 {
-	return A.SequenceTuple2(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GIO_T1],
-		Ap[GR_TUPLE2, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GR_T2],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE2)
 }
 
 // SequenceSeqTuple2 converts a [T.Tuple2] of readers into a reader of a [T.Tuple2].
@@ -283,11 +239,8 @@ func SequenceSeqTuple2[
 	GIO_T2 ~func() E.Either[error, T2],
 	T1,
 	T2 any](t T.Tuple2[GR_T1, GR_T2]) GR_TUPLE2 {
-	return A.SequenceTuple2(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GIO_T1],
-		ApSeq[GR_TUPLE2, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GR_T2],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE2)
 }
 
 // SequenceParTuple2 converts a [T.Tuple2] of readers into a reader of a [T.Tuple2].
@@ -300,11 +253,8 @@ func SequenceParTuple2[
 	GIO_T2 ~func() E.Either[error, T2],
 	T1,
 	T2 any](t T.Tuple2[GR_T1, GR_T2]) GR_TUPLE2 {
-	return A.SequenceTuple2(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GIO_T1],
-		ApPar[GR_TUPLE2, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GR_T2],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE2)
 }
 
 // TraverseTuple2 converts a [T.Tuple2] of readers into a reader of a [T.Tuple2].
@@ -321,15 +271,8 @@ func TraverseTuple2[
 	T1,
 	A2,
 	T2 any](f1 F1, f2 F2) func(T.Tuple2[A1, A2]) GR_TUPLE2 {
-	return func(t T.Tuple2[A1, A2]) GR_TUPLE2 {
-		return A.TraverseTuple2(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GIO_T1],
-			Ap[GR_TUPLE2, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GR_T2],
-			f1,
-			f2,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple2 converts a [T.Tuple2] of readers into a reader of a [T.Tuple2].
@@ -346,15 +289,8 @@ func TraverseSeqTuple2[
 	T1,
 	A2,
 	T2 any](f1 F1, f2 F2) func(T.Tuple2[A1, A2]) GR_TUPLE2 {
-	return func(t T.Tuple2[A1, A2]) GR_TUPLE2 {
-		return A.TraverseTuple2(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GIO_T1],
-			ApSeq[GR_TUPLE2, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GR_T2],
-			f1,
-			f2,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple2 converts a [T.Tuple2] of readers into a reader of a [T.Tuple2].
@@ -371,29 +307,22 @@ func TraverseParTuple2[
 	T1,
 	A2,
 	T2 any](f1 F1, f2 F2) func(T.Tuple2[A1, A2]) GR_TUPLE2 {
-	return func(t T.Tuple2[A1, A2]) GR_TUPLE2 {
-		return A.TraverseTuple2(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GIO_T1],
-			ApPar[GR_TUPLE2, func(context.Context) func() E.Either[error, func(T2) T.Tuple2[T1, T2]], GR_T2],
-			f1,
-			f2,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize3 converts a function with 3 parameters returning a tuple into a function with 3 parameters returning a [GRA]
 // The inverse function is [Uneitherize3]
 func Eitherize3[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, R any](f F) func(T0, T1, T2) GRA {
-	return RE.Eitherize3[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize3 converts a function with 3 parameters returning a [GRA] into a function with 3 parameters returning a tuple.
 // The first parameter is considered to be the [context.Context].
 func Uneitherize3[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, R any](f func(T0, T1, T2) GRA) F {
-	return func(c context.Context, t0 T0, t1 T1, t2 T2) (R, error) {
-		return E.UnwrapError(f(t0, t1, t2)(c)())
-	}
+	_ = "STUB: not implemented"
+	return *new(F)
 }
 
 // SequenceT3 converts 3 readers into a reader of a [T.Tuple3].
@@ -413,14 +342,8 @@ func SequenceT3[
 	t2 GR_T2,
 	t3 GR_T3,
 ) GR_TUPLE3 {
-	return A.SequenceT3(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GR_T2],
-		Ap[GR_TUPLE3, func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], GR_T3],
-		t1,
-		t2,
-		t3,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE3)
 }
 
 // SequenceSeqT3 converts 3 readers into a reader of a [T.Tuple3].
@@ -440,14 +363,8 @@ func SequenceSeqT3[
 	t2 GR_T2,
 	t3 GR_T3,
 ) GR_TUPLE3 {
-	return A.SequenceT3(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GR_T2],
-		ApSeq[GR_TUPLE3, func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], GR_T3],
-		t1,
-		t2,
-		t3,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE3)
 }
 
 // SequenceParT3 converts 3 readers into a reader of a [T.Tuple3].
@@ -467,14 +384,8 @@ func SequenceParT3[
 	t2 GR_T2,
 	t3 GR_T3,
 ) GR_TUPLE3 {
-	return A.SequenceT3(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GR_T2],
-		ApPar[GR_TUPLE3, func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], GR_T3],
-		t1,
-		t2,
-		t3,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE3)
 }
 
 // SequenceTuple3 converts a [T.Tuple3] of readers into a reader of a [T.Tuple3].
@@ -490,12 +401,8 @@ func SequenceTuple3[
 	T1,
 	T2,
 	T3 any](t T.Tuple3[GR_T1, GR_T2, GR_T3]) GR_TUPLE3 {
-	return A.SequenceTuple3(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GR_T2],
-		Ap[GR_TUPLE3, func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], GR_T3],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE3)
 }
 
 // SequenceSeqTuple3 converts a [T.Tuple3] of readers into a reader of a [T.Tuple3].
@@ -511,12 +418,8 @@ func SequenceSeqTuple3[
 	T1,
 	T2,
 	T3 any](t T.Tuple3[GR_T1, GR_T2, GR_T3]) GR_TUPLE3 {
-	return A.SequenceTuple3(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GR_T2],
-		ApSeq[GR_TUPLE3, func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], GR_T3],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE3)
 }
 
 // SequenceParTuple3 converts a [T.Tuple3] of readers into a reader of a [T.Tuple3].
@@ -532,12 +435,8 @@ func SequenceParTuple3[
 	T1,
 	T2,
 	T3 any](t T.Tuple3[GR_T1, GR_T2, GR_T3]) GR_TUPLE3 {
-	return A.SequenceTuple3(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GR_T2],
-		ApPar[GR_TUPLE3, func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], GR_T3],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE3)
 }
 
 // TraverseTuple3 converts a [T.Tuple3] of readers into a reader of a [T.Tuple3].
@@ -559,17 +458,8 @@ func TraverseTuple3[
 	T2,
 	A3,
 	T3 any](f1 F1, f2 F2, f3 F3) func(T.Tuple3[A1, A2, A3]) GR_TUPLE3 {
-	return func(t T.Tuple3[A1, A2, A3]) GR_TUPLE3 {
-		return A.TraverseTuple3(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GIO_T1],
-			Ap[func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GR_T2],
-			Ap[GR_TUPLE3, func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], GR_T3],
-			f1,
-			f2,
-			f3,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple3 converts a [T.Tuple3] of readers into a reader of a [T.Tuple3].
@@ -591,17 +481,8 @@ func TraverseSeqTuple3[
 	T2,
 	A3,
 	T3 any](f1 F1, f2 F2, f3 F3) func(T.Tuple3[A1, A2, A3]) GR_TUPLE3 {
-	return func(t T.Tuple3[A1, A2, A3]) GR_TUPLE3 {
-		return A.TraverseTuple3(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GIO_T1],
-			ApSeq[func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GR_T2],
-			ApSeq[GR_TUPLE3, func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], GR_T3],
-			f1,
-			f2,
-			f3,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple3 converts a [T.Tuple3] of readers into a reader of a [T.Tuple3].
@@ -623,31 +504,22 @@ func TraverseParTuple3[
 	T2,
 	A3,
 	T3 any](f1 F1, f2 F2, f3 F3) func(T.Tuple3[A1, A2, A3]) GR_TUPLE3 {
-	return func(t T.Tuple3[A1, A2, A3]) GR_TUPLE3 {
-		return A.TraverseTuple3(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GIO_T1],
-			ApPar[func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], func(context.Context) func() E.Either[error, func(T2) func(T3) T.Tuple3[T1, T2, T3]], GR_T2],
-			ApPar[GR_TUPLE3, func(context.Context) func() E.Either[error, func(T3) T.Tuple3[T1, T2, T3]], GR_T3],
-			f1,
-			f2,
-			f3,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize4 converts a function with 4 parameters returning a tuple into a function with 4 parameters returning a [GRA]
 // The inverse function is [Uneitherize4]
 func Eitherize4[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, R any](f F) func(T0, T1, T2, T3) GRA {
-	return RE.Eitherize4[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize4 converts a function with 4 parameters returning a [GRA] into a function with 4 parameters returning a tuple.
 // The first parameter is considered to be the [context.Context].
 func Uneitherize4[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, R any](f func(T0, T1, T2, T3) GRA) F {
-	return func(c context.Context, t0 T0, t1 T1, t2 T2, t3 T3) (R, error) {
-		return E.UnwrapError(f(t0, t1, t2, t3)(c)())
-	}
+	_ = "STUB: not implemented"
+	return *new(F)
 }
 
 // SequenceT4 converts 4 readers into a reader of a [T.Tuple4].
@@ -671,16 +543,8 @@ func SequenceT4[
 	t3 GR_T3,
 	t4 GR_T4,
 ) GR_TUPLE4 {
-	return A.SequenceT4(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T3],
-		Ap[GR_TUPLE4, func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T4],
-		t1,
-		t2,
-		t3,
-		t4,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE4)
 }
 
 // SequenceSeqT4 converts 4 readers into a reader of a [T.Tuple4].
@@ -704,16 +568,8 @@ func SequenceSeqT4[
 	t3 GR_T3,
 	t4 GR_T4,
 ) GR_TUPLE4 {
-	return A.SequenceT4(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T3],
-		ApSeq[GR_TUPLE4, func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T4],
-		t1,
-		t2,
-		t3,
-		t4,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE4)
 }
 
 // SequenceParT4 converts 4 readers into a reader of a [T.Tuple4].
@@ -737,16 +593,8 @@ func SequenceParT4[
 	t3 GR_T3,
 	t4 GR_T4,
 ) GR_TUPLE4 {
-	return A.SequenceT4(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T3],
-		ApPar[GR_TUPLE4, func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T4],
-		t1,
-		t2,
-		t3,
-		t4,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE4)
 }
 
 // SequenceTuple4 converts a [T.Tuple4] of readers into a reader of a [T.Tuple4].
@@ -765,13 +613,8 @@ func SequenceTuple4[
 	T2,
 	T3,
 	T4 any](t T.Tuple4[GR_T1, GR_T2, GR_T3, GR_T4]) GR_TUPLE4 {
-	return A.SequenceTuple4(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T3],
-		Ap[GR_TUPLE4, func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T4],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE4)
 }
 
 // SequenceSeqTuple4 converts a [T.Tuple4] of readers into a reader of a [T.Tuple4].
@@ -790,13 +633,8 @@ func SequenceSeqTuple4[
 	T2,
 	T3,
 	T4 any](t T.Tuple4[GR_T1, GR_T2, GR_T3, GR_T4]) GR_TUPLE4 {
-	return A.SequenceTuple4(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T3],
-		ApSeq[GR_TUPLE4, func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T4],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE4)
 }
 
 // SequenceParTuple4 converts a [T.Tuple4] of readers into a reader of a [T.Tuple4].
@@ -815,13 +653,8 @@ func SequenceParTuple4[
 	T2,
 	T3,
 	T4 any](t T.Tuple4[GR_T1, GR_T2, GR_T3, GR_T4]) GR_TUPLE4 {
-	return A.SequenceTuple4(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T3],
-		ApPar[GR_TUPLE4, func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T4],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE4)
 }
 
 // TraverseTuple4 converts a [T.Tuple4] of readers into a reader of a [T.Tuple4].
@@ -848,19 +681,8 @@ func TraverseTuple4[
 	T3,
 	A4,
 	T4 any](f1 F1, f2 F2, f3 F3, f4 F4) func(T.Tuple4[A1, A2, A3, A4]) GR_TUPLE4 {
-	return func(t T.Tuple4[A1, A2, A3, A4]) GR_TUPLE4 {
-		return A.TraverseTuple4(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GIO_T1],
-			Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T2],
-			Ap[func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T3],
-			Ap[GR_TUPLE4, func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T4],
-			f1,
-			f2,
-			f3,
-			f4,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple4 converts a [T.Tuple4] of readers into a reader of a [T.Tuple4].
@@ -887,19 +709,8 @@ func TraverseSeqTuple4[
 	T3,
 	A4,
 	T4 any](f1 F1, f2 F2, f3 F3, f4 F4) func(T.Tuple4[A1, A2, A3, A4]) GR_TUPLE4 {
-	return func(t T.Tuple4[A1, A2, A3, A4]) GR_TUPLE4 {
-		return A.TraverseTuple4(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GIO_T1],
-			ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T2],
-			ApSeq[func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T3],
-			ApSeq[GR_TUPLE4, func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T4],
-			f1,
-			f2,
-			f3,
-			f4,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple4 converts a [T.Tuple4] of readers into a reader of a [T.Tuple4].
@@ -926,33 +737,22 @@ func TraverseParTuple4[
 	T3,
 	A4,
 	T4 any](f1 F1, f2 F2, f3 F3, f4 F4) func(T.Tuple4[A1, A2, A3, A4]) GR_TUPLE4 {
-	return func(t T.Tuple4[A1, A2, A3, A4]) GR_TUPLE4 {
-		return A.TraverseTuple4(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GIO_T1],
-			ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T2],
-			ApPar[func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], func(context.Context) func() E.Either[error, func(T3) func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T3],
-			ApPar[GR_TUPLE4, func(context.Context) func() E.Either[error, func(T4) T.Tuple4[T1, T2, T3, T4]], GR_T4],
-			f1,
-			f2,
-			f3,
-			f4,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize5 converts a function with 5 parameters returning a tuple into a function with 5 parameters returning a [GRA]
 // The inverse function is [Uneitherize5]
 func Eitherize5[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3, T4) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, T4, R any](f F) func(T0, T1, T2, T3, T4) GRA {
-	return RE.Eitherize5[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize5 converts a function with 5 parameters returning a [GRA] into a function with 5 parameters returning a tuple.
 // The first parameter is considered to be the [context.Context].
 func Uneitherize5[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3, T4) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, T4, R any](f func(T0, T1, T2, T3, T4) GRA) F {
-	return func(c context.Context, t0 T0, t1 T1, t2 T2, t3 T3, t4 T4) (R, error) {
-		return E.UnwrapError(f(t0, t1, t2, t3, t4)(c)())
-	}
+	_ = "STUB: not implemented"
+	return *new(F)
 }
 
 // SequenceT5 converts 5 readers into a reader of a [T.Tuple5].
@@ -980,18 +780,8 @@ func SequenceT5[
 	t4 GR_T4,
 	t5 GR_T5,
 ) GR_TUPLE5 {
-	return A.SequenceT5(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T3],
-		Ap[func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T4],
-		Ap[GR_TUPLE5, func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T5],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE5)
 }
 
 // SequenceSeqT5 converts 5 readers into a reader of a [T.Tuple5].
@@ -1019,18 +809,8 @@ func SequenceSeqT5[
 	t4 GR_T4,
 	t5 GR_T5,
 ) GR_TUPLE5 {
-	return A.SequenceT5(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T3],
-		ApSeq[func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T4],
-		ApSeq[GR_TUPLE5, func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T5],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE5)
 }
 
 // SequenceParT5 converts 5 readers into a reader of a [T.Tuple5].
@@ -1058,18 +838,8 @@ func SequenceParT5[
 	t4 GR_T4,
 	t5 GR_T5,
 ) GR_TUPLE5 {
-	return A.SequenceT5(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T3],
-		ApPar[func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T4],
-		ApPar[GR_TUPLE5, func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T5],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE5)
 }
 
 // SequenceTuple5 converts a [T.Tuple5] of readers into a reader of a [T.Tuple5].
@@ -1091,14 +861,8 @@ func SequenceTuple5[
 	T3,
 	T4,
 	T5 any](t T.Tuple5[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5]) GR_TUPLE5 {
-	return A.SequenceTuple5(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T3],
-		Ap[func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T4],
-		Ap[GR_TUPLE5, func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T5],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE5)
 }
 
 // SequenceSeqTuple5 converts a [T.Tuple5] of readers into a reader of a [T.Tuple5].
@@ -1120,14 +884,8 @@ func SequenceSeqTuple5[
 	T3,
 	T4,
 	T5 any](t T.Tuple5[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5]) GR_TUPLE5 {
-	return A.SequenceTuple5(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T3],
-		ApSeq[func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T4],
-		ApSeq[GR_TUPLE5, func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T5],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE5)
 }
 
 // SequenceParTuple5 converts a [T.Tuple5] of readers into a reader of a [T.Tuple5].
@@ -1149,14 +907,8 @@ func SequenceParTuple5[
 	T3,
 	T4,
 	T5 any](t T.Tuple5[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5]) GR_TUPLE5 {
-	return A.SequenceTuple5(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T3],
-		ApPar[func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T4],
-		ApPar[GR_TUPLE5, func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T5],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE5)
 }
 
 // TraverseTuple5 converts a [T.Tuple5] of readers into a reader of a [T.Tuple5].
@@ -1188,21 +940,8 @@ func TraverseTuple5[
 	T4,
 	A5,
 	T5 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5) func(T.Tuple5[A1, A2, A3, A4, A5]) GR_TUPLE5 {
-	return func(t T.Tuple5[A1, A2, A3, A4, A5]) GR_TUPLE5 {
-		return A.TraverseTuple5(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GIO_T1],
-			Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T2],
-			Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T3],
-			Ap[func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T4],
-			Ap[GR_TUPLE5, func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T5],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple5 converts a [T.Tuple5] of readers into a reader of a [T.Tuple5].
@@ -1234,21 +973,8 @@ func TraverseSeqTuple5[
 	T4,
 	A5,
 	T5 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5) func(T.Tuple5[A1, A2, A3, A4, A5]) GR_TUPLE5 {
-	return func(t T.Tuple5[A1, A2, A3, A4, A5]) GR_TUPLE5 {
-		return A.TraverseTuple5(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GIO_T1],
-			ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T2],
-			ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T3],
-			ApSeq[func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T4],
-			ApSeq[GR_TUPLE5, func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T5],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple5 converts a [T.Tuple5] of readers into a reader of a [T.Tuple5].
@@ -1280,35 +1006,22 @@ func TraverseParTuple5[
 	T4,
 	A5,
 	T5 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5) func(T.Tuple5[A1, A2, A3, A4, A5]) GR_TUPLE5 {
-	return func(t T.Tuple5[A1, A2, A3, A4, A5]) GR_TUPLE5 {
-		return A.TraverseTuple5(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GIO_T1],
-			ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T2],
-			ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T3],
-			ApPar[func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], func(context.Context) func() E.Either[error, func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T4],
-			ApPar[GR_TUPLE5, func(context.Context) func() E.Either[error, func(T5) T.Tuple5[T1, T2, T3, T4, T5]], GR_T5],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize6 converts a function with 6 parameters returning a tuple into a function with 6 parameters returning a [GRA]
 // The inverse function is [Uneitherize6]
 func Eitherize6[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3, T4, T5) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, T4, T5, R any](f F) func(T0, T1, T2, T3, T4, T5) GRA {
-	return RE.Eitherize6[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize6 converts a function with 6 parameters returning a [GRA] into a function with 6 parameters returning a tuple.
 // The first parameter is considered to be the [context.Context].
 func Uneitherize6[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3, T4, T5) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, T4, T5, R any](f func(T0, T1, T2, T3, T4, T5) GRA) F {
-	return func(c context.Context, t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5) (R, error) {
-		return E.UnwrapError(f(t0, t1, t2, t3, t4, t5)(c)())
-	}
+	_ = "STUB: not implemented"
+	return *new(F)
 }
 
 // SequenceT6 converts 6 readers into a reader of a [T.Tuple6].
@@ -1340,20 +1053,8 @@ func SequenceT6[
 	t5 GR_T5,
 	t6 GR_T6,
 ) GR_TUPLE6 {
-	return A.SequenceT6(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T3],
-		Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T4],
-		Ap[func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T5],
-		Ap[GR_TUPLE6, func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T6],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE6)
 }
 
 // SequenceSeqT6 converts 6 readers into a reader of a [T.Tuple6].
@@ -1385,20 +1086,8 @@ func SequenceSeqT6[
 	t5 GR_T5,
 	t6 GR_T6,
 ) GR_TUPLE6 {
-	return A.SequenceT6(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T3],
-		ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T4],
-		ApSeq[func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T5],
-		ApSeq[GR_TUPLE6, func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T6],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE6)
 }
 
 // SequenceParT6 converts 6 readers into a reader of a [T.Tuple6].
@@ -1430,20 +1119,8 @@ func SequenceParT6[
 	t5 GR_T5,
 	t6 GR_T6,
 ) GR_TUPLE6 {
-	return A.SequenceT6(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T3],
-		ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T4],
-		ApPar[func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T5],
-		ApPar[GR_TUPLE6, func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T6],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE6)
 }
 
 // SequenceTuple6 converts a [T.Tuple6] of readers into a reader of a [T.Tuple6].
@@ -1468,15 +1145,8 @@ func SequenceTuple6[
 	T4,
 	T5,
 	T6 any](t T.Tuple6[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6]) GR_TUPLE6 {
-	return A.SequenceTuple6(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T3],
-		Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T4],
-		Ap[func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T5],
-		Ap[GR_TUPLE6, func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T6],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE6)
 }
 
 // SequenceSeqTuple6 converts a [T.Tuple6] of readers into a reader of a [T.Tuple6].
@@ -1501,15 +1171,8 @@ func SequenceSeqTuple6[
 	T4,
 	T5,
 	T6 any](t T.Tuple6[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6]) GR_TUPLE6 {
-	return A.SequenceTuple6(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T3],
-		ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T4],
-		ApSeq[func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T5],
-		ApSeq[GR_TUPLE6, func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T6],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE6)
 }
 
 // SequenceParTuple6 converts a [T.Tuple6] of readers into a reader of a [T.Tuple6].
@@ -1534,15 +1197,8 @@ func SequenceParTuple6[
 	T4,
 	T5,
 	T6 any](t T.Tuple6[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6]) GR_TUPLE6 {
-	return A.SequenceTuple6(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T3],
-		ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T4],
-		ApPar[func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T5],
-		ApPar[GR_TUPLE6, func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T6],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE6)
 }
 
 // TraverseTuple6 converts a [T.Tuple6] of readers into a reader of a [T.Tuple6].
@@ -1579,23 +1235,8 @@ func TraverseTuple6[
 	T5,
 	A6,
 	T6 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6) func(T.Tuple6[A1, A2, A3, A4, A5, A6]) GR_TUPLE6 {
-	return func(t T.Tuple6[A1, A2, A3, A4, A5, A6]) GR_TUPLE6 {
-		return A.TraverseTuple6(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GIO_T1],
-			Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T2],
-			Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T3],
-			Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T4],
-			Ap[func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T5],
-			Ap[GR_TUPLE6, func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T6],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple6 converts a [T.Tuple6] of readers into a reader of a [T.Tuple6].
@@ -1632,23 +1273,8 @@ func TraverseSeqTuple6[
 	T5,
 	A6,
 	T6 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6) func(T.Tuple6[A1, A2, A3, A4, A5, A6]) GR_TUPLE6 {
-	return func(t T.Tuple6[A1, A2, A3, A4, A5, A6]) GR_TUPLE6 {
-		return A.TraverseTuple6(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GIO_T1],
-			ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T2],
-			ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T3],
-			ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T4],
-			ApSeq[func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T5],
-			ApSeq[GR_TUPLE6, func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T6],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple6 converts a [T.Tuple6] of readers into a reader of a [T.Tuple6].
@@ -1685,37 +1311,22 @@ func TraverseParTuple6[
 	T5,
 	A6,
 	T6 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6) func(T.Tuple6[A1, A2, A3, A4, A5, A6]) GR_TUPLE6 {
-	return func(t T.Tuple6[A1, A2, A3, A4, A5, A6]) GR_TUPLE6 {
-		return A.TraverseTuple6(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GIO_T1],
-			ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T2],
-			ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T3],
-			ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T4],
-			ApPar[func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], func(context.Context) func() E.Either[error, func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T5],
-			ApPar[GR_TUPLE6, func(context.Context) func() E.Either[error, func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6]], GR_T6],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize7 converts a function with 7 parameters returning a tuple into a function with 7 parameters returning a [GRA]
 // The inverse function is [Uneitherize7]
 func Eitherize7[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, T4, T5, T6, R any](f F) func(T0, T1, T2, T3, T4, T5, T6) GRA {
-	return RE.Eitherize7[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize7 converts a function with 7 parameters returning a [GRA] into a function with 7 parameters returning a tuple.
 // The first parameter is considered to be the [context.Context].
 func Uneitherize7[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, T4, T5, T6, R any](f func(T0, T1, T2, T3, T4, T5, T6) GRA) F {
-	return func(c context.Context, t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6) (R, error) {
-		return E.UnwrapError(f(t0, t1, t2, t3, t4, t5, t6)(c)())
-	}
+	_ = "STUB: not implemented"
+	return *new(F)
 }
 
 // SequenceT7 converts 7 readers into a reader of a [T.Tuple7].
@@ -1751,22 +1362,8 @@ func SequenceT7[
 	t6 GR_T6,
 	t7 GR_T7,
 ) GR_TUPLE7 {
-	return A.SequenceT7(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T3],
-		Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T4],
-		Ap[func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T5],
-		Ap[func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T6],
-		Ap[GR_TUPLE7, func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T7],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE7)
 }
 
 // SequenceSeqT7 converts 7 readers into a reader of a [T.Tuple7].
@@ -1802,22 +1399,8 @@ func SequenceSeqT7[
 	t6 GR_T6,
 	t7 GR_T7,
 ) GR_TUPLE7 {
-	return A.SequenceT7(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T3],
-		ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T4],
-		ApSeq[func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T5],
-		ApSeq[func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T6],
-		ApSeq[GR_TUPLE7, func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T7],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE7)
 }
 
 // SequenceParT7 converts 7 readers into a reader of a [T.Tuple7].
@@ -1853,22 +1436,8 @@ func SequenceParT7[
 	t6 GR_T6,
 	t7 GR_T7,
 ) GR_TUPLE7 {
-	return A.SequenceT7(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T3],
-		ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T4],
-		ApPar[func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T5],
-		ApPar[func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T6],
-		ApPar[GR_TUPLE7, func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T7],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE7)
 }
 
 // SequenceTuple7 converts a [T.Tuple7] of readers into a reader of a [T.Tuple7].
@@ -1896,16 +1465,8 @@ func SequenceTuple7[
 	T5,
 	T6,
 	T7 any](t T.Tuple7[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6, GR_T7]) GR_TUPLE7 {
-	return A.SequenceTuple7(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T3],
-		Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T4],
-		Ap[func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T5],
-		Ap[func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T6],
-		Ap[GR_TUPLE7, func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T7],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE7)
 }
 
 // SequenceSeqTuple7 converts a [T.Tuple7] of readers into a reader of a [T.Tuple7].
@@ -1933,16 +1494,8 @@ func SequenceSeqTuple7[
 	T5,
 	T6,
 	T7 any](t T.Tuple7[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6, GR_T7]) GR_TUPLE7 {
-	return A.SequenceTuple7(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T3],
-		ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T4],
-		ApSeq[func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T5],
-		ApSeq[func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T6],
-		ApSeq[GR_TUPLE7, func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T7],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE7)
 }
 
 // SequenceParTuple7 converts a [T.Tuple7] of readers into a reader of a [T.Tuple7].
@@ -1970,16 +1523,8 @@ func SequenceParTuple7[
 	T5,
 	T6,
 	T7 any](t T.Tuple7[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6, GR_T7]) GR_TUPLE7 {
-	return A.SequenceTuple7(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T3],
-		ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T4],
-		ApPar[func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T5],
-		ApPar[func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T6],
-		ApPar[GR_TUPLE7, func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T7],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE7)
 }
 
 // TraverseTuple7 converts a [T.Tuple7] of readers into a reader of a [T.Tuple7].
@@ -2021,25 +1566,8 @@ func TraverseTuple7[
 	T6,
 	A7,
 	T7 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7) func(T.Tuple7[A1, A2, A3, A4, A5, A6, A7]) GR_TUPLE7 {
-	return func(t T.Tuple7[A1, A2, A3, A4, A5, A6, A7]) GR_TUPLE7 {
-		return A.TraverseTuple7(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GIO_T1],
-			Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T2],
-			Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T3],
-			Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T4],
-			Ap[func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T5],
-			Ap[func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T6],
-			Ap[GR_TUPLE7, func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T7],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple7 converts a [T.Tuple7] of readers into a reader of a [T.Tuple7].
@@ -2081,25 +1609,8 @@ func TraverseSeqTuple7[
 	T6,
 	A7,
 	T7 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7) func(T.Tuple7[A1, A2, A3, A4, A5, A6, A7]) GR_TUPLE7 {
-	return func(t T.Tuple7[A1, A2, A3, A4, A5, A6, A7]) GR_TUPLE7 {
-		return A.TraverseTuple7(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GIO_T1],
-			ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T2],
-			ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T3],
-			ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T4],
-			ApSeq[func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T5],
-			ApSeq[func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T6],
-			ApSeq[GR_TUPLE7, func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T7],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple7 converts a [T.Tuple7] of readers into a reader of a [T.Tuple7].
@@ -2141,39 +1652,22 @@ func TraverseParTuple7[
 	T6,
 	A7,
 	T7 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7) func(T.Tuple7[A1, A2, A3, A4, A5, A6, A7]) GR_TUPLE7 {
-	return func(t T.Tuple7[A1, A2, A3, A4, A5, A6, A7]) GR_TUPLE7 {
-		return A.TraverseTuple7(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GIO_T1],
-			ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T2],
-			ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T3],
-			ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T4],
-			ApPar[func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T5],
-			ApPar[func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], func(context.Context) func() E.Either[error, func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T6],
-			ApPar[GR_TUPLE7, func(context.Context) func() E.Either[error, func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7]], GR_T7],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize8 converts a function with 8 parameters returning a tuple into a function with 8 parameters returning a [GRA]
 // The inverse function is [Uneitherize8]
 func Eitherize8[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, T4, T5, T6, T7, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7) GRA {
-	return RE.Eitherize8[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize8 converts a function with 8 parameters returning a [GRA] into a function with 8 parameters returning a tuple.
 // The first parameter is considered to be the [context.Context].
 func Uneitherize8[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, T4, T5, T6, T7, R any](f func(T0, T1, T2, T3, T4, T5, T6, T7) GRA) F {
-	return func(c context.Context, t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7) (R, error) {
-		return E.UnwrapError(f(t0, t1, t2, t3, t4, t5, t6, t7)(c)())
-	}
+	_ = "STUB: not implemented"
+	return *new(F)
 }
 
 // SequenceT8 converts 8 readers into a reader of a [T.Tuple8].
@@ -2213,24 +1707,8 @@ func SequenceT8[
 	t7 GR_T7,
 	t8 GR_T8,
 ) GR_TUPLE8 {
-	return A.SequenceT8(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T3],
-		Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T4],
-		Ap[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T5],
-		Ap[func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T6],
-		Ap[func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T7],
-		Ap[GR_TUPLE8, func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T8],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE8)
 }
 
 // SequenceSeqT8 converts 8 readers into a reader of a [T.Tuple8].
@@ -2270,24 +1748,8 @@ func SequenceSeqT8[
 	t7 GR_T7,
 	t8 GR_T8,
 ) GR_TUPLE8 {
-	return A.SequenceT8(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T3],
-		ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T4],
-		ApSeq[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T5],
-		ApSeq[func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T6],
-		ApSeq[func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T7],
-		ApSeq[GR_TUPLE8, func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T8],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE8)
 }
 
 // SequenceParT8 converts 8 readers into a reader of a [T.Tuple8].
@@ -2327,24 +1789,8 @@ func SequenceParT8[
 	t7 GR_T7,
 	t8 GR_T8,
 ) GR_TUPLE8 {
-	return A.SequenceT8(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T3],
-		ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T4],
-		ApPar[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T5],
-		ApPar[func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T6],
-		ApPar[func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T7],
-		ApPar[GR_TUPLE8, func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T8],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE8)
 }
 
 // SequenceTuple8 converts a [T.Tuple8] of readers into a reader of a [T.Tuple8].
@@ -2375,17 +1821,8 @@ func SequenceTuple8[
 	T6,
 	T7,
 	T8 any](t T.Tuple8[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6, GR_T7, GR_T8]) GR_TUPLE8 {
-	return A.SequenceTuple8(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T3],
-		Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T4],
-		Ap[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T5],
-		Ap[func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T6],
-		Ap[func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T7],
-		Ap[GR_TUPLE8, func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T8],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE8)
 }
 
 // SequenceSeqTuple8 converts a [T.Tuple8] of readers into a reader of a [T.Tuple8].
@@ -2416,17 +1853,8 @@ func SequenceSeqTuple8[
 	T6,
 	T7,
 	T8 any](t T.Tuple8[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6, GR_T7, GR_T8]) GR_TUPLE8 {
-	return A.SequenceTuple8(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T3],
-		ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T4],
-		ApSeq[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T5],
-		ApSeq[func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T6],
-		ApSeq[func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T7],
-		ApSeq[GR_TUPLE8, func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T8],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE8)
 }
 
 // SequenceParTuple8 converts a [T.Tuple8] of readers into a reader of a [T.Tuple8].
@@ -2457,17 +1885,8 @@ func SequenceParTuple8[
 	T6,
 	T7,
 	T8 any](t T.Tuple8[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6, GR_T7, GR_T8]) GR_TUPLE8 {
-	return A.SequenceTuple8(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T3],
-		ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T4],
-		ApPar[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T5],
-		ApPar[func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T6],
-		ApPar[func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T7],
-		ApPar[GR_TUPLE8, func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T8],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE8)
 }
 
 // TraverseTuple8 converts a [T.Tuple8] of readers into a reader of a [T.Tuple8].
@@ -2514,27 +1933,8 @@ func TraverseTuple8[
 	T7,
 	A8,
 	T8 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8) func(T.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) GR_TUPLE8 {
-	return func(t T.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) GR_TUPLE8 {
-		return A.TraverseTuple8(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GIO_T1],
-			Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T2],
-			Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T3],
-			Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T4],
-			Ap[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T5],
-			Ap[func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T6],
-			Ap[func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T7],
-			Ap[GR_TUPLE8, func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T8],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple8 converts a [T.Tuple8] of readers into a reader of a [T.Tuple8].
@@ -2581,27 +1981,8 @@ func TraverseSeqTuple8[
 	T7,
 	A8,
 	T8 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8) func(T.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) GR_TUPLE8 {
-	return func(t T.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) GR_TUPLE8 {
-		return A.TraverseTuple8(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GIO_T1],
-			ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T2],
-			ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T3],
-			ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T4],
-			ApSeq[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T5],
-			ApSeq[func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T6],
-			ApSeq[func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T7],
-			ApSeq[GR_TUPLE8, func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T8],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple8 converts a [T.Tuple8] of readers into a reader of a [T.Tuple8].
@@ -2648,41 +2029,22 @@ func TraverseParTuple8[
 	T7,
 	A8,
 	T8 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8) func(T.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) GR_TUPLE8 {
-	return func(t T.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) GR_TUPLE8 {
-		return A.TraverseTuple8(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GIO_T1],
-			ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T2],
-			ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T3],
-			ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T4],
-			ApPar[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T5],
-			ApPar[func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T6],
-			ApPar[func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], func(context.Context) func() E.Either[error, func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T7],
-			ApPar[GR_TUPLE8, func(context.Context) func() E.Either[error, func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]], GR_T8],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize9 converts a function with 9 parameters returning a tuple into a function with 9 parameters returning a [GRA]
 // The inverse function is [Uneitherize9]
 func Eitherize9[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7, T8) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, T4, T5, T6, T7, T8, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8) GRA {
-	return RE.Eitherize9[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize9 converts a function with 9 parameters returning a [GRA] into a function with 9 parameters returning a tuple.
 // The first parameter is considered to be the [context.Context].
 func Uneitherize9[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7, T8) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, T4, T5, T6, T7, T8, R any](f func(T0, T1, T2, T3, T4, T5, T6, T7, T8) GRA) F {
-	return func(c context.Context, t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8) (R, error) {
-		return E.UnwrapError(f(t0, t1, t2, t3, t4, t5, t6, t7, t8)(c)())
-	}
+	_ = "STUB: not implemented"
+	return *new(F)
 }
 
 // SequenceT9 converts 9 readers into a reader of a [T.Tuple9].
@@ -2726,26 +2088,8 @@ func SequenceT9[
 	t8 GR_T8,
 	t9 GR_T9,
 ) GR_TUPLE9 {
-	return A.SequenceT9(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T3],
-		Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T4],
-		Ap[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T5],
-		Ap[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T6],
-		Ap[func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T7],
-		Ap[func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T8],
-		Ap[GR_TUPLE9, func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T9],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE9)
 }
 
 // SequenceSeqT9 converts 9 readers into a reader of a [T.Tuple9].
@@ -2789,26 +2133,8 @@ func SequenceSeqT9[
 	t8 GR_T8,
 	t9 GR_T9,
 ) GR_TUPLE9 {
-	return A.SequenceT9(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T3],
-		ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T4],
-		ApSeq[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T5],
-		ApSeq[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T6],
-		ApSeq[func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T7],
-		ApSeq[func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T8],
-		ApSeq[GR_TUPLE9, func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T9],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE9)
 }
 
 // SequenceParT9 converts 9 readers into a reader of a [T.Tuple9].
@@ -2852,26 +2178,8 @@ func SequenceParT9[
 	t8 GR_T8,
 	t9 GR_T9,
 ) GR_TUPLE9 {
-	return A.SequenceT9(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T3],
-		ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T4],
-		ApPar[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T5],
-		ApPar[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T6],
-		ApPar[func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T7],
-		ApPar[func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T8],
-		ApPar[GR_TUPLE9, func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T9],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE9)
 }
 
 // SequenceTuple9 converts a [T.Tuple9] of readers into a reader of a [T.Tuple9].
@@ -2905,18 +2213,8 @@ func SequenceTuple9[
 	T7,
 	T8,
 	T9 any](t T.Tuple9[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6, GR_T7, GR_T8, GR_T9]) GR_TUPLE9 {
-	return A.SequenceTuple9(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T3],
-		Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T4],
-		Ap[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T5],
-		Ap[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T6],
-		Ap[func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T7],
-		Ap[func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T8],
-		Ap[GR_TUPLE9, func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T9],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE9)
 }
 
 // SequenceSeqTuple9 converts a [T.Tuple9] of readers into a reader of a [T.Tuple9].
@@ -2950,18 +2248,8 @@ func SequenceSeqTuple9[
 	T7,
 	T8,
 	T9 any](t T.Tuple9[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6, GR_T7, GR_T8, GR_T9]) GR_TUPLE9 {
-	return A.SequenceTuple9(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T3],
-		ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T4],
-		ApSeq[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T5],
-		ApSeq[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T6],
-		ApSeq[func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T7],
-		ApSeq[func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T8],
-		ApSeq[GR_TUPLE9, func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T9],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE9)
 }
 
 // SequenceParTuple9 converts a [T.Tuple9] of readers into a reader of a [T.Tuple9].
@@ -2995,18 +2283,8 @@ func SequenceParTuple9[
 	T7,
 	T8,
 	T9 any](t T.Tuple9[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6, GR_T7, GR_T8, GR_T9]) GR_TUPLE9 {
-	return A.SequenceTuple9(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T3],
-		ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T4],
-		ApPar[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T5],
-		ApPar[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T6],
-		ApPar[func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T7],
-		ApPar[func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T8],
-		ApPar[GR_TUPLE9, func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T9],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE9)
 }
 
 // TraverseTuple9 converts a [T.Tuple9] of readers into a reader of a [T.Tuple9].
@@ -3058,29 +2336,8 @@ func TraverseTuple9[
 	T8,
 	A9,
 	T9 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9) func(T.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) GR_TUPLE9 {
-	return func(t T.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) GR_TUPLE9 {
-		return A.TraverseTuple9(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GIO_T1],
-			Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T2],
-			Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T3],
-			Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T4],
-			Ap[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T5],
-			Ap[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T6],
-			Ap[func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T7],
-			Ap[func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T8],
-			Ap[GR_TUPLE9, func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T9],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple9 converts a [T.Tuple9] of readers into a reader of a [T.Tuple9].
@@ -3132,29 +2389,8 @@ func TraverseSeqTuple9[
 	T8,
 	A9,
 	T9 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9) func(T.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) GR_TUPLE9 {
-	return func(t T.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) GR_TUPLE9 {
-		return A.TraverseTuple9(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GIO_T1],
-			ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T2],
-			ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T3],
-			ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T4],
-			ApSeq[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T5],
-			ApSeq[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T6],
-			ApSeq[func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T7],
-			ApSeq[func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T8],
-			ApSeq[GR_TUPLE9, func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T9],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple9 converts a [T.Tuple9] of readers into a reader of a [T.Tuple9].
@@ -3206,43 +2442,22 @@ func TraverseParTuple9[
 	T8,
 	A9,
 	T9 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9) func(T.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) GR_TUPLE9 {
-	return func(t T.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) GR_TUPLE9 {
-		return A.TraverseTuple9(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GIO_T1],
-			ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T2],
-			ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T3],
-			ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T4],
-			ApPar[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T5],
-			ApPar[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T6],
-			ApPar[func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T7],
-			ApPar[func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], func(context.Context) func() E.Either[error, func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T8],
-			ApPar[GR_TUPLE9, func(context.Context) func() E.Either[error, func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]], GR_T9],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize10 converts a function with 10 parameters returning a tuple into a function with 10 parameters returning a [GRA]
 // The inverse function is [Uneitherize10]
 func Eitherize10[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) GRA {
-	return RE.Eitherize10[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize10 converts a function with 10 parameters returning a [GRA] into a function with 10 parameters returning a tuple.
 // The first parameter is considered to be the [context.Context].
 func Uneitherize10[GRA ~func(context.Context) GIOA, F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) (R, error), GIOA ~func() E.Either[error, R], T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, R any](f func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) GRA) F {
-	return func(c context.Context, t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9) (R, error) {
-		return E.UnwrapError(f(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9)(c)())
-	}
+	_ = "STUB: not implemented"
+	return *new(F)
 }
 
 // SequenceT10 converts 10 readers into a reader of a [T.Tuple10].
@@ -3290,28 +2505,8 @@ func SequenceT10[
 	t9 GR_T9,
 	t10 GR_T10,
 ) GR_TUPLE10 {
-	return A.SequenceT10(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T3],
-		Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T4],
-		Ap[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T5],
-		Ap[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T6],
-		Ap[func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T7],
-		Ap[func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T8],
-		Ap[func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T9],
-		Ap[GR_TUPLE10, func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T10],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-		t10,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE10)
 }
 
 // SequenceSeqT10 converts 10 readers into a reader of a [T.Tuple10].
@@ -3359,28 +2554,8 @@ func SequenceSeqT10[
 	t9 GR_T9,
 	t10 GR_T10,
 ) GR_TUPLE10 {
-	return A.SequenceT10(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T3],
-		ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T4],
-		ApSeq[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T5],
-		ApSeq[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T6],
-		ApSeq[func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T7],
-		ApSeq[func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T8],
-		ApSeq[func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T9],
-		ApSeq[GR_TUPLE10, func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T10],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-		t10,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE10)
 }
 
 // SequenceParT10 converts 10 readers into a reader of a [T.Tuple10].
@@ -3428,28 +2603,8 @@ func SequenceParT10[
 	t9 GR_T9,
 	t10 GR_T10,
 ) GR_TUPLE10 {
-	return A.SequenceT10(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T3],
-		ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T4],
-		ApPar[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T5],
-		ApPar[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T6],
-		ApPar[func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T7],
-		ApPar[func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T8],
-		ApPar[func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T9],
-		ApPar[GR_TUPLE10, func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T10],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-		t10,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE10)
 }
 
 // SequenceTuple10 converts a [T.Tuple10] of readers into a reader of a [T.Tuple10].
@@ -3486,19 +2641,8 @@ func SequenceTuple10[
 	T8,
 	T9,
 	T10 any](t T.Tuple10[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6, GR_T7, GR_T8, GR_T9, GR_T10]) GR_TUPLE10 {
-	return A.SequenceTuple10(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GIO_T1],
-		Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T2],
-		Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T3],
-		Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T4],
-		Ap[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T5],
-		Ap[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T6],
-		Ap[func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T7],
-		Ap[func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T8],
-		Ap[func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T9],
-		Ap[GR_TUPLE10, func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T10],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE10)
 }
 
 // SequenceSeqTuple10 converts a [T.Tuple10] of readers into a reader of a [T.Tuple10].
@@ -3535,19 +2679,8 @@ func SequenceSeqTuple10[
 	T8,
 	T9,
 	T10 any](t T.Tuple10[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6, GR_T7, GR_T8, GR_T9, GR_T10]) GR_TUPLE10 {
-	return A.SequenceTuple10(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GIO_T1],
-		ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T2],
-		ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T3],
-		ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T4],
-		ApSeq[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T5],
-		ApSeq[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T6],
-		ApSeq[func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T7],
-		ApSeq[func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T8],
-		ApSeq[func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T9],
-		ApSeq[GR_TUPLE10, func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T10],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE10)
 }
 
 // SequenceParTuple10 converts a [T.Tuple10] of readers into a reader of a [T.Tuple10].
@@ -3584,19 +2717,8 @@ func SequenceParTuple10[
 	T8,
 	T9,
 	T10 any](t T.Tuple10[GR_T1, GR_T2, GR_T3, GR_T4, GR_T5, GR_T6, GR_T7, GR_T8, GR_T9, GR_T10]) GR_TUPLE10 {
-	return A.SequenceTuple10(
-		Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GIO_T1],
-		ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T2],
-		ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T3],
-		ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T4],
-		ApPar[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T5],
-		ApPar[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T6],
-		ApPar[func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T7],
-		ApPar[func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T8],
-		ApPar[func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T9],
-		ApPar[GR_TUPLE10, func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T10],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return *new(GR_TUPLE10)
 }
 
 // TraverseTuple10 converts a [T.Tuple10] of readers into a reader of a [T.Tuple10].
@@ -3653,31 +2775,8 @@ func TraverseTuple10[
 	T9,
 	A10,
 	T10 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10) func(T.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) GR_TUPLE10 {
-	return func(t T.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) GR_TUPLE10 {
-		return A.TraverseTuple10(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GIO_T1],
-			Ap[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T2],
-			Ap[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T3],
-			Ap[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T4],
-			Ap[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T5],
-			Ap[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T6],
-			Ap[func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T7],
-			Ap[func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T8],
-			Ap[func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T9],
-			Ap[GR_TUPLE10, func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T10],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			f10,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple10 converts a [T.Tuple10] of readers into a reader of a [T.Tuple10].
@@ -3734,31 +2833,8 @@ func TraverseSeqTuple10[
 	T9,
 	A10,
 	T10 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10) func(T.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) GR_TUPLE10 {
-	return func(t T.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) GR_TUPLE10 {
-		return A.TraverseTuple10(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GIO_T1],
-			ApSeq[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T2],
-			ApSeq[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T3],
-			ApSeq[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T4],
-			ApSeq[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T5],
-			ApSeq[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T6],
-			ApSeq[func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T7],
-			ApSeq[func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T8],
-			ApSeq[func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T9],
-			ApSeq[GR_TUPLE10, func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T10],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			f10,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple10 converts a [T.Tuple10] of readers into a reader of a [T.Tuple10].
@@ -3815,29 +2891,6 @@ func TraverseParTuple10[
 	T9,
 	A10,
 	T10 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10) func(T.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) GR_TUPLE10 {
-	return func(t T.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) GR_TUPLE10 {
-		return A.TraverseTuple10(
-			Map[GR_T1, func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GIO_T1],
-			ApPar[func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T2],
-			ApPar[func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T3],
-			ApPar[func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T4],
-			ApPar[func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T5],
-			ApPar[func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T6],
-			ApPar[func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T7],
-			ApPar[func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T8],
-			ApPar[func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], func(context.Context) func() E.Either[error, func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T9],
-			ApPar[GR_TUPLE10, func(context.Context) func() E.Either[error, func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]], GR_T10],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			f10,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,12 +16,11 @@
 package either
 
 import (
-	ET "github.com/IBM/fp-go/either"
 	L "github.com/IBM/fp-go/optics/lens"
-	LG "github.com/IBM/fp-go/optics/lens/generic"
 	T "github.com/IBM/fp-go/optics/traversal/either"
 )
 
 func AsTraversal[E, S, A any]() func(L.Lens[S, A]) T.Traversal[E, S, A] {
-	return LG.AsTraversal[T.Traversal[E, S, A]](ET.MonadMap[E, A, S])
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -128,6 +128,4 @@ var (
 // panics or returns an error, providing safe resource management in a functional style.
 //
 //go:inline
-func WithTempFile[A any](f Kleisli[*os.File, A]) IOResult[A] {
-	return file.WithTempFile(f)
-}
+func WithTempFile[A any](f Kleisli[*os.File, A]) IOResult[A] { _ = "STUB: not implemented"; return nil }

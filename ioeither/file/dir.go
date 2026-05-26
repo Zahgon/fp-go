@@ -23,14 +23,12 @@ import (
 
 // MkdirAll create a sequence of directories, see [os.MkdirAll]
 func MkdirAll(path string, perm os.FileMode) IOE.IOEither[error, string] {
-	return IOE.TryCatchError(func() (string, error) {
-		return path, os.MkdirAll(path, perm)
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Mkdir create a directory, see [os.Mkdir]
 func Mkdir(path string, perm os.FileMode) IOE.IOEither[error, string] {
-	return IOE.TryCatchError(func() (string, error) {
-		return path, os.Mkdir(path, perm)
-	})
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -24,6 +24,4 @@ type (
 )
 
 // AltSemigroup is a [Semigroup] that tries the first item and then the second one using an alternative
-func AltSemigroup[A any]() Semigroup[A] {
-	return itereither.AltSemigroup[error, A]()
-}
+func AltSemigroup[A any]() Semigroup[A] { _ = "STUB: not implemented"; return nil }

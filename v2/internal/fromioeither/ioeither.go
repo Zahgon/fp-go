@@ -17,8 +17,6 @@ package fromioeither
 
 import (
 	ET "github.com/IBM/fp-go/v2/either"
-	F "github.com/IBM/fp-go/v2/function"
-	C "github.com/IBM/fp-go/v2/internal/chain"
 )
 
 func MonadChainFirstIOEitherK[GIOB ~func() ET.Either[E, B], E, A, B, HKTA, HKTB any](
@@ -26,8 +24,9 @@ func MonadChainFirstIOEitherK[GIOB ~func() ET.Either[E, B], E, A, B, HKTA, HKTB 
 	mmap func(HKTB, func(B) A) HKTA,
 	fromio func(GIOB) HKTB,
 	first HKTA, f func(A) GIOB) HKTA {
+	_ = "STUB: not implemented"
 	// chain
-	return C.MonadChainFirst(mchain, mmap, first, F.Flow2(f, fromio))
+	return *new(HKTA)
 }
 
 func ChainFirstIOEitherK[GIOB ~func() ET.Either[E, B], E, A, B, HKTA, HKTB any](
@@ -35,22 +34,25 @@ func ChainFirstIOEitherK[GIOB ~func() ET.Either[E, B], E, A, B, HKTA, HKTB any](
 	mmap func(func(B) A) func(HKTB) HKTA,
 	fromio func(GIOB) HKTB,
 	f func(A) GIOB) func(HKTA) HKTA {
+	_ = "STUB: not implemented"
 	// chain
-	return C.ChainFirst(mchain, mmap, F.Flow2(f, fromio))
+	return nil
 }
 
 func MonadChainIOEitherK[GIOB ~func() ET.Either[E, B], E, A, B, HKTA, HKTB any](
 	mchain func(HKTA, func(A) HKTB) HKTB,
 	fromio func(GIOB) HKTB,
 	first HKTA, f func(A) GIOB) HKTB {
+	_ = "STUB: not implemented"
 	// chain
-	return C.MonadChain[A, B](mchain, first, F.Flow2(f, fromio))
+	return *new(HKTB)
 }
 
 func ChainIOEitherK[GIOB ~func() ET.Either[E, B], E, A, B, HKTA, HKTB any](
 	mchain func(func(A) HKTB) func(HKTA) HKTB,
 	fromio func(GIOB) HKTB,
 	f func(A) GIOB) func(HKTA) HKTB {
+	_ = "STUB: not implemented"
 	// chain
-	return C.Chain[A, B](mchain, F.Flow2(f, fromio))
+	return nil
 }

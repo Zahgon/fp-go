@@ -16,8 +16,6 @@
 package utils
 
 import (
-	"fmt"
-
 	F "github.com/IBM/fp-go/v2/function"
 )
 
@@ -54,6 +52,4 @@ var (
 	})
 )
 
-func GetFullName(s WithGivenName) string {
-	return fmt.Sprintf("%s %s", s.GivenName, s.LastName)
-}
+func GetFullName(s WithGivenName) string { _ = "STUB: not implemented"; return "" }

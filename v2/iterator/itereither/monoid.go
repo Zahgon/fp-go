@@ -27,10 +27,6 @@ type (
 func ApplicativeMonoid[E, A any](
 	m monoid.Monoid[A],
 ) Monoid[E, A] {
-	return monoid.ApplicativeMonoid(
-		MonadOf[E, A],
-		MonadMap[E, A, func(A) A],
-		MonadAp[A, E, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

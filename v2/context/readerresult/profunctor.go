@@ -18,7 +18,6 @@ package readerresult
 import (
 	"context"
 
-	"github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/pair"
 	RR "github.com/IBM/fp-go/v2/readerresult"
 )
@@ -51,10 +50,8 @@ import (
 //
 //go:inline
 func Promap[R, A, B any](f pair.Kleisli[context.CancelFunc, R, context.Context], g func(A) B) RR.Kleisli[R, ReaderResult[A], B] {
-	return function.Flow2(
-		Local[A](f),
-		RR.Map[R](g),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Contramap changes the context during the execution of a ReaderResult.
@@ -79,39 +76,36 @@ func Promap[R, A, B any](f pair.Kleisli[context.CancelFunc, R, context.Context],
 //
 //go:inline
 func Contramap[A, R any](f pair.Kleisli[context.CancelFunc, R, context.Context]) RR.Kleisli[R, ReaderResult[A], A] {
-	return Local[A](f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Local changes the context during the execution of a ReaderResult.
+	// This allows you to modify the context before passing it to a ReaderResult computation.
+	//
+	// See: https://github.com/fantasyland/fantasy-land?tab=readme-ov-file#profunctor
+	//
+	// Local is particularly useful for:
+	//   - Adding values to the context
+	//   - Setting timeouts or deadlines
+	//   - Modifying context metadata
+	//
+	// The function f returns both a new context and a CancelFunc. The CancelFunc is automatically
+	// called (via defer) after the ReaderResult computation completes to ensure proper cleanup.
+	//
+	// Type Parameters:
+	//   - A: The result type (unchanged)
+	//   - R: The input environment type that f transforms into context.Context
+	//
+	// Parameters:
+	//   - f: Function to transform the input environment R into context.Context, returning a new context and CancelFunc
+	//
+	// Returns:
+	//   - A Kleisli arrow that takes a ReaderResult[A] and returns a function from R to A
+	//
+	// Note: When R is context.Context, this simplifies to an Operator[A, A]
 }
 
-// Local changes the context during the execution of a ReaderResult.
-// This allows you to modify the context before passing it to a ReaderResult computation.
-//
-// See: https://github.com/fantasyland/fantasy-land?tab=readme-ov-file#profunctor
-//
-// Local is particularly useful for:
-//   - Adding values to the context
-//   - Setting timeouts or deadlines
-//   - Modifying context metadata
-//
-// The function f returns both a new context and a CancelFunc. The CancelFunc is automatically
-// called (via defer) after the ReaderResult computation completes to ensure proper cleanup.
-//
-// Type Parameters:
-//   - A: The result type (unchanged)
-//   - R: The input environment type that f transforms into context.Context
-//
-// Parameters:
-//   - f: Function to transform the input environment R into context.Context, returning a new context and CancelFunc
-//
-// Returns:
-//   - A Kleisli arrow that takes a ReaderResult[A] and returns a function from R to A
-//
-// Note: When R is context.Context, this simplifies to an Operator[A, A]
 func Local[A, R any](f pair.Kleisli[context.CancelFunc, R, context.Context]) RR.Kleisli[R, ReaderResult[A], A] {
-	return func(rr ReaderResult[A]) RR.ReaderResult[R, A] {
-		return func(r R) Result[A] {
-			otherCancel, otherCtx := pair.Unpack(f(r))
-			defer otherCancel()
-			return rr(otherCtx)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

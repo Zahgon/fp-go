@@ -19,9 +19,6 @@ import (
 	"context"
 
 	E "github.com/IBM/fp-go/either"
-	F "github.com/IBM/fp-go/function"
-	RA "github.com/IBM/fp-go/internal/array"
-	RR "github.com/IBM/fp-go/internal/record"
 )
 
 // MonadTraverseArray transforms an array
@@ -33,14 +30,8 @@ func MonadTraverseArray[
 	GIOB ~func() E.Either[error, B],
 	BS ~[]B,
 	A, B any](as AS, f func(A) GRB) GRBS {
-
-	return RA.MonadTraverse[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		Ap[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		as, f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GRBS)
 }
 
 // TraverseArray transforms an array
@@ -52,14 +43,8 @@ func TraverseArray[
 	GIOB ~func() E.Either[error, B],
 	BS ~[]B,
 	A, B any](f func(A) GRB) func(AS) GRBS {
-
-	return RA.Traverse[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		Ap[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms an array
@@ -71,14 +56,8 @@ func TraverseArrayWithIndex[
 	GIOB ~func() E.Either[error, B],
 	BS ~[]B,
 	A, B any](f func(int, A) GRB) func(AS) GRBS {
-
-	return RA.TraverseWithIndex[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		Ap[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts a homogeneous sequence of either into an either of sequence
@@ -90,8 +69,8 @@ func SequenceArray[
 	GIOAS ~func() E.Either[error, AS],
 	GIOA ~func() E.Either[error, A],
 	A any](ma GAS) GRAS {
-
-	return MonadTraverseArray[GAS, GRAS](ma, F.Identity[GRA])
+	_ = "STUB: not implemented"
+	return *new(GRAS)
 }
 
 // MonadTraverseRecord transforms a record
@@ -104,14 +83,8 @@ func MonadTraverseRecord[K comparable,
 	BS ~map[K]B,
 
 	A, B any](ma AS, f func(A) GRB) GRBS {
-
-	return RR.MonadTraverse[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		Ap[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		ma, f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GRBS)
 }
 
 // TraverseRecord transforms a record
@@ -124,14 +97,8 @@ func TraverseRecord[K comparable,
 	BS ~map[K]B,
 
 	A, B any](f func(A) GRB) func(AS) GRBS {
-
-	return RR.Traverse[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		Ap[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndex transforms a record
@@ -144,14 +111,8 @@ func TraverseRecordWithIndex[K comparable,
 	BS ~map[K]B,
 
 	A, B any](f func(K, A) GRB) func(AS) GRBS {
-
-	return RR.TraverseWithIndex[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		Ap[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecord converts a homogeneous sequence of either into an either of sequence
@@ -163,8 +124,8 @@ func SequenceRecord[K comparable,
 	GIOAS ~func() E.Either[error, AS],
 	GIOA ~func() E.Either[error, A],
 	A any](ma GAS) GRAS {
-
-	return MonadTraverseRecord[K, GAS, GRAS](ma, F.Identity[GRA])
+	_ = "STUB: not implemented"
+	return *new(GRAS)
 }
 
 // MonadTraverseArraySeq transforms an array
@@ -176,14 +137,8 @@ func MonadTraverseArraySeq[
 	GIOB ~func() E.Either[error, B],
 	BS ~[]B,
 	A, B any](as AS, f func(A) GRB) GRBS {
-
-	return RA.MonadTraverse[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		ApSeq[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		as, f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GRBS)
 }
 
 // TraverseArraySeq transforms an array
@@ -195,14 +150,8 @@ func TraverseArraySeq[
 	GIOB ~func() E.Either[error, B],
 	BS ~[]B,
 	A, B any](f func(A) GRB) func(AS) GRBS {
-
-	return RA.Traverse[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		ApSeq[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndexSeq transforms an array
@@ -214,14 +163,8 @@ func TraverseArrayWithIndexSeq[
 	GIOB ~func() E.Either[error, B],
 	BS ~[]B,
 	A, B any](f func(int, A) GRB) func(AS) GRBS {
-
-	return RA.TraverseWithIndex[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		ApSeq[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArraySeq converts a homogeneous sequence of either into an either of sequence
@@ -233,8 +176,8 @@ func SequenceArraySeq[
 	GIOAS ~func() E.Either[error, AS],
 	GIOA ~func() E.Either[error, A],
 	A any](ma GAS) GRAS {
-
-	return MonadTraverseArraySeq[GAS, GRAS](ma, F.Identity[GRA])
+	_ = "STUB: not implemented"
+	return *new(GRAS)
 }
 
 // MonadTraverseRecordSeq transforms a record
@@ -247,14 +190,8 @@ func MonadTraverseRecordSeq[K comparable,
 	BS ~map[K]B,
 
 	A, B any](ma AS, f func(A) GRB) GRBS {
-
-	return RR.MonadTraverse[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		ApSeq[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		ma, f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GRBS)
 }
 
 // TraverseRecordSeq transforms a record
@@ -267,14 +204,8 @@ func TraverseRecordSeq[K comparable,
 	BS ~map[K]B,
 
 	A, B any](f func(A) GRB) func(AS) GRBS {
-
-	return RR.Traverse[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		ApSeq[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndexSeq transforms a record
@@ -287,14 +218,8 @@ func TraverseRecordWithIndexSeq[K comparable,
 	BS ~map[K]B,
 
 	A, B any](f func(K, A) GRB) func(AS) GRBS {
-
-	return RR.TraverseWithIndex[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		ApSeq[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecordSeq converts a homogeneous sequence of either into an either of sequence
@@ -306,8 +231,8 @@ func SequenceRecordSeq[K comparable,
 	GIOAS ~func() E.Either[error, AS],
 	GIOA ~func() E.Either[error, A],
 	A any](ma GAS) GRAS {
-
-	return MonadTraverseRecordSeq[K, GAS, GRAS](ma, F.Identity[GRA])
+	_ = "STUB: not implemented"
+	return *new(GRAS)
 }
 
 // MonadTraverseArrayPar transforms an array
@@ -319,14 +244,8 @@ func MonadTraverseArrayPar[
 	GIOB ~func() E.Either[error, B],
 	BS ~[]B,
 	A, B any](as AS, f func(A) GRB) GRBS {
-
-	return RA.MonadTraverse[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		ApPar[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		as, f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GRBS)
 }
 
 // TraverseArrayPar transforms an array
@@ -338,14 +257,8 @@ func TraverseArrayPar[
 	GIOB ~func() E.Either[error, B],
 	BS ~[]B,
 	A, B any](f func(A) GRB) func(AS) GRBS {
-
-	return RA.Traverse[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		ApPar[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndexPar transforms an array
@@ -357,14 +270,8 @@ func TraverseArrayWithIndexPar[
 	GIOB ~func() E.Either[error, B],
 	BS ~[]B,
 	A, B any](f func(int, A) GRB) func(AS) GRBS {
-
-	return RA.TraverseWithIndex[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		ApPar[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArrayPar converts a homogeneous sequence of either into an either of sequence
@@ -376,8 +283,8 @@ func SequenceArrayPar[
 	GIOAS ~func() E.Either[error, AS],
 	GIOA ~func() E.Either[error, A],
 	A any](ma GAS) GRAS {
-
-	return MonadTraverseArrayPar[GAS, GRAS](ma, F.Identity[GRA])
+	_ = "STUB: not implemented"
+	return *new(GRAS)
 }
 
 // MonadTraverseRecordPar transforms a record
@@ -390,14 +297,8 @@ func MonadTraverseRecordPar[K comparable,
 	BS ~map[K]B,
 
 	A, B any](ma AS, f func(A) GRB) GRBS {
-
-	return RR.MonadTraverse[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		ApPar[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		ma, f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GRBS)
 }
 
 // TraverseRecordPar transforms a record
@@ -410,14 +311,8 @@ func TraverseRecordPar[K comparable,
 	BS ~map[K]B,
 
 	A, B any](f func(A) GRB) func(AS) GRBS {
-
-	return RR.Traverse[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		ApPar[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndexPar transforms a record
@@ -430,14 +325,8 @@ func TraverseRecordWithIndexPar[K comparable,
 	BS ~map[K]B,
 
 	A, B any](f func(K, A) GRB) func(AS) GRBS {
-
-	return RR.TraverseWithIndex[AS](
-		Of[GRBS, GIOBS, BS],
-		Map[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GIOBS, func() E.Either[error, func(B) BS], BS, func(B) BS],
-		ApPar[GRBS, func(context.Context) func() E.Either[error, func(B) BS], GRB],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecordPar converts a homogeneous sequence of either into an either of sequence
@@ -449,6 +338,6 @@ func SequenceRecordPar[K comparable,
 	GIOAS ~func() E.Either[error, AS],
 	GIOA ~func() E.Either[error, A],
 	A any](ma GAS) GRAS {
-
-	return MonadTraverseRecordPar[K, GAS, GRAS](ma, F.Identity[GRA])
+	_ = "STUB: not implemented"
+	return *new(GRAS)
 }

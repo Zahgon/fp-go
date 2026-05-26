@@ -16,8 +16,6 @@
 package iter
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
-	INTA "github.com/IBM/fp-go/v2/internal/array"
 	M "github.com/IBM/fp-go/v2/monoid"
 )
 
@@ -70,21 +68,11 @@ func MonadTraverse[GA ~func(yield func(A) bool), GB ~func(yield func(B) bool), A
 
 	ta GA,
 	f func(A) HKT_B) HKT_GB {
-
-	fof := F.Bind2nd(fmap_b, Of[GB])
-
-	empty := F.Nullary2(Empty[GB], fof_gb)
-
-	cb := F.Curry2(Concat[GB])
-	concat_gb := F.Bind2nd(fmap_gb, cb)
-	concat := func(first HKT_GB, second HKT_GB) HKT_GB {
-		return fap_gb(concat_gb(first), second)
-	}
-
-	// convert to an array
-	hktb := MonadMapToArray[GA, []HKT_B](ta, f)
-	return INTA.MonadSequenceSegment(fof, empty, concat, hktb, 0, len(hktb))
+	_ = "STUB: not implemented"
+	return *new(HKT_GB)
 }
+
+// convert to an array
 
 // Traverse is the curried version of MonadTraverse, returning a function that traverses an iterator.
 //
@@ -123,20 +111,8 @@ func Traverse[GA ~func(yield func(A) bool), GB ~func(yield func(B) bool), A, B, 
 	fap_gb ApType[HKT_GB, HKT_GB, HKT_GB_GB],
 
 	f Kleisli[A, HKT_B]) Kleisli[GA, HKT_GB] {
-
-	fof := fmap_b(Of[GB])
-	empty := fof_gb(Empty[GB]())
-	cb := F.Curry2(Concat[GB])
-	concat_gb := fmap_gb(cb)
-
-	concat := func(first, second HKT_GB) HKT_GB {
-		return fap_gb(second)(concat_gb(first))
-	}
-
-	return F.Flow2(
-		MapToArray[GA, []HKT_B](f),
-		INTA.SequenceSegment(fof, empty, concat),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadSequence sequences an iterator of effects into an effect containing an iterator.
@@ -177,10 +153,10 @@ func MonadSequence[GA ~func(yield func(HKTA) bool), HKTA, HKTRA any](
 	m M.Monoid[HKTRA],
 
 	ta GA) HKTRA {
+	_ = "STUB: not implemented"
 
 	// convert to an array
-	hktb := ToArray[GA, []HKTA](ta)
-	return INTA.MonadSequenceSegment(fof, m.Empty, m.Concat, hktb, 0, len(hktb))
+	return *new(HKTRA)
 }
 
 // MonadTraverseWithIndex traverses an iterator sequence with index tracking, applying an effectful
@@ -220,10 +196,10 @@ func MonadTraverseWithIndex[GA ~func(yield func(A) bool), A, HKTB, HKTRB any](
 
 	ta GA,
 	f func(int, A) HKTB) HKTRB {
+	_ = "STUB: not implemented"
 
 	// convert to an array
-	hktb := MonadMapToArrayWithIndex[GA, []HKTB](ta, f)
-	return INTA.MonadSequenceSegment(fof, m.Empty, m.Concat, hktb, 0, len(hktb))
+	return *new(HKTRB)
 }
 
 // Sequence is the curried version of MonadSequence, returning a function that sequences an iterator of effects.
@@ -250,10 +226,8 @@ func MonadTraverseWithIndex[GA ~func(yield func(A) bool), A, HKTB, HKTRB any](
 func Sequence[GA ~func(yield func(HKTA) bool), HKTA, HKTRA any](
 	fof OfType[HKTA, HKTRA],
 	m M.Monoid[HKTRA]) func(GA) HKTRA {
-
-	return func(ma GA) HKTRA {
-		return MonadSequence(fof, m, ma)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseWithIndex is the curried version of MonadTraverseWithIndex, returning a function that
@@ -287,10 +261,8 @@ func TraverseWithIndex[GA ~func(yield func(A) bool), A, HKTB, HKTRB any](
 	m M.Monoid[HKTRB],
 
 	f func(int, A) HKTB) func(GA) HKTRB {
-
-	return func(ma GA) HKTRB {
-		return MonadTraverseWithIndex(fof, m, ma, f)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTraverseReduce combines traversal with reduction, applying an effectful transformation
@@ -337,15 +309,8 @@ func MonadTraverseReduce[GHKTRB ~func() HKTRB, GA ~func(yield func(A) bool), GB,
 	reduce func(GB, B) GB,
 	initial GB,
 ) GHKTRB {
-	mmap := fmap(F.Curry2(reduce))
-
-	return MonadReduce[GHKTRB](ta, func(r HKTRB, a A) HKTRB {
-		return F.Pipe2(
-			r,
-			mmap,
-			fap(transform(a)),
-		)
-	}, fof(initial))
+	_ = "STUB: not implemented"
+	return *new(GHKTRB)
 }
 
 // MonadTraverseReduceWithIndex combines indexed traversal with reduction, applying an effectful
@@ -397,15 +362,8 @@ func MonadTraverseReduceWithIndex[GHKTRB ~func() HKTRB, GA ~func(yield func(A) b
 	reduce func(GB, B) GB,
 	initial GB,
 ) GHKTRB {
-	mmap := fmap(F.Curry2(reduce))
-
-	return MonadReduceWithIndex[GHKTRB](ta, func(idx int, r HKTRB, a A) HKTRB {
-		return F.Pipe2(
-			r,
-			mmap,
-			fap(transform(idx, a)),
-		)
-	}, fof(initial))
+	_ = "STUB: not implemented"
+	return *new(GHKTRB)
 }
 
 // TraverseReduce is the curried version of MonadTraverseReduce, returning a function that
@@ -447,9 +405,8 @@ func TraverseReduce[GHKTRB ~func() HKTRB, GA ~func(yield func(A) bool), GB, A, B
 	reduce func(GB, B) GB,
 	initial GB,
 ) func(GA) GHKTRB {
-	return func(ta GA) GHKTRB {
-		return MonadTraverseReduce[GHKTRB](fof, fmap, fap, ta, transform, reduce, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseReduceWithIndex is the curried version of MonadTraverseReduceWithIndex, returning a
@@ -496,7 +453,6 @@ func TraverseReduceWithIndex[GHKTRB ~func() HKTRB, GA ~func(yield func(A) bool),
 	reduce func(GB, B) GB,
 	initial GB,
 ) func(GA) GHKTRB {
-	return func(ta GA) GHKTRB {
-		return MonadTraverseReduceWithIndex[GHKTRB](fof, fmap, fap, ta, transform, reduce, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

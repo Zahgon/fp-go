@@ -17,11 +17,8 @@
 package exec
 
 import (
-	"context"
-
 	"github.com/IBM/fp-go/v2/exec"
 	"github.com/IBM/fp-go/v2/idiomatic/result"
-	GE "github.com/IBM/fp-go/v2/internal/exec"
 )
 
 var (
@@ -45,5 +42,6 @@ var (
 )
 
 func command(name string, args []string, in []byte) (exec.CommandOutput, error) {
-	return GE.Exec(context.Background(), name, args, in)
+	_ = "STUB: not implemented"
+	return *new(exec.CommandOutput), nil
 }

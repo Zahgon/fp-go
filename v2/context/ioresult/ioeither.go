@@ -17,8 +17,6 @@ package ioresult
 
 import (
 	"context"
-
-	"github.com/IBM/fp-go/v2/result"
 )
 
 // WithContext wraps an IOResult and performs a context check for cancellation before executing.
@@ -50,10 +48,6 @@ import (
 //	wrapped := WithContext(ctx, computation)
 //	result := wrapped() // Returns Left with context.Canceled error
 func WithContext[A any](ctx context.Context, ma IOResult[A]) IOResult[A] {
-	return func() Result[A] {
-		if ctx.Err() != nil {
-			return result.Left[A](context.Cause(ctx))
-		}
-		return ma()
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

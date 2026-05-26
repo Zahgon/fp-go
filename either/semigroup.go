@@ -20,8 +20,4 @@ import (
 )
 
 // AltSemigroup is the alternative [Semigroup] for an [Either]
-func AltSemigroup[E, A any]() S.Semigroup[Either[E, A]] {
-	return S.AltSemigroup(
-		MonadAlt[E, A],
-	)
-}
+func AltSemigroup[E, A any]() S.Semigroup[Either[E, A]] { _ = "STUB: not implemented"; return nil }

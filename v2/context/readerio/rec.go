@@ -15,10 +15,6 @@
 
 package readerio
 
-import (
-	"github.com/IBM/fp-go/v2/readerio"
-)
-
 // TailRec implements stack-safe tail recursion for the ReaderIO monad.
 //
 // This function enables recursive computations that depend on a [context.Context] and
@@ -82,5 +78,6 @@ import (
 //
 //go:inline
 func TailRec[A, B any](f Kleisli[A, Trampoline[A, B]]) Kleisli[A, B] {
-	return readerio.TailRec(f)
+	_ = "STUB: not implemented"
+	return nil
 }

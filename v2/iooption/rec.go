@@ -16,7 +16,6 @@
 package iooption
 
 import (
-	"github.com/IBM/fp-go/v2/option"
 	"github.com/IBM/fp-go/v2/tailrec"
 )
 
@@ -103,20 +102,6 @@ import (
 //	result := safeDivide(DivState{numerator: 10, denominator: 3, steps: 0})() // Some(3)
 //	result := safeDivide(DivState{numerator: 10, denominator: 0, steps: 0})() // None
 func TailRec[A, B any](f Kleisli[A, tailrec.Trampoline[A, B]]) Kleisli[A, B] {
-	return func(a A) IOOption[B] {
-		initial := f(a)
-		return func() option.Option[B] {
-			current := initial()
-			for {
-				r, ok := option.Unwrap(current)
-				if !ok {
-					return option.None[B]()
-				}
-				if r.Landed {
-					return option.Some(r.Land)
-				}
-				current = f(r.Bounce)()
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

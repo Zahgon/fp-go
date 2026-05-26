@@ -85,6 +85,4 @@ var VOID Void = struct{}{}
 //	    ToAny("hello"),
 //	    ToAny(true),
 //	}
-func ToAny[A any](a A) any {
-	return any(a)
-}
+func ToAny[A any](a A) any { _ = "STUB: not implemented"; return *new(any) }

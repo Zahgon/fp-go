@@ -19,7 +19,6 @@ import (
 	"testing"
 
 	"github.com/IBM/fp-go/v2/eq"
-	IOET "github.com/IBM/fp-go/v2/ioeither/testing"
 )
 
 // AssertLaws asserts the apply monad laws for the `IOEither` monad
@@ -31,6 +30,6 @@ func AssertLaws[A, B, C any](t *testing.T,
 	ab func(A) B,
 	bc func(B) C,
 ) func(a A) bool {
-
-	return IOET.AssertLaws(t, eq.FromStrictEquals[error](), eqa, eqb, eqc, ab, bc)
+	_ = "STUB: not implemented"
+	return nil
 }

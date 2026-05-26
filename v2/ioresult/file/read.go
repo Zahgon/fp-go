@@ -17,8 +17,6 @@ package file
 
 import (
 	"io"
-
-	"github.com/IBM/fp-go/v2/ioeither/file"
 )
 
 // Read uses a generator function to create a stream, reads data from it using a provided
@@ -107,5 +105,6 @@ import (
 //
 //go:inline
 func Read[R any, RD io.ReadCloser](acquire IOResult[RD]) Kleisli[Kleisli[RD, R], R] {
-	return file.Read[R](acquire)
+	_ = "STUB: not implemented"
+	return nil
 }

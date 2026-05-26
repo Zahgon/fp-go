@@ -15,11 +15,5 @@
 
 package stateless
 
-import (
-	G "github.com/IBM/fp-go/iterator/stateless/generic"
-)
-
 // Cycle creates an [Iterator] containing an [Iterator] repeated an infinite number of times.
-func Cycle[U any](ma Iterator[U]) Iterator[U] {
-	return G.Cycle[Iterator[U]](ma)
-}
+func Cycle[U any](ma Iterator[U]) Iterator[U] { _ = "STUB: not implemented"; return nil }

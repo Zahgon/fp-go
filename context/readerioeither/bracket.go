@@ -16,7 +16,6 @@
 package readerioeither
 
 import (
-	G "github.com/IBM/fp-go/context/readerioeither/generic"
 	E "github.com/IBM/fp-go/either"
 )
 
@@ -29,9 +28,6 @@ func Bracket[
 	use func(A) ReaderIOEither[B],
 	release func(A, E.Either[error, B]) ReaderIOEither[ANY],
 ) ReaderIOEither[B] {
-	return G.Bracket[ReaderIOEither[A], ReaderIOEither[B], ReaderIOEither[ANY]](
-		acquire,
-		use,
-		release,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

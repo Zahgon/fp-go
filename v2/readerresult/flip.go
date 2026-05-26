@@ -17,7 +17,6 @@ package readerresult
 
 import (
 	"github.com/IBM/fp-go/v2/reader"
-	"github.com/IBM/fp-go/v2/readereither"
 )
 
 // Sequence swaps the order of nested environment parameters in a ReaderResult computation.
@@ -82,7 +81,8 @@ import (
 //
 //go:inline
 func Sequence[R1, R2, A any](ma ReaderResult[R2, ReaderResult[R1, A]]) reader.Kleisli[R2, R1, Result[A]] {
-	return readereither.Sequence(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceReader swaps the order of environment parameters when the inner computation is a Reader.
@@ -142,17 +142,20 @@ func Sequence[R1, R2, A any](ma ReaderResult[R2, ReaderResult[R1, A]]) reader.Kl
 //
 //go:inline
 func SequenceReader[R1, R2, A any](ma ReaderResult[R2, Reader[R1, A]]) reader.Kleisli[R2, R1, Result[A]] {
-	return readereither.SequenceReader(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Traverse[R2, R1, A, B any](
 	f Kleisli[R1, A, B],
 ) func(ReaderResult[R2, A]) Kleisli[R2, R1, B] {
-	return readereither.Traverse[R2](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraverseReader[R2, R1, A, B any](
 	f reader.Kleisli[R1, A, B],
 ) func(ReaderResult[R2, A]) Kleisli[R2, R1, B] {
-	return readereither.TraverseReader[R2, R1, error](f)
+	_ = "STUB: not implemented"
+	return nil
 }

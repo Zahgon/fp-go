@@ -39,6 +39,4 @@ var (
 )
 
 // WithTempFile creates a temporary file, then invokes a callback to create a resource based on the file, then close and remove the temp file
-func WithTempFile[A any](f Kleisli[*os.File, A]) IOResult[A] {
-	return ioresult.WithResource[A](onCreateTempFile, onReleaseTempFile)(f)
-}
+func WithTempFile[A any](f Kleisli[*os.File, A]) IOResult[A] { _ = "STUB: not implemented"; return nil }

@@ -15,48 +15,26 @@
 
 package ioeither
 
-import (
-	"github.com/IBM/fp-go/v2/internal/apply"
-)
-
 // MonadApFirst combines two effectful actions, keeping only the result of the first.
 func MonadApFirst[A, E, B any](first IOEither[E, A], second IOEither[E, B]) IOEither[E, A] {
-	return apply.MonadApFirst(
-		MonadAp[A, E, B],
-		MonadMap[E, A, func(B) A],
-
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApFirst combines two effectful actions, keeping only the result of the first.
 func ApFirst[A, E, B any](second IOEither[E, B]) Operator[E, A, A] {
-	return apply.ApFirst(
-		Ap[A, E, B],
-		Map[E, A, func(B) A],
-
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadApSecond combines two effectful actions, keeping only the result of the second.
 func MonadApSecond[A, E, B any](first IOEither[E, A], second IOEither[E, B]) IOEither[E, B] {
-	return apply.MonadApSecond(
-		MonadAp[B, E, B],
-		MonadMap[E, A, func(B) B],
-
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSecond combines two effectful actions, keeping only the result of the second.
 func ApSecond[A, E, B any](second IOEither[E, B]) Operator[E, A, B] {
-	return apply.ApSecond(
-		Ap[B, E, B],
-		Map[E, A, func(B) B],
-
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

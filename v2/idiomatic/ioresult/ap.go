@@ -15,56 +15,28 @@
 
 package ioresult
 
-import (
-	"github.com/IBM/fp-go/v2/internal/apply"
-)
-
 // MonadApFirst combines two effectful actions, keeping only the result of the first.
 //
 //go:inline
 func MonadApFirst[A, B any](first IOResult[A], second IOResult[B]) IOResult[A] {
-	return apply.MonadApFirst(
-		MonadAp[A, B],
-		MonadMap[A, func(B) A],
-
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApFirst combines two effectful actions, keeping only the result of the first.
 //
 //go:inline
-func ApFirst[A, B any](second IOResult[B]) Operator[A, A] {
-	return apply.ApFirst(
-		Ap[A, B],
-		Map[A, func(B) A],
-
-		second,
-	)
-}
+func ApFirst[A, B any](second IOResult[B]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadApSecond combines two effectful actions, keeping only the result of the second.
 //
 //go:inline
 func MonadApSecond[A, B any](first IOResult[A], second IOResult[B]) IOResult[B] {
-	return apply.MonadApSecond(
-		MonadAp[B, B],
-		MonadMap[A, func(B) B],
-
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSecond combines two effectful actions, keeping only the result of the second.
 //
 //go:inline
-func ApSecond[A, B any](second IOResult[B]) Operator[A, B] {
-	return apply.ApSecond(
-		Ap[B, B],
-		Map[A, func(B) B],
-
-		second,
-	)
-}
+func ApSecond[A, B any](second IOResult[B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }

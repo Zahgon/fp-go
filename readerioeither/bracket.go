@@ -17,7 +17,6 @@ package readerioeither
 
 import (
 	ET "github.com/IBM/fp-go/either"
-	G "github.com/IBM/fp-go/readerioeither/generic"
 )
 
 // Bracket makes sure that a resource is cleaned up in the event of an error. The release action is called regardless of
@@ -29,5 +28,6 @@ func Bracket[
 	use func(A) ReaderIOEither[R, E, B],
 	release func(A, ET.Either[E, B]) ReaderIOEither[R, E, ANY],
 ) ReaderIOEither[R, E, B] {
-	return G.Bracket(acquire, use, release)
+	_ = "STUB: not implemented"
+	return nil
 }

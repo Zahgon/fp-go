@@ -15,10 +15,6 @@
 
 package itereither
 
-import (
-	"github.com/IBM/fp-go/v2/internal/apply"
-)
-
 // MonadApFirst combines two effectful actions, keeping only the result of the first.
 //
 // Marble diagram:
@@ -33,13 +29,8 @@ import (
 //	Second: ---R(10)---R(20)---|
 //	Output: ---R(1)---L(e)---|
 func MonadApFirst[A, E, B any](first SeqEither[E, A], second SeqEither[E, B]) SeqEither[E, A] {
-	return apply.MonadApFirst(
-		MonadAp[A, E, B],
-		MonadMap[E, A, func(B) A],
-
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApFirst combines two effectful actions, keeping only the result of the first.
@@ -52,12 +43,8 @@ func MonadApFirst[A, E, B any](first SeqEither[E, A], second SeqEither[E, B]) Se
 //
 // If either sequence contains a Left, the error is propagated.
 func ApFirst[A, E, B any](second SeqEither[E, B]) Operator[E, A, A] {
-	return apply.ApFirst(
-		Ap[A, E, B],
-		Map[E, A, func(B) A],
-
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadApSecond combines two effectful actions, keeping only the result of the second.
@@ -74,13 +61,8 @@ func ApFirst[A, E, B any](second SeqEither[E, B]) Operator[E, A, A] {
 //	Second: ---R(10)---R(20)---|
 //	Output: ---R(10)---L(e)---|
 func MonadApSecond[A, E, B any](first SeqEither[E, A], second SeqEither[E, B]) SeqEither[E, B] {
-	return apply.MonadApSecond(
-		MonadAp[B, E, B],
-		MonadMap[E, A, func(B) B],
-
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSecond combines two effectful actions, keeping only the result of the second.
@@ -93,10 +75,6 @@ func MonadApSecond[A, E, B any](first SeqEither[E, A], second SeqEither[E, B]) S
 //
 // If either sequence contains a Left, the error is propagated.
 func ApSecond[A, E, B any](second SeqEither[E, B]) Operator[E, A, B] {
-	return apply.ApSecond(
-		Ap[B, E, B],
-		Map[E, A, func(B) B],
-
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

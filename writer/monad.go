@@ -21,25 +21,28 @@ import (
 	"github.com/IBM/fp-go/internal/monad"
 	"github.com/IBM/fp-go/internal/pointed"
 	M "github.com/IBM/fp-go/monoid"
-	G "github.com/IBM/fp-go/writer/generic"
 )
 
 // Pointed implements the pointed operations for [Writer]
 func Pointed[W, A any](m M.Monoid[W]) pointed.Pointed[A, Writer[W, A]] {
-	return G.Pointed[Writer[W, A], W, A](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Functor implements the pointed operations for [Writer]
 func Functor[W, A, B any]() functor.Functor[A, B, Writer[W, A], Writer[W, B]] {
-	return G.Functor[Writer[W, B], Writer[W, A], W, A, B]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Applicative implements the applicative operations for [Writer]
 func Applicative[W, A, B any](m M.Monoid[W]) applicative.Applicative[A, B, Writer[W, A], Writer[W, B], Writer[W, func(A) B]] {
-	return G.Applicative[Writer[W, B], Writer[W, func(A) B], Writer[W, A]](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad implements the monadic operations for [Writer]
 func Monad[W, A, B any](m M.Monoid[W]) monad.Monad[A, B, Writer[W, A], Writer[W, B], Writer[W, func(A) B]] {
-	return G.Monad[Writer[W, B], Writer[W, func(A) B], Writer[W, A]](m)
+	_ = "STUB: not implemented"
+	return nil
 }

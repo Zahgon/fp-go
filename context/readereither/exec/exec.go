@@ -16,13 +16,9 @@
 package exec
 
 import (
-	"context"
-
 	RE "github.com/IBM/fp-go/context/readereither"
-	E "github.com/IBM/fp-go/either"
 	"github.com/IBM/fp-go/exec"
 	F "github.com/IBM/fp-go/function"
-	GE "github.com/IBM/fp-go/internal/exec"
 )
 
 var (
@@ -33,7 +29,6 @@ var (
 )
 
 func command(name string, args []string, in []byte) RE.ReaderEither[exec.CommandOutput] {
-	return func(ctx context.Context) E.Either[error, exec.CommandOutput] {
-		return E.TryCatchError(GE.Exec(ctx, name, args, in))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

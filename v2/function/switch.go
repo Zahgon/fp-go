@@ -15,10 +15,6 @@
 
 package function
 
-import (
-	G "github.com/IBM/fp-go/v2/function/generic"
-)
-
 // Switch creates a function that applies different handlers based on a key extracted from the input.
 //
 // This implements a switch/case-like pattern in a functional style. Given a key extraction function,
@@ -92,5 +88,6 @@ import (
 //
 //	router := Switch(getMethod, routes, notFound)
 func Switch[K comparable, T, R any](kf func(T) K, n map[K]func(T) R, d func(T) R) func(T) R {
-	return G.Switch(kf, n, d)
+	_ = "STUB: not implemented"
+	return nil
 }

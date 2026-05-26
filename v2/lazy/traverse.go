@@ -15,8 +15,6 @@
 
 package lazy
 
-import "github.com/IBM/fp-go/v2/io"
-
 // MonadTraverseArray applies a function returning a lazy computation to all elements
 // in an array and transforms this into a lazy computation of that array.
 //
@@ -30,25 +28,27 @@ import "github.com/IBM/fp-go/v2/io"
 //	})()
 //	// result is []int{2, 4, 6}
 func MonadTraverseArray[A, B any](tas []A, f Kleisli[A, B]) Lazy[[]B] {
-	return io.MonadTraverseArray(tas, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArray applies a function returning an [IO] to all elements in an array and the
 // transforms this into an [IO] of that array
 func TraverseArray[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
-	return io.TraverseArray(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// TraverseArrayWithIndex applies a function returning an [IO] to all elements in an array and the
+	// transforms this into an [IO] of that array
 }
 
-// TraverseArrayWithIndex applies a function returning an [IO] to all elements in an array and the
-// transforms this into an [IO] of that array
 func TraverseArrayWithIndex[A, B any](f func(int, A) Lazy[B]) Kleisli[[]A, []B] {
-	return io.TraverseArrayWithIndex(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts an array of [IO] to an [IO] of an array
-func SequenceArray[A any](tas []Lazy[A]) Lazy[[]A] {
-	return io.SequenceArray(tas)
-}
+func SequenceArray[A any](tas []Lazy[A]) Lazy[[]A] { _ = "STUB: not implemented"; return nil }
 
 // MonadTraverseRecord applies a function returning a lazy computation to all values
 // in a record (map) and transforms this into a lazy computation of that record.
@@ -63,22 +63,26 @@ func SequenceArray[A any](tas []Lazy[A]) Lazy[[]A] {
 //	})()
 //	// result is map[string]int{"a": 2, "b": 4}
 func MonadTraverseRecord[K comparable, A, B any](tas map[K]A, f Kleisli[A, B]) Lazy[map[K]B] {
-	return io.MonadTraverseRecord(tas, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecord applies a function returning an [IO] to all elements in a record and the
 // transforms this into an [IO] of that record
 func TraverseRecord[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, map[K]B] {
-	return io.TraverseRecord[K](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecord applies a function returning an [IO] to all elements in a record and the
 // transforms this into an [IO] of that record
 func TraverseRecordWithIndex[K comparable, A, B any](f func(K, A) Lazy[B]) Kleisli[map[K]A, map[K]B] {
-	return io.TraverseRecordWithIndex(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecord converts a record of [IO] to an [IO] of a record
 func SequenceRecord[K comparable, A any](tas map[K]Lazy[A]) Lazy[map[K]A] {
-	return io.SequenceRecord(tas)
+	_ = "STUB: not implemented"
+	return nil
 }

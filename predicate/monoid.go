@@ -16,43 +16,17 @@
 package predicate
 
 import (
-	F "github.com/IBM/fp-go/function"
-	M "github.com/IBM/fp-go/monoid"
 	S "github.com/IBM/fp-go/semigroup"
 )
 
 // SemigroupAny combines predicates via ||
-func SemigroupAny[A any]() S.Semigroup[func(A) bool] {
-	return S.MakeSemigroup(func(first func(A) bool, second func(A) bool) func(A) bool {
-		return F.Pipe1(
-			first,
-			Or(second),
-		)
-	})
-}
+func SemigroupAny[A any]() S.Semigroup[func(A) bool] { _ = "STUB: not implemented"; return nil }
 
 // SemigroupAll combines predicates via &&
-func SemigroupAll[A any]() S.Semigroup[func(A) bool] {
-	return S.MakeSemigroup(func(first func(A) bool, second func(A) bool) func(A) bool {
-		return F.Pipe1(
-			first,
-			And(second),
-		)
-	})
-}
+func SemigroupAll[A any]() S.Semigroup[func(A) bool] { _ = "STUB: not implemented"; return nil }
 
 // MonoidAny combines predicates via ||
-func MonoidAny[A any]() S.Semigroup[func(A) bool] {
-	return M.MakeMonoid(
-		SemigroupAny[A]().Concat,
-		F.Constant1[A](false),
-	)
-}
+func MonoidAny[A any]() S.Semigroup[func(A) bool] { _ = "STUB: not implemented"; return nil }
 
 // MonoidAll combines predicates via &&
-func MonoidAll[A any]() S.Semigroup[func(A) bool] {
-	return M.MakeMonoid(
-		SemigroupAll[A]().Concat,
-		F.Constant1[A](true),
-	)
-}
+func MonoidAll[A any]() S.Semigroup[func(A) bool] { _ = "STUB: not implemented"; return nil }

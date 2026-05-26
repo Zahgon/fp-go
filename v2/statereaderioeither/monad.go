@@ -39,65 +39,79 @@ type stateReaderIOEitherMonad[
 ] struct{}
 
 func (o *stateReaderIOEitherPointed[S, R, E, A]) Of(a A) StateReaderIOEither[S, R, E, A] {
-	return Of[S, R, E](a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateReaderIOEitherMonad[S, R, E, A, B]) Of(a A) StateReaderIOEither[S, R, E, A] {
-	return Of[S, R, E](a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateReaderIOEitherApplicative[S, R, E, A, B]) Of(a A) StateReaderIOEither[S, R, E, A] {
-	return Of[S, R, E](a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateReaderIOEitherMonad[S, R, E, A, B]) Map(f func(A) B) Operator[S, R, E, A, B] {
-	return Map[S, R, E](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateReaderIOEitherApplicative[S, R, E, A, B]) Map(f func(A) B) Operator[S, R, E, A, B] {
-	return Map[S, R, E](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateReaderIOEitherFunctor[S, R, E, A, B]) Map(f func(A) B) Operator[S, R, E, A, B] {
-	return Map[S, R, E](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateReaderIOEitherMonad[S, R, E, A, B]) Chain(f Kleisli[S, R, E, A, B]) Operator[S, R, E, A, B] {
-	return Chain(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateReaderIOEitherMonad[S, R, E, A, B]) Ap(fa StateReaderIOEither[S, R, E, A]) Operator[S, R, E, func(A) B, B] {
-	return Ap[B](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateReaderIOEitherApplicative[S, R, E, A, B]) Ap(fa StateReaderIOEither[S, R, E, A]) Operator[S, R, E, func(A) B, B] {
-	return Ap[B](fa)
+	_ = "STUB: not implemented"
+
+	// Pointed implements the [pointed.Pointed] operations for [StateReaderIOEither]
+	return nil
 }
 
-// Pointed implements the [pointed.Pointed] operations for [StateReaderIOEither]
 func Pointed[
 	S, R, E, A any,
 ]() pointed.Pointed[A, StateReaderIOEither[S, R, E, A]] {
-	return &stateReaderIOEitherPointed[S, R, E, A]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Functor implements the [functor.Functor] operations for [StateReaderIOEither]
 func Functor[
 	S, R, E, A, B any,
 ]() functor.Functor[A, B, StateReaderIOEither[S, R, E, A], StateReaderIOEither[S, R, E, B]] {
-	return &stateReaderIOEitherFunctor[S, R, E, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Applicative implements the [applicative.Applicative] operations for [StateReaderIOEither]
 func Applicative[
 	S, R, E, A, B any,
 ]() applicative.Applicative[A, B, StateReaderIOEither[S, R, E, A], StateReaderIOEither[S, R, E, B], StateReaderIOEither[S, R, E, func(A) B]] {
-	return &stateReaderIOEitherApplicative[S, R, E, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad implements the [monad.Monad] operations for [StateReaderIOEither]
 func Monad[
 	S, R, E, A, B any,
 ]() monad.Monad[A, B, StateReaderIOEither[S, R, E, A], StateReaderIOEither[S, R, E, B], StateReaderIOEither[S, R, E, func(A) B]] {
-	return &stateReaderIOEitherMonad[S, R, E, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }

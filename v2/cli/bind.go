@@ -16,279 +16,39 @@
 package cli
 
 import (
-	"context"
-	"fmt"
-	"log"
 	"os"
-	"path/filepath"
 
 	C "github.com/urfave/cli/v3"
 )
 
-func createCombinations(n int, all, prev []int) [][]int {
-	l := len(prev)
-	if l == n {
-		return [][]int{prev}
-	}
-	var res [][]int
-	for idx, val := range all {
-		cpy := make([]int, l+1)
-		copy(cpy, prev)
-		cpy[l] = val
+func createCombinations(n int, all, prev []int) [][]int { _ = "STUB: not implemented"; return nil }
 
-		res = append(res, createCombinations(n, all[idx+1:], cpy)...)
-	}
-	return res
-}
+func remaining(comb []int, total int) []int { _ = "STUB: not implemented"; return nil }
 
-func remaining(comb []int, total int) []int {
-	var res []int
-	mp := make(map[int]int)
-	for _, idx := range comb {
-		mp[idx] = idx
-	}
-	for i := 1; i <= total; i++ {
-		_, ok := mp[i]
-		if !ok {
-			res = append(res, i)
-		}
-	}
-	return res
-}
+func generateCombSingleBind(f *os.File, comb [][]int, total int) { _ = "STUB: not implemented"; return }
 
-func generateCombSingleBind(f *os.File, comb [][]int, total int) {
-	for _, c := range comb {
-		// remaining indexes
-		rem := remaining(c, total)
+// remaining indexes
 
-		// bind function
-		fmt.Fprintf(f, "\n// Bind")
-		for _, idx := range c {
-			fmt.Fprintf(f, "%d", idx)
-		}
-		fmt.Fprintf(f, "of%d takes a function with %d parameters and returns a new function with %d parameters that will bind these parameters to the positions [", total, total, len(c))
-		for i, idx := range c {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "%d", idx)
-		}
-		fmt.Fprintf(f, "] of the original function.\n// The return value of is a function with the remaining %d parameters at positions [", len(rem))
-		for i, idx := range rem {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "%d", idx)
-		}
-		fmt.Fprintf(f, "] of the original function.\n")
-		fmt.Fprintf(f, "func Bind")
-		for _, idx := range c {
-			fmt.Fprintf(f, "%d", idx)
-		}
-		fmt.Fprintf(f, "of%d[F ~func(", total)
-		for i := range total {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "T%d", i+1)
-		}
-		fmt.Fprintf(f, ") R")
-		for i := range total {
-			fmt.Fprintf(f, ", T%d", i+1)
-		}
-		fmt.Fprintf(f, ", R any](f F) func(")
-		for i, idx := range c {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "T%d", idx)
-		}
-		fmt.Fprintf(f, ") func(")
-		for i, idx := range rem {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "T%d", idx)
-		}
-		fmt.Fprintf(f, ") R {\n")
+// bind function
 
-		fmt.Fprintf(f, "  return func(")
+// ignore function
 
-		for i, idx := range c {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "t%d T%d", idx, idx)
-		}
-		fmt.Fprintf(f, ") func(")
-		for i, idx := range rem {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "T%d", idx)
-		}
-		fmt.Fprintf(f, ") R {\n")
+// start with the undefined parameters
 
-		fmt.Fprintf(f, "    return func(")
-		for i, idx := range rem {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "t%d T%d", idx, idx)
-		}
-		fmt.Fprintf(f, ") R {\n")
+func generateSingleBind(f *os.File, total int) { _ = "STUB: not implemented"; return }
 
-		fmt.Fprintf(f, "      return f(")
-		for i := 1; i <= total; i++ {
-			if i > 1 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "t%d", i)
-		}
-		fmt.Fprintf(f, ")\n")
+// construct the indexes
 
-		fmt.Fprintf(f, "    }\n")
-		fmt.Fprintf(f, "  }\n")
-		fmt.Fprintf(f, "}\n")
+// for all permutations of a certain length
 
-		// ignore function
-		fmt.Fprintf(f, "\n// Ignore")
-		for _, idx := range c {
-			fmt.Fprintf(f, "%d", idx)
-		}
-		fmt.Fprintf(f, "of%d takes a function with %d parameters and returns a new function with %d parameters that will ignore the values at positions [", total, len(rem), total)
-		for i, idx := range c {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "%d", idx)
-		}
-		fmt.Fprintf(f, "] and pass the remaining %d parameters to the original function\n", len(rem))
-		fmt.Fprintf(f, "func Ignore")
-		for _, idx := range c {
-			fmt.Fprintf(f, "%d", idx)
-		}
-		fmt.Fprintf(f, "of%d[", total)
-		// start with the undefined parameters
-		for i, idx := range c {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "T%d", idx)
-		}
-		if len(c) > 0 {
-			fmt.Fprintf(f, " any, ")
-		}
-		fmt.Fprintf(f, "F ~func(")
-		for i, idx := range rem {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "T%d", idx)
-		}
-		fmt.Fprintf(f, ") R")
-		for _, idx := range rem {
-			fmt.Fprintf(f, ", T%d", idx)
-		}
-		fmt.Fprintf(f, ", R any](f F) func(")
-		for i := range total {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "T%d", i+1)
-		}
-		fmt.Fprintf(f, ") R {\n")
+// get combinations of that size
 
-		fmt.Fprintf(f, "  return func(")
-		for i := range total {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "t%d T%d", i+1, i+1)
-		}
-		fmt.Fprintf(f, ") R {\n")
-		fmt.Fprintf(f, "      return f(")
-		for i, idx := range rem {
-			if i > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			fmt.Fprintf(f, "t%d", idx)
-		}
-		fmt.Fprintf(f, ")\n")
+func generateBind(f *os.File, i int) { _ = "STUB: not implemented"; return }
 
-		fmt.Fprintf(f, "  }\n")
-		fmt.Fprintf(f, "}\n")
+func generateBindHelpers(filename string, count int) error { _ = "STUB: not implemented"; return nil }
 
-	}
-}
+// log
 
-func generateSingleBind(f *os.File, total int) {
+// some header
 
-	fmt.Fprintf(f, "// Combinations for a total of %d arguments\n", total)
-
-	// construct the indexes
-	all := make([]int, total)
-	for i := range total {
-		all[i] = i + 1
-	}
-	// for all permutations of a certain length
-	for j := range total {
-		// get combinations of that size
-		comb := createCombinations(j+1, all, []int{})
-		generateCombSingleBind(f, comb, total)
-	}
-}
-
-func generateBind(f *os.File, i int) {
-	for j := 1; j < i; j++ {
-		generateSingleBind(f, j)
-	}
-}
-
-func generateBindHelpers(filename string, count int) error {
-	dir, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	absDir, err := filepath.Abs(dir)
-	if err != nil {
-		return err
-	}
-	pkg := filepath.Base(absDir)
-	f, err := os.Create(filepath.Clean(filename))
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-	// log
-	log.Printf("Generating code in [%s] for package [%s] with [%d] repetitions ...", filename, pkg, count)
-
-	// some header
-	fmt.Fprintln(f, "// Code generated by go generate; DO NOT EDIT.")
-	fmt.Fprintln(f, "// This file was generated by robots.")
-	fmt.Fprintln(f)
-
-	fmt.Fprintf(f, "package %s\n", pkg)
-
-	generateBind(f, count)
-
-	return nil
-}
-
-func BindCommand() *C.Command {
-	return &C.Command{
-		Name:        "bind",
-		Usage:       "generate code for binder functions etc",
-		Description: "Code generation for bind, etc",
-		Flags: []C.Flag{
-			flagCount,
-			flagFilename,
-		},
-		Action: func(ctx context.Context, cmd *C.Command) error {
-			return generateBindHelpers(
-				cmd.String(keyFilename),
-				cmd.Int(keyCount),
-			)
-		},
-	}
-}
+func BindCommand() *C.Command { _ = "STUB: not implemented"; return nil }

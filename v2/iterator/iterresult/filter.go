@@ -15,10 +15,6 @@
 
 package iterresult
 
-import (
-	"github.com/IBM/fp-go/v2/iterator/itereither"
-)
-
 // FilterOrElse filters a SeqResult value based on a predicate.
 // If the predicate returns true for the Right value, it passes through unchanged.
 // If the predicate returns false, it transforms the Right value into a Left using onFalse.
@@ -58,7 +54,8 @@ import (
 //
 //go:inline
 func FilterOrElse[A any](pred Predicate[A], onFalse func(A) error) Operator[A, A] {
-	return itereither.FilterOrElse(pred, onFalse)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFilter filters a SeqResult sequence, keeping only Ok values that satisfy the predicate.
@@ -114,7 +111,8 @@ func FilterOrElse[A any](pred Predicate[A], onFalse func(A) error) Operator[A, A
 // Filter is the curried version of MonadFilter.
 // FilterOrElse converts failing values to errors instead of removing them.
 func MonadFilter[A any](as SeqResult[A], pred Predicate[A]) SeqResult[A] {
-	return itereither.MonadFilter(as, pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Filter returns a function that filters SeqResult elements based on a predicate.
@@ -157,6 +155,4 @@ func MonadFilter[A any](as SeqResult[A], pred Predicate[A]) SeqResult[A] {
 // FilterOrElse converts failing values to errors instead of removing them.
 //
 //go:inline
-func Filter[A any](pred func(A) bool) Operator[A, A] {
-	return itereither.Filter[error](pred)
-}
+func Filter[A any](pred func(A) bool) Operator[A, A] { _ = "STUB: not implemented"; return nil }

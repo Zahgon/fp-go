@@ -18,15 +18,16 @@ package ioeither
 import (
 	ET "github.com/IBM/fp-go/either"
 	EQ "github.com/IBM/fp-go/eq"
-	G "github.com/IBM/fp-go/ioeither/generic"
 )
 
 // Eq implements the equals predicate for values contained in the IOEither monad
 func Eq[E, A any](eq EQ.Eq[ET.Either[E, A]]) EQ.Eq[IOEither[E, A]] {
-	return G.Eq[IOEither[E, A]](eq)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
 func FromStrictEquals[E, A comparable]() EQ.Eq[IOEither[E, A]] {
-	return G.FromStrictEquals[IOEither[E, A]]()
+	_ = "STUB: not implemented"
+	return nil
 }

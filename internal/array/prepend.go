@@ -17,12 +17,6 @@ package array
 
 // Prepend prepends a single value to an array
 func Prepend[ENDO ~func(AS) AS, AS ~[]A, A any](head A) ENDO {
-	return func(as AS) AS {
-		l := len(as)
-		cpy := make(AS, l+1)
-		copy(cpy[1:], as)
-		cpy[0] = head
-		return cpy
-
-	}
+	_ = "STUB: not implemented"
+	return *new(ENDO)
 }

@@ -16,135 +16,109 @@
 package stateless
 
 import (
-	"github.com/IBM/fp-go/v2/iooption"
-	G "github.com/IBM/fp-go/v2/iterator/stateless/generic"
 	M "github.com/IBM/fp-go/v2/monoid"
-	"github.com/IBM/fp-go/v2/pair"
 )
 
 // Next returns the [Iterator] for the next element in an iterator [Pair]
-func Next[U any](m Pair[Iterator[U], U]) Iterator[U] {
-	return pair.Head(m)
-}
+func Next[U any](m Pair[Iterator[U], U]) Iterator[U] { _ = "STUB: not implemented"; return nil }
 
 // Current returns the current element in an [Iterator] [Pair]
 func Current[U any](m Pair[Iterator[U], U]) U {
-	return pair.Tail(m)
+	_ = "STUB: not implemented"
+	return *
+
+	// Empty returns the empty iterator
+	new(U)
 }
 
-// Empty returns the empty iterator
-func Empty[U any]() Iterator[U] {
-	return iooption.None[Pair[Iterator[U], U]]()
-}
+func Empty[U any]() Iterator[U] { _ = "STUB: not implemented"; return nil }
 
 // Of returns an iterator with one single element
-func Of[U any](a U) Iterator[U] {
-	return iooption.Of(pair.MakePair(Empty[U](), a))
-}
+func Of[U any](a U) Iterator[U] { _ = "STUB: not implemented"; return nil }
 
 // FromArray returns an iterator from multiple elements
-func FromArray[U any](as []U) Iterator[U] {
-	return G.FromArray[Iterator[U]](as)
-}
+func FromArray[U any](as []U) Iterator[U] { _ = "STUB: not implemented"; return nil }
 
 // ToArray converts the iterator to an array
-func ToArray[U any](u Iterator[U]) []U {
-	return G.ToArray[Iterator[U], []U](u)
-}
+func ToArray[U any](u Iterator[U]) []U { _ = "STUB: not implemented"; return nil }
 
 // Reduce applies a function for each value of the iterator with a floating result
 func Reduce[U, V any](f func(V, U) V, initial V) func(Iterator[U]) V {
-	return G.Reduce[Iterator[U]](f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMap transforms an [Iterator] of type [U] into an [Iterator] of type [V] via a mapping function
 func MonadMap[U, V any](ma Iterator[U], f func(U) V) Iterator[V] {
-	return G.MonadMap[Iterator[V]](ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map transforms an [Iterator] of type [U] into an [Iterator] of type [V] via a mapping function
-func Map[U, V any](f func(U) V) Operator[U, V] {
-	return G.Map[Iterator[V], Iterator[U]](f)
-}
+func Map[U, V any](f func(U) V) Operator[U, V] { _ = "STUB: not implemented"; return nil }
 
 func MonadChain[U, V any](ma Iterator[U], f Kleisli[U, V]) Iterator[V] {
-	return G.MonadChain(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Chain[U, V any](f Kleisli[U, V]) Kleisli[Iterator[U], V] {
-	return G.Chain[Iterator[V], Iterator[U]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flatten converts an [Iterator] of [Iterator] into a simple [Iterator]
-func Flatten[U any](ma Iterator[Iterator[U]]) Iterator[U] {
-	return G.Flatten(ma)
-}
+func Flatten[U any](ma Iterator[Iterator[U]]) Iterator[U] { _ = "STUB: not implemented"; return nil }
 
 // From constructs an [Iterator] from a set of variadic arguments
-func From[U any](data ...U) Iterator[U] {
-	return G.From[Iterator[U]](data...)
-}
+func From[U any](data ...U) Iterator[U] { _ = "STUB: not implemented"; return nil }
 
 // MakeBy returns an [Iterator] with an infinite number of elements initialized with `f(i)`
-func MakeBy[FCT ~func(int) U, U any](f FCT) Iterator[U] {
-	return G.MakeBy[Iterator[U]](f)
-}
+func MakeBy[FCT ~func(int) U, U any](f FCT) Iterator[U] { _ = "STUB: not implemented"; return nil }
 
 // Replicate creates an [Iterator] containing a value repeated an infinite number of times.
-func Replicate[U any](a U) Iterator[U] {
-	return G.Replicate[Iterator[U]](a)
-}
+func Replicate[U any](a U) Iterator[U] { _ = "STUB: not implemented"; return nil }
 
 // FilterMap filters and transforms the content of an iterator
-func FilterMap[U, V any](f func(U) Option[V]) Operator[U, V] {
-	return G.FilterMap[Iterator[V], Iterator[U]](f)
-}
+func FilterMap[U, V any](f func(U) Option[V]) Operator[U, V] { _ = "STUB: not implemented"; return nil }
 
 // Filter filters the content of an iterator
-func Filter[U any](f Predicate[U]) Operator[U, U] {
-	return G.Filter[Iterator[U]](f)
-}
+func Filter[U any](f Predicate[U]) Operator[U, U] { _ = "STUB: not implemented"; return nil }
 
 // Ap is the applicative functor for iterators
-func Ap[V, U any](ma Iterator[U]) Operator[func(U) V, V] {
-	return G.Ap[Iterator[func(U) V], Iterator[V]](ma)
-}
+func Ap[V, U any](ma Iterator[U]) Operator[func(U) V, V] { _ = "STUB: not implemented"; return nil }
 
 // MonadAp is the applicative functor for iterators
 func MonadAp[V, U any](fab Iterator[func(U) V], ma Iterator[U]) Iterator[V] {
-	return G.MonadAp[Iterator[func(U) V], Iterator[V]](fab, ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Repeat creates an [Iterator] containing a value repeated the specified number of times.
 // Alias of [Replicate]
-func Repeat[U any](n int, a U) Iterator[U] {
-	return G.Repeat[Iterator[U]](n, a)
-}
+func Repeat[U any](n int, a U) Iterator[U] { _ = "STUB: not implemented"; return nil }
 
 // Count creates an [Iterator] containing a consecutive sequence of integers starting with the provided start value
-func Count(start int) Iterator[int] {
-	return G.Count[Iterator[int]](start)
-}
+func Count(start int) Iterator[int] { _ = "STUB: not implemented"; return nil }
 
 // FilterChain filters and transforms the content of an iterator
 func FilterChain[U, V any](f func(U) Option[Iterator[V]]) Operator[U, V] {
-	return G.FilterChain[Iterator[Iterator[V]], Iterator[V], Iterator[U]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FoldMap maps and folds an iterator. Map the iterator passing each value to the iterating function. Then fold the results using the provided Monoid.
 func FoldMap[U, V any](m M.Monoid[V]) func(func(U) V) func(ma Iterator[U]) V {
-	return G.FoldMap[Iterator[U], func(U) V](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Fold folds the iterator using the provided Monoid.
-func Fold[U any](m M.Monoid[U]) func(Iterator[U]) U {
-	return G.Fold[Iterator[U]](m)
-}
+func Fold[U any](m M.Monoid[U]) func(Iterator[U]) U { _ = "STUB: not implemented"; return nil }
 
 func MonadChainFirst[U, V any](ma Iterator[U], f Kleisli[U, V]) Iterator[U] {
-	return G.MonadChainFirst(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func ChainFirst[U, V any](f Kleisli[U, V]) Operator[U, U] {
-	return G.ChainFirst[Iterator[V], Iterator[U]](f)
-}
+func ChainFirst[U, V any](f Kleisli[U, V]) Operator[U, U] { _ = "STUB: not implemented"; return nil }

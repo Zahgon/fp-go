@@ -17,8 +17,6 @@ package formatting
 
 import (
 	"fmt"
-	"reflect"
-	"strings"
 )
 
 // FmtString implements the fmt.Formatter interface for Formattable types.
@@ -65,24 +63,11 @@ import (
 //	fmt.Printf("%#v\n", mt)  // Output: MyType{value: 42}
 //	fmt.Printf("%s\n", mt)   // Output: MyType(42)
 //	fmt.Printf("%q\n", mt)   // Output: "MyType(42)"
-func FmtString(stg Formattable, f fmt.State, c rune) {
-	switch c {
-	case 'v':
-		if f.Flag('#') {
-			// %#v uses GoString representation
-			fmt.Fprint(f, stg.GoString())
-		} else {
-			// %v and %+v use String representation
-			fmt.Fprint(f, stg.String())
-		}
-	case 's':
-		fmt.Fprint(f, stg.String())
-	case 'q':
-		fmt.Fprintf(f, "%q", stg.String())
-	default:
-		fmt.Fprint(f, stg.String())
-	}
-}
+func FmtString(stg Formattable, f fmt.State, c rune) { _ = "STUB: not implemented"; return }
+
+// %#v uses GoString representation
+
+// %v and %+v use String representation
 
 // TypeInfo returns a string representation of the type of the given value.
 // It uses reflection to determine the type and removes the leading asterisk (*)
@@ -118,6 +103,7 @@ func FmtString(stg Formattable, f fmt.State, c rune) {
 //	var err error = fmt.Errorf("test")
 //	TypeInfo(err)                   // Returns: "errors.errorString"
 func TypeInfo(v any) string {
+	_ = "STUB: not implemented"
 	// Remove the leading * from pointer type
-	return strings.TrimPrefix(reflect.TypeOf(v).String(), "*")
+	return ""
 }

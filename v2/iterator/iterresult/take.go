@@ -15,10 +15,6 @@
 
 package iterresult
 
-import (
-	"github.com/IBM/fp-go/v2/iterator/itereither"
-)
-
 // TakeUntilError takes elements from a SeqResult until the first error is encountered, including that error.
 //
 // This function creates a transformation that yields all success values from the source sequence
@@ -96,9 +92,7 @@ import (
 // See Also:
 //   - itereither.TakeUntilLeft: The underlying function used
 //   - StopOnError: Alias for TakeUntilError
-func TakeUntilError[T any](s SeqResult[T]) SeqResult[T] {
-	return itereither.TakeUntilLeft(s)
-}
+func TakeUntilError[T any](s SeqResult[T]) SeqResult[T] { _ = "STUB: not implemented"; return nil }
 
 // StopOnError is an alias for TakeUntilError.
 // It takes elements from a SeqResult until the first error is encountered, including that error.
@@ -128,6 +122,4 @@ func TakeUntilError[T any](s SeqResult[T]) SeqResult[T] {
 //
 // See Also:
 //   - TakeUntilError: The primary function this aliases
-func StopOnError[T any](s SeqResult[T]) SeqResult[T] {
-	return TakeUntilError(s)
-}
+func StopOnError[T any](s SeqResult[T]) SeqResult[T] { _ = "STUB: not implemented"; return nil }

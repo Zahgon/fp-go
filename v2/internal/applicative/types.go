@@ -64,15 +64,20 @@ type Applicative[A, B, HKTA, HKTB, HKTFAB any] interface {
 
 // ToFunctor converts from [Applicative] to [functor.Functor]
 func ToFunctor[A, B, HKTA, HKTB, HKTFAB any](ap Applicative[A, B, HKTA, HKTB, HKTFAB]) functor.Functor[A, B, HKTA, HKTB] {
-	return ap
+	_ = "STUB: not implemented"
+
+	// ToApply converts from [Applicative] to [apply.Apply]
+	return nil
 }
 
-// ToApply converts from [Applicative] to [apply.Apply]
 func ToApply[A, B, HKTA, HKTB, HKTFAB any](ap Applicative[A, B, HKTA, HKTB, HKTFAB]) apply.Apply[A, B, HKTA, HKTB, HKTFAB] {
-	return ap
+	_ = "STUB: not implemented"
+
+	// ToPointed converts from [Applicative] to [pointed.Pointed]
+	return nil
 }
 
-// ToPointed converts from [Applicative] to [pointed.Pointed]
 func ToPointed[A, B, HKTA, HKTB, HKTFAB any](ap Applicative[A, B, HKTA, HKTB, HKTFAB]) pointed.Pointed[A, HKTA] {
-	return ap
+	_ = "STUB: not implemented"
+	return nil
 }

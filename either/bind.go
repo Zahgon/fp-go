@@ -15,30 +15,22 @@
 
 package either
 
-import (
-	A "github.com/IBM/fp-go/internal/apply"
-	C "github.com/IBM/fp-go/internal/chain"
-	F "github.com/IBM/fp-go/internal/functor"
-)
-
 // Bind creates an empty context of type [S] to be used with the [Bind] operation
 func Do[E, S any](
 	empty S,
 ) Either[E, S] {
-	return Of[E](empty)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Bind attaches the result of a computation to a context [S1] to produce a context [S2]
 }
 
-// Bind attaches the result of a computation to a context [S1] to produce a context [S2]
 func Bind[E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) Either[E, T],
 ) func(Either[E, S1]) Either[E, S2] {
-	return C.Bind(
-		Chain[E, S1, S2],
-		Map[E, T, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -46,11 +38,8 @@ func Let[E, S1, S2, T any](
 	key func(T) func(S1) S2,
 	f func(S1) T,
 ) func(Either[E, S1]) Either[E, S2] {
-	return F.Let(
-		Map[E, S1, S2],
-		key,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches the a value to a context [S1] to produce a context [S2]
@@ -58,21 +47,16 @@ func LetTo[E, S1, S2, T any](
 	key func(T) func(S1) S2,
 	b T,
 ) func(Either[E, S1]) Either[E, S2] {
-	return F.LetTo(
-		Map[E, S1, S2],
-		key,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T]
 func BindTo[E, S1, T any](
 	setter func(T) S1,
 ) func(Either[E, T]) Either[E, S1] {
-	return C.BindTo(
-		Map[E, T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering the context and the value concurrently
@@ -80,10 +64,6 @@ func ApS[E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa Either[E, T],
 ) func(Either[E, S1]) Either[E, S2] {
-	return A.ApS(
-		Ap[S2, E, T],
-		Map[E, S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

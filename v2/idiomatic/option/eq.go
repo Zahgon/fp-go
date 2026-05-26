@@ -46,19 +46,7 @@ import (
 //	optEq(none1)(none2) // true
 //
 //	optEq(opt1)(none1) // false
-func Eq[A any](eq EQ.Eq[A]) func(A, bool) func(A, bool) bool {
-	return func(a1 A, a1ok bool) func(A, bool) bool {
-		return func(a2 A, a2ok bool) bool {
-			if a1ok {
-				if a2ok {
-					return eq.Equals(a1, a2)
-				}
-				return false
-			}
-			return !a2ok
-		}
-	}
-}
+func Eq[A any](eq EQ.Eq[A]) func(A, bool) func(A, bool) bool { _ = "STUB: not implemented"; return nil }
 
 // FromStrictEquals constructs an Eq for Option[A] using Go's built-in equality (==) for type A.
 // This is a convenience function for comparable types.
@@ -80,5 +68,6 @@ func Eq[A any](eq EQ.Eq[A]) func(A, bool) func(A, bool) bool {
 //	opt3 := Some(43)  // (43, true)
 //	optEq(opt1)(opt3) // false
 func FromStrictEquals[A comparable]() func(A, bool) func(A, bool) bool {
-	return Eq(EQ.FromStrictEquals[A]())
+	_ = "STUB: not implemented"
+	return nil
 }

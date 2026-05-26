@@ -15,15 +15,6 @@
 
 package readerio
 
-import (
-	"fmt"
-	"log"
-	"os"
-	"strings"
-	"sync"
-	"text/template"
-)
-
 // Logf constructs a logger function that can be used with ChainFirst or similar operations.
 // The prefix string contains the format string for both the reader context (R) and the value (A).
 // It uses log.Printf to output the formatted message.
@@ -48,16 +39,7 @@ import (
 //	    readerio.ChainFirst(readerio.Logf[Config, User]("[%v] User: %+v")),
 //	    processUser,
 //	)(Config{AppName: "MyApp"})()
-func Logf[R, A any](prefix string) Kleisli[R, A, A] {
-	return func(a A) ReaderIO[R, A] {
-		return func(r R) IO[A] {
-			return func() A {
-				log.Printf(prefix, r, a)
-				return a
-			}
-		}
-	}
-}
+func Logf[R, A any](prefix string) Kleisli[R, A, A] { _ = "STUB: not implemented"; return nil }
 
 // Printf constructs a printer function that can be used with ChainFirst or similar operations.
 // The prefix string contains the format string for both the reader context (R) and the value (A).
@@ -83,16 +65,7 @@ func Logf[R, A any](prefix string) Kleisli[R, A, A] {
 //	    readerio.ChainFirst(readerio.Printf[Config, Data]("[%v] Data: %+v\n")),
 //	    processData,
 //	)(Config{Debug: true})()
-func Printf[R, A any](prefix string) Kleisli[R, A, A] {
-	return func(a A) ReaderIO[R, A] {
-		return func(r R) IO[A] {
-			return func() A {
-				fmt.Printf(prefix, r, a)
-				return a
-			}
-		}
-	}
-}
+func Printf[R, A any](prefix string) Kleisli[R, A, A] { _ = "STUB: not implemented"; return nil }
 
 // handleLoggingG is a generic helper function that creates a Kleisli arrow for logging/printing
 // values using Go template syntax. It lazily compiles the template on first use and
@@ -108,42 +81,13 @@ func Printf[R, A any](prefix string) Kleisli[R, A, A] {
 // The function always returns the original value unchanged, making it suitable for
 // use with ChainFirst or similar operations.
 func handleLoggingG(onSuccess func(string), onError func(error), prefix string) Kleisli[any, any, any] {
-	var tmp *template.Template
-	var err error
-	var once sync.Once
-
-	type context struct {
-		R any
-		A any
-	}
-
-	init := func() {
-		tmp, err = template.New("").Parse(prefix)
-	}
-	return func(a any) ReaderIO[any, any] {
-		return func(r any) IO[any] {
-			return func() any {
-				// make sure to compile lazily
-				once.Do(init)
-				if err == nil {
-					var buffer strings.Builder
-					tmpErr := tmp.Execute(&buffer, context{r, a})
-					if tmpErr != nil {
-						onError(tmpErr)
-						onSuccess(fmt.Sprintf("%v: %v", r, a))
-					} else {
-						onSuccess(buffer.String())
-					}
-				} else {
-					onError(err)
-					onSuccess(fmt.Sprintf("%v: %v", r, a))
-				}
-				// in any case return the original value
-				return a
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// make sure to compile lazily
+
+// in any case return the original value
 
 // handleLogging is a typed wrapper around handleLoggingG that creates a Kleisli arrow
 // for logging/printing values using Go template syntax.
@@ -156,17 +100,8 @@ func handleLoggingG(onSuccess func(string), onError func(error), prefix string) 
 // Returns:
 //   - A Kleisli arrow that formats and outputs the value, then returns it unchanged
 func handleLogging[R, A any](onSuccess func(string), onError func(error), prefix string) Kleisli[R, A, A] {
-	generic := handleLoggingG(onSuccess, onError, prefix)
-	return func(a A) ReaderIO[R, A] {
-		ga := generic(a)
-		return func(r R) IO[A] {
-			gr := ga(r)
-			return func() A {
-				gr()
-				return a
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LogGo constructs a logger function using Go template syntax for formatting.
@@ -198,13 +133,7 @@ func handleLogging[R, A any](onSuccess func(string), onError func(error), prefix
 //	    readerio.ChainFirst(readerio.LogGo[Config, User]("[{{.R.AppName}}] User: {{.A.Name}}, Age: {{.A.Age}}")),
 //	    processUser,
 //	)(Config{AppName: "MyApp"})()
-func LogGo[R, A any](prefix string) Kleisli[R, A, A] {
-	return handleLogging[R, A](func(value string) {
-		log.Println(value)
-	}, func(err error) {
-		log.Println(err)
-	}, prefix)
-}
+func LogGo[R, A any](prefix string) Kleisli[R, A, A] { _ = "STUB: not implemented"; return nil }
 
 // PrintGo constructs a printer function using Go template syntax for formatting.
 // The prefix string is parsed as a Go template and executed with a context struct
@@ -236,10 +165,4 @@ func LogGo[R, A any](prefix string) Kleisli[R, A, A] {
 //	    readerio.ChainFirst(readerio.PrintGo[Config, Data]("{{if .R.Verbose}}[VERBOSE] {{end}}Data: {{.A.ID}} - {{.A.Value}}")),
 //	    processData,
 //	)(Config{Verbose: true})()
-func PrintGo[R, A any](prefix string) Kleisli[R, A, A] {
-	return handleLogging[R, A](func(value string) {
-		fmt.Println(value)
-	}, func(err error) {
-		fmt.Fprintln(os.Stderr, err)
-	}, prefix)
-}
+func PrintGo[R, A any](prefix string) Kleisli[R, A, A] { _ = "STUB: not implemented"; return nil }

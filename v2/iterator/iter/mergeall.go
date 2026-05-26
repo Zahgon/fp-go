@@ -16,13 +16,7 @@
 package iter
 
 import (
-	"slices"
-	"sync"
-
-	A "github.com/IBM/fp-go/v2/array"
-	F "github.com/IBM/fp-go/v2/function"
 	M "github.com/IBM/fp-go/v2/monoid"
-	N "github.com/IBM/fp-go/v2/number"
 )
 
 const (
@@ -105,13 +99,7 @@ const (
 //   - Async: Converts a single sequence to asynchronous
 //   - From: Creates a sequence from values
 //   - MonadChain: Sequentially chains sequences (deterministic order)
-func MergeBuf[T any](iterables []Seq[T], bufSize int) Seq[T] {
-	return F.Pipe2(
-		iterables,
-		slices.Values,
-		MergeAll[T](bufSize),
-	)
-}
+func MergeBuf[T any](iterables []Seq[T], bufSize int) Seq[T] { _ = "STUB: not implemented"; return nil }
 
 // Merge merges multiple sequences concurrently into a single sequence using a default buffer size.
 // This is a convenience wrapper around MergeBuf that uses a default buffer size of 8.
@@ -148,9 +136,7 @@ func MergeBuf[T any](iterables []Seq[T], bufSize int) Seq[T] {
 //   - MergeBuf: Merge with custom buffer size
 //   - MergeAll: Merges a sequence of sequences
 //   - Async: Converts a single sequence to asynchronous
-func Merge[T any](iterables []Seq[T]) Seq[T] {
-	return MergeBuf(iterables, defaultBufferSize)
-}
+func Merge[T any](iterables []Seq[T]) Seq[T] { _ = "STUB: not implemented"; return nil }
 
 // MergeMonoid creates a Monoid for merging sequences concurrently.
 // The monoid combines two sequences by merging them concurrently with the specified
@@ -240,14 +226,7 @@ func Merge[T any](iterables []Seq[T]) Seq[T] {
 //   - Merge: The underlying merge function
 //   - MergeAll: Merges multiple sequences at once
 //   - Empty: Creates an empty sequence
-func MergeMonoid[T any](bufSize int) M.Monoid[Seq[T]] {
-	return M.MakeMonoid(
-		func(l, r Seq[T]) Seq[T] {
-			return MergeBuf(A.From(l, r), bufSize)
-		},
-		Empty[T](),
-	)
-}
+func MergeMonoid[T any](bufSize int) M.Monoid[Seq[T]] { _ = "STUB: not implemented"; return nil }
 
 // MergeAll creates an operator that flattens and merges a sequence of sequences concurrently.
 // It takes a sequence of sequences (Seq[Seq[T]]) and produces a single flat sequence (Seq[T])
@@ -343,68 +322,15 @@ func MergeMonoid[T any](bufSize int) M.Monoid[Seq[T]] {
 //   - Chain: Sequentially flattens sequences (deterministic order)
 //   - Flatten: Flattens nested sequences sequentially
 //   - Async: Converts a single sequence to asynchronous
-func MergeAll[T any](bufSize int) Operator[Seq[T], T] {
-	buf := N.Max(bufSize, 0)
+func MergeAll[T any](bufSize int) Operator[Seq[T], T] { _ = "STUB: not implemented"; return nil }
 
-	return func(s Seq[Seq[T]]) Seq[T] {
+// Outer producer: iterates the outer Seq and spawns an inner
+// goroutine for each inner Seq it emits.
 
-		return func(yield func(T) bool) {
+// Close ch once the outer producer and all inner producers finish.
 
-			ch := make(chan T, buf)
-			done := make(chan Void)
-			var wg sync.WaitGroup
-
-			// Outer producer: iterates the outer Seq and spawns an inner
-			// goroutine for each inner Seq it emits.
-			wg.Add(1)
-			go func() {
-				defer wg.Done()
-				s(func(inner Seq[T]) bool {
-					select {
-					case <-done:
-						return false
-					default:
-					}
-
-					wg.Add(1)
-					go func(seq Seq[T]) {
-						defer wg.Done()
-						seq(func(v T) bool {
-							select {
-							case ch <- v:
-								return true
-							case <-done:
-								return false
-							}
-						})
-					}(inner)
-
-					return true
-				})
-			}()
-
-			// Close ch once the outer producer and all inner producers finish.
-			go func() {
-				wg.Wait()
-				close(ch)
-			}()
-
-			// On exit, signal cancellation and drain so no producer blocks
-			// forever on `ch <- v`.
-			defer func() {
-				close(done)
-				for range ch {
-				}
-			}()
-
-			for v := range ch {
-				if !yield(v) {
-					return
-				}
-			}
-		}
-	}
-}
+// On exit, signal cancellation and drain so no producer blocks
+// forever on `ch <- v`.
 
 // MergeMapBuf applies a function that returns a sequence to each element and merges the results concurrently.
 // This is the concurrent version of Chain (flatMap), where each mapped sequence is processed in parallel
@@ -507,10 +433,8 @@ func MergeAll[T any](bufSize int) Operator[Seq[T], T] {
 //   - Map: Transforms elements without flattening
 //   - Async: Converts a single sequence to asynchronous
 func MergeMapBuf[A, B any](f Kleisli[A, B], bufSize int) Operator[A, B] {
-	return F.Flow2(
-		Map(f),
-		MergeAll[B](bufSize),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MergeMap applies a function that returns a sequence to each element and merges the results concurrently using a default buffer size.
@@ -558,10 +482,9 @@ func MergeMapBuf[A, B any](f Kleisli[A, B], bufSize int) Operator[A, B] {
 //   - Chain: Sequential version (deterministic order)
 //   - MergeAll: Merges pre-existing sequences concurrently
 //   - Map: Transforms elements without flattening
-func MergeMap[A, B any](f Kleisli[A, B]) Operator[A, B] {
-	return MergeMapBuf(f, defaultBufferSize)
-}
+func MergeMap[A, B any](f Kleisli[A, B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 func MonadMergeMap[A, B any](fa Seq[A], f Kleisli[A, B]) Seq[B] {
-	return MergeMap(f)(fa)
+	_ = "STUB: not implemented"
+	return nil
 }

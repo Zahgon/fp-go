@@ -16,15 +16,16 @@
 package lazy
 
 import (
-	G "github.com/IBM/fp-go/io/generic"
 	M "github.com/IBM/fp-go/monoid"
 	S "github.com/IBM/fp-go/semigroup"
 )
 
 func ApplySemigroup[A any](s S.Semigroup[A]) S.Semigroup[Lazy[A]] {
-	return G.ApplySemigroup[Lazy[A]](s)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ApplicativeMonoid[A any](m M.Monoid[A]) M.Monoid[Lazy[A]] {
-	return G.ApplicativeMonoid[Lazy[A]](m)
+	_ = "STUB: not implemented"
+	return nil
 }

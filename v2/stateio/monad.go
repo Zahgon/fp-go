@@ -48,61 +48,80 @@ type StateIOMonad[
 
 // Of lifts a pure value into the StateIO context.
 func (o *StateIOPointed[S, A]) Of(a A) StateIO[S, A] {
-	return Of[S](a)
+	_ = "STUB: not implemented"
+
+	// Of lifts a pure value into the StateIO context.
+	return nil
 }
 
-// Of lifts a pure value into the StateIO context.
 func (o *StateIOMonad[S, A, B]) Of(a A) StateIO[S, A] {
-	return Of[S](a)
+	_ = "STUB: not implemented"
+
+	// Of lifts a pure value into the StateIO context.
+	return nil
 }
 
-// Of lifts a pure value into the StateIO context.
 func (o *StateIOApplicative[S, A, B]) Of(a A) StateIO[S, A] {
-	return Of[S](a)
+	_ = "STUB: not implemented"
+
+	// Map transforms the value within a StateIO using the provided function.
+	return nil
 }
 
-// Map transforms the value within a StateIO using the provided function.
 func (o *StateIOMonad[S, A, B]) Map(f func(A) B) Operator[S, A, B] {
-	return Map[S](f)
+	_ = "STUB: not implemented"
+
+	// Map transforms the value within a StateIO using the provided function.
+	return nil
 }
 
-// Map transforms the value within a StateIO using the provided function.
 func (o *StateIOApplicative[S, A, B]) Map(f func(A) B) Operator[S, A, B] {
-	return Map[S](f)
+	_ = "STUB: not implemented"
+
+	// Map transforms the value within a StateIO using the provided function.
+	return nil
 }
 
-// Map transforms the value within a StateIO using the provided function.
 func (o *StateIOFunctor[S, A, B]) Map(f func(A) B) Operator[S, A, B] {
-	return Map[S](f)
+	_ = "STUB: not implemented"
+
+	// Chain sequences two StateIO computations, threading state through both.
+	return nil
 }
 
-// Chain sequences two StateIO computations, threading state through both.
 func (o *StateIOMonad[S, A, B]) Chain(f Kleisli[S, A, B]) Operator[S, A, B] {
-	return Chain(f)
+	_ = "STUB: not implemented"
+
+	// Ap applies a function wrapped in StateIO to a value wrapped in StateIO.
+	return nil
 }
 
-// Ap applies a function wrapped in StateIO to a value wrapped in StateIO.
 func (o *StateIOMonad[S, A, B]) Ap(fa StateIO[S, A]) Operator[S, func(A) B, B] {
-	return Ap[B](fa)
+	_ = "STUB: not implemented"
+
+	// Ap applies a function wrapped in StateIO to a value wrapped in StateIO.
+	return nil
 }
 
-// Ap applies a function wrapped in StateIO to a value wrapped in StateIO.
 func (o *StateIOApplicative[S, A, B]) Ap(fa StateIO[S, A]) Operator[S, func(A) B, B] {
-	return Ap[B](fa)
+	_ = "STUB: not implemented"
+
+	// Pointed returns a Pointed instance for StateIO.
+	// The Pointed typeclass provides the 'Of' operation to lift pure values
+	// into the StateIO context.
+	//
+	// Example:
+	//
+	//	p := Pointed[AppState, int]()
+	//	result := p.Of(42)
+	return nil
 }
 
-// Pointed returns a Pointed instance for StateIO.
-// The Pointed typeclass provides the 'Of' operation to lift pure values
-// into the StateIO context.
-//
-// Example:
-//
-//	p := Pointed[AppState, int]()
-//	result := p.Of(42)
 func Pointed[
 	S, A any,
 ]() pointed.Pointed[A, StateIO[S, A]] {
-	return &StateIOPointed[S, A]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Functor returns a Functor instance for StateIO.
@@ -116,7 +135,8 @@ func Pointed[
 func Functor[
 	S, A, B any,
 ]() functor.Functor[A, B, StateIO[S, A], StateIO[S, B]] {
-	return &StateIOFunctor[S, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Applicative returns an Applicative instance for StateIO.
@@ -132,7 +152,8 @@ func Functor[
 func Applicative[
 	S, A, B any,
 ]() applicative.Applicative[A, B, StateIO[S, A], StateIO[S, B], StateIO[S, func(A) B]] {
-	return &StateIOApplicative[S, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad returns a Monad instance for StateIO.
@@ -148,5 +169,6 @@ func Applicative[
 func Monad[
 	S, A, B any,
 ]() monad.Monad[A, B, StateIO[S, A], StateIO[S, B], StateIO[S, func(A) B]] {
-	return &StateIOMonad[S, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }

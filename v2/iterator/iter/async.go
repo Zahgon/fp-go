@@ -15,10 +15,6 @@
 
 package iter
 
-import (
-	A "github.com/IBM/fp-go/v2/array"
-)
-
 // AsyncBuf converts a synchronous sequence into an asynchronous buffered sequence.
 // It spawns a goroutine to consume the input sequence and sends values through
 // a buffered channel, allowing concurrent production and consumption of elements.
@@ -95,9 +91,7 @@ import (
 //   - From: Creates a sequence from values
 //   - Map: Transforms sequence elements
 //   - Filter: Filters sequence elements
-func AsyncBuf[T any](input Seq[T], bufSize int) Seq[T] {
-	return MergeBuf(A.Of(input), bufSize)
-}
+func AsyncBuf[T any](input Seq[T], bufSize int) Seq[T] { _ = "STUB: not implemented"; return nil }
 
 // Async converts a synchronous sequence into an asynchronous sequence using a default buffer size.
 // This is a convenience wrapper around AsyncBuf that uses a default buffer size of 8.
@@ -132,9 +126,7 @@ func AsyncBuf[T any](input Seq[T], bufSize int) Seq[T] {
 //   - AsyncBuf: Async with custom buffer size
 //   - Async2: Asynchronous sequence for key-value sequences
 //   - Merge: Merges multiple sequences concurrently
-func Async[T any](input Seq[T]) Seq[T] {
-	return AsyncBuf(input, defaultBufferSize)
-}
+func Async[T any](input Seq[T]) Seq[T] { _ = "STUB: not implemented"; return nil }
 
 // Async2Buf converts a synchronous key-value sequence into an asynchronous buffered sequence.
 // It spawns a goroutine to consume the input sequence and sends key-value pairs through
@@ -207,7 +199,8 @@ func Async[T any](input Seq[T]) Seq[T] {
 //   - FromSeqPair: Converts Seq of Pairs to Seq2
 //   - MonadZip: Creates key-value sequences from two sequences
 func Async2Buf[K, V any](input Seq2[K, V], bufSize int) Seq2[K, V] {
-	return FromSeqPair(AsyncBuf(ToSeqPair(input), bufSize))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Async2 converts a synchronous key-value sequence into an asynchronous sequence using a default buffer size.
@@ -249,6 +242,4 @@ func Async2Buf[K, V any](input Seq2[K, V], bufSize int) Seq2[K, V] {
 //   - Async2Buf: Async2 with custom buffer size
 //   - Async: Asynchronous sequence for single-value sequences
 //   - MonadZip: Creates key-value sequences from two sequences
-func Async2[K, V any](input Seq2[K, V]) Seq2[K, V] {
-	return Async2Buf(input, defaultBufferSize)
-}
+func Async2[K, V any](input Seq2[K, V]) Seq2[K, V] { _ = "STUB: not implemented"; return nil }

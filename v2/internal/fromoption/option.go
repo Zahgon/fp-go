@@ -15,13 +15,9 @@
 
 package fromoption
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	O "github.com/IBM/fp-go/v2/option"
-)
-
 func FromPredicate[A, HKTEA any](fromOption func(Option[A]) HKTEA, pred func(A) bool) func(A) HKTEA {
-	return F.Flow2(O.FromPredicate(pred), fromOption)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // func MonadFromOption[E, A, HKTEA any](
@@ -51,14 +47,16 @@ func MonadChainOptionK[A, B, HKTEA, HKTEB any](
 	fromOption func(Option[B]) HKTEB,
 	ma HKTEA,
 	f func(A) Option[B]) HKTEB {
-	return mchain(ma, F.Flow2(f, fromOption))
+	_ = "STUB: not implemented"
+	return *new(HKTEB)
 }
 
 func ChainOptionK[A, B, HKTEA, HKTEB any](
 	mchain func(func(A) HKTEB) func(HKTEA) HKTEB,
 	fromOption func(Option[B]) HKTEB,
 	f func(A) Option[B]) func(HKTEA) HKTEB {
-	return mchain(F.Flow2(f, fromOption))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // func ChainOptionK[A, E, B, HKTEA, HKTEB any](

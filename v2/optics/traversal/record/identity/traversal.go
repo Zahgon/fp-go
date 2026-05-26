@@ -17,10 +17,10 @@ package identity
 
 import (
 	G "github.com/IBM/fp-go/v2/optics/traversal/generic"
-	RR "github.com/IBM/fp-go/v2/optics/traversal/record/generic/identity"
 )
 
 // FromRecord returns a traversal from an array for the identity monad
 func FromRecord[K comparable, A any]() G.Traversal[map[K]A, A, map[K]A, A] {
-	return RR.FromRecord[map[K]A]()
+	_ = "STUB: not implemented"
+	return nil
 }

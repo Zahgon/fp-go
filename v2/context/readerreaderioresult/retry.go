@@ -15,9 +15,6 @@
 package readerreaderioresult
 
 import (
-	RIOE "github.com/IBM/fp-go/v2/context/readerioresult"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/reader"
 	"github.com/IBM/fp-go/v2/retry"
 )
 
@@ -88,11 +85,7 @@ func Retrying[R, A any](
 	action Kleisli[R, retry.RetryStatus, A],
 	check Predicate[Result[A]],
 ) ReaderReaderIOResult[R, A] {
+	_ = "STUB: not implemented"
 	// get an implementation for the types
-	return F.Flow4(
-		reader.Read[RIOE.ReaderIOResult[A]],
-		reader.Map[retry.RetryStatus],
-		reader.Read[RIOE.Kleisli[retry.RetryStatus, A]](action),
-		F.Bind13of3(RIOE.Retrying[A])(policy, check),
-	)
+	return nil
 }

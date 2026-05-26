@@ -30,15 +30,7 @@ import (
 //	m := either.AlternativeMonoid[error](intAdd)
 //	result := m.Concat(either.Right[error](1), either.Right[error](2))
 //	// result is Right(3)
-func AlternativeMonoid[E, A any](m M.Monoid[A]) Monoid[E, A] {
-	return M.AlternativeMonoid(
-		Of[E, A],
-		MonadMap[E, A, func(A) A],
-		MonadAp[A, E, A],
-		MonadAlt[E, A],
-		m,
-	)
-}
+func AlternativeMonoid[E, A any](m M.Monoid[A]) Monoid[E, A] { _ = "STUB: not implemented"; return nil }
 
 // AltMonoid creates a monoid for Either using the Alt operation.
 // The empty value is provided as a lazy computation.
@@ -51,19 +43,12 @@ func AlternativeMonoid[E, A any](m M.Monoid[A]) Monoid[E, A] {
 //	result := m.Concat(either.Left[int](errors.New("err1")), either.Right[error](42))
 //	// result is Right(42)
 func AltMonoid[E, A any](zero Lazy[Either[E, A]]) Monoid[E, A] {
-	return M.AltMonoid(
-		zero,
-		MonadAlt[E, A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // takeFirst is a helper function that returns the first Right value, or the second if the first is Left.
-func takeFirst[E, A any](l, r Either[E, A]) Either[E, A] {
-	if IsRight(l) {
-		return l
-	}
-	return r
-}
+func takeFirst[E, A any](l, r Either[E, A]) Either[E, A] { _ = "STUB: not implemented"; return nil }
 
 // FirstMonoid creates a Monoid for Either[E, A] that returns the first Right value.
 // This monoid prefers the left operand when it is Right, otherwise returns the right operand.
@@ -92,16 +77,12 @@ func takeFirst[E, A any](l, r Either[E, A]) Either[E, A] {
 //
 //go:inline
 func FirstMonoid[E, A any](zero Lazy[Either[E, A]]) M.Monoid[Either[E, A]] {
-	return M.MakeMonoid(takeFirst[E, A], zero())
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // takeLast is a helper function that returns the last Right value, or the first if the last is Left.
-func takeLast[E, A any](l, r Either[E, A]) Either[E, A] {
-	if IsRight(r) {
-		return r
-	}
-	return l
-}
+func takeLast[E, A any](l, r Either[E, A]) Either[E, A] { _ = "STUB: not implemented"; return nil }
 
 // LastMonoid creates a Monoid for Either[E, A] that returns the last Right value.
 // This monoid prefers the right operand when it is Right, otherwise returns the left operand.
@@ -128,5 +109,6 @@ func takeLast[E, A any](l, r Either[E, A]) Either[E, A] {
 //
 //go:inline
 func LastMonoid[E, A any](zero Lazy[Either[E, A]]) M.Monoid[Either[E, A]] {
-	return M.MakeMonoid(takeLast[E, A], zero())
+	_ = "STUB: not implemented"
+	return nil
 }

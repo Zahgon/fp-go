@@ -15,25 +15,25 @@
 
 package readerio
 
-import (
-	"github.com/IBM/fp-go/v2/reader"
-)
-
 // these functions From a golang function with the context as the firsr parameter into a either reader with the context as the last parameter
 // this goes back to the advice in https://pkg.go.dev/context to put the context as a first parameter as a convention
 
 func From0[F ~func(R) IO[A], R, A any](f func(R) IO[A]) func() ReaderIO[R, A] {
-	return reader.From0(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func From1[F ~func(R, T1) IO[A], R, T1, A any](f func(R, T1) IO[A]) func(T1) ReaderIO[R, A] {
-	return reader.From1(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func From2[F ~func(R, T1, T2) IO[A], R, T1, T2, A any](f func(R, T1, T2) IO[A]) func(T1, T2) ReaderIO[R, A] {
-	return reader.From2(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func From3[F ~func(R, T1, T2, T3) IO[A], R, T1, T2, T3, A any](f func(R, T1, T2, T3) IO[A]) func(T1, T2, T3) ReaderIO[R, A] {
-	return reader.From3(f)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,10 +15,6 @@
 
 package stateless
 
-import (
-	G "github.com/IBM/fp-go/v2/iterator/stateless/generic"
-)
-
 // Do creates an empty context of type [S] to be used with the [Bind] operation.
 // This is the starting point for do-notation style composition.
 //
@@ -32,7 +28,8 @@ import (
 func Do[S any](
 	empty S,
 ) Iterator[S] {
-	return G.Do[Iterator[S]](empty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Bind attaches the result of a computation to a context [S1] to produce a context [S2].
@@ -73,7 +70,8 @@ func Bind[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[S1, T],
 ) Operator[S1, S2] {
-	return G.Bind[Iterator[S1], Iterator[S2]](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -81,7 +79,8 @@ func Let[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[S1, S2] {
-	return G.Let[Iterator[S1], Iterator[S2]](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches the a value to a context [S1] to produce a context [S2]
@@ -89,14 +88,16 @@ func LetTo[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) Operator[S1, S2] {
-	return G.LetTo[Iterator[S1], Iterator[S2]](setter, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T]
 func BindTo[S1, T any](
 	setter func(T) S1,
 ) Operator[T, S1] {
-	return G.BindTo[Iterator[S1], Iterator[T]](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering
@@ -136,5 +137,6 @@ func ApS[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa Iterator[T],
 ) Operator[S1, S2] {
-	return G.ApS[Iterator[func(T) S2], Iterator[S1], Iterator[S2]](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }

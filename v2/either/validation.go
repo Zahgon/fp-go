@@ -16,7 +16,6 @@
 package either
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	S "github.com/IBM/fp-go/v2/semigroup"
 )
 
@@ -73,18 +72,8 @@ import (
 //	fa3 := either.Right[string](21)
 //	result3 := applyV(fab3, fa3) // Right(42)
 func MonadApV[B, A, E any](sg S.Semigroup[E]) func(fab Either[E, func(a A) B], fa Either[E, A]) Either[E, B] {
-	return func(fab Either[E, func(a A) B], fa Either[E, A]) Either[E, B] {
-		if fab.isLeft {
-			if fa.isLeft {
-				return Left[B](sg.Concat(fab.l, fa.l))
-			}
-			return Left[B](fab.l)
-		}
-		if fa.isLeft {
-			return Left[B](fa.l)
-		}
-		return Of[E](fab.r(fa.r))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApV is the curried version of [MonadApV] that combines errors using a semigroup.
@@ -137,8 +126,6 @@ func MonadApV[B, A, E any](sg S.Semigroup[E]) func(fab Either[E, func(a A) B], f
 //
 //go:inline
 func ApV[B, A, E any](sg S.Semigroup[E]) func(Either[E, A]) Operator[E, func(A) B, B] {
-	apv := MonadApV[B, A](sg)
-	return func(e Either[E, A]) Operator[E, func(A) B, B] {
-		return F.Bind2nd(apv, e)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

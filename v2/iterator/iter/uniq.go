@@ -15,11 +15,6 @@
 
 package iter
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	F "github.com/IBM/fp-go/v2/function"
-)
-
 // Uniq returns an operator that filters a sequence to contain only unique elements,
 // where uniqueness is determined by a key extraction function.
 //
@@ -99,22 +94,7 @@ import (
 //	unique := Uniq(reader.Ask[int]())
 //	result := unique(seq)
 //	// yields: 1 (only first occurrence)
-func Uniq[A any, K comparable](f func(A) K) Operator[A, A] {
-	return func(s Seq[A]) Seq[A] {
-		return func(yield func(A) bool) {
-			items := make(map[K]Void)
-			for a := range s {
-				k := f(a)
-				if _, ok := items[k]; !ok {
-					items[k] = function.VOID
-					if !yield(a) {
-						return
-					}
-				}
-			}
-		}
-	}
-}
+func Uniq[A any, K comparable](f func(A) K) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // StrictUniq filters a sequence to contain only unique elements using direct comparison.
 //
@@ -179,6 +159,4 @@ func Uniq[A any, K comparable](f func(A) K) Operator[A, A] {
 //	seq := From(1, 2, 3, 4, 5)
 //	result := StrictUniq(seq)
 //	// yields: 1, 2, 3, 4, 5 (no changes)
-func StrictUniq[A comparable](as Seq[A]) Seq[A] {
-	return Uniq(F.Identity[A])(as)
-}
+func StrictUniq[A comparable](as Seq[A]) Seq[A] { _ = "STUB: not implemented"; return nil }

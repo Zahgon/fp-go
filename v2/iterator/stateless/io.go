@@ -15,16 +15,8 @@
 
 package stateless
 
-import (
-	G "github.com/IBM/fp-go/v2/iterator/stateless/generic"
-)
-
 // FromLazy returns an [Iterator] on top of a lazy function
-func FromLazy[U any](l Lazy[U]) Iterator[U] {
-	return G.FromLazy[Iterator[U]](l)
-}
+func FromLazy[U any](l Lazy[U]) Iterator[U] { _ = "STUB: not implemented"; return nil }
 
 // FromIO returns an [Iterator] on top of an IO function
-func FromIO[U any](io IO[U]) Iterator[U] {
-	return G.FromLazy[Iterator[U]](io)
-}
+func FromIO[U any](io IO[U]) Iterator[U] { _ = "STUB: not implemented"; return nil }

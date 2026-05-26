@@ -20,12 +20,7 @@ import (
 	"time"
 
 	E "github.com/IBM/fp-go/either"
-	ER "github.com/IBM/fp-go/errors"
-	F "github.com/IBM/fp-go/function"
-	IO "github.com/IBM/fp-go/io/generic"
-	IOE "github.com/IBM/fp-go/ioeither/generic"
 	O "github.com/IBM/fp-go/option"
-	RIE "github.com/IBM/fp-go/readerioeither/generic"
 )
 
 const (
@@ -37,7 +32,8 @@ func FromEither[
 	GRA ~func(context.Context) GIOA,
 	GIOA ~func() E.Either[error, A],
 	A any](e E.Either[error, A]) GRA {
-	return RIE.FromEither[GRA](e)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func RightReader[
@@ -45,7 +41,8 @@ func RightReader[
 	GR ~func(context.Context) A,
 	GIOA ~func() E.Either[error, A],
 	A any](r GR) GRA {
-	return RIE.RightReader[GR, GRA](r)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func LeftReader[
@@ -53,21 +50,24 @@ func LeftReader[
 	GR ~func(context.Context) error,
 	GIOA ~func() E.Either[error, A],
 	A any](l GR) GRA {
-	return RIE.LeftReader[GR, GRA](l)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func Left[
 	GRA ~func(context.Context) GIOA,
 	GIOA ~func() E.Either[error, A],
 	A any](l error) GRA {
-	return RIE.Left[GRA](l)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func Right[
 	GRA ~func(context.Context) GIOA,
 	GIOA ~func() E.Either[error, A],
 	A any](r A) GRA {
-	return RIE.Right[GRA](r)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func FromReader[
@@ -75,7 +75,8 @@ func FromReader[
 	GR ~func(context.Context) A,
 	GIOA ~func() E.Either[error, A],
 	A any](r GR) GRA {
-	return RIE.FromReader[GR, GRA](r)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func MonadMap[
@@ -86,7 +87,8 @@ func MonadMap[
 	GIOB ~func() E.Either[error, B],
 
 	A, B any](fa GRA, f func(A) B) GRB {
-	return RIE.MonadMap[GRA, GRB](fa, f)
+	_ = "STUB: not implemented"
+	return *new(GRB)
 }
 
 func Map[
@@ -97,7 +99,8 @@ func Map[
 	GIOB ~func() E.Either[error, B],
 
 	A, B any](f func(A) B) func(GRA) GRB {
-	return RIE.Map[GRA, GRB](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadMapTo[
@@ -108,7 +111,8 @@ func MonadMapTo[
 	GIOB ~func() E.Either[error, B],
 
 	A, B any](fa GRA, b B) GRB {
-	return RIE.MonadMapTo[GRA, GRB](fa, b)
+	_ = "STUB: not implemented"
+	return *new(GRB)
 }
 
 func MapTo[
@@ -119,7 +123,8 @@ func MapTo[
 	GIOB ~func() E.Either[error, B],
 
 	A, B any](b B) func(GRA) GRB {
-	return RIE.MapTo[GRA, GRB](b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChain[
@@ -130,7 +135,8 @@ func MonadChain[
 	GIOB ~func() E.Either[error, B],
 
 	A, B any](ma GRA, f func(A) GRB) GRB {
-	return RIE.MonadChain(ma, f)
+	_ = "STUB: not implemented"
+	return *new(GRB)
 }
 
 func Chain[
@@ -141,7 +147,8 @@ func Chain[
 	GIOB ~func() E.Either[error, B],
 
 	A, B any](f func(A) GRB) func(GRA) GRB {
-	return RIE.Chain[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainFirst[
@@ -152,7 +159,8 @@ func MonadChainFirst[
 	GIOB ~func() E.Either[error, B],
 
 	A, B any](ma GRA, f func(A) GRB) GRA {
-	return RIE.MonadChainFirst(ma, f)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func ChainFirst[
@@ -163,7 +171,8 @@ func ChainFirst[
 	GIOB ~func() E.Either[error, B],
 
 	A, B any](f func(A) GRB) func(GRA) GRA {
-	return RIE.ChainFirst[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Of[
@@ -171,21 +180,18 @@ func Of[
 	GIOA ~func() E.Either[error, A],
 
 	A any](a A) GRA {
-	return RIE.Of[GRA](a)
+	_ = "STUB: not implemented"
+	return *
+
+	// withCancelCauseFunc wraps an IOEither such that in case of an error the cancel function is invoked
+	new(GRA)
 }
 
-// withCancelCauseFunc wraps an IOEither such that in case of an error the cancel function is invoked
 func withCancelCauseFunc[
 	GIOA ~func() E.Either[error, A],
 	A any](cancel context.CancelCauseFunc, ma GIOA) GIOA {
-	return F.Pipe3(
-		ma,
-		IOE.Swap[GIOA, func() E.Either[A, error]],
-		IOE.ChainFirstIOK[func() E.Either[A, error], func() any](func(err error) func() any {
-			return IO.FromImpure[func() any](func() { cancel(err) })
-		}),
-		IOE.Swap[func() E.Either[A, error], GIOA],
-	)
+	_ = "STUB: not implemented"
+	return *new(GIOA)
 }
 
 // MonadApSeq implements the `Ap` function for a reader with context. It creates a sub-context that will
@@ -200,8 +206,8 @@ func MonadApSeq[
 	GIOAB ~func() E.Either[error, func(A) B],
 
 	A, B any](fab GRAB, fa GRA) GRB {
-
-	return RIE.MonadApSeq[GRA, GRB](fab, fa)
+	_ = "STUB: not implemented"
+	return *new(GRB)
 }
 
 // MonadAp implements the `Ap` function for a reader with context. It creates a sub-context that will
@@ -216,33 +222,18 @@ func MonadApPar[
 	GIOAB ~func() E.Either[error, func(A) B],
 
 	A, B any](fab GRAB, fa GRA) GRB {
+	_ = "STUB: not implemented"
 	// context sensitive input
-	cfab := WithContext(fab)
-	cfa := WithContext(fa)
-
-	return func(ctx context.Context) GIOB {
-		// quick check for cancellation
-		if err := context.Cause(ctx); err != nil {
-			return IOE.Left[GIOB](err)
-		}
-
-		return func() E.Either[error, B] {
-			// quick check for cancellation
-			if err := context.Cause(ctx); err != nil {
-				return E.Left[B](err)
-			}
-
-			// create sub-contexts for fa and fab, so they can cancel one other
-			ctxSub, cancelSub := context.WithCancelCause(ctx)
-			defer cancelSub(nil) // cancel has to be called in all paths
-
-			fabIOE := withCancelCauseFunc(cancelSub, cfab(ctxSub))
-			faIOE := withCancelCauseFunc(cancelSub, cfa(ctxSub))
-
-			return IOE.MonadApPar[GIOB, GIOAB](fabIOE, faIOE)()
-		}
-	}
+	return *new(GRB)
 }
+
+// quick check for cancellation
+
+// quick check for cancellation
+
+// create sub-contexts for fa and fab, so they can cancel one other
+
+// cancel has to be called in all paths
 
 // MonadAp implements the `Ap` function for a reader with context. It creates a sub-context that will
 // be canceled if any of the input operations errors out or
@@ -256,11 +247,9 @@ func MonadAp[
 	GIOAB ~func() E.Either[error, func(A) B],
 
 	A, B any](fab GRAB, fa GRA) GRB {
+	_ = "STUB: not implemented"
 	// dispatch to the configured version
-	if useParallel {
-		return MonadApPar[GRB](fab, fa)
-	}
-	return MonadApSeq[GRB](fab, fa)
+	return *new(GRB)
 }
 
 func Ap[
@@ -273,7 +262,8 @@ func Ap[
 	GIOA ~func() E.Either[error, A],
 
 	A, B any](fa GRA) func(GRAB) GRB {
-	return F.Bind2nd(MonadAp[GRB, GRA, GRAB], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ApSeq[
@@ -286,7 +276,8 @@ func ApSeq[
 	GIOA ~func() E.Either[error, A],
 
 	A, B any](fa GRA) func(GRAB) GRB {
-	return F.Bind2nd(MonadApSeq[GRB, GRA, GRAB], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ApPar[
@@ -299,7 +290,8 @@ func ApPar[
 	GIOA ~func() E.Either[error, A],
 
 	A, B any](fa GRA) func(GRAB) GRB {
-	return F.Bind2nd(MonadApPar[GRB, GRA, GRAB], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FromPredicate[
@@ -307,7 +299,8 @@ func FromPredicate[
 	GIOA ~func() E.Either[error, A],
 
 	A any](pred func(A) bool, onFalse func(A) error) func(A) GRA {
-	return RIE.FromPredicate[GRA](pred, onFalse)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Fold[
@@ -318,7 +311,8 @@ func Fold[
 	GIOB ~func() B,
 
 	A, B any](onLeft func(error) GRB, onRight func(A) GRB) func(GRA) GRB {
-	return RIE.Fold[GRB, GRA](onLeft, onRight)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func GetOrElse[
@@ -329,7 +323,8 @@ func GetOrElse[
 	GIOB ~func() A,
 
 	A any](onLeft func(error) GRB) func(GRA) GRB {
-	return RIE.GetOrElse[GRB, GRA](onLeft)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func OrElse[
@@ -337,7 +332,8 @@ func OrElse[
 	GIOA ~func() E.Either[error, A],
 
 	A any](onLeft func(error) GRA) func(GRA) GRA {
-	return RIE.OrElse[GRA](onLeft)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func OrLeft[
@@ -348,7 +344,8 @@ func OrLeft[
 	GIOB ~func() error,
 
 	A any](onLeft func(error) GRB) func(GRA) GRA {
-	return RIE.OrLeft[GRA, GRB, GRA](onLeft)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Ask[
@@ -356,7 +353,8 @@ func Ask[
 	GIOA ~func() E.Either[error, context.Context],
 
 ]() GRA {
-	return RIE.Ask[GRA]()
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func Asks[
@@ -365,8 +363,8 @@ func Asks[
 	GIOA ~func() E.Either[error, A],
 
 	A any](r GRB) GRA {
-
-	return RIE.Asks[GRB, GRA](r)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func MonadChainEitherK[
@@ -377,7 +375,8 @@ func MonadChainEitherK[
 	GIOB ~func() E.Either[error, B],
 
 	A, B any](ma GRA, f func(A) E.Either[error, B]) GRB {
-	return RIE.MonadChainEitherK[GRA, GRB](ma, f)
+	_ = "STUB: not implemented"
+	return *new(GRB)
 }
 
 func ChainEitherK[
@@ -388,7 +387,8 @@ func ChainEitherK[
 	GIOB ~func() E.Either[error, B],
 
 	A, B any](f func(A) E.Either[error, B]) func(ma GRA) GRB {
-	return RIE.ChainEitherK[GRA, GRB](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainFirstEitherK[
@@ -396,7 +396,8 @@ func MonadChainFirstEitherK[
 	GIOA ~func() E.Either[error, A],
 
 	A, B any](ma GRA, f func(A) E.Either[error, B]) GRA {
-	return RIE.MonadChainFirstEitherK[GRA](ma, f)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func ChainFirstEitherK[
@@ -404,7 +405,8 @@ func ChainFirstEitherK[
 	GIOA ~func() E.Either[error, A],
 
 	A, B any](f func(A) E.Either[error, B]) func(ma GRA) GRA {
-	return RIE.ChainFirstEitherK[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainOptionK[
@@ -416,7 +418,8 @@ func ChainOptionK[
 	GIOA ~func() E.Either[error, A],
 
 	A, B any](onNone func() error) func(func(A) O.Option[B]) func(GRA) GRB {
-	return RIE.ChainOptionK[GRA, GRB](onNone)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FromIOEither[
@@ -424,7 +427,8 @@ func FromIOEither[
 	GIOA ~func() E.Either[error, A],
 
 	A any](t GIOA) GRA {
-	return RIE.FromIOEither[GRA](t)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func FromIO[
@@ -434,7 +438,8 @@ func FromIO[
 	GIOA ~func() E.Either[error, A],
 
 	A any](t GIOB) GRA {
-	return RIE.FromIO[GRA](t)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 // Never returns a 'ReaderIOEither' that never returns, except if its context gets canceled
@@ -443,12 +448,8 @@ func Never[
 	GIOA ~func() E.Either[error, A],
 
 	A any]() GRA {
-	return func(ctx context.Context) GIOA {
-		return IOE.MakeIO(func() E.Either[error, A] {
-			<-ctx.Done()
-			return E.Left[A](context.Cause(ctx))
-		})
-	}
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func MonadChainIOK[
@@ -461,7 +462,8 @@ func MonadChainIOK[
 	GIO ~func() B,
 
 	A, B any](ma GRA, f func(A) GIO) GRB {
-	return RIE.MonadChainIOK[GRA, GRB](ma, f)
+	_ = "STUB: not implemented"
+	return *new(GRB)
 }
 
 func ChainIOK[
@@ -474,7 +476,8 @@ func ChainIOK[
 	GIO ~func() B,
 
 	A, B any](f func(A) GIO) func(ma GRA) GRB {
-	return RIE.ChainIOK[GRA, GRB](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainReaderIOK[
@@ -488,7 +491,8 @@ func MonadChainReaderIOK[
 	GIO ~func() B,
 
 	A, B any](ma GRA, f func(A) GRIO) GRB {
-	return RIE.MonadChainReaderIOK[GRA, GRB](ma, f)
+	_ = "STUB: not implemented"
+	return *new(GRB)
 }
 
 func ChainReaderIOK[
@@ -502,7 +506,8 @@ func ChainReaderIOK[
 	GIO ~func() B,
 
 	A, B any](f func(A) GRIO) func(ma GRA) GRB {
-	return RIE.ChainReaderIOK[GRA, GRB](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainFirstIOK[
@@ -512,7 +517,8 @@ func MonadChainFirstIOK[
 	GIO ~func() B,
 
 	A, B any](ma GRA, f func(A) GIO) GRA {
-	return RIE.MonadChainFirstIOK[GRA](ma, f)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func ChainFirstIOK[
@@ -522,7 +528,8 @@ func ChainFirstIOK[
 	GIO ~func() B,
 
 	A, B any](f func(A) GIO) func(ma GRA) GRA {
-	return RIE.ChainFirstIOK[GRA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainIOEitherK[
@@ -533,7 +540,8 @@ func ChainIOEitherK[
 	GIOB ~func() E.Either[error, B],
 
 	A, B any](f func(A) GIOB) func(ma GRA) GRB {
-	return RIE.ChainIOEitherK[GRA, GRB](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Delay creates an operation that passes in the value after some delay
@@ -542,23 +550,13 @@ func Delay[
 	GIOA ~func() E.Either[error, A],
 
 	A any](delay time.Duration) func(ma GRA) GRA {
-	return func(ma GRA) GRA {
-		return func(ctx context.Context) GIOA {
-			return IOE.MakeIO(func() E.Either[error, A] {
-				// manage the timeout
-				timeoutCtx, cancelTimeout := context.WithTimeout(ctx, delay)
-				defer cancelTimeout()
-				// whatever comes first
-				select {
-				case <-timeoutCtx.Done():
-					return ma(ctx)()
-				case <-ctx.Done():
-					return E.Left[A](context.Cause(ctx))
-				}
-			})
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// manage the timeout
+
+// whatever comes first
 
 // Timer will return the current time after an initial delay
 func Timer[
@@ -566,11 +564,8 @@ func Timer[
 	GIOA ~func() E.Either[error, time.Time],
 
 ](delay time.Duration) GRA {
-	return F.Pipe2(
-		IO.Now[func() time.Time](),
-		FromIO[GRA, func() time.Time],
-		Delay[GRA](delay),
-	)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 // Defer creates an IO by creating a brand new IO via a generator function, each time
@@ -579,7 +574,8 @@ func Defer[
 	GIOA ~func() E.Either[error, A],
 
 	A any](gen func() GRA) GRA {
-	return RIE.Defer[GRA](gen)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 // TryCatch wraps a reader returning a tuple as an error into ReaderIOEither
@@ -588,25 +584,30 @@ func TryCatch[
 	GIOA ~func() E.Either[error, A],
 
 	A any](f func(context.Context) func() (A, error)) GRA {
-	return RIE.TryCatch[GRA](f, ER.IdentityError)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func MonadAlt[LAZY ~func() GEA, GEA ~func(context.Context) GIOA, GIOA ~func() E.Either[error, A], A any](first GEA, second LAZY) GEA {
-	return RIE.MonadAlt(first, second)
+	_ = "STUB: not implemented"
+	return *new(GEA)
 }
 
 func Alt[LAZY ~func() GEA, GEA ~func(context.Context) GIOA, GIOA ~func() E.Either[error, A], A any](second LAZY) func(GEA) GEA {
-	return RIE.Alt(second)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Memoize computes the value of the provided monad lazily but exactly once
+	// The context used to compute the value is the context of the first call, so do not use this
+	// method if the value has a functional dependency on the content of the context
 }
 
-// Memoize computes the value of the provided monad lazily but exactly once
-// The context used to compute the value is the context of the first call, so do not use this
-// method if the value has a functional dependency on the content of the context
 func Memoize[
 	GRA ~func(context.Context) GIOA,
 	GIOA ~func() E.Either[error, A],
 	A any](rdr GRA) GRA {
-	return RIE.Memoize[GRA](rdr)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func Flatten[
@@ -615,7 +616,8 @@ func Flatten[
 	GRA ~func(context.Context) GIOA,
 	GIOA ~func() E.Either[error, A],
 	A any](rdr GGRA) GRA {
-	return RIE.Flatten[GRA](rdr)
+	_ = "STUB: not implemented"
+	return *new(GRA)
 }
 
 func MonadFromReaderIO[
@@ -626,7 +628,8 @@ func MonadFromReaderIO[
 	GIOA ~func() A,
 
 	A any](a A, f func(A) GRIOA) GRIOEA {
-	return RIE.MonadFromReaderIO[GRIOEA](a, f)
+	_ = "STUB: not implemented"
+	return *new(GRIOEA)
 }
 
 func FromReaderIO[
@@ -637,7 +640,8 @@ func FromReaderIO[
 	GIOA ~func() A,
 
 	A any](f func(A) GRIOA) func(A) GRIOEA {
-	return RIE.FromReaderIO[GRIOEA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func RightReaderIO[
@@ -648,7 +652,8 @@ func RightReaderIO[
 	GIOA ~func() A,
 
 	A any](ma GRIOA) GRIOEA {
-	return RIE.RightReaderIO[GRIOEA](ma)
+	_ = "STUB: not implemented"
+	return *new(GRIOEA)
 }
 
 func LeftReaderIO[
@@ -659,13 +664,16 @@ func LeftReaderIO[
 	GIOE ~func() error,
 
 	A any](ma GRIOE) GRIOEA {
-	return RIE.LeftReaderIO[GRIOEA](ma)
+	_ = "STUB: not implemented"
+	return *new(GRIOEA)
 }
 
 func MonadFlap[GREAB ~func(context.Context) GEAB, GREB ~func(context.Context) GEB, GEAB ~func() E.Either[error, func(A) B], GEB ~func() E.Either[error, B], B, A any](fab GREAB, a A) GREB {
-	return RIE.MonadFlap[GREAB, GREB](fab, a)
+	_ = "STUB: not implemented"
+	return *new(GREB)
 }
 
 func Flap[GREAB ~func(context.Context) GEAB, GREB ~func(context.Context) GEB, GEAB ~func() E.Either[error, func(A) B], GEB ~func() E.Either[error, B], B, A any](a A) func(GREAB) GREB {
-	return RIE.Flap[GREAB, GREB](a)
+	_ = "STUB: not implemented"
+	return nil
 }

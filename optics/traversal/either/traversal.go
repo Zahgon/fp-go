@@ -26,9 +26,6 @@ type (
 
 func Compose[
 	E, S, A, B any](ab Traversal[E, A, B]) func(Traversal[E, S, A]) Traversal[E, S, B] {
-	return T.Compose[
-		Traversal[E, A, B],
-		Traversal[E, S, A],
-		Traversal[E, S, B],
-	](ab)
+	_ = "STUB: not implemented"
+	return nil
 }

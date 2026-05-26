@@ -16,7 +16,6 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/function"
 	P "github.com/IBM/fp-go/pair"
 )
 
@@ -36,11 +35,8 @@ func SequencePair[
 	fap1 AP1,
 	t P.Pair[HKT_T1, HKT_T2],
 ) HKT_PAIR {
-	return F.Pipe2(
-		P.Head(t),
-		fmap(F.Curry2(P.MakePair[T1, T2])),
-		fap1(P.Tail(t)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_PAIR)
 }
 
 // TraversePair is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -63,9 +59,6 @@ func TraversePair[
 	f2 F2,
 	t P.Pair[A1, A2],
 ) HKT_PAIR {
-	return F.Pipe2(
-		f1(P.Head(t)),
-		fmap(F.Curry2(P.MakePair[T1, T2])),
-		fap1(f2(P.Tail(t))),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_PAIR)
 }

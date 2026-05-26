@@ -18,17 +18,9 @@ package readerresult
 import (
 	"context"
 
-	"github.com/IBM/fp-go/v2/function"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/chain"
-	"github.com/IBM/fp-go/v2/internal/fromio"
-	"github.com/IBM/fp-go/v2/internal/fromioeither"
 	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/ioresult"
 	"github.com/IBM/fp-go/v2/option"
-	"github.com/IBM/fp-go/v2/reader"
-	"github.com/IBM/fp-go/v2/readereither"
-	"github.com/IBM/fp-go/v2/result"
 )
 
 // FromIO lifts a pure IO computation into a ReaderResult.
@@ -55,11 +47,7 @@ import (
 //	result := rr(t.Context()) // Right(42)
 //
 //go:inline
-func FromIO[A any](t io.IO[A]) ReaderResult[A] {
-	return func(_ context.Context) Result[A] {
-		return result.Of(t())
-	}
-}
+func FromIO[A any](t io.IO[A]) ReaderResult[A] { _ = "STUB: not implemented"; return nil }
 
 // FromIOResult lifts an IOResult computation into a ReaderResult.
 // The IOResult computation is executed when the ReaderResult is run, ignoring the context.
@@ -88,9 +76,8 @@ func FromIO[A any](t io.IO[A]) ReaderResult[A] {
 //
 //go:inline
 func FromIOResult[A any](t ioresult.IOResult[A]) ReaderResult[A] {
-	return func(_ context.Context) Result[A] {
-		return t()
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromReader lifts a Reader computation into a ReaderResult.
@@ -115,7 +102,8 @@ func FromIOResult[A any](t ioresult.IOResult[A]) ReaderResult[A] {
 //
 //go:inline
 func FromReader[A any](r Reader[context.Context, A]) ReaderResult[A] {
-	return readereither.FromReader[error](r)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromEither lifts an Either value into a ReaderResult.
@@ -137,9 +125,7 @@ func FromReader[A any](r Reader[context.Context, A]) ReaderResult[A] {
 //	result := rr(t.Context()) // Right(42)
 //
 //go:inline
-func FromEither[A any](e Either[A]) ReaderResult[A] {
-	return readereither.FromEither[context.Context](e)
-}
+func FromEither[A any](e Either[A]) ReaderResult[A] { _ = "STUB: not implemented"; return nil }
 
 // Left creates a ReaderResult that always returns a Left (error) value.
 //
@@ -158,9 +144,7 @@ func FromEither[A any](e Either[A]) ReaderResult[A] {
 //	result := rr(t.Context()) // Left(error("failed"))
 //
 //go:inline
-func Left[A any](l error) ReaderResult[A] {
-	return readereither.Left[context.Context, A](l)
-}
+func Left[A any](l error) ReaderResult[A] { _ = "STUB: not implemented"; return nil }
 
 // Right creates a ReaderResult that always returns a Right (success) value.
 // This is an alias for Of.
@@ -180,9 +164,7 @@ func Left[A any](l error) ReaderResult[A] {
 //	result := rr(t.Context()) // Right(42)
 //
 //go:inline
-func Right[A any](r A) ReaderResult[A] {
-	return readereither.Right[context.Context, error](r)
-}
+func Right[A any](r A) ReaderResult[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap applies a function to the success value of a ReaderResult.
 // This is the monadic version that takes both the ReaderResult and the function as parameters.
@@ -208,7 +190,8 @@ func Right[A any](r A) ReaderResult[A] {
 //
 //go:inline
 func MonadMap[A, B any](fa ReaderResult[A], f func(A) B) ReaderResult[B] {
-	return readereither.MonadMap(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map creates an operator that applies a function to the success value of a ReaderResult.
@@ -233,9 +216,7 @@ func MonadMap[A, B any](fa ReaderResult[A], f func(A) B) ReaderResult[B] {
 //	result := toString(rr)(t.Context()) // Right("value: 42")
 //
 //go:inline
-func Map[A, B any](f func(A) B) Operator[A, B] {
-	return readereither.Map[context.Context, error](f)
-}
+func Map[A, B any](f func(A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChain sequences two ReaderResult computations, passing the success value from the first
 // to the second. This is the monadic version that takes both the ReaderResult and the Kleisli
@@ -262,7 +243,8 @@ func Map[A, B any](f func(A) B) Operator[A, B] {
 //
 //go:inline
 func MonadChain[A, B any](ma ReaderResult[A], f Kleisli[A, B]) ReaderResult[B] {
-	return readereither.MonadChain(ma, F.Flow2(f, WithContext))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain creates an operator that sequences two ReaderResult computations.
@@ -287,9 +269,7 @@ func MonadChain[A, B any](ma ReaderResult[A], f Kleisli[A, B]) ReaderResult[B] {
 //	result := toUpper(rr)(t.Context()) // Right("HELLO")
 //
 //go:inline
-func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] {
-	return readereither.Chain(F.Flow2(f, WithContext))
-}
+func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Of creates a ReaderResult that always returns a Right (success) value.
 // This is the pointed functor constructor.
@@ -309,9 +289,7 @@ func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] {
 //	result := rr(t.Context()) // Right(42)
 //
 //go:inline
-func Of[A any](a A) ReaderResult[A] {
-	return readereither.Of[context.Context, error](a)
-}
+func Of[A any](a A) ReaderResult[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadAp applies a ReaderResult containing a function to a ReaderResult containing a value.
 // This is the monadic version that takes both ReaderResults as parameters.
@@ -337,7 +315,8 @@ func Of[A any](a A) ReaderResult[A] {
 //
 //go:inline
 func MonadAp[A, B any](fab ReaderResult[func(A) B], fa ReaderResult[A]) ReaderResult[B] {
-	return readereither.MonadAp(fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap creates a function that applies a ReaderResult containing a function to a ReaderResult
@@ -364,7 +343,8 @@ func MonadAp[A, B any](fab ReaderResult[func(A) B], fa ReaderResult[A]) ReaderRe
 //
 //go:inline
 func Ap[A, B any](fa ReaderResult[A]) func(ReaderResult[func(A) B]) ReaderResult[B] {
-	return readereither.Ap[B](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromPredicate creates a Kleisli arrow that validates a value using a predicate.
@@ -392,7 +372,8 @@ func Ap[A, B any](fa ReaderResult[A]) func(ReaderResult[func(A) B]) ReaderResult
 //
 //go:inline
 func FromPredicate[A any](pred func(A) bool, onFalse func(A) error) Kleisli[A, A] {
-	return readereither.FromPredicate[context.Context](pred, onFalse)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // OrElse recovers from a Left (error) by providing an alternative computation with access to context.Context.
@@ -438,7 +419,8 @@ func FromPredicate[A any](pred func(A) bool, onFalse func(A) error) Kleisli[A, A
 //
 //go:inline
 func OrElse[A any](onLeft Kleisli[error, A]) Kleisli[ReaderResult[A], A] {
-	return readereither.OrElse(F.Flow2(onLeft, WithContext))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ask returns a ReaderResult that provides access to the context.Context.
@@ -464,9 +446,7 @@ func OrElse[A any](onLeft Kleisli[error, A]) Kleisli[ReaderResult[A], A] {
 //	)
 //
 //go:inline
-func Ask() ReaderResult[context.Context] {
-	return readereither.Ask[context.Context, error]()
-}
+func Ask() ReaderResult[context.Context] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainEitherK sequences a ReaderResult with a function that returns an Either.
 // This is the monadic version that takes both the ReaderResult and the function as parameters.
@@ -495,7 +475,8 @@ func Ask() ReaderResult[context.Context] {
 //
 //go:inline
 func MonadChainEitherK[A, B any](ma ReaderResult[A], f func(A) Either[B]) ReaderResult[B] {
-	return readereither.MonadChainEitherK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainEitherK creates an operator that sequences a ReaderResult with a function that returns an Either.
@@ -524,7 +505,8 @@ func MonadChainEitherK[A, B any](ma ReaderResult[A], f func(A) Either[B]) Reader
 //
 //go:inline
 func ChainEitherK[A, B any](f func(A) Either[B]) func(ma ReaderResult[A]) ReaderResult[B] {
-	return readereither.ChainEitherK[context.Context](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainOptionK creates an operator that sequences a ReaderResult with a function that returns an Option.
@@ -556,7 +538,8 @@ func ChainEitherK[A, B any](f func(A) Either[B]) func(ma ReaderResult[A]) Reader
 //
 //go:inline
 func ChainOptionK[A, B any](onNone func() error) func(option.Kleisli[A, B]) Operator[A, B] {
-	return readereither.ChainOptionK[context.Context, A, B](onNone)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFlap applies a value to a ReaderResult containing a function.
@@ -583,7 +566,8 @@ func ChainOptionK[A, B any](onNone func() error) func(option.Kleisli[A, B]) Oper
 //
 //go:inline
 func MonadFlap[B, A any](fab ReaderResult[func(A) B], a A) ReaderResult[B] {
-	return readereither.MonadFlap(fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flap creates an operator that applies a value to a ReaderResult containing a function.
@@ -609,9 +593,7 @@ func MonadFlap[B, A any](fab ReaderResult[func(A) B], a A) ReaderResult[B] {
 //	result := applyTo42(fabRR)(t.Context()) // Right("value: 42")
 //
 //go:inline
-func Flap[B, A any](a A) Operator[func(A) B, B] {
-	return readereither.Flap[context.Context, error, B](a)
-}
+func Flap[B, A any](a A) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // Read executes a ReaderResult by providing it with a context.Context value.
 // This function "runs" the ReaderResult computation with the given context.
@@ -634,7 +616,8 @@ func Flap[B, A any](a A) Operator[func(A) B, B] {
 //
 //go:inline
 func Read[A any](r context.Context) func(ReaderResult[A]) Result[A] {
-	return readereither.Read[error, A](r)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadEither executes a ReaderResult by providing it with a Result[context.Context].
@@ -659,7 +642,8 @@ func Read[A any](r context.Context) func(ReaderResult[A]) Result[A] {
 //
 //go:inline
 func ReadEither[A any](r Result[context.Context]) func(ReaderResult[A]) Result[A] {
-	return readereither.ReadEither[error, A](r)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadResult executes a ReaderResult by providing it with a Result[context.Context].
@@ -683,7 +667,8 @@ func ReadEither[A any](r Result[context.Context]) func(ReaderResult[A]) Result[A
 //
 //go:inline
 func ReadResult[A any](r Result[context.Context]) func(ReaderResult[A]) Result[A] {
-	return readereither.ReadEither[error, A](r)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMapTo executes a ReaderResult computation, discards its success value, and returns a constant value.
@@ -718,7 +703,8 @@ func ReadResult[A any](r Result[context.Context]) func(ReaderResult[A]) Result[A
 //
 //go:inline
 func MonadMapTo[A, B any](ma ReaderResult[A], b B) ReaderResult[B] {
-	return MonadMap(ma, reader.Of[A](b))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MapTo creates an operator that executes a ReaderResult computation, discards its success value,
@@ -763,9 +749,7 @@ func MonadMapTo[A, B any](ma ReaderResult[A], b B) ReaderResult[B] {
 //	output := pipeline(t.Context()) // Prints "processing", returns Right("complete")
 //
 //go:inline
-func MapTo[A, B any](b B) Operator[A, B] {
-	return Map(reader.Of[A](b))
-}
+func MapTo[A, B any](b B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainTo sequences two ReaderResult computations where the second ignores the first's success value.
 // This is the monadic version that takes both ReaderResults as parameters.
@@ -802,7 +786,8 @@ func MapTo[A, B any](b B) Operator[A, B] {
 //
 //go:inline
 func MonadChainTo[A, B any](ma ReaderResult[A], b ReaderResult[B]) ReaderResult[B] {
-	return MonadChain(ma, reader.Of[A](b))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainTo creates an operator that sequences two ReaderResult computations where the second ignores
@@ -857,9 +842,7 @@ func MonadChainTo[A, B any](ma ReaderResult[A], b ReaderResult[B]) ReaderResult[
 //	output := pipeline(t.Context()) // Prints "step 1" then "step 2", returns Right("complete")
 //
 //go:inline
-func ChainTo[A, B any](b ReaderResult[B]) Operator[A, B] {
-	return Chain(reader.Of[A](b))
-}
+func ChainTo[A, B any](b ReaderResult[B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainFirst sequences two ReaderResult computations, executing the second for its side effects
 // but returning the value from the first. This is the monadic version that takes both the ReaderResult
@@ -893,12 +876,8 @@ func ChainTo[A, B any](b ReaderResult[B]) Operator[A, B] {
 //
 //go:inline
 func MonadChainFirst[A, B any](ma ReaderResult[A], f Kleisli[A, B]) ReaderResult[A] {
-	return chain.MonadChainFirst(
-		MonadChain,
-		MonadMap,
-		ma,
-		F.Flow2(f, WithContext),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirst creates an operator that sequences two ReaderResult computations, executing the second
@@ -930,13 +909,7 @@ func MonadChainFirst[A, B any](ma ReaderResult[A], f Kleisli[A, B]) ReaderResult
 //	result := logValue(readerresult.Of(42))(t.Context()) // Prints "Value: 42", returns Right(42)
 //
 //go:inline
-func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] {
-	return chain.ChainFirst(
-		Chain,
-		Map,
-		F.Flow2(f, WithContext),
-	)
-}
+func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainIOK sequences a ReaderResult with an IO computation, lifting the IO into ReaderResult.
 // This is the monadic version that takes both the ReaderResult and the IO Kleisli function as parameters.
@@ -969,12 +942,8 @@ func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] {
 //
 //go:inline
 func MonadChainIOK[A, B any](ma ReaderResult[A], f io.Kleisli[A, B]) ReaderResult[B] {
-	return fromio.MonadChainIOK(
-		MonadChain[A, B],
-		FromIO[B],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainIOK creates an operator that sequences a ReaderResult with an IO computation.
@@ -1005,13 +974,7 @@ func MonadChainIOK[A, B any](ma ReaderResult[A], f io.Kleisli[A, B]) ReaderResul
 //	result := logIO(readerresult.Of(42))(t.Context()) // Prints "Value: 42", returns Right("logged")
 //
 //go:inline
-func ChainIOK[A, B any](f io.Kleisli[A, B]) Operator[A, B] {
-	return fromio.ChainIOK(
-		Chain[A, B],
-		FromIO[B],
-		f,
-	)
-}
+func ChainIOK[A, B any](f io.Kleisli[A, B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainFirstIOK sequences a ReaderResult with an IO computation for its side effects,
 // but returns the original value. This is the monadic version.
@@ -1044,13 +1007,8 @@ func ChainIOK[A, B any](f io.Kleisli[A, B]) Operator[A, B] {
 //
 //go:inline
 func MonadChainFirstIOK[A, B any](ma ReaderResult[A], f io.Kleisli[A, B]) ReaderResult[A] {
-	return fromio.MonadChainFirstIOK(
-		MonadChain[A, A],
-		MonadMap[B, A],
-		FromIO[B],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTapIOK is an alias for MonadChainFirstIOK. It sequences a ReaderResult with an IO computation
@@ -1083,13 +1041,8 @@ func MonadChainFirstIOK[A, B any](ma ReaderResult[A], f io.Kleisli[A, B]) Reader
 //
 //go:inline
 func MonadTapIOK[A, B any](ma ReaderResult[A], f io.Kleisli[A, B]) ReaderResult[A] {
-	return fromio.MonadChainFirstIOK(
-		MonadChain[A, A],
-		MonadMap[B, A],
-		FromIO[B],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstIOK creates an operator that sequences a ReaderResult with an IO computation for its
@@ -1120,12 +1073,8 @@ func MonadTapIOK[A, B any](ma ReaderResult[A], f io.Kleisli[A, B]) ReaderResult[
 //
 //go:inline
 func ChainFirstIOK[A, B any](f io.Kleisli[A, B]) Operator[A, A] {
-	return fromio.ChainFirstIOK(
-		Chain[A, A],
-		Map[B, A],
-		FromIO[B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TapIOK is an alias for ChainFirstIOK. It creates an operator that sequences a ReaderResult with
@@ -1155,14 +1104,7 @@ func ChainFirstIOK[A, B any](f io.Kleisli[A, B]) Operator[A, A] {
 //	result := tapLog(readerresult.Of(42))(t.Context()) // Prints "Tapping: 42", returns Right(42)
 //
 //go:inline
-func TapIOK[A, B any](f io.Kleisli[A, B]) Operator[A, A] {
-	return fromio.ChainFirstIOK(
-		Chain[A, A],
-		Map[B, A],
-		FromIO[B],
-		f,
-	)
-}
+func TapIOK[A, B any](f io.Kleisli[A, B]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // ChainIOEitherK creates an operator that sequences a ReaderResult with an IOResult computation.
 //
@@ -1195,11 +1137,8 @@ func TapIOK[A, B any](f io.Kleisli[A, B]) Operator[A, A] {
 //
 //go:inline
 func ChainIOEitherK[A, B any](f ioresult.Kleisli[A, B]) Operator[A, B] {
-	return fromioeither.ChainIOEitherK(
-		Chain[A, B],
-		FromIOResult[B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainIOResultK is an alias for ChainIOEitherK. It creates an operator that sequences a ReaderResult
@@ -1229,11 +1168,8 @@ func ChainIOEitherK[A, B any](f ioresult.Kleisli[A, B]) Operator[A, B] {
 //
 //go:inline
 func ChainIOResultK[A, B any](f ioresult.Kleisli[A, B]) Operator[A, B] {
-	return fromioeither.ChainIOEitherK(
-		Chain[A, B],
-		FromIOResult[B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadIO executes a ReaderResult by providing it with a context obtained from an IO computation.
@@ -1260,11 +1196,8 @@ func ChainIOResultK[A, B any](f ioresult.Kleisli[A, B]) Operator[A, B] {
 //
 //go:inline
 func ReadIO[A any](r IO[context.Context]) func(ReaderResult[A]) IOResult[A] {
-	return func(rr ReaderResult[A]) IOResult[A] {
-		return func() Result[A] {
-			return rr(r())
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadIOEither executes a ReaderResult by providing it with a context obtained from an IOResult computation.
@@ -1295,12 +1228,8 @@ func ReadIO[A any](r IO[context.Context]) func(ReaderResult[A]) IOResult[A] {
 //
 //go:inline
 func ReadIOEither[A any](r IOResult[context.Context]) func(ReaderResult[A]) IOResult[A] {
-	return func(rr ReaderResult[A]) IOResult[A] {
-		return F.Pipe1(
-			r,
-			ioresult.ChainResultK(rr),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadIOResult is an alias for ReadIOEither. It executes a ReaderResult by providing it with a context
@@ -1330,36 +1259,39 @@ func ReadIOEither[A any](r IOResult[context.Context]) func(ReaderResult[A]) IORe
 //
 //go:inline
 func ReadIOResult[A any](r IOResult[context.Context]) func(ReaderResult[A]) IOResult[A] {
-	return ReadIOEither[A](r)
+	_ = "STUB: not implemented"
+	return nil
+
+	// ChainFirstLeft executes a computation on the Left (error) value for its side effects,
+	// but preserves the original error. This is useful for error logging or metrics.
+	//
+	// Type Parameters:
+	//   - A: The success type of the ReaderResult
+	//   - B: The success type of the error handler (discarded)
+	//
+	// Parameters:
+	//   - f: The Kleisli function that handles the error
+	//
+	// Returns:
+	//   - An Operator that executes the error handler but preserves the original error
+	//
+	// Example:
+	//
+	//	logError := readerresult.ChainFirstLeft[int](func(err error) readerresult.ReaderResult[string] {
+	//	    return func(ctx context.Context) result.Result[string] {
+	//	        fmt.Printf("Error occurred: %v\n", err)
+	//	        return result.Of("logged")
+	//	    }
+	//	})
+	//	rr := readerresult.Left[int](errors.New("failed"))
+	//	result := logError(rr)(t.Context()) // Prints "Error occurred: failed", returns Left(error("failed"))
+	//
+	//go:inline
 }
 
-// ChainFirstLeft executes a computation on the Left (error) value for its side effects,
-// but preserves the original error. This is useful for error logging or metrics.
-//
-// Type Parameters:
-//   - A: The success type of the ReaderResult
-//   - B: The success type of the error handler (discarded)
-//
-// Parameters:
-//   - f: The Kleisli function that handles the error
-//
-// Returns:
-//   - An Operator that executes the error handler but preserves the original error
-//
-// Example:
-//
-//	logError := readerresult.ChainFirstLeft[int](func(err error) readerresult.ReaderResult[string] {
-//	    return func(ctx context.Context) result.Result[string] {
-//	        fmt.Printf("Error occurred: %v\n", err)
-//	        return result.Of("logged")
-//	    }
-//	})
-//	rr := readerresult.Left[int](errors.New("failed"))
-//	result := logError(rr)(t.Context()) // Prints "Error occurred: failed", returns Left(error("failed"))
-//
-//go:inline
 func ChainFirstLeft[A, B any](f Kleisli[error, B]) Operator[A, A] {
-	return readereither.ChainFirstLeft[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstLeftIOK executes an IO computation on the Left (error) value for its side effects,
@@ -1391,10 +1323,8 @@ func ChainFirstLeft[A, B any](f Kleisli[error, B]) Operator[A, A] {
 //
 //go:inline
 func ChainFirstLeftIOK[A, B any](f io.Kleisli[error, B]) Operator[A, A] {
-	return ChainFirstLeft[A](function.Flow2(
-		f,
-		FromIO,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TapLeftIOK is an alias for ChainFirstLeftIOK. It executes an IO computation on the Left (error)
@@ -1426,5 +1356,6 @@ func ChainFirstLeftIOK[A, B any](f io.Kleisli[error, B]) Operator[A, A] {
 //
 //go:inline
 func TapLeftIOK[A, B any](f io.Kleisli[error, B]) Operator[A, A] {
-	return ChainFirstLeftIOK[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }

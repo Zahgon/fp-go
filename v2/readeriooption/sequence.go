@@ -16,7 +16,6 @@
 package readeriooption
 
 import (
-	"github.com/IBM/fp-go/v2/internal/apply"
 	T "github.com/IBM/fp-go/v2/tuple"
 )
 
@@ -38,10 +37,8 @@ import (
 //	result := readeroption.SequenceT1(user)
 //	// result(config) returns option.Some(tuple.MakeTuple1(User{Name: "Alice"}))
 func SequenceT1[R, A any](a ReaderIOOption[R, A]) ReaderIOOption[R, T.Tuple1[A]] {
-	return apply.SequenceT1(
-		Map,
-		a,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT2 combines two ReaderIOOption values into a ReaderIOOption of a 2-tuple.
@@ -64,12 +61,8 @@ func SequenceT2[R, A, B any](
 	a ReaderIOOption[R, A],
 	b ReaderIOOption[R, B],
 ) ReaderIOOption[R, T.Tuple2[A, B]] {
-	return apply.SequenceT2(
-		Map,
-		Ap,
-		a,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT3 combines three ReaderIOOption values into a ReaderIOOption of a 3-tuple.
@@ -90,14 +83,8 @@ func SequenceT3[R, A, B, C any](
 	b ReaderIOOption[R, B],
 	c ReaderIOOption[R, C],
 ) ReaderIOOption[R, T.Tuple3[A, B, C]] {
-	return apply.SequenceT3(
-		Map,
-		Ap,
-		Ap,
-		a,
-		b,
-		c,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT4 combines four ReaderIOOption values into a ReaderIOOption of a 4-tuple.
@@ -120,14 +107,6 @@ func SequenceT4[R, A, B, C, D any](
 	c ReaderIOOption[R, C],
 	d ReaderIOOption[R, D],
 ) ReaderIOOption[R, T.Tuple4[A, B, C, D]] {
-	return apply.SequenceT4(
-		Map,
-		Ap,
-		Ap,
-		Ap,
-		a,
-		b,
-		c,
-		d,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

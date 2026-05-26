@@ -16,10 +16,6 @@
 package option
 
 import (
-	"github.com/IBM/fp-go/v2/function"
-	A "github.com/IBM/fp-go/v2/internal/apply"
-	C "github.com/IBM/fp-go/v2/internal/chain"
-	F "github.com/IBM/fp-go/v2/internal/functor"
 	L "github.com/IBM/fp-go/v2/optics/lens"
 )
 
@@ -36,31 +32,29 @@ import (
 func Do[S any](
 	empty S,
 ) Option[S] {
-	return Of(empty)
+	_ = "STUB: not implemented"
+
+	// Bind attaches the result of a computation to a context S1 to produce a context S2.
+	// This is used in do-notation style to sequentially build up a context.
+	//
+	// Example:
+	//
+	//	type State struct { x int; y int }
+	//	result := F.Pipe2(
+	//	    Do(State{}),
+	//	    Bind(func(x int) func(State) State {
+	//	        return func(s State) State { s.x = x; return s }
+	//	    }, func(s State) Option[int] { return Some(42) }),
+	//	)
+	return nil
 }
 
-// Bind attaches the result of a computation to a context S1 to produce a context S2.
-// This is used in do-notation style to sequentially build up a context.
-//
-// Example:
-//
-//	type State struct { x int; y int }
-//	result := F.Pipe2(
-//	    Do(State{}),
-//	    Bind(func(x int) func(State) State {
-//	        return func(s State) State { s.x = x; return s }
-//	    }, func(s State) Option[int] { return Some(42) }),
-//	)
 func Bind[S1, S2, A any](
 	setter func(A) func(S1) S2,
 	f Kleisli[S1, A],
 ) Operator[S1, S2] {
-	return C.Bind(
-		Chain[S1, S2],
-		Map[A, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a pure computation to a context S1 to produce a context S2.
@@ -79,11 +73,8 @@ func Let[S1, S2, B any](
 	key func(B) func(S1) S2,
 	f func(S1) B,
 ) Operator[S1, S2] {
-	return F.Let(
-		Map[S1, S2],
-		key,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches a constant value to a context S1 to produce a context S2.
@@ -101,11 +92,8 @@ func LetTo[S1, S2, B any](
 	key func(B) func(S1) S2,
 	b B,
 ) Operator[S1, S2] {
-	return F.LetTo(
-		Map[S1, S2],
-		key,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state S1 from a value T.
@@ -121,10 +109,8 @@ func LetTo[S1, S2, B any](
 func BindTo[S1, T any](
 	setter func(T) S1,
 ) Operator[T, S1] {
-	return C.BindTo(
-		Map[T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context S1 to produce a context S2 by considering the context and the value concurrently.
@@ -143,12 +129,8 @@ func ApS[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa Option[T],
 ) Operator[S1, S2] {
-	return A.ApS(
-		Ap[S2, T],
-		Map[S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL attaches a value to a context using a lens-based setter.
@@ -188,48 +170,51 @@ func ApSL[S, T any](
 	lens L.Lens[S, T],
 	fa Option[T],
 ) Operator[S, S] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL attaches the result of a computation to a context using a lens-based setter.
+	// This is a convenience function that combines Bind with a lens, allowing you to use
+	// optics to update nested structures based on their current values.
+	//
+	// The lens parameter provides both the getter and setter for a field within the structure S.
+	// The computation function f receives the current value of the focused field and returns
+	// an Option that produces the new value.
+	//
+	// Unlike ApSL, BindL uses monadic sequencing, meaning the computation f can depend on
+	// the current value of the focused field.
+	//
+	// Example:
+	//
+	//	type Counter struct {
+	//	    Value int
+	//	}
+	//
+	//	valueLens := lens.MakeLens(
+	//	    func(c Counter) int { return c.Value },
+	//	    func(c Counter, v int) Counter { c.Value = v; return c },
+	//	)
+	//
+	//	// Increment the counter, but return None if it would exceed 100
+	//	increment := func(v int) option.Option[int] {
+	//	    if v >= 100 {
+	//	        return option.None[int]()
+	//	    }
+	//	    return option.Some(v + 1)
+	//	}
+	//
+	//	result := F.Pipe1(
+	//	    option.Some(Counter{Value: 42}),
+	//	    option.BindL(valueLens, increment),
+	//	) // Some(Counter{Value: 43})
 }
 
-// BindL attaches the result of a computation to a context using a lens-based setter.
-// This is a convenience function that combines Bind with a lens, allowing you to use
-// optics to update nested structures based on their current values.
-//
-// The lens parameter provides both the getter and setter for a field within the structure S.
-// The computation function f receives the current value of the focused field and returns
-// an Option that produces the new value.
-//
-// Unlike ApSL, BindL uses monadic sequencing, meaning the computation f can depend on
-// the current value of the focused field.
-//
-// Example:
-//
-//	type Counter struct {
-//	    Value int
-//	}
-//
-//	valueLens := lens.MakeLens(
-//	    func(c Counter) int { return c.Value },
-//	    func(c Counter, v int) Counter { c.Value = v; return c },
-//	)
-//
-//	// Increment the counter, but return None if it would exceed 100
-//	increment := func(v int) option.Option[int] {
-//	    if v >= 100 {
-//	        return option.None[int]()
-//	    }
-//	    return option.Some(v + 1)
-//	}
-//
-//	result := F.Pipe1(
-//	    option.Some(Counter{Value: 42}),
-//	    option.BindL(valueLens, increment),
-//	) // Some(Counter{Value: 43})
 func BindL[S, T any](
 	lens L.Lens[S, T],
 	f Kleisli[T, T],
 ) Operator[S, S] {
-	return Bind(lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL attaches the result of a pure computation to a context using a lens-based setter.
@@ -265,7 +250,8 @@ func LetL[S, T any](
 	lens L.Lens[S, T],
 	f Endomorphism[T],
 ) Operator[S, S] {
-	return Let(lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL attaches a constant value to a context using a lens-based setter.
@@ -299,5 +285,6 @@ func LetToL[S, T any](
 	lens L.Lens[S, T],
 	b T,
 ) Operator[S, S] {
-	return LetTo(lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }

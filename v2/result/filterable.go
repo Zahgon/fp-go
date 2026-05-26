@@ -78,7 +78,8 @@ import (
 //
 //go:inline
 func Partition[A any](p Predicate[A], empty error) func(Result[A]) Pair[Result[A], Result[A]] {
-	return either.Partition(p, empty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Filter creates a filtering operation for [Result] values based on a predicate function.
@@ -140,7 +141,8 @@ func Partition[A any](p Predicate[A], empty error) func(Result[A]) Pair[Result[A
 //
 //go:inline
 func Filter[A any](p Predicate[A], empty error) Operator[A, A] {
-	return either.Filter(p, empty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterMap combines filtering and mapping operations for [Result] values using an [Option]-returning function.
@@ -198,7 +200,8 @@ func Filter[A any](p Predicate[A], empty error) Operator[A, A] {
 //
 //go:inline
 func FilterMap[A, B any](f option.Kleisli[A, B], empty error) Operator[A, B] {
-	return either.FilterMap(f, empty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // PartitionMap separates and transforms a [Result] value into a [Pair] of Result values using a mapping function.
@@ -258,5 +261,6 @@ func FilterMap[A, B any](f option.Kleisli[A, B], empty error) Operator[A, B] {
 //
 //go:inline
 func PartitionMap[A, B, C any](f either.Kleisli[B, A, C], empty error) func(Result[A]) Pair[Result[B], Result[C]] {
-	return either.PartitionMap(f, empty)
+	_ = "STUB: not implemented"
+	return nil
 }

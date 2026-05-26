@@ -15,8 +15,6 @@
 
 package either
 
-import F "github.com/IBM/fp-go/v2/function"
-
 // MonadExtend applies a function to an Either value, where the function receives the entire Either as input.
 // This is the Extend (or Comonad) operation that allows computations to depend on the context.
 //
@@ -52,10 +50,8 @@ import F "github.com/IBM/fp-go/v2/function"
 //
 //go:inline
 func MonadExtend[E, A, B any](fa Either[E, A], f func(Either[E, A]) B) Either[E, B] {
-	if fa.isLeft {
-		return Left[B](fa.l)
-	}
-	return Of[E](f(fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Extend is the curried version of [MonadExtend].
@@ -87,5 +83,6 @@ func MonadExtend[E, A, B any](fa Either[E, A], f func(Either[E, A]) B) Either[E,
 //
 //go:inline
 func Extend[E, A, B any](f func(Either[E, A]) B) Operator[E, A, B] {
-	return F.Bind2nd(MonadExtend[E, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }

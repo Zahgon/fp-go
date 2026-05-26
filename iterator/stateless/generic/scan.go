@@ -16,30 +16,14 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/function"
 	O "github.com/IBM/fp-go/option"
 	P "github.com/IBM/fp-go/pair"
 )
 
-func apTuple[A, B any](t P.Pair[func(A) B, A]) P.Pair[B, A] {
-	return P.MakePair(P.Head(t)(P.Tail(t)), P.Tail(t))
-}
+func apTuple[A, B any](t P.Pair[func(A) B, A]) P.Pair[B, A] { _ = "STUB: not implemented"; return nil }
 
 func Scan[GV ~func() O.Option[P.Pair[GV, V]], GU ~func() O.Option[P.Pair[GU, U]], FCT ~func(V, U) V, U, V any](f FCT, initial V) func(ma GU) GV {
+	_ = "STUB: not implemented"
 	// pre-declare to avoid cyclic reference
-	var m func(GU) func(V) GV
-
-	recurse := func(ma GU, current V) GV {
-		return F.Nullary2(
-			ma,
-			O.Map(F.Flow2(
-				P.BiMap(m, F.Bind1st(f, current)),
-				apTuple[V, GV],
-			)),
-		)
-	}
-
-	m = F.Curry2(recurse)
-
-	return F.Bind2nd(recurse, initial)
+	return nil
 }

@@ -3,8 +3,6 @@ package readerio
 import (
 	"context"
 	"log/slog"
-
-	"github.com/IBM/fp-go/v2/logging"
 )
 
 // SLogWithCallback creates a Kleisli arrow that logs a value with a custom logger and log level.
@@ -45,17 +43,11 @@ func SLogWithCallback[A any](
 	logLevel slog.Level,
 	cb func(context.Context) *slog.Logger,
 	message string) Kleisli[A, A] {
-	return func(a A) ReaderIO[A] {
-		return func(ctx context.Context) IO[A] {
-			// logger
-			logger := cb(ctx)
-			return func() A {
-				logger.LogAttrs(ctx, logLevel, message, slog.Any("value", a))
-				return a
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// logger
 
 // SLog creates a Kleisli arrow that logs a value at Info level and passes it through unchanged.
 // This is a convenience wrapper around SLogWithCallback with standard settings.
@@ -86,6 +78,4 @@ func SLogWithCallback[A any](
 //	// Logs: "Extracted name" value="Alice"
 //
 //go:inline
-func SLog[A any](message string) Kleisli[A, A] {
-	return SLogWithCallback[A](slog.LevelInfo, logging.GetLoggerFromContext, message)
-}
+func SLog[A any](message string) Kleisli[A, A] { _ = "STUB: not implemented"; return nil }

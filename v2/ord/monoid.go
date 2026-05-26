@@ -16,7 +16,6 @@
 package ord
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	M "github.com/IBM/fp-go/v2/monoid"
 	S "github.com/IBM/fp-go/v2/semigroup"
 )
@@ -36,17 +35,7 @@ import (
 //	sg := ord.Semigroup[Person]()
 //	personOrd := sg.Concat(byLastName, byFirstName)
 //	// Now persons are ordered by last name, then by first name
-func Semigroup[A any]() S.Semigroup[Ord[A]] {
-	return S.MakeSemigroup(func(first, second Ord[A]) Ord[A] {
-		return FromCompare(func(a, b A) int {
-			ox := first.Compare(a, b)
-			if ox != 0 {
-				return ox
-			}
-			return second.Compare(a, b)
-		})
-	})
-}
+func Semigroup[A any]() S.Semigroup[Ord[A]] { _ = "STUB: not implemented"; return nil }
 
 // Monoid implements a two-level ordering with an identity element.
 //
@@ -64,9 +53,7 @@ func Semigroup[A any]() S.Semigroup[Ord[A]] {
 //
 //	intOrd := ord.FromStrictCompare[int]()
 //	combined := m.Concat(intOrd, emptyOrd)  // same as intOrd
-func Monoid[A any]() M.Monoid[Ord[A]] {
-	return M.MakeMonoid(Semigroup[A]().Concat, FromCompare(F.Constant2[A, A](0)))
-}
+func Monoid[A any]() M.Monoid[Ord[A]] { _ = "STUB: not implemented"; return nil }
 
 // MaxSemigroup returns a semigroup where Concat will return the maximum value
 // according to the provided ordering.
@@ -77,9 +64,7 @@ func Monoid[A any]() M.Monoid[Ord[A]] {
 //	maxSg := ord.MaxSemigroup(intOrd)
 //	result := maxSg.Concat(5, 3)  // 5
 //	result := maxSg.Concat(3, 5)  // 5
-func MaxSemigroup[A any](o Ord[A]) S.Semigroup[A] {
-	return S.MakeSemigroup(Max(o))
-}
+func MaxSemigroup[A any](o Ord[A]) S.Semigroup[A] { _ = "STUB: not implemented"; return nil }
 
 // MinSemigroup returns a semigroup where Concat will return the minimum value
 // according to the provided ordering.
@@ -90,6 +75,4 @@ func MaxSemigroup[A any](o Ord[A]) S.Semigroup[A] {
 //	minSg := ord.MinSemigroup(intOrd)
 //	result := minSg.Concat(5, 3)  // 3
 //	result := minSg.Concat(3, 5)  // 3
-func MinSemigroup[A any](o Ord[A]) S.Semigroup[A] {
-	return S.MakeSemigroup(Min(o))
-}
+func MinSemigroup[A any](o Ord[A]) S.Semigroup[A] { _ = "STUB: not implemented"; return nil }

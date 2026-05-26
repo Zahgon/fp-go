@@ -22,16 +22,16 @@ import (
 type optionPointed[A any] struct{}
 
 func (o *optionPointed[A]) Of(a A) Option[A] {
-	return Of(a)
+	_ = "STUB: not implemented"
+
+	// Pointed implements the Pointed operations for Option.
+	// A pointed functor is a functor with an Of operation that wraps a value.
+	//
+	// Example:
+	//
+	//	p := Pointed[int]()
+	//	result := p.Of(42) // Some(42)
+	return nil
 }
 
-// Pointed implements the Pointed operations for Option.
-// A pointed functor is a functor with an Of operation that wraps a value.
-//
-// Example:
-//
-//	p := Pointed[int]()
-//	result := p.Of(42) // Some(42)
-func Pointed[A any]() pointed.Pointed[A, Option[A]] {
-	return &optionPointed[A]{}
-}
+func Pointed[A any]() pointed.Pointed[A, Option[A]] { _ = "STUB: not implemented"; return nil }

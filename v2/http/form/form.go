@@ -180,12 +180,7 @@ var (
 //	    form.WithValue("email")("john@example.com"),
 //	    form.WithValue("age")("30"),
 //	)
-func WithValue(name string) func(value string) Endomorphism {
-	return F.Flow2(
-		O.Of[string],
-		AtValue(name).Set,
-	)
-}
+func WithValue(name string) func(value string) Endomorphism { _ = "STUB: not implemented"; return nil }
 
 // WithoutValue creates an Endomorphism that removes a form field.
 // The transformation is immutable - it creates a new url.Values rather than
@@ -202,6 +197,4 @@ func WithValue(name string) func(value string) Endomorphism {
 //	    form.WithValue("username")("john"),
 //	    form.WithoutValue("password"),
 //	)
-func WithoutValue(name string) Endomorphism {
-	return AtValue(name).Set(noField)
-}
+func WithoutValue(name string) Endomorphism { _ = "STUB: not implemented"; return *new(Endomorphism) }

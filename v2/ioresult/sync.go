@@ -17,13 +17,12 @@ package ioresult
 
 import (
 	"context"
-
-	"github.com/IBM/fp-go/v2/ioeither"
 )
 
 // WithLock executes the provided IO operation in the scope of a lock
 //
 //go:inline
 func WithLock[A any](lock IO[context.CancelFunc]) Operator[A, A] {
-	return ioeither.WithLock[error, A](lock)
+	_ = "STUB: not implemented"
+	return nil
 }

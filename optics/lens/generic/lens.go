@@ -23,13 +23,6 @@ import (
 func AsTraversal[R ~func(func(A) HKTA) func(S) HKTS, S, A, HKTS, HKTA any](
 	fmap func(HKTA, func(A) S) HKTS,
 ) func(L.Lens[S, A]) R {
-	return func(sa L.Lens[S, A]) R {
-		return func(f func(a A) HKTA) func(S) HKTS {
-			return func(s S) HKTS {
-				return fmap(f(sa.Get(s)), func(a A) S {
-					return sa.Set(a)(s)
-				})
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

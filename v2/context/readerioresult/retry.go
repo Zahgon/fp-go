@@ -16,12 +16,7 @@
 package readerioresult
 
 import (
-	"context"
-	"time"
-
-	RIO "github.com/IBM/fp-go/v2/context/readerio"
 	R "github.com/IBM/fp-go/v2/retry"
-	RG "github.com/IBM/fp-go/v2/retry/generic"
 )
 
 // Retrying retries a ReaderIOResult computation according to a retry policy with context awareness.
@@ -123,6 +118,7 @@ func Retrying[A any](
 	action Kleisli[R.RetryStatus, A],
 	check Predicate[Result[A]],
 ) ReaderIOResult[A] {
+	_ = "STUB: not implemented"
 
 	// delayWithCancel implements a context-aware delay mechanism for retry operations.
 	// It creates a timeout context that will be cancelled when either:
@@ -142,40 +138,16 @@ func Retrying[A any](
 	//   - Retry delays respect context cancellation and terminate immediately
 	//   - The cancellation error propagates correctly through the retry chain
 	//   - No unnecessary delays occur when the context is already cancelled
-	delayWithCancel := func(delay time.Duration) RIO.Operator[R.RetryStatus, R.RetryStatus] {
-		return func(ri ReaderIO[R.RetryStatus]) ReaderIO[R.RetryStatus] {
-			return func(ctx context.Context) IO[R.RetryStatus] {
-				return func() R.RetryStatus {
-					// Create a timeout context that will be cancelled when either:
-					// - The delay duration expires, or
-					// - The parent context is cancelled
-					timeoutCtx, cancelTimeout := context.WithTimeout(ctx, delay)
-					defer cancelTimeout()
-
-					// Wait for either the timeout or parent context cancellation
-					<-timeoutCtx.Done()
-
-					// Dispatch to the next action with the original context.
-					// WithContextK will handle context cancellation correctly.
-					return ri(ctx)()
-				}
-			}
-		}
-	}
-
-	// get an implementation for the types
-	return RG.Retrying(
-		RIO.Chain[Result[A], Trampoline[R.RetryStatus, Result[A]]],
-		RIO.Map[R.RetryStatus, Trampoline[R.RetryStatus, Result[A]]],
-		RIO.Of[Trampoline[R.RetryStatus, Result[A]]],
-		RIO.Of[R.RetryStatus],
-		delayWithCancel,
-
-		RIO.TailRec,
-
-		policy,
-		WithContextK(action),
-		check,
-	)
-
+	return nil
 }
+
+// Create a timeout context that will be cancelled when either:
+// - The delay duration expires, or
+// - The parent context is cancelled
+
+// Wait for either the timeout or parent context cancellation
+
+// Dispatch to the next action with the original context.
+// WithContextK will handle context cancellation correctly.
+
+// get an implementation for the types

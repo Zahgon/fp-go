@@ -16,7 +16,6 @@
 package io
 
 import (
-	G "github.com/IBM/fp-go/io/generic"
 	R "github.com/IBM/fp-go/retry"
 )
 
@@ -30,5 +29,6 @@ func Retrying[A any](
 	action func(R.RetryStatus) IO[A],
 	check func(A) bool,
 ) IO[A] {
-	return G.Retrying(policy, action, check)
+	_ = "STUB: not implemented"
+	return nil
 }

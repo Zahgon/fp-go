@@ -5,24 +5,16 @@
 package di
 
 import (
-	A "github.com/IBM/fp-go/array"
 	DIE "github.com/IBM/fp-go/di/erasure"
-	E "github.com/IBM/fp-go/either"
 	IOE "github.com/IBM/fp-go/ioeither"
-	T "github.com/IBM/fp-go/tuple"
 )
 
 // eraseProviderFactory1 creates a function that takes a variadic number of untyped arguments and from a function of 1 strongly typed arguments and 1 dependencies
 func eraseProviderFactory1[T1 any, R any](
 	d1 Dependency[T1],
 	f func(T1) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled1(f))
-	t1 := lookupAt[T1](0, d1)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT1(
-			t1(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory1 creates a [DIE.ProviderFactory] from a function with 1 arguments and 1 dependencies
@@ -30,15 +22,8 @@ func MakeProviderFactory1[T1 any, R any](
 	d1 Dependency[T1],
 	f func(T1) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-		),
-		eraseProviderFactory1(
-			d1,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault1 creates an [InjectionToken] with a default implementation with 1 dependencies
@@ -47,10 +32,8 @@ func MakeTokenWithDefault1[T1 any, R any](
 	d1 Dependency[T1],
 	f func(T1) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory1(
-		d1,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider1 creates a [DIE.Provider] for an [InjectionToken] from a function with 1 dependencies
@@ -59,12 +42,8 @@ func MakeProvider1[T1 any, R any](
 	d1 Dependency[T1],
 	f func(T1) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory1(
-			d1,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory2 creates a function that takes a variadic number of untyped arguments and from a function of 2 strongly typed arguments and 2 dependencies
@@ -72,15 +51,8 @@ func eraseProviderFactory2[T1, T2 any, R any](
 	d1 Dependency[T1],
 	d2 Dependency[T2],
 	f func(T1, T2) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled2(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT2(
-			t1(params),
-			t2(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory2 creates a [DIE.ProviderFactory] from a function with 2 arguments and 2 dependencies
@@ -89,17 +61,8 @@ func MakeProviderFactory2[T1, T2 any, R any](
 	d2 Dependency[T2],
 	f func(T1, T2) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-		),
-		eraseProviderFactory2(
-			d1,
-			d2,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault2 creates an [InjectionToken] with a default implementation with 2 dependencies
@@ -109,11 +72,8 @@ func MakeTokenWithDefault2[T1, T2 any, R any](
 	d2 Dependency[T2],
 	f func(T1, T2) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory2(
-		d1,
-		d2,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider2 creates a [DIE.Provider] for an [InjectionToken] from a function with 2 dependencies
@@ -123,13 +83,8 @@ func MakeProvider2[T1, T2 any, R any](
 	d2 Dependency[T2],
 	f func(T1, T2) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory2(
-			d1,
-			d2,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory3 creates a function that takes a variadic number of untyped arguments and from a function of 3 strongly typed arguments and 3 dependencies
@@ -138,17 +93,8 @@ func eraseProviderFactory3[T1, T2, T3 any, R any](
 	d2 Dependency[T2],
 	d3 Dependency[T3],
 	f func(T1, T2, T3) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled3(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	t3 := lookupAt[T3](2, d3)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT3(
-			t1(params),
-			t2(params),
-			t3(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory3 creates a [DIE.ProviderFactory] from a function with 3 arguments and 3 dependencies
@@ -158,19 +104,8 @@ func MakeProviderFactory3[T1, T2, T3 any, R any](
 	d3 Dependency[T3],
 	f func(T1, T2, T3) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-			d3,
-		),
-		eraseProviderFactory3(
-			d1,
-			d2,
-			d3,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault3 creates an [InjectionToken] with a default implementation with 3 dependencies
@@ -181,12 +116,8 @@ func MakeTokenWithDefault3[T1, T2, T3 any, R any](
 	d3 Dependency[T3],
 	f func(T1, T2, T3) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory3(
-		d1,
-		d2,
-		d3,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider3 creates a [DIE.Provider] for an [InjectionToken] from a function with 3 dependencies
@@ -197,14 +128,8 @@ func MakeProvider3[T1, T2, T3 any, R any](
 	d3 Dependency[T3],
 	f func(T1, T2, T3) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory3(
-			d1,
-			d2,
-			d3,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory4 creates a function that takes a variadic number of untyped arguments and from a function of 4 strongly typed arguments and 4 dependencies
@@ -214,19 +139,8 @@ func eraseProviderFactory4[T1, T2, T3, T4 any, R any](
 	d3 Dependency[T3],
 	d4 Dependency[T4],
 	f func(T1, T2, T3, T4) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled4(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	t3 := lookupAt[T3](2, d3)
-	t4 := lookupAt[T4](3, d4)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT4(
-			t1(params),
-			t2(params),
-			t3(params),
-			t4(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory4 creates a [DIE.ProviderFactory] from a function with 4 arguments and 4 dependencies
@@ -237,21 +151,8 @@ func MakeProviderFactory4[T1, T2, T3, T4 any, R any](
 	d4 Dependency[T4],
 	f func(T1, T2, T3, T4) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-			d3,
-			d4,
-		),
-		eraseProviderFactory4(
-			d1,
-			d2,
-			d3,
-			d4,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault4 creates an [InjectionToken] with a default implementation with 4 dependencies
@@ -263,13 +164,8 @@ func MakeTokenWithDefault4[T1, T2, T3, T4 any, R any](
 	d4 Dependency[T4],
 	f func(T1, T2, T3, T4) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory4(
-		d1,
-		d2,
-		d3,
-		d4,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider4 creates a [DIE.Provider] for an [InjectionToken] from a function with 4 dependencies
@@ -281,15 +177,8 @@ func MakeProvider4[T1, T2, T3, T4 any, R any](
 	d4 Dependency[T4],
 	f func(T1, T2, T3, T4) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory4(
-			d1,
-			d2,
-			d3,
-			d4,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory5 creates a function that takes a variadic number of untyped arguments and from a function of 5 strongly typed arguments and 5 dependencies
@@ -300,21 +189,8 @@ func eraseProviderFactory5[T1, T2, T3, T4, T5 any, R any](
 	d4 Dependency[T4],
 	d5 Dependency[T5],
 	f func(T1, T2, T3, T4, T5) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled5(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	t3 := lookupAt[T3](2, d3)
-	t4 := lookupAt[T4](3, d4)
-	t5 := lookupAt[T5](4, d5)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT5(
-			t1(params),
-			t2(params),
-			t3(params),
-			t4(params),
-			t5(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory5 creates a [DIE.ProviderFactory] from a function with 5 arguments and 5 dependencies
@@ -326,23 +202,8 @@ func MakeProviderFactory5[T1, T2, T3, T4, T5 any, R any](
 	d5 Dependency[T5],
 	f func(T1, T2, T3, T4, T5) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-		),
-		eraseProviderFactory5(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault5 creates an [InjectionToken] with a default implementation with 5 dependencies
@@ -355,14 +216,8 @@ func MakeTokenWithDefault5[T1, T2, T3, T4, T5 any, R any](
 	d5 Dependency[T5],
 	f func(T1, T2, T3, T4, T5) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory5(
-		d1,
-		d2,
-		d3,
-		d4,
-		d5,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider5 creates a [DIE.Provider] for an [InjectionToken] from a function with 5 dependencies
@@ -375,16 +230,8 @@ func MakeProvider5[T1, T2, T3, T4, T5 any, R any](
 	d5 Dependency[T5],
 	f func(T1, T2, T3, T4, T5) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory5(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory6 creates a function that takes a variadic number of untyped arguments and from a function of 6 strongly typed arguments and 6 dependencies
@@ -396,23 +243,8 @@ func eraseProviderFactory6[T1, T2, T3, T4, T5, T6 any, R any](
 	d5 Dependency[T5],
 	d6 Dependency[T6],
 	f func(T1, T2, T3, T4, T5, T6) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled6(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	t3 := lookupAt[T3](2, d3)
-	t4 := lookupAt[T4](3, d4)
-	t5 := lookupAt[T5](4, d5)
-	t6 := lookupAt[T6](5, d6)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT6(
-			t1(params),
-			t2(params),
-			t3(params),
-			t4(params),
-			t5(params),
-			t6(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory6 creates a [DIE.ProviderFactory] from a function with 6 arguments and 6 dependencies
@@ -425,25 +257,8 @@ func MakeProviderFactory6[T1, T2, T3, T4, T5, T6 any, R any](
 	d6 Dependency[T6],
 	f func(T1, T2, T3, T4, T5, T6) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-		),
-		eraseProviderFactory6(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault6 creates an [InjectionToken] with a default implementation with 6 dependencies
@@ -457,15 +272,8 @@ func MakeTokenWithDefault6[T1, T2, T3, T4, T5, T6 any, R any](
 	d6 Dependency[T6],
 	f func(T1, T2, T3, T4, T5, T6) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory6(
-		d1,
-		d2,
-		d3,
-		d4,
-		d5,
-		d6,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider6 creates a [DIE.Provider] for an [InjectionToken] from a function with 6 dependencies
@@ -479,17 +287,8 @@ func MakeProvider6[T1, T2, T3, T4, T5, T6 any, R any](
 	d6 Dependency[T6],
 	f func(T1, T2, T3, T4, T5, T6) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory6(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory7 creates a function that takes a variadic number of untyped arguments and from a function of 7 strongly typed arguments and 7 dependencies
@@ -502,25 +301,8 @@ func eraseProviderFactory7[T1, T2, T3, T4, T5, T6, T7 any, R any](
 	d6 Dependency[T6],
 	d7 Dependency[T7],
 	f func(T1, T2, T3, T4, T5, T6, T7) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled7(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	t3 := lookupAt[T3](2, d3)
-	t4 := lookupAt[T4](3, d4)
-	t5 := lookupAt[T5](4, d5)
-	t6 := lookupAt[T6](5, d6)
-	t7 := lookupAt[T7](6, d7)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT7(
-			t1(params),
-			t2(params),
-			t3(params),
-			t4(params),
-			t5(params),
-			t6(params),
-			t7(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory7 creates a [DIE.ProviderFactory] from a function with 7 arguments and 7 dependencies
@@ -534,27 +316,8 @@ func MakeProviderFactory7[T1, T2, T3, T4, T5, T6, T7 any, R any](
 	d7 Dependency[T7],
 	f func(T1, T2, T3, T4, T5, T6, T7) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-		),
-		eraseProviderFactory7(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault7 creates an [InjectionToken] with a default implementation with 7 dependencies
@@ -569,16 +332,8 @@ func MakeTokenWithDefault7[T1, T2, T3, T4, T5, T6, T7 any, R any](
 	d7 Dependency[T7],
 	f func(T1, T2, T3, T4, T5, T6, T7) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory7(
-		d1,
-		d2,
-		d3,
-		d4,
-		d5,
-		d6,
-		d7,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider7 creates a [DIE.Provider] for an [InjectionToken] from a function with 7 dependencies
@@ -593,18 +348,8 @@ func MakeProvider7[T1, T2, T3, T4, T5, T6, T7 any, R any](
 	d7 Dependency[T7],
 	f func(T1, T2, T3, T4, T5, T6, T7) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory7(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory8 creates a function that takes a variadic number of untyped arguments and from a function of 8 strongly typed arguments and 8 dependencies
@@ -618,27 +363,8 @@ func eraseProviderFactory8[T1, T2, T3, T4, T5, T6, T7, T8 any, R any](
 	d7 Dependency[T7],
 	d8 Dependency[T8],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled8(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	t3 := lookupAt[T3](2, d3)
-	t4 := lookupAt[T4](3, d4)
-	t5 := lookupAt[T5](4, d5)
-	t6 := lookupAt[T6](5, d6)
-	t7 := lookupAt[T7](6, d7)
-	t8 := lookupAt[T8](7, d8)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT8(
-			t1(params),
-			t2(params),
-			t3(params),
-			t4(params),
-			t5(params),
-			t6(params),
-			t7(params),
-			t8(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory8 creates a [DIE.ProviderFactory] from a function with 8 arguments and 8 dependencies
@@ -653,29 +379,8 @@ func MakeProviderFactory8[T1, T2, T3, T4, T5, T6, T7, T8 any, R any](
 	d8 Dependency[T8],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-		),
-		eraseProviderFactory8(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault8 creates an [InjectionToken] with a default implementation with 8 dependencies
@@ -691,17 +396,8 @@ func MakeTokenWithDefault8[T1, T2, T3, T4, T5, T6, T7, T8 any, R any](
 	d8 Dependency[T8],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory8(
-		d1,
-		d2,
-		d3,
-		d4,
-		d5,
-		d6,
-		d7,
-		d8,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider8 creates a [DIE.Provider] for an [InjectionToken] from a function with 8 dependencies
@@ -717,19 +413,8 @@ func MakeProvider8[T1, T2, T3, T4, T5, T6, T7, T8 any, R any](
 	d8 Dependency[T8],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory8(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory9 creates a function that takes a variadic number of untyped arguments and from a function of 9 strongly typed arguments and 9 dependencies
@@ -744,29 +429,8 @@ func eraseProviderFactory9[T1, T2, T3, T4, T5, T6, T7, T8, T9 any, R any](
 	d8 Dependency[T8],
 	d9 Dependency[T9],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled9(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	t3 := lookupAt[T3](2, d3)
-	t4 := lookupAt[T4](3, d4)
-	t5 := lookupAt[T5](4, d5)
-	t6 := lookupAt[T6](5, d6)
-	t7 := lookupAt[T7](6, d7)
-	t8 := lookupAt[T8](7, d8)
-	t9 := lookupAt[T9](8, d9)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT9(
-			t1(params),
-			t2(params),
-			t3(params),
-			t4(params),
-			t5(params),
-			t6(params),
-			t7(params),
-			t8(params),
-			t9(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory9 creates a [DIE.ProviderFactory] from a function with 9 arguments and 9 dependencies
@@ -782,31 +446,8 @@ func MakeProviderFactory9[T1, T2, T3, T4, T5, T6, T7, T8, T9 any, R any](
 	d9 Dependency[T9],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-		),
-		eraseProviderFactory9(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault9 creates an [InjectionToken] with a default implementation with 9 dependencies
@@ -823,18 +464,8 @@ func MakeTokenWithDefault9[T1, T2, T3, T4, T5, T6, T7, T8, T9 any, R any](
 	d9 Dependency[T9],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory9(
-		d1,
-		d2,
-		d3,
-		d4,
-		d5,
-		d6,
-		d7,
-		d8,
-		d9,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider9 creates a [DIE.Provider] for an [InjectionToken] from a function with 9 dependencies
@@ -851,20 +482,8 @@ func MakeProvider9[T1, T2, T3, T4, T5, T6, T7, T8, T9 any, R any](
 	d9 Dependency[T9],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory9(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory10 creates a function that takes a variadic number of untyped arguments and from a function of 10 strongly typed arguments and 10 dependencies
@@ -880,31 +499,8 @@ func eraseProviderFactory10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any, R any](
 	d9 Dependency[T9],
 	d10 Dependency[T10],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled10(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	t3 := lookupAt[T3](2, d3)
-	t4 := lookupAt[T4](3, d4)
-	t5 := lookupAt[T5](4, d5)
-	t6 := lookupAt[T6](5, d6)
-	t7 := lookupAt[T7](6, d7)
-	t8 := lookupAt[T8](7, d8)
-	t9 := lookupAt[T9](8, d9)
-	t10 := lookupAt[T10](9, d10)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT10(
-			t1(params),
-			t2(params),
-			t3(params),
-			t4(params),
-			t5(params),
-			t6(params),
-			t7(params),
-			t8(params),
-			t9(params),
-			t10(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory10 creates a [DIE.ProviderFactory] from a function with 10 arguments and 10 dependencies
@@ -921,33 +517,8 @@ func MakeProviderFactory10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any, R any](
 	d10 Dependency[T10],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-		),
-		eraseProviderFactory10(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault10 creates an [InjectionToken] with a default implementation with 10 dependencies
@@ -965,19 +536,8 @@ func MakeTokenWithDefault10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any, R any](
 	d10 Dependency[T10],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory10(
-		d1,
-		d2,
-		d3,
-		d4,
-		d5,
-		d6,
-		d7,
-		d8,
-		d9,
-		d10,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider10 creates a [DIE.Provider] for an [InjectionToken] from a function with 10 dependencies
@@ -995,21 +555,8 @@ func MakeProvider10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any, R any](
 	d10 Dependency[T10],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory10(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory11 creates a function that takes a variadic number of untyped arguments and from a function of 11 strongly typed arguments and 11 dependencies
@@ -1026,33 +573,8 @@ func eraseProviderFactory11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 any, R 
 	d10 Dependency[T10],
 	d11 Dependency[T11],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled11(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	t3 := lookupAt[T3](2, d3)
-	t4 := lookupAt[T4](3, d4)
-	t5 := lookupAt[T5](4, d5)
-	t6 := lookupAt[T6](5, d6)
-	t7 := lookupAt[T7](6, d7)
-	t8 := lookupAt[T8](7, d8)
-	t9 := lookupAt[T9](8, d9)
-	t10 := lookupAt[T10](9, d10)
-	t11 := lookupAt[T11](10, d11)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT11(
-			t1(params),
-			t2(params),
-			t3(params),
-			t4(params),
-			t5(params),
-			t6(params),
-			t7(params),
-			t8(params),
-			t9(params),
-			t10(params),
-			t11(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory11 creates a [DIE.ProviderFactory] from a function with 11 arguments and 11 dependencies
@@ -1070,35 +592,8 @@ func MakeProviderFactory11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 any, R a
 	d11 Dependency[T11],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-		),
-		eraseProviderFactory11(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault11 creates an [InjectionToken] with a default implementation with 11 dependencies
@@ -1117,20 +612,8 @@ func MakeTokenWithDefault11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 any, R 
 	d11 Dependency[T11],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory11(
-		d1,
-		d2,
-		d3,
-		d4,
-		d5,
-		d6,
-		d7,
-		d8,
-		d9,
-		d10,
-		d11,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider11 creates a [DIE.Provider] for an [InjectionToken] from a function with 11 dependencies
@@ -1149,22 +632,8 @@ func MakeProvider11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 any, R any](
 	d11 Dependency[T11],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory11(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory12 creates a function that takes a variadic number of untyped arguments and from a function of 12 strongly typed arguments and 12 dependencies
@@ -1182,35 +651,8 @@ func eraseProviderFactory12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 an
 	d11 Dependency[T11],
 	d12 Dependency[T12],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled12(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	t3 := lookupAt[T3](2, d3)
-	t4 := lookupAt[T4](3, d4)
-	t5 := lookupAt[T5](4, d5)
-	t6 := lookupAt[T6](5, d6)
-	t7 := lookupAt[T7](6, d7)
-	t8 := lookupAt[T8](7, d8)
-	t9 := lookupAt[T9](8, d9)
-	t10 := lookupAt[T10](9, d10)
-	t11 := lookupAt[T11](10, d11)
-	t12 := lookupAt[T12](11, d12)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT12(
-			t1(params),
-			t2(params),
-			t3(params),
-			t4(params),
-			t5(params),
-			t6(params),
-			t7(params),
-			t8(params),
-			t9(params),
-			t10(params),
-			t11(params),
-			t12(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory12 creates a [DIE.ProviderFactory] from a function with 12 arguments and 12 dependencies
@@ -1229,37 +671,8 @@ func MakeProviderFactory12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 any
 	d12 Dependency[T12],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			d12,
-		),
-		eraseProviderFactory12(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			d12,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault12 creates an [InjectionToken] with a default implementation with 12 dependencies
@@ -1279,21 +692,8 @@ func MakeTokenWithDefault12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 an
 	d12 Dependency[T12],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory12(
-		d1,
-		d2,
-		d3,
-		d4,
-		d5,
-		d6,
-		d7,
-		d8,
-		d9,
-		d10,
-		d11,
-		d12,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider12 creates a [DIE.Provider] for an [InjectionToken] from a function with 12 dependencies
@@ -1313,23 +713,8 @@ func MakeProvider12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 any, R any
 	d12 Dependency[T12],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory12(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			d12,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory13 creates a function that takes a variadic number of untyped arguments and from a function of 13 strongly typed arguments and 13 dependencies
@@ -1348,37 +733,8 @@ func eraseProviderFactory13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T
 	d12 Dependency[T12],
 	d13 Dependency[T13],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled13(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	t3 := lookupAt[T3](2, d3)
-	t4 := lookupAt[T4](3, d4)
-	t5 := lookupAt[T5](4, d5)
-	t6 := lookupAt[T6](5, d6)
-	t7 := lookupAt[T7](6, d7)
-	t8 := lookupAt[T8](7, d8)
-	t9 := lookupAt[T9](8, d9)
-	t10 := lookupAt[T10](9, d10)
-	t11 := lookupAt[T11](10, d11)
-	t12 := lookupAt[T12](11, d12)
-	t13 := lookupAt[T13](12, d13)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT13(
-			t1(params),
-			t2(params),
-			t3(params),
-			t4(params),
-			t5(params),
-			t6(params),
-			t7(params),
-			t8(params),
-			t9(params),
-			t10(params),
-			t11(params),
-			t12(params),
-			t13(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory13 creates a [DIE.ProviderFactory] from a function with 13 arguments and 13 dependencies
@@ -1398,39 +754,8 @@ func MakeProviderFactory13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T1
 	d13 Dependency[T13],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			d12,
-			d13,
-		),
-		eraseProviderFactory13(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			d12,
-			d13,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault13 creates an [InjectionToken] with a default implementation with 13 dependencies
@@ -1451,22 +776,8 @@ func MakeTokenWithDefault13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T
 	d13 Dependency[T13],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory13(
-		d1,
-		d2,
-		d3,
-		d4,
-		d5,
-		d6,
-		d7,
-		d8,
-		d9,
-		d10,
-		d11,
-		d12,
-		d13,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider13 creates a [DIE.Provider] for an [InjectionToken] from a function with 13 dependencies
@@ -1487,24 +798,8 @@ func MakeProvider13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13 any, 
 	d13 Dependency[T13],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory13(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			d12,
-			d13,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory14 creates a function that takes a variadic number of untyped arguments and from a function of 14 strongly typed arguments and 14 dependencies
@@ -1524,39 +819,8 @@ func eraseProviderFactory14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T
 	d13 Dependency[T13],
 	d14 Dependency[T14],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled14(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	t3 := lookupAt[T3](2, d3)
-	t4 := lookupAt[T4](3, d4)
-	t5 := lookupAt[T5](4, d5)
-	t6 := lookupAt[T6](5, d6)
-	t7 := lookupAt[T7](6, d7)
-	t8 := lookupAt[T8](7, d8)
-	t9 := lookupAt[T9](8, d9)
-	t10 := lookupAt[T10](9, d10)
-	t11 := lookupAt[T11](10, d11)
-	t12 := lookupAt[T12](11, d12)
-	t13 := lookupAt[T13](12, d13)
-	t14 := lookupAt[T14](13, d14)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT14(
-			t1(params),
-			t2(params),
-			t3(params),
-			t4(params),
-			t5(params),
-			t6(params),
-			t7(params),
-			t8(params),
-			t9(params),
-			t10(params),
-			t11(params),
-			t12(params),
-			t13(params),
-			t14(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory14 creates a [DIE.ProviderFactory] from a function with 14 arguments and 14 dependencies
@@ -1577,41 +841,8 @@ func MakeProviderFactory14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T1
 	d14 Dependency[T14],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			d12,
-			d13,
-			d14,
-		),
-		eraseProviderFactory14(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			d12,
-			d13,
-			d14,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault14 creates an [InjectionToken] with a default implementation with 14 dependencies
@@ -1633,23 +864,8 @@ func MakeTokenWithDefault14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T
 	d14 Dependency[T14],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory14(
-		d1,
-		d2,
-		d3,
-		d4,
-		d5,
-		d6,
-		d7,
-		d8,
-		d9,
-		d10,
-		d11,
-		d12,
-		d13,
-		d14,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider14 creates a [DIE.Provider] for an [InjectionToken] from a function with 14 dependencies
@@ -1671,25 +887,8 @@ func MakeProvider14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14 
 	d14 Dependency[T14],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory14(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			d12,
-			d13,
-			d14,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }
 
 // eraseProviderFactory15 creates a function that takes a variadic number of untyped arguments and from a function of 15 strongly typed arguments and 15 dependencies
@@ -1710,41 +909,8 @@ func eraseProviderFactory15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T
 	d14 Dependency[T14],
 	d15 Dependency[T15],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15) IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {
-	ft := eraseTuple(T.Tupled15(f))
-	t1 := lookupAt[T1](0, d1)
-	t2 := lookupAt[T2](1, d2)
-	t3 := lookupAt[T3](2, d3)
-	t4 := lookupAt[T4](3, d4)
-	t5 := lookupAt[T5](4, d5)
-	t6 := lookupAt[T6](5, d6)
-	t7 := lookupAt[T7](6, d7)
-	t8 := lookupAt[T8](7, d8)
-	t9 := lookupAt[T9](8, d9)
-	t10 := lookupAt[T10](9, d10)
-	t11 := lookupAt[T11](10, d11)
-	t12 := lookupAt[T12](11, d12)
-	t13 := lookupAt[T13](12, d13)
-	t14 := lookupAt[T14](13, d14)
-	t15 := lookupAt[T15](14, d15)
-	return func(params ...any) IOE.IOEither[error, any] {
-		return ft(E.SequenceT15(
-			t1(params),
-			t2(params),
-			t3(params),
-			t4(params),
-			t5(params),
-			t6(params),
-			t7(params),
-			t8(params),
-			t9(params),
-			t10(params),
-			t11(params),
-			t12(params),
-			t13(params),
-			t14(params),
-			t15(params),
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory15 creates a [DIE.ProviderFactory] from a function with 15 arguments and 15 dependencies
@@ -1766,43 +932,8 @@ func MakeProviderFactory15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T1
 	d15 Dependency[T15],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15) IOE.IOEither[error, R],
 ) DIE.ProviderFactory {
-	return DIE.MakeProviderFactory(
-		A.From[DIE.Dependency](
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			d12,
-			d13,
-			d14,
-			d15,
-		),
-		eraseProviderFactory15(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			d12,
-			d13,
-			d14,
-			d15,
-			f,
-		),
-	)
+	_ = "STUB: not implemented"
+	return *new(DIE.ProviderFactory)
 }
 
 // MakeTokenWithDefault15 creates an [InjectionToken] with a default implementation with 15 dependencies
@@ -1825,24 +956,8 @@ func MakeTokenWithDefault15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T
 	d15 Dependency[T15],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15) IOE.IOEither[error, R],
 ) InjectionToken[R] {
-	return MakeTokenWithDefault[R](name, MakeProviderFactory15(
-		d1,
-		d2,
-		d3,
-		d4,
-		d5,
-		d6,
-		d7,
-		d8,
-		d9,
-		d10,
-		d11,
-		d12,
-		d13,
-		d14,
-		d15,
-		f,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProvider15 creates a [DIE.Provider] for an [InjectionToken] from a function with 15 dependencies
@@ -1865,24 +980,6 @@ func MakeProvider15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14,
 	d15 Dependency[T15],
 	f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15) IOE.IOEither[error, R],
 ) DIE.Provider {
-	return DIE.MakeProvider(
-		token,
-		MakeProviderFactory15(
-			d1,
-			d2,
-			d3,
-			d4,
-			d5,
-			d6,
-			d7,
-			d8,
-			d9,
-			d10,
-			d11,
-			d12,
-			d13,
-			d14,
-			d15,
-			f,
-		))
+	_ = "STUB: not implemented"
+	return *new(DIE.Provider)
 }

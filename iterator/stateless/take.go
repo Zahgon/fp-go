@@ -15,11 +15,5 @@
 
 package stateless
 
-import (
-	G "github.com/IBM/fp-go/iterator/stateless/generic"
-)
-
 // Take limits the number of values in the [Iterator] to a maximum number
-func Take[U any](n int) func(ma Iterator[U]) Iterator[U] {
-	return G.Take[Iterator[U]](n)
-}
+func Take[U any](n int) func(ma Iterator[U]) Iterator[U] { _ = "STUB: not implemented"; return nil }

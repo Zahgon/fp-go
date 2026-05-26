@@ -40,21 +40,6 @@ package result
 //	    return either.Right[error]("data")
 //	})
 func WithResource[R, A, ANY any](onCreate func() (R, error), onRelease Kleisli[R, ANY]) Kleisli[Kleisli[R, A], A] {
-
-	return func(f func(R) (A, error)) (A, error) {
-		r, rerr := onCreate()
-		if rerr != nil {
-			return Left[A](rerr)
-		}
-		a, aerr := f(r)
-		_, nerr := onRelease(r)
-		if aerr != nil {
-			return Left[A](aerr)
-		}
-		if nerr != nil {
-			return Left[A](nerr)
-
-		}
-		return Of(a)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

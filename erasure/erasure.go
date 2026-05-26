@@ -17,46 +17,33 @@ package erasure
 
 import (
 	E "github.com/IBM/fp-go/either"
-	"github.com/IBM/fp-go/errors"
-	F "github.com/IBM/fp-go/function"
 )
 
 // Erase converts a variable of type T to an any by returning a pointer to that variable
 func Erase[T any](t T) any {
-	return &t
+	_ = "STUB: not implemented"
+
+	// Unerase converts an erased variable back to its original value
+	return *new(any)
 }
 
-// Unerase converts an erased variable back to its original value
 func Unerase[T any](t any) T {
-	return *t.(*T)
+	_ = "STUB: not implemented"
+
+	// SafeUnerase converts an erased variable back to its original value
+	return *new(T)
 }
 
-// SafeUnerase converts an erased variable back to its original value
-func SafeUnerase[T any](t any) E.Either[error, T] {
-	return F.Pipe2(
-		t,
-		E.ToType[*T](errors.OnSome[any]("Value of type [%T] is not erased")),
-		E.Map[error](F.Deref[T]),
-	)
-}
+func SafeUnerase[T any](t any) E.Either[error, T] { _ = "STUB: not implemented"; return nil }
 
 // Erase0 converts a type safe function into an erased function
-func Erase0[T1 any](f func() T1) func() any {
-	return F.Nullary2(f, Erase[T1])
-}
+func Erase0[T1 any](f func() T1) func() any { _ = "STUB: not implemented"; return nil }
 
 // Erase1 converts a type safe function into an erased function
-func Erase1[T1, T2 any](f func(T1) T2) func(any) any {
-	return F.Flow3(
-		Unerase[T1],
-		f,
-		Erase[T2],
-	)
-}
+func Erase1[T1, T2 any](f func(T1) T2) func(any) any { _ = "STUB: not implemented"; return nil }
 
 // Erase2 converts a type safe function into an erased function
 func Erase2[T1, T2, T3 any](f func(T1, T2) T3) func(any, any) any {
-	return func(t1, t2 any) any {
-		return Erase(f(Unerase[T1](t1), Unerase[T2](t2)))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

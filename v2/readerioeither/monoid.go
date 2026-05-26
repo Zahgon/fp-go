@@ -35,12 +35,8 @@ type (
 //
 // Returns a Monoid for ReaderIOEither[R, E, A].
 func ApplicativeMonoid[R, E, A any](m monoid.Monoid[A]) Monoid[R, E, A] {
-	return monoid.ApplicativeMonoid(
-		Of[R, E, A],
-		MonadMap[R, E, A, func(A) A],
-		MonadAp[R, E, A, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoidSeq returns a [Monoid] that concatenates [ReaderIOEither] instances via their applicative.
@@ -51,12 +47,8 @@ func ApplicativeMonoid[R, E, A any](m monoid.Monoid[A]) Monoid[R, E, A] {
 //
 // Returns a Monoid for ReaderIOEither[R, E, A] with sequential execution.
 func ApplicativeMonoidSeq[R, E, A any](m monoid.Monoid[A]) Monoid[R, E, A] {
-	return monoid.ApplicativeMonoid(
-		Of[R, E, A],
-		MonadMap[R, E, A, func(A) A],
-		MonadApSeq[R, E, A, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoidPar returns a [Monoid] that concatenates [ReaderIOEither] instances via their applicative.
@@ -67,12 +59,8 @@ func ApplicativeMonoidSeq[R, E, A any](m monoid.Monoid[A]) Monoid[R, E, A] {
 //
 // Returns a Monoid for ReaderIOEither[R, E, A] with parallel execution.
 func ApplicativeMonoidPar[R, E, A any](m monoid.Monoid[A]) Monoid[R, E, A] {
-	return monoid.ApplicativeMonoid(
-		Of[R, E, A],
-		MonadMap[R, E, A, func(A) A],
-		MonadApPar[R, E, A, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AlternativeMonoid is the alternative [Monoid] for [ReaderIOEither].
@@ -84,13 +72,8 @@ func ApplicativeMonoidPar[R, E, A any](m monoid.Monoid[A]) Monoid[R, E, A] {
 //
 // Returns a Monoid for ReaderIOEither[R, E, A] with alternative semantics.
 func AlternativeMonoid[R, E, A any](m monoid.Monoid[A]) Monoid[R, E, A] {
-	return monoid.AlternativeMonoid(
-		Of[R, E, A],
-		MonadMap[R, E, A, func(A) A],
-		MonadAp[R, E, A, A],
-		MonadAlt[R, E, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltMonoid is the alternative [Monoid] for a [ReaderIOEither].
@@ -102,8 +85,6 @@ func AlternativeMonoid[R, E, A any](m monoid.Monoid[A]) Monoid[R, E, A] {
 //
 // Returns a Monoid for ReaderIOEither[R, E, A] with Alt-based combination.
 func AltMonoid[R, E, A any](zero lazy.Lazy[ReaderIOEither[R, E, A]]) Monoid[R, E, A] {
-	return monoid.AltMonoid(
-		zero,
-		MonadAlt[R, E, A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

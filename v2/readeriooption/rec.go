@@ -16,29 +16,11 @@
 package readeriooption
 
 import (
-	"github.com/IBM/fp-go/v2/option"
 	"github.com/IBM/fp-go/v2/tailrec"
 )
 
 //go:inline
 func TailRec[R, A, B any](f Kleisli[R, A, tailrec.Trampoline[A, B]]) Kleisli[R, A, B] {
-	return func(a A) ReaderIOOption[R, B] {
-		initialReader := f(a)
-		return func(r R) IOOption[B] {
-			initialB := initialReader(r)
-			return func() Option[B] {
-				current := initialB()
-				for {
-					rec, ok := option.Unwrap(current)
-					if !ok {
-						return option.None[B]()
-					}
-					if rec.Landed {
-						return option.Of(rec.Land)
-					}
-					current = f(rec.Bounce)(r)()
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

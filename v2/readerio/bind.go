@@ -16,10 +16,6 @@
 package readerio
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/apply"
-	"github.com/IBM/fp-go/v2/internal/chain"
-	"github.com/IBM/fp-go/v2/internal/functor"
 	L "github.com/IBM/fp-go/v2/optics/lens"
 )
 
@@ -40,61 +36,59 @@ import (
 func Do[R, S any](
 	empty S,
 ) ReaderIO[R, S] {
-	return Of[R](empty)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Bind attaches the result of a computation to a context [S1] to produce a context [S2].
+	// This enables sequential composition where each step can depend on the results of previous steps
+	// and access the shared environment.
+	//
+	// The setter function takes the result of the computation and returns a function that
+	// updates the context from S1 to S2.
+	//
+	// Example:
+	//
+	//	type State struct {
+	//	    Host string
+	//	    Port int
+	//	}
+	//	type Config struct {
+	//	    DefaultHost string
+	//	    DefaultPort int
+	//	}
+	//
+	//	result := F.Pipe2(
+	//	    readerio.Do[Config](State{}),
+	//	    readerio.Bind(
+	//	        func(host string) func(State) State {
+	//	            return func(s State) State { s.Host = host; return s }
+	//	        },
+	//	        func(s State) readerio.ReaderIO[Config, string] {
+	//	            return readerio.Asks(func(c Config) io.IO[string] {
+	//	                return io.Of(c.DefaultHost)
+	//	            })
+	//	        },
+	//	    ),
+	//	    readerio.Bind(
+	//	        func(port int) func(State) State {
+	//	            return func(s State) State { s.Port = port; return s }
+	//	        },
+	//	        func(s State) readerio.ReaderIO[Config, int] {
+	//	            // This can access s.Host from the previous step
+	//	            return readerio.Asks(func(c Config) io.IO[int] {
+	//	                return io.Of(c.DefaultPort)
+	//	            })
+	//	        },
+	//	    ),
+	//	)
 }
 
-// Bind attaches the result of a computation to a context [S1] to produce a context [S2].
-// This enables sequential composition where each step can depend on the results of previous steps
-// and access the shared environment.
-//
-// The setter function takes the result of the computation and returns a function that
-// updates the context from S1 to S2.
-//
-// Example:
-//
-//	type State struct {
-//	    Host string
-//	    Port int
-//	}
-//	type Config struct {
-//	    DefaultHost string
-//	    DefaultPort int
-//	}
-//
-//	result := F.Pipe2(
-//	    readerio.Do[Config](State{}),
-//	    readerio.Bind(
-//	        func(host string) func(State) State {
-//	            return func(s State) State { s.Host = host; return s }
-//	        },
-//	        func(s State) readerio.ReaderIO[Config, string] {
-//	            return readerio.Asks(func(c Config) io.IO[string] {
-//	                return io.Of(c.DefaultHost)
-//	            })
-//	        },
-//	    ),
-//	    readerio.Bind(
-//	        func(port int) func(State) State {
-//	            return func(s State) State { s.Port = port; return s }
-//	        },
-//	        func(s State) readerio.ReaderIO[Config, int] {
-//	            // This can access s.Host from the previous step
-//	            return readerio.Asks(func(c Config) io.IO[int] {
-//	                return io.Of(c.DefaultPort)
-//	            })
-//	        },
-//	    ),
-//	)
 func Bind[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) ReaderIO[R, T],
 ) func(ReaderIO[R, S1]) ReaderIO[R, S2] {
-	return chain.Bind(
-		Chain[R, S1, S2],
-		Map[R, T, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -102,11 +96,8 @@ func Let[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) func(ReaderIO[R, S1]) ReaderIO[R, S2] {
-	return functor.Let(
-		Map[R, S1, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches the a value to a context [S1] to produce a context [S2]
@@ -114,21 +105,16 @@ func LetTo[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) func(ReaderIO[R, S1]) ReaderIO[R, S2] {
-	return functor.LetTo(
-		Map[R, S1, S2],
-		setter,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T]
 func BindTo[R, S1, T any](
 	setter func(T) S1,
 ) func(ReaderIO[R, T]) ReaderIO[R, S1] {
-	return chain.BindTo(
-		Map[R, T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering
@@ -176,12 +162,8 @@ func ApS[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa ReaderIO[R, T],
 ) func(ReaderIO[R, S1]) ReaderIO[R, S2] {
-	return apply.ApS(
-		Ap[S2, R, T],
-		Map[R, S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL attaches a value to a context using a lens-based setter.
@@ -218,46 +200,49 @@ func ApSL[R, S, T any](
 	lens L.Lens[S, T],
 	fa ReaderIO[R, T],
 ) func(ReaderIO[R, S]) ReaderIO[R, S] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL is a variant of Bind that uses a lens to focus on a specific part of the context.
+	// This provides a more ergonomic API when working with nested structures, eliminating
+	// the need to manually write setter functions.
+	//
+	// The lens parameter provides both a getter and setter for a field of type T within
+	// the context S. The function f receives the current value of the focused field and
+	// returns a ReaderIO computation that produces an updated value.
+	//
+	// Example:
+	//
+	//	type State struct {
+	//	    Host string
+	//	    Port int
+	//	}
+	//	type Config struct {
+	//	    DefaultHost string
+	//	    DefaultPort int
+	//	}
+	//
+	//	portLens := lens.MakeLens(
+	//	    func(s State) int { return s.Port },
+	//	    func(s State, p int) State { s.Port = p; return s },
+	//	)
+	//
+	//	result := F.Pipe2(
+	//	    readerio.Do[Config](State{Host: "localhost"}),
+	//	    readerio.BindL(portLens, func(port int) readerio.ReaderIO[Config, int] {
+	//	        return readerio.Asks(func(c Config) io.IO[int] {
+	//	            return io.Of(c.DefaultPort)
+	//	        })
+	//	    }),
+	//	)
 }
 
-// BindL is a variant of Bind that uses a lens to focus on a specific part of the context.
-// This provides a more ergonomic API when working with nested structures, eliminating
-// the need to manually write setter functions.
-//
-// The lens parameter provides both a getter and setter for a field of type T within
-// the context S. The function f receives the current value of the focused field and
-// returns a ReaderIO computation that produces an updated value.
-//
-// Example:
-//
-//	type State struct {
-//	    Host string
-//	    Port int
-//	}
-//	type Config struct {
-//	    DefaultHost string
-//	    DefaultPort int
-//	}
-//
-//	portLens := lens.MakeLens(
-//	    func(s State) int { return s.Port },
-//	    func(s State, p int) State { s.Port = p; return s },
-//	)
-//
-//	result := F.Pipe2(
-//	    readerio.Do[Config](State{Host: "localhost"}),
-//	    readerio.BindL(portLens, func(port int) readerio.ReaderIO[Config, int] {
-//	        return readerio.Asks(func(c Config) io.IO[int] {
-//	            return io.Of(c.DefaultPort)
-//	        })
-//	    }),
-//	)
 func BindL[R, S, T any](
 	lens L.Lens[S, T],
 	f func(T) ReaderIO[R, T],
 ) func(ReaderIO[R, S]) ReaderIO[R, S] {
-	return Bind(lens.Set, F.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL is a variant of Let that uses a lens to focus on a specific part of the context.
@@ -290,7 +275,8 @@ func LetL[R, S, T any](
 	lens L.Lens[S, T],
 	f func(T) T,
 ) func(ReaderIO[R, S]) ReaderIO[R, S] {
-	return Let[R](lens.Set, F.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL is a variant of LetTo that uses a lens to focus on a specific part of the context.
@@ -320,5 +306,6 @@ func LetToL[R, S, T any](
 	lens L.Lens[S, T],
 	b T,
 ) func(ReaderIO[R, S]) ReaderIO[R, S] {
-	return LetTo[R](lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }

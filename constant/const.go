@@ -16,7 +16,6 @@
 package constant
 
 import (
-	F "github.com/IBM/fp-go/function"
 	M "github.com/IBM/fp-go/monoid"
 	S "github.com/IBM/fp-go/semigroup"
 )
@@ -25,35 +24,28 @@ type Const[E, A any] struct {
 	value E
 }
 
-func Make[E, A any](e E) Const[E, A] {
-	return Const[E, A]{value: e}
-}
+func Make[E, A any](e E) Const[E, A] { _ = "STUB: not implemented"; return nil }
 
-func Unwrap[E, A any](c Const[E, A]) E {
-	return c.value
-}
+func Unwrap[E, A any](c Const[E, A]) E { _ = "STUB: not implemented"; return *new(E) }
 
-func Of[E, A any](m M.Monoid[E]) func(A) Const[E, A] {
-	return F.Constant1[A](Make[E, A](m.Empty()))
-}
+func Of[E, A any](m M.Monoid[E]) func(A) Const[E, A] { _ = "STUB: not implemented"; return nil }
 
 func MonadMap[E, A, B any](fa Const[E, A], _ func(A) B) Const[E, B] {
-	return Make[E, B](fa.value)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadAp[E, A, B any](s S.Semigroup[E]) func(fab Const[E, func(A) B], fa Const[E, A]) Const[E, B] {
-	return func(fab Const[E, func(A) B], fa Const[E, A]) Const[E, B] {
-		return Make[E, B](s.Concat(fab.value, fa.value))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Map[E, A, B any](f func(A) B) func(fa Const[E, A]) Const[E, B] {
-	return F.Bind2nd(MonadMap[E, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Ap[E, A, B any](s S.Semigroup[E]) func(fa Const[E, A]) func(fab Const[E, func(A) B]) Const[E, B] {
-	monadap := MonadAp[E, A, B](s)
-	return func(fa Const[E, A]) func(fab Const[E, func(A) B]) Const[E, B] {
-		return F.Bind2nd(monadap, fa)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

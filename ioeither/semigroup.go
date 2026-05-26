@@ -16,11 +16,8 @@
 package ioeither
 
 import (
-	G "github.com/IBM/fp-go/ioeither/generic"
 	S "github.com/IBM/fp-go/semigroup"
 )
 
 // AltSemigroup is a [Semigroup] that tries the first item and then the second one using an alternative
-func AltSemigroup[E, A any]() S.Semigroup[IOEither[E, A]] {
-	return G.AltSemigroup[IOEither[E, A]]()
-}
+func AltSemigroup[E, A any]() S.Semigroup[IOEither[E, A]] { _ = "STUB: not implemented"; return nil }

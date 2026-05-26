@@ -19,14 +19,10 @@ import (
 	C "github.com/IBM/fp-go/v2/constant"
 	M "github.com/IBM/fp-go/v2/monoid"
 	G "github.com/IBM/fp-go/v2/optics/traversal/generic"
-	RR "github.com/IBM/fp-go/v2/optics/traversal/record/generic"
 )
 
 // FromRecord returns a traversal from an array for the const monad
 func FromRecord[MA ~map[K]A, E, K comparable, A any](m M.Monoid[E]) G.Traversal[MA, A, C.Const[E, MA], C.Const[E, A]] {
-	return RR.FromRecord[MA](
-		C.Of[E, MA](m),
-		C.Map[E, MA, func(A) MA],
-		C.Ap[E, A, MA](m),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -17,7 +17,6 @@ package readerio
 
 import (
 	"github.com/IBM/fp-go/v2/retry"
-	RG "github.com/IBM/fp-go/v2/retry/generic"
 )
 
 // Retrying retries a ReaderIO action according to a retry policy until it succeeds or the policy gives up.
@@ -229,19 +228,8 @@ func Retrying[R, A any](
 	action Kleisli[R, retry.RetryStatus, A],
 	check Predicate[A],
 ) ReaderIO[R, A] {
+	_ = "STUB: not implemented"
 	// Delegate to the generic retry implementation with trampoline-based tail recursion.
 	// This provides stack-safe retry logic by using an iterative approach internally.
-	return RG.Retrying(
-		Chain[R, A, Trampoline[retry.RetryStatus, A]],
-		Map[R, retry.RetryStatus, Trampoline[retry.RetryStatus, A]],
-		Of[R, Trampoline[retry.RetryStatus, A]],
-		Of[R, retry.RetryStatus],
-		Delay[R, retry.RetryStatus],
-
-		TailRec[R, retry.RetryStatus, A],
-
-		policy,
-		action,
-		check,
-	)
+	return nil
 }

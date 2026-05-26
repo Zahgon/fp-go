@@ -16,11 +16,8 @@
 package stateless
 
 import (
-	G "github.com/IBM/fp-go/iterator/stateless/generic"
 	M "github.com/IBM/fp-go/monoid"
 )
 
 // Monoid contructs a [M.Monoid] that concatenates two [Iterator]s
-func Monoid[U any]() M.Monoid[Iterator[U]] {
-	return G.Monoid[Iterator[U]]()
-}
+func Monoid[U any]() M.Monoid[Iterator[U]] { _ = "STUB: not implemented"; return nil }

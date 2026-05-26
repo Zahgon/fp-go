@@ -15,10 +15,6 @@
 
 package readerioresult
 
-import (
-	RIOE "github.com/IBM/fp-go/v2/readerioeither"
-)
-
 // TraverseArray transforms each element of an array using a function that returns a ReaderIOResult,
 // then collects the results into a single ReaderIOResult containing an array.
 //
@@ -48,7 +44,8 @@ import (
 //
 //go:inline
 func TraverseArray[R, A, B any](f Kleisli[R, A, B]) Kleisli[R, []A, []B] {
-	return RIOE.TraverseArray(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex is like TraverseArray but the transformation function also receives the index.
@@ -76,7 +73,8 @@ func TraverseArray[R, A, B any](f Kleisli[R, A, B]) Kleisli[R, []A, []B] {
 //
 //go:inline
 func TraverseArrayWithIndex[R, A, B any](f func(int, A) ReaderIOResult[R, B]) Kleisli[R, []A, []B] {
-	return RIOE.TraverseArrayWithIndex(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts an array of ReaderIOResult into a ReaderIOResult of an array.
@@ -108,7 +106,8 @@ func TraverseArrayWithIndex[R, A, B any](f func(int, A) ReaderIOResult[R, B]) Kl
 //
 //go:inline
 func SequenceArray[R, A any](ma []ReaderIOResult[R, A]) ReaderIOResult[R, []A] {
-	return RIOE.SequenceArray(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecord transforms each value in a map using a function that returns a ReaderIOResult,
@@ -140,7 +139,8 @@ func SequenceArray[R, A any](ma []ReaderIOResult[R, A]) ReaderIOResult[R, []A] {
 //
 //go:inline
 func TraverseRecord[K comparable, R, A, B any](f Kleisli[R, A, B]) Kleisli[R, map[K]A, map[K]B] {
-	return RIOE.TraverseRecord[K](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndex is like TraverseRecord but the transformation function also receives the key.
@@ -169,7 +169,8 @@ func TraverseRecord[K comparable, R, A, B any](f Kleisli[R, A, B]) Kleisli[R, ma
 //
 //go:inline
 func TraverseRecordWithIndex[K comparable, R, A, B any](f func(K, A) ReaderIOResult[R, B]) Kleisli[R, map[K]A, map[K]B] {
-	return RIOE.TraverseRecordWithIndex(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecord converts a map of ReaderIOResult into a ReaderIOResult of a map.
@@ -202,17 +203,21 @@ func TraverseRecordWithIndex[K comparable, R, A, B any](f func(K, A) ReaderIORes
 //
 //go:inline
 func SequenceRecord[K comparable, R, A any](ma map[K]ReaderIOResult[R, A]) ReaderIOResult[R, map[K]A] {
-	return RIOE.SequenceRecord(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraversableArray[R, A, B any]() Traversable[R, A, B, []A, []B] {
-	return RIOE.TraversableArray[R, error, A, B]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraversableRecord[K comparable, R, A, B any]() Traversable[R, A, B, map[K]A, map[K]B] {
-	return RIOE.TraversableRecord[K, R, error, A, B]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraversableIter[R, A, B any]() Traversable[R, A, B, Seq[A], Seq[B]] {
-	return RIOE.TraversableIter[R, error, A, B]()
+	_ = "STUB: not implemented"
+	return nil
 }

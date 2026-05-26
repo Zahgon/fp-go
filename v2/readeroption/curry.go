@@ -15,10 +15,6 @@
 
 package readeroption
 
-import (
-	G "github.com/IBM/fp-go/v2/readeroption/generic"
-)
-
 // Curry functions convert Go functions that take a context as the first parameter
 // and return (value, bool) into curried ReaderOption functions.
 //
@@ -40,7 +36,8 @@ import (
 //	ro := readeroption.Curry0(getConfig)
 //	result := ro(ctx) // Returns option.Some(config) or option.None()
 func Curry0[R, A any](f func(R) (A, bool)) ReaderOption[R, A] {
-	return G.Curry0[ReaderOption[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry1 converts a function that takes a context and one argument, returning (A, bool),
@@ -55,7 +52,8 @@ func Curry0[R, A any](f func(R) (A, bool)) ReaderOption[R, A] {
 //	ro := readeroption.Curry1(findUser)
 //	result := ro(123)(ctx) // Returns option.Some(user) or option.None()
 func Curry1[R, T1, A any](f func(R, T1) (A, bool)) Kleisli[R, T1, A] {
-	return G.Curry1[ReaderOption[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry2 converts a function that takes a context and two arguments, returning (A, bool),
@@ -70,7 +68,8 @@ func Curry1[R, T1, A any](f func(R, T1) (A, bool)) Kleisli[R, T1, A] {
 //	ro := readeroption.Curry2(query)
 //	result := ro("users")(123)(ctx) // Returns option.Some(record) or option.None()
 func Curry2[R, T1, T2, A any](f func(R, T1, T2) (A, bool)) func(T1) func(T2) ReaderOption[R, A] {
-	return G.Curry2[ReaderOption[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry3 converts a function that takes a context and three arguments, returning (A, bool),
@@ -85,7 +84,8 @@ func Curry2[R, T1, T2, A any](f func(R, T1, T2) (A, bool)) func(T1) func(T2) Rea
 //	ro := readeroption.Curry3(complexQuery)
 //	result := ro("mydb")("users")(123)(ctx)
 func Curry3[R, T1, T2, T3, A any](f func(R, T1, T2, T3) (A, bool)) func(T1) func(T2) func(T3) ReaderOption[R, A] {
-	return G.Curry3[ReaderOption[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry1 converts a curried ReaderOption function back to a Go function
@@ -97,17 +97,22 @@ func Curry3[R, T1, T2, T3, A any](f func(R, T1, T2, T3) (A, bool)) func(T1) func
 //	findUser := readeroption.Uncurry1(ro)
 //	user, found := findUser(ctx, 123)
 func Uncurry1[R, T1, A any](f func(T1) ReaderOption[R, A]) func(R, T1) (A, bool) {
-	return G.Uncurry1(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Uncurry2 converts a curried ReaderOption function back to a Go function
+	// that takes a context and two arguments, returning (A, bool).
 }
 
-// Uncurry2 converts a curried ReaderOption function back to a Go function
-// that takes a context and two arguments, returning (A, bool).
 func Uncurry2[R, T1, T2, A any](f func(T1) func(T2) ReaderOption[R, A]) func(R, T1, T2) (A, bool) {
-	return G.Uncurry2(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Uncurry3 converts a curried ReaderOption function back to a Go function
+	// that takes a context and three arguments, returning (A, bool).
 }
 
-// Uncurry3 converts a curried ReaderOption function back to a Go function
-// that takes a context and three arguments, returning (A, bool).
 func Uncurry3[R, T1, T2, T3, A any](f func(T1) func(T2) func(T3) ReaderOption[R, A]) func(R, T1, T2, T3) (A, bool) {
-	return G.Uncurry3(f)
+	_ = "STUB: not implemented"
+	return nil
 }

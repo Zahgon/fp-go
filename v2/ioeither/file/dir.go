@@ -17,8 +17,6 @@ package file
 
 import (
 	"os"
-
-	"github.com/IBM/fp-go/v2/ioeither"
 )
 
 // MkdirAll creates a directory and all necessary parent directories with the specified permissions.
@@ -38,9 +36,8 @@ import (
 //	mkdirOp := MkdirAll("/tmp/my/nested/dir", 0755)
 //	result := mkdirOp() // Either[error, string]
 func MkdirAll(path string, perm os.FileMode) IOEither[error, string] {
-	return ioeither.TryCatchError(func() (string, error) {
-		return path, os.MkdirAll(path, perm)
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Mkdir creates a single directory with the specified permissions.
@@ -60,7 +57,6 @@ func MkdirAll(path string, perm os.FileMode) IOEither[error, string] {
 //	mkdirOp := Mkdir("/tmp/mydir", 0755)
 //	result := mkdirOp() // Either[error, string]
 func Mkdir(path string, perm os.FileMode) IOEither[error, string] {
-	return ioeither.TryCatchError(func() (string, error) {
-		return path, os.Mkdir(path, perm)
-	})
+	_ = "STUB: not implemented"
+	return nil
 }

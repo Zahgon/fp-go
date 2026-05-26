@@ -15,13 +15,6 @@
 
 package state
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	A "github.com/IBM/fp-go/v2/internal/apply"
-	C "github.com/IBM/fp-go/v2/internal/chain"
-	F "github.com/IBM/fp-go/v2/internal/functor"
-)
-
 // Do initializes a do-notation computation with an empty value.
 // This is the entry point for building complex stateful computations using
 // the do-notation pattern, which allows for imperative-style sequencing of
@@ -59,54 +52,52 @@ import (
 func Do[ST, A any](
 	empty A,
 ) State[ST, A] {
-	return Of[ST](empty)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Bind sequences a stateful computation and binds its result to a field in an
+	// accumulator structure. This is a key building block for do-notation, allowing
+	// you to extract values from State computations and incorporate them into a
+	// growing result structure.
+	//
+	// The setter function takes the computed value T and returns a function that
+	// updates the accumulator from S1 to S2 by setting the field to T.
+	//
+	// Parameters:
+	//   - setter: A function that takes a value T and returns a function to update
+	//     the accumulator structure from S1 to S2
+	//   - f: A Kleisli arrow that takes the current accumulator S1 and produces a
+	//     State computation yielding T
+	//
+	// Example:
+	//
+	//	type Accumulator struct {
+	//	    value int
+	//	    doubled int
+	//	}
+	//
+	//	// Bind the result of a computation to the 'doubled' field
+	//	computation := Bind(
+	//	    func(d int) func(Accumulator) Accumulator {
+	//	        return func(acc Accumulator) Accumulator {
+	//	            acc.doubled = d
+	//	            return acc
+	//	        }
+	//	    },
+	//	    func(acc Accumulator) State[MyState, int] {
+	//	        return Of[MyState](acc.value * 2)
+	//	    },
+	//	)
+	//
+	//go:inline
 }
 
-// Bind sequences a stateful computation and binds its result to a field in an
-// accumulator structure. This is a key building block for do-notation, allowing
-// you to extract values from State computations and incorporate them into a
-// growing result structure.
-//
-// The setter function takes the computed value T and returns a function that
-// updates the accumulator from S1 to S2 by setting the field to T.
-//
-// Parameters:
-//   - setter: A function that takes a value T and returns a function to update
-//     the accumulator structure from S1 to S2
-//   - f: A Kleisli arrow that takes the current accumulator S1 and produces a
-//     State computation yielding T
-//
-// Example:
-//
-//	type Accumulator struct {
-//	    value int
-//	    doubled int
-//	}
-//
-//	// Bind the result of a computation to the 'doubled' field
-//	computation := Bind(
-//	    func(d int) func(Accumulator) Accumulator {
-//	        return func(acc Accumulator) Accumulator {
-//	            acc.doubled = d
-//	            return acc
-//	        }
-//	    },
-//	    func(acc Accumulator) State[MyState, int] {
-//	        return Of[MyState](acc.value * 2)
-//	    },
-//	)
-//
-//go:inline
 func Bind[ST, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[ST, S1, T],
 ) Operator[ST, S1, S2] {
-	return C.Bind(
-		Chain[ST, Kleisli[ST, S1, S2], S1, S2],
-		Map[ST, func(T) S2, T, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let computes a pure value from the current accumulator and binds it to a field.
@@ -147,11 +138,8 @@ func Let[ST, S1, S2, T any](
 	key func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[ST, S1, S2] {
-	return F.Let(
-		Map[ST, func(S1) S2, S1, S2],
-		key,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo binds a constant value to a field in the accumulator.
@@ -189,11 +177,8 @@ func LetTo[ST, S1, S2, T any](
 	key func(T) func(S1) S2,
 	b T,
 ) Operator[ST, S1, S2] {
-	return F.LetTo(
-		Map[ST, func(S1) S2, S1, S2],
-		key,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo creates an initial accumulator structure from a value.
@@ -231,10 +216,8 @@ func LetTo[ST, S1, S2, T any](
 func BindTo[ST, S1, T any](
 	setter func(T) S1,
 ) Operator[ST, T, S1] {
-	return C.BindTo(
-		Map[ST, func(T) S1, T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS applies a State computation in an applicative style and binds the result
@@ -275,12 +258,8 @@ func ApS[ST, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa State[ST, T],
 ) Operator[ST, S1, S2] {
-	return A.ApS(
-		Ap[S2, ST, T],
-		Map[ST, func(S1) func(T) S2, S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL is a lens-based version of ApS that uses a lens to focus on a specific
@@ -323,58 +302,61 @@ func ApSL[ST, S, T any](
 	lens Lens[S, T],
 	fa State[ST, T],
 ) Endomorphism[State[ST, S]] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL is a lens-based version of Bind that focuses on a specific field,
+	// extracts its value, applies a stateful computation, and updates the field
+	// with the result. This is particularly useful for updating nested fields
+	// based on their current values.
+	//
+	// The computation receives the current value of the focused field and produces
+	// a new value through a State computation.
+	//
+	// Parameters:
+	//   - lens: A lens focusing on field T within structure S
+	//   - f: A Kleisli arrow that takes the current field value and produces a
+	//     State computation yielding the new value
+	//
+	// Example:
+	//
+	//	type MyState struct {
+	//	    multiplier int
+	//	}
+	//
+	//	type Accumulator struct {
+	//	    value int
+	//	}
+	//
+	//	valueLens := MakeLens(
+	//	    func(acc Accumulator) int { return acc.value },
+	//	    func(v int) func(Accumulator) Accumulator {
+	//	        return func(acc Accumulator) Accumulator {
+	//	            acc.value = v
+	//	            return acc
+	//	        }
+	//	    },
+	//	)
+	//
+	//	// Double the value using state
+	//	computation := BindL(
+	//	    valueLens,
+	//	    func(v int) State[MyState, int] {
+	//	        return Gets(func(s MyState) int {
+	//	            return v * s.multiplier
+	//	        })
+	//	    },
+	//	)
+	//
+	//go:inline
 }
 
-// BindL is a lens-based version of Bind that focuses on a specific field,
-// extracts its value, applies a stateful computation, and updates the field
-// with the result. This is particularly useful for updating nested fields
-// based on their current values.
-//
-// The computation receives the current value of the focused field and produces
-// a new value through a State computation.
-//
-// Parameters:
-//   - lens: A lens focusing on field T within structure S
-//   - f: A Kleisli arrow that takes the current field value and produces a
-//     State computation yielding the new value
-//
-// Example:
-//
-//	type MyState struct {
-//	    multiplier int
-//	}
-//
-//	type Accumulator struct {
-//	    value int
-//	}
-//
-//	valueLens := MakeLens(
-//	    func(acc Accumulator) int { return acc.value },
-//	    func(v int) func(Accumulator) Accumulator {
-//	        return func(acc Accumulator) Accumulator {
-//	            acc.value = v
-//	            return acc
-//	        }
-//	    },
-//	)
-//
-//	// Double the value using state
-//	computation := BindL(
-//	    valueLens,
-//	    func(v int) State[MyState, int] {
-//	        return Gets(func(s MyState) int {
-//	            return v * s.multiplier
-//	        })
-//	    },
-//	)
-//
-//go:inline
 func BindL[ST, S, T any](
 	lens Lens[S, T],
 	f Kleisli[ST, T, T],
 ) Endomorphism[State[ST, S]] {
-	return Bind(lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL is a lens-based version of Let that focuses on a specific field,
@@ -416,7 +398,8 @@ func LetL[ST, S, T any](
 	lens Lens[S, T],
 	f Endomorphism[T],
 ) Endomorphism[State[ST, S]] {
-	return Let[ST](lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL is a lens-based version of LetTo that sets a specific field to a
@@ -452,5 +435,6 @@ func LetToL[ST, S, T any](
 	lens Lens[S, T],
 	b T,
 ) Endomorphism[State[ST, S]] {
-	return LetTo[ST](lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,10 +15,6 @@
 
 package readerioresult
 
-import (
-	RIOE "github.com/IBM/fp-go/v2/readerioeither"
-)
-
 // WithResource constructs a function that creates a resource, operates on it, and then releases the resource.
 // This ensures proper resource cleanup even in the presence of errors, following the Resource Acquisition Is Initialization (RAII) pattern.
 //
@@ -54,5 +50,6 @@ import (
 //	    return readContent(f)
 //	})
 func WithResource[A, L, R, ANY any](onCreate ReaderIOResult[L, R], onRelease Kleisli[L, R, ANY]) Kleisli[L, Kleisli[L, R, A], A] {
-	return RIOE.WithResource[A](onCreate, onRelease)
+	_ = "STUB: not implemented"
+	return nil
 }

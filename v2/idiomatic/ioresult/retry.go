@@ -16,8 +16,6 @@
 package ioresult
 
 import (
-	"github.com/IBM/fp-go/v2/io"
-	"github.com/IBM/fp-go/v2/result"
 	R "github.com/IBM/fp-go/v2/retry"
 )
 
@@ -29,17 +27,6 @@ func Retrying[A any](
 	action Kleisli[R.RetryStatus, A],
 	check func(A, error) bool,
 ) IOResult[A] {
-	fromResult := io.Retrying(policy,
-		func(rs R.RetryStatus) IO[Result[A]] {
-			return func() Result[A] {
-				return result.TryCatchError(action(rs)())
-			}
-		},
-		func(a Result[A]) bool {
-			return check(result.Unwrap(a))
-		},
-	)
-	return func() (A, error) {
-		return result.Unwrap(fromResult())
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -17,19 +17,11 @@ package result
 
 import (
 	"log"
-
-	L "github.com/IBM/fp-go/v2/logging"
 )
 
 func _log[A any](left, right func(string, ...any), prefix string) Operator[A, A] {
-	return func(a A, err error) (A, error) {
-		if err != nil {
-			left("%s: %v", prefix, err)
-		} else {
-			right("%s: %v", prefix, a)
-		}
-		return a, err
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Logger creates a logging function for Either values that logs both Left and Right cases.
@@ -49,8 +41,6 @@ func _log[A any](left, right func(string, ...any), prefix string) Operator[A, A]
 //	// Logs: "Processing: 42"
 //	// result is Right(84)
 func Logger[A any](loggers ...*log.Logger) func(string) Operator[A, A] {
-	left, right := L.LoggingCallbacks(loggers...)
-	return func(prefix string) Operator[A, A] {
-		return _log[A](left, right, prefix)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

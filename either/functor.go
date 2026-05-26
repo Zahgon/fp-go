@@ -22,10 +22,13 @@ import (
 type eitherFunctor[E, A, B any] struct{}
 
 func (o *eitherFunctor[E, A, B]) Map(f func(A) B) func(Either[E, A]) Either[E, B] {
-	return Map[E, A, B](f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Functor implements the functoric operations for [Either]
 }
 
-// Functor implements the functoric operations for [Either]
 func Functor[E, A, B any]() functor.Functor[A, B, Either[E, A], Either[E, B]] {
-	return &eitherFunctor[E, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }

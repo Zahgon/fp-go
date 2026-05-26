@@ -17,81 +17,46 @@
 package lens
 
 import (
-	"fmt"
-
-	"github.com/IBM/fp-go/v2/endomorphism"
 	EQ "github.com/IBM/fp-go/v2/eq"
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/functor"
 )
 
 // setCopy wraps a setter for a pointer into a setter that first creates a copy before
 // modifying that copy
 func setCopy[SET ~func(*S, A) *S, S, A any](setter SET) func(s *S, a A) *S {
-
-	var empty S
-	safeSet := func(s *S, a A) *S {
-		// make sure we have a total implementation
-		cpy := *s
-		return setter(&cpy, a)
-	}
-
-	return func(s *S, a A) *S {
-		// make sure we have a total implementation
-		if s != nil {
-			return safeSet(s, a)
-		}
-		// fallback to the empty object
-		return safeSet(&empty, a)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// make sure we have a total implementation
+
+// make sure we have a total implementation
+
+// fallback to the empty object
 
 func setCopyWithEq[GET ~func(*S) A, SET ~func(*S, A) *S, S, A any](pred EQ.Eq[A], getter GET, setter SET) func(s *S, a A) *S {
-
-	var empty S
-	safeSet := func(s *S, a A) *S {
-		if pred.Equals(getter(s), a) {
-			return s
-		}
-		// we need to make a copy
-		cpy := *s
-		return setter(&cpy, a)
-	}
-
-	return func(s *S, a A) *S {
-		// make sure we have a total implementation
-		if s != nil {
-			return safeSet(s, a)
-		}
-		// fallback to the empty object
-		return safeSet(&empty, a)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// we need to make a copy
+
+// make sure we have a total implementation
+
+// fallback to the empty object
 
 // setCopyCurried wraps a setter for a pointer into a setter that first creates a copy before
 // modifying that copy
 func setCopyCurried[SET ~func(A) Endomorphism[*S], S, A any](setter SET) func(A) Endomorphism[*S] {
-	var empty S
-
-	return func(a A) Endomorphism[*S] {
-		seta := setter(a)
-
-		safeSet := func(s *S) *S {
-			// make sure we have a total implementation
-			cpy := *s
-			return seta(&cpy)
-		}
-
-		return func(s *S) *S {
-			// make sure we have a total implementation
-			if s != nil {
-				return safeSet(s)
-			}
-			// fallback to the empty object
-			return safeSet(&empty)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// make sure we have a total implementation
+
+// make sure we have a total implementation
+
+// fallback to the empty object
 
 // MakeLens creates a [Lens] based on a getter and a setter F.
 //
@@ -133,7 +98,8 @@ func setCopyCurried[SET ~func(A) Endomorphism[*S], S, A any](setter SET) func(A)
 //
 //go:inline
 func MakeLens[GET ~func(S) A, SET ~func(S, A) S, S, A any](get GET, set SET) Lens[S, A] {
-	return MakeLensCurried(get, F.Bind2of2(set))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeLensWithName creates a [Lens] with a custom name for debugging and logging.
@@ -179,7 +145,8 @@ func MakeLens[GET ~func(S) A, SET ~func(S, A) S, S, A any](get GET, set SET) Len
 //
 //go:inline
 func MakeLensWithName[GET ~func(S) A, SET ~func(S, A) S, S, A any](get GET, set SET, name string) Lens[S, A] {
-	return MakeLensCurriedWithName(get, F.Bind2of2(set), name)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeLensCurried creates a [Lens] with a curried setter F.
@@ -217,7 +184,8 @@ func MakeLensWithName[GET ~func(S) A, SET ~func(S, A) S, S, A any](get GET, set 
 //
 //go:inline
 func MakeLensCurried[GET ~func(S) A, SET ~func(A) Endomorphism[S], S, A any](get GET, set SET) Lens[S, A] {
-	return MakeLensCurriedWithName(get, set, "Lens")
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeLensCurriedWithName creates a [Lens] with a curried setter and a custom name.
@@ -265,12 +233,14 @@ func MakeLensCurried[GET ~func(S) A, SET ~func(A) Endomorphism[S], S, A any](get
 //
 //go:inline
 func MakeLensCurriedWithName[GET ~func(S) A, SET ~func(A) Endomorphism[S], S, A any](get GET, set SET, name string) Lens[S, A] {
-	return Lens[S, A]{Get: get, Set: set, name: name}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MakeLensCurriedRefWithName[GET ~func(*S) A, SET ~func(A) Endomorphism[*S], S, A any](get GET, set SET, name string) Lens[*S, A] {
-	return Lens[*S, A]{Get: get, Set: setCopyCurried(set), name: name}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeLensRef creates a [Lens] for pointer-based structures.
@@ -315,7 +285,8 @@ func MakeLensCurriedRefWithName[GET ~func(*S) A, SET ~func(A) Endomorphism[*S], 
 //
 //go:inline
 func MakeLensRef[GET ~func(*S) A, SET func(*S, A) *S, S, A any](get GET, set SET) Lens[*S, A] {
-	return MakeLens(get, setCopy(set))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeLensRefWithName creates a [Lens] for pointer-based structures with a custom name.
@@ -365,7 +336,8 @@ func MakeLensRef[GET ~func(*S) A, SET func(*S, A) *S, S, A any](get GET, set SET
 //
 //go:inline
 func MakeLensRefWithName[GET ~func(*S) A, SET func(*S, A) *S, S, A any](get GET, set SET, name string) Lens[*S, A] {
-	return MakeLensWithName(get, setCopy(set), name)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeLensWithEq creates a [Lens] for pointer-based structures with equality optimization.
@@ -422,7 +394,8 @@ func MakeLensRefWithName[GET ~func(*S) A, SET func(*S, A) *S, S, A any](get GET,
 //
 //go:inline
 func MakeLensWithEq[GET ~func(*S) A, SET func(*S, A) *S, S, A any](pred EQ.Eq[A], get GET, set SET) Lens[*S, A] {
-	return MakeLens(get, setCopyWithEq(pred, get, set))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeLensWithEqWithName creates a [Lens] for pointer-based structures with equality optimization and a custom name.
@@ -479,7 +452,8 @@ func MakeLensWithEq[GET ~func(*S) A, SET func(*S, A) *S, S, A any](pred EQ.Eq[A]
 //
 //go:inline
 func MakeLensWithEqWithName[GET ~func(*S) A, SET func(*S, A) *S, S, A any](pred EQ.Eq[A], get GET, set SET, name string) Lens[*S, A] {
-	return MakeLensWithName(get, setCopyWithEq(pred, get, set), name)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeLensStrict creates a [Lens] for pointer-based structures with strict equality optimization.
@@ -535,7 +509,8 @@ func MakeLensWithEqWithName[GET ~func(*S) A, SET func(*S, A) *S, S, A any](pred 
 //
 //go:inline
 func MakeLensStrict[GET ~func(*S) A, SET func(*S, A) *S, S any, A comparable](get GET, set SET) Lens[*S, A] {
-	return MakeLensWithEq(EQ.FromStrictEquals[A](), get, set)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeLensStrictWithName creates a [Lens] for pointer-based structures with strict equality optimization and a custom name.
@@ -592,7 +567,8 @@ func MakeLensStrict[GET ~func(*S) A, SET func(*S, A) *S, S any, A comparable](ge
 //
 //go:inline
 func MakeLensStrictWithName[GET ~func(*S) A, SET func(*S, A) *S, S any, A comparable](get GET, set SET, name string) Lens[*S, A] {
-	return MakeLensWithEqWithName(EQ.FromStrictEquals[A](), get, set, name)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeLensRefCurried creates a [Lens] for pointer-based structures with a curried setter.
@@ -628,7 +604,8 @@ func MakeLensStrictWithName[GET ~func(*S) A, SET func(*S, A) *S, S any, A compar
 //
 //go:inline
 func MakeLensRefCurried[S, A any](get func(*S) A, set func(A) Endomorphism[*S]) Lens[*S, A] {
-	return MakeLensCurried(get, setCopyCurried(set))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeLensRefCurriedWithName creates a [Lens] for pointer-based structures with a curried setter and custom name.
@@ -677,12 +654,14 @@ func MakeLensRefCurried[S, A any](get func(*S) A, set func(A) Endomorphism[*S]) 
 //
 //go:inline
 func MakeLensRefCurriedWithName[S, A any](get func(*S) A, set func(A) Endomorphism[*S], name string) Lens[*S, A] {
-	return MakeLensCurriedWithName(get, setCopyCurried(set), name)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // id returns a [Lens] implementing the identity operation
 func id[GET ~func(S) S, SET ~func(S, S) S, S any](creator func(get GET, set SET, name string) Lens[S, S]) Lens[S, S] {
-	return creator(F.Identity[S], F.Second[S, S], "LensIdentity")
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Id returns an identity [Lens] that focuses on the entire structure.
@@ -710,9 +689,7 @@ func id[GET ~func(S) S, SET ~func(S, S) S, S any](creator func(get GET, set SET,
 //	same := idLens.Get(person)  // Returns person unchanged
 //	replaced := idLens.Set(Person{Name: "Bob", Age: 25})(person)
 //	// replaced is Person{Name: "Bob", Age: 25}
-func Id[S any]() Lens[S, S] {
-	return id(MakeLensWithName[Endomorphism[S], func(S, S) S])
-}
+func Id[S any]() Lens[S, S] { _ = "STUB: not implemented"; return nil }
 
 // IdRef returns an identity [Lens] for pointer-based structures.
 //
@@ -733,32 +710,15 @@ func Id[S any]() Lens[S, S] {
 //	same := idLens.Get(person)  // Returns person pointer
 //	replaced := idLens.Set(&Person{Name: "Bob", Age: 25})(person)
 //	// person.Name is still "Alice", replaced is a new pointer
-func IdRef[S any]() Lens[*S, *S] {
-	return id(MakeLensRefWithName[Endomorphism[*S], func(*S, *S) *S])
-}
+func IdRef[S any]() Lens[*S, *S] { _ = "STUB: not implemented"; return nil }
 
 // Compose combines two lenses and allows to narrow down the focus to a sub-lens
 func compose[GET ~func(S) B, SET ~func(B) func(S) S, S, A, B any](
 	creator func(get GET, set SET, name string) Lens[S, B],
 	ab Lens[A, B],
 ) Operator[S, A, B] {
-	abget := ab.Get
-	abset := ab.Set
-	return func(sa Lens[S, A]) Lens[S, B] {
-		saget := sa.Get
-		saset := sa.Set
-		return creator(
-			F.Flow2(saget, abget),
-			func(b B) func(S) S {
-				return endomorphism.Join(F.Flow3(
-					saget,
-					abset(b),
-					saset,
-				))
-			},
-			fmt.Sprintf("LensCompose[%s -> %s]", sa, ab),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Compose combines two lenses to focus on a deeply nested field.
@@ -809,9 +769,7 @@ func compose[GET ~func(S) B, SET ~func(B) func(S) S, S, A, B any](
 //	updated := personStreetLens.Set("Oak Ave")(person)
 //
 //go:inline
-func Compose[S, A, B any](ab Lens[A, B]) Operator[S, A, B] {
-	return compose(MakeLensCurriedWithName[func(S) B, func(B) func(S) S], ab)
-}
+func Compose[S, A, B any](ab Lens[A, B]) Operator[S, A, B] { _ = "STUB: not implemented"; return nil }
 
 // ComposeRef combines two lenses for pointer-based structures.
 //
@@ -852,7 +810,8 @@ func Compose[S, A, B any](ab Lens[A, B]) Operator[S, A, B] {
 //
 //	personStreetLens := F.Pipe1(addressLens, lens.ComposeRef[Person](streetLens))
 func ComposeRef[S, A, B any](ab Lens[A, B]) Operator[*S, A, B] {
-	return compose(MakeLensRefCurriedWithName[S, B], ab)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Modify transforms a value through a lens using a transformation F.
@@ -901,9 +860,8 @@ func ComposeRef[S, A, B any](ab Lens[A, B]) Operator[*S, A, B] {
 //	)
 //	// doubled.Value == 10
 func Modify[S any, FCT ~func(A) A, A any](f FCT) func(Lens[S, A]) Endomorphism[S] {
-	return func(la Lens[S, A]) Endomorphism[S] {
-		return la.Modify(f)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Set returns a function that updates the focus of a lens to a constant value.
@@ -932,11 +890,7 @@ func Modify[S any, FCT ~func(A) A, A any](f FCT) func(Lens[S, A]) Endomorphism[S
 //	    F.Ap(valueLens),
 //	)
 //	// updated.Value == 10
-func Set[S any, A any](a A) func(Lens[S, A]) Endomorphism[S] {
-	return func(l Lens[S, A]) Endomorphism[S] {
-		return l.Set(a)
-	}
-}
+func Set[S any, A any](a A) func(Lens[S, A]) Endomorphism[S] { _ = "STUB: not implemented"; return nil }
 
 // ModifyF transforms a value through a lens using a function that returns a value in a functor context.
 //
@@ -1004,15 +958,8 @@ func Set[S any, A any](a A) func(Lens[S, A]) Endomorphism[S] {
 func ModifyF[S, A, HKTA, HKTS any](
 	fmap functor.MapType[A, S, HKTA, HKTS],
 ) func(func(A) HKTA) func(Lens[S, A]) func(S) HKTS {
-	return func(f func(A) HKTA) func(Lens[S, A]) func(S) HKTS {
-		return func(sa Lens[S, A]) func(S) HKTS {
-			return func(s S) HKTS {
-				return fmap(func(a A) S {
-					return sa.Set(a)(s)
-				})(f(sa.Get(s)))
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // IMap transforms the focus type of a lens using an isomorphism.
@@ -1067,9 +1014,8 @@ func ModifyF[S, A, HKTA, HKTS any](
 //	tempF := tempFahrenheitLens.Get(weather)  // 68°F
 //	updated := tempFahrenheitLens.Set(86)(weather)  // Set to 86°F (30°C)
 func IMap[S any, AB ~func(A) B, BA ~func(B) A, A, B any](ab AB, ba BA) Operator[S, A, B] {
-	return func(ea Lens[S, A]) Lens[S, B] {
-		return MakeLensCurriedWithName(F.Flow2(ea.Get, ab), F.Flow2(ba, ea.Set), fmt.Sprintf("IMap[%s]", ea))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // String returns the name of the lens as a string.
@@ -1129,9 +1075,6 @@ func IMap[S any, AB ~func(A) B, BA ~func(B) A, A, B any](ab AB, ba BA) Operator[
 //   - Modify: Package-level function for use in pipelines
 //   - Set: For setting a constant value instead of transforming
 func (la Lens[S, A]) Modify(f Endomorphism[A]) Endomorphism[S] {
-	return endomorphism.Join(F.Flow3(
-		la.Get,
-		f,
-		la.Set,
-	))
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -79,17 +79,6 @@ import (
 //
 //go:inline
 func TailRec[E, A, B any](f Kleisli[E, A, tailrec.Trampoline[A, B]]) Kleisli[E, A, B] {
-	return func(a A) Either[E, B] {
-		current := f(a)
-		for {
-			rec, e := Unwrap(current)
-			if IsLeft(current) {
-				return Left[B](e)
-			}
-			if rec.Landed {
-				return Right[E](rec.Land)
-			}
-			current = f(rec.Bounce)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,11 +15,6 @@
 
 package itereither
 
-import (
-	"github.com/IBM/fp-go/v2/either"
-	"github.com/IBM/fp-go/v2/iterator/iter"
-)
-
 // TakeUntilLeft takes elements from a SeqEither until the first Left (error) is encountered, including that Left.
 //
 // This function creates a transformation that yields all Right values from the source sequence
@@ -99,9 +94,8 @@ import (
 //   - iter.TakeWhileInclusive: The underlying iterator function used
 //   - either.IsRight: The predicate used to identify Right values
 func TakeUntilLeft[E, T any](s SeqEither[E, T]) SeqEither[E, T] {
-	return iter.TakeWhileInclusive(either.IsRight[E, T])(s)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func StopOnLeft[E, T any](s SeqEither[E, T]) SeqEither[E, T] {
-	return TakeUntilLeft(s)
-}
+func StopOnLeft[E, T any](s SeqEither[E, T]) SeqEither[E, T] { _ = "STUB: not implemented"; return nil }

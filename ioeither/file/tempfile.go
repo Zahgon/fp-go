@@ -40,5 +40,6 @@ var (
 
 // WithTempFile creates a temporary file, then invokes a callback to create a resource based on the file, then close and remove the temp file
 func WithTempFile[A any](f func(*os.File) IOE.IOEither[error, A]) IOE.IOEither[error, A] {
-	return IOE.WithResource[A](onCreateTempFile, onReleaseTempFile)(f)
+	_ = "STUB: not implemented"
+	return nil
 }

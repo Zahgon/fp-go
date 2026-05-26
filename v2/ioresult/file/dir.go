@@ -17,20 +17,17 @@ package file
 
 import (
 	"os"
-
-	"github.com/IBM/fp-go/v2/ioeither/file"
 )
 
 // MkdirAll create a sequence of directories, see [os.MkdirAll]
 //
 //go:inline
 func MkdirAll(path string, perm os.FileMode) IOResult[string] {
-	return file.MkdirAll(path, perm)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Mkdir create a directory, see [os.Mkdir]
 //
 //go:inline
-func Mkdir(path string, perm os.FileMode) IOResult[string] {
-	return file.Mkdir(path, perm)
-}
+func Mkdir(path string, perm os.FileMode) IOResult[string] { _ = "STUB: not implemented"; return nil }

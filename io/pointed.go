@@ -17,10 +17,7 @@ package io
 
 import (
 	"github.com/IBM/fp-go/internal/pointed"
-	G "github.com/IBM/fp-go/io/generic"
 )
 
 // Pointed returns the monadic operations for [IO]
-func Pointed[A any]() pointed.Pointed[A, IO[A]] {
-	return G.Pointed[A, IO[A]]()
-}
+func Pointed[A any]() pointed.Pointed[A, IO[A]] { _ = "STUB: not implemented"; return nil }

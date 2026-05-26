@@ -15,12 +15,6 @@
 
 package builder
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/optics/prism"
-	"github.com/IBM/fp-go/v2/result"
-)
-
 // BuilderPrism creates a [Prism] that converts between a builder and its built type.
 //
 // A Prism is an optic that focuses on a case of a sum type, providing bidirectional
@@ -77,5 +71,6 @@ import (
 //	p := Person{Name: "Bob", Age: 25}
 //	b := prism.ReverseGet(p) // PersonBuilder{name: "Bob", age: 25}
 func BuilderPrism[T any, B Builder[T]](creator func(T) B) Prism[B, T] {
-	return prism.MakePrismWithName(F.Flow2(B.Build, result.ToOption[T]), creator, "BuilderPrism")
+	_ = "STUB: not implemented"
+	return nil
 }

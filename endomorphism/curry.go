@@ -15,16 +15,14 @@
 
 package endomorphism
 
-import (
-	G "github.com/IBM/fp-go/endomorphism/generic"
-)
-
 // Curry2 curries a binary function
 func Curry2[FCT ~func(T0, T1) T1, T0, T1 any](f FCT) func(T0) Endomorphism[T1] {
-	return G.Curry2[Endomorphism[T1]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry3 curries a ternary function
 func Curry3[FCT ~func(T0, T1, T2) T2, T0, T1, T2 any](f FCT) func(T0) func(T1) Endomorphism[T2] {
-	return G.Curry3[Endomorphism[T2]](f)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -21,7 +21,6 @@ import (
 )
 
 func AltSemigroup[GIOA ~func() ET.Either[E, A], E, A any]() S.Semigroup[GIOA] {
-	return S.AltSemigroup(
-		MonadAlt[func() GIOA],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

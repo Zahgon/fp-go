@@ -21,14 +21,10 @@ import (
 
 // concat concatenates two strings using simple string concatenation.
 // This is an internal helper function used by the Semigroup and Monoid implementations.
-func concat(left, right string) string {
-	return left + right
-}
+func concat(left, right string) string { _ = "STUB: not implemented"; return "" }
 
 // Semigroup is the semigroup implementing string concatenation
 var Semigroup = S.MakeSemigroup(concat)
 
 // IntersperseSemigroup creates a semigroup that concatenates strings with a middle string in between
-func IntersperseSemigroup(middle string) S.Semigroup[string] {
-	return S.MakeSemigroup(Intersperse(middle))
-}
+func IntersperseSemigroup(middle string) S.Semigroup[string] { _ = "STUB: not implemented"; return nil }

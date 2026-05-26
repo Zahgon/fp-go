@@ -16,18 +16,11 @@
 package http
 
 import (
-	"bytes"
-	"io"
 	"net/http"
 
-	B "github.com/IBM/fp-go/v2/bytes"
-	FL "github.com/IBM/fp-go/v2/file"
 	F "github.com/IBM/fp-go/v2/function"
 	H "github.com/IBM/fp-go/v2/http"
 	"github.com/IBM/fp-go/v2/idiomatic/ioresult"
-	IOEF "github.com/IBM/fp-go/v2/idiomatic/ioresult/file"
-	J "github.com/IBM/fp-go/v2/json"
-	P "github.com/IBM/fp-go/v2/pair"
 )
 
 type (
@@ -48,90 +41,40 @@ var (
 
 // MakeBodyRequest creates a request that carries a body
 func MakeBodyRequest(method string, body IOResult[[]byte]) Kleisli[string, *http.Request] {
-	onBody := F.Pipe1(
-		body,
-		ioresult.Map(F.Flow2(
-			bytes.NewReader,
-			FL.ToReader[*bytes.Reader],
-		)),
-	)
-	onRelease := ioresult.Of[io.Reader]
-	withMethod := F.Bind1of3(MakeRequest)(method)
-
-	return F.Flow2(
-		F.Bind1of2(withMethod),
-		ioresult.WithResource[*http.Request](onBody, onRelease),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (client client) Do(req Requester) IOResult[*http.Response] {
-	return F.Pipe1(
-		req,
-		ioresult.Chain(client.doIOE),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func MakeClient(httpClient *http.Client) Client {
-	return client{delegate: httpClient, doIOE: ioresult.Eitherize1(httpClient.Do)}
-}
+func MakeClient(httpClient *http.Client) Client { _ = "STUB: not implemented"; return *new(Client) }
 
 // ReadFullResponse sends a request,  reads the response as a byte array and represents the result as a tuple
 func ReadFullResponse(client Client) Operator[*http.Request, H.FullResponse] {
-	return F.Flow3(
-		client.Do,
-		ioresult.ChainEitherK(H.ValidateResponse),
-		ioresult.Chain(func(resp *http.Response) IOResult[H.FullResponse] {
-			// var x R.Reader[*http.Response, IOResult[[]byte]] = F.Flow3(
-			// 	H.GetBody,
-			// 	ioresult.Of,
-			// 	IOEF.ReadAll,
-			// )
-
-			return F.Pipe1(
-				F.Pipe3(
-					resp,
-					H.GetBody,
-					ioresult.Of,
-					IOEF.ReadAll,
-				),
-				ioresult.Map(F.Bind1st(P.MakePair[*http.Response, []byte], resp)),
-			)
-		}),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// var x R.Reader[*http.Response, IOResult[[]byte]] = F.Flow3(
+// 	H.GetBody,
+// 	ioresult.Of,
+// 	IOEF.ReadAll,
+// )
 
 // ReadAll sends a request and reads the response as bytes
-func ReadAll(client Client) Operator[*http.Request, []byte] {
-	return F.Flow2(
-		ReadFullResponse(client),
-		ioresult.Map(H.Body),
-	)
-}
+func ReadAll(client Client) Operator[*http.Request, []byte] { _ = "STUB: not implemented"; return nil }
 
 // ReadText sends a request, reads the response and represents the response as a text string
-func ReadText(client Client) Operator[*http.Request, string] {
-	return F.Flow2(
-		ReadAll(client),
-		ioresult.Map(B.ToString),
-	)
-}
+func ReadText(client Client) Operator[*http.Request, string] { _ = "STUB: not implemented"; return nil }
 
 // readJSON sends a request, reads the response and parses the response as a []byte
-func readJSON(client Client) Operator[*http.Request, []byte] {
-	return F.Flow3(
-		ReadFullResponse(client),
-		ioresult.ChainFirstEitherK(F.Flow2(
-			H.Response,
-			H.ValidateJSONResponse,
-		)),
-		ioresult.Map(H.Body),
-	)
-}
+func readJSON(client Client) Operator[*http.Request, []byte] { _ = "STUB: not implemented"; return nil }
 
 // ReadJSON sends a request, reads the response and parses the response as JSON
 func ReadJSON[A any](client Client) Operator[*http.Request, A] {
-	return F.Flow2(
-		readJSON(client),
-		ioresult.ChainEitherK(J.Unmarshal[A]),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

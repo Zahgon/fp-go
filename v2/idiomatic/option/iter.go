@@ -15,10 +15,6 @@
 
 package option
 
-import (
-	I "github.com/IBM/fp-go/v2/iterator/iter"
-)
-
 // TraverseIter transforms a sequence by applying a function that returns an Option to each element.
 // Returns Some containing a sequence of results if all operations succeed, None if any fails.
 // This function is useful for processing sequences where each element may fail validation or transformation.
@@ -55,15 +51,6 @@ import (
 //	result := TraverseIter(parse)(invalidStrings)
 //	// result is None because "invalid" cannot be parsed
 func TraverseIter[A, B any](f Kleisli[A, B]) Kleisli[Seq[A], Seq[B]] {
-	return func(s Seq[A]) (Seq[B], bool) {
-		var bs []B
-		for a := range s {
-			b, bok := f(a)
-			if !bok {
-				return nil, false
-			}
-			bs = append(bs, b)
-		}
-		return I.From(bs...), true
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

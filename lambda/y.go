@@ -17,13 +17,6 @@ package lambda
 
 // Y is the Y-combinator based on https://dreamsongs.com/Files/WhyOfY.pdf
 func Y[Endo ~func(RecFct) RecFct, RecFct ~func(T) R, T, R any](f Endo) RecFct {
-
-	type internal[RecFct ~func(T) R, T, R any] func(internal[RecFct, T, R]) RecFct
-
-	g := func(h internal[RecFct, T, R]) RecFct {
-		return func(t T) R {
-			return f(h(h))(t)
-		}
-	}
-	return g(g)
+	_ = "STUB: not implemented"
+	return *new(RecFct)
 }

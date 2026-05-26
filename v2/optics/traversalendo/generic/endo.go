@@ -16,10 +16,7 @@
 package generic
 
 import (
-	"github.com/IBM/fp-go/v2/endomorphism"
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/functor"
-	"github.com/IBM/fp-go/v2/reader"
 )
 
 // Compose composes two traversal endomorphisms to create a new traversal that focuses on nested values.
@@ -95,25 +92,6 @@ func Compose[
 	S, B, HKTES, HKTB, A, HKTEA, HKTA any](
 	fmap functor.MapType[Endomorphism[A], A, HKTEA, HKTA],
 ) func(Traversal[A, B, HKTEA, HKTB]) func(Traversal[S, A, HKTES, HKTA]) Traversal[S, B, HKTES, HKTB] {
-	readA := F.Flow2(
-		endomorphism.Read[A],
-		fmap,
-	)
-	return func(ab Traversal[A, B, HKTEA, HKTB]) func(Traversal[S, A, HKTES, HKTA]) Traversal[S, B, HKTES, HKTB] {
-		return func(sa Traversal[S, A, HKTES, HKTA]) Traversal[S, B, HKTES, HKTB] {
-			return func(f func(B) HKTB) func(S) HKTES {
-				return F.Pipe1(
-					F.Pipe1(
-						readA,
-						F.Pipe2(
-							f,
-							ab,
-							reader.Ap[HKTA],
-						),
-					),
-					sa,
-				)
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

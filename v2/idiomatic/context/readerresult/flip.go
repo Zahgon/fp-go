@@ -16,9 +16,6 @@
 package readerresult
 
 import (
-	"context"
-
-	RR "github.com/IBM/fp-go/v2/idiomatic/readerresult"
 	"github.com/IBM/fp-go/v2/reader"
 )
 
@@ -57,7 +54,8 @@ import (
 //
 //go:inline
 func SequenceReader[R, A any](ma ReaderResult[Reader[R, A]]) Kleisli[R, A] {
-	return WithContextK(RR.SequenceReader(ma))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseReader combines SequenceReader with a Kleisli arrow transformation.
@@ -103,5 +101,6 @@ func SequenceReader[R, A any](ma ReaderResult[Reader[R, A]]) Kleisli[R, A] {
 func TraverseReader[R, A, B any](
 	f reader.Kleisli[R, A, B],
 ) func(ReaderResult[A]) Kleisli[R, B] {
-	return RR.TraverseReader[context.Context](f)
+	_ = "STUB: not implemented"
+	return nil
 }

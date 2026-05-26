@@ -22,7 +22,6 @@ import (
 	F "github.com/IBM/fp-go/v2/function"
 	IO "github.com/IBM/fp-go/v2/io"
 	IOF "github.com/IBM/fp-go/v2/io/file"
-	IOEF "github.com/IBM/fp-go/v2/ioeither/file"
 )
 
 var (
@@ -39,14 +38,12 @@ var (
 
 // CreateTemp created a temp file with proper parametrization
 func CreateTemp(dir, pattern string) ReaderIOResult[*os.File] {
-	return F.Pipe2(
-		IOEF.CreateTemp(dir, pattern),
-		RIOE.FromIOEither[*os.File],
-		RIOE.WithContext[*os.File],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WithTempFile creates a temporary file, then invokes a callback to create a resource based on the file, then close and remove the temp file
 func WithTempFile[A any](f Kleisli[*os.File, A]) ReaderIOResult[A] {
-	return RIOE.WithResource[A](onCreateTempFile, onReleaseTempFile)(f)
+	_ = "STUB: not implemented"
+	return nil
 }

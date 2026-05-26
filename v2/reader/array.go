@@ -16,10 +16,7 @@
 package reader
 
 import (
-	"github.com/IBM/fp-go/v2/function"
-	RA "github.com/IBM/fp-go/v2/internal/array"
 	"github.com/IBM/fp-go/v2/monoid"
-	G "github.com/IBM/fp-go/v2/reader/generic"
 )
 
 // MonadTraverseArray transforms each element of an array using a function that returns a Reader,
@@ -40,7 +37,8 @@ import (
 //	r := reader.MonadTraverseArray(numbers, addPrefix)
 //	result := r(Config{Prefix: "num"}) // ["num1", "num2", "num3"]
 func MonadTraverseArray[R, A, B any](ma []A, f Kleisli[R, A, B]) Reader[R, []B] {
-	return G.MonadTraverseArray[Reader[R, B], Reader[R, []B]](ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArray transforms each element of an array using a function that returns a Reader,
@@ -59,7 +57,8 @@ func MonadTraverseArray[R, A, B any](ma []A, f Kleisli[R, A, B]) Reader[R, []B] 
 //	r := transform([]int{1, 2, 3})
 //	result := r(Config{Multiplier: 10}) // [10, 20, 30]
 func TraverseArray[R, A, B any](f Kleisli[R, A, B]) Kleisli[R, []A, []B] {
-	return G.TraverseArray[Reader[R, B], Reader[R, []B], []A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms each element of an array using a function that takes
@@ -80,7 +79,8 @@ func TraverseArray[R, A, B any](f Kleisli[R, A, B]) Kleisli[R, []A, []B] {
 //	r := transform([]string{"a", "b", "c"})
 //	result := r(Config{Prefix: "item"}) // ["item[0]:a", "item[1]:b", "item[2]:c"]
 func TraverseArrayWithIndex[R, A, B any](f func(int, A) Reader[R, B]) Kleisli[R, []A, []B] {
-	return G.TraverseArrayWithIndex[Reader[R, B], Reader[R, []B], []A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts an array of Readers into a single Reader containing an array.
@@ -100,7 +100,8 @@ func TraverseArrayWithIndex[R, A, B any](f func(int, A) Reader[R, B]) Kleisli[R,
 //	r := reader.SequenceArray(readers)
 //	result := r(Config{X: 1, Y: 2, Z: 3}) // [1, 2, 3]
 func SequenceArray[R, A any](ma []Reader[R, A]) Reader[R, []A] {
-	return MonadTraverseArray(ma, function.Identity[Reader[R, A]])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadReduceArray reduces an array of Readers to a single Reader by applying a reduction function.
@@ -128,17 +129,8 @@ func SequenceArray[R, A any](ma []Reader[R, A]) Reader[R, []A] {
 //
 //go:inline
 func MonadReduceArray[R, A, B any](as []Reader[R, A], reduce func(B, A) B, initial B) Reader[R, B] {
-	return RA.MonadTraverseReduce(
-		Of,
-		Map,
-		Ap,
-
-		as,
-
-		function.Identity[Reader[R, A]],
-		reduce,
-		initial,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReduceArray returns a curried function that reduces an array of Readers to a single Reader.
@@ -166,15 +158,8 @@ func MonadReduceArray[R, A, B any](as []Reader[R, A], reduce func(B, A) B, initi
 //
 //go:inline
 func ReduceArray[R, A, B any](reduce func(B, A) B, initial B) Kleisli[R, []Reader[R, A], B] {
-	return RA.TraverseReduce[[]Reader[R, A]](
-		Of,
-		Map,
-		Ap,
-
-		function.Identity[Reader[R, A]],
-		reduce,
-		initial,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadReduceArrayM reduces an array of Readers using a Monoid to combine the results.
@@ -201,7 +186,8 @@ func ReduceArray[R, A, B any](reduce func(B, A) B, initial B) Kleisli[R, []Reade
 //
 //go:inline
 func MonadReduceArrayM[R, A any](as []Reader[R, A], m monoid.Monoid[A]) Reader[R, A] {
-	return MonadReduceArray(as, m.Concat, m.Empty())
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReduceArrayM returns a curried function that reduces an array of Readers using a Monoid.
@@ -231,7 +217,8 @@ func MonadReduceArrayM[R, A any](as []Reader[R, A], m monoid.Monoid[A]) Reader[R
 //
 //go:inline
 func ReduceArrayM[R, A any](m monoid.Monoid[A]) Kleisli[R, []Reader[R, A], A] {
-	return ReduceArray[R](m.Concat, m.Empty())
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTraverseReduceArray transforms and reduces an array in one operation.
@@ -262,17 +249,8 @@ func ReduceArrayM[R, A any](m monoid.Monoid[A]) Kleisli[R, []Reader[R, A], A] {
 //
 //go:inline
 func MonadTraverseReduceArray[R, A, B, C any](as []A, trfrm Kleisli[R, A, B], reduce func(C, B) C, initial C) Reader[R, C] {
-	return RA.MonadTraverseReduce(
-		Of,
-		Map,
-		Ap,
-
-		as,
-
-		trfrm,
-		reduce,
-		initial,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseReduceArray returns a curried function that transforms and reduces an array.
@@ -303,15 +281,8 @@ func MonadTraverseReduceArray[R, A, B, C any](as []A, trfrm Kleisli[R, A, B], re
 //
 //go:inline
 func TraverseReduceArray[R, A, B, C any](trfrm Kleisli[R, A, B], reduce func(C, B) C, initial C) Kleisli[R, []A, C] {
-	return RA.TraverseReduce[[]A](
-		Of,
-		Map,
-		Ap,
-
-		trfrm,
-		reduce,
-		initial,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTraverseReduceArrayM transforms and reduces an array using a Monoid.
@@ -340,7 +311,8 @@ func TraverseReduceArray[R, A, B, C any](trfrm Kleisli[R, A, B], reduce func(C, 
 //
 //go:inline
 func MonadTraverseReduceArrayM[R, A, B any](as []A, trfrm Kleisli[R, A, B], m monoid.Monoid[B]) Reader[R, B] {
-	return MonadTraverseReduceArray(as, trfrm, m.Concat, m.Empty())
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseReduceArrayM returns a curried function that transforms and reduces an array using a Monoid.
@@ -370,5 +342,6 @@ func MonadTraverseReduceArrayM[R, A, B any](as []A, trfrm Kleisli[R, A, B], m mo
 //
 //go:inline
 func TraverseReduceArrayM[R, A, B any](trfrm Kleisli[R, A, B], m monoid.Monoid[B]) Kleisli[R, []A, B] {
-	return TraverseReduceArray(trfrm, m.Concat, m.Empty())
+	_ = "STUB: not implemented"
+	return nil
 }

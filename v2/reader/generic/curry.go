@@ -15,10 +15,6 @@
 
 package generic
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-)
-
 // These functions curry a Go function with the context as the first parameter into a generic Reader
 // with the context as the last parameter, which is equivalent to a function returning a Reader
 // of that context.
@@ -35,19 +31,23 @@ import (
 //   - R: The environment/context type
 //   - A: The result type
 func Curry0[GA ~func(R) A, R, A any](f func(R) A) GA {
-	return MakeReader[GA](f)
+	_ = "STUB: not implemented"
+	return *
+
+	// Curry1 converts a function with context as first parameter into a curried function
+	// returning a generic Reader. The context parameter is moved to the end (Reader position).
+	//
+	// Type Parameters:
+	//   - GA: The generic Reader type (~func(R) A)
+	//   - R: The environment/context type
+	//   - T1: The first parameter type
+	//   - A: The result type
+	new(GA)
 }
 
-// Curry1 converts a function with context as first parameter into a curried function
-// returning a generic Reader. The context parameter is moved to the end (Reader position).
-//
-// Type Parameters:
-//   - GA: The generic Reader type (~func(R) A)
-//   - R: The environment/context type
-//   - T1: The first parameter type
-//   - A: The result type
 func Curry1[GA ~func(R) A, R, T1, A any](f func(R, T1) A) func(T1) GA {
-	return F.Curry1(From1[GA](f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry2 converts a function with context as first parameter and 2 other parameters
@@ -59,7 +59,8 @@ func Curry1[GA ~func(R) A, R, T1, A any](f func(R, T1) A) func(T1) GA {
 //   - T1, T2: The parameter types
 //   - A: The result type
 func Curry2[GA ~func(R) A, R, T1, T2, A any](f func(R, T1, T2) A) func(T1) func(T2) GA {
-	return F.Curry2(From2[GA](f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry3 converts a function with context as first parameter and 3 other parameters
@@ -71,7 +72,8 @@ func Curry2[GA ~func(R) A, R, T1, T2, A any](f func(R, T1, T2) A) func(T1) func(
 //   - T1, T2, T3: The parameter types
 //   - A: The result type
 func Curry3[GA ~func(R) A, R, T1, T2, T3, A any](f func(R, T1, T2, T3) A) func(T1) func(T2) func(T3) GA {
-	return F.Curry3(From3[GA](f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry4 converts a function with context as first parameter and 4 other parameters
@@ -83,7 +85,8 @@ func Curry3[GA ~func(R) A, R, T1, T2, T3, A any](f func(R, T1, T2, T3) A) func(T
 //   - T1, T2, T3, T4: The parameter types
 //   - A: The result type
 func Curry4[GA ~func(R) A, R, T1, T2, T3, T4, A any](f func(R, T1, T2, T3, T4) A) func(T1) func(T2) func(T3) func(T4) GA {
-	return F.Curry4(From4[GA](f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry0 converts a generic Reader back into a regular function with context as first parameter.
@@ -93,22 +96,22 @@ func Curry4[GA ~func(R) A, R, T1, T2, T3, T4, A any](f func(R, T1, T2, T3, T4) A
 //   - R: The environment/context type
 //   - A: The result type
 func Uncurry0[GA ~func(R) A, R, A any](f GA) func(R) A {
-	return f
+	_ = "STUB: not implemented"
+
+	// Uncurry1 converts a curried function returning a generic Reader back into a regular function
+	// with context as first parameter.
+	//
+	// Type Parameters:
+	//   - GA: The generic Reader type (~func(R) A)
+	//   - R: The environment/context type
+	//   - T1: The first parameter type
+	//   - A: The result type
+	return nil
 }
 
-// Uncurry1 converts a curried function returning a generic Reader back into a regular function
-// with context as first parameter.
-//
-// Type Parameters:
-//   - GA: The generic Reader type (~func(R) A)
-//   - R: The environment/context type
-//   - T1: The first parameter type
-//   - A: The result type
 func Uncurry1[GA ~func(R) A, R, T1, A any](f func(T1) GA) func(R, T1) A {
-	uc := F.Uncurry1(f)
-	return func(r R, t1 T1) A {
-		return uc(t1)(r)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry2 converts a curried function with 2 parameters returning a generic Reader back into
@@ -120,10 +123,8 @@ func Uncurry1[GA ~func(R) A, R, T1, A any](f func(T1) GA) func(R, T1) A {
 //   - T1, T2: The parameter types
 //   - A: The result type
 func Uncurry2[GA ~func(R) A, R, T1, T2, A any](f func(T1) func(T2) GA) func(R, T1, T2) A {
-	uc := F.Uncurry2(f)
-	return func(r R, t1 T1, t2 T2) A {
-		return uc(t1, t2)(r)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry3 converts a curried function with 3 parameters returning a generic Reader back into
@@ -135,10 +136,8 @@ func Uncurry2[GA ~func(R) A, R, T1, T2, A any](f func(T1) func(T2) GA) func(R, T
 //   - T1, T2, T3: The parameter types
 //   - A: The result type
 func Uncurry3[GA ~func(R) A, R, T1, T2, T3, A any](f func(T1) func(T2) func(T3) GA) func(R, T1, T2, T3) A {
-	uc := F.Uncurry3(f)
-	return func(r R, t1 T1, t2 T2, t3 T3) A {
-		return uc(t1, t2, t3)(r)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry4 converts a curried function with 4 parameters returning a generic Reader back into
@@ -150,8 +149,6 @@ func Uncurry3[GA ~func(R) A, R, T1, T2, T3, A any](f func(T1) func(T2) func(T3) 
 //   - T1, T2, T3, T4: The parameter types
 //   - A: The result type
 func Uncurry4[GA ~func(R) A, R, T1, T2, T3, T4, A any](f func(T1) func(T2) func(T3) func(T4) GA) func(R, T1, T2, T3, T4) A {
-	uc := F.Uncurry4(f)
-	return func(r R, t1 T1, t2 T2, t3 T3, t4 T4) A {
-		return uc(t1, t2, t3, t4)(r)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

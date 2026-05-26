@@ -46,13 +46,10 @@ import (
 	"testing"
 
 	E "github.com/IBM/fp-go/v2/eq"
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/applicative"
 	"github.com/IBM/fp-go/v2/internal/apply"
-	L "github.com/IBM/fp-go/v2/internal/apply/testing"
 	"github.com/IBM/fp-go/v2/internal/functor"
 	"github.com/IBM/fp-go/v2/internal/pointed"
-	"github.com/stretchr/testify/assert"
 )
 
 // Applicative identity law
@@ -67,16 +64,9 @@ func AssertIdentity[HKTA, HKTAA, A any](t *testing.T,
 
 	fap func(HKTAA, HKTA) HKTA,
 ) func(fa HKTA) bool {
+	_ = "STUB: not implemented"
 	// mark as test helper
-	t.Helper()
-
-	return func(fa HKTA) bool {
-
-		left := fap(fof(F.Identity[A]), fa)
-		right := fa
-
-		return assert.True(t, eq.Equals(left, right), "Applicative identity")
-	}
+	return nil
 }
 
 // Applicative identity law
@@ -89,16 +79,9 @@ func ApplicativeAssertIdentity[HKTA, HKTFAA, A any](t *testing.T,
 	paa pointed.Pointed[func(A) A, HKTFAA],
 
 ) func(fa HKTA) bool {
+	_ = "STUB: not implemented"
 	// mark as test helper
-	t.Helper()
-
-	return func(fa HKTA) bool {
-
-		left := ap.Ap(fa)(paa.Of(F.Identity[A]))
-		right := fa
-
-		return assert.True(t, eq.Equals(left, right), "Applicative identity")
-	}
+	return nil
 }
 
 // Applicative homomorphism law
@@ -117,16 +100,9 @@ func AssertHomomorphism[HKTA, HKTB, HKTAB, A, B any](t *testing.T,
 
 	ab func(A) B,
 ) func(a A) bool {
+	_ = "STUB: not implemented"
 	// mark as test helper
-	t.Helper()
-
-	return func(a A) bool {
-
-		left := fap(fofab(ab), fofa(a))
-		right := fofb(ab(a))
-
-		return assert.True(t, eq.Equals(left, right), "Applicative homomorphism")
-	}
+	return nil
 }
 
 // Applicative homomorphism law
@@ -141,16 +117,9 @@ func ApplicativeAssertHomomorphism[HKTA, HKTB, HKTFAB, A, B any](t *testing.T,
 
 	ab func(A) B,
 ) func(a A) bool {
+	_ = "STUB: not implemented"
 	// mark as test helper
-	t.Helper()
-
-	return func(a A) bool {
-
-		left := apab.Ap(apab.Of(a))(pfab.Of(ab))
-		right := pb.Of(ab(a))
-
-		return assert.True(t, eq.Equals(left, right), "Applicative homomorphism")
-	}
+	return nil
 }
 
 // Applicative interchange law
@@ -170,20 +139,9 @@ func AssertInterchange[HKTA, HKTB, HKTAB, HKTABB, A, B any](t *testing.T,
 
 	ab func(A) B,
 ) func(a A) bool {
+	_ = "STUB: not implemented"
 	// mark as test helper
-	t.Helper()
-
-	return func(a A) bool {
-
-		fab := fofab(ab)
-
-		left := fapab(fab, fofa(a))
-		right := fapabb(fofabb(func(ab func(A) B) B {
-			return ab(a)
-		}), fab)
-
-		return assert.True(t, eq.Equals(left, right), "Applicative homomorphism")
-	}
+	return nil
 }
 
 // Applicative interchange law
@@ -198,21 +156,9 @@ func ApplicativeAssertInterchange[HKTA, HKTB, HKTFAB, HKTABB, A, B any](t *testi
 
 	ab func(A) B,
 ) func(a A) bool {
+	_ = "STUB: not implemented"
 	// mark as test helper
-	t.Helper()
-
-	return func(a A) bool {
-
-		fab := apabb.Of(ab)
-
-		left := apab.Ap(apab.Of(a))(fab)
-
-		right := apabb.Ap(fab)(pabb.Of(func(ab func(A) B) B {
-			return ab(a)
-		}))
-
-		return assert.True(t, eq.Equals(left, right), "Applicative homomorphism")
-	}
+	return nil
 }
 
 // AssertLaws asserts the apply laws `identity`, `composition`, `associative composition`, 'applicative identity', 'homomorphism', 'interchange'
@@ -249,21 +195,14 @@ func AssertLaws[HKTA, HKTB, HKTC, HKTAA, HKTAB, HKTBC, HKTAC, HKTABB, HKTABAC, A
 	ab func(A) B,
 	bc func(B) C,
 ) func(a A) bool {
+	_ = "STUB: not implemented"
 	// mark as test helper
-	t.Helper()
-
-	// apply laws
-	apply := L.AssertLaws(t, eqa, eqc, fofab, fofbc, faa, fab, fac, fbc, fmap, fapab, fapbc, fapac, fapabac, ab, bc)
-	// applicative laws
-	identity := AssertIdentity(t, eqa, fofaa, fapaa)
-	homomorphism := AssertHomomorphism(t, eqb, fofa, fofb, fofab, fapab, ab)
-	interchange := AssertInterchange(t, eqb, fofa, fofab, fofabb, fapab, fapabb, ab)
-
-	return func(a A) bool {
-		fa := fofa(a)
-		return apply(fa) && identity(fa) && homomorphism(a) && interchange(a)
-	}
+	return nil
 }
+
+// apply laws
+
+// applicative laws
 
 // ApplicativeAssertLaws asserts the apply laws `identity`, `composition`, `associative composition`, 'applicative identity', 'homomorphism', 'interchange'
 func ApplicativeAssertLaws[HKTA, HKTB, HKTC, HKTAA, HKTAB, HKTBC, HKTAC, HKTABB, HKTABAC, A, B, C any](t *testing.T,
@@ -293,18 +232,11 @@ func ApplicativeAssertLaws[HKTA, HKTB, HKTC, HKTAA, HKTAB, HKTBC, HKTAC, HKTABB,
 	ab func(A) B,
 	bc func(B) C,
 ) func(a A) bool {
+	_ = "STUB: not implemented"
 	// mark as test helper
-	t.Helper()
-
-	// apply laws
-	apply := L.ApplyAssertLaws(t, eqa, eqc, applicative.ToPointed(fapabac), fofbc, faa, fmap, applicative.ToApply(fapab), fapbc, fapac, applicative.ToApply(fapabac), ab, bc)
-	// applicative laws
-	identity := ApplicativeAssertIdentity(t, eqa, fapaa, fofaa)
-	homomorphism := ApplicativeAssertHomomorphism(t, eqb, fapab, fofb, applicative.ToPointed(fapabb), ab)
-	interchange := ApplicativeAssertInterchange(t, eqb, fapab, fapabb, fofabb, ab)
-
-	return func(a A) bool {
-		fa := fapaa.Of(a)
-		return apply(fa) && identity(fa) && homomorphism(a) && interchange(a)
-	}
+	return nil
 }
+
+// apply laws
+
+// applicative laws

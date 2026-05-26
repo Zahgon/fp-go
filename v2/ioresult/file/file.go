@@ -77,19 +77,16 @@ var (
 //
 //go:inline
 func WriteFile(dstName string, perm os.FileMode) Kleisli[[]byte, []byte] {
-	return file.WriteFile(dstName, perm)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Remove removes a file by name
 //
 //go:inline
-func Remove(name string) IOResult[string] {
-	return file.Remove(name)
-}
+func Remove(name string) IOResult[string] { _ = "STUB: not implemented"; return nil }
 
 // Close closes an object
 //
 //go:inline
-func Close[C io.Closer](c C) IOResult[struct{}] {
-	return file.Close(c)
-}
+func Close[C io.Closer](c C) IOResult[struct{}] { _ = "STUB: not implemented"; return nil }

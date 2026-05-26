@@ -18,7 +18,6 @@ package prism
 
 import (
 	EM "github.com/IBM/fp-go/endomorphism"
-	F "github.com/IBM/fp-go/function"
 	O "github.com/IBM/fp-go/option"
 )
 
@@ -35,84 +34,54 @@ type (
 	}
 )
 
-func (prism prismImpl[S, A]) GetOption(s S) O.Option[A] {
-	return prism.get(s)
-}
+func (prism prismImpl[S, A]) GetOption(s S) O.Option[A] { _ = "STUB: not implemented"; return nil }
 
-func (prism prismImpl[S, A]) ReverseGet(a A) S {
-	return prism.rev(a)
-}
+func (prism prismImpl[S, A]) ReverseGet(a A) S { _ = "STUB: not implemented"; return *new(S) }
 
 func MakePrism[S, A any](get func(S) O.Option[A], rev func(A) S) Prism[S, A] {
-	return prismImpl[S, A]{get, rev}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Id returns a prism implementing the identity operation
-func Id[S any]() Prism[S, S] {
-	return MakePrism(O.Some[S], F.Identity[S])
-}
+func Id[S any]() Prism[S, S] { _ = "STUB: not implemented"; return nil }
 
-func FromPredicate[S any](pred func(S) bool) Prism[S, S] {
-	return MakePrism(O.FromPredicate(pred), F.Identity[S])
-}
+func FromPredicate[S any](pred func(S) bool) Prism[S, S] { _ = "STUB: not implemented"; return nil }
 
 // Compose composes a `Prism` with a `Prism`.
 func Compose[S, A, B any](ab Prism[A, B]) func(Prism[S, A]) Prism[S, B] {
-	return func(sa Prism[S, A]) Prism[S, B] {
-		return MakePrism(F.Flow2(
-			sa.GetOption,
-			O.Chain(ab.GetOption),
-		), F.Flow2(
-			ab.ReverseGet,
-			sa.ReverseGet,
-		))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func prismModifyOption[S, A any](f func(A) A, sa Prism[S, A], s S) O.Option[S] {
-	return F.Pipe2(
-		s,
-		sa.GetOption,
-		O.Map(F.Flow2(
-			f,
-			sa.ReverseGet,
-		)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func prismModify[S, A any](f func(A) A, sa Prism[S, A], s S) S {
-	return F.Pipe1(
-		prismModifyOption(f, sa, s),
-		O.GetOrElse(F.Constant(s)),
-	)
+	_ = "STUB: not implemented"
+	return *new(S)
 }
 
 func prismSet[S, A any](a A) func(Prism[S, A]) EM.Endomorphism[S] {
-	return EM.Curry3(prismModify[S, A])(F.Constant1[A](a))
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Set[S, A any](a A) func(Prism[S, A]) EM.Endomorphism[S] {
-	return EM.Curry3(prismModify[S, A])(F.Constant1[A](a))
-}
+func Set[S, A any](a A) func(Prism[S, A]) EM.Endomorphism[S] { _ = "STUB: not implemented"; return nil }
 
-func prismSome[A any]() Prism[O.Option[A], A] {
-	return MakePrism(F.Identity[O.Option[A]], O.Some[A])
-}
+func prismSome[A any]() Prism[O.Option[A], A] { _ = "STUB: not implemented"; return nil }
 
 // Some returns a `Prism` from a `Prism` focused on the `Some` of a `Option` type.
-func Some[S, A any](soa Prism[S, O.Option[A]]) Prism[S, A] {
-	return Compose[S](prismSome[A]())(soa)
-}
+func Some[S, A any](soa Prism[S, O.Option[A]]) Prism[S, A] { _ = "STUB: not implemented"; return nil }
 
 func imap[S any, AB ~func(A) B, BA ~func(B) A, A, B any](sa Prism[S, A], ab AB, ba BA) Prism[S, B] {
-	return MakePrism(
-		F.Flow2(sa.GetOption, O.Map(ab)),
-		F.Flow2(ba, sa.ReverseGet),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func IMap[S any, AB ~func(A) B, BA ~func(B) A, A, B any](ab AB, ba BA) func(Prism[S, A]) Prism[S, B] {
-	return func(sa Prism[S, A]) Prism[S, B] {
-		return imap(sa, ab, ba)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

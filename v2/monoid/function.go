@@ -15,11 +15,6 @@
 
 package monoid
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	S "github.com/IBM/fp-go/v2/semigroup"
-)
-
 // FunctionMonoid creates a monoid for functions when the codomain (return type) has a monoid.
 //
 // Given a monoid for type B, this creates a monoid for functions of type func(A) B.
@@ -63,9 +58,4 @@ import (
 //	// Verify identity laws
 //	assert.Equal(t, f1("test"), funcMonoid.Concat(funcMonoid.Empty(), f1)("test"))
 //	assert.Equal(t, f1("test"), funcMonoid.Concat(f1, funcMonoid.Empty())("test"))
-func FunctionMonoid[A, B any](m Monoid[B]) Monoid[func(A) B] {
-	return MakeMonoid(
-		S.FunctionSemigroup[A](m).Concat,
-		F.Constant1[A](m.Empty()),
-	)
-}
+func FunctionMonoid[A, B any](m Monoid[B]) Monoid[func(A) B] { _ = "STUB: not implemented"; return nil }

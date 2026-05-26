@@ -15,8 +15,6 @@
 
 package iter
 
-import F "github.com/IBM/fp-go/v2/function"
-
 // Take returns an operator that limits the number of elements in a sequence to at most n elements.
 //
 // This function creates a transformation that takes the first n elements from a sequence
@@ -68,39 +66,11 @@ import F "github.com/IBM/fp-go/v2/function"
 //	evens := MonadFilter(seq, func(x int) bool { return x%2 == 0 })
 //	result := Take[int](3)(evens)
 //	// yields: 2, 4, 6 (first 3 even numbers)
-func Take[U any](n int) Operator[U, U] {
-	if n <= 0 {
-		return F.Constant1[Seq[U]](Empty[U]())
-	}
-	return func(s Seq[U]) Seq[U] {
-		return func(yield Predicate[U]) {
-			i := 0
-			for u := range s {
-				if i >= n || !yield(u) {
-					return
-				}
-				i += 1
-			}
-		}
-	}
-}
+func Take[U any](n int) Operator[U, U] { _ = "STUB: not implemented"; return nil }
 
 func takeWhile[U any](p Predicate[U], inclusive bool) Operator[U, U] {
-	return func(s Seq[U]) Seq[U] {
-		return func(yield func(U) bool) {
-			for u := range s {
-				if !p(u) {
-					if inclusive {
-						yield(u)
-					}
-					return
-				}
-				if !yield(u) {
-					return
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TakeWhile returns an operator that emits elements from a sequence while a predicate is satisfied.
@@ -166,9 +136,7 @@ func takeWhile[U any](p Predicate[U], inclusive bool) Operator[U, U] {
 //	    TakeWhile(func(x int) bool { return x < 10 }),
 //	)
 //	// yields: 2, 4, 6, 8 (stops when doubled value reaches 10)
-func TakeWhile[U any](p Predicate[U]) Operator[U, U] {
-	return takeWhile(p, false)
-}
+func TakeWhile[U any](p Predicate[U]) Operator[U, U] { _ = "STUB: not implemented"; return nil }
 
 // TakeWhileInclusive returns an operator that emits elements from a sequence while a predicate is satisfied, including the first element that fails the predicate.
 //
@@ -240,85 +208,72 @@ func TakeWhile[U any](p Predicate[U]) Operator[U, U] {
 //   - Take: Takes a fixed number of elements
 //   - SkipWhile: Skips elements while predicate is satisfied
 func TakeWhileInclusive[U any](p Predicate[U]) Operator[U, U] {
-	return takeWhile(p, true)
+	_ = "STUB: not implemented"
+	return nil
+
+	// SkipWhile returns an operator that skips elements from a sequence while a predicate is satisfied.
+	//
+	// This function creates a transformation that discards elements from the source sequence
+	// as long as each element satisfies the provided predicate. Once an element fails the
+	// predicate test, that element and all subsequent elements are yielded, regardless of
+	// whether they satisfy the predicate.
+	//
+	// The operation is lazy and only consumes elements from the source sequence as needed.
+	// Once the predicate returns false, all remaining elements are yielded without further
+	// predicate evaluation.
+	//
+	// Marble Diagram:
+	//
+	//	Input:        --1--2--3--4--5--2--1-->
+	//	SkipWhile(x < 4)
+	//	Output:       -----------4--5--2--1-->
+	//	                         (starts at 4, continues with all)
+	//
+	// RxJS Equivalent: [skipWhile] - https://rxjs.dev/api/operators/skipWhile
+	//
+	// Type Parameters:
+	//   - U: The type of elements in the sequence
+	//
+	// Parameters:
+	//   - p: A predicate function that tests each element. Returns true to skip, false to start yielding
+	//
+	// Returns:
+	//   - An Operator that transforms a Seq[U] by skipping elements while the predicate is satisfied
+	//
+	// Example - Skip while less than threshold:
+	//
+	//	seq := From(1, 2, 3, 4, 5, 2, 1)
+	//	result := SkipWhile(func(x int) bool { return x < 4 })(seq)
+	//	// yields: 4, 5, 2, 1 (starts at 4, continues with all remaining)
+	//
+	// Example - Skip while condition is met:
+	//
+	//	seq := From("a", "b", "c", "1", "d", "e")
+	//	isLetter := func(s string) bool { return s >= "a" && s <= "z" }
+	//	result := SkipWhile(isLetter)(seq)
+	//	// yields: "1", "d", "e" (starts at "1", continues with all remaining)
+	//
+	// Example - Skip none when first element fails:
+	//
+	//	seq := From(5, 1, 2, 3)
+	//	result := SkipWhile(func(x int) bool { return x < 5 })(seq)
+	//	// yields: 5, 1, 2, 3 (first element fails predicate, all yielded)
+	//
+	// Example - Skip all when predicate always true:
+	//
+	//	seq := From(2, 4, 6, 8)
+	//	result := SkipWhile(func(x int) bool { return x%2 == 0 })(seq)
+	//	// yields: nothing (all elements satisfy predicate)
+	//
+	// Example - Chaining with other operations:
+	//
+	//	seq := From(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+	//	result := F.Pipe2(
+	//	    seq,
+	//	    SkipWhile(func(x int) bool { return x < 5 }),
+	//	    MonadMap(seq, N.Mul(2)),
+	//	)
+	//	// yields: 10, 12, 14, 16, 18, 20 (skip until 5, then double remaining)
 }
 
-// SkipWhile returns an operator that skips elements from a sequence while a predicate is satisfied.
-//
-// This function creates a transformation that discards elements from the source sequence
-// as long as each element satisfies the provided predicate. Once an element fails the
-// predicate test, that element and all subsequent elements are yielded, regardless of
-// whether they satisfy the predicate.
-//
-// The operation is lazy and only consumes elements from the source sequence as needed.
-// Once the predicate returns false, all remaining elements are yielded without further
-// predicate evaluation.
-//
-// Marble Diagram:
-//
-//	Input:        --1--2--3--4--5--2--1-->
-//	SkipWhile(x < 4)
-//	Output:       -----------4--5--2--1-->
-//	                         (starts at 4, continues with all)
-//
-// RxJS Equivalent: [skipWhile] - https://rxjs.dev/api/operators/skipWhile
-//
-// Type Parameters:
-//   - U: The type of elements in the sequence
-//
-// Parameters:
-//   - p: A predicate function that tests each element. Returns true to skip, false to start yielding
-//
-// Returns:
-//   - An Operator that transforms a Seq[U] by skipping elements while the predicate is satisfied
-//
-// Example - Skip while less than threshold:
-//
-//	seq := From(1, 2, 3, 4, 5, 2, 1)
-//	result := SkipWhile(func(x int) bool { return x < 4 })(seq)
-//	// yields: 4, 5, 2, 1 (starts at 4, continues with all remaining)
-//
-// Example - Skip while condition is met:
-//
-//	seq := From("a", "b", "c", "1", "d", "e")
-//	isLetter := func(s string) bool { return s >= "a" && s <= "z" }
-//	result := SkipWhile(isLetter)(seq)
-//	// yields: "1", "d", "e" (starts at "1", continues with all remaining)
-//
-// Example - Skip none when first element fails:
-//
-//	seq := From(5, 1, 2, 3)
-//	result := SkipWhile(func(x int) bool { return x < 5 })(seq)
-//	// yields: 5, 1, 2, 3 (first element fails predicate, all yielded)
-//
-// Example - Skip all when predicate always true:
-//
-//	seq := From(2, 4, 6, 8)
-//	result := SkipWhile(func(x int) bool { return x%2 == 0 })(seq)
-//	// yields: nothing (all elements satisfy predicate)
-//
-// Example - Chaining with other operations:
-//
-//	seq := From(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-//	result := F.Pipe2(
-//	    seq,
-//	    SkipWhile(func(x int) bool { return x < 5 }),
-//	    MonadMap(seq, N.Mul(2)),
-//	)
-//	// yields: 10, 12, 14, 16, 18, 20 (skip until 5, then double remaining)
-func SkipWhile[U any](p Predicate[U]) Operator[U, U] {
-	return func(s Seq[U]) Seq[U] {
-		return func(yield func(U) bool) {
-			skipping := true
-			for u := range s {
-				if skipping && p(u) {
-					continue
-				}
-				skipping = false
-				if !yield(u) {
-					return
-				}
-			}
-		}
-	}
-}
+func SkipWhile[U any](p Predicate[U]) Operator[U, U] { _ = "STUB: not implemented"; return nil }

@@ -15,18 +15,13 @@
 
 package stateless
 
-import (
-	G "github.com/IBM/fp-go/iterator/stateless/generic"
-)
-
 // StrictUniq converts an [Iterator] of arbitrary items into an [Iterator] or unique items
 // where uniqueness is determined by the built-in uniqueness constraint
-func StrictUniq[A comparable](as Iterator[A]) Iterator[A] {
-	return G.StrictUniq[Iterator[A]](as)
-}
+func StrictUniq[A comparable](as Iterator[A]) Iterator[A] { _ = "STUB: not implemented"; return nil }
 
 // Uniq converts an [Iterator] of arbitrary items into an [Iterator] or unique items
 // where uniqueness is determined based on a key extractor function
 func Uniq[A any, K comparable](f func(A) K) func(as Iterator[A]) Iterator[A] {
-	return G.Uniq[Iterator[A], K](f)
+	_ = "STUB: not implemented"
+	return nil
 }

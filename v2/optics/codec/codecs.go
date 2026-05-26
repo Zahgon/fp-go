@@ -26,15 +26,9 @@ import (
 	"encoding/json"
 	"net/url"
 	"regexp"
-	"strconv"
 	"time"
 
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/optics/codec/validate"
-	"github.com/IBM/fp-go/v2/optics/codec/validation"
 	"github.com/IBM/fp-go/v2/optics/prism"
-	"github.com/IBM/fp-go/v2/reader"
-	"github.com/IBM/fp-go/v2/result"
 )
 
 // validateFromParser creates a validation function from a parser that may fail.
@@ -63,17 +57,15 @@ import (
 //	// Use in a codec
 //	intCodec := MakeType("Int", Is[int](), intValidator, strconv.Itoa)
 func validateFromParser[A, I any](parser func(I) (A, error)) Validate[I, A] {
-	return func(i I) Decode[Context, A] {
-		// Attempt to parse the input value
-		a, err := parser(i)
-		if err != nil {
-			// On error, create a validation failure with the error details
-			return validation.FailureWithError[A](i, err.Error())(err)
-		}
-		// On success, wrap the parsed value in a successful validation
-		return reader.Of[Context](validation.Success(a))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// Attempt to parse the input value
+
+// On error, create a validation failure with the error details
+
+// On success, wrap the parsed value in a successful validation
 
 // URL creates a bidirectional codec for URL parsing and formatting.
 // This codec can parse strings into *url.URL and encode *url.URL back to strings.
@@ -102,14 +94,7 @@ func validateFromParser[A, I any](parser func(I) (A, error)) Validate[I, A] {
 //	// Invalid URL fails validation
 //	validation := urlCodec.Decode("not a valid url")
 //	// validation is Left(ValidationError{...})
-func URL() Type[*url.URL, string, string] {
-	return MakeType(
-		"URL",
-		Is[*url.URL](),
-		validateFromParser(url.Parse),
-		(*url.URL).String,
-	)
-}
+func URL() Type[*url.URL, string, string] { _ = "STUB: not implemented"; return nil }
 
 // Date creates a bidirectional codec for date/time parsing and formatting with a specific layout.
 // This codec uses Go's time.Parse and time.Format with the provided layout string.
@@ -147,14 +132,7 @@ func URL() Type[*url.URL, string, string] {
 //	// Invalid format fails validation
 //	validation := dateCodec.Decode("15-03-2024")
 //	// validation is Left(ValidationError{...})
-func Date(layout string) Type[time.Time, string, string] {
-	return MakeType(
-		"Date",
-		Is[time.Time](),
-		validateFromParser(func(s string) (time.Time, error) { return time.Parse(layout, s) }),
-		F.Bind2nd(time.Time.Format, layout),
-	)
-}
+func Date(layout string) Type[time.Time, string, string] { _ = "STUB: not implemented"; return nil }
 
 // Regex creates a bidirectional codec for regex pattern matching with capture groups.
 // This codec can match strings against a regular expression pattern and extract capture groups,
@@ -195,7 +173,8 @@ func Date(layout string) Type[time.Time, string, string] {
 //	validation := numberCodec.Decode("no numbers here")
 //	// validation is Left(ValidationError{...})
 func Regex(re *regexp.Regexp) Type[prism.Match, string, string] {
-	return FromRefinement(prism.RegexMatcher(re))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // RegexNamed creates a bidirectional codec for regex pattern matching with named capture groups.
@@ -248,7 +227,8 @@ func Regex(re *regexp.Regexp) Type[prism.Match, string, string] {
 //	validation := emailCodec.Decode("not-an-email")
 //	// validation is Left(ValidationError{...})
 func RegexNamed(re *regexp.Regexp) Type[prism.NamedMatch, string, string] {
-	return FromRefinement(prism.RegexNamedMatcher(re))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // IntFromString creates a bidirectional codec for parsing integers from strings.
@@ -288,14 +268,7 @@ func RegexNamed(re *regexp.Regexp) Type[prism.NamedMatch, string, string] {
 //	// Floating point fails validation
 //	validation := intCodec.Decode("3.14")
 //	// validation is Left(ValidationError{...})
-func IntFromString() Type[int, string, string] {
-	return MakeType(
-		"IntFromString",
-		Is[int](),
-		validateFromParser(strconv.Atoi),
-		strconv.Itoa,
-	)
-}
+func IntFromString() Type[int, string, string] { _ = "STUB: not implemented"; return nil }
 
 // Int64FromString creates a bidirectional codec for parsing 64-bit integers from strings.
 // This codec converts string representations of integers to int64 values and vice versa.
@@ -334,14 +307,7 @@ func IntFromString() Type[int, string, string] {
 //	// Out of range value fails validation
 //	validation := int64Codec.Decode("9223372036854775808")
 //	// validation is Left(ValidationError{...})
-func Int64FromString() Type[int64, string, string] {
-	return MakeType(
-		"Int64FromString",
-		Is[int64](),
-		validateFromParser(func(s string) (int64, error) { return strconv.ParseInt(s, 10, 64) }),
-		prism.ParseInt64().ReverseGet,
-	)
-}
+func Int64FromString() Type[int64, string, string] { _ = "STUB: not implemented"; return nil }
 
 // BoolFromString creates a bidirectional codec for parsing boolean values from strings.
 // This codec converts string representations of booleans to bool values and vice versa.
@@ -389,29 +355,16 @@ func Int64FromString() Type[int64, string, string] {
 //	// Case variations are accepted
 //	validation := boolCodec.Decode("TRUE")
 //	// validation is Right(true)
-func BoolFromString() Type[bool, string, string] {
-	return MakeType(
-		"BoolFromString",
-		Is[bool](),
-		validateFromParser(strconv.ParseBool),
-		strconv.FormatBool,
-	)
-}
+func BoolFromString() Type[bool, string, string] { _ = "STUB: not implemented"; return nil }
 
 func decodeJSON[T any](dec json.Unmarshaler) ReaderResult[[]byte, T] {
-	return func(b []byte) Result[T] {
-		var t T
-		err := dec.UnmarshalJSON(b)
-		return result.TryCatchError(t, err)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func decodeText[T any](dec encoding.TextUnmarshaler) ReaderResult[[]byte, T] {
-	return func(b []byte) Result[T] {
-		var t T
-		err := dec.UnmarshalText(b)
-		return result.TryCatchError(t, err)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MarshalText creates a bidirectional codec for types that implement encoding.TextMarshaler
@@ -452,19 +405,8 @@ func MarshalText[T any](
 	enc encoding.TextMarshaler,
 	dec encoding.TextUnmarshaler,
 ) Type[T, []byte, []byte] {
-	return MakeType(
-		"UnmarshalText",
-		Is[T](),
-		F.Pipe2(
-			dec,
-			decodeText[T],
-			validate.FromReaderResult,
-		),
-		func(t T) []byte {
-			b, _ := enc.MarshalText()
-			return b
-		},
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MarshalJSON creates a bidirectional codec for types that implement encoding/json's
@@ -508,19 +450,8 @@ func MarshalJSON[T any](
 	enc json.Marshaler,
 	dec json.Unmarshaler,
 ) Type[T, []byte, []byte] {
-	return MakeType(
-		"UnmarshalJSON",
-		Is[T](),
-		F.Pipe2(
-			dec,
-			decodeJSON[T],
-			validate.FromReaderResult,
-		),
-		func(t T) []byte {
-			b, _ := enc.MarshalJSON()
-			return b
-		},
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromNonZero creates a bidirectional codec for non-zero values of comparable types.
@@ -579,9 +510,7 @@ func MarshalJSON[T any](
 // See Also:
 //   - NonEmptyString: Specialized version for strings with clearer intent
 //   - FromRefinement: General function for creating codecs from prisms
-func FromNonZero[T comparable]() Type[T, T, T] {
-	return FromRefinement(prism.FromNonZero[T]())
-}
+func FromNonZero[T comparable]() Type[T, T, T] { _ = "STUB: not implemented"; return nil }
 
 // NonEmptyString creates a bidirectional codec for non-empty strings.
 // This codec validates that string values are not empty, providing a type-safe
@@ -638,12 +567,7 @@ func FromNonZero[T comparable]() Type[T, T, T] {
 //   - FromNonZero: General version for any comparable type
 //   - String: Basic string codec without validation
 //   - IntFromString: Codec for parsing integers from strings
-func NonEmptyString() Type[string, string, string] {
-	return F.Pipe1(
-		FromRefinement(prism.NonEmptyString()),
-		WithName[string, string, string]("NonEmptyString"),
-	)
-}
+func NonEmptyString() Type[string, string, string] { _ = "STUB: not implemented"; return nil }
 
 // WithName creates an endomorphism that renames a codec without changing its behavior.
 // This function returns a higher-order function that takes a codec and returns a new codec
@@ -709,12 +633,6 @@ func NonEmptyString() Type[string, string, string] {
 //   - MakeType: For creating codecs with custom names from scratch
 //   - Pipe: For composing codecs (which generates automatic names)
 func WithName[A, O, I any](name string) Endomorphism[Type[A, O, I]] {
-	return func(codec Type[A, O, I]) Type[A, O, I] {
-		return MakeType(
-			name,
-			codec.Is,
-			codec.Validate,
-			codec.Encode,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

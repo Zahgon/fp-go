@@ -15,11 +15,7 @@
 
 package functor
 
-func flap[FAB ~func(A) B, A, B any](a A) func(FAB) B {
-	return func(f FAB) B {
-		return f(a)
-	}
-}
+func flap[FAB ~func(A) B, A, B any](a A) func(FAB) B { _ = "STUB: not implemented"; return nil }
 
 func MonadFlap[FAB ~func(A) B, A, B, HKTFAB, HKTB any](
 	fmap func(HKTFAB, func(FAB) B) HKTB,
@@ -27,12 +23,14 @@ func MonadFlap[FAB ~func(A) B, A, B, HKTFAB, HKTB any](
 	fab HKTFAB,
 	a A,
 ) HKTB {
-	return fmap(fab, flap[FAB, A, B](a))
+	_ = "STUB: not implemented"
+	return *new(HKTB)
 }
 
 func Flap[FAB ~func(A) B, A, B, HKTFAB, HKTB any](
 	fmap func(func(FAB) B) func(HKTFAB) HKTB,
 	a A,
 ) func(HKTFAB) HKTB {
-	return fmap(flap[FAB, A, B](a))
+	_ = "STUB: not implemented"
+	return nil
 }

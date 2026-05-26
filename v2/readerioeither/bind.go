@@ -17,13 +17,11 @@ package readerioeither
 
 import (
 	"github.com/IBM/fp-go/v2/either"
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/ioeither"
 	L "github.com/IBM/fp-go/v2/optics/lens"
 	"github.com/IBM/fp-go/v2/reader"
 	"github.com/IBM/fp-go/v2/readerio"
-	G "github.com/IBM/fp-go/v2/readerioeither/generic"
 )
 
 // Do creates an empty context of type [S] to be used with the [Bind] operation.
@@ -45,7 +43,8 @@ import (
 func Do[R, E, S any](
 	empty S,
 ) ReaderIOEither[R, E, S] {
-	return G.Do[ReaderIOEither[R, E, S]](empty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Bind attaches the result of a computation to a context [S1] to produce a context [S2].
@@ -96,7 +95,8 @@ func Bind[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) ReaderIOEither[R, E, T],
 ) Operator[R, E, S1, S2] {
-	return G.Bind[ReaderIOEither[R, E, S1], ReaderIOEither[R, E, S2]](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -106,7 +106,8 @@ func Let[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[R, E, S1, S2] {
-	return G.Let[ReaderIOEither[R, E, S1], ReaderIOEither[R, E, S2]](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches the a value to a context [S1] to produce a context [S2]
@@ -116,7 +117,8 @@ func LetTo[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) Operator[R, E, S1, S2] {
-	return G.LetTo[ReaderIOEither[R, E, S1], ReaderIOEither[R, E, S2]](setter, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T]
@@ -125,7 +127,8 @@ func LetTo[R, E, S1, S2, T any](
 func BindTo[R, E, S1, T any](
 	setter func(T) S1,
 ) Operator[R, E, T, S1] {
-	return G.BindTo[ReaderIOEither[R, E, S1], ReaderIOEither[R, E, T]](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering
@@ -175,7 +178,8 @@ func ApS[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa ReaderIOEither[R, E, T],
 ) Operator[R, E, S1, S2] {
-	return G.ApS[ReaderIOEither[R, E, func(T) S2], ReaderIOEither[R, E, S1], ReaderIOEither[R, E, S2]](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL attaches a value to a context using a lens-based setter.
@@ -214,48 +218,51 @@ func ApSL[R, E, S, T any](
 	lens L.Lens[S, T],
 	fa ReaderIOEither[R, E, T],
 ) Operator[R, E, S, S] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL is a variant of Bind that uses a lens to focus on a specific part of the context.
+	// This provides a more ergonomic API when working with nested structures, eliminating
+	// the need to manually write setter functions.
+	//
+	// The lens parameter provides both a getter and setter for a field of type T within
+	// the context S. The function f receives the current value of the focused field and
+	// returns a ReaderIOEither computation that produces an updated value.
+	//
+	// Example:
+	//
+	//	type State struct {
+	//	    User   User
+	//	    Posts  []Post
+	//	}
+	//	type Env struct {
+	//	    UserRepo UserRepository
+	//	    PostRepo PostRepository
+	//	}
+	//
+	//	userLens := lens.MakeLens(
+	//	    func(s State) User { return s.User },
+	//	    func(s State, u User) State { s.User = u; return s },
+	//	)
+	//
+	//	result := F.Pipe2(
+	//	    readerioeither.Do[Env, error](State{}),
+	//	    readerioeither.BindL(userLens, func(user User) readerioeither.ReaderIOEither[Env, error, User] {
+	//	        return readerioeither.Asks(func(env Env) ioeither.IOEither[error, User] {
+	//	            return env.UserRepo.FindUser()
+	//	        })
+	//	    }),
+	//	)
+	//
+	//go:inline
 }
 
-// BindL is a variant of Bind that uses a lens to focus on a specific part of the context.
-// This provides a more ergonomic API when working with nested structures, eliminating
-// the need to manually write setter functions.
-//
-// The lens parameter provides both a getter and setter for a field of type T within
-// the context S. The function f receives the current value of the focused field and
-// returns a ReaderIOEither computation that produces an updated value.
-//
-// Example:
-//
-//	type State struct {
-//	    User   User
-//	    Posts  []Post
-//	}
-//	type Env struct {
-//	    UserRepo UserRepository
-//	    PostRepo PostRepository
-//	}
-//
-//	userLens := lens.MakeLens(
-//	    func(s State) User { return s.User },
-//	    func(s State, u User) State { s.User = u; return s },
-//	)
-//
-//	result := F.Pipe2(
-//	    readerioeither.Do[Env, error](State{}),
-//	    readerioeither.BindL(userLens, func(user User) readerioeither.ReaderIOEither[Env, error, User] {
-//	        return readerioeither.Asks(func(env Env) ioeither.IOEither[error, User] {
-//	            return env.UserRepo.FindUser()
-//	        })
-//	    }),
-//	)
-//
-//go:inline
 func BindL[R, E, S, T any](
 	lens L.Lens[S, T],
 	f func(T) ReaderIOEither[R, E, T],
 ) Operator[R, E, S, S] {
-	return Bind(lens.Set, F.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL is a variant of Let that uses a lens to focus on a specific part of the context.
@@ -291,7 +298,8 @@ func LetL[R, E, S, T any](
 	lens L.Lens[S, T],
 	f func(T) T,
 ) Operator[R, E, S, S] {
-	return Let[R, E](lens.Set, F.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL is a variant of LetTo that uses a lens to focus on a specific part of the context.
@@ -324,7 +332,8 @@ func LetToL[R, E, S, T any](
 	lens L.Lens[S, T],
 	b T,
 ) Operator[R, E, S, S] {
-	return LetTo[R, E](lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindIOEitherK is a variant of Bind that works with IOEither computations.
@@ -341,7 +350,8 @@ func BindIOEitherK[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f ioeither.Kleisli[E, S1, T],
 ) Operator[R, E, S1, S2] {
-	return Bind(setter, F.Flow2(f, FromIOEither[R, E, T]))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindIOK is a variant of Bind that works with IO computations.
@@ -354,7 +364,8 @@ func BindIOK[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f io.Kleisli[S1, T],
 ) Operator[R, E, S1, S2] {
-	return Bind(setter, F.Flow2(f, FromIO[R, E, T]))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindReaderK is a variant of Bind that works with Reader computations.
@@ -367,7 +378,8 @@ func BindReaderK[E, R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f reader.Kleisli[R, S1, T],
 ) Operator[R, E, S1, S2] {
-	return Bind(setter, F.Flow2(f, FromReader[E, R, T]))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindReaderIOK is a variant of Bind that works with ReaderIO computations.
@@ -380,7 +392,8 @@ func BindReaderIOK[E, R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f readerio.Kleisli[R, S1, T],
 ) Operator[R, E, S1, S2] {
-	return Bind(setter, F.Flow2(f, FromReaderIO[E, R, T]))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindEitherK is a variant of Bind that works with Either computations.
@@ -393,7 +406,8 @@ func BindEitherK[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f either.Kleisli[E, S1, T],
 ) Operator[R, E, S1, S2] {
-	return Bind(setter, F.Flow2(f, FromEither[R, E, T]))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindIOEitherKL is a lens-based variant of BindIOEitherK.
@@ -407,7 +421,8 @@ func BindIOEitherKL[R, E, S, T any](
 	lens L.Lens[S, T],
 	f ioeither.Kleisli[E, T, T],
 ) Operator[R, E, S, S] {
-	return BindL(lens, F.Flow2(f, FromIOEither[R, E, T]))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindIOKL is a lens-based variant of BindIOK.
@@ -421,7 +436,8 @@ func BindIOKL[R, E, S, T any](
 	lens L.Lens[S, T],
 	f io.Kleisli[T, T],
 ) Operator[R, E, S, S] {
-	return BindL(lens, F.Flow2(f, FromIO[R, E, T]))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindReaderKL is a lens-based variant of BindReaderK.
@@ -435,7 +451,8 @@ func BindReaderKL[E, R, S, T any](
 	lens L.Lens[S, T],
 	f reader.Kleisli[R, T, T],
 ) Operator[R, E, S, S] {
-	return BindL(lens, F.Flow2(f, FromReader[E, R, T]))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindReaderIOKL is a lens-based variant of BindReaderIOK.
@@ -449,7 +466,8 @@ func BindReaderIOKL[E, R, S, T any](
 	lens L.Lens[S, T],
 	f readerio.Kleisli[R, T, T],
 ) Operator[R, E, S, S] {
-	return BindL(lens, F.Flow2(f, FromReaderIO[E, R, T]))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApIOEitherS is an applicative variant that works with IOEither values.
@@ -463,7 +481,8 @@ func ApIOEitherS[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa IOEither[E, T],
 ) Operator[R, E, S1, S2] {
-	return F.Bind2nd(F.Flow2[ReaderIOEither[R, E, S1], ioeither.Operator[E, S1, S2]], ioeither.ApS(setter, fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApIOS is an applicative variant that works with IO values.
@@ -476,7 +495,8 @@ func ApIOS[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa IO[T],
 ) Operator[R, E, S1, S2] {
-	return ApS(setter, FromIO[R, E](fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApReaderS is an applicative variant that works with Reader values.
@@ -489,7 +509,8 @@ func ApReaderS[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa Reader[R, T],
 ) Operator[R, E, S1, S2] {
-	return ApS(setter, FromReader[E](fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApReaderIOS is an applicative variant that works with ReaderIO values.
@@ -502,7 +523,8 @@ func ApReaderIOS[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa ReaderIO[R, T],
 ) Operator[R, E, S1, S2] {
-	return ApS(setter, FromReaderIO[E](fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApEitherS is an applicative variant that works with Either values.
@@ -515,7 +537,8 @@ func ApEitherS[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa Either[E, T],
 ) Operator[R, E, S1, S2] {
-	return ApS(setter, FromEither[R](fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApIOEitherSL is a lens-based variant of ApIOEitherS.
@@ -528,7 +551,8 @@ func ApIOEitherSL[R, E, S, T any](
 	lens L.Lens[S, T],
 	fa IOEither[E, T],
 ) Operator[R, E, S, S] {
-	return F.Bind2nd(F.Flow2[ReaderIOEither[R, E, S], ioeither.Operator[E, S, S]], ioeither.ApSL(lens, fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApIOSL is a lens-based variant of ApIOS.
@@ -541,7 +565,8 @@ func ApIOSL[R, E, S, T any](
 	lens L.Lens[S, T],
 	fa IO[T],
 ) Operator[R, E, S, S] {
-	return ApSL(lens, FromIO[R, E](fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApReaderSL is a lens-based variant of ApReaderS.
@@ -554,7 +579,8 @@ func ApReaderSL[R, E, S, T any](
 	lens L.Lens[S, T],
 	fa Reader[R, T],
 ) Operator[R, E, S, S] {
-	return ApSL(lens, FromReader[E](fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApReaderIOSL is a lens-based variant of ApReaderIOS.
@@ -567,7 +593,8 @@ func ApReaderIOSL[R, E, S, T any](
 	lens L.Lens[S, T],
 	fa ReaderIO[R, T],
 ) Operator[R, E, S, S] {
-	return ApSL(lens, FromReaderIO[E](fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApEitherSL is a lens-based variant of ApEitherS.
@@ -580,5 +607,6 @@ func ApEitherSL[R, E, S, T any](
 	lens L.Lens[S, T],
 	fa Either[E, T],
 ) Operator[R, E, S, S] {
-	return ApSL(lens, FromEither[R](fa))
+	_ = "STUB: not implemented"
+	return nil
 }

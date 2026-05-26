@@ -16,29 +16,17 @@
 package iso
 
 import (
-	F "github.com/IBM/fp-go/function"
 	I "github.com/IBM/fp-go/optics/iso"
-	IL "github.com/IBM/fp-go/optics/iso/lens"
 	L "github.com/IBM/fp-go/optics/lens"
 	O "github.com/IBM/fp-go/option"
 )
 
 // FromNillable converts a nillable value to an option and back
-func FromNillable[T any]() I.Iso[*T, O.Option[T]] {
-	return I.MakeIso(F.Flow2(
-		O.FromPredicate(F.IsNonNil[T]),
-		O.Map(F.Deref[T]),
-	),
-		O.Fold(F.Constant((*T)(nil)), F.Ref[T]),
-	)
-}
+func FromNillable[T any]() I.Iso[*T, O.Option[T]] { _ = "STUB: not implemented"; return nil }
 
 // Compose converts a Lens to a property of `A` into a lens to a property of type `B`
 // the transformation is done via an ISO
 func Compose[S, A, B any](ab I.Iso[A, B]) func(sa L.Lens[S, A]) L.Lens[S, B] {
-	return F.Pipe2(
-		ab,
-		IL.IsoAsLens[A, B],
-		L.Compose[S, A, B],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

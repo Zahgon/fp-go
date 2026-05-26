@@ -33,34 +33,18 @@ type (
 // String prints some debug info for the object
 //
 //go:noinline
-func eitherString(s *either) string {
-	if s.isRight {
-		return fmt.Sprintf("Right[%T](%v)", s.value, s.value)
-	}
-	return fmt.Sprintf("Left[%T](%v)", s.value, s.value)
-}
+func eitherString(s *either) string { _ = "STUB: not implemented"; return "" }
 
 // Format prints some debug info for the object
 //
 //go:noinline
-func eitherFormat(e *either, f fmt.State, c rune) {
-	switch c {
-	case 's':
-		fmt.Fprint(f, eitherString(e))
-	default:
-		fmt.Fprint(f, eitherString(e))
-	}
-}
+func eitherFormat(e *either, f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 // String prints some debug info for the object
-func (s Either[E, A]) String() string {
-	return eitherString((*either)(&s))
-}
+func (s Either[E, A]) String() string { _ = "STUB: not implemented"; return "" }
 
 // Format prints some debug info for the object
-func (s Either[E, A]) Format(f fmt.State, c rune) {
-	eitherFormat((*either)(&s), f, c)
-}
+func (s Either[E, A]) Format(f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 // IsLeft tests if the Either is a Left value.
 // Rather use [Fold] or [MonadFold] if you need to access the values.
@@ -72,9 +56,7 @@ func (s Either[E, A]) Format(f fmt.State, c rune) {
 //	either.IsLeft(either.Right[error](42)) // false
 //
 //go:inline
-func IsLeft[E, A any](val Either[E, A]) bool {
-	return !val.isRight
-}
+func IsLeft[E, A any](val Either[E, A]) bool { _ = "STUB: not implemented"; return false }
 
 // IsRight tests if the Either is a Right value.
 // Rather use [Fold] or [MonadFold] if you need to access the values.
@@ -87,20 +69,20 @@ func IsLeft[E, A any](val Either[E, A]) bool {
 //
 //go:inline
 func IsRight[E, A any](val Either[E, A]) bool {
-	return val.isRight
+	_ = "STUB: not implemented"
+
+	// Left creates a new Either representing a Left (error/failure) value.
+	// By convention, Left represents the error case.
+	//
+	// Example:
+	//
+	//	result := either.Left[int](errors.New("something went wrong"))
+	//
+	//go:inline
+	return false
 }
 
-// Left creates a new Either representing a Left (error/failure) value.
-// By convention, Left represents the error case.
-//
-// Example:
-//
-//	result := either.Left[int](errors.New("something went wrong"))
-//
-//go:inline
-func Left[A, E any](value E) Either[E, A] {
-	return Either[E, A]{value, false}
-}
+func Left[A, E any](value E) Either[E, A] { _ = "STUB: not implemented"; return nil }
 
 // Right creates a new Either representing a Right (success) value.
 // By convention, Right represents the success case.
@@ -110,9 +92,7 @@ func Left[A, E any](value E) Either[E, A] {
 //	result := either.Right[error](42)
 //
 //go:inline
-func Right[E, A any](value A) Either[E, A] {
-	return Either[E, A]{value, true}
-}
+func Right[E, A any](value A) Either[E, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadFold extracts the value from an Either by providing handlers for both cases.
 // This is the fundamental pattern matching operation for Either.
@@ -127,10 +107,8 @@ func Right[E, A any](value A) Either[E, A] {
 //
 //go:inline
 func MonadFold[E, A, B any](ma Either[E, A], onLeft func(e E) B, onRight func(a A) B) B {
-	if ma.isRight {
-		return onRight(ma.value.(A))
-	}
-	return onLeft(ma.value.(E))
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 // Unwrap converts an Either into the idiomatic Go tuple (value, error).
@@ -143,12 +121,4 @@ func MonadFold[E, A, B any](ma Either[E, A], onLeft func(e E) B, onRight func(a 
 //	val, err := either.Unwrap(either.Left[int](errors.New("fail"))) // 0, error
 //
 //go:inline
-func Unwrap[E, A any](ma Either[E, A]) (A, E) {
-	if ma.isRight {
-		var e E
-		return ma.value.(A), e
-	} else {
-		var a A
-		return a, ma.value.(E)
-	}
-}
+func Unwrap[E, A any](ma Either[E, A]) (A, E) { _ = "STUB: not implemented"; return *new(A), *new(E) }

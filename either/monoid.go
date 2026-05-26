@@ -22,19 +22,12 @@ import (
 
 // AlternativeMonoid is the alternative [Monoid] for an [Either]
 func AlternativeMonoid[E, A any](m M.Monoid[A]) M.Monoid[Either[E, A]] {
-	return M.AlternativeMonoid(
-		Of[E, A],
-		MonadMap[E, A, func(A) A],
-		MonadAp[A, E, A],
-		MonadAlt[E, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltMonoid is the alternative [Monoid] for an [Either]
 func AltMonoid[E, A any](zero L.Lazy[Either[E, A]]) M.Monoid[Either[E, A]] {
-	return M.AltMonoid(
-		zero,
-		MonadAlt[E, A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

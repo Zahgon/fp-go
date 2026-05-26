@@ -57,16 +57,8 @@ import (
 //	errorLogger := log.New(os.Stderr, "ERROR: ", log.LstdFlags)
 //	infoLog, errLog := LoggingCallbacks(infoLogger, errorLogger)
 func LoggingCallbacks(loggers ...*log.Logger) (func(string, ...any), func(string, ...any)) {
-	switch len(loggers) {
-	case 0:
-		def := log.Default()
-		return def.Printf, def.Printf
-	case 1:
-		log0 := loggers[0]
-		return log0.Printf, log0.Printf
-	default:
-		return loggers[0].Printf, loggers[1].Printf
-	}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 var globalLogger atomic.Pointer[slog.Logger]
@@ -88,9 +80,7 @@ func init() {
 //
 //	oldLogger := SetLogger(slog.New(slog.NewJSONHandler(os.Stdout, nil)))
 //	defer SetLogger(oldLogger) // Restore previous logger
-func SetLogger(l *slog.Logger) *slog.Logger {
-	return globalLogger.Swap(l)
-}
+func SetLogger(l *slog.Logger) *slog.Logger { _ = "STUB: not implemented"; return nil }
 
 // GetLogger returns the current global logger instance.
 // If no logger has been set via SetLogger, it returns slog.Default().
@@ -102,9 +92,7 @@ func SetLogger(l *slog.Logger) *slog.Logger {
 //
 //	logger := GetLogger()
 //	logger.Info("Application started")
-func GetLogger() *slog.Logger {
-	return globalLogger.Load()
-}
+func GetLogger() *slog.Logger { _ = "STUB: not implemented"; return nil }
 
 type loggerInContextType int
 
@@ -130,45 +118,45 @@ var loggerInContextKey loggerInContextType
 //	    logger.Info("Processing request")
 //	}
 func GetLoggerFromContext(ctx context.Context) *slog.Logger {
+	_ = "STUB: not implemented"
 	// using idomatic style to avoid import cycle
-	value, ok := ctx.Value(loggerInContextKey).(*slog.Logger)
-	if !ok {
-		return globalLogger.Load()
-	}
-	return value
+	return nil
 }
 
-func noop() {}
+func noop() {
+	_ = "STUB: not implemented"
 
-// WithLogger returns a Kleisli arrow that adds a logger to a context.
-// A Kleisli arrow transforms a context into a ContextCancel pair containing
-// a no-op cancel function and the new context with the embedded logger.
-//
-// This is particularly useful in functional programming patterns where you want to
-// compose context transformations, or when working with middleware that needs to
-// inject loggers into request contexts.
-//
-// Parameters:
-//   - l: The *slog.Logger to embed in the context
-//
-// Returns:
-//   - A Kleisli arrow (function from context.Context to ContextCancel) that adds the logger to a context
-//
-// Example:
-//
-//	// Create a logger transformation
-//	addLogger := WithLogger(slog.New(slog.NewJSONHandler(os.Stdout, nil)))
-//
-//	// Apply it to a context
-//	ctx := context.Background()
-//	result := addLogger(ctx)
-//	ctxWithLogger := pair.Second(result)
-//
-//	// Retrieve the logger later
-//	logger := GetLoggerFromContext(ctxWithLogger)
-//	logger.Info("Using context logger")
+	// WithLogger returns a Kleisli arrow that adds a logger to a context.
+	// A Kleisli arrow transforms a context into a ContextCancel pair containing
+	// a no-op cancel function and the new context with the embedded logger.
+	//
+	// This is particularly useful in functional programming patterns where you want to
+	// compose context transformations, or when working with middleware that needs to
+	// inject loggers into request contexts.
+	//
+	// Parameters:
+	//   - l: The *slog.Logger to embed in the context
+	//
+	// Returns:
+	//   - A Kleisli arrow (function from context.Context to ContextCancel) that adds the logger to a context
+	//
+	// Example:
+	//
+	//	// Create a logger transformation
+	//	addLogger := WithLogger(slog.New(slog.NewJSONHandler(os.Stdout, nil)))
+	//
+	//	// Apply it to a context
+	//	ctx := context.Background()
+	//	result := addLogger(ctx)
+	//	ctxWithLogger := pair.Second(result)
+	//
+	//	// Retrieve the logger later
+	//	logger := GetLoggerFromContext(ctxWithLogger)
+	//	logger.Info("Using context logger")
+	return
+}
+
 func WithLogger(l *slog.Logger) pair.Kleisli[context.CancelFunc, context.Context, context.Context] {
-	return func(ctx context.Context) ContextCancel {
-		return pair.MakePair[context.CancelFunc](noop, context.WithValue(ctx, loggerInContextKey, l))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

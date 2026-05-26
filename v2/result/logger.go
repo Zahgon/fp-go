@@ -18,8 +18,6 @@ package result
 import (
 	"log"
 	"log/slog"
-
-	"github.com/IBM/fp-go/v2/either"
 )
 
 // Logger creates a logging function for Result values that logs both error and success cases.
@@ -103,7 +101,8 @@ import (
 //
 //go:inline
 func Logger[A any](loggers ...*log.Logger) func(string) Operator[A, A] {
-	return either.Logger[error, A](loggers...)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ToSLogAttr converts a Result value to a structured logging attribute (slog.Attr).
@@ -196,6 +195,4 @@ func Logger[A any](loggers ...*log.Logger) func(string) Operator[A, A] {
 // to query and filter logs based on success or failure.
 //
 //go:inline
-func ToSLogAttr[A any]() func(Result[A]) slog.Attr {
-	return either.ToSLogAttr[error, A]()
-}
+func ToSLogAttr[A any]() func(Result[A]) slog.Attr { _ = "STUB: not implemented"; return nil }

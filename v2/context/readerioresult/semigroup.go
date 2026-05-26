@@ -36,8 +36,4 @@ type (
 //	    Left[int](errors.New("first failed")),
 //	    Right[int](42),
 //	) // Returns Right(42)
-func AltSemigroup[A any]() Semigroup[A] {
-	return semigroup.AltSemigroup(
-		MonadAlt[A],
-	)
-}
+func AltSemigroup[A any]() Semigroup[A] { _ = "STUB: not implemented"; return nil }

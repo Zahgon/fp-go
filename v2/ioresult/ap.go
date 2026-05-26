@@ -15,34 +15,28 @@
 
 package ioresult
 
-import (
-	"github.com/IBM/fp-go/v2/ioeither"
-)
-
 // MonadApFirst combines two effectful actions, keeping only the result of the first.
 //
 //go:inline
 func MonadApFirst[A, B any](first IOResult[A], second IOResult[B]) IOResult[A] {
-	return ioeither.MonadApFirst(first, second)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApFirst combines two effectful actions, keeping only the result of the first.
 //
 //go:inline
-func ApFirst[A, B any](second IOResult[B]) Operator[A, A] {
-	return ioeither.ApFirst[A](second)
-}
+func ApFirst[A, B any](second IOResult[B]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadApSecond combines two effectful actions, keeping only the result of the second.
 //
 //go:inline
 func MonadApSecond[A, B any](first IOResult[A], second IOResult[B]) IOResult[B] {
-	return ioeither.MonadApSecond(first, second)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSecond combines two effectful actions, keeping only the result of the second.
 //
 //go:inline
-func ApSecond[A, B any](second IOResult[B]) Operator[A, B] {
-	return ioeither.ApSecond[A](second)
-}
+func ApSecond[A, B any](second IOResult[B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }

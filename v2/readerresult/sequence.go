@@ -16,7 +16,6 @@
 package readerresult
 
 import (
-	G "github.com/IBM/fp-go/v2/readereither/generic"
 	T "github.com/IBM/fp-go/v2/tuple"
 )
 
@@ -33,10 +32,8 @@ import (
 //	result := readerresult.SequenceT1(rr)
 //	// result(cfg) returns result.Of(Tuple1{42})
 func SequenceT1[L, A any](a ReaderResult[L, A]) ReaderResult[L, T.Tuple1[A]] {
-	return G.SequenceT1[
-		ReaderResult[L, A],
-		ReaderResult[L, T.Tuple1[A]],
-	](a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT2 combines two independent ReaderResult computations into a tuple.
@@ -52,11 +49,8 @@ func SequenceT2[L, A, B any](
 	a ReaderResult[L, A],
 	b ReaderResult[L, B],
 ) ReaderResult[L, T.Tuple2[A, B]] {
-	return G.SequenceT2[
-		ReaderResult[L, A],
-		ReaderResult[L, B],
-		ReaderResult[L, T.Tuple2[A, B]],
-	](a, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT3 combines three independent ReaderResult computations into a tuple.
@@ -73,12 +67,8 @@ func SequenceT3[L, A, B, C any](
 	b ReaderResult[L, B],
 	c ReaderResult[L, C],
 ) ReaderResult[L, T.Tuple3[A, B, C]] {
-	return G.SequenceT3[
-		ReaderResult[L, A],
-		ReaderResult[L, B],
-		ReaderResult[L, C],
-		ReaderResult[L, T.Tuple3[A, B, C]],
-	](a, b, c)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT4 combines four independent ReaderResult computations into a tuple.
@@ -93,11 +83,6 @@ func SequenceT4[L, A, B, C, D any](
 	c ReaderResult[L, C],
 	d ReaderResult[L, D],
 ) ReaderResult[L, T.Tuple4[A, B, C, D]] {
-	return G.SequenceT4[
-		ReaderResult[L, A],
-		ReaderResult[L, B],
-		ReaderResult[L, C],
-		ReaderResult[L, D],
-		ReaderResult[L, T.Tuple4[A, B, C, D]],
-	](a, b, c, d)
+	_ = "STUB: not implemented"
+	return nil
 }

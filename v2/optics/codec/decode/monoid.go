@@ -1,7 +1,5 @@
 package decode
 
-import "github.com/IBM/fp-go/v2/monoid"
-
 // ApplicativeMonoid creates a Monoid instance for Decode[I, A] given a Monoid for A.
 // This allows combining decoders where both the decoded values and validation errors
 // are combined according to their respective monoid operations.
@@ -77,12 +75,8 @@ import "github.com/IBM/fp-go/v2/monoid"
 //	combined := m.Concat(decoder1, decoder2)
 //	result := combined("input") // Success(42) - values are added
 func ApplicativeMonoid[I, A any](m Monoid[A]) Monoid[Decode[I, A]] {
-	return monoid.ApplicativeMonoid(
-		Of[I, A],
-		MonadMap[I, A, Endomorphism[A]],
-		MonadAp[A, I, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AlternativeMonoid creates a Monoid instance for Decode[I, A] using the Alternative pattern.
@@ -212,13 +206,8 @@ func ApplicativeMonoid[I, A any](m Monoid[A]) Monoid[Decode[I, A]] {
 //	decoder := m.Concat(m.Concat(fromEnv, fromFile), fromDefault)
 //	// Returns first successful config, or all errors if all fail
 func AlternativeMonoid[I, A any](m Monoid[A]) Monoid[Decode[I, A]] {
-	return monoid.AlternativeMonoid(
-		Of[I, A],
-		MonadMap[I, A, func(A) A],
-		MonadAp[A, I, A],
-		MonadAlt[I, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltMonoid creates a Monoid instance for Decode[I, A] using the Alt (alternative) operation.
@@ -361,8 +350,6 @@ func AlternativeMonoid[I, A any](m Monoid[A]) Monoid[Decode[I, A]] {
 //	result2 := altMonoid.Concat(decoder1, decoder2)("input")
 //	// Result: Success(42)
 func AltMonoid[I, A any](zero Lazy[Decode[I, A]]) Monoid[Decode[I, A]] {
-	return monoid.AltMonoid(
-		zero,
-		MonadAlt[I, A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

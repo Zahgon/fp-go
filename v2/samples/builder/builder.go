@@ -6,14 +6,11 @@ package builder
 
 import (
 	"github.com/IBM/fp-go/v2/array"
-	A "github.com/IBM/fp-go/v2/array"
 	"github.com/IBM/fp-go/v2/endomorphism"
 	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/identity"
 	"github.com/IBM/fp-go/v2/optics/prism"
 	"github.com/IBM/fp-go/v2/option"
 	"github.com/IBM/fp-go/v2/reader"
-	"github.com/IBM/fp-go/v2/readeroption"
 	S "github.com/IBM/fp-go/v2/string"
 )
 
@@ -126,10 +123,8 @@ var (
 //	partial := builder(&PartialPerson{})
 //	// partial now has Name="Alice" and Age=25
 func MakePerson(name string, age int) Endomorphism[*PartialPerson] {
-	return F.Flow2(
-		identity.ApS(WithName, name),
-		identity.ApS(WithAge, age),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // buildPerson constructs the forward direction of PersonPrism.
@@ -145,27 +140,8 @@ func MakePerson(name string, age int) Endomorphism[*PartialPerson] {
 //	A ReaderOption that produces Some(*Person) if all validations pass,
 //	or None if any validation fails.
 func buildPerson() ReaderOption[Endomorphism[*PartialPerson], *Person] {
-
-	maybeName := F.Flow2(
-		partialPersonLenses.name.Get,
-		namePrism.GetOption,
-	)
-
-	maybeAge := F.Flow2(
-		partialPersonLenses.age.Get,
-		agePrism.GetOption,
-	)
-
-	makePerson := F.Pipe2(
-		readeroption.Do[*PartialPerson](emptyPerson),
-		readeroption.ApSL(personLenses.Name, maybeName),
-		readeroption.ApSL(personLenses.Age, maybeAge),
-	)
-
-	return F.Flow2(
-		reader.Read[*PartialPerson](emptyPartialPerson),
-		makePerson,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // buildEndomorphism constructs the reverse direction of PersonPrism.
@@ -181,26 +157,14 @@ func buildPerson() ReaderOption[Endomorphism[*PartialPerson], *Person] {
 //
 //	A Reader that produces an endomorphism for reconstructing a PartialPerson
 func buildEndomorphism() Reader[*Person, Endomorphism[*PartialPerson]] {
+	_ = "STUB: not implemented"
 
 	// name extracts the validated name, converts it to string,
 	// and creates a setter for PartialPerson's Name field
-	name := F.Flow3(
-		personLenses.Name.Get,
-		namePrism.ReverseGet,
-		WithName,
-	)
-
-	// age extracts the validated age, converts it to int,
-	// and creates a setter for PartialPerson's Age field
-	age := F.Flow3(
-		personLenses.Age.Get,
-		agePrism.ReverseGet,
-		WithAge,
-	)
-
-	// Combine the field extractors into a single builder
-	return F.Pipe1(
-		A.From(name, age),
-		foldPersons,
-	)
+	return nil
 }
+
+// age extracts the validated age, converts it to int,
+// and creates a setter for PartialPerson's Age field
+
+// Combine the field extractors into a single builder

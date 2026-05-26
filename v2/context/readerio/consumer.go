@@ -1,7 +1,5 @@
 package readerio
 
-import "github.com/IBM/fp-go/v2/io"
-
 // ChainConsumer chains a consumer function into a ReaderIO computation, discarding the original value.
 // This is useful for performing side effects (like logging or metrics) that consume a value
 // but don't produce a meaningful result.
@@ -29,9 +27,7 @@ import "github.com/IBM/fp-go/v2/io"
 //	)
 //
 //go:inline
-func ChainConsumer[A any](c Consumer[A]) Operator[A, Void] {
-	return ChainIOK(io.FromConsumer(c))
-}
+func ChainConsumer[A any](c Consumer[A]) Operator[A, Void] { _ = "STUB: not implemented"; return nil }
 
 // ChainFirstConsumer chains a consumer function into a ReaderIO computation, preserving the original value.
 // This is useful for performing side effects (like logging or metrics) while passing the value through unchanged.
@@ -60,6 +56,4 @@ func ChainConsumer[A any](c Consumer[A]) Operator[A, Void] {
 //	)
 //
 //go:inline
-func ChainFirstConsumer[A any](c Consumer[A]) Operator[A, A] {
-	return ChainFirstIOK(io.FromConsumer(c))
-}
+func ChainFirstConsumer[A any](c Consumer[A]) Operator[A, A] { _ = "STUB: not implemented"; return nil }

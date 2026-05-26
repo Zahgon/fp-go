@@ -15,10 +15,6 @@
 
 package readerresult
 
-import (
-	G "github.com/IBM/fp-go/v2/readereither/generic"
-)
-
 // These functions convert idiomatic Go functions (with context as first parameter and (value, error) return)
 // into ReaderResult computations. This follows the Go convention of putting context as the first parameter
 // as advised in https://pkg.go.dev/context.
@@ -31,7 +27,8 @@ import (
 //	rr := readerresult.From0(getConfig)()
 //	// rr is a ReaderResult[context.Context, Config]
 func From0[R, A any](f func(R) (A, error)) func() ReaderResult[R, A] {
-	return G.From0[ReaderResult[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From1 converts a function with one parameter into a ReaderResult-returning function.
@@ -43,7 +40,8 @@ func From0[R, A any](f func(R) (A, error)) func() ReaderResult[R, A] {
 //	rr := readerresult.From1(getUser)
 //	// rr(42) returns ReaderResult[context.Context, User]
 func From1[R, T1, A any](f func(R, T1) (A, error)) func(T1) ReaderResult[R, A] {
-	return G.From1[ReaderResult[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From2 converts a function with two parameters into a ReaderResult-returning function.
@@ -55,7 +53,8 @@ func From1[R, T1, A any](f func(R, T1) (A, error)) func(T1) ReaderResult[R, A] {
 //	rr := readerresult.From2(queryDB)
 //	// rr("users", 42) returns ReaderResult[context.Context, Record]
 func From2[R, T1, T2, A any](f func(R, T1, T2) (A, error)) func(T1, T2) ReaderResult[R, A] {
-	return G.From2[ReaderResult[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From3 converts a function with three parameters into a ReaderResult-returning function.
@@ -67,5 +66,6 @@ func From2[R, T1, T2, A any](f func(R, T1, T2) (A, error)) func(T1, T2) ReaderRe
 //	rr := readerresult.From3(updateRecord)
 //	// rr("users", 42, "data") returns ReaderResult[context.Context, Result]
 func From3[R, T1, T2, T3, A any](f func(R, T1, T2, T3) (A, error)) func(T1, T2, T3) ReaderResult[R, A] {
-	return G.From3[ReaderResult[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }

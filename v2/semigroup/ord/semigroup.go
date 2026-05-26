@@ -21,11 +21,7 @@ import (
 )
 
 // Max gets a semigroup where `concat` will return the maximum, based on the provided order.
-func Max[A any](o ord.Ord[A]) S.Semigroup[A] {
-	return S.MakeSemigroup(ord.Max(o))
-}
+func Max[A any](o ord.Ord[A]) S.Semigroup[A] { _ = "STUB: not implemented"; return nil }
 
 // Min gets a semigroup where `concat` will return the minimum, based on the provided order.
-func Min[A any](o ord.Ord[A]) S.Semigroup[A] {
-	return S.MakeSemigroup(ord.Min(o))
-}
+func Min[A any](o ord.Ord[A]) S.Semigroup[A] { _ = "STUB: not implemented"; return nil }

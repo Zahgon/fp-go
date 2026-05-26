@@ -1,12 +1,5 @@
 package decode
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/readert"
-	"github.com/IBM/fp-go/v2/optics/codec/validation"
-	"github.com/IBM/fp-go/v2/readereither"
-)
-
 // Of creates a Decode that always succeeds with the given value.
 // This is the pointed functor operation that lifts a pure value into the Decode context.
 //
@@ -14,9 +7,7 @@ import (
 //
 //	decoder := decode.Of[string](42)
 //	result := decoder("any input") // Always returns validation.Success(42)
-func Of[I, A any](a A) Decode[I, A] {
-	return readereither.Of[I, Errors](a)
-}
+func Of[I, A any](a A) Decode[I, A] { _ = "STUB: not implemented"; return nil }
 
 // OfLazy converts a lazy computation into a Decode that ignores its input.
 // The resulting Decode will evaluate the lazy computation when executed and wrap
@@ -55,9 +46,7 @@ func Of[I, A any](a A) Decode[I, A] {
 //	decoder := decode.OfLazy[map[string]any](expensiveCalc)
 //	// Computation is deferred until the Decode is executed
 //	result := decoder(inputData) // validation.Success(config)
-func OfLazy[I, A any](fa Lazy[A]) Decode[I, A] {
-	return readereither.OfLazy[I, Errors](fa)
-}
+func OfLazy[I, A any](fa Lazy[A]) Decode[I, A] { _ = "STUB: not implemented"; return nil }
 
 // Left creates a Decode that always fails with the given validation errors.
 // This is the dual of Of - while Of lifts a success value, Left lifts failure errors
@@ -130,9 +119,7 @@ func OfLazy[I, A any](fa Lazy[A]) Decode[I, A] {
 //	})(alwaysFails)
 //
 //	result := recovered("input") // Success(0)
-func Left[I, A any](err Errors) Decode[I, A] {
-	return readereither.Left[I, A](err)
-}
+func Left[I, A any](err Errors) Decode[I, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadChain sequences two decode operations, passing the result of the first to the second.
 // This is the monadic bind operation that enables sequential composition of decoders.
@@ -144,11 +131,8 @@ func Left[I, A any](err Errors) Decode[I, A] {
 //	    return decode.Of[string](fmt.Sprintf("Number: %d", n))
 //	})
 func MonadChain[I, A, B any](fa Decode[I, A], f Kleisli[I, A, B]) Decode[I, B] {
-	return readert.MonadChain(
-		validation.MonadChain,
-		fa,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain creates an operator that sequences decode operations.
@@ -161,10 +145,8 @@ func MonadChain[I, A, B any](fa Decode[I, A], f Kleisli[I, A, B]) Decode[I, B] {
 //	})
 //	decoder := chainOp(decode.Of[string](42))
 func Chain[I, A, B any](f Kleisli[I, A, B]) Operator[I, A, B] {
-	return readert.Chain[Decode[I, A]](
-		validation.Chain,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainLeft transforms the error channel of a decoder, enabling error recovery and context addition.
@@ -222,10 +204,8 @@ func Chain[I, A, B any](f Kleisli[I, A, B]) Operator[I, A, B] {
 //	})
 //	// Result will contain BOTH original error and context error
 func ChainLeft[I, A any](f Kleisli[I, Errors, A]) Operator[I, A, A] {
-	return readert.Chain[Decode[I, A]](
-		validation.ChainLeft,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainLeft transforms the error channel of a decoder, enabling error recovery and context addition.
@@ -300,11 +280,8 @@ func ChainLeft[I, A any](f Kleisli[I, Errors, A]) Operator[I, A, A] {
 //
 //	// Both produce identical results
 func MonadChainLeft[I, A any](fa Decode[I, A], f Kleisli[I, Errors, A]) Decode[I, A] {
-	return readert.MonadChain(
-		validation.MonadChainLeft,
-		fa,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // OrElse provides fallback decoding logic when the primary decoder fails.
@@ -370,26 +347,23 @@ func MonadChainLeft[I, A any](fa Decode[I, A], f Kleisli[I, Errors, A]) Decode[I
 //	result2 := decoder("https-server") // Success(443)
 //	result3 := decoder("other")        // Success(8080)
 func OrElse[I, A any](f Kleisli[I, Errors, A]) Operator[I, A, A] {
-	return ChainLeft(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// MonadMap transforms the decoded value using the provided function.
+	// This is the functor map operation that applies a transformation to successful decode results.
+	//
+	// Example:
+	//
+	//	decoder := decode.Of[string](42)
+	//	mapped := decode.MonadMap(decoder, func(n int) string {
+	//	    return fmt.Sprintf("Number: %d", n)
+	//	})
 }
 
-// MonadMap transforms the decoded value using the provided function.
-// This is the functor map operation that applies a transformation to successful decode results.
-//
-// Example:
-//
-//	decoder := decode.Of[string](42)
-//	mapped := decode.MonadMap(decoder, func(n int) string {
-//	    return fmt.Sprintf("Number: %d", n)
-//	})
 func MonadMap[I, A, B any](fa Decode[I, A], f func(A) B) Decode[I, B] {
-	return readert.MonadMap[
-		Decode[I, A],
-		Decode[I, B]](
-		validation.MonadMap,
-		fa,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map creates an operator that transforms decoded values.
@@ -401,14 +375,7 @@ func MonadMap[I, A, B any](fa Decode[I, A], f func(A) B) Decode[I, B] {
 //	    return fmt.Sprintf("Number: %d", n)
 //	})
 //	decoder := mapOp(decode.Of[string](42))
-func Map[I, A, B any](f func(A) B) Operator[I, A, B] {
-	return readert.Map[
-		Decode[I, A],
-		Decode[I, B]](
-		validation.Map,
-		f,
-	)
-}
+func Map[I, A, B any](f func(A) B) Operator[I, A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadAp applies a decoder containing a function to a decoder containing a value.
 // This is the applicative apply operation that enables parallel composition of decoders.
@@ -421,14 +388,8 @@ func Map[I, A, B any](f func(A) B) Operator[I, A, B] {
 //	decoderVal := decode.Of[string](42)
 //	result := decode.MonadAp(decoderFn, decoderVal)
 func MonadAp[B, I, A any](fab Decode[I, func(A) B], fa Decode[I, A]) Decode[I, B] {
-	return readert.MonadAp[
-		Decode[I, A],
-		Decode[I, B],
-		Decode[I, func(A) B], I, A](
-		validation.MonadAp[B, A],
-		fab,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap creates an operator that applies a function decoder to a value decoder.
@@ -442,13 +403,8 @@ func MonadAp[B, I, A any](fab Decode[I, func(A) B], fa Decode[I, A]) Decode[I, B
 //	})
 //	result := apOp(decoderFn)
 func Ap[B, I, A any](fa Decode[I, A]) Operator[I, func(A) B, B] {
-	return readert.Ap[
-		Decode[I, A],
-		Decode[I, B],
-		Decode[I, func(A) B], I, A](
-		validation.Ap[B, A],
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAlt provides alternative/fallback decoding with error aggregation.
@@ -533,7 +489,8 @@ func Ap[B, I, A any](fa Decode[I, A]) Operator[I, func(A) B, B] {
 //	result := decoder("input")
 //	// Result contains BOTH errors: ["primary decoder failed", "fallback decoder failed"]
 func MonadAlt[I, A any](first Decode[I, A], second Lazy[Decode[I, A]]) Decode[I, A] {
-	return MonadChainLeft(first, function.Ignore1of1[Errors](second))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Alt creates an operator that provides alternative/fallback decoding with error aggregation.
@@ -600,5 +557,6 @@ func MonadAlt[I, A any](first Decode[I, A], second Lazy[Decode[I, A]]) Decode[I,
 //	result := decoder("input")
 //	// Result contains ALL errors: ["error 1", "error 2", "error 3"]
 func Alt[I, A any](second Lazy[Decode[I, A]]) Operator[I, A, A] {
-	return ChainLeft(function.Ignore1of1[Errors](second))
+	_ = "STUB: not implemented"
+	return nil
 }

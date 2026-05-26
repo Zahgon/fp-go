@@ -47,10 +47,6 @@ import "github.com/IBM/fp-go/v2/monoid"
 //
 //go:inline
 func ApplicativeMonoid[R, A any](m monoid.Monoid[A]) monoid.Monoid[Reader[R, A]] {
-	return monoid.ApplicativeMonoid(
-		Of[R, A],
-		MonadMap[R, A, func(A) A],
-		MonadAp[A, R, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

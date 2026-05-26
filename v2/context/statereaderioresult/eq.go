@@ -19,23 +19,16 @@ import (
 	"context"
 
 	"github.com/IBM/fp-go/v2/eq"
-	"github.com/IBM/fp-go/v2/function"
-	RIOR "github.com/IBM/fp-go/v2/readerioresult"
 )
 
 // Eq implements the equals predicate for values contained in the [StateReaderIOResult] monad
 func Eq[S, A any](eqr eq.Eq[ReaderIOResult[Pair[S, A]]]) func(S) eq.Eq[StateReaderIOResult[S, A]] {
-	return func(s S) eq.Eq[StateReaderIOResult[S, A]] {
-		return eq.FromEquals(func(l, r StateReaderIOResult[S, A]) bool {
-			return eqr.Equals(l(s), r(s))
-		})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromStrictEquals constructs an [eq.Eq] from the canonical comparison function
 func FromStrictEquals[S comparable, A comparable]() func(context.Context) func(S) eq.Eq[StateReaderIOResult[S, A]] {
-	return function.Flow2(
-		RIOR.FromStrictEquals[context.Context, Pair[S, A]](),
-		Eq[S, A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

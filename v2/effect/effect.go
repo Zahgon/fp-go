@@ -17,9 +17,6 @@ package effect
 
 import (
 	thunk "github.com/IBM/fp-go/v2/context/readerioresult"
-	"github.com/IBM/fp-go/v2/context/readerreaderioresult"
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/fromreader"
 	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/reader"
 	"github.com/IBM/fp-go/v2/readerio"
@@ -56,14 +53,10 @@ import (
 //	// eff can be used in any context but executes the thunk
 //
 //go:inline
-func FromThunk[C, A any](f Thunk[A]) Effect[C, A] {
-	return reader.Of[C](f)
-}
+func FromThunk[C, A any](f Thunk[A]) Effect[C, A] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
-func FromResult[C, A any](r Result[A]) Effect[C, A] {
-	return readerreaderioresult.FromEither[C](r)
-}
+func FromResult[C, A any](r Result[A]) Effect[C, A] { _ = "STUB: not implemented"; return nil }
 
 // Succeed creates a successful Effect that produces the given value.
 // This is the primary way to lift a pure value into the Effect context.
@@ -86,9 +79,7 @@ func FromResult[C, A any](r Result[A]) Effect[C, A] {
 //	eff := effect.Succeed[MyContext](42)
 //	result, err := runEffect(eff, myContext)
 //	// result == 42, err == nil
-func Succeed[C, A any](a A) Effect[C, A] {
-	return readerreaderioresult.Of[C](a)
-}
+func Succeed[C, A any](a A) Effect[C, A] { _ = "STUB: not implemented"; return nil }
 
 // Fail creates a failed Effect with the given error.
 // This is used to represent computations that have failed.
@@ -111,9 +102,7 @@ func Succeed[C, A any](a A) Effect[C, A] {
 //	eff := effect.Fail[MyContext, int](errors.New("failed"))
 //	_, err := runEffect(eff, myContext)
 //	// err == errors.New("failed")
-func Fail[C, A any](err error) Effect[C, A] {
-	return readerreaderioresult.Left[C, A](err)
-}
+func Fail[C, A any](err error) Effect[C, A] { _ = "STUB: not implemented"; return nil }
 
 // Of creates a successful Effect that produces the given value.
 // This is an alias for Succeed and follows the pointed functor convention.
@@ -136,9 +125,7 @@ func Fail[C, A any](err error) Effect[C, A] {
 //	eff := effect.Of[MyContext]("hello")
 //	result, err := runEffect(eff, myContext)
 //	// result == "hello", err == nil
-func Of[C, A any](a A) Effect[C, A] {
-	return readerreaderioresult.Of[C](a)
-}
+func Of[C, A any](a A) Effect[C, A] { _ = "STUB: not implemented"; return nil }
 
 // Map transforms the success value of an Effect using the provided function.
 // If the effect fails, the error is propagated unchanged.
@@ -164,9 +151,7 @@ func Of[C, A any](a A) Effect[C, A] {
 //		return strconv.Itoa(x)
 //	})(eff)
 //	// mapped produces "42"
-func Map[C, A, B any](f func(A) B) Operator[C, A, B] {
-	return readerreaderioresult.Map[C](f)
-}
+func Map[C, A, B any](f func(A) B) Operator[C, A, B] { _ = "STUB: not implemented"; return nil }
 
 // Chain sequences two effects, where the second effect depends on the result of the first.
 // This is the monadic bind operation (flatMap) for effects.
@@ -196,12 +181,14 @@ func Map[C, A, B any](f func(A) B) Operator[C, A, B] {
 //
 //go:inline
 func Chain[C, A, B any](f Kleisli[C, A, B]) Operator[C, A, B] {
-	return readerreaderioresult.Chain(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func ChainFirst[C, A, B any](f Kleisli[C, A, B]) Operator[C, A, A] {
-	return readerreaderioresult.ChainFirst(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstThunkK chains an effect with a function that returns a Thunk,
@@ -247,11 +234,8 @@ func ChainFirst[C, A, B any](f Kleisli[C, A, B]) Operator[C, A, A] {
 //
 //go:inline
 func ChainFirstThunkK[C, A, B any](f thunk.Kleisli[A, B]) Operator[C, A, A] {
-	return fromreader.ChainFirstReaderK(
-		ChainFirst[C, A, B],
-		FromThunk[C, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TapThunkK is an alias for ChainFirstThunkK.
@@ -297,7 +281,8 @@ func ChainFirstThunkK[C, A, B any](f thunk.Kleisli[A, B]) Operator[C, A, A] {
 //
 //go:inline
 func TapThunkK[C, A, B any](f thunk.Kleisli[A, B]) Operator[C, A, A] {
-	return ChainFirstThunkK[C](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainIOK chains an effect with a function that returns an IO action.
@@ -333,7 +318,8 @@ func TapThunkK[C, A, B any](f thunk.Kleisli[A, B]) Operator[C, A, A] {
 //
 //go:inline
 func ChainIOK[C, A, B any](f io.Kleisli[A, B]) Operator[C, A, B] {
-	return readerreaderioresult.ChainIOK[C](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstIOK chains an effect with a function that returns an IO action,
@@ -369,7 +355,8 @@ func ChainIOK[C, A, B any](f io.Kleisli[A, B]) Operator[C, A, B] {
 //
 //go:inline
 func ChainFirstIOK[C, A, B any](f io.Kleisli[A, B]) Operator[C, A, A] {
-	return readerreaderioresult.ChainFirstIOK[C](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TapIOK is an alias for ChainFirstIOK.
@@ -406,7 +393,8 @@ func ChainFirstIOK[C, A, B any](f io.Kleisli[A, B]) Operator[C, A, A] {
 //
 //go:inline
 func TapIOK[C, A, B any](f io.Kleisli[A, B]) Operator[C, A, A] {
-	return readerreaderioresult.ChainFirstIOK[C](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap applies a function wrapped in an Effect to a value wrapped in an Effect.
@@ -433,7 +421,8 @@ func TapIOK[C, A, B any](f io.Kleisli[A, B]) Operator[C, A, A] {
 //	result := effect.Ap[int](valEff)(fnEff)
 //	// result produces 42
 func Ap[B, C, A any](fa Effect[C, A]) Operator[C, func(A) B, B] {
-	return readerreaderioresult.Ap[B](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Suspend delays the evaluation of an effect until it is run.
@@ -465,9 +454,7 @@ func Ap[B, C, A any](fa Effect[C, A]) Operator[C, func(A) B, B] {
 //			})(recursiveEff(n - 1))
 //		})
 //	}
-func Suspend[C, A any](fa Lazy[Effect[C, A]]) Effect[C, A] {
-	return readerreaderioresult.Defer(fa)
-}
+func Suspend[C, A any](fa Lazy[Effect[C, A]]) Effect[C, A] { _ = "STUB: not implemented"; return nil }
 
 // Tap executes a side effect for its effect, but returns the original value.
 // This is useful for logging, debugging, or performing actions without changing the result.
@@ -495,7 +482,8 @@ func Suspend[C, A any](fa Lazy[Effect[C, A]]) Effect[C, A] {
 //	})(eff)
 //	// Prints "Value: 42" but still produces 42
 func Tap[C, A, ANY any](f Kleisli[C, A, ANY]) Operator[C, A, A] {
-	return readerreaderioresult.Tap(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ternary creates a conditional effect based on a predicate.
@@ -530,7 +518,8 @@ func Tap[C, A, ANY any](f Kleisli[C, A, ANY]) Operator[C, A, A] {
 //	)
 //	result := kleisli(15) // produces "large"
 func Ternary[C, A, B any](pred Predicate[A], onTrue, onFalse Kleisli[C, A, B]) Kleisli[C, A, B] {
-	return function.Ternary(pred, onTrue, onFalse)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainResultK chains an effect with a function that returns a Result.
@@ -559,7 +548,8 @@ func Ternary[C, A, B any](pred Predicate[A], onTrue, onFalse Kleisli[C, A, B]) K
 //
 //go:inline
 func ChainResultK[C, A, B any](f result.Kleisli[A, B]) Operator[C, A, B] {
-	return readerreaderioresult.ChainResultK[C](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainReaderK chains an effect with a function that returns a Reader.
@@ -596,7 +586,8 @@ func ChainResultK[C, A, B any](f result.Kleisli[A, B]) Operator[C, A, B] {
 //
 //go:inline
 func ChainReaderK[C, A, B any](f reader.Kleisli[C, A, B]) Operator[C, A, B] {
-	return readerreaderioresult.ChainReaderK(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainThunkK chains an effect with a function that returns a Thunk.
@@ -634,11 +625,8 @@ func ChainReaderK[C, A, B any](f reader.Kleisli[C, A, B]) Operator[C, A, B] {
 //
 //go:inline
 func ChainThunkK[C, A, B any](f thunk.Kleisli[A, B]) Operator[C, A, B] {
-	return fromreader.ChainReaderK(
-		Chain[C, A, B],
-		FromThunk[C, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainReaderIOK chains an effect with a function that returns a ReaderIO.
@@ -678,7 +666,8 @@ func ChainThunkK[C, A, B any](f thunk.Kleisli[A, B]) Operator[C, A, B] {
 //
 //go:inline
 func ChainReaderIOK[C, A, B any](f readerio.Kleisli[C, A, B]) Operator[C, A, B] {
-	return readerreaderioresult.ChainReaderIOK(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Read provides a context to an effect, partially applying it.
@@ -705,9 +694,7 @@ func ChainReaderIOK[C, A, B any](f readerio.Kleisli[C, A, B]) Operator[C, A, B] 
 //	// thunk is now a Thunk[int] that can be run without context
 //
 //go:inline
-func Read[A, C any](c C) func(Effect[C, A]) Thunk[A] {
-	return readerreaderioresult.Read[A](c)
-}
+func Read[A, C any](c C) func(Effect[C, A]) Thunk[A] { _ = "STUB: not implemented"; return nil }
 
 // Asks creates an Effect that projects a value from the context using a Reader function.
 // This is useful for extracting specific fields or computing derived values from the context.
@@ -754,6 +741,4 @@ func Read[A, C any](c C) func(Effect[C, A]) Thunk[A] {
 //   - Map: Transforms the value after extraction
 //
 //go:inline
-func Asks[C, A any](r Reader[C, A]) Effect[C, A] {
-	return readerreaderioresult.Asks(r)
-}
+func Asks[C, A any](r Reader[C, A]) Effect[C, A] { _ = "STUB: not implemented"; return nil }

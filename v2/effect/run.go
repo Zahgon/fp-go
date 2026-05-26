@@ -16,11 +16,7 @@
 package effect
 
 import (
-	"context"
-
-	"github.com/IBM/fp-go/v2/context/readerreaderioresult"
 	"github.com/IBM/fp-go/v2/idiomatic/context/readerresult"
-	"github.com/IBM/fp-go/v2/result"
 )
 
 // Provide supplies a context to an effect, converting it to a Thunk.
@@ -47,7 +43,8 @@ import (
 //	thunk := effect.Provide[MyContext, int](ctx)(eff)
 //	// thunk is now a ReaderIOResult[int] that can be run
 func Provide[A, C any](c C) func(Effect[C, A]) ReaderIOResult[A] {
-	return readerreaderioresult.Read[A](c)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // RunSync executes a Thunk synchronously, converting it to a standard Go function.
@@ -82,7 +79,6 @@ func Provide[A, C any](c C) func(Effect[C, A]) ReaderIOResult[A] {
 //		effect.Provide[MyContext, string](myContext)(myEffect),
 //	)(context.Background())
 func RunSync[A any](fa ReaderIOResult[A]) readerresult.ReaderResult[A] {
-	return func(ctx context.Context) (A, error) {
-		return result.Unwrap(fa(ctx)())
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

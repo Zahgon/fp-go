@@ -15,13 +15,6 @@
 
 package statereaderioeither
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	A "github.com/IBM/fp-go/v2/internal/apply"
-	C "github.com/IBM/fp-go/v2/internal/chain"
-	F "github.com/IBM/fp-go/v2/internal/functor"
-)
-
 // Do starts a do-notation chain for building computations in a fluent style.
 // This is typically used with Bind, Let, and other combinators to compose
 // stateful, context-dependent computations that can fail.
@@ -42,37 +35,35 @@ import (
 func Do[ST, R, E, A any](
 	empty A,
 ) StateReaderIOEither[ST, R, E, A] {
-	return Of[ST, R, E](empty)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Bind executes a computation and binds its result to a field in the accumulator state.
+	// This is used in do-notation to sequence dependent computations.
+	//
+	// Example:
+	//
+	//	result := function.Pipe2(
+	//	    statereaderioeither.Do[AppState, Config, error](State{}),
+	//	    statereaderioeither.Bind(
+	//	        func(name string) func(State) State {
+	//	            return func(s State) State { return State{name: name, age: s.age} }
+	//	        },
+	//	        func(s State) statereaderioeither.StateReaderIOEither[AppState, Config, error, string] {
+	//	            return statereaderioeither.Of[AppState, Config, error]("John")
+	//	        },
+	//	    ),
+	//	)
+	//
+	//go:inline
 }
 
-// Bind executes a computation and binds its result to a field in the accumulator state.
-// This is used in do-notation to sequence dependent computations.
-//
-// Example:
-//
-//	result := function.Pipe2(
-//	    statereaderioeither.Do[AppState, Config, error](State{}),
-//	    statereaderioeither.Bind(
-//	        func(name string) func(State) State {
-//	            return func(s State) State { return State{name: name, age: s.age} }
-//	        },
-//	        func(s State) statereaderioeither.StateReaderIOEither[AppState, Config, error, string] {
-//	            return statereaderioeither.Of[AppState, Config, error]("John")
-//	        },
-//	    ),
-//	)
-//
-//go:inline
 func Bind[ST, R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[ST, R, E, S1, T],
 ) Operator[ST, R, E, S1, S2] {
-	return C.Bind(
-		Chain[ST, R, E, S1, S2],
-		Map[ST, R, E, T, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let computes a derived value and binds it to a field in the accumulator state.
@@ -95,11 +86,8 @@ func Let[ST, R, E, S1, S2, T any](
 	key func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[ST, R, E, S1, S2] {
-	return F.Let(
-		Map[ST, R, E, S1, S2],
-		key,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo binds a constant value to a field in the accumulator state.
@@ -121,11 +109,8 @@ func LetTo[ST, R, E, S1, S2, T any](
 	key func(T) func(S1) S2,
 	b T,
 ) Operator[ST, R, E, S1, S2] {
-	return F.LetTo(
-		Map[ST, R, E, S1, S2],
-		key,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo wraps a value in a simple constructor, typically used to start a do-notation chain
@@ -142,10 +127,8 @@ func LetTo[ST, R, E, S1, S2, T any](
 func BindTo[ST, R, E, S1, T any](
 	setter func(T) S1,
 ) Operator[ST, R, E, T, S1] {
-	return C.BindTo(
-		Map[ST, R, E, T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS applies a computation in sequence and binds the result to a field.
@@ -156,12 +139,8 @@ func ApS[ST, R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa StateReaderIOEither[ST, R, E, T],
 ) Operator[ST, R, E, S1, S2] {
-	return A.ApS(
-		Ap[S2, ST, R, E, T],
-		Map[ST, R, E, S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL is a lens-based variant of ApS for working with nested structures.
@@ -172,18 +151,21 @@ func ApSL[ST, R, E, S, T any](
 	lens Lens[S, T],
 	fa StateReaderIOEither[ST, R, E, T],
 ) Endomorphism[StateReaderIOEither[ST, R, E, S]] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL is a lens-based variant of Bind for working with nested structures.
+	// It uses a lens to focus on a specific field in the state.
+	//
+	//go:inline
 }
 
-// BindL is a lens-based variant of Bind for working with nested structures.
-// It uses a lens to focus on a specific field in the state.
-//
-//go:inline
 func BindL[ST, R, E, S, T any](
 	lens Lens[S, T],
 	f Kleisli[ST, R, E, T, T],
 ) Endomorphism[StateReaderIOEither[ST, R, E, S]] {
-	return Bind(lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL is a lens-based variant of Let for working with nested structures.
@@ -194,7 +176,8 @@ func LetL[ST, R, E, S, T any](
 	lens Lens[S, T],
 	f Endomorphism[T],
 ) Endomorphism[StateReaderIOEither[ST, R, E, S]] {
-	return Let[ST, R, E](lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL is a lens-based variant of LetTo for working with nested structures.
@@ -205,5 +188,6 @@ func LetToL[ST, R, E, S, T any](
 	lens Lens[S, T],
 	b T,
 ) Endomorphism[StateReaderIOEither[ST, R, E, S]] {
-	return LetTo[ST, R, E](lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }

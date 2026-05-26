@@ -15,10 +15,6 @@
 
 package option
 
-import (
-	INTI "github.com/IBM/fp-go/v2/internal/iter"
-)
-
 // TraverseIter transforms a sequence by applying a function that returns an Option to each element.
 // Returns Some containing a sequence of results if all operations succeed, None if any fails.
 // This function is useful for processing sequences where each element may fail validation or transformation.
@@ -55,26 +51,13 @@ import (
 //	result := TraverseIter(parse)(invalidStrings)
 //	// result is None because "invalid" cannot be parsed
 func TraverseIter[A, B any](f Kleisli[A, B]) Kleisli[Seq[A], Seq[B]] {
-
-	return INTI.Traverse[Seq[A]](
-		Map[B],
-
-		Of[Seq[B]],
-		Map[Seq[B]],
-		Ap[Seq[B]],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func SequenceIter[A any](as Seq[Option[A]]) Option[Seq[A]] {
-	return INTI.MonadSequence(
-		Map(INTI.Of[Seq[A]]),
-		ApplicativeMonoid(INTI.Monoid[Seq[A]]()),
-		as,
-	)
-}
+func SequenceIter[A any](as Seq[Option[A]]) Option[Seq[A]] { _ = "STUB: not implemented"; return nil }
 
 func TraversableIter[A, B any]() Traversable[A, B, Seq[A], Seq[B]] {
-	return TraverseIter[A, B]
+	_ = "STUB: not implemented"
+	return nil
 }

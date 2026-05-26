@@ -17,7 +17,6 @@ package json
 
 import (
 	E "github.com/IBM/fp-go/v2/either"
-	"github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/option"
 )
 
@@ -62,13 +61,7 @@ type (
 //	// Converting from map to struct
 //	data := map[string]any{"name": "Alice", "value": 100}
 //	person := json.ToTypeE[Target](data)
-func ToTypeE[A any](src any) Either[A] {
-	return function.Pipe2(
-		src,
-		Marshal[any],
-		E.Chain(Unmarshal[A]),
-	)
-}
+func ToTypeE[A any](src any) Either[A] { _ = "STUB: not implemented"; return nil }
 
 // ToTypeO converts a value from one type to another using JSON as an intermediate format,
 // returning an Option that contains the converted value or None if conversion fails.
@@ -94,9 +87,4 @@ func ToTypeE[A any](src any) Either[A] {
 //	    func() { fmt.Println("Conversion failed") },
 //	    func(cfg Config) { fmt.Printf("Config: %s:%d\n", cfg.Host, cfg.Port) },
 //	)(maybeConfig)
-func ToTypeO[A any](src any) Option[A] {
-	return function.Pipe1(
-		ToTypeE[A](src),
-		E.ToOption[error, A],
-	)
-}
+func ToTypeO[A any](src any) Option[A] { _ = "STUB: not implemented"; return nil }

@@ -22,18 +22,21 @@ import (
 type eitherFunctor[A, B any] struct{}
 
 func (o *eitherFunctor[A, B]) Map(f func(A) B) Operator[A, B] {
-	return Map(f)
+	_ = "STUB: not implemented"
+
+	// Functor implements the functoric operations for Either.
+	// A functor provides the Map operation that transforms values inside a context
+	// while preserving the structure.
+	//
+	// Example:
+	//
+	//	f := either.Functor[error, int, string]()
+	//	result := f.Map(strconv.Itoa)(either.Right[error](42))
+	//	// result is Right("42")
+	return nil
 }
 
-// Functor implements the functoric operations for Either.
-// A functor provides the Map operation that transforms values inside a context
-// while preserving the structure.
-//
-// Example:
-//
-//	f := either.Functor[error, int, string]()
-//	result := f.Map(strconv.Itoa)(either.Right[error](42))
-//	// result is Right("42")
 func Functor[A, B any]() functor.Functor[A, B, Result[A], Result[B]] {
-	return &eitherFunctor[A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }

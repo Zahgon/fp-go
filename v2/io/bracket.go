@@ -15,10 +15,6 @@
 
 package io
 
-import (
-	INTB "github.com/IBM/fp-go/v2/internal/bracket"
-)
-
 // Bracket makes sure that a resource is cleaned up in the event of an error. The release action is called regardless of
 // whether the body action returns and error or not.
 func Bracket[A, B, ANY any](
@@ -26,14 +22,6 @@ func Bracket[A, B, ANY any](
 	use Kleisli[A, B],
 	release func(A, B) IO[ANY],
 ) IO[B] {
-	return INTB.MonadBracket[IO[A], IO[B], IO[ANY], B, A, B](
-		Of[B],
-		MonadChain[A, B],
-		MonadChain[B, B],
-		MonadChain[ANY, B],
-
-		acquire,
-		use,
-		release,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

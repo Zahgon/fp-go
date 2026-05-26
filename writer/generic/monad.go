@@ -41,66 +41,65 @@ type writerMonad[GB ~func() P.Pair[B, W], GAB ~func() P.Pair[func(A) B, W], GA ~
 	m M.Monoid[W]
 }
 
-func (o *writerPointed[GA, W, A]) Of(a A) GA {
-	return Of[GA](o.m, a)
-}
+func (o *writerPointed[GA, W, A]) Of(a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func (o *writerApplicative[GB, GAB, GA, W, A, B]) Of(a A) GA {
-	return Of[GA](o.m, a)
+	_ = "STUB: not implemented"
+	return *new(GA)
 }
 
-func (o *writerMonad[GB, GAB, GA, W, A, B]) Of(a A) GA {
-	return Of[GA](o.m, a)
-}
+func (o *writerMonad[GB, GAB, GA, W, A, B]) Of(a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func (o *writerFunctor[GB, GA, W, A, B]) Map(f func(A) B) func(GA) GB {
-	return Map[GB, GA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *writerApplicative[GB, GAB, GA, W, A, B]) Map(f func(A) B) func(GA) GB {
-	return Map[GB, GA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *writerMonad[GB, GAB, GA, W, A, B]) Map(f func(A) B) func(GA) GB {
-	return Map[GB, GA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *writerMonad[GB, GAB, GA, W, A, B]) Chain(f func(A) GB) func(GA) GB {
-	return Chain[GB, GA](o.s, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *writerApplicative[GB, GAB, GA, W, A, B]) Ap(fa GA) func(GAB) GB {
-	return Ap[GB, GAB, GA](o.s, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *writerMonad[GB, GAB, GA, W, A, B]) Ap(fa GA) func(GAB) GB {
-	return Ap[GB, GAB, GA](o.s, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pointed implements the pointed operations for [Writer]
 func Pointed[GA ~func() P.Pair[A, W], W, A any](m M.Monoid[W]) pointed.Pointed[A, GA] {
-	return &writerPointed[GA, W, A]{
-		m: m,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Functor implements the functor operations for [Writer]
 func Functor[GB ~func() P.Pair[B, W], GA ~func() P.Pair[A, W], W, A, B any]() functor.Functor[A, B, GA, GB] {
-	return &writerFunctor[GB, GA, W, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Applicative implements the applicative operations for [Writer]
 func Applicative[GB ~func() P.Pair[B, W], GAB ~func() P.Pair[func(A) B, W], GA ~func() P.Pair[A, W], W, A, B any](m M.Monoid[W]) applicative.Applicative[A, B, GA, GB, GAB] {
-	return &writerApplicative[GB, GAB, GA, W, A, B]{
-		s: M.ToSemigroup(m),
-		m: m,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad implements the monadic operations for [Writer]
 func Monad[GB ~func() P.Pair[B, W], GAB ~func() P.Pair[func(A) B, W], GA ~func() P.Pair[A, W], W, A, B any](m M.Monoid[W]) monad.Monad[A, B, GA, GB, GAB] {
-	return &writerMonad[GB, GAB, GA, W, A, B]{
-		s: M.ToSemigroup(m),
-		m: m,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

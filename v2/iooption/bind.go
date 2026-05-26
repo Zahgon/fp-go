@@ -15,13 +15,6 @@
 
 package iooption
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/apply"
-	"github.com/IBM/fp-go/v2/internal/chain"
-	"github.com/IBM/fp-go/v2/internal/functor"
-)
-
 // Do creates an empty context of type [S] to be used with the [Bind] operation.
 // This is the starting point for do-notation style composition.
 //
@@ -35,52 +28,50 @@ import (
 func Do[S any](
 	empty S,
 ) IOOption[S] {
-	return Of(empty)
+	_ = "STUB: not implemented"
+
+	// Bind attaches the result of a computation to a context [S1] to produce a context [S2].
+	// This enables sequential composition where each step can depend on the results of previous steps.
+	//
+	// The setter function takes the result of the computation and returns a function that
+	// updates the context from S1 to S2.
+	//
+	// Example:
+	//
+	//	type State struct {
+	//	    Name  string
+	//	    Age   int
+	//	}
+	//
+	//	result := F.Pipe2(
+	//	    iooption.Do(State{}),
+	//	    iooption.Bind(
+	//	        func(name string) func(State) State {
+	//	            return func(s State) State { s.Name = name; return s }
+	//	        },
+	//	        func(s State) iooption.IOOption[string] {
+	//	            return iooption.FromIO(io.Of("Alice"))
+	//	        },
+	//	    ),
+	//	    iooption.Bind(
+	//	        func(age int) func(State) State {
+	//	            return func(s State) State { s.Age = age; return s }
+	//	        },
+	//	        func(s State) iooption.IOOption[int] {
+	//	            // This can access s.Name from the previous step
+	//	            return iooption.FromIO(io.Of(len(s.Name) * 10))
+	//	        },
+	//	    ),
+	//	)
+	return nil
 }
 
-// Bind attaches the result of a computation to a context [S1] to produce a context [S2].
-// This enables sequential composition where each step can depend on the results of previous steps.
-//
-// The setter function takes the result of the computation and returns a function that
-// updates the context from S1 to S2.
-//
-// Example:
-//
-//	type State struct {
-//	    Name  string
-//	    Age   int
-//	}
-//
-//	result := F.Pipe2(
-//	    iooption.Do(State{}),
-//	    iooption.Bind(
-//	        func(name string) func(State) State {
-//	            return func(s State) State { s.Name = name; return s }
-//	        },
-//	        func(s State) iooption.IOOption[string] {
-//	            return iooption.FromIO(io.Of("Alice"))
-//	        },
-//	    ),
-//	    iooption.Bind(
-//	        func(age int) func(State) State {
-//	            return func(s State) State { s.Age = age; return s }
-//	        },
-//	        func(s State) iooption.IOOption[int] {
-//	            // This can access s.Name from the previous step
-//	            return iooption.FromIO(io.Of(len(s.Name) * 10))
-//	        },
-//	    ),
-//	)
 func Bind[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[S1, T],
 ) Operator[S1, S2] {
-	return chain.Bind(
-		Chain[S1, S2],
-		Map[T, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -88,11 +79,8 @@ func Let[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[S1, S2] {
-	return functor.Let(
-		Map[S1, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches the a value to a context [S1] to produce a context [S2]
@@ -100,28 +88,24 @@ func LetTo[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) Operator[S1, S2] {
-	return functor.LetTo(
-		Map[S1, S2],
-		setter,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T]
 func BindTo[S1, T any](
 	setter func(T) S1,
 ) Operator[T, S1] {
-	return chain.BindTo(
-		Map[T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func BindToP[S1, T any](
 	setter Prism[S1, T],
 ) Operator[T, S1] {
-	return BindTo(setter.ReverseGet)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering
@@ -161,12 +145,8 @@ func ApS[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa IOOption[T],
 ) Operator[S1, S2] {
-	return apply.ApS(
-		Ap[S2, T],
-		Map[S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL attaches a value to a context using a lens-based setter.
@@ -196,42 +176,45 @@ func ApSL[S, T any](
 	lens Lens[S, T],
 	fa IOOption[T],
 ) Operator[S, S] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL attaches the result of a computation to a context using a lens-based setter.
+	// This is a convenience function that combines Bind with a lens, allowing you to use
+	// optics to update nested structures based on their current values.
+	//
+	// The lens parameter provides both the getter and setter for a field within the structure S.
+	// The computation function f receives the current value of the focused field and returns
+	// an IOOption that produces the new value.
+	//
+	// Example:
+	//
+	//	type Counter struct {
+	//	    Value int
+	//	}
+	//
+	//	valueLens := lens.MakeLens(
+	//	    func(c Counter) int { return c.Value },
+	//	    func(c Counter, v int) Counter { c.Value = v; return c },
+	//	)
+	//
+	//	// Increment the counter, but return None if it would exceed 100
+	//	increment := func(v int) iooption.IOOption[int] {
+	//	    return iooption.FromIO(io.Of(v + 1))
+	//	}
+	//
+	//	result := F.Pipe1(
+	//	    iooption.Of(Counter{Value: 42}),
+	//	    iooption.BindL(valueLens, increment),
+	//	) // IOOption[Counter{Value: 43}]
 }
 
-// BindL attaches the result of a computation to a context using a lens-based setter.
-// This is a convenience function that combines Bind with a lens, allowing you to use
-// optics to update nested structures based on their current values.
-//
-// The lens parameter provides both the getter and setter for a field within the structure S.
-// The computation function f receives the current value of the focused field and returns
-// an IOOption that produces the new value.
-//
-// Example:
-//
-//	type Counter struct {
-//	    Value int
-//	}
-//
-//	valueLens := lens.MakeLens(
-//	    func(c Counter) int { return c.Value },
-//	    func(c Counter, v int) Counter { c.Value = v; return c },
-//	)
-//
-//	// Increment the counter, but return None if it would exceed 100
-//	increment := func(v int) iooption.IOOption[int] {
-//	    return iooption.FromIO(io.Of(v + 1))
-//	}
-//
-//	result := F.Pipe1(
-//	    iooption.Of(Counter{Value: 42}),
-//	    iooption.BindL(valueLens, increment),
-//	) // IOOption[Counter{Value: 43}]
 func BindL[S, T any](
 	lens Lens[S, T],
 	f Kleisli[T, T],
 ) Operator[S, S] {
-	return Bind(lens.Set, F.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL attaches the result of a pure computation to a context using a lens-based setter.
@@ -264,7 +247,8 @@ func LetL[S, T any](
 	lens Lens[S, T],
 	f func(T) T,
 ) Operator[S, S] {
-	return Let(lens.Set, F.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL attaches a constant value to a context using a lens-based setter.
@@ -295,5 +279,6 @@ func LetToL[S, T any](
 	lens Lens[S, T],
 	b T,
 ) Operator[S, S] {
-	return LetTo(lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }

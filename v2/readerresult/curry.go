@@ -15,10 +15,6 @@
 
 package readerresult
 
-import (
-	G "github.com/IBM/fp-go/v2/readereither/generic"
-)
-
 // These functions curry/uncurry Go functions with context as the first parameter into/from ReaderResult form.
 // This follows the Go convention of putting context as the first parameter as advised in https://pkg.go.dev/context.
 //
@@ -33,7 +29,8 @@ import (
 //	rr := readerresult.Curry0(getConfig)
 //	// rr is a ReaderResult[context.Context, Config]
 func Curry0[R, A any](f func(R) (A, error)) ReaderResult[R, A] {
-	return G.Curry0[ReaderResult[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry1 converts a function with one parameter into a curried function returning a ReaderResult.
@@ -44,7 +41,8 @@ func Curry0[R, A any](f func(R) (A, error)) ReaderResult[R, A] {
 //	curried := readerresult.Curry1(getUser)
 //	// curried(42) returns ReaderResult[context.Context, User]
 func Curry1[R, T1, A any](f func(R, T1) (A, error)) func(T1) ReaderResult[R, A] {
-	return G.Curry1[ReaderResult[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry2 converts a function with two parameters into a fully curried function.
@@ -56,7 +54,8 @@ func Curry1[R, T1, A any](f func(R, T1) (A, error)) func(T1) ReaderResult[R, A] 
 //	curried := readerresult.Curry2(queryDB)
 //	// curried("users")(42) returns ReaderResult[context.Context, Record]
 func Curry2[R, T1, T2, A any](f func(R, T1, T2) (A, error)) func(T1) func(T2) ReaderResult[R, A] {
-	return G.Curry2[ReaderResult[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry3 converts a function with three parameters into a fully curried function.
@@ -67,7 +66,8 @@ func Curry2[R, T1, T2, A any](f func(R, T1, T2) (A, error)) func(T1) func(T2) Re
 //	curried := readerresult.Curry3(updateRecord)
 //	// curried("users")(42)("data") returns ReaderResult[context.Context, Result]
 func Curry3[R, T1, T2, T3, A any](f func(R, T1, T2, T3) (A, error)) func(T1) func(T2) func(T3) ReaderResult[R, A] {
-	return G.Curry3[ReaderResult[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry1 converts a ReaderResult-returning function back into an idiomatic Go function.
@@ -79,27 +79,32 @@ func Curry3[R, T1, T2, T3, A any](f func(R, T1, T2, T3) (A, error)) func(T1) fun
 //	gofunc := readerresult.Uncurry1(rrf)
 //	// gofunc(ctx, 42) returns (User, error)
 func Uncurry1[R, T1, A any](f func(T1) ReaderResult[R, A]) func(R, T1) (A, error) {
-	return G.Uncurry1(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Uncurry2 converts a curried two-parameter ReaderResult function into an idiomatic Go function.
+	//
+	// Example:
+	//
+	//	rrf := func(table string) func(int) readerresult.ReaderResult[context.Context, Record] { ... }
+	//	gofunc := readerresult.Uncurry2(rrf)
+	//	// gofunc(ctx, "users", 42) returns (Record, error)
 }
 
-// Uncurry2 converts a curried two-parameter ReaderResult function into an idiomatic Go function.
-//
-// Example:
-//
-//	rrf := func(table string) func(int) readerresult.ReaderResult[context.Context, Record] { ... }
-//	gofunc := readerresult.Uncurry2(rrf)
-//	// gofunc(ctx, "users", 42) returns (Record, error)
 func Uncurry2[R, T1, T2, A any](f func(T1) func(T2) ReaderResult[R, A]) func(R, T1, T2) (A, error) {
-	return G.Uncurry2(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Uncurry3 converts a curried three-parameter ReaderResult function into an idiomatic Go function.
+	//
+	// Example:
+	//
+	//	rrf := func(table string) func(int) func(string) readerresult.ReaderResult[context.Context, Result] { ... }
+	//	gofunc := readerresult.Uncurry3(rrf)
+	//	// gofunc(ctx, "users", 42, "data") returns (Result, error)
 }
 
-// Uncurry3 converts a curried three-parameter ReaderResult function into an idiomatic Go function.
-//
-// Example:
-//
-//	rrf := func(table string) func(int) func(string) readerresult.ReaderResult[context.Context, Result] { ... }
-//	gofunc := readerresult.Uncurry3(rrf)
-//	// gofunc(ctx, "users", 42, "data") returns (Result, error)
 func Uncurry3[R, T1, T2, T3, A any](f func(T1) func(T2) func(T3) ReaderResult[R, A]) func(R, T1, T2, T3) (A, error) {
-	return G.Uncurry3(f)
+	_ = "STUB: not implemented"
+	return nil
 }

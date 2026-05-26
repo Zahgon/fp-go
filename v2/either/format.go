@@ -18,8 +18,6 @@ package either
 import (
 	"fmt"
 	"log/slog"
-
-	"github.com/IBM/fp-go/v2/internal/formatting"
 )
 
 const (
@@ -30,19 +28,12 @@ const (
 	rightFmtTemplate = "Right[%T](%v)"
 )
 
-func goString(template string, other, v any) string {
-	return fmt.Sprintf(template, formatting.TypeInfo(other), v)
-}
+func goString(template string, other, v any) string { _ = "STUB: not implemented"; return "" }
 
 // String prints some debug info for the object
 //
 //go:noinline
-func (s Either[E, A]) String() string {
-	if !s.isLeft {
-		return fmt.Sprintf(rightFmtTemplate, s.r, s.r)
-	}
-	return fmt.Sprintf(leftFmtTemplate, s.l, s.l)
-}
+func (s Either[E, A]) String() string { _ = "STUB: not implemented"; return "" }
 
 // Format implements fmt.Formatter for Either.
 // Supports all standard format verbs:
@@ -59,9 +50,7 @@ func (s Either[E, A]) String() string {
 //	fmt.Printf("%#v", e)  // "either.Right[error](42)"
 //
 //go:noinline
-func (s Either[E, A]) Format(f fmt.State, c rune) {
-	formatting.FmtString(s, f, c)
-}
+func (s Either[E, A]) Format(f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 // GoString implements fmt.GoStringer for Either.
 // Returns a Go-syntax representation of the Either value.
@@ -72,12 +61,7 @@ func (s Either[E, A]) Format(f fmt.State, c rune) {
 //	either.Left[int](errors.New("fail")).GoString() // "either.Left[int](error)"
 //
 //go:noinline
-func (s Either[E, A]) GoString() string {
-	if !s.isLeft {
-		return goString(rightGoTemplate, new(E), s.r)
-	}
-	return goString(leftGoTemplate, new(A), s.l)
-}
+func (s Either[E, A]) GoString() string { _ = "STUB: not implemented"; return "" }
 
 // LogValue implements slog.LogValuer for Either.
 // Returns a slog.Value that represents the Either for structured logging.
@@ -95,9 +79,4 @@ func (s Either[E, A]) GoString() string {
 //	// Logs: {"msg":"error","value":{"left":"failed"}}
 //
 //go:noinline
-func (s Either[E, A]) LogValue() slog.Value {
-	if !s.isLeft {
-		return slog.GroupValue(slog.Any("right", s.r))
-	}
-	return slog.GroupValue(slog.Any("left", s.l))
-}
+func (s Either[E, A]) LogValue() slog.Value { _ = "STUB: not implemented"; return *new(slog.Value) }

@@ -16,7 +16,6 @@
 package array
 
 import (
-	G "github.com/IBM/fp-go/v2/array/generic"
 	"github.com/IBM/fp-go/v2/option"
 )
 
@@ -31,7 +30,8 @@ import (
 //
 //go:inline
 func FindFirst[A any](pred func(A) bool) option.Kleisli[[]A, A] {
-	return G.FindFirst[[]A](pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindFirstWithIndex finds the first element which satisfies a predicate function that also receives the index.
@@ -46,7 +46,8 @@ func FindFirst[A any](pred func(A) bool) option.Kleisli[[]A, A] {
 //
 //go:inline
 func FindFirstWithIndex[A any](pred func(int, A) bool) option.Kleisli[[]A, A] {
-	return G.FindFirstWithIndex[[]A](pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindFirstMap finds the first element for which the selector function returns Some.
@@ -66,7 +67,8 @@ func FindFirstWithIndex[A any](pred func(int, A) bool) option.Kleisli[[]A, A] {
 //
 //go:inline
 func FindFirstMap[A, B any](sel option.Kleisli[A, B]) option.Kleisli[[]A, B] {
-	return G.FindFirstMap[[]A](sel)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindFirstMapWithIndex finds the first element for which the selector function returns Some.
@@ -74,7 +76,8 @@ func FindFirstMap[A, B any](sel option.Kleisli[A, B]) option.Kleisli[[]A, B] {
 //
 //go:inline
 func FindFirstMapWithIndex[A, B any](sel func(int, A) Option[B]) option.Kleisli[[]A, B] {
-	return G.FindFirstMapWithIndex[[]A](sel)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindLast finds the last element which satisfies a predicate function.
@@ -87,7 +90,8 @@ func FindFirstMapWithIndex[A, B any](sel func(int, A) Option[B]) option.Kleisli[
 //
 //go:inline
 func FindLast[A any](pred func(A) bool) option.Kleisli[[]A, A] {
-	return G.FindLast[[]A](pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindLastWithIndex finds the last element which satisfies a predicate function that also receives the index.
@@ -95,7 +99,8 @@ func FindLast[A any](pred func(A) bool) option.Kleisli[[]A, A] {
 //
 //go:inline
 func FindLastWithIndex[A any](pred func(int, A) bool) option.Kleisli[[]A, A] {
-	return G.FindLastWithIndex[[]A](pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindLastMap finds the last element for which the selector function returns Some.
@@ -103,7 +108,8 @@ func FindLastWithIndex[A any](pred func(int, A) bool) option.Kleisli[[]A, A] {
 //
 //go:inline
 func FindLastMap[A, B any](sel option.Kleisli[A, B]) option.Kleisli[[]A, B] {
-	return G.FindLastMap[[]A](sel)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindLastMapWithIndex finds the last element for which the selector function returns Some.
@@ -111,5 +117,6 @@ func FindLastMap[A, B any](sel option.Kleisli[A, B]) option.Kleisli[[]A, B] {
 //
 //go:inline
 func FindLastMapWithIndex[A, B any](sel func(int, A) Option[B]) option.Kleisli[[]A, B] {
-	return G.FindLastMapWithIndex[[]A](sel)
+	_ = "STUB: not implemented"
+	return nil
 }

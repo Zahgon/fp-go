@@ -16,7 +16,6 @@
 package result
 
 import (
-	"github.com/IBM/fp-go/v2/either"
 	"github.com/IBM/fp-go/v2/eq"
 )
 
@@ -33,9 +32,7 @@ import (
 //	eq := either.Eq(eq.FromStrictEquals[error](), eq.FromStrictEquals[int]())
 //	result := eq.Equals(either.Right[error](42), either.Right[error](42)) // true
 //	result2 := eq.Equals(either.Right[error](42), either.Right[error](43)) // false
-func Eq[A any](a eq.Eq[A]) eq.Eq[Result[A]] {
-	return either.Eq(eq.FromStrictEquals[error](), a)
-}
+func Eq[A any](a eq.Eq[A]) eq.Eq[Result[A]] { _ = "STUB: not implemented"; return nil }
 
 // FromStrictEquals constructs an equality predicate using Go's == operator.
 // Both the Left and Right types must be comparable.
@@ -44,6 +41,4 @@ func Eq[A any](a eq.Eq[A]) eq.Eq[Result[A]] {
 //
 //	eq := either.FromStrictEquals[error, int]()
 //	result := eq.Equals(either.Right[error](42), either.Right[error](42)) // true
-func FromStrictEquals[A comparable]() eq.Eq[Result[A]] {
-	return either.FromStrictEquals[error, A]()
-}
+func FromStrictEquals[A comparable]() eq.Eq[Result[A]] { _ = "STUB: not implemented"; return nil }

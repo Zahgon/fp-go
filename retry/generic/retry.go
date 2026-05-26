@@ -18,8 +18,6 @@ package generic
 import (
 	"time"
 
-	F "github.com/IBM/fp-go/function"
-	O "github.com/IBM/fp-go/option"
 	R "github.com/IBM/fp-go/retry"
 )
 
@@ -30,18 +28,8 @@ func applyAndDelay[HKTSTATUS any](
 	monadOf func(R.RetryStatus) HKTSTATUS,
 	monadDelay func(time.Duration) func(HKTSTATUS) HKTSTATUS,
 ) func(policy R.RetryPolicy, status R.RetryStatus) HKTSTATUS {
-	return func(policy R.RetryPolicy, status R.RetryStatus) HKTSTATUS {
-		newStatus := R.ApplyPolicy(policy, status)
-		return F.Pipe1(
-			newStatus.PreviousDelay,
-			O.Fold(
-				F.Nullary2(F.Constant(newStatus), monadOf),
-				func(delay time.Duration) HKTSTATUS {
-					return monadDelay(delay)(monadOf(newStatus))
-				},
-			),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Retry combinator for actions that don't raise exceptions, but
@@ -62,41 +50,13 @@ func Retrying[HKTA, HKTSTATUS, A any](
 	action func(R.RetryStatus) HKTA,
 	check func(A) bool,
 ) HKTA {
+	_ = "STUB: not implemented"
 	// delay callback
-	applyDelay := applyAndDelay(monadOfStatus, monadDelay)
-
-	// function to check if we need to retry or not
-	checkForRetry := O.FromPredicate(check)
-
-	var f func(status R.RetryStatus) HKTA
-
-	// need some lazy init because we reference it in the chain
-	f = func(status R.RetryStatus) HKTA {
-		return F.Pipe2(
-			status,
-			action,
-			monadChain(func(a A) HKTA {
-				return F.Pipe3(
-					a,
-					checkForRetry,
-					O.Map(func(a A) HKTA {
-						return F.Pipe1(
-							applyDelay(policy, status),
-							monadChainStatus(func(status R.RetryStatus) HKTA {
-								return F.Pipe1(
-									status.PreviousDelay,
-									O.Fold(F.Constant(monadOf(a)), func(_ time.Duration) HKTA {
-										return f(status)
-									}),
-								)
-							}),
-						)
-					}),
-					O.GetOrElse(F.Constant(monadOf(a))),
-				)
-			}),
-		)
-	}
-	// seed
-	return f(R.DefaultRetryStatus)
+	return *new(HKTA)
 }
+
+// function to check if we need to retry or not
+
+// need some lazy init because we reference it in the chain
+
+// seed

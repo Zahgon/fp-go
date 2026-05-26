@@ -19,9 +19,7 @@ import (
 	"testing"
 
 	E "github.com/IBM/fp-go/v2/eq"
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/functor"
-	"github.com/stretchr/testify/assert"
 )
 
 // Functor identity law
@@ -30,10 +28,8 @@ import (
 //
 // Deprecated: use [FunctorAssertIdentity]
 func AssertIdentity[HKTA, A any](t *testing.T, eq E.Eq[HKTA], fmap func(HKTA, func(A) A) HKTA) func(fa HKTA) bool {
-	t.Helper()
-	return func(fa HKTA) bool {
-		return assert.True(t, eq.Equals(fa, fmap(fa, F.Identity[A])), "Functor identity law")
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Functor identity law
@@ -45,12 +41,8 @@ func FunctorAssertIdentity[HKTA, A any](
 
 	fca functor.Functor[A, A, HKTA, HKTA],
 ) func(fa HKTA) bool {
-
-	t.Helper()
-	return func(fa HKTA) bool {
-
-		return assert.True(t, eq.Equals(fa, fca.Map(F.Identity[A])(fa)), "Functor identity law")
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Functor composition law
@@ -69,10 +61,8 @@ func AssertComposition[HKTA, HKTB, HKTC, A, B, C any](
 	ab func(A) B,
 	bc func(B) C,
 ) func(fa HKTA) bool {
-	t.Helper()
-	return func(fa HKTA) bool {
-		return assert.True(t, eq.Equals(fac(fa, F.Flow2(ab, bc)), fbc(fab(fa, ab), bc)), "Functor composition law")
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Functor composition law
@@ -90,10 +80,8 @@ func FunctorAssertComposition[HKTA, HKTB, HKTC, A, B, C any](
 	ab func(A) B,
 	bc func(B) C,
 ) func(fa HKTA) bool {
-	t.Helper()
-	return func(fa HKTA) bool {
-		return assert.True(t, eq.Equals(fac.Map(F.Flow2(ab, bc))(fa), fbc.Map(bc)(fab.Map(ab)(fa))), "Functor composition law")
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AssertLaws asserts the functor laws `identity` and `composition`
@@ -111,13 +99,8 @@ func AssertLaws[HKTA, HKTB, HKTC, A, B, C any](t *testing.T,
 	ab func(A) B,
 	bc func(B) C,
 ) func(fa HKTA) bool {
-	t.Helper()
-	identity := AssertIdentity(t, eqa, faa)
-	composition := AssertComposition(t, eqc, fab, fac, fbc, ab, bc)
-
-	return func(fa HKTA) bool {
-		return identity(fa) && composition(fa)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FunctorAssertLaws asserts the functor laws `identity` and `composition`
@@ -133,11 +116,6 @@ func FunctorAssertLaws[HKTA, HKTB, HKTC, A, B, C any](t *testing.T,
 	ab func(A) B,
 	bc func(B) C,
 ) func(fa HKTA) bool {
-	t.Helper()
-	identity := FunctorAssertIdentity(t, eqa, faa)
-	composition := FunctorAssertComposition(t, eqc, fab, fac, fbc, ab, bc)
-
-	return func(fa HKTA) bool {
-		return identity(fa) && composition(fa)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,42 +16,19 @@
 package file
 
 import (
-	"context"
 	"io"
-
-	RIOE "github.com/IBM/fp-go/v2/context/readerioresult"
-	F "github.com/IBM/fp-go/v2/function"
 )
 
-func onWriteAll[W io.Writer](data []byte) Kleisli[W, []byte] {
-	return func(w W) ReaderIOResult[[]byte] {
-		return F.Pipe1(
-			RIOE.TryCatch(func(_ context.Context) func() ([]byte, error) {
-				return func() ([]byte, error) {
-					_, err := w.Write(data)
-					return data, err
-				}
-			}),
-			RIOE.WithContext[[]byte],
-		)
-	}
-}
+func onWriteAll[W io.Writer](data []byte) Kleisli[W, []byte] { _ = "STUB: not implemented"; return nil }
 
 // WriteAll uses a generator function to create a stream, writes data to it and closes it
 func WriteAll[W io.WriteCloser](data []byte) Operator[W, []byte] {
-	onWrite := onWriteAll[W](data)
-	return func(onCreate ReaderIOResult[W]) ReaderIOResult[[]byte] {
-		return RIOE.WithResource[[]byte](
-			onCreate,
-			Close[W])(
-			onWrite,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Write uses a generator function to create a stream, writes data to it and closes it
 func Write[R any, W io.WriteCloser](acquire ReaderIOResult[W]) Kleisli[Kleisli[W, R], R] {
-	return RIOE.WithResource[R](
-		acquire,
-		Close[W])
+	_ = "STUB: not implemented"
+	return nil
 }

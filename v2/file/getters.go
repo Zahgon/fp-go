@@ -20,7 +20,6 @@ package file
 
 import (
 	"io"
-	"path/filepath"
 )
 
 // Join appends a filename to a root path using the operating system's path separator.
@@ -53,11 +52,7 @@ import (
 //	    file.Join("file.txt"),
 //	)
 //	// result is "/root/subdir/file.txt"
-func Join(name string) Endomorphism[string] {
-	return func(root string) string {
-		return filepath.Join(root, name)
-	}
-}
+func Join(name string) Endomorphism[string] { _ = "STUB: not implemented"; return nil }
 
 // ToReader converts any type that implements io.Reader to the io.Reader interface.
 // This is useful for type erasure when you need to work with the interface type
@@ -74,81 +69,90 @@ func Join(name string) Endomorphism[string] {
 //	var reader io.Reader = file.ToReader(buf)
 //	// reader is now of type io.Reader
 func ToReader[R io.Reader](r R) io.Reader {
-	return r
+	_ = "STUB: not implemented"
+
+	// ToWriter converts any type that implements io.Writer to the io.Writer interface.
+	// This is useful for type erasure when you need to work with the interface type
+	// rather than a concrete implementation.
+	//
+	// Example:
+	//
+	//	import (
+	//	    "bytes"
+	//	    "io"
+	//	)
+	//
+	//	buf := &bytes.Buffer{}
+	//	var writer io.Writer = file.ToWriter(buf)
+	//	// writer is now of type io.Writer
+	return *new(io.Reader)
 }
 
-// ToWriter converts any type that implements io.Writer to the io.Writer interface.
-// This is useful for type erasure when you need to work with the interface type
-// rather than a concrete implementation.
-//
-// Example:
-//
-//	import (
-//	    "bytes"
-//	    "io"
-//	)
-//
-//	buf := &bytes.Buffer{}
-//	var writer io.Writer = file.ToWriter(buf)
-//	// writer is now of type io.Writer
 func ToWriter[W io.Writer](w W) io.Writer {
-	return w
+	_ = "STUB: not implemented"
+
+	// ToCloser converts any type that implements io.Closer to the io.Closer interface.
+	// This is useful for type erasure when you need to work with the interface type
+	// rather than a concrete implementation.
+	//
+	// Example:
+	//
+	//	import (
+	//	    "os"
+	//	    "io"
+	//	)
+	//
+	//	f, _ := os.Open("file.txt")
+	//	var closer io.Closer = file.ToCloser(f)
+	//	defer closer.Close()
+	//	// closer is now of type io.Closer
+	return *new(io.Writer)
 }
 
-// ToCloser converts any type that implements io.Closer to the io.Closer interface.
-// This is useful for type erasure when you need to work with the interface type
-// rather than a concrete implementation.
-//
-// Example:
-//
-//	import (
-//	    "os"
-//	    "io"
-//	)
-//
-//	f, _ := os.Open("file.txt")
-//	var closer io.Closer = file.ToCloser(f)
-//	defer closer.Close()
-//	// closer is now of type io.Closer
 func ToCloser[C io.Closer](c C) io.Closer {
-	return c
+	_ = "STUB: not implemented"
+
+	// ToWriteCloser converts any type that implements io.WriteCloser to the io.WriteCloser interface.
+	// This is useful for type erasure when you need to work with the interface type
+	// rather than a concrete implementation.
+	//
+	// Example:
+	//
+	//	import (
+	//	    "os"
+	//	    "io"
+	//	)
+	//
+	//	f, _ := os.Create("output.txt")
+	//	var wc io.WriteCloser = file.ToWriteCloser(f)
+	//	defer wc.Close()
+	//	wc.Write([]byte("hello"))
+	//	// wc is now of type io.WriteCloser
+	return *new(io.Closer)
 }
 
-// ToWriteCloser converts any type that implements io.WriteCloser to the io.WriteCloser interface.
-// This is useful for type erasure when you need to work with the interface type
-// rather than a concrete implementation.
-//
-// Example:
-//
-//	import (
-//	    "os"
-//	    "io"
-//	)
-//
-//	f, _ := os.Create("output.txt")
-//	var wc io.WriteCloser = file.ToWriteCloser(f)
-//	defer wc.Close()
-//	wc.Write([]byte("hello"))
-//	// wc is now of type io.WriteCloser
 func ToWriteCloser[C io.WriteCloser](c C) io.WriteCloser {
-	return c
+	_ = "STUB: not implemented"
+
+	// ToReadCloser converts any type that implements io.ReadCloser to the io.ReadCloser interface.
+	// This is useful for type erasure when you need to work with the interface type
+	// rather than a concrete implementation.
+	//
+	// Example:
+	//
+	//	import (
+	//	    "os"
+	//	    "io"
+	//	)
+	//
+	//	f, _ := os.Open("input.txt")
+	//	var rc io.ReadCloser = file.ToReadCloser(f)
+	//	defer rc.Close()
+	//	// rc is now of type io.ReadCloser
+	return *new(io.WriteCloser)
 }
 
-// ToReadCloser converts any type that implements io.ReadCloser to the io.ReadCloser interface.
-// This is useful for type erasure when you need to work with the interface type
-// rather than a concrete implementation.
-//
-// Example:
-//
-//	import (
-//	    "os"
-//	    "io"
-//	)
-//
-//	f, _ := os.Open("input.txt")
-//	var rc io.ReadCloser = file.ToReadCloser(f)
-//	defer rc.Close()
-//	// rc is now of type io.ReadCloser
 func ToReadCloser[C io.ReadCloser](c C) io.ReadCloser {
-	return c
+	_ = "STUB: not implemented"
+	return *new(io.ReadCloser)
 }

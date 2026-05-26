@@ -15,12 +15,6 @@
 
 package statereaderioresult
 
-import (
-	"context"
-
-	"github.com/IBM/fp-go/v2/statereaderioeither"
-)
-
 // FilterOrElse filters a StateReaderIOResult value based on a predicate.
 // This is a convenience wrapper around statereaderioeither.FilterOrElse that fixes
 // the context type to context.Context and the error type to error.
@@ -51,5 +45,6 @@ import (
 //
 //go:inline
 func FilterOrElse[S, A any](pred Predicate[A], onFalse func(A) error) Operator[S, A, A] {
-	return statereaderioeither.FilterOrElse[S, context.Context](pred, onFalse)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,13 +16,7 @@
 package generic
 
 import (
-	"fmt"
-
-	AR "github.com/IBM/fp-go/v2/array/generic"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/lazy"
 	OP "github.com/IBM/fp-go/v2/optics/optional"
-	O "github.com/IBM/fp-go/v2/option"
 )
 
 // At creates an Optional that focuses on the element at a specific index in an array.
@@ -79,20 +73,4 @@ import (
 //   - AR.Lookup: Gets an element at an index, returning an Option
 //   - AR.UpdateAt: Updates an element at an index, returning an Option
 //   - OP.Optional: The Optional optic type
-func At[GA ~[]A, A any](idx int) OP.Optional[GA, A] {
-	lookup := AR.Lookup[GA](idx)
-	return OP.MakeOptionalCurriedWithName(
-		lookup,
-		func(a A) func(GA) GA {
-			update := AR.UpdateAt[GA](idx, a)
-			return func(as GA) GA {
-				return F.Pipe2(
-					as,
-					update,
-					O.GetOrElse(lazy.Of(as)),
-				)
-			}
-		},
-		fmt.Sprintf("At[%d]", idx),
-	)
-}
+func At[GA ~[]A, A any](idx int) OP.Optional[GA, A] { _ = "STUB: not implemented"; return nil }

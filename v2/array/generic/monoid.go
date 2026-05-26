@@ -1,7 +1,6 @@
 package generic
 
 import (
-	"github.com/IBM/fp-go/v2/internal/array"
 	M "github.com/IBM/fp-go/v2/monoid"
 	S "github.com/IBM/fp-go/v2/semigroup"
 )
@@ -16,9 +15,7 @@ import (
 //	empty := m.Empty() // []
 //
 //go:inline
-func Monoid[GT ~[]T, T any]() M.Monoid[GT] {
-	return M.MakeMonoid(array.Concat[GT], Empty[GT]())
-}
+func Monoid[GT ~[]T, T any]() M.Monoid[GT] { _ = "STUB: not implemented"; return nil }
 
 // Semigroup returns a Semigroup instance for arrays.
 // The Semigroup combines arrays through concatenation.
@@ -29,6 +26,4 @@ func Monoid[GT ~[]T, T any]() M.Monoid[GT] {
 //	result := s.Concat([]int{1, 2}, []int{3, 4}) // [1, 2, 3, 4]
 //
 //go:inline
-func Semigroup[GT ~[]T, T any]() S.Semigroup[GT] {
-	return S.MakeSemigroup(array.Concat[GT])
-}
+func Semigroup[GT ~[]T, T any]() S.Semigroup[GT] { _ = "STUB: not implemented"; return nil }

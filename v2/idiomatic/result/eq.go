@@ -34,20 +34,8 @@ import (
 //	result1 := eq(42, nil)(42, nil) // true
 //	result2 := eq(42, nil)(43, nil) // false
 func Eq[A any](eq EQ.Eq[A]) func(A, error) func(A, error) bool {
-	return func(a A, aerr error) func(A, error) bool {
-		return func(b A, berr error) bool {
-			if aerr != nil {
-				if berr != nil {
-					return aerr == berr
-				}
-				return false
-			}
-			if berr != nil {
-				return false
-			}
-			return eq.Equals(a, b)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromStrictEquals constructs an equality predicate using Go's == operator.
@@ -59,5 +47,6 @@ func Eq[A any](eq EQ.Eq[A]) func(A, error) func(A, error) bool {
 //	result1 := eq(42, nil)(42, nil) // true
 //	result2 := eq(42, nil)(43, nil) // false
 func FromStrictEquals[A comparable]() func(A, error) func(A, error) bool {
-	return Eq(EQ.FromStrictEquals[A]())
+	_ = "STUB: not implemented"
+	return nil
 }

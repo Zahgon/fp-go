@@ -29,17 +29,17 @@ type (
 )
 
 func (o *ioFunctor[A, B]) Map(f func(A) B) Operator[A, B] {
-	return Map(f)
+	_ = "STUB: not implemented"
+
+	// Functor returns an instance of the Functor type class for IO.
+	// This provides a structured way to access functor operations (Map)
+	// for IO computations.
+	//
+	// Example:
+	//
+	//	f := io.Functor[int, string]()
+	//	result := f.Map(strconv.Itoa)(io.Of(42))
+	return nil
 }
 
-// Functor returns an instance of the Functor type class for IO.
-// This provides a structured way to access functor operations (Map)
-// for IO computations.
-//
-// Example:
-//
-//	f := io.Functor[int, string]()
-//	result := f.Map(strconv.Itoa)(io.Of(42))
-func Functor[A, B any]() IOFunctor[A, B] {
-	return &ioFunctor[A, B]{}
-}
+func Functor[A, B any]() IOFunctor[A, B] { _ = "STUB: not implemented"; return nil }

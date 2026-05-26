@@ -16,7 +16,6 @@
 package readeroption
 
 import (
-	G "github.com/IBM/fp-go/v2/readeroption/generic"
 	T "github.com/IBM/fp-go/v2/tuple"
 )
 
@@ -38,10 +37,8 @@ import (
 //	result := readeroption.SequenceT1(user)
 //	// result(config) returns option.Some(tuple.MakeTuple1(User{Name: "Alice"}))
 func SequenceT1[E, A any](a ReaderOption[E, A]) ReaderOption[E, T.Tuple1[A]] {
-	return G.SequenceT1[
-		ReaderOption[E, A],
-		ReaderOption[E, T.Tuple1[A]],
-	](a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT2 combines two ReaderOption values into a ReaderOption of a 2-tuple.
@@ -64,11 +61,8 @@ func SequenceT2[E, A, B any](
 	a ReaderOption[E, A],
 	b ReaderOption[E, B],
 ) ReaderOption[E, T.Tuple2[A, B]] {
-	return G.SequenceT2[
-		ReaderOption[E, A],
-		ReaderOption[E, B],
-		ReaderOption[E, T.Tuple2[A, B]],
-	](a, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT3 combines three ReaderOption values into a ReaderOption of a 3-tuple.
@@ -89,12 +83,8 @@ func SequenceT3[E, A, B, C any](
 	b ReaderOption[E, B],
 	c ReaderOption[E, C],
 ) ReaderOption[E, T.Tuple3[A, B, C]] {
-	return G.SequenceT3[
-		ReaderOption[E, A],
-		ReaderOption[E, B],
-		ReaderOption[E, C],
-		ReaderOption[E, T.Tuple3[A, B, C]],
-	](a, b, c)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT4 combines four ReaderOption values into a ReaderOption of a 4-tuple.
@@ -117,11 +107,6 @@ func SequenceT4[E, A, B, C, D any](
 	c ReaderOption[E, C],
 	d ReaderOption[E, D],
 ) ReaderOption[E, T.Tuple4[A, B, C, D]] {
-	return G.SequenceT4[
-		ReaderOption[E, A],
-		ReaderOption[E, B],
-		ReaderOption[E, C],
-		ReaderOption[E, D],
-		ReaderOption[E, T.Tuple4[A, B, C, D]],
-	](a, b, c, d)
+	_ = "STUB: not implemented"
+	return nil
 }

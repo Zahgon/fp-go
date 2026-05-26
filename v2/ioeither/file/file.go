@@ -75,23 +75,12 @@ var (
 
 // WriteFile writes a data blob to a file
 func WriteFile(dstName string, perm os.FileMode) Kleisli[error, []byte, []byte] {
-	return func(data []byte) IOEither[error, []byte] {
-		return ioeither.TryCatchError(func() ([]byte, error) {
-			return data, os.WriteFile(dstName, data, perm)
-		})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Remove removes a file by name
-func Remove(name string) IOEither[error, string] {
-	return ioeither.TryCatchError(func() (string, error) {
-		return name, os.Remove(name)
-	})
-}
+func Remove(name string) IOEither[error, string] { _ = "STUB: not implemented"; return nil }
 
 // Close closes an object
-func Close[C io.Closer](c C) IOEither[error, struct{}] {
-	return ioeither.TryCatchError(func() (struct{}, error) {
-		return struct{}{}, c.Close()
-	})
-}
+func Close[C io.Closer](c C) IOEither[error, struct{}] { _ = "STUB: not implemented"; return nil }

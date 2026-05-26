@@ -15,193 +15,86 @@
 
 package array
 
-import "slices"
+func Of[GA ~[]A, A any](a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
-func Of[GA ~[]A, A any](a A) GA {
-	return GA{a}
-}
+func Slice[GA ~[]A, A any](low, high int) func(as GA) GA { _ = "STUB: not implemented"; return nil }
 
-func Slice[GA ~[]A, A any](low, high int) func(as GA) GA {
-	return func(as GA) GA {
-		length := len(as)
+// Handle negative indices - count backward from the end
 
-		// Handle negative indices - count backward from the end
-		if low < 0 {
-			low = max(length+low, 0)
-		}
-		if high < 0 {
-			high = max(length+high, 0)
-		}
+// End index > array length: slice to the end
 
-		if low > length {
-			return Empty[GA]()
-		}
+// Start >= end: return empty array
 
-		// End index > array length: slice to the end
-		if high > length {
-			high = length
-		}
+func SliceRight[GA ~[]A, A any](start int) func(as GA) GA { _ = "STUB: not implemented"; return nil }
 
-		// Start >= end: return empty array
-		if low >= high {
-			return Empty[GA]()
-		}
+// Handle negative indices - count backward from the end
 
-		return as[low:high]
-	}
-}
+// Start index > array length: return empty array
 
-func SliceRight[GA ~[]A, A any](start int) func(as GA) GA {
-	return func(as GA) GA {
-		length := len(as)
+func IsEmpty[GA ~[]A, A any](as GA) bool { _ = "STUB: not implemented"; return false }
 
-		// Handle negative indices - count backward from the end
-		if start < 0 {
-			start = max(length+start, 0)
-		}
+func IsNil[GA ~[]A, A any](as GA) bool { _ = "STUB: not implemented"; return false }
 
-		// Start index > array length: return empty array
-		if start > length {
-			return Empty[GA]()
-		}
-
-		return as[start:]
-	}
-}
-
-func IsEmpty[GA ~[]A, A any](as GA) bool {
-	return len(as) == 0
-}
-
-func IsNil[GA ~[]A, A any](as GA) bool {
-	return as == nil
-}
-
-func IsNonNil[GA ~[]A, A any](as GA) bool {
-	return as != nil
-}
+func IsNonNil[GA ~[]A, A any](as GA) bool { _ = "STUB: not implemented"; return false }
 
 func Reduce[GA ~[]A, A, B any](fa GA, f func(B, A) B, initial B) B {
-	current := initial
-	for i := range len(fa) {
-		current = f(current, fa[i])
-	}
-	return current
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 func ReduceWithIndex[GA ~[]A, A, B any](fa GA, f func(int, B, A) B, initial B) B {
-	current := initial
-	for i := range len(fa) {
-		current = f(i, current, fa[i])
-	}
-	return current
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 func ReduceRight[GA ~[]A, A, B any](fa GA, f func(A, B) B, initial B) B {
-	current := initial
-	count := len(fa)
-	for i := count - 1; i >= 0; i-- {
-		current = f(fa[i], current)
-	}
-	return current
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 func ReduceRightWithIndex[GA ~[]A, A, B any](fa GA, f func(int, A, B) B, initial B) B {
-	current := initial
-	count := len(fa)
-	for i := count - 1; i >= 0; i-- {
-		current = f(i, fa[i], current)
-	}
-	return current
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
-func Append[GA ~[]A, A any](as GA, a A) GA {
-	return append(as, a)
-}
+func Append[GA ~[]A, A any](as GA, a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
-func Push[GA ~[]A, A any](as GA, a A) GA {
-	l := len(as)
-	cpy := make(GA, l+1)
-	copy(cpy, as)
-	cpy[l] = a
-	return cpy
-}
+func Push[GA ~[]A, A any](as GA, a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
-func Empty[GA ~[]A, A any]() GA {
-	return make(GA, 0)
-}
+func Empty[GA ~[]A, A any]() GA { _ = "STUB: not implemented"; return *new(GA) }
 
-func upsertAt[GA ~[]A, A any](fa GA, a A) GA {
-	buf := make(GA, len(fa)+1)
-	buf[copy(buf, fa)] = a
-	return buf
-}
+func upsertAt[GA ~[]A, A any](fa GA, a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
-func UpsertAt[GA ~[]A, A any](a A) func(GA) GA {
-	return func(ma GA) GA {
-		return upsertAt(ma, a)
-	}
-}
+func UpsertAt[GA ~[]A, A any](a A) func(GA) GA { _ = "STUB: not implemented"; return nil }
 
 func MonadMap[GA ~[]A, GB ~[]B, A, B any](as GA, f func(a A) B) GB {
-	count := len(as)
-	bs := make(GB, count)
-	for i := range count {
-		bs[i] = f(as[i])
-	}
-	return bs
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 func Map[GA ~[]A, GB ~[]B, A, B any](f func(a A) B) func(GA) GB {
-	return func(as GA) GB {
-		return MonadMap[GA, GB](as, f)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadMapWithIndex[GA ~[]A, GB ~[]B, A, B any](as GA, f func(idx int, a A) B) GB {
-	count := len(as)
-	bs := make(GB, count)
-	for i := range count {
-		bs[i] = f(i, as[i])
-	}
-	return bs
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
-func ConstNil[GA ~[]A, A any]() GA {
-	return GA(nil)
-}
+func ConstNil[GA ~[]A, A any]() GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func Concat[GT ~[]T, T any](left, right GT) GT {
+	_ = "STUB: not implemented"
 	// some performance checks
-	ll := len(left)
-	if ll == 0 {
-		return right
-	}
-	lr := len(right)
-	if lr == 0 {
-		return left
-	}
-	// need to copy
-	buf := make(GT, ll+lr)
-	copy(buf[copy(buf, left):], right)
-	return buf
+	return *new(GT)
 }
 
-func Reverse[GT ~[]T, T any](as GT) GT {
-	l := len(as)
-	if l <= 1 {
-		return as
-	}
-	ras := make(GT, l)
-	l1 := l - 1
-	for i := range l {
-		ras[i] = as[l1-i]
-	}
-	return ras
-}
+// need to copy
+
+func Reverse[GT ~[]T, T any](as GT) GT { _ = "STUB: not implemented"; return *new(GT) }
 
 func UnsafeUpdateAt[GT ~[]T, T any](as GT, i int, v T) GT {
-	c := slices.Clone(as)
-	c[i] = v
-	return c
+	_ = "STUB: not implemented"
+	return *new(GT)
 }

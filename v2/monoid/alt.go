@@ -15,10 +15,6 @@
 
 package monoid
 
-import (
-	S "github.com/IBM/fp-go/v2/semigroup"
-)
-
 // AlternativeMonoid creates a monoid for types that are both Applicative and Alternative.
 //
 // This combines the behavior of ApplicativeMonoid with Alternative semantics, providing
@@ -75,19 +71,8 @@ func AlternativeMonoid[A, HKTA, HKTFA any, LAZYHKTA ~func() HKTA](
 	m Monoid[A],
 
 ) Monoid[HKTA] {
-
-	sg := ApplicativeMonoid(fof, fmap, fap, m)
-
-	return MakeMonoid(
-		func(first, second HKTA) HKTA {
-			snd := func() HKTA { return second }
-
-			return falt(sg.Concat(first, second), func() HKTA {
-				return falt(first, snd)
-			})
-		},
-		sg.Empty(),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltMonoid creates a monoid from an Alt type class (alternative/choice operation).
@@ -133,9 +118,6 @@ func AltMonoid[HKTA any, LAZYHKTA ~func() HKTA](
 	falt func(HKTA, LAZYHKTA) HKTA,
 
 ) Monoid[HKTA] {
-
-	return MakeMonoid(
-		S.AltSemigroup(falt).Concat,
-		fzero(),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,9 +16,6 @@
 package readerresult
 
 import (
-	"context"
-
-	RR "github.com/IBM/fp-go/v2/idiomatic/readerresult"
 	M "github.com/IBM/fp-go/v2/monoid"
 )
 
@@ -51,9 +48,7 @@ import (
 //	value, err := combined(ctx)  // Returns (30, nil)
 //
 //go:inline
-func AlternativeMonoid[A any](m M.Monoid[A]) Monoid[A] {
-	return RR.AlternativeMonoid[context.Context](m)
-}
+func AlternativeMonoid[A any](m M.Monoid[A]) Monoid[A] { _ = "STUB: not implemented"; return nil }
 
 // AltMonoid creates a Monoid for ReaderResult using Alt semantics with a custom zero.
 //
@@ -82,9 +77,7 @@ func AlternativeMonoid[A any](m M.Monoid[A]) Monoid[A] {
 //	value, err := combined(ctx)  // Returns (42, nil) - uses second on first failure
 //
 //go:inline
-func AltMonoid[A any](zero Lazy[ReaderResult[A]]) Monoid[A] {
-	return RR.AltMonoid(zero)
-}
+func AltMonoid[A any](zero Lazy[ReaderResult[A]]) Monoid[A] { _ = "STUB: not implemented"; return nil }
 
 // ApplicativeMonoid creates a Monoid for ReaderResult using Applicative semantics.
 //
@@ -115,6 +108,4 @@ func AltMonoid[A any](zero Lazy[ReaderResult[A]]) Monoid[A] {
 //	value, err := combined(ctx)  // Returns (30, nil)
 //
 //go:inline
-func ApplicativeMonoid[A any](m M.Monoid[A]) Monoid[A] {
-	return RR.ApplicativeMonoid[context.Context](m)
-}
+func ApplicativeMonoid[A any](m M.Monoid[A]) Monoid[A] { _ = "STUB: not implemented"; return nil }

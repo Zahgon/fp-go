@@ -15,12 +15,6 @@
 
 package json
 
-import (
-	"encoding/json"
-
-	E "github.com/IBM/fp-go/v2/either"
-)
-
 // Unmarshal parses JSON-encoded data and returns an Either containing the decoded value or an error.
 //
 // This function wraps the standard json.Unmarshal in an Either monad, converting the traditional
@@ -45,11 +39,7 @@ import (
 //	    func(err error) { fmt.Println("Error:", err) },
 //	    func(p Person) { fmt.Printf("Success: %s, %d\n", p.Name, p.Age) },
 //	)(result)
-func Unmarshal[A any](data []byte) Either[A] {
-	var result A
-	err := json.Unmarshal(data, &result)
-	return E.TryCatchError(result, err)
-}
+func Unmarshal[A any](data []byte) Either[A] { _ = "STUB: not implemented"; return nil }
 
 // Marshal converts a Go value to JSON-encoded bytes and returns an Either containing the result or an error.
 //
@@ -75,9 +65,7 @@ func Unmarshal[A any](data []byte) Either[A] {
 //	    return string(data)
 //	})(result)
 //	// Returns Either[error, string] with JSON string
-func Marshal[A any](a A) Either[[]byte] {
-	return E.TryCatchError(json.Marshal(a))
-}
+func Marshal[A any](a A) Either[[]byte] { _ = "STUB: not implemented"; return nil }
 
 // MarshalIndent converts a Go value to pretty-printed JSON-encoded bytes with indentation.
 //
@@ -184,6 +172,4 @@ func Marshal[A any](a A) Either[[]byte] {
 //   - Minimizing payload size is important (production APIs)
 //   - The JSON will be consumed by machines only
 //   - Performance is critical (indentation adds overhead)
-func MarshalIndent[A any](a A) Either[[]byte] {
-	return E.TryCatchError(json.MarshalIndent(a, "", "  "))
-}
+func MarshalIndent[A any](a A) Either[[]byte] { _ = "STUB: not implemented"; return nil }

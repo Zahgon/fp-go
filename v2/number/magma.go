@@ -19,14 +19,6 @@ import (
 	M "github.com/IBM/fp-go/v2/magma"
 )
 
-func MagmaSub[A Number]() M.Magma[A] {
-	return M.MakeMagma(func(first A, second A) A {
-		return first - second
-	})
-}
+func MagmaSub[A Number]() M.Magma[A] { _ = "STUB: not implemented"; return nil }
 
-func MagmaDiv[A Number]() M.Magma[A] {
-	return M.MakeMagma(func(first A, second A) A {
-		return first / second
-	})
-}
+func MagmaDiv[A Number]() M.Magma[A] { _ = "STUB: not implemented"; return nil }

@@ -15,23 +15,22 @@
 
 package array
 
-import (
-	G "github.com/IBM/fp-go/array/generic"
-)
-
 // Bind creates an empty context of type [S] to be used with the [Bind] operation
 func Do[S any](
 	empty S,
 ) []S {
-	return G.Do[[]S, S](empty)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Bind attaches the result of a computation to a context [S1] to produce a context [S2]
 }
 
-// Bind attaches the result of a computation to a context [S1] to produce a context [S2]
 func Bind[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) []T,
 ) func([]S1) []S2 {
-	return G.Bind[[]S1, []S2, []T, S1, S2, T](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -39,7 +38,8 @@ func Let[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) func([]S1) []S2 {
-	return G.Let[[]S1, []S2, S1, S2, T](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches the a value to a context [S1] to produce a context [S2]
@@ -47,14 +47,16 @@ func LetTo[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) func([]S1) []S2 {
-	return G.LetTo[[]S1, []S2, S1, S2, T](setter, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T]
 func BindTo[S1, T any](
 	setter func(T) S1,
 ) func([]T) []S1 {
-	return G.BindTo[[]S1, []T, S1, T](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering the context and the value concurrently
@@ -62,5 +64,6 @@ func ApS[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa []T,
 ) func([]S1) []S2 {
-	return G.ApS[[]S1, []S2, []T, S1, S2, T](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }

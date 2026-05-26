@@ -15,8 +15,6 @@
 
 package readerioresult
 
-import "github.com/IBM/fp-go/v2/either"
-
 // FilterOrElse filters a ReaderIOResult value based on a predicate in an idiomatic style.
 // If the ReaderIOResult computation succeeds and the predicate returns true, returns the original success value.
 // If the ReaderIOResult computation succeeds and the predicate returns false, returns an error with the error from onFalse.
@@ -47,5 +45,6 @@ import "github.com/IBM/fp-go/v2/either"
 //
 //go:inline
 func FilterOrElse[R, A any](pred Predicate[A], onFalse func(A) error) Operator[R, A, A] {
-	return ChainEitherK[R](either.FromPredicate(pred, onFalse))
+	_ = "STUB: not implemented"
+	return nil
 }

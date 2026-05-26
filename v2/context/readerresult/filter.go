@@ -15,12 +15,6 @@
 
 package readerresult
 
-import (
-	"context"
-
-	RR "github.com/IBM/fp-go/v2/readerresult"
-)
-
 // FilterOrElse filters a ReaderResult value based on a predicate.
 // This is a convenience wrapper around readerresult.FilterOrElse that fixes
 // the context type to context.Context.
@@ -47,5 +41,6 @@ import (
 //
 //go:inline
 func FilterOrElse[A any](pred Predicate[A], onFalse func(A) error) Operator[A, A] {
-	return RR.FilterOrElse[context.Context](pred, onFalse)
+	_ = "STUB: not implemented"
+	return nil
 }

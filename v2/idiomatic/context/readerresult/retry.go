@@ -16,9 +16,6 @@
 package readerresult
 
 import (
-	RS "github.com/IBM/fp-go/v2/context/readerresult"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/result"
 	R "github.com/IBM/fp-go/v2/retry"
 )
 
@@ -130,17 +127,6 @@ func Retrying[A any](
 	action Kleisli[R.RetryStatus, A],
 	check func(A, error) bool,
 ) ReaderResult[A] {
-	return F.Pipe1(
-		RS.Retrying(
-			policy,
-			F.Flow2(
-				action,
-				ToReaderResult,
-			),
-			func(a Result[A]) bool {
-				return check(result.Unwrap(a))
-			},
-		),
-		FromReaderResult,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

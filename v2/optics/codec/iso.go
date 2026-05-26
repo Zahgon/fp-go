@@ -15,13 +15,6 @@
 
 package codec
 
-import (
-	"fmt"
-
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/optics/codec/decode"
-)
-
 // FromIso creates a Type codec from an Iso (isomorphism).
 //
 // An isomorphism represents a bidirectional transformation between types I and A
@@ -156,14 +149,4 @@ import (
 //   - iso.MakeIso: Constructor for creating isomorphisms
 //   - Pipe: For composing this codec with other codecs
 //   - MakeType: For creating codecs with custom validation logic
-func FromIso[A, I any](iso Iso[I, A]) Type[A, I, I] {
-	return MakeType(
-		fmt.Sprintf("FromIso[%s]", iso),
-		Is[A](),
-		F.Flow2(
-			iso.Get,
-			decode.Of[Context],
-		),
-		iso.ReverseGet,
-	)
-}
+func FromIso[A, I any](iso Iso[I, A]) Type[A, I, I] { _ = "STUB: not implemented"; return nil }

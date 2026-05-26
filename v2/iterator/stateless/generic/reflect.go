@@ -17,37 +17,14 @@ package generic
 
 import (
 	R "reflect"
-
-	F "github.com/IBM/fp-go/v2/function"
-	LG "github.com/IBM/fp-go/v2/io/generic"
-	L "github.com/IBM/fp-go/v2/lazy"
-	N "github.com/IBM/fp-go/v2/number"
-	I "github.com/IBM/fp-go/v2/number/integer"
-	O "github.com/IBM/fp-go/v2/option"
-	P "github.com/IBM/fp-go/v2/pair"
 )
 
 func FromReflect[GR ~func() Option[Pair[GR, R.Value]]](val R.Value) GR {
+	_ = "STUB: not implemented"
 	// recursive callback
-	var recurse func(idx int) GR
-
-	// limits the index
-	fromPred := O.FromPredicate(I.Between(0, val.Len()))
-
-	recurse = func(idx int) GR {
-		return F.Pipe3(
-			idx,
-			L.Of[int],
-			L.Map(fromPred),
-			LG.Map[Lazy[Option[int]], GR](O.Map(
-				F.Flow2(
-					P.Of[int],
-					P.BiMap(F.Flow2(N.Add(1), recurse), val.Index),
-				),
-			)),
-		)
-	}
-
-	// start the recursion
-	return recurse(0)
+	return *new(GR)
 }
+
+// limits the index
+
+// start the recursion

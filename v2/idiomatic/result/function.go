@@ -24,33 +24,38 @@ package result
 //
 //go:inline
 func Pipe1[F1 ~func(T0) (T1, error), T0, T1 any](t0 T0, f1 F1) (T1, error) {
-	return f1(t0)
+	_ = "STUB: not implemented"
+
+	// Flow1 creates a function that takes an initial value t0 and successively applies 1 functions where the input of a function is the return value of the previous function
+	// The final return value is the result of the last function application
+	//
+	//go:inline
+	return *new(T1), nil
 }
 
-// Flow1 creates a function that takes an initial value t0 and successively applies 1 functions where the input of a function is the return value of the previous function
-// The final return value is the result of the last function application
-//
-//go:inline
 func Flow1[F1 ~func(T0, error) (T1, error), T0, T1 any](f1 F1) func(T0, error) (T1, error) {
-	return f1
+	_ = "STUB: not implemented"
+
+	// Pipe2 takes an initial value t0 and successively applies 2 functions where the input of a function is the return value of the previous function
+	// The final return value is the result of the last function application
+	//
+	//go:inline
+	return nil
 }
 
-// Pipe2 takes an initial value t0 and successively applies 2 functions where the input of a function is the return value of the previous function
-// The final return value is the result of the last function application
-//
-//go:inline
 func Pipe2[F1 ~func(T0) (T1, error), F2 ~func(T1, error) (T2, error), T0, T1, T2 any](t0 T0, f1 F1, f2 F2) (T2, error) {
-	return f2(f1(t0))
+	_ = "STUB: not implemented"
+
+	// Flow2 creates a function that takes an initial value t0 and successively applies 2 functions where the input of a function is the return value of the previous function
+	// The final return value is the result of the last function application
+	//
+	//go:inline
+	return *new(T2), nil
 }
 
-// Flow2 creates a function that takes an initial value t0 and successively applies 2 functions where the input of a function is the return value of the previous function
-// The final return value is the result of the last function application
-//
-//go:inline
 func Flow2[F1 ~func(T0, error) (T1, error), F2 ~func(T1, error) (T2, error), T0, T1, T2 any](f1 F1, f2 F2) func(T0, error) (T2, error) {
-	return func(t0 T0, t0ok error) (T2, error) {
-		return f2(f1(t0, t0ok))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe3 takes an initial value t0 and successively applies 3 functions where the input of a function is the return value of the previous function
@@ -58,17 +63,19 @@ func Flow2[F1 ~func(T0, error) (T1, error), F2 ~func(T1, error) (T2, error), T0,
 //
 //go:inline
 func Pipe3[F1 ~func(T0) (T1, error), F2 ~func(T1, error) (T2, error), F3 ~func(T2, error) (T3, error), T0, T1, T2, T3 any](t0 T0, f1 F1, f2 F2, f3 F3) (T3, error) {
-	return f3(f2(f1(t0)))
+	_ = "STUB: not implemented"
+	return *
+
+	// Flow3 creates a function that takes an initial value t0 and successively applies 3 functions where the input of a function is the return value of the previous function
+	// The final return value is the result of the last function application
+	//
+	//go:inline
+	new(T3), nil
 }
 
-// Flow3 creates a function that takes an initial value t0 and successively applies 3 functions where the input of a function is the return value of the previous function
-// The final return value is the result of the last function application
-//
-//go:inline
 func Flow3[F1 ~func(T0, error) (T1, error), F2 ~func(T1, error) (T2, error), F3 ~func(T2, error) (T3, error), T0, T1, T2, T3 any](f1 F1, f2 F2, f3 F3) func(T0, error) (T3, error) {
-	return func(t0 T0, t0ok error) (T3, error) {
-		return f3(f2(f1(t0, t0ok)))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe4 takes an initial value t0 and successively applies 4 functions where the input of a function is the return value of the previous function
@@ -76,7 +83,8 @@ func Flow3[F1 ~func(T0, error) (T1, error), F2 ~func(T1, error) (T2, error), F3 
 //
 //go:inline
 func Pipe4[F1 ~func(T0) (T1, error), F2 ~func(T1, error) (T2, error), F3 ~func(T2, error) (T3, error), F4 ~func(T3, error) (T4, error), T0, T1, T2, T3, T4 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4) (T4, error) {
-	return f4(f3(f2(f1(t0))))
+	_ = "STUB: not implemented"
+	return *new(T4), nil
 }
 
 // Flow4 creates a function that takes an initial value t0 and successively applies 4 functions where the input of a function is the return value of the previous function
@@ -84,9 +92,8 @@ func Pipe4[F1 ~func(T0) (T1, error), F2 ~func(T1, error) (T2, error), F3 ~func(T
 //
 //go:inline
 func Flow4[F1 ~func(T0, error) (T1, error), F2 ~func(T1, error) (T2, error), F3 ~func(T2, error) (T3, error), F4 ~func(T3, error) (T4, error), T0, T1, T2, T3, T4 any](f1 F1, f2 F2, f3 F3, f4 F4) func(T0, error) (T4, error) {
-	return func(t0 T0, t0ok error) (T4, error) {
-		return f4(f3(f2(f1(t0, t0ok))))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe5 takes an initial value t0 and successively applies 5 functions where the input of a function is the return value of the previous function
@@ -94,7 +101,8 @@ func Flow4[F1 ~func(T0, error) (T1, error), F2 ~func(T1, error) (T2, error), F3 
 //
 //go:inline
 func Pipe5[F1 ~func(T0) (T1, error), F2 ~func(T1, error) (T2, error), F3 ~func(T2, error) (T3, error), F4 ~func(T3, error) (T4, error), F5 ~func(T4, error) (T5, error), T0, T1, T2, T3, T4, T5 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5) (T5, error) {
-	return f5(f4(f3(f2(f1(t0)))))
+	_ = "STUB: not implemented"
+	return *new(T5), nil
 }
 
 // Flow5 creates a function that takes an initial value t0 and successively applies 5 functions where the input of a function is the return value of the previous function
@@ -102,7 +110,6 @@ func Pipe5[F1 ~func(T0) (T1, error), F2 ~func(T1, error) (T2, error), F3 ~func(T
 //
 //go:inline
 func Flow5[F1 ~func(T0, error) (T1, error), F2 ~func(T1, error) (T2, error), F3 ~func(T2, error) (T3, error), F4 ~func(T3, error) (T4, error), F5 ~func(T4, error) (T5, error), T0, T1, T2, T3, T4, T5 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5) func(T0, error) (T5, error) {
-	return func(t0 T0, t0ok error) (T5, error) {
-		return f5(f4(f3(f2(f1(t0, t0ok)))))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,16 +16,11 @@
 package generic
 
 import (
-	I "github.com/IBM/fp-go/identity"
 	G "github.com/IBM/fp-go/optics/traversal/generic"
-	RR "github.com/IBM/fp-go/optics/traversal/record/generic"
 )
 
 // FromRecord returns a traversal from a record for the identity monad
 func FromRecord[MA ~map[K]A, K comparable, A any]() G.Traversal[MA, A, MA, A] {
-	return RR.FromRecord[MA, MA, K, A, A, A, func(A) MA, MA](
-		I.Of[MA],
-		I.Map[MA, func(A) MA],
-		I.Ap[MA, A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

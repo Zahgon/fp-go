@@ -1,13 +1,10 @@
 package readerreaderioresult
 
 import (
-	"context"
-
 	"github.com/IBM/fp-go/v2/context/reader"
 	"github.com/IBM/fp-go/v2/context/readerioresult"
 	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/ioresult"
-	RRIOE "github.com/IBM/fp-go/v2/readerreaderioeither"
 	"github.com/IBM/fp-go/v2/result"
 )
 
@@ -27,7 +24,8 @@ import (
 //
 //go:inline
 func Local[A, R1, R2 any](f func(R2) R1) func(ReaderReaderIOResult[R1, A]) ReaderReaderIOResult[R2, A] {
-	return RRIOE.Local[context.Context, error, A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalIOK transforms the outer environment of a ReaderReaderIOResult using an IO-based Kleisli arrow.
@@ -55,7 +53,8 @@ func Local[A, R1, R2 any](f func(R2) R1) func(ReaderReaderIOResult[R1, A]) Reade
 //
 //go:inline
 func LocalIOK[A, R1, R2 any](f io.Kleisli[R2, R1]) func(ReaderReaderIOResult[R1, A]) ReaderReaderIOResult[R2, A] {
-	return RRIOE.LocalIOK[context.Context, error, A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalIOEitherK transforms the outer environment of a ReaderReaderIOResult using an IOResult-based Kleisli arrow.
@@ -84,7 +83,8 @@ func LocalIOK[A, R1, R2 any](f io.Kleisli[R2, R1]) func(ReaderReaderIOResult[R1,
 //
 //go:inline
 func LocalIOEitherK[A, R1, R2 any](f ioresult.Kleisli[R2, R1]) func(ReaderReaderIOResult[R1, A]) ReaderReaderIOResult[R2, A] {
-	return RRIOE.LocalIOEitherK[context.Context, A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalIOResultK transforms the outer environment of a ReaderReaderIOResult using an IOResult-based Kleisli arrow.
@@ -111,7 +111,8 @@ func LocalIOEitherK[A, R1, R2 any](f ioresult.Kleisli[R2, R1]) func(ReaderReader
 //
 //go:inline
 func LocalIOResultK[A, R1, R2 any](f ioresult.Kleisli[R2, R1]) func(ReaderReaderIOResult[R1, A]) ReaderReaderIOResult[R2, A] {
-	return RRIOE.LocalIOEitherK[context.Context, A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalResultK transforms the outer environment of a ReaderReaderIOResult using a Result-based Kleisli arrow.
@@ -139,7 +140,8 @@ func LocalIOResultK[A, R1, R2 any](f ioresult.Kleisli[R2, R1]) func(ReaderReader
 //
 //go:inline
 func LocalResultK[A, R1, R2 any](f result.Kleisli[R2, R1]) func(ReaderReaderIOResult[R1, A]) ReaderReaderIOResult[R2, A] {
-	return RRIOE.LocalEitherK[context.Context, A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalReaderIOEitherK transforms the outer environment of a ReaderReaderIOResult using a ReaderIOResult-based Kleisli arrow.
@@ -167,7 +169,8 @@ func LocalResultK[A, R1, R2 any](f result.Kleisli[R2, R1]) func(ReaderReaderIORe
 //
 //go:inline
 func LocalReaderIOEitherK[A, R1, R2 any](f readerioresult.Kleisli[R2, R1]) func(ReaderReaderIOResult[R1, A]) ReaderReaderIOResult[R2, A] {
-	return RRIOE.LocalReaderIOEitherK[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalReaderIOResultK transforms the outer environment of a ReaderReaderIOResult using a ReaderIOResult-based Kleisli arrow.
@@ -194,7 +197,8 @@ func LocalReaderIOEitherK[A, R1, R2 any](f readerioresult.Kleisli[R2, R1]) func(
 //
 //go:inline
 func LocalReaderIOResultK[A, R1, R2 any](f readerioresult.Kleisli[R2, R1]) func(ReaderReaderIOResult[R1, A]) ReaderReaderIOResult[R2, A] {
-	return RRIOE.LocalReaderIOEitherK[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalReaderK transforms the outer environment of a ReaderReaderIOResult using a Reader-based Kleisli arrow.
@@ -253,7 +257,8 @@ func LocalReaderIOResultK[A, R1, R2 any](f readerioresult.Kleisli[R2, R1]) func(
 //
 //go:inline
 func LocalReaderK[A, R1, R2 any](f reader.Kleisli[R2, R1]) func(ReaderReaderIOResult[R1, A]) ReaderReaderIOResult[R2, A] {
-	return RRIOE.LocalReaderK[error, A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalReaderReaderIOEitherK transforms the outer environment of a ReaderReaderIOResult using a ReaderReaderIOResult-based Kleisli arrow.
@@ -283,5 +288,6 @@ func LocalReaderK[A, R1, R2 any](f reader.Kleisli[R2, R1]) func(ReaderReaderIORe
 //
 //go:inline
 func LocalReaderReaderIOEitherK[A, R1, R2 any](f Kleisli[R2, R2, R1]) func(ReaderReaderIOResult[R1, A]) ReaderReaderIOResult[R2, A] {
-	return RRIOE.LocalReaderReaderIOEitherK[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,8 +16,6 @@
 package predicate
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
-
 	"github.com/IBM/fp-go/v2/eq"
 )
 
@@ -43,9 +41,7 @@ import (
 //	isAlice := isEqualToPerson(alice)
 //	isAlice(Person{Name: "Alice", Age: 30}) // true
 //	isAlice(Person{Name: "Bob", Age: 30})   // false
-func IsEqual[A any](pred eq.Eq[A]) Kleisli[A, A] {
-	return F.Curry2(pred.Equals)
-}
+func IsEqual[A any](pred eq.Eq[A]) Kleisli[A, A] { _ = "STUB: not implemented"; return nil }
 
 // IsStrictEqual creates a Kleisli arrow that tests if two values are equal using Go's == operator.
 //
@@ -64,9 +60,7 @@ func IsEqual[A any](pred eq.Eq[A]) Kleisli[A, A] {
 //	isEqualToHello := IsStrictEqual[string]()("hello")
 //	isEqualToHello("hello") // true
 //	isEqualToHello("world") // false
-func IsStrictEqual[A comparable]() Kleisli[A, A] {
-	return IsEqual(eq.FromStrictEquals[A]())
-}
+func IsStrictEqual[A comparable]() Kleisli[A, A] { _ = "STUB: not implemented"; return nil }
 
 // IsZero creates a predicate that tests if a value equals the zero value for its type.
 //
@@ -89,10 +83,7 @@ func IsStrictEqual[A comparable]() Kleisli[A, A] {
 //	isZeroBool := IsZero[bool]()
 //	isZeroBool(false) // true
 //	isZeroBool(true)  // false
-func IsZero[A comparable]() Predicate[A] {
-	var zero A
-	return IsStrictEqual[A]()(zero)
-}
+func IsZero[A comparable]() Predicate[A] { _ = "STUB: not implemented"; return nil }
 
 // IsNonZero creates a predicate that tests if a value is not equal to the zero value for its type.
 //
@@ -115,6 +106,4 @@ func IsZero[A comparable]() Predicate[A] {
 //	isNonZeroPtr := IsNonZero[*int]()
 //	isNonZeroPtr(nil)      // false
 //	isNonZeroPtr(new(int)) // true
-func IsNonZero[A comparable]() Predicate[A] {
-	return Not(IsZero[A]())
-}
+func IsNonZero[A comparable]() Predicate[A] { _ = "STUB: not implemented"; return nil }

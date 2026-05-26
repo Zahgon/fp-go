@@ -6,1632 +6,1158 @@ package function
 
 // Pipe0 takes an initial value t0 and successively applies 0 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe0[T0 any](t0 T0) T0 {
-	return t0
+	_ = "STUB: not implemented"
+
+	// Variadic0 converts a function taking 0 parameters and a final slice into a function with 0 parameters but a final variadic argument
+	return *new(T0)
 }
 
-// Variadic0 converts a function taking 0 parameters and a final slice into a function with 0 parameters but a final variadic argument
-func Variadic0[V, R any](f func([]V) R) func(...V) R {
-	return func(v ...V) R {
-		return f(v)
-	}
-}
+func Variadic0[V, R any](f func([]V) R) func(...V) R { _ = "STUB: not implemented"; return nil }
 
 // Unvariadic0 converts a function taking 0 parameters and a final variadic argument into a function with 0 parameters but a final slice argument
-func Unvariadic0[V, R any](f func(...V) R) func([]V) R {
-	return func(v []V) R {
-		return f(v...)
-	}
-}
+func Unvariadic0[V, R any](f func(...V) R) func([]V) R { _ = "STUB: not implemented"; return nil }
 
 // Unsliced0 converts a function taking a slice parameter into a function with 0 parameters
-func Unsliced0[F ~func([]T) R, T, R any](f F) func() R {
-	return func() R {
-		return f([]T{})
-	}
-}
+func Unsliced0[F ~func([]T) R, T, R any](f F) func() R { _ = "STUB: not implemented"; return nil }
 
 // Pipe1 takes an initial value t0 and successively applies 1 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe1[F1 ~func(T0) T1, T0, T1 any](t0 T0, f1 F1) T1 {
-	return f1(t0)
+	_ = "STUB: not implemented"
+
+	// Flow1 creates a function that takes an initial value t0 and successively applies 1 functions where the input of a function is the return value of the previous function
+	// The final return value is the result of the last function application
+	//
+	//go:inline
+	return *new(T1)
 }
 
-// Flow1 creates a function that takes an initial value t0 and successively applies 1 functions where the input of a function is the return value of the previous function
-// The final return value is the result of the last function application
-//go:inline
 func Flow1[F1 ~func(T0) T1, T0, T1 any](f1 F1) func(T0) T1 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T1 {
-		return Pipe1(t0, f1)
-	}
+	return nil
 }
 
 // Nullary1 creates a parameter less function from a parameter less function and 0 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
-func Nullary1[F1 ~func() T1, T1 any](f1 F1) func() T1 {
-	return func() T1 {
-		return Pipe0(f1())
-	}
-}
+func Nullary1[F1 ~func() T1, T1 any](f1 F1) func() T1 { _ = "STUB: not implemented"; return nil }
 
 // Curry1 takes a function with 1 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry1]
-func Curry1[FCT ~func(T0) T1, T0, T1 any](f FCT) func(T0) T1 {
-	return func(t0 T0) T1 {
-		return f(t0)
-	}
-}
+func Curry1[FCT ~func(T0) T1, T0, T1 any](f FCT) func(T0) T1 { _ = "STUB: not implemented"; return nil }
 
 // Uncurry1 takes a cascade of 1 functions each taking only one parameter and returns a function with 1 parameters .
 // The inverse function is [Curry1]
 func Uncurry1[FCT ~func(T0) T1, T0, T1 any](f FCT) func(T0) T1 {
-	return func(t0 T0) T1 {
-		return f(t0)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic1 converts a function taking 1 parameters and a final slice into a function with 1 parameters but a final variadic argument
 func Variadic1[T1, V, R any](f func(T1, []V) R) func(T1, ...V) R {
-	return func(t1 T1, v ...V) R {
-		return f(t1, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic1 converts a function taking 1 parameters and a final variadic argument into a function with 1 parameters but a final slice argument
 func Unvariadic1[T1, V, R any](f func(T1, ...V) R) func(T1, []V) R {
-	return func(t1 T1, v []V) R {
-		return f(t1, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced1 converts a function taking a slice parameter into a function with 1 parameters
-func Unsliced1[F ~func([]T) R, T, R any](f F) func(T) R {
-	return func(t1 T) R {
-		return f([]T{t1})
-	}
-}
+func Unsliced1[F ~func([]T) R, T, R any](f F) func(T) R { _ = "STUB: not implemented"; return nil }
 
 // Pipe2 takes an initial value t0 and successively applies 2 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe2[F1 ~func(T0) T1, F2 ~func(T1) T2, T0, T1, T2 any](t0 T0, f1 F1, f2 F2) T2 {
-	return f2(f1(t0))
+	_ = "STUB: not implemented"
+
+	// Flow2 creates a function that takes an initial value t0 and successively applies 2 functions where the input of a function is the return value of the previous function
+	// The final return value is the result of the last function application
+	//
+	//go:inline
+	return *new(T2)
 }
 
-// Flow2 creates a function that takes an initial value t0 and successively applies 2 functions where the input of a function is the return value of the previous function
-// The final return value is the result of the last function application
-//go:inline
 func Flow2[F1 ~func(T0) T1, F2 ~func(T1) T2, T0, T1, T2 any](f1 F1, f2 F2) func(T0) T2 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T2 {
-		return Pipe2(t0, f1, f2)
-	}
+	return nil
 }
 
 // Nullary2 creates a parameter less function from a parameter less function and 1 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary2[F1 ~func() T1, F2 ~func(T1) T2, T1, T2 any](f1 F1, f2 F2) func() T2 {
-	return func() T2 {
-		return Pipe1(f1(), f2)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry2 takes a function with 2 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry2]
+//
 //go:inline
 func Curry2[FCT ~func(T0, T1) T2, T0, T1, T2 any](f FCT) func(T0) func(T1) T2 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) func(t1 T1) T2 {
-		//go:inline
-		return func(t1 T1) T2 {
-			//go:inline
-			return f(t0, t1)
-		}
-	}
+	return nil
 }
+
+//go:inline
+
+//go:inline
 
 // Uncurry2 takes a cascade of 2 functions each taking only one parameter and returns a function with 2 parameters .
 // The inverse function is [Curry2]
 func Uncurry2[FCT ~func(T0) func(T1) T2, T0, T1, T2 any](f FCT) func(T0, T1) T2 {
-	return func(t0 T0, t1 T1) T2 {
-		return f(t0)(t1)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic2 converts a function taking 2 parameters and a final slice into a function with 2 parameters but a final variadic argument
 func Variadic2[T1, T2, V, R any](f func(T1, T2, []V) R) func(T1, T2, ...V) R {
-	return func(t1 T1, t2 T2, v ...V) R {
-		return f(t1, t2, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic2 converts a function taking 2 parameters and a final variadic argument into a function with 2 parameters but a final slice argument
 func Unvariadic2[T1, T2, V, R any](f func(T1, T2, ...V) R) func(T1, T2, []V) R {
-	return func(t1 T1, t2 T2, v []V) R {
-		return f(t1, t2, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced2 converts a function taking a slice parameter into a function with 2 parameters
-func Unsliced2[F ~func([]T) R, T, R any](f F) func(T, T) R {
-	return func(t1, t2 T) R {
-		return f([]T{t1, t2})
-	}
-}
+func Unsliced2[F ~func([]T) R, T, R any](f F) func(T, T) R { _ = "STUB: not implemented"; return nil }
 
 // Pipe3 takes an initial value t0 and successively applies 3 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe3[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, T0, T1, T2, T3 any](t0 T0, f1 F1, f2 F2, f3 F3) T3 {
-	return f3(f2(f1(t0)))
+	_ = "STUB: not implemented"
+	return *
+
+	// Flow3 creates a function that takes an initial value t0 and successively applies 3 functions where the input of a function is the return value of the previous function
+	// The final return value is the result of the last function application
+	//
+	//go:inline
+	new(T3)
 }
 
-// Flow3 creates a function that takes an initial value t0 and successively applies 3 functions where the input of a function is the return value of the previous function
-// The final return value is the result of the last function application
-//go:inline
 func Flow3[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, T0, T1, T2, T3 any](f1 F1, f2 F2, f3 F3) func(T0) T3 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T3 {
-		return Pipe3(t0, f1, f2, f3)
-	}
+	return nil
 }
 
 // Nullary3 creates a parameter less function from a parameter less function and 2 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary3[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, T1, T2, T3 any](f1 F1, f2 F2, f3 F3) func() T3 {
-	return func() T3 {
-		return Pipe2(f1(), f2, f3)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry3 takes a function with 3 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry3]
 func Curry3[FCT ~func(T0, T1, T2) T3, T0, T1, T2, T3 any](f FCT) func(T0) func(T1) func(T2) T3 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) T3 {
-		return func(t1 T1) func(t2 T2) T3 {
-			return func(t2 T2) T3 {
-				return f(t0, t1, t2)
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry3 takes a cascade of 3 functions each taking only one parameter and returns a function with 3 parameters .
 // The inverse function is [Curry3]
 func Uncurry3[FCT ~func(T0) func(T1) func(T2) T3, T0, T1, T2, T3 any](f FCT) func(T0, T1, T2) T3 {
-	return func(t0 T0, t1 T1, t2 T2) T3 {
-		return f(t0)(t1)(t2)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic3 converts a function taking 3 parameters and a final slice into a function with 3 parameters but a final variadic argument
 func Variadic3[T1, T2, T3, V, R any](f func(T1, T2, T3, []V) R) func(T1, T2, T3, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, v ...V) R {
-		return f(t1, t2, t3, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic3 converts a function taking 3 parameters and a final variadic argument into a function with 3 parameters but a final slice argument
 func Unvariadic3[T1, T2, T3, V, R any](f func(T1, T2, T3, ...V) R) func(T1, T2, T3, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, v []V) R {
-		return f(t1, t2, t3, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced3 converts a function taking a slice parameter into a function with 3 parameters
 func Unsliced3[F ~func([]T) R, T, R any](f F) func(T, T, T) R {
-	return func(t1, t2, t3 T) R {
-		return f([]T{t1, t2, t3})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe4 takes an initial value t0 and successively applies 4 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe4[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, T0, T1, T2, T3, T4 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4) T4 {
-	return f4(f3(f2(f1(t0))))
+	_ = "STUB: not implemented"
+	return *new(T4)
 }
 
 // Flow4 creates a function that takes an initial value t0 and successively applies 4 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow4[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, T0, T1, T2, T3, T4 any](f1 F1, f2 F2, f3 F3, f4 F4) func(T0) T4 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T4 {
-		return Pipe4(t0, f1, f2, f3, f4)
-	}
+	return nil
 }
 
 // Nullary4 creates a parameter less function from a parameter less function and 3 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary4[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, T1, T2, T3, T4 any](f1 F1, f2 F2, f3 F3, f4 F4) func() T4 {
-	return func() T4 {
-		return Pipe3(f1(), f2, f3, f4)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry4 takes a function with 4 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry4]
 func Curry4[FCT ~func(T0, T1, T2, T3) T4, T0, T1, T2, T3, T4 any](f FCT) func(T0) func(T1) func(T2) func(T3) T4 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) T4 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) T4 {
-			return func(t2 T2) func(t3 T3) T4 {
-				return func(t3 T3) T4 {
-					return f(t0, t1, t2, t3)
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry4 takes a cascade of 4 functions each taking only one parameter and returns a function with 4 parameters .
 // The inverse function is [Curry4]
 func Uncurry4[FCT ~func(T0) func(T1) func(T2) func(T3) T4, T0, T1, T2, T3, T4 any](f FCT) func(T0, T1, T2, T3) T4 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3) T4 {
-		return f(t0)(t1)(t2)(t3)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic4 converts a function taking 4 parameters and a final slice into a function with 4 parameters but a final variadic argument
 func Variadic4[T1, T2, T3, T4, V, R any](f func(T1, T2, T3, T4, []V) R) func(T1, T2, T3, T4, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, v ...V) R {
-		return f(t1, t2, t3, t4, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic4 converts a function taking 4 parameters and a final variadic argument into a function with 4 parameters but a final slice argument
 func Unvariadic4[T1, T2, T3, T4, V, R any](f func(T1, T2, T3, T4, ...V) R) func(T1, T2, T3, T4, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, v []V) R {
-		return f(t1, t2, t3, t4, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced4 converts a function taking a slice parameter into a function with 4 parameters
 func Unsliced4[F ~func([]T) R, T, R any](f F) func(T, T, T, T) R {
-	return func(t1, t2, t3, t4 T) R {
-		return f([]T{t1, t2, t3, t4})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe5 takes an initial value t0 and successively applies 5 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe5[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, T0, T1, T2, T3, T4, T5 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5) T5 {
-	return f5(f4(f3(f2(f1(t0)))))
+	_ = "STUB: not implemented"
+	return *new(T5)
 }
 
 // Flow5 creates a function that takes an initial value t0 and successively applies 5 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow5[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, T0, T1, T2, T3, T4, T5 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5) func(T0) T5 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T5 {
-		return Pipe5(t0, f1, f2, f3, f4, f5)
-	}
+	return nil
 }
 
 // Nullary5 creates a parameter less function from a parameter less function and 4 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary5[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, T1, T2, T3, T4, T5 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5) func() T5 {
-	return func() T5 {
-		return Pipe4(f1(), f2, f3, f4, f5)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry5 takes a function with 5 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry5]
 func Curry5[FCT ~func(T0, T1, T2, T3, T4) T5, T0, T1, T2, T3, T4, T5 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) T5 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) T5 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) T5 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) T5 {
-				return func(t3 T3) func(t4 T4) T5 {
-					return func(t4 T4) T5 {
-						return f(t0, t1, t2, t3, t4)
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry5 takes a cascade of 5 functions each taking only one parameter and returns a function with 5 parameters .
 // The inverse function is [Curry5]
 func Uncurry5[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) T5, T0, T1, T2, T3, T4, T5 any](f FCT) func(T0, T1, T2, T3, T4) T5 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4) T5 {
-		return f(t0)(t1)(t2)(t3)(t4)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic5 converts a function taking 5 parameters and a final slice into a function with 5 parameters but a final variadic argument
 func Variadic5[T1, T2, T3, T4, T5, V, R any](f func(T1, T2, T3, T4, T5, []V) R) func(T1, T2, T3, T4, T5, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, v ...V) R {
-		return f(t1, t2, t3, t4, t5, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic5 converts a function taking 5 parameters and a final variadic argument into a function with 5 parameters but a final slice argument
 func Unvariadic5[T1, T2, T3, T4, T5, V, R any](f func(T1, T2, T3, T4, T5, ...V) R) func(T1, T2, T3, T4, T5, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, v []V) R {
-		return f(t1, t2, t3, t4, t5, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced5 converts a function taking a slice parameter into a function with 5 parameters
 func Unsliced5[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5 T) R {
-		return f([]T{t1, t2, t3, t4, t5})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe6 takes an initial value t0 and successively applies 6 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe6[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, T0, T1, T2, T3, T4, T5, T6 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6) T6 {
-	return f6(f5(f4(f3(f2(f1(t0))))))
+	_ = "STUB: not implemented"
+	return *new(T6)
 }
 
 // Flow6 creates a function that takes an initial value t0 and successively applies 6 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow6[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, T0, T1, T2, T3, T4, T5, T6 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6) func(T0) T6 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T6 {
-		return Pipe6(t0, f1, f2, f3, f4, f5, f6)
-	}
+	return nil
 }
 
 // Nullary6 creates a parameter less function from a parameter less function and 5 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary6[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, T1, T2, T3, T4, T5, T6 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6) func() T6 {
-	return func() T6 {
-		return Pipe5(f1(), f2, f3, f4, f5, f6)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry6 takes a function with 6 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry6]
 func Curry6[FCT ~func(T0, T1, T2, T3, T4, T5) T6, T0, T1, T2, T3, T4, T5, T6 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) T6 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) T6 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) T6 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) T6 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) T6 {
-					return func(t4 T4) func(t5 T5) T6 {
-						return func(t5 T5) T6 {
-							return f(t0, t1, t2, t3, t4, t5)
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry6 takes a cascade of 6 functions each taking only one parameter and returns a function with 6 parameters .
 // The inverse function is [Curry6]
 func Uncurry6[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) T6, T0, T1, T2, T3, T4, T5, T6 any](f FCT) func(T0, T1, T2, T3, T4, T5) T6 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5) T6 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic6 converts a function taking 6 parameters and a final slice into a function with 6 parameters but a final variadic argument
 func Variadic6[T1, T2, T3, T4, T5, T6, V, R any](f func(T1, T2, T3, T4, T5, T6, []V) R) func(T1, T2, T3, T4, T5, T6, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic6 converts a function taking 6 parameters and a final variadic argument into a function with 6 parameters but a final slice argument
 func Unvariadic6[T1, T2, T3, T4, T5, T6, V, R any](f func(T1, T2, T3, T4, T5, T6, ...V) R) func(T1, T2, T3, T4, T5, T6, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced6 converts a function taking a slice parameter into a function with 6 parameters
 func Unsliced6[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe7 takes an initial value t0 and successively applies 7 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe7[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, T0, T1, T2, T3, T4, T5, T6, T7 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7) T7 {
-	return f7(f6(f5(f4(f3(f2(f1(t0)))))))
+	_ = "STUB: not implemented"
+	return *new(T7)
 }
 
 // Flow7 creates a function that takes an initial value t0 and successively applies 7 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow7[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, T0, T1, T2, T3, T4, T5, T6, T7 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7) func(T0) T7 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T7 {
-		return Pipe7(t0, f1, f2, f3, f4, f5, f6, f7)
-	}
+	return nil
 }
 
 // Nullary7 creates a parameter less function from a parameter less function and 6 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary7[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, T1, T2, T3, T4, T5, T6, T7 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7) func() T7 {
-	return func() T7 {
-		return Pipe6(f1(), f2, f3, f4, f5, f6, f7)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry7 takes a function with 7 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry7]
 func Curry7[FCT ~func(T0, T1, T2, T3, T4, T5, T6) T7, T0, T1, T2, T3, T4, T5, T6, T7 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) T7 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) T7 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) T7 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) T7 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) T7 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) T7 {
-						return func(t5 T5) func(t6 T6) T7 {
-							return func(t6 T6) T7 {
-								return f(t0, t1, t2, t3, t4, t5, t6)
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry7 takes a cascade of 7 functions each taking only one parameter and returns a function with 7 parameters .
 // The inverse function is [Curry7]
 func Uncurry7[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) T7, T0, T1, T2, T3, T4, T5, T6, T7 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6) T7 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6) T7 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic7 converts a function taking 7 parameters and a final slice into a function with 7 parameters but a final variadic argument
 func Variadic7[T1, T2, T3, T4, T5, T6, T7, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, []V) R) func(T1, T2, T3, T4, T5, T6, T7, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic7 converts a function taking 7 parameters and a final variadic argument into a function with 7 parameters but a final slice argument
 func Unvariadic7[T1, T2, T3, T4, T5, T6, T7, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced7 converts a function taking a slice parameter into a function with 7 parameters
 func Unsliced7[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe8 takes an initial value t0 and successively applies 8 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe8[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, T0, T1, T2, T3, T4, T5, T6, T7, T8 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8) T8 {
-	return f8(f7(f6(f5(f4(f3(f2(f1(t0))))))))
+	_ = "STUB: not implemented"
+	return *new(T8)
 }
 
 // Flow8 creates a function that takes an initial value t0 and successively applies 8 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow8[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, T0, T1, T2, T3, T4, T5, T6, T7, T8 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8) func(T0) T8 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T8 {
-		return Pipe8(t0, f1, f2, f3, f4, f5, f6, f7, f8)
-	}
+	return nil
 }
 
 // Nullary8 creates a parameter less function from a parameter less function and 7 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary8[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, T1, T2, T3, T4, T5, T6, T7, T8 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8) func() T8 {
-	return func() T8 {
-		return Pipe7(f1(), f2, f3, f4, f5, f6, f7, f8)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry8 takes a function with 8 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry8]
 func Curry8[FCT ~func(T0, T1, T2, T3, T4, T5, T6, T7) T8, T0, T1, T2, T3, T4, T5, T6, T7, T8 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T8 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) T8 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) T8 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) T8 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) T8 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) T8 {
-						return func(t5 T5) func(t6 T6) func(t7 T7) T8 {
-							return func(t6 T6) func(t7 T7) T8 {
-								return func(t7 T7) T8 {
-									return f(t0, t1, t2, t3, t4, t5, t6, t7)
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry8 takes a cascade of 8 functions each taking only one parameter and returns a function with 8 parameters .
 // The inverse function is [Curry8]
 func Uncurry8[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T8, T0, T1, T2, T3, T4, T5, T6, T7, T8 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6, T7) T8 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7) T8 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)(t7)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic8 converts a function taking 8 parameters and a final slice into a function with 8 parameters but a final variadic argument
 func Variadic8[T1, T2, T3, T4, T5, T6, T7, T8, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, []V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic8 converts a function taking 8 parameters and a final variadic argument into a function with 8 parameters but a final slice argument
 func Unvariadic8[T1, T2, T3, T4, T5, T6, T7, T8, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced8 converts a function taking a slice parameter into a function with 8 parameters
 func Unsliced8[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7, t8 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7, t8})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe9 takes an initial value t0 and successively applies 9 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe9[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9) T9 {
-	return f9(f8(f7(f6(f5(f4(f3(f2(f1(t0)))))))))
+	_ = "STUB: not implemented"
+	return *new(T9)
 }
 
 // Flow9 creates a function that takes an initial value t0 and successively applies 9 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow9[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9) func(T0) T9 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T9 {
-		return Pipe9(t0, f1, f2, f3, f4, f5, f6, f7, f8, f9)
-	}
+	return nil
 }
 
 // Nullary9 creates a parameter less function from a parameter less function and 8 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary9[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, T1, T2, T3, T4, T5, T6, T7, T8, T9 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9) func() T9 {
-	return func() T9 {
-		return Pipe8(f1(), f2, f3, f4, f5, f6, f7, f8, f9)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry9 takes a function with 9 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry9]
 func Curry9[FCT ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8) T9, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T9 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) T9 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) T9 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) T9 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) T9 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) T9 {
-						return func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) T9 {
-							return func(t6 T6) func(t7 T7) func(t8 T8) T9 {
-								return func(t7 T7) func(t8 T8) T9 {
-									return func(t8 T8) T9 {
-										return f(t0, t1, t2, t3, t4, t5, t6, t7, t8)
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry9 takes a cascade of 9 functions each taking only one parameter and returns a function with 9 parameters .
 // The inverse function is [Curry9]
 func Uncurry9[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T9, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6, T7, T8) T9 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8) T9 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)(t7)(t8)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic9 converts a function taking 9 parameters and a final slice into a function with 9 parameters but a final variadic argument
 func Variadic9[T1, T2, T3, T4, T5, T6, T7, T8, T9, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, []V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic9 converts a function taking 9 parameters and a final variadic argument into a function with 9 parameters but a final slice argument
 func Unvariadic9[T1, T2, T3, T4, T5, T6, T7, T8, T9, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced9 converts a function taking a slice parameter into a function with 9 parameters
 func Unsliced9[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7, t8, t9 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7, t8, t9})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe10 takes an initial value t0 and successively applies 10 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe10[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10) T10 {
-	return f10(f9(f8(f7(f6(f5(f4(f3(f2(f1(t0))))))))))
+	_ = "STUB: not implemented"
+	return *new(T10)
 }
 
 // Flow10 creates a function that takes an initial value t0 and successively applies 10 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow10[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10) func(T0) T10 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T10 {
-		return Pipe10(t0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10)
-	}
+	return nil
 }
 
 // Nullary10 creates a parameter less function from a parameter less function and 9 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary10[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10) func() T10 {
-	return func() T10 {
-		return Pipe9(f1(), f2, f3, f4, f5, f6, f7, f8, f9, f10)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry10 takes a function with 10 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry10]
 func Curry10[FCT ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) T10, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T10 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) T10 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) T10 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) T10 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) T10 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) T10 {
-						return func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) T10 {
-							return func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) T10 {
-								return func(t7 T7) func(t8 T8) func(t9 T9) T10 {
-									return func(t8 T8) func(t9 T9) T10 {
-										return func(t9 T9) T10 {
-											return f(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9)
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry10 takes a cascade of 10 functions each taking only one parameter and returns a function with 10 parameters .
 // The inverse function is [Curry10]
 func Uncurry10[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T10, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) T10 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9) T10 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)(t7)(t8)(t9)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic10 converts a function taking 10 parameters and a final slice into a function with 10 parameters but a final variadic argument
 func Variadic10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, []V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic10 converts a function taking 10 parameters and a final variadic argument into a function with 10 parameters but a final slice argument
 func Unvariadic10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced10 converts a function taking a slice parameter into a function with 10 parameters
 func Unsliced10[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7, t8, t9, t10})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe11 takes an initial value t0 and successively applies 11 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe11[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11) T11 {
-	return f11(f10(f9(f8(f7(f6(f5(f4(f3(f2(f1(t0)))))))))))
+	_ = "STUB: not implemented"
+	return *new(T11)
 }
 
 // Flow11 creates a function that takes an initial value t0 and successively applies 11 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow11[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11) func(T0) T11 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T11 {
-		return Pipe11(t0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11)
-	}
+	return nil
 }
 
 // Nullary11 creates a parameter less function from a parameter less function and 10 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary11[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11) func() T11 {
-	return func() T11 {
-		return Pipe10(f1(), f2, f3, f4, f5, f6, f7, f8, f9, f10, f11)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry11 takes a function with 11 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry11]
 func Curry11[FCT ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) T11, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T11 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) T11 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) T11 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) T11 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) T11 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) T11 {
-						return func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) T11 {
-							return func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) T11 {
-								return func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) T11 {
-									return func(t8 T8) func(t9 T9) func(t10 T10) T11 {
-										return func(t9 T9) func(t10 T10) T11 {
-											return func(t10 T10) T11 {
-												return f(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10)
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry11 takes a cascade of 11 functions each taking only one parameter and returns a function with 11 parameters .
 // The inverse function is [Curry11]
 func Uncurry11[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T11, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) T11 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10) T11 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)(t7)(t8)(t9)(t10)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic11 converts a function taking 11 parameters and a final slice into a function with 11 parameters but a final variadic argument
 func Variadic11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, []V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic11 converts a function taking 11 parameters and a final variadic argument into a function with 11 parameters but a final slice argument
 func Unvariadic11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced11 converts a function taking a slice parameter into a function with 11 parameters
 func Unsliced11[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe12 takes an initial value t0 and successively applies 12 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe12[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12) T12 {
-	return f12(f11(f10(f9(f8(f7(f6(f5(f4(f3(f2(f1(t0))))))))))))
+	_ = "STUB: not implemented"
+	return *new(T12)
 }
 
 // Flow12 creates a function that takes an initial value t0 and successively applies 12 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow12[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12) func(T0) T12 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T12 {
-		return Pipe12(t0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12)
-	}
+	return nil
 }
 
 // Nullary12 creates a parameter less function from a parameter less function and 11 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary12[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12) func() T12 {
-	return func() T12 {
-		return Pipe11(f1(), f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry12 takes a function with 12 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry12]
 func Curry12[FCT ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11) T12, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) T12 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) T12 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) T12 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) T12 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) T12 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) T12 {
-						return func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) T12 {
-							return func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) T12 {
-								return func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) T12 {
-									return func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) T12 {
-										return func(t9 T9) func(t10 T10) func(t11 T11) T12 {
-											return func(t10 T10) func(t11 T11) T12 {
-												return func(t11 T11) T12 {
-													return f(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11)
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry12 takes a cascade of 12 functions each taking only one parameter and returns a function with 12 parameters .
 // The inverse function is [Curry12]
 func Uncurry12[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) T12, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11) T12 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11) T12 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)(t7)(t8)(t9)(t10)(t11)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic12 converts a function taking 12 parameters and a final slice into a function with 12 parameters but a final variadic argument
 func Variadic12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, []V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic12 converts a function taking 12 parameters and a final variadic argument into a function with 12 parameters but a final slice argument
 func Unvariadic12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced12 converts a function taking a slice parameter into a function with 12 parameters
 func Unsliced12[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe13 takes an initial value t0 and successively applies 13 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe13[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13) T13 {
-	return f13(f12(f11(f10(f9(f8(f7(f6(f5(f4(f3(f2(f1(t0)))))))))))))
+	_ = "STUB: not implemented"
+	return *new(T13)
 }
 
 // Flow13 creates a function that takes an initial value t0 and successively applies 13 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow13[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13) func(T0) T13 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T13 {
-		return Pipe13(t0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13)
-	}
+	return nil
 }
 
 // Nullary13 creates a parameter less function from a parameter less function and 12 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary13[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13) func() T13 {
-	return func() T13 {
-		return Pipe12(f1(), f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry13 takes a function with 13 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry13]
 func Curry13[FCT ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12) T13, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) T13 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) T13 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) T13 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) T13 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) T13 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) T13 {
-						return func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) T13 {
-							return func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) T13 {
-								return func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) T13 {
-									return func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) T13 {
-										return func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) T13 {
-											return func(t10 T10) func(t11 T11) func(t12 T12) T13 {
-												return func(t11 T11) func(t12 T12) T13 {
-													return func(t12 T12) T13 {
-														return f(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12)
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry13 takes a cascade of 13 functions each taking only one parameter and returns a function with 13 parameters .
 // The inverse function is [Curry13]
 func Uncurry13[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) T13, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12) T13 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12) T13 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)(t7)(t8)(t9)(t10)(t11)(t12)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic13 converts a function taking 13 parameters and a final slice into a function with 13 parameters but a final variadic argument
 func Variadic13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, []V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic13 converts a function taking 13 parameters and a final variadic argument into a function with 13 parameters but a final slice argument
 func Unvariadic13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced13 converts a function taking a slice parameter into a function with 13 parameters
 func Unsliced13[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe14 takes an initial value t0 and successively applies 14 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe14[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14) T14 {
-	return f14(f13(f12(f11(f10(f9(f8(f7(f6(f5(f4(f3(f2(f1(t0))))))))))))))
+	_ = "STUB: not implemented"
+	return *new(T14)
 }
 
 // Flow14 creates a function that takes an initial value t0 and successively applies 14 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow14[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14) func(T0) T14 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T14 {
-		return Pipe14(t0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14)
-	}
+	return nil
 }
 
 // Nullary14 creates a parameter less function from a parameter less function and 13 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary14[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14) func() T14 {
-	return func() T14 {
-		return Pipe13(f1(), f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry14 takes a function with 14 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry14]
 func Curry14[FCT ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13) T14, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) T14 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) T14 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) T14 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) T14 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) T14 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) T14 {
-						return func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) T14 {
-							return func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) T14 {
-								return func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) T14 {
-									return func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) T14 {
-										return func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) T14 {
-											return func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) T14 {
-												return func(t11 T11) func(t12 T12) func(t13 T13) T14 {
-													return func(t12 T12) func(t13 T13) T14 {
-														return func(t13 T13) T14 {
-															return f(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13)
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry14 takes a cascade of 14 functions each taking only one parameter and returns a function with 14 parameters .
 // The inverse function is [Curry14]
 func Uncurry14[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) T14, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13) T14 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13) T14 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)(t7)(t8)(t9)(t10)(t11)(t12)(t13)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic14 converts a function taking 14 parameters and a final slice into a function with 14 parameters but a final variadic argument
 func Variadic14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, []V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic14 converts a function taking 14 parameters and a final variadic argument into a function with 14 parameters but a final slice argument
 func Unvariadic14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced14 converts a function taking a slice parameter into a function with 14 parameters
 func Unsliced14[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T, T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe15 takes an initial value t0 and successively applies 15 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe15[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15) T15 {
-	return f15(f14(f13(f12(f11(f10(f9(f8(f7(f6(f5(f4(f3(f2(f1(t0)))))))))))))))
+	_ = "STUB: not implemented"
+	return *new(T15)
 }
 
 // Flow15 creates a function that takes an initial value t0 and successively applies 15 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow15[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15) func(T0) T15 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T15 {
-		return Pipe15(t0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15)
-	}
+	return nil
 }
 
 // Nullary15 creates a parameter less function from a parameter less function and 14 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary15[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15) func() T15 {
-	return func() T15 {
-		return Pipe14(f1(), f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry15 takes a function with 15 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry15]
 func Curry15[FCT ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14) T15, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) T15 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) T15 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) T15 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) T15 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) T15 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) T15 {
-						return func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) T15 {
-							return func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) T15 {
-								return func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) T15 {
-									return func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) T15 {
-										return func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) T15 {
-											return func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) T15 {
-												return func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) T15 {
-													return func(t12 T12) func(t13 T13) func(t14 T14) T15 {
-														return func(t13 T13) func(t14 T14) T15 {
-															return func(t14 T14) T15 {
-																return f(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14)
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry15 takes a cascade of 15 functions each taking only one parameter and returns a function with 15 parameters .
 // The inverse function is [Curry15]
 func Uncurry15[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) T15, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14) T15 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14) T15 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)(t7)(t8)(t9)(t10)(t11)(t12)(t13)(t14)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic15 converts a function taking 15 parameters and a final slice into a function with 15 parameters but a final variadic argument
 func Variadic15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, []V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic15 converts a function taking 15 parameters and a final variadic argument into a function with 15 parameters but a final slice argument
 func Unvariadic15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced15 converts a function taking a slice parameter into a function with 15 parameters
 func Unsliced15[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T, T, T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe16 takes an initial value t0 and successively applies 16 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe16[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16) T16 {
-	return f16(f15(f14(f13(f12(f11(f10(f9(f8(f7(f6(f5(f4(f3(f2(f1(t0))))))))))))))))
+	_ = "STUB: not implemented"
+	return *new(T16)
 }
 
 // Flow16 creates a function that takes an initial value t0 and successively applies 16 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow16[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16) func(T0) T16 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T16 {
-		return Pipe16(t0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16)
-	}
+	return nil
 }
 
 // Nullary16 creates a parameter less function from a parameter less function and 15 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary16[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16) func() T16 {
-	return func() T16 {
-		return Pipe15(f1(), f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry16 takes a function with 16 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry16]
 func Curry16[FCT ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15) T16, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) func(T15) T16 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-						return func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-							return func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-								return func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-									return func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-										return func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-											return func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-												return func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-													return func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-														return func(t13 T13) func(t14 T14) func(t15 T15) T16 {
-															return func(t14 T14) func(t15 T15) T16 {
-																return func(t15 T15) T16 {
-																	return f(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15)
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry16 takes a cascade of 16 functions each taking only one parameter and returns a function with 16 parameters .
 // The inverse function is [Curry16]
 func Uncurry16[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) func(T15) T16, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15) T16 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15) T16 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)(t7)(t8)(t9)(t10)(t11)(t12)(t13)(t14)(t15)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic16 converts a function taking 16 parameters and a final slice into a function with 16 parameters but a final variadic argument
 func Variadic16[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, []V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic16 converts a function taking 16 parameters and a final variadic argument into a function with 16 parameters but a final slice argument
 func Unvariadic16[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced16 converts a function taking a slice parameter into a function with 16 parameters
 func Unsliced16[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe17 takes an initial value t0 and successively applies 17 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe17[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, F17 ~func(T16) T17, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16, f17 F17) T17 {
-	return f17(f16(f15(f14(f13(f12(f11(f10(f9(f8(f7(f6(f5(f4(f3(f2(f1(t0)))))))))))))))))
+	_ = "STUB: not implemented"
+	return *new(T17)
 }
 
 // Flow17 creates a function that takes an initial value t0 and successively applies 17 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow17[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, F17 ~func(T16) T17, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16, f17 F17) func(T0) T17 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T17 {
-		return Pipe17(t0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17)
-	}
+	return nil
 }
 
 // Nullary17 creates a parameter less function from a parameter less function and 16 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary17[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, F17 ~func(T16) T17, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16, f17 F17) func() T17 {
-	return func() T17 {
-		return Pipe16(f1(), f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry17 takes a function with 17 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry17]
 func Curry17[FCT ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16) T17, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) func(T15) func(T16) T17 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-						return func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-							return func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-								return func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-									return func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-										return func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-											return func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-												return func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-													return func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-														return func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-															return func(t14 T14) func(t15 T15) func(t16 T16) T17 {
-																return func(t15 T15) func(t16 T16) T17 {
-																	return func(t16 T16) T17 {
-																		return f(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16)
-																	}
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry17 takes a cascade of 17 functions each taking only one parameter and returns a function with 17 parameters .
 // The inverse function is [Curry17]
 func Uncurry17[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) func(T15) func(T16) T17, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16) T17 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16) T17 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)(t7)(t8)(t9)(t10)(t11)(t12)(t13)(t14)(t15)(t16)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic17 converts a function taking 17 parameters and a final slice into a function with 17 parameters but a final variadic argument
 func Variadic17[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, []V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16, t17 T17, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic17 converts a function taking 17 parameters and a final variadic argument into a function with 17 parameters but a final slice argument
 func Unvariadic17[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16, t17 T17, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced17 converts a function taking a slice parameter into a function with 17 parameters
 func Unsliced17[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe18 takes an initial value t0 and successively applies 18 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe18[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, F17 ~func(T16) T17, F18 ~func(T17) T18, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16, f17 F17, f18 F18) T18 {
-	return f18(f17(f16(f15(f14(f13(f12(f11(f10(f9(f8(f7(f6(f5(f4(f3(f2(f1(t0))))))))))))))))))
+	_ = "STUB: not implemented"
+	return *new(T18)
 }
 
 // Flow18 creates a function that takes an initial value t0 and successively applies 18 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow18[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, F17 ~func(T16) T17, F18 ~func(T17) T18, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16, f17 F17, f18 F18) func(T0) T18 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T18 {
-		return Pipe18(t0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18)
-	}
+	return nil
 }
 
 // Nullary18 creates a parameter less function from a parameter less function and 17 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary18[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, F17 ~func(T16) T17, F18 ~func(T17) T18, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16, f17 F17, f18 F18) func() T18 {
-	return func() T18 {
-		return Pipe17(f1(), f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry18 takes a function with 18 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry18]
 func Curry18[FCT ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17) T18, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) func(T15) func(T16) func(T17) T18 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-						return func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-							return func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-								return func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-									return func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-										return func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-											return func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-												return func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-													return func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-														return func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-															return func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-																return func(t15 T15) func(t16 T16) func(t17 T17) T18 {
-																	return func(t16 T16) func(t17 T17) T18 {
-																		return func(t17 T17) T18 {
-																			return f(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17)
-																		}
-																	}
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry18 takes a cascade of 18 functions each taking only one parameter and returns a function with 18 parameters .
 // The inverse function is [Curry18]
 func Uncurry18[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) func(T15) func(T16) func(T17) T18, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17) T18 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16, t17 T17) T18 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)(t7)(t8)(t9)(t10)(t11)(t12)(t13)(t14)(t15)(t16)(t17)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic18 converts a function taking 18 parameters and a final slice into a function with 18 parameters but a final variadic argument
 func Variadic18[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, []V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16, t17 T17, t18 T18, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic18 converts a function taking 18 parameters and a final variadic argument into a function with 18 parameters but a final slice argument
 func Unvariadic18[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16, t17 T17, t18 T18, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced18 converts a function taking a slice parameter into a function with 18 parameters
 func Unsliced18[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe19 takes an initial value t0 and successively applies 19 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe19[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, F17 ~func(T16) T17, F18 ~func(T17) T18, F19 ~func(T18) T19, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16, f17 F17, f18 F18, f19 F19) T19 {
-	return f19(f18(f17(f16(f15(f14(f13(f12(f11(f10(f9(f8(f7(f6(f5(f4(f3(f2(f1(t0)))))))))))))))))))
+	_ = "STUB: not implemented"
+	return *new(T19)
 }
 
 // Flow19 creates a function that takes an initial value t0 and successively applies 19 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow19[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, F17 ~func(T16) T17, F18 ~func(T17) T18, F19 ~func(T18) T19, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16, f17 F17, f18 F18, f19 F19) func(T0) T19 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T19 {
-		return Pipe19(t0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19)
-	}
+	return nil
 }
 
 // Nullary19 creates a parameter less function from a parameter less function and 18 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary19[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, F17 ~func(T16) T17, F18 ~func(T17) T18, F19 ~func(T18) T19, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16, f17 F17, f18 F18, f19 F19) func() T19 {
-	return func() T19 {
-		return Pipe18(f1(), f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry19 takes a function with 19 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry19]
 func Curry19[FCT ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18) T19, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) func(T15) func(T16) func(T17) func(T18) T19 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-						return func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-							return func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-								return func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-									return func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-										return func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-											return func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-												return func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-													return func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-														return func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-															return func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-																return func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-																	return func(t16 T16) func(t17 T17) func(t18 T18) T19 {
-																		return func(t17 T17) func(t18 T18) T19 {
-																			return func(t18 T18) T19 {
-																				return f(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18)
-																			}
-																		}
-																	}
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry19 takes a cascade of 19 functions each taking only one parameter and returns a function with 19 parameters .
 // The inverse function is [Curry19]
 func Uncurry19[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) func(T15) func(T16) func(T17) func(T18) T19, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18) T19 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16, t17 T17, t18 T18) T19 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)(t7)(t8)(t9)(t10)(t11)(t12)(t13)(t14)(t15)(t16)(t17)(t18)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic19 converts a function taking 19 parameters and a final slice into a function with 19 parameters but a final variadic argument
 func Variadic19[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, []V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16, t17 T17, t18 T18, t19 T19, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic19 converts a function taking 19 parameters and a final variadic argument into a function with 19 parameters but a final slice argument
 func Unvariadic19[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16, t17 T17, t18 T18, t19 T19, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced19 converts a function taking a slice parameter into a function with 19 parameters
 func Unsliced19[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pipe20 takes an initial value t0 and successively applies 20 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Pipe20[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, F17 ~func(T16) T17, F18 ~func(T17) T18, F19 ~func(T18) T19, F20 ~func(T19) T20, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20 any](t0 T0, f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16, f17 F17, f18 F18, f19 F19, f20 F20) T20 {
-	return f20(f19(f18(f17(f16(f15(f14(f13(f12(f11(f10(f9(f8(f7(f6(f5(f4(f3(f2(f1(t0))))))))))))))))))))
+	_ = "STUB: not implemented"
+	return *new(T20)
 }
 
 // Flow20 creates a function that takes an initial value t0 and successively applies 20 functions where the input of a function is the return value of the previous function
 // The final return value is the result of the last function application
+//
 //go:inline
 func Flow20[F1 ~func(T0) T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, F17 ~func(T16) T17, F18 ~func(T17) T18, F19 ~func(T18) T19, F20 ~func(T19) T20, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16, f17 F17, f18 F18, f19 F19, f20 F20) func(T0) T20 {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t0 T0) T20 {
-		return Pipe20(t0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20)
-	}
+	return nil
 }
 
 // Nullary20 creates a parameter less function from a parameter less function and 19 functions. When executed the first parameter less function gets executed and then the result is piped through the remaining functions
 func Nullary20[F1 ~func() T1, F2 ~func(T1) T2, F3 ~func(T2) T3, F4 ~func(T3) T4, F5 ~func(T4) T5, F6 ~func(T5) T6, F7 ~func(T6) T7, F8 ~func(T7) T8, F9 ~func(T8) T9, F10 ~func(T9) T10, F11 ~func(T10) T11, F12 ~func(T11) T12, F13 ~func(T12) T13, F14 ~func(T13) T14, F15 ~func(T14) T15, F16 ~func(T15) T16, F17 ~func(T16) T17, F18 ~func(T17) T18, F19 ~func(T18) T19, F20 ~func(T19) T20, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10, f11 F11, f12 F12, f13 F13, f14 F14, f15 F15, f16 F16, f17 F17, f18 F18, f19 F19, f20 F20) func() T20 {
-	return func() T20 {
-		return Pipe19(f1(), f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry20 takes a function with 20 parameters and returns a cascade of functions each taking only one parameter.
 // The inverse function is [Uncurry20]
 func Curry20[FCT ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19) T20, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20 any](f FCT) func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) func(T15) func(T16) func(T17) func(T18) func(T19) T20 {
-	return func(t0 T0) func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-		return func(t1 T1) func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-			return func(t2 T2) func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-				return func(t3 T3) func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-					return func(t4 T4) func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-						return func(t5 T5) func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-							return func(t6 T6) func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-								return func(t7 T7) func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-									return func(t8 T8) func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-										return func(t9 T9) func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-											return func(t10 T10) func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-												return func(t11 T11) func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-													return func(t12 T12) func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-														return func(t13 T13) func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-															return func(t14 T14) func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-																return func(t15 T15) func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-																	return func(t16 T16) func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-																		return func(t17 T17) func(t18 T18) func(t19 T19) T20 {
-																			return func(t18 T18) func(t19 T19) T20 {
-																				return func(t19 T19) T20 {
-																					return f(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19)
-																				}
-																			}
-																		}
-																	}
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry20 takes a cascade of 20 functions each taking only one parameter and returns a function with 20 parameters .
 // The inverse function is [Curry20]
 func Uncurry20[FCT ~func(T0) func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) func(T15) func(T16) func(T17) func(T18) func(T19) T20, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20 any](f FCT) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19) T20 {
-	return func(t0 T0, t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16, t17 T17, t18 T18, t19 T19) T20 {
-		return f(t0)(t1)(t2)(t3)(t4)(t5)(t6)(t7)(t8)(t9)(t10)(t11)(t12)(t13)(t14)(t15)(t16)(t17)(t18)(t19)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Variadic20 converts a function taking 20 parameters and a final slice into a function with 20 parameters but a final variadic argument
 func Variadic20[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, []V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, ...V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16, t17 T17, t18 T18, t19 T19, t20 T20, v ...V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, v)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unvariadic20 converts a function taking 20 parameters and a final variadic argument into a function with 20 parameters but a final slice argument
 func Unvariadic20[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, V, R any](f func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, ...V) R) func(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, []V) R {
-	return func(t1 T1, t2 T2, t3 T3, t4 T4, t5 T5, t6 T6, t7 T7, t8 T8, t9 T9, t10 T10, t11 T11, t12 T12, t13 T13, t14 T14, t15 T15, t16 T16, t17 T17, t18 T18, t19 T19, t20 T20, v []V) R {
-		return f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, v...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unsliced20 converts a function taking a slice parameter into a function with 20 parameters
 func Unsliced20[F ~func([]T) R, T, R any](f F) func(T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T) R {
-	return func(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20 T) R {
-		return f([]T{t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

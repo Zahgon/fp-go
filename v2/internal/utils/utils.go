@@ -16,36 +16,21 @@
 package utils
 
 import (
-	"errors"
 	"strings"
 )
 
 var Upper = strings.ToUpper
 
-func Inc(i int) int {
-	return i + 1
-}
+func Inc(i int) int { _ = "STUB: not implemented"; return 0 }
 
-func Dec(i int) int {
-	return i - 1
-}
+func Dec(i int) int { _ = "STUB: not implemented"; return 0 }
 
-func Sum(left, right int) int {
-	return left + right
-}
+func Sum(left, right int) int { _ = "STUB: not implemented"; return 0 }
 
-func Double(value int) int {
-	return value * 2
-}
+func Double(value int) int { _ = "STUB: not implemented"; return 0 }
 
-func Triple(value int) int {
-	return value * 3
-}
+func Triple(value int) int { _ = "STUB: not implemented"; return 0 }
 
-func StringLen(value string) int {
-	return len(value)
-}
+func StringLen(value string) int { _ = "STUB: not implemented"; return 0 }
 
-func Error() (int, error) {
-	return 0, errors.New("some error")
-}
+func Error() (int, error) { _ = "STUB: not implemented"; return 0, nil }

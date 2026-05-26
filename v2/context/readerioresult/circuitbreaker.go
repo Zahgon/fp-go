@@ -4,7 +4,6 @@ import (
 	"time"
 
 	"github.com/IBM/fp-go/v2/circuitbreaker"
-	"github.com/IBM/fp-go/v2/context/readerio"
 	"github.com/IBM/fp-go/v2/option"
 	"github.com/IBM/fp-go/v2/retry"
 )
@@ -24,24 +23,8 @@ func MakeCircuitBreaker[T any](
 	policy retry.RetryPolicy,
 	metrics circuitbreaker.Metrics,
 ) CircuitBreaker[T] {
-	return circuitbreaker.MakeCircuitBreaker[error, T](
-		Left,
-		ChainFirstIOK,
-		ChainFirstLeftIOK,
-
-		readerio.ChainFirstIOK,
-
-		FromIO,
-		Flap,
-		Flatten,
-
-		currentTime,
-		closedState,
-		circuitbreaker.MakeCircuitBreakerError,
-		checkError,
-		policy,
-		metrics,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MakeSingletonBreaker[T any](
@@ -51,14 +34,6 @@ func MakeSingletonBreaker[T any](
 	policy retry.RetryPolicy,
 	metrics circuitbreaker.Metrics,
 ) Operator[T, T] {
-	return circuitbreaker.MakeSingletonBreaker(
-		MakeCircuitBreaker[T](
-			currentTime,
-			closedState,
-			checkError,
-			policy,
-			metrics,
-		),
-		closedState,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,13 +15,10 @@
 
 package stateless
 
-import (
-	G "github.com/IBM/fp-go/iterator/stateless/generic"
-)
-
 // Scan takes an [Iterator] and returns a new [Iterator] of the same length, where the values
 // of the new [Iterator] are the result of the application of `f` to the value of the
 // source iterator with the previously accumulated value
 func Scan[FCT ~func(V, U) V, U, V any](f FCT, initial V) func(ma Iterator[U]) Iterator[V] {
-	return G.Scan[Iterator[V], Iterator[U], FCT](f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }

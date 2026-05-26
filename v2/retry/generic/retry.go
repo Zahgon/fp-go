@@ -51,8 +51,6 @@ package generic
 import (
 	"time"
 
-	F "github.com/IBM/fp-go/v2/function"
-	O "github.com/IBM/fp-go/v2/option"
 	R "github.com/IBM/fp-go/v2/retry"
 	"github.com/IBM/fp-go/v2/tailrec"
 )
@@ -81,23 +79,8 @@ func applyAndDelay[HKTSTATUS any](
 
 	policy R.RetryPolicy,
 ) func(status R.RetryStatus) HKTSTATUS {
-
-	apStatus := F.Bind1st(R.ApplyPolicy, policy)
-
-	return func(status R.RetryStatus) HKTSTATUS {
-		newStatus := apStatus(status)
-		ofNewStatus := monadOf(newStatus)
-		return F.Pipe2(
-			newStatus,
-			R.PreviousDelayLens.Get,
-			O.Fold(
-				F.Constant(ofNewStatus),
-				func(delay time.Duration) HKTSTATUS {
-					return monadDelay(delay)(ofNewStatus)
-				},
-			),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Retrying implements a generic retry combinator that works with any monadic type.
@@ -188,42 +171,13 @@ func Retrying[HKTTRAMPOLINE, HKTA, HKTSTATUS, A any](
 	action func(R.RetryStatus) HKTA,
 	check func(A) bool,
 ) HKTA {
+	_ = "STUB: not implemented"
 	// delay callback
-	applyDelay := applyAndDelay(monadOfStatus, monadDelay, policy)
-
-	// function to check if we need to retry or not
-	checkForRetry := O.FromPredicate(check)
-
-	// need some lazy init because we reference it in the chain
-	retryFct := func(status R.RetryStatus) HKTTRAMPOLINE {
-		return F.Pipe2(
-			status,
-			action,
-			monadChain(func(a A) HKTTRAMPOLINE {
-				return F.Pipe3(
-					a,
-					checkForRetry,
-					O.Map(func(a A) HKTTRAMPOLINE {
-						return F.Pipe1(
-							applyDelay(status),
-							monadMapStatus(func(status R.RetryStatus) tailrec.Trampoline[R.RetryStatus, A] {
-								return F.Pipe2(
-									status,
-									R.PreviousDelayLens.Get,
-									O.Fold(
-										F.Constant(tailrec.Land[R.RetryStatus](a)),
-										F.Constant1[time.Duration](tailrec.Bounce[A](status)),
-									),
-								)
-							}),
-						)
-					}),
-					O.GetOrElse(F.Constant(monadOf(tailrec.Land[R.RetryStatus](a)))),
-				)
-			}),
-		)
-	}
-
-	// seed
-	return tailRec(retryFct)(R.DefaultRetryStatus)
+	return *new(HKTA)
 }
+
+// function to check if we need to retry or not
+
+// need some lazy init because we reference it in the chain
+
+// seed

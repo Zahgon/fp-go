@@ -18,8 +18,6 @@ package iso
 import (
 	"fmt"
 	"log/slog"
-
-	"github.com/IBM/fp-go/v2/internal/formatting"
 )
 
 // String returns a string representation of the isomorphism.
@@ -29,27 +27,27 @@ import (
 //	tempIso := iso.MakeIso(...)
 //	fmt.Println(tempIso)  // Prints: "Iso"
 func (i Iso[S, T]) String() string {
-	return "Iso"
+	_ = "STUB: not implemented"
+
+	// Format implements fmt.Formatter for Iso.
+	// Supports all standard format verbs:
+	//   - %s, %v, %+v: uses String() representation
+	//   - %#v: uses GoString() representation
+	//   - %q: quoted String() representation
+	//   - other verbs: uses String() representation
+	//
+	// Example:
+	//
+	//	tempIso := iso.MakeIso(...)
+	//	fmt.Printf("%s", tempIso)   // "Iso"
+	//	fmt.Printf("%v", tempIso)   // "Iso"
+	//	fmt.Printf("%#v", tempIso)  // "iso.Iso[Celsius, Fahrenheit]"
+	//
+	//go:noinline
+	return ""
 }
 
-// Format implements fmt.Formatter for Iso.
-// Supports all standard format verbs:
-//   - %s, %v, %+v: uses String() representation
-//   - %#v: uses GoString() representation
-//   - %q: quoted String() representation
-//   - other verbs: uses String() representation
-//
-// Example:
-//
-//	tempIso := iso.MakeIso(...)
-//	fmt.Printf("%s", tempIso)   // "Iso"
-//	fmt.Printf("%v", tempIso)   // "Iso"
-//	fmt.Printf("%#v", tempIso)  // "iso.Iso[Celsius, Fahrenheit]"
-//
-//go:noinline
-func (i Iso[S, T]) Format(f fmt.State, c rune) {
-	formatting.FmtString(i, f, c)
-}
+func (i Iso[S, T]) Format(f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 // GoString implements fmt.GoStringer for Iso.
 // Returns a Go-syntax representation of the Iso value.
@@ -60,12 +58,7 @@ func (i Iso[S, T]) Format(f fmt.State, c rune) {
 //	tempIso.GoString() // "iso.Iso[Celsius, Fahrenheit]"
 //
 //go:noinline
-func (i Iso[S, T]) GoString() string {
-	return fmt.Sprintf("iso.Iso[%s, %s]",
-		formatting.TypeInfo(new(S)),
-		formatting.TypeInfo(new(T)),
-	)
-}
+func (i Iso[S, T]) GoString() string { _ = "STUB: not implemented"; return "" }
 
 // LogValue implements slog.LogValuer for Iso.
 // Returns a slog.Value that represents the Iso for structured logging.
@@ -79,6 +72,4 @@ func (i Iso[S, T]) GoString() string {
 //	// Logs: {"msg":"using iso","iso":"Iso"}
 //
 //go:noinline
-func (i Iso[S, T]) LogValue() slog.Value {
-	return slog.StringValue("Iso")
-}
+func (i Iso[S, T]) LogValue() slog.Value { _ = "STUB: not implemented"; return *new(slog.Value) }

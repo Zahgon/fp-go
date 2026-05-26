@@ -17,16 +17,14 @@ package generic
 
 import (
 	EQ "github.com/IBM/fp-go/eq"
-	G "github.com/IBM/fp-go/io/generic"
 	O "github.com/IBM/fp-go/option"
 )
 
 // Eq implements the equals predicate for values contained in the IO monad
-func Eq[GA ~func() O.Option[A], A any](e EQ.Eq[A]) EQ.Eq[GA] {
-	return G.Eq[GA](O.Eq(e))
-}
+func Eq[GA ~func() O.Option[A], A any](e EQ.Eq[A]) EQ.Eq[GA] { _ = "STUB: not implemented"; return nil }
 
 // FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
 func FromStrictEquals[GA ~func() O.Option[A], A comparable]() EQ.Eq[GA] {
-	return Eq[GA](EQ.FromStrictEquals[A]())
+	_ = "STUB: not implemented"
+	return nil
 }

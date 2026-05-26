@@ -21,10 +21,12 @@ import (
 )
 
 func ApplySemigroup[E, A any](s S.Semigroup[A]) S.Semigroup[Either[E, A]] {
-	return S.ApplySemigroup(MonadMap[E, A, func(A) A], MonadAp[A, E, A], s)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoid returns a [Monoid] that concatenates [Either] instances via their applicative
 func ApplicativeMonoid[E, A any](m M.Monoid[A]) M.Monoid[Either[E, A]] {
-	return M.ApplicativeMonoid(Of[E, A], MonadMap[E, A, func(A) A], MonadAp[A, E, A], m)
+	_ = "STUB: not implemented"
+	return nil
 }

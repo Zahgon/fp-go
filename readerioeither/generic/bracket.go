@@ -17,8 +17,6 @@ package generic
 
 import (
 	ET "github.com/IBM/fp-go/either"
-	G "github.com/IBM/fp-go/internal/bracket"
-	I "github.com/IBM/fp-go/readerio/generic"
 )
 
 // Bracket makes sure that a resource is cleaned up in the event of an error. The release action is called regardless of
@@ -38,14 +36,6 @@ func Bracket[
 	use func(A) GB,
 	release func(A, ET.Either[E, B]) GANY,
 ) GB {
-	return G.Bracket[GA, GB, GANY, ET.Either[E, B], A, B](
-		I.Of[GB, TB, R, ET.Either[E, B]],
-		MonadChain[GA, GB, TA, TB, R, E, A, B],
-		I.MonadChain[GB, GB, TB, TB, R, ET.Either[E, B], ET.Either[E, B]],
-		MonadChain[GANY, GB, TANY, TB, R, E, ANY, B],
-
-		acquire,
-		use,
-		release,
-	)
+	_ = "STUB: not implemented"
+	return *new(GB)
 }

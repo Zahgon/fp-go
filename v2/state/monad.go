@@ -30,58 +30,60 @@ type stateApplicative[S, A, B any] struct{}
 
 type stateMonad[S, A, B any] struct{}
 
-func (o *statePointed[S, A]) Of(a A) State[S, A] {
-	return Of[S](a)
-}
+func (o *statePointed[S, A]) Of(a A) State[S, A] { _ = "STUB: not implemented"; return nil }
 
-func (o *stateApplicative[S, A, B]) Of(a A) State[S, A] {
-	return Of[S](a)
-}
+func (o *stateApplicative[S, A, B]) Of(a A) State[S, A] { _ = "STUB: not implemented"; return nil }
 
-func (o *stateMonad[S, A, B]) Of(a A) State[S, A] {
-	return Of[S](a)
-}
+func (o *stateMonad[S, A, B]) Of(a A) State[S, A] { _ = "STUB: not implemented"; return nil }
 
 func (o *stateFunctor[S, A, B]) Map(f func(A) B) Operator[S, A, B] {
-	return Map[S](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateApplicative[S, A, B]) Map(f func(A) B) Operator[S, A, B] {
-	return Map[S](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateMonad[S, A, B]) Map(f func(A) B) Operator[S, A, B] {
-	return Map[S](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateMonad[S, A, B]) Chain(f Kleisli[S, A, B]) Operator[S, A, B] {
-	return Chain(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateApplicative[S, A, B]) Ap(fa State[S, A]) func(State[S, func(A) B]) State[S, B] {
-	return Ap[B](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateMonad[S, A, B]) Ap(fa State[S, A]) func(State[S, func(A) B]) State[S, B] {
-	return Ap[B](fa)
+	_ = "STUB: not implemented"
+
+	// Pointed implements the pointed operations for [State]
+	return nil
 }
 
-// Pointed implements the pointed operations for [State]
-func Pointed[S, A any]() pointed.Pointed[A, State[S, A]] {
-	return &statePointed[S, A]{}
-}
+func Pointed[S, A any]() pointed.Pointed[A, State[S, A]] { _ = "STUB: not implemented"; return nil }
 
 // Functor implements the functor operations for [State]
 func Functor[S, A, B any]() functor.Functor[A, B, State[S, A], State[S, B]] {
-	return &stateFunctor[S, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Applicative implements the applicative operations for [State]
 func Applicative[S, A, B any]() applicative.Applicative[A, B, State[S, A], State[S, B], State[S, func(A) B]] {
-	return &stateApplicative[S, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad implements the monadic operations for [State]
 func Monad[S, A, B any]() monad.Monad[A, B, State[S, A], State[S, B], State[S, func(A) B]] {
-	return &stateMonad[S, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }

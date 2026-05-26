@@ -1,10 +1,7 @@
 package readerio
 
 import (
-	"context"
-
 	"github.com/IBM/fp-go/v2/reader"
-	RIO "github.com/IBM/fp-go/v2/readerio"
 )
 
 // SequenceReader transforms a ReaderIO containing a Reader into a Reader containing a ReaderIO.
@@ -54,7 +51,8 @@ import (
 //
 //go:inline
 func SequenceReader[R, A any](ma ReaderIO[Reader[R, A]]) Reader[R, ReaderIO[A]] {
-	return RIO.SequenceReader(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseReader applies a Reader-based transformation to a ReaderIO, introducing a new environment dependency.
@@ -113,5 +111,6 @@ func SequenceReader[R, A any](ma ReaderIO[Reader[R, A]]) Reader[R, ReaderIO[A]] 
 func TraverseReader[R, A, B any](
 	f reader.Kleisli[R, A, B],
 ) func(ReaderIO[A]) Kleisli[R, B] {
-	return RIO.TraverseReader[context.Context](f)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,10 +15,6 @@
 
 package monoid
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-)
-
 // VoidMonoid creates a Monoid for the Void (unit) type.
 //
 // The Void type has exactly one value (function.VOID), making it trivial to define
@@ -56,9 +52,4 @@ import (
 //	// Execute all actions and combine results
 //	results := A.Map(func(a Action) Void { return a() })(actions)
 //	_ = ConcatAll(m)(results)  // All actions executed, result is VOID
-func VoidMonoid() Monoid[Void] {
-	return MakeMonoid(
-		function.Constant2[Void, Void](function.VOID),
-		function.VOID,
-	)
-}
+func VoidMonoid() Monoid[Void] { _ = "STUB: not implemented"; return nil }

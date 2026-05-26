@@ -18,11 +18,11 @@ package generic
 import (
 	"context"
 
-	G "github.com/IBM/fp-go/io/generic"
 	O "github.com/IBM/fp-go/option"
 )
 
 // WithLock executes the provided IO operation in the scope of a lock
 func WithLock[GA ~func() O.Option[A], A any](lock func() context.CancelFunc) func(fa GA) GA {
-	return G.WithLock[GA](lock)
+	_ = "STUB: not implemented"
+	return nil
 }

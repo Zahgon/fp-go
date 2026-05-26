@@ -8,15 +8,7 @@
 package builder
 
 import (
-	A "github.com/IBM/fp-go/v2/array"
-	"github.com/IBM/fp-go/v2/endomorphism"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/identity"
-	"github.com/IBM/fp-go/v2/monoid"
 	"github.com/IBM/fp-go/v2/optics/codec"
-	"github.com/IBM/fp-go/v2/optics/codec/decode"
-	"github.com/IBM/fp-go/v2/optics/codec/validate"
-	"github.com/IBM/fp-go/v2/optics/codec/validation"
 )
 
 type (
@@ -68,44 +60,28 @@ var (
 //	A Validate function that takes a PartialPerson builder and returns
 //	a Reader that produces a Validation result (either errors or a Person)
 func makePersonValidate() Validate[Endomorphism[*PartialPerson], *Person] {
+	_ = "STUB: not implemented"
 
 	// Create a monoid for combining validation operations
 	// This allows multiple field validations to be composed together
-	rdrMonoid := validate.ApplicativeMonoid[*PartialPerson](endomorphism.Monoid[*Person]())
-
-	// allOfRdr combines an array of validation readers into a single reader
-	allOfRdr := monoid.ConcatAll(rdrMonoid)
-
-	// valName validates the Name field:
-	// 1. Extract name from PartialPerson
-	// 2. Validate using nameCodec (ensures non-empty)
-	// 3. Map to a Person name setter if valid
-	valName := F.Flow3(
-		partialPersonLenses.name.Get,
-		nameCodec.Validate,
-		decode.Map[validation.Context](personLenses.Name.Set),
-	)
-
-	// valAge validates the Age field:
-	// 1. Extract age from PartialPerson
-	// 2. Validate using ageCodec (ensures >= 18)
-	// 3. Map to a Person age setter if valid
-	valAge := F.Flow3(
-		partialPersonLenses.age.Get,
-		ageCodec.Validate,
-		decode.Map[validation.Context](personLenses.Age.Set),
-	)
-
-	// Collect all field validators
-	vals := A.From(valName, valAge)
-
-	// Combine all validations and apply to an empty Person
-	return F.Flow3(
-		identity.Flap[*PartialPerson](emptyPartialPerson),
-		allOfRdr(vals),
-		decode.Map[validation.Context](identity.Flap[*Person](emptyPerson)),
-	)
+	return nil
 }
+
+// allOfRdr combines an array of validation readers into a single reader
+
+// valName validates the Name field:
+// 1. Extract name from PartialPerson
+// 2. Validate using nameCodec (ensures non-empty)
+// 3. Map to a Person name setter if valid
+
+// valAge validates the Age field:
+// 1. Extract age from PartialPerson
+// 2. Validate using ageCodec (ensures >= 18)
+// 3. Map to a Person age setter if valid
+
+// Collect all field validators
+
+// Combine all validations and apply to an empty Person
 
 // makePersonCodec creates a complete codec for Person objects.
 //
@@ -121,11 +97,4 @@ func makePersonValidate() Validate[Endomorphism[*PartialPerson], *Person] {
 // Returns:
 //
 //	A PersonCodec that can validate, encode, and decode Person objects
-func makePersonCodec() PersonCodec {
-	return codec.MakeType(
-		"Person",
-		codec.Is[*Person](),
-		makePersonValidate(),
-		buildEndomorphism(),
-	)
-}
+func makePersonCodec() PersonCodec { _ = "STUB: not implemented"; return *new(PersonCodec) }

@@ -3,8 +3,6 @@ package codec
 import (
 	"fmt"
 	"log/slog"
-
-	"github.com/IBM/fp-go/v2/internal/formatting"
 )
 
 // String implements the fmt.Stringer interface for typeImpl.
@@ -15,24 +13,24 @@ import (
 //	stringType := codec.String()
 //	fmt.Println(stringType) // Output: "string"
 func (t *typeImpl[A, O, I]) String() string {
-	return t.name
+	_ = "STUB: not implemented"
+
+	// Format implements the fmt.Formatter interface for typeImpl.
+	// It provides custom formatting based on the format verb:
+	//   - %s, %v: Returns the type name
+	//   - %q: Returns the type name in quotes
+	//   - %#v: Returns a detailed Go-syntax representation
+	//
+	// Example:
+	//
+	//	intType := codec.Int()
+	//	fmt.Printf("%s\n", intType)   // Output: int
+	//	fmt.Printf("%q\n", intType)   // Output: "int"
+	//	fmt.Printf("%#v\n", intType)  // Output: codec.Type[int, int, any]{name: "int"}
+	return ""
 }
 
-// Format implements the fmt.Formatter interface for typeImpl.
-// It provides custom formatting based on the format verb:
-//   - %s, %v: Returns the type name
-//   - %q: Returns the type name in quotes
-//   - %#v: Returns a detailed Go-syntax representation
-//
-// Example:
-//
-//	intType := codec.Int()
-//	fmt.Printf("%s\n", intType)   // Output: int
-//	fmt.Printf("%q\n", intType)   // Output: "int"
-//	fmt.Printf("%#v\n", intType)  // Output: codec.Type[int, int, any]{name: "int"}
-func (t *typeImpl[A, O, I]) Format(f fmt.State, verb rune) {
-	formatting.FmtString(t, f, verb)
-}
+func (t *typeImpl[A, O, I]) Format(f fmt.State, verb rune) { _ = "STUB: not implemented"; return }
 
 // GoString implements the fmt.GoStringer interface for typeImpl.
 // It returns a Go-syntax representation of the type that could be used
@@ -45,10 +43,7 @@ func (t *typeImpl[A, O, I]) Format(f fmt.State, verb rune) {
 //	stringType := codec.String()
 //	fmt.Printf("%#v\n", stringType)
 //	// Output: codec.Type[string, string, any]{name: "string"}
-func (t *typeImpl[A, O, I]) GoString() string {
-	return fmt.Sprintf("codec.Type[%s, %s, %s]{name: %q}",
-		typeNameOf[A](), typeNameOf[O](), typeNameOf[I](), t.name)
-}
+func (t *typeImpl[A, O, I]) GoString() string { _ = "STUB: not implemented"; return "" }
 
 // LogValue implements the slog.LogValuer interface for typeImpl.
 // It provides structured logging representation of the codec type.
@@ -63,22 +58,12 @@ func (t *typeImpl[A, O, I]) GoString() string {
 //	slog.Info("codec created", "codec", stringType)
 //	// Logs: codec={name=string type_a=string type_o=string type_i=interface {}}
 func (t *typeImpl[A, O, I]) LogValue() slog.Value {
-	return slog.GroupValue(
-		slog.String("name", t.name),
-		slog.String("type_a", typeNameOf[A]()),
-		slog.String("type_o", typeNameOf[O]()),
-		slog.String("type_i", typeNameOf[I]()),
-	)
+	_ = "STUB: not implemented"
+	return *new(slog.Value)
 }
 
 // typeNameOf returns a string representation of the type T.
 // It handles the special case where T is 'any' (interface{}).
-func typeNameOf[T any]() string {
-	var zero T
-	typeName := fmt.Sprintf("%T", zero)
-	// Handle the case where %T prints "<nil>" for interface{} types
-	if typeName == "<nil>" {
-		return "interface {}"
-	}
-	return typeName
-}
+func typeNameOf[T any]() string { _ = "STUB: not implemented"; return "" }
+
+// Handle the case where %T prints "<nil>" for interface{} types

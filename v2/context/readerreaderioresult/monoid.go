@@ -47,12 +47,8 @@ type (
 //	    intMonoid.Concat(Of[Config](20), Of[Config](30)),
 //	) // Results in 60
 func ApplicativeMonoid[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
-	return monoid.ApplicativeMonoid(
-		Of[R, A],
-		MonadMap[R, A, func(A) A],
-		MonadAp[R, A, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoidSeq creates a monoid for ReaderReaderIOResult using sequential applicative composition.
@@ -63,12 +59,8 @@ func ApplicativeMonoid[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
 //   - Side effects depend on sequential execution
 //   - You want to avoid concurrent execution
 func ApplicativeMonoidSeq[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
-	return monoid.ApplicativeMonoid(
-		Of[R, A],
-		MonadMap[R, A, func(A) A],
-		MonadApSeq[R, A, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoidPar creates a monoid for ReaderReaderIOResult using parallel applicative composition.
@@ -79,12 +71,8 @@ func ApplicativeMonoidSeq[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
 //   - You want to maximize performance through parallelism
 //   - Order of execution doesn't matter
 func ApplicativeMonoidPar[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
-	return monoid.ApplicativeMonoid(
-		Of[R, A],
-		MonadMap[R, A, func(A) A],
-		MonadApPar[R, A, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AlternativeMonoid creates a monoid that combines ReaderReaderIOResult values using both
@@ -108,13 +96,8 @@ func ApplicativeMonoidPar[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
 //	    Of[Config](42),
 //	) // Results in Right(42)
 func AlternativeMonoid[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
-	return monoid.AlternativeMonoid(
-		Of[R, A],
-		MonadMap[R, A, func(A) A],
-		MonadAp[R, A, A],
-		MonadAlt[R, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltMonoid creates a monoid based solely on the Alt operation.
@@ -141,8 +124,6 @@ func AlternativeMonoid[R, A any](m monoid.Monoid[A]) Monoid[R, A] {
 //	    ),
 //	) // Results in Right(42)
 func AltMonoid[R, A any](zero Lazy[ReaderReaderIOResult[R, A]]) Monoid[R, A] {
-	return monoid.AltMonoid(
-		zero,
-		MonadAlt[R, A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -21,100 +21,118 @@ import (
 	M "github.com/IBM/fp-go/monoid"
 	P "github.com/IBM/fp-go/pair"
 	SG "github.com/IBM/fp-go/semigroup"
-	G "github.com/IBM/fp-go/writer/generic"
 )
 
 type Writer[W, A any] IO.IO[P.Pair[A, W]]
 
 // Tell appends a value to the accumulator
-func Tell[W any](w W) Writer[W, any] {
-	return G.Tell[Writer[W, any]](w)
-}
+func Tell[W any](w W) Writer[W, any] { _ = "STUB: not implemented"; return nil }
 
-func Of[A, W any](m M.Monoid[W], a A) Writer[W, A] {
-	return G.Of[Writer[W, A]](m, a)
-}
+func Of[A, W any](m M.Monoid[W], a A) Writer[W, A] { _ = "STUB: not implemented"; return nil }
 
 // Listen modifies the result to include the changes to the accumulator
 func Listen[W, A any](fa Writer[W, A]) Writer[W, P.Pair[A, W]] {
-	return G.Listen[Writer[W, A], Writer[W, P.Pair[A, W]], W, A](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pass applies the returned function to the accumulator
 func Pass[W, A any](fa Writer[W, P.Pair[A, EM.Endomorphism[W]]]) Writer[W, A] {
-	return G.Pass[Writer[W, P.Pair[A, EM.Endomorphism[W]]], Writer[W, A]](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadMap[FCT ~func(A) B, W, A, B any](fa Writer[W, A], f FCT) Writer[W, B] {
-	return G.MonadMap[Writer[W, B], Writer[W, A]](fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Map[W any, FCT ~func(A) B, A, B any](f FCT) func(Writer[W, A]) Writer[W, B] {
-	return G.Map[Writer[W, B], Writer[W, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChain[FCT ~func(A) Writer[W, B], W, A, B any](s SG.Semigroup[W], fa Writer[W, A], fct FCT) Writer[W, B] {
-	return G.MonadChain[Writer[W, B], Writer[W, A], FCT](s, fa, fct)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Chain[A, B, W any](s SG.Semigroup[W], fa func(A) Writer[W, B]) func(Writer[W, A]) Writer[W, B] {
-	return G.Chain[Writer[W, B], Writer[W, A], func(A) Writer[W, B]](s, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadAp[B, A, W any](s SG.Semigroup[W], fab Writer[W, func(A) B], fa Writer[W, A]) Writer[W, B] {
-	return G.MonadAp[Writer[W, B], Writer[W, func(A) B], Writer[W, A]](s, fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Ap[B, A, W any](s SG.Semigroup[W], fa Writer[W, A]) func(Writer[W, func(A) B]) Writer[W, B] {
-	return G.Ap[Writer[W, B], Writer[W, func(A) B], Writer[W, A]](s, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainFirst[FCT ~func(A) Writer[W, B], W, A, B any](s SG.Semigroup[W], fa Writer[W, A], fct FCT) Writer[W, A] {
-	return G.MonadChainFirst[Writer[W, B], Writer[W, A], FCT](s, fa, fct)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainFirst[FCT ~func(A) Writer[W, B], W, A, B any](s SG.Semigroup[W], fct FCT) func(Writer[W, A]) Writer[W, A] {
-	return G.ChainFirst[Writer[W, B], Writer[W, A], FCT](s, fct)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Flatten[W, A any](s SG.Semigroup[W], mma Writer[W, Writer[W, A]]) Writer[W, A] {
-	return G.Flatten[Writer[W, Writer[W, A]], Writer[W, A]](s, mma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Execute extracts the accumulator
 func Execute[W, A any](fa Writer[W, A]) W {
-	return G.Execute(fa)
+	_ = "STUB: not implemented"
+	return *
+
+	// Evaluate extracts the value
+	new(W)
 }
 
-// Evaluate extracts the value
 func Evaluate[W, A any](fa Writer[W, A]) A {
-	return G.Evaluate(fa)
+	_ = "STUB: not implemented"
+	return *
+
+	// MonadCensor modifies the final accumulator value by applying a function
+	new(A)
 }
 
-// MonadCensor modifies the final accumulator value by applying a function
 func MonadCensor[A any, FCT ~func(W) W, W any](fa Writer[W, A], f FCT) Writer[W, A] {
-	return G.MonadCensor[Writer[W, A]](fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Censor modifies the final accumulator value by applying a function
 func Censor[A any, FCT ~func(W) W, W any](f FCT) func(Writer[W, A]) Writer[W, A] {
-	return G.Censor[Writer[W, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadListens projects a value from modifications made to the accumulator during an action
 func MonadListens[A any, FCT ~func(W) B, W, B any](fa Writer[W, A], f FCT) Writer[W, P.Pair[A, B]] {
-	return G.MonadListens[Writer[W, A], Writer[W, P.Pair[A, B]]](fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Listens projects a value from modifications made to the accumulator during an action
 func Listens[A any, FCT ~func(W) B, W, B any](f FCT) func(Writer[W, A]) Writer[W, P.Pair[A, B]] {
-	return G.Listens[Writer[W, A], Writer[W, P.Pair[A, B]]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadFlap[W, B, A any](fab Writer[W, func(A) B], a A) Writer[W, B] {
-	return G.MonadFlap[func(A) B, Writer[W, func(A) B], Writer[W, B]](fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Flap[W, B, A any](a A) func(Writer[W, func(A) B]) Writer[W, B] {
-	return G.Flap[func(A) B, Writer[W, func(A) B], Writer[W, B]](a)
+	_ = "STUB: not implemented"
+	return nil
 }

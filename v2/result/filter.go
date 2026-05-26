@@ -15,8 +15,6 @@
 
 package result
 
-import "github.com/IBM/fp-go/v2/either"
-
 // FilterOrElse filters a Result value based on a predicate.
 // If the Result is Ok (Right) and the predicate returns true, returns the original Ok.
 // If the Result is Ok (Right) and the predicate returns false, returns Error (Left) with the error from onFalse.
@@ -37,5 +35,6 @@ import "github.com/IBM/fp-go/v2/either"
 //
 //go:inline
 func FilterOrElse[A any](pred Predicate[A], onFalse func(A) error) Operator[A, A] {
-	return either.FilterOrElse(pred, onFalse)
+	_ = "STUB: not implemented"
+	return nil
 }

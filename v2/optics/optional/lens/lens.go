@@ -16,17 +16,12 @@
 package lens
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	L "github.com/IBM/fp-go/v2/optics/lens"
-	LO "github.com/IBM/fp-go/v2/optics/lens/optional"
 	OPT "github.com/IBM/fp-go/v2/optics/optional"
 )
 
 // Compose composes a lens with an optional
 func Compose[S, A, B any](ab L.Lens[A, B]) func(sa OPT.Optional[S, A]) OPT.Optional[S, B] {
-	return F.Pipe2(
-		ab,
-		LO.LensAsOptional[A, B],
-		OPT.Compose[S, A, B],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

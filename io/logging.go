@@ -17,23 +17,18 @@ package io
 
 import (
 	"log"
-
-	G "github.com/IBM/fp-go/io/generic"
 )
 
 // Logger constructs a logger function that can be used with ChainXXXIOK
 func Logger[A any](loggers ...*log.Logger) func(string) func(A) IO[any] {
-	return G.Logger[IO[any], A](loggers...)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Logf constructs a logger function that can be used with ChainXXXIOK
 // the string prefix contains the format string for the log value
-func Logf[A any](prefix string) func(A) IO[any] {
-	return G.Logf[IO[any], A](prefix)
-}
+func Logf[A any](prefix string) func(A) IO[any] { _ = "STUB: not implemented"; return nil }
 
 // Printf constructs a printer function that can be used with ChainXXXIOK
 // the string prefix contains the format string for the log value
-func Printf[A any](prefix string) func(A) IO[any] {
-	return G.Printf[IO[any], A](prefix)
-}
+func Printf[A any](prefix string) func(A) IO[any] { _ = "STUB: not implemented"; return nil }

@@ -7,8 +7,6 @@ package readerioresult
 import (
 	"context"
 
-	G "github.com/IBM/fp-go/v2/context/readerioresult/generic"
-	"github.com/IBM/fp-go/v2/internal/apply"
 	"github.com/IBM/fp-go/v2/tuple"
 )
 
@@ -17,7 +15,8 @@ import (
 //
 //go:inline
 func Eitherize0[F ~func(context.Context) (R, error), R any](f F) func() ReaderIOResult[R] {
-	return G.Eitherize0[ReaderIOResult[R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize0 converts a function with 1 parameters returning a [ReaderIOResult[R]] into a function with 0 parameters returning a tuple.
@@ -25,7 +24,8 @@ func Eitherize0[F ~func(context.Context) (R, error), R any](f F) func() ReaderIO
 //
 //go:inline
 func Uneitherize0[F ~func() ReaderIOResult[R], R any](f F) func(context.Context) (R, error) {
-	return G.Uneitherize0[ReaderIOResult[R], func(context.Context) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize1 converts a function with 1 parameters returning a tuple into a function with 1 parameters returning a [ReaderIOResult[R]]
@@ -33,7 +33,8 @@ func Uneitherize0[F ~func() ReaderIOResult[R], R any](f F) func(context.Context)
 //
 //go:inline
 func Eitherize1[F ~func(context.Context, T0) (R, error), T0, R any](f F) Kleisli[T0, R] {
-	return G.Eitherize1[ReaderIOResult[R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize1 converts a function with 2 parameters returning a [ReaderIOResult[R]] into a function with 1 parameters returning a tuple.
@@ -41,94 +42,68 @@ func Eitherize1[F ~func(context.Context, T0) (R, error), T0, R any](f F) Kleisli
 //
 //go:inline
 func Uneitherize1[F ~func(T0) ReaderIOResult[R], T0, R any](f F) func(context.Context, T0) (R, error) {
-	return G.Uneitherize1[ReaderIOResult[R], func(context.Context, T0) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT1 converts 1 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple1[T1]]]
 func SequenceT1[T1 any](
 	t1 ReaderIOResult[T1],
 ) ReaderIOResult[tuple.Tuple1[T1]] {
-	return apply.SequenceT1(
-		Map[T1, tuple.Tuple1[T1]],
-		t1,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqT1 converts 1 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple1[T1]]]
 func SequenceSeqT1[T1 any](
 	t1 ReaderIOResult[T1],
 ) ReaderIOResult[tuple.Tuple1[T1]] {
-	return apply.SequenceT1(
-		Map[T1, tuple.Tuple1[T1]],
-		t1,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParT1 converts 1 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple1[T1]]]
 func SequenceParT1[T1 any](
 	t1 ReaderIOResult[T1],
 ) ReaderIOResult[tuple.Tuple1[T1]] {
-	return apply.SequenceT1(
-		Map[T1, tuple.Tuple1[T1]],
-		t1,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple1 converts a [tuple.Tuple1[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple1[T1]]]
 func SequenceTuple1[T1 any](t tuple.Tuple1[ReaderIOResult[T1]]) ReaderIOResult[tuple.Tuple1[T1]] {
-	return apply.SequenceTuple1(
-		Map[T1, tuple.Tuple1[T1]],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqTuple1 converts a [tuple.Tuple1[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple1[T1]]]
 func SequenceSeqTuple1[T1 any](t tuple.Tuple1[ReaderIOResult[T1]]) ReaderIOResult[tuple.Tuple1[T1]] {
-	return apply.SequenceTuple1(
-		Map[T1, tuple.Tuple1[T1]],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParTuple1 converts a [tuple.Tuple1[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple1[T1]]]
 func SequenceParTuple1[T1 any](t tuple.Tuple1[ReaderIOResult[T1]]) ReaderIOResult[tuple.Tuple1[T1]] {
-	return apply.SequenceTuple1(
-		Map[T1, tuple.Tuple1[T1]],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple1 converts a [tuple.Tuple1[A1]] into a [ReaderIOResult[tuple.Tuple1[T1]]]
 func TraverseTuple1[F1 ~func(A1) ReaderIOResult[T1], T1, A1 any](f1 F1) Kleisli[tuple.Tuple1[A1], tuple.Tuple1[T1]] {
-	return func(t tuple.Tuple1[A1]) ReaderIOResult[tuple.Tuple1[T1]] {
-		return apply.TraverseTuple1(
-			Map[T1, tuple.Tuple1[T1]],
-			f1,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple1 converts a [tuple.Tuple1[A1]] into a [ReaderIOResult[tuple.Tuple1[T1]]]
 func TraverseSeqTuple1[F1 ~func(A1) ReaderIOResult[T1], T1, A1 any](f1 F1) Kleisli[tuple.Tuple1[A1], tuple.Tuple1[T1]] {
-	return func(t tuple.Tuple1[A1]) ReaderIOResult[tuple.Tuple1[T1]] {
-		return apply.TraverseTuple1(
-			Map[T1, tuple.Tuple1[T1]],
-			f1,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple1 converts a [tuple.Tuple1[A1]] into a [ReaderIOResult[tuple.Tuple1[T1]]]
 func TraverseParTuple1[F1 ~func(A1) ReaderIOResult[T1], T1, A1 any](f1 F1) Kleisli[tuple.Tuple1[A1], tuple.Tuple1[T1]] {
-	return func(t tuple.Tuple1[A1]) ReaderIOResult[tuple.Tuple1[T1]] {
-		return apply.TraverseTuple1(
-			Map[T1, tuple.Tuple1[T1]],
-			f1,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize2 converts a function with 2 parameters returning a tuple into a function with 2 parameters returning a [ReaderIOResult[R]]
@@ -136,7 +111,8 @@ func TraverseParTuple1[F1 ~func(A1) ReaderIOResult[T1], T1, A1 any](f1 F1) Kleis
 //
 //go:inline
 func Eitherize2[F ~func(context.Context, T0, T1) (R, error), T0, T1, R any](f F) func(T0, T1) ReaderIOResult[R] {
-	return G.Eitherize2[ReaderIOResult[R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize2 converts a function with 3 parameters returning a [ReaderIOResult[R]] into a function with 2 parameters returning a tuple.
@@ -144,7 +120,8 @@ func Eitherize2[F ~func(context.Context, T0, T1) (R, error), T0, T1, R any](f F)
 //
 //go:inline
 func Uneitherize2[F ~func(T0, T1) ReaderIOResult[R], T0, T1, R any](f F) func(context.Context, T0, T1) (R, error) {
-	return G.Uneitherize2[ReaderIOResult[R], func(context.Context, T0, T1) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT2 converts 2 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple2[T1, T2]]]
@@ -152,12 +129,8 @@ func SequenceT2[T1, T2 any](
 	t1 ReaderIOResult[T1],
 	t2 ReaderIOResult[T2],
 ) ReaderIOResult[tuple.Tuple2[T1, T2]] {
-	return apply.SequenceT2(
-		Map[T1, func(T2) tuple.Tuple2[T1, T2]],
-		Ap[tuple.Tuple2[T1, T2], T2],
-		t1,
-		t2,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqT2 converts 2 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple2[T1, T2]]]
@@ -165,12 +138,8 @@ func SequenceSeqT2[T1, T2 any](
 	t1 ReaderIOResult[T1],
 	t2 ReaderIOResult[T2],
 ) ReaderIOResult[tuple.Tuple2[T1, T2]] {
-	return apply.SequenceT2(
-		Map[T1, func(T2) tuple.Tuple2[T1, T2]],
-		ApSeq[tuple.Tuple2[T1, T2], T2],
-		t1,
-		t2,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParT2 converts 2 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple2[T1, T2]]]
@@ -178,78 +147,44 @@ func SequenceParT2[T1, T2 any](
 	t1 ReaderIOResult[T1],
 	t2 ReaderIOResult[T2],
 ) ReaderIOResult[tuple.Tuple2[T1, T2]] {
-	return apply.SequenceT2(
-		Map[T1, func(T2) tuple.Tuple2[T1, T2]],
-		ApPar[tuple.Tuple2[T1, T2], T2],
-		t1,
-		t2,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple2 converts a [tuple.Tuple2[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple2[T1, T2]]]
 func SequenceTuple2[T1, T2 any](t tuple.Tuple2[ReaderIOResult[T1], ReaderIOResult[T2]]) ReaderIOResult[tuple.Tuple2[T1, T2]] {
-	return apply.SequenceTuple2(
-		Map[T1, func(T2) tuple.Tuple2[T1, T2]],
-		Ap[tuple.Tuple2[T1, T2], T2],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqTuple2 converts a [tuple.Tuple2[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple2[T1, T2]]]
 func SequenceSeqTuple2[T1, T2 any](t tuple.Tuple2[ReaderIOResult[T1], ReaderIOResult[T2]]) ReaderIOResult[tuple.Tuple2[T1, T2]] {
-	return apply.SequenceTuple2(
-		Map[T1, func(T2) tuple.Tuple2[T1, T2]],
-		ApSeq[tuple.Tuple2[T1, T2], T2],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParTuple2 converts a [tuple.Tuple2[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple2[T1, T2]]]
 func SequenceParTuple2[T1, T2 any](t tuple.Tuple2[ReaderIOResult[T1], ReaderIOResult[T2]]) ReaderIOResult[tuple.Tuple2[T1, T2]] {
-	return apply.SequenceTuple2(
-		Map[T1, func(T2) tuple.Tuple2[T1, T2]],
-		ApPar[tuple.Tuple2[T1, T2], T2],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple2 converts a [tuple.Tuple2[A1, A2]] into a [ReaderIOResult[tuple.Tuple2[T1, T2]]]
 func TraverseTuple2[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], T1, T2, A1, A2 any](f1 F1, f2 F2) func(tuple.Tuple2[A1, A2]) ReaderIOResult[tuple.Tuple2[T1, T2]] {
-	return func(t tuple.Tuple2[A1, A2]) ReaderIOResult[tuple.Tuple2[T1, T2]] {
-		return apply.TraverseTuple2(
-			Map[T1, func(T2) tuple.Tuple2[T1, T2]],
-			Ap[tuple.Tuple2[T1, T2], T2],
-			f1,
-			f2,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple2 converts a [tuple.Tuple2[A1, A2]] into a [ReaderIOResult[tuple.Tuple2[T1, T2]]]
 func TraverseSeqTuple2[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], T1, T2, A1, A2 any](f1 F1, f2 F2) func(tuple.Tuple2[A1, A2]) ReaderIOResult[tuple.Tuple2[T1, T2]] {
-	return func(t tuple.Tuple2[A1, A2]) ReaderIOResult[tuple.Tuple2[T1, T2]] {
-		return apply.TraverseTuple2(
-			Map[T1, func(T2) tuple.Tuple2[T1, T2]],
-			ApSeq[tuple.Tuple2[T1, T2], T2],
-			f1,
-			f2,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple2 converts a [tuple.Tuple2[A1, A2]] into a [ReaderIOResult[tuple.Tuple2[T1, T2]]]
 func TraverseParTuple2[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], T1, T2, A1, A2 any](f1 F1, f2 F2) func(tuple.Tuple2[A1, A2]) ReaderIOResult[tuple.Tuple2[T1, T2]] {
-	return func(t tuple.Tuple2[A1, A2]) ReaderIOResult[tuple.Tuple2[T1, T2]] {
-		return apply.TraverseTuple2(
-			Map[T1, func(T2) tuple.Tuple2[T1, T2]],
-			ApPar[tuple.Tuple2[T1, T2], T2],
-			f1,
-			f2,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize3 converts a function with 3 parameters returning a tuple into a function with 3 parameters returning a [ReaderIOResult[R]]
@@ -257,7 +192,8 @@ func TraverseParTuple2[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIORes
 //
 //go:inline
 func Eitherize3[F ~func(context.Context, T0, T1, T2) (R, error), T0, T1, T2, R any](f F) func(T0, T1, T2) ReaderIOResult[R] {
-	return G.Eitherize3[ReaderIOResult[R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize3 converts a function with 4 parameters returning a [ReaderIOResult[R]] into a function with 3 parameters returning a tuple.
@@ -265,7 +201,8 @@ func Eitherize3[F ~func(context.Context, T0, T1, T2) (R, error), T0, T1, T2, R a
 //
 //go:inline
 func Uneitherize3[F ~func(T0, T1, T2) ReaderIOResult[R], T0, T1, T2, R any](f F) func(context.Context, T0, T1, T2) (R, error) {
-	return G.Uneitherize3[ReaderIOResult[R], func(context.Context, T0, T1, T2) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT3 converts 3 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple3[T1, T2, T3]]]
@@ -274,14 +211,8 @@ func SequenceT3[T1, T2, T3 any](
 	t2 ReaderIOResult[T2],
 	t3 ReaderIOResult[T3],
 ) ReaderIOResult[tuple.Tuple3[T1, T2, T3]] {
-	return apply.SequenceT3(
-		Map[T1, func(T2) func(T3) tuple.Tuple3[T1, T2, T3]],
-		Ap[func(T3) tuple.Tuple3[T1, T2, T3], T2],
-		Ap[tuple.Tuple3[T1, T2, T3], T3],
-		t1,
-		t2,
-		t3,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqT3 converts 3 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple3[T1, T2, T3]]]
@@ -290,14 +221,8 @@ func SequenceSeqT3[T1, T2, T3 any](
 	t2 ReaderIOResult[T2],
 	t3 ReaderIOResult[T3],
 ) ReaderIOResult[tuple.Tuple3[T1, T2, T3]] {
-	return apply.SequenceT3(
-		Map[T1, func(T2) func(T3) tuple.Tuple3[T1, T2, T3]],
-		ApSeq[func(T3) tuple.Tuple3[T1, T2, T3], T2],
-		ApSeq[tuple.Tuple3[T1, T2, T3], T3],
-		t1,
-		t2,
-		t3,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParT3 converts 3 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple3[T1, T2, T3]]]
@@ -306,89 +231,44 @@ func SequenceParT3[T1, T2, T3 any](
 	t2 ReaderIOResult[T2],
 	t3 ReaderIOResult[T3],
 ) ReaderIOResult[tuple.Tuple3[T1, T2, T3]] {
-	return apply.SequenceT3(
-		Map[T1, func(T2) func(T3) tuple.Tuple3[T1, T2, T3]],
-		ApPar[func(T3) tuple.Tuple3[T1, T2, T3], T2],
-		ApPar[tuple.Tuple3[T1, T2, T3], T3],
-		t1,
-		t2,
-		t3,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple3 converts a [tuple.Tuple3[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple3[T1, T2, T3]]]
 func SequenceTuple3[T1, T2, T3 any](t tuple.Tuple3[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3]]) ReaderIOResult[tuple.Tuple3[T1, T2, T3]] {
-	return apply.SequenceTuple3(
-		Map[T1, func(T2) func(T3) tuple.Tuple3[T1, T2, T3]],
-		Ap[func(T3) tuple.Tuple3[T1, T2, T3], T2],
-		Ap[tuple.Tuple3[T1, T2, T3], T3],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqTuple3 converts a [tuple.Tuple3[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple3[T1, T2, T3]]]
 func SequenceSeqTuple3[T1, T2, T3 any](t tuple.Tuple3[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3]]) ReaderIOResult[tuple.Tuple3[T1, T2, T3]] {
-	return apply.SequenceTuple3(
-		Map[T1, func(T2) func(T3) tuple.Tuple3[T1, T2, T3]],
-		ApSeq[func(T3) tuple.Tuple3[T1, T2, T3], T2],
-		ApSeq[tuple.Tuple3[T1, T2, T3], T3],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParTuple3 converts a [tuple.Tuple3[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple3[T1, T2, T3]]]
 func SequenceParTuple3[T1, T2, T3 any](t tuple.Tuple3[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3]]) ReaderIOResult[tuple.Tuple3[T1, T2, T3]] {
-	return apply.SequenceTuple3(
-		Map[T1, func(T2) func(T3) tuple.Tuple3[T1, T2, T3]],
-		ApPar[func(T3) tuple.Tuple3[T1, T2, T3], T2],
-		ApPar[tuple.Tuple3[T1, T2, T3], T3],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple3 converts a [tuple.Tuple3[A1, A2, A3]] into a [ReaderIOResult[tuple.Tuple3[T1, T2, T3]]]
 func TraverseTuple3[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], T1, T2, T3, A1, A2, A3 any](f1 F1, f2 F2, f3 F3) func(tuple.Tuple3[A1, A2, A3]) ReaderIOResult[tuple.Tuple3[T1, T2, T3]] {
-	return func(t tuple.Tuple3[A1, A2, A3]) ReaderIOResult[tuple.Tuple3[T1, T2, T3]] {
-		return apply.TraverseTuple3(
-			Map[T1, func(T2) func(T3) tuple.Tuple3[T1, T2, T3]],
-			Ap[func(T3) tuple.Tuple3[T1, T2, T3], T2],
-			Ap[tuple.Tuple3[T1, T2, T3], T3],
-			f1,
-			f2,
-			f3,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple3 converts a [tuple.Tuple3[A1, A2, A3]] into a [ReaderIOResult[tuple.Tuple3[T1, T2, T3]]]
 func TraverseSeqTuple3[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], T1, T2, T3, A1, A2, A3 any](f1 F1, f2 F2, f3 F3) func(tuple.Tuple3[A1, A2, A3]) ReaderIOResult[tuple.Tuple3[T1, T2, T3]] {
-	return func(t tuple.Tuple3[A1, A2, A3]) ReaderIOResult[tuple.Tuple3[T1, T2, T3]] {
-		return apply.TraverseTuple3(
-			Map[T1, func(T2) func(T3) tuple.Tuple3[T1, T2, T3]],
-			ApSeq[func(T3) tuple.Tuple3[T1, T2, T3], T2],
-			ApSeq[tuple.Tuple3[T1, T2, T3], T3],
-			f1,
-			f2,
-			f3,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple3 converts a [tuple.Tuple3[A1, A2, A3]] into a [ReaderIOResult[tuple.Tuple3[T1, T2, T3]]]
 func TraverseParTuple3[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], T1, T2, T3, A1, A2, A3 any](f1 F1, f2 F2, f3 F3) func(tuple.Tuple3[A1, A2, A3]) ReaderIOResult[tuple.Tuple3[T1, T2, T3]] {
-	return func(t tuple.Tuple3[A1, A2, A3]) ReaderIOResult[tuple.Tuple3[T1, T2, T3]] {
-		return apply.TraverseTuple3(
-			Map[T1, func(T2) func(T3) tuple.Tuple3[T1, T2, T3]],
-			ApPar[func(T3) tuple.Tuple3[T1, T2, T3], T2],
-			ApPar[tuple.Tuple3[T1, T2, T3], T3],
-			f1,
-			f2,
-			f3,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize4 converts a function with 4 parameters returning a tuple into a function with 4 parameters returning a [ReaderIOResult[R]]
@@ -396,7 +276,8 @@ func TraverseParTuple3[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIORes
 //
 //go:inline
 func Eitherize4[F ~func(context.Context, T0, T1, T2, T3) (R, error), T0, T1, T2, T3, R any](f F) func(T0, T1, T2, T3) ReaderIOResult[R] {
-	return G.Eitherize4[ReaderIOResult[R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize4 converts a function with 5 parameters returning a [ReaderIOResult[R]] into a function with 4 parameters returning a tuple.
@@ -404,7 +285,8 @@ func Eitherize4[F ~func(context.Context, T0, T1, T2, T3) (R, error), T0, T1, T2,
 //
 //go:inline
 func Uneitherize4[F ~func(T0, T1, T2, T3) ReaderIOResult[R], T0, T1, T2, T3, R any](f F) func(context.Context, T0, T1, T2, T3) (R, error) {
-	return G.Uneitherize4[ReaderIOResult[R], func(context.Context, T0, T1, T2, T3) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT4 converts 4 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]]]
@@ -414,16 +296,8 @@ func SequenceT4[T1, T2, T3, T4 any](
 	t3 ReaderIOResult[T3],
 	t4 ReaderIOResult[T4],
 ) ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]] {
-	return apply.SequenceT4(
-		Map[T1, func(T2) func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4]],
-		Ap[func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4], T2],
-		Ap[func(T4) tuple.Tuple4[T1, T2, T3, T4], T3],
-		Ap[tuple.Tuple4[T1, T2, T3, T4], T4],
-		t1,
-		t2,
-		t3,
-		t4,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqT4 converts 4 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]]]
@@ -433,16 +307,8 @@ func SequenceSeqT4[T1, T2, T3, T4 any](
 	t3 ReaderIOResult[T3],
 	t4 ReaderIOResult[T4],
 ) ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]] {
-	return apply.SequenceT4(
-		Map[T1, func(T2) func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4]],
-		ApSeq[func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4], T2],
-		ApSeq[func(T4) tuple.Tuple4[T1, T2, T3, T4], T3],
-		ApSeq[tuple.Tuple4[T1, T2, T3, T4], T4],
-		t1,
-		t2,
-		t3,
-		t4,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParT4 converts 4 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]]]
@@ -452,100 +318,44 @@ func SequenceParT4[T1, T2, T3, T4 any](
 	t3 ReaderIOResult[T3],
 	t4 ReaderIOResult[T4],
 ) ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]] {
-	return apply.SequenceT4(
-		Map[T1, func(T2) func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4]],
-		ApPar[func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4], T2],
-		ApPar[func(T4) tuple.Tuple4[T1, T2, T3, T4], T3],
-		ApPar[tuple.Tuple4[T1, T2, T3, T4], T4],
-		t1,
-		t2,
-		t3,
-		t4,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple4 converts a [tuple.Tuple4[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]]]
 func SequenceTuple4[T1, T2, T3, T4 any](t tuple.Tuple4[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4]]) ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]] {
-	return apply.SequenceTuple4(
-		Map[T1, func(T2) func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4]],
-		Ap[func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4], T2],
-		Ap[func(T4) tuple.Tuple4[T1, T2, T3, T4], T3],
-		Ap[tuple.Tuple4[T1, T2, T3, T4], T4],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqTuple4 converts a [tuple.Tuple4[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]]]
 func SequenceSeqTuple4[T1, T2, T3, T4 any](t tuple.Tuple4[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4]]) ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]] {
-	return apply.SequenceTuple4(
-		Map[T1, func(T2) func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4]],
-		ApSeq[func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4], T2],
-		ApSeq[func(T4) tuple.Tuple4[T1, T2, T3, T4], T3],
-		ApSeq[tuple.Tuple4[T1, T2, T3, T4], T4],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParTuple4 converts a [tuple.Tuple4[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]]]
 func SequenceParTuple4[T1, T2, T3, T4 any](t tuple.Tuple4[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4]]) ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]] {
-	return apply.SequenceTuple4(
-		Map[T1, func(T2) func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4]],
-		ApPar[func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4], T2],
-		ApPar[func(T4) tuple.Tuple4[T1, T2, T3, T4], T3],
-		ApPar[tuple.Tuple4[T1, T2, T3, T4], T4],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple4 converts a [tuple.Tuple4[A1, A2, A3, A4]] into a [ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]]]
 func TraverseTuple4[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], T1, T2, T3, T4, A1, A2, A3, A4 any](f1 F1, f2 F2, f3 F3, f4 F4) func(tuple.Tuple4[A1, A2, A3, A4]) ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]] {
-	return func(t tuple.Tuple4[A1, A2, A3, A4]) ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]] {
-		return apply.TraverseTuple4(
-			Map[T1, func(T2) func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4]],
-			Ap[func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4], T2],
-			Ap[func(T4) tuple.Tuple4[T1, T2, T3, T4], T3],
-			Ap[tuple.Tuple4[T1, T2, T3, T4], T4],
-			f1,
-			f2,
-			f3,
-			f4,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple4 converts a [tuple.Tuple4[A1, A2, A3, A4]] into a [ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]]]
 func TraverseSeqTuple4[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], T1, T2, T3, T4, A1, A2, A3, A4 any](f1 F1, f2 F2, f3 F3, f4 F4) func(tuple.Tuple4[A1, A2, A3, A4]) ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]] {
-	return func(t tuple.Tuple4[A1, A2, A3, A4]) ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]] {
-		return apply.TraverseTuple4(
-			Map[T1, func(T2) func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4]],
-			ApSeq[func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4], T2],
-			ApSeq[func(T4) tuple.Tuple4[T1, T2, T3, T4], T3],
-			ApSeq[tuple.Tuple4[T1, T2, T3, T4], T4],
-			f1,
-			f2,
-			f3,
-			f4,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple4 converts a [tuple.Tuple4[A1, A2, A3, A4]] into a [ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]]]
 func TraverseParTuple4[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], T1, T2, T3, T4, A1, A2, A3, A4 any](f1 F1, f2 F2, f3 F3, f4 F4) func(tuple.Tuple4[A1, A2, A3, A4]) ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]] {
-	return func(t tuple.Tuple4[A1, A2, A3, A4]) ReaderIOResult[tuple.Tuple4[T1, T2, T3, T4]] {
-		return apply.TraverseTuple4(
-			Map[T1, func(T2) func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4]],
-			ApPar[func(T3) func(T4) tuple.Tuple4[T1, T2, T3, T4], T2],
-			ApPar[func(T4) tuple.Tuple4[T1, T2, T3, T4], T3],
-			ApPar[tuple.Tuple4[T1, T2, T3, T4], T4],
-			f1,
-			f2,
-			f3,
-			f4,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize5 converts a function with 5 parameters returning a tuple into a function with 5 parameters returning a [ReaderIOResult[R]]
@@ -553,7 +363,8 @@ func TraverseParTuple4[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIORes
 //
 //go:inline
 func Eitherize5[F ~func(context.Context, T0, T1, T2, T3, T4) (R, error), T0, T1, T2, T3, T4, R any](f F) func(T0, T1, T2, T3, T4) ReaderIOResult[R] {
-	return G.Eitherize5[ReaderIOResult[R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize5 converts a function with 6 parameters returning a [ReaderIOResult[R]] into a function with 5 parameters returning a tuple.
@@ -561,7 +372,8 @@ func Eitherize5[F ~func(context.Context, T0, T1, T2, T3, T4) (R, error), T0, T1,
 //
 //go:inline
 func Uneitherize5[F ~func(T0, T1, T2, T3, T4) ReaderIOResult[R], T0, T1, T2, T3, T4, R any](f F) func(context.Context, T0, T1, T2, T3, T4) (R, error) {
-	return G.Uneitherize5[ReaderIOResult[R], func(context.Context, T0, T1, T2, T3, T4) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT5 converts 5 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]]]
@@ -572,18 +384,8 @@ func SequenceT5[T1, T2, T3, T4, T5 any](
 	t4 ReaderIOResult[T4],
 	t5 ReaderIOResult[T5],
 ) ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]] {
-	return apply.SequenceT5(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5]],
-		Ap[func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T2],
-		Ap[func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T3],
-		Ap[func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T4],
-		Ap[tuple.Tuple5[T1, T2, T3, T4, T5], T5],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqT5 converts 5 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]]]
@@ -594,18 +396,8 @@ func SequenceSeqT5[T1, T2, T3, T4, T5 any](
 	t4 ReaderIOResult[T4],
 	t5 ReaderIOResult[T5],
 ) ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]] {
-	return apply.SequenceT5(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5]],
-		ApSeq[func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T2],
-		ApSeq[func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T3],
-		ApSeq[func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T4],
-		ApSeq[tuple.Tuple5[T1, T2, T3, T4, T5], T5],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParT5 converts 5 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]]]
@@ -616,111 +408,44 @@ func SequenceParT5[T1, T2, T3, T4, T5 any](
 	t4 ReaderIOResult[T4],
 	t5 ReaderIOResult[T5],
 ) ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]] {
-	return apply.SequenceT5(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5]],
-		ApPar[func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T2],
-		ApPar[func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T3],
-		ApPar[func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T4],
-		ApPar[tuple.Tuple5[T1, T2, T3, T4, T5], T5],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple5 converts a [tuple.Tuple5[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]]]
 func SequenceTuple5[T1, T2, T3, T4, T5 any](t tuple.Tuple5[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5]]) ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]] {
-	return apply.SequenceTuple5(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5]],
-		Ap[func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T2],
-		Ap[func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T3],
-		Ap[func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T4],
-		Ap[tuple.Tuple5[T1, T2, T3, T4, T5], T5],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqTuple5 converts a [tuple.Tuple5[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]]]
 func SequenceSeqTuple5[T1, T2, T3, T4, T5 any](t tuple.Tuple5[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5]]) ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]] {
-	return apply.SequenceTuple5(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5]],
-		ApSeq[func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T2],
-		ApSeq[func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T3],
-		ApSeq[func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T4],
-		ApSeq[tuple.Tuple5[T1, T2, T3, T4, T5], T5],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParTuple5 converts a [tuple.Tuple5[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]]]
 func SequenceParTuple5[T1, T2, T3, T4, T5 any](t tuple.Tuple5[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5]]) ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]] {
-	return apply.SequenceTuple5(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5]],
-		ApPar[func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T2],
-		ApPar[func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T3],
-		ApPar[func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T4],
-		ApPar[tuple.Tuple5[T1, T2, T3, T4, T5], T5],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple5 converts a [tuple.Tuple5[A1, A2, A3, A4, A5]] into a [ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]]]
 func TraverseTuple5[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], T1, T2, T3, T4, T5, A1, A2, A3, A4, A5 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5) func(tuple.Tuple5[A1, A2, A3, A4, A5]) ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]] {
-	return func(t tuple.Tuple5[A1, A2, A3, A4, A5]) ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]] {
-		return apply.TraverseTuple5(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5]],
-			Ap[func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T2],
-			Ap[func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T3],
-			Ap[func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T4],
-			Ap[tuple.Tuple5[T1, T2, T3, T4, T5], T5],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple5 converts a [tuple.Tuple5[A1, A2, A3, A4, A5]] into a [ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]]]
 func TraverseSeqTuple5[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], T1, T2, T3, T4, T5, A1, A2, A3, A4, A5 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5) func(tuple.Tuple5[A1, A2, A3, A4, A5]) ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]] {
-	return func(t tuple.Tuple5[A1, A2, A3, A4, A5]) ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]] {
-		return apply.TraverseTuple5(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5]],
-			ApSeq[func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T2],
-			ApSeq[func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T3],
-			ApSeq[func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T4],
-			ApSeq[tuple.Tuple5[T1, T2, T3, T4, T5], T5],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple5 converts a [tuple.Tuple5[A1, A2, A3, A4, A5]] into a [ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]]]
 func TraverseParTuple5[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], T1, T2, T3, T4, T5, A1, A2, A3, A4, A5 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5) func(tuple.Tuple5[A1, A2, A3, A4, A5]) ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]] {
-	return func(t tuple.Tuple5[A1, A2, A3, A4, A5]) ReaderIOResult[tuple.Tuple5[T1, T2, T3, T4, T5]] {
-		return apply.TraverseTuple5(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5]],
-			ApPar[func(T3) func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T2],
-			ApPar[func(T4) func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T3],
-			ApPar[func(T5) tuple.Tuple5[T1, T2, T3, T4, T5], T4],
-			ApPar[tuple.Tuple5[T1, T2, T3, T4, T5], T5],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize6 converts a function with 6 parameters returning a tuple into a function with 6 parameters returning a [ReaderIOResult[R]]
@@ -728,7 +453,8 @@ func TraverseParTuple5[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIORes
 //
 //go:inline
 func Eitherize6[F ~func(context.Context, T0, T1, T2, T3, T4, T5) (R, error), T0, T1, T2, T3, T4, T5, R any](f F) func(T0, T1, T2, T3, T4, T5) ReaderIOResult[R] {
-	return G.Eitherize6[ReaderIOResult[R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize6 converts a function with 7 parameters returning a [ReaderIOResult[R]] into a function with 6 parameters returning a tuple.
@@ -736,7 +462,8 @@ func Eitherize6[F ~func(context.Context, T0, T1, T2, T3, T4, T5) (R, error), T0,
 //
 //go:inline
 func Uneitherize6[F ~func(T0, T1, T2, T3, T4, T5) ReaderIOResult[R], T0, T1, T2, T3, T4, T5, R any](f F) func(context.Context, T0, T1, T2, T3, T4, T5) (R, error) {
-	return G.Uneitherize6[ReaderIOResult[R], func(context.Context, T0, T1, T2, T3, T4, T5) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT6 converts 6 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]]]
@@ -748,20 +475,8 @@ func SequenceT6[T1, T2, T3, T4, T5, T6 any](
 	t5 ReaderIOResult[T5],
 	t6 ReaderIOResult[T6],
 ) ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]] {
-	return apply.SequenceT6(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6]],
-		Ap[func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T2],
-		Ap[func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T3],
-		Ap[func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T4],
-		Ap[func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T5],
-		Ap[tuple.Tuple6[T1, T2, T3, T4, T5, T6], T6],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqT6 converts 6 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]]]
@@ -773,20 +488,8 @@ func SequenceSeqT6[T1, T2, T3, T4, T5, T6 any](
 	t5 ReaderIOResult[T5],
 	t6 ReaderIOResult[T6],
 ) ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]] {
-	return apply.SequenceT6(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6]],
-		ApSeq[func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T2],
-		ApSeq[func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T3],
-		ApSeq[func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T4],
-		ApSeq[func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T5],
-		ApSeq[tuple.Tuple6[T1, T2, T3, T4, T5, T6], T6],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParT6 converts 6 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]]]
@@ -798,122 +501,44 @@ func SequenceParT6[T1, T2, T3, T4, T5, T6 any](
 	t5 ReaderIOResult[T5],
 	t6 ReaderIOResult[T6],
 ) ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]] {
-	return apply.SequenceT6(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6]],
-		ApPar[func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T2],
-		ApPar[func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T3],
-		ApPar[func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T4],
-		ApPar[func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T5],
-		ApPar[tuple.Tuple6[T1, T2, T3, T4, T5, T6], T6],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple6 converts a [tuple.Tuple6[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]]]
 func SequenceTuple6[T1, T2, T3, T4, T5, T6 any](t tuple.Tuple6[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6]]) ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]] {
-	return apply.SequenceTuple6(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6]],
-		Ap[func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T2],
-		Ap[func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T3],
-		Ap[func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T4],
-		Ap[func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T5],
-		Ap[tuple.Tuple6[T1, T2, T3, T4, T5, T6], T6],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqTuple6 converts a [tuple.Tuple6[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]]]
 func SequenceSeqTuple6[T1, T2, T3, T4, T5, T6 any](t tuple.Tuple6[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6]]) ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]] {
-	return apply.SequenceTuple6(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6]],
-		ApSeq[func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T2],
-		ApSeq[func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T3],
-		ApSeq[func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T4],
-		ApSeq[func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T5],
-		ApSeq[tuple.Tuple6[T1, T2, T3, T4, T5, T6], T6],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParTuple6 converts a [tuple.Tuple6[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]]]
 func SequenceParTuple6[T1, T2, T3, T4, T5, T6 any](t tuple.Tuple6[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6]]) ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]] {
-	return apply.SequenceTuple6(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6]],
-		ApPar[func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T2],
-		ApPar[func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T3],
-		ApPar[func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T4],
-		ApPar[func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T5],
-		ApPar[tuple.Tuple6[T1, T2, T3, T4, T5, T6], T6],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple6 converts a [tuple.Tuple6[A1, A2, A3, A4, A5, A6]] into a [ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]]]
 func TraverseTuple6[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], T1, T2, T3, T4, T5, T6, A1, A2, A3, A4, A5, A6 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6) func(tuple.Tuple6[A1, A2, A3, A4, A5, A6]) ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]] {
-	return func(t tuple.Tuple6[A1, A2, A3, A4, A5, A6]) ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]] {
-		return apply.TraverseTuple6(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6]],
-			Ap[func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T2],
-			Ap[func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T3],
-			Ap[func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T4],
-			Ap[func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T5],
-			Ap[tuple.Tuple6[T1, T2, T3, T4, T5, T6], T6],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple6 converts a [tuple.Tuple6[A1, A2, A3, A4, A5, A6]] into a [ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]]]
 func TraverseSeqTuple6[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], T1, T2, T3, T4, T5, T6, A1, A2, A3, A4, A5, A6 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6) func(tuple.Tuple6[A1, A2, A3, A4, A5, A6]) ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]] {
-	return func(t tuple.Tuple6[A1, A2, A3, A4, A5, A6]) ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]] {
-		return apply.TraverseTuple6(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6]],
-			ApSeq[func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T2],
-			ApSeq[func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T3],
-			ApSeq[func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T4],
-			ApSeq[func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T5],
-			ApSeq[tuple.Tuple6[T1, T2, T3, T4, T5, T6], T6],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple6 converts a [tuple.Tuple6[A1, A2, A3, A4, A5, A6]] into a [ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]]]
 func TraverseParTuple6[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], T1, T2, T3, T4, T5, T6, A1, A2, A3, A4, A5, A6 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6) func(tuple.Tuple6[A1, A2, A3, A4, A5, A6]) ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]] {
-	return func(t tuple.Tuple6[A1, A2, A3, A4, A5, A6]) ReaderIOResult[tuple.Tuple6[T1, T2, T3, T4, T5, T6]] {
-		return apply.TraverseTuple6(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6]],
-			ApPar[func(T3) func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T2],
-			ApPar[func(T4) func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T3],
-			ApPar[func(T5) func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T4],
-			ApPar[func(T6) tuple.Tuple6[T1, T2, T3, T4, T5, T6], T5],
-			ApPar[tuple.Tuple6[T1, T2, T3, T4, T5, T6], T6],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize7 converts a function with 7 parameters returning a tuple into a function with 7 parameters returning a [ReaderIOResult[R]]
@@ -921,7 +546,8 @@ func TraverseParTuple6[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIORes
 //
 //go:inline
 func Eitherize7[F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6) (R, error), T0, T1, T2, T3, T4, T5, T6, R any](f F) func(T0, T1, T2, T3, T4, T5, T6) ReaderIOResult[R] {
-	return G.Eitherize7[ReaderIOResult[R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize7 converts a function with 8 parameters returning a [ReaderIOResult[R]] into a function with 7 parameters returning a tuple.
@@ -929,7 +555,8 @@ func Eitherize7[F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6) (R, error),
 //
 //go:inline
 func Uneitherize7[F ~func(T0, T1, T2, T3, T4, T5, T6) ReaderIOResult[R], T0, T1, T2, T3, T4, T5, T6, R any](f F) func(context.Context, T0, T1, T2, T3, T4, T5, T6) (R, error) {
-	return G.Uneitherize7[ReaderIOResult[R], func(context.Context, T0, T1, T2, T3, T4, T5, T6) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT7 converts 7 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]]]
@@ -942,22 +569,8 @@ func SequenceT7[T1, T2, T3, T4, T5, T6, T7 any](
 	t6 ReaderIOResult[T6],
 	t7 ReaderIOResult[T7],
 ) ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-	return apply.SequenceT7(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]],
-		Ap[func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T2],
-		Ap[func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T3],
-		Ap[func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T4],
-		Ap[func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T5],
-		Ap[func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T6],
-		Ap[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T7],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqT7 converts 7 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]]]
@@ -970,22 +583,8 @@ func SequenceSeqT7[T1, T2, T3, T4, T5, T6, T7 any](
 	t6 ReaderIOResult[T6],
 	t7 ReaderIOResult[T7],
 ) ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-	return apply.SequenceT7(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]],
-		ApSeq[func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T2],
-		ApSeq[func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T3],
-		ApSeq[func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T4],
-		ApSeq[func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T5],
-		ApSeq[func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T6],
-		ApSeq[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T7],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParT7 converts 7 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]]]
@@ -998,133 +597,44 @@ func SequenceParT7[T1, T2, T3, T4, T5, T6, T7 any](
 	t6 ReaderIOResult[T6],
 	t7 ReaderIOResult[T7],
 ) ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-	return apply.SequenceT7(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]],
-		ApPar[func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T2],
-		ApPar[func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T3],
-		ApPar[func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T4],
-		ApPar[func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T5],
-		ApPar[func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T6],
-		ApPar[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T7],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple7 converts a [tuple.Tuple7[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]]]
 func SequenceTuple7[T1, T2, T3, T4, T5, T6, T7 any](t tuple.Tuple7[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6], ReaderIOResult[T7]]) ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-	return apply.SequenceTuple7(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]],
-		Ap[func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T2],
-		Ap[func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T3],
-		Ap[func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T4],
-		Ap[func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T5],
-		Ap[func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T6],
-		Ap[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T7],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqTuple7 converts a [tuple.Tuple7[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]]]
 func SequenceSeqTuple7[T1, T2, T3, T4, T5, T6, T7 any](t tuple.Tuple7[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6], ReaderIOResult[T7]]) ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-	return apply.SequenceTuple7(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]],
-		ApSeq[func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T2],
-		ApSeq[func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T3],
-		ApSeq[func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T4],
-		ApSeq[func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T5],
-		ApSeq[func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T6],
-		ApSeq[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T7],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParTuple7 converts a [tuple.Tuple7[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]]]
 func SequenceParTuple7[T1, T2, T3, T4, T5, T6, T7 any](t tuple.Tuple7[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6], ReaderIOResult[T7]]) ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-	return apply.SequenceTuple7(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]],
-		ApPar[func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T2],
-		ApPar[func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T3],
-		ApPar[func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T4],
-		ApPar[func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T5],
-		ApPar[func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T6],
-		ApPar[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T7],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple7 converts a [tuple.Tuple7[A1, A2, A3, A4, A5, A6, A7]] into a [ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]]]
 func TraverseTuple7[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], F7 ~func(A7) ReaderIOResult[T7], T1, T2, T3, T4, T5, T6, T7, A1, A2, A3, A4, A5, A6, A7 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7) func(tuple.Tuple7[A1, A2, A3, A4, A5, A6, A7]) ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-	return func(t tuple.Tuple7[A1, A2, A3, A4, A5, A6, A7]) ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-		return apply.TraverseTuple7(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]],
-			Ap[func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T2],
-			Ap[func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T3],
-			Ap[func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T4],
-			Ap[func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T5],
-			Ap[func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T6],
-			Ap[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T7],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple7 converts a [tuple.Tuple7[A1, A2, A3, A4, A5, A6, A7]] into a [ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]]]
 func TraverseSeqTuple7[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], F7 ~func(A7) ReaderIOResult[T7], T1, T2, T3, T4, T5, T6, T7, A1, A2, A3, A4, A5, A6, A7 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7) func(tuple.Tuple7[A1, A2, A3, A4, A5, A6, A7]) ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-	return func(t tuple.Tuple7[A1, A2, A3, A4, A5, A6, A7]) ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-		return apply.TraverseTuple7(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]],
-			ApSeq[func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T2],
-			ApSeq[func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T3],
-			ApSeq[func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T4],
-			ApSeq[func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T5],
-			ApSeq[func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T6],
-			ApSeq[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T7],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple7 converts a [tuple.Tuple7[A1, A2, A3, A4, A5, A6, A7]] into a [ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]]]
 func TraverseParTuple7[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], F7 ~func(A7) ReaderIOResult[T7], T1, T2, T3, T4, T5, T6, T7, A1, A2, A3, A4, A5, A6, A7 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7) func(tuple.Tuple7[A1, A2, A3, A4, A5, A6, A7]) ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-	return func(t tuple.Tuple7[A1, A2, A3, A4, A5, A6, A7]) ReaderIOResult[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]] {
-		return apply.TraverseTuple7(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7]],
-			ApPar[func(T3) func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T2],
-			ApPar[func(T4) func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T3],
-			ApPar[func(T5) func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T4],
-			ApPar[func(T6) func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T5],
-			ApPar[func(T7) tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T6],
-			ApPar[tuple.Tuple7[T1, T2, T3, T4, T5, T6, T7], T7],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize8 converts a function with 8 parameters returning a tuple into a function with 8 parameters returning a [ReaderIOResult[R]]
@@ -1132,7 +642,8 @@ func TraverseParTuple7[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIORes
 //
 //go:inline
 func Eitherize8[F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7) ReaderIOResult[R] {
-	return G.Eitherize8[ReaderIOResult[R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize8 converts a function with 9 parameters returning a [ReaderIOResult[R]] into a function with 8 parameters returning a tuple.
@@ -1140,7 +651,8 @@ func Eitherize8[F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7) (R, err
 //
 //go:inline
 func Uneitherize8[F ~func(T0, T1, T2, T3, T4, T5, T6, T7) ReaderIOResult[R], T0, T1, T2, T3, T4, T5, T6, T7, R any](f F) func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7) (R, error) {
-	return G.Uneitherize8[ReaderIOResult[R], func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT8 converts 8 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]]]
@@ -1154,24 +666,8 @@ func SequenceT8[T1, T2, T3, T4, T5, T6, T7, T8 any](
 	t7 ReaderIOResult[T7],
 	t8 ReaderIOResult[T8],
 ) ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-	return apply.SequenceT8(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]],
-		Ap[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T2],
-		Ap[func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T3],
-		Ap[func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T4],
-		Ap[func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T5],
-		Ap[func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T6],
-		Ap[func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T7],
-		Ap[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T8],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqT8 converts 8 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]]]
@@ -1185,24 +681,8 @@ func SequenceSeqT8[T1, T2, T3, T4, T5, T6, T7, T8 any](
 	t7 ReaderIOResult[T7],
 	t8 ReaderIOResult[T8],
 ) ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-	return apply.SequenceT8(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]],
-		ApSeq[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T2],
-		ApSeq[func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T3],
-		ApSeq[func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T4],
-		ApSeq[func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T5],
-		ApSeq[func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T6],
-		ApSeq[func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T7],
-		ApSeq[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T8],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParT8 converts 8 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]]]
@@ -1216,144 +696,44 @@ func SequenceParT8[T1, T2, T3, T4, T5, T6, T7, T8 any](
 	t7 ReaderIOResult[T7],
 	t8 ReaderIOResult[T8],
 ) ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-	return apply.SequenceT8(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]],
-		ApPar[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T2],
-		ApPar[func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T3],
-		ApPar[func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T4],
-		ApPar[func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T5],
-		ApPar[func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T6],
-		ApPar[func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T7],
-		ApPar[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T8],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple8 converts a [tuple.Tuple8[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]]]
 func SequenceTuple8[T1, T2, T3, T4, T5, T6, T7, T8 any](t tuple.Tuple8[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6], ReaderIOResult[T7], ReaderIOResult[T8]]) ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-	return apply.SequenceTuple8(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]],
-		Ap[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T2],
-		Ap[func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T3],
-		Ap[func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T4],
-		Ap[func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T5],
-		Ap[func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T6],
-		Ap[func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T7],
-		Ap[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T8],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqTuple8 converts a [tuple.Tuple8[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]]]
 func SequenceSeqTuple8[T1, T2, T3, T4, T5, T6, T7, T8 any](t tuple.Tuple8[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6], ReaderIOResult[T7], ReaderIOResult[T8]]) ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-	return apply.SequenceTuple8(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]],
-		ApSeq[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T2],
-		ApSeq[func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T3],
-		ApSeq[func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T4],
-		ApSeq[func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T5],
-		ApSeq[func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T6],
-		ApSeq[func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T7],
-		ApSeq[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T8],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParTuple8 converts a [tuple.Tuple8[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]]]
 func SequenceParTuple8[T1, T2, T3, T4, T5, T6, T7, T8 any](t tuple.Tuple8[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6], ReaderIOResult[T7], ReaderIOResult[T8]]) ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-	return apply.SequenceTuple8(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]],
-		ApPar[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T2],
-		ApPar[func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T3],
-		ApPar[func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T4],
-		ApPar[func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T5],
-		ApPar[func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T6],
-		ApPar[func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T7],
-		ApPar[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T8],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple8 converts a [tuple.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]] into a [ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]]]
 func TraverseTuple8[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], F7 ~func(A7) ReaderIOResult[T7], F8 ~func(A8) ReaderIOResult[T8], T1, T2, T3, T4, T5, T6, T7, T8, A1, A2, A3, A4, A5, A6, A7, A8 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8) func(tuple.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-	return func(t tuple.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-		return apply.TraverseTuple8(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]],
-			Ap[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T2],
-			Ap[func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T3],
-			Ap[func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T4],
-			Ap[func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T5],
-			Ap[func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T6],
-			Ap[func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T7],
-			Ap[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T8],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple8 converts a [tuple.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]] into a [ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]]]
 func TraverseSeqTuple8[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], F7 ~func(A7) ReaderIOResult[T7], F8 ~func(A8) ReaderIOResult[T8], T1, T2, T3, T4, T5, T6, T7, T8, A1, A2, A3, A4, A5, A6, A7, A8 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8) func(tuple.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-	return func(t tuple.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-		return apply.TraverseTuple8(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]],
-			ApSeq[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T2],
-			ApSeq[func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T3],
-			ApSeq[func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T4],
-			ApSeq[func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T5],
-			ApSeq[func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T6],
-			ApSeq[func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T7],
-			ApSeq[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T8],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple8 converts a [tuple.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]] into a [ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]]]
 func TraverseParTuple8[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], F7 ~func(A7) ReaderIOResult[T7], F8 ~func(A8) ReaderIOResult[T8], T1, T2, T3, T4, T5, T6, T7, T8, A1, A2, A3, A4, A5, A6, A7, A8 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8) func(tuple.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-	return func(t tuple.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8]) ReaderIOResult[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]] {
-		return apply.TraverseTuple8(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8]],
-			ApPar[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T2],
-			ApPar[func(T4) func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T3],
-			ApPar[func(T5) func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T4],
-			ApPar[func(T6) func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T5],
-			ApPar[func(T7) func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T6],
-			ApPar[func(T8) tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T7],
-			ApPar[tuple.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8], T8],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize9 converts a function with 9 parameters returning a tuple into a function with 9 parameters returning a [ReaderIOResult[R]]
@@ -1361,7 +741,8 @@ func TraverseParTuple8[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIORes
 //
 //go:inline
 func Eitherize9[F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7, T8) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, T8, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8) ReaderIOResult[R] {
-	return G.Eitherize9[ReaderIOResult[R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize9 converts a function with 10 parameters returning a [ReaderIOResult[R]] into a function with 9 parameters returning a tuple.
@@ -1369,7 +750,8 @@ func Eitherize9[F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7, T8) (R,
 //
 //go:inline
 func Uneitherize9[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8) ReaderIOResult[R], T0, T1, T2, T3, T4, T5, T6, T7, T8, R any](f F) func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7, T8) (R, error) {
-	return G.Uneitherize9[ReaderIOResult[R], func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7, T8) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT9 converts 9 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]]]
@@ -1384,26 +766,8 @@ func SequenceT9[T1, T2, T3, T4, T5, T6, T7, T8, T9 any](
 	t8 ReaderIOResult[T8],
 	t9 ReaderIOResult[T9],
 ) ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-	return apply.SequenceT9(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]],
-		Ap[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T2],
-		Ap[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T3],
-		Ap[func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T4],
-		Ap[func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T5],
-		Ap[func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T6],
-		Ap[func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T7],
-		Ap[func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T8],
-		Ap[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T9],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqT9 converts 9 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]]]
@@ -1418,26 +782,8 @@ func SequenceSeqT9[T1, T2, T3, T4, T5, T6, T7, T8, T9 any](
 	t8 ReaderIOResult[T8],
 	t9 ReaderIOResult[T9],
 ) ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-	return apply.SequenceT9(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]],
-		ApSeq[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T2],
-		ApSeq[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T3],
-		ApSeq[func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T4],
-		ApSeq[func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T5],
-		ApSeq[func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T6],
-		ApSeq[func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T7],
-		ApSeq[func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T8],
-		ApSeq[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T9],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParT9 converts 9 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]]]
@@ -1452,155 +798,44 @@ func SequenceParT9[T1, T2, T3, T4, T5, T6, T7, T8, T9 any](
 	t8 ReaderIOResult[T8],
 	t9 ReaderIOResult[T9],
 ) ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-	return apply.SequenceT9(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]],
-		ApPar[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T2],
-		ApPar[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T3],
-		ApPar[func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T4],
-		ApPar[func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T5],
-		ApPar[func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T6],
-		ApPar[func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T7],
-		ApPar[func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T8],
-		ApPar[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T9],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple9 converts a [tuple.Tuple9[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]]]
 func SequenceTuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9 any](t tuple.Tuple9[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6], ReaderIOResult[T7], ReaderIOResult[T8], ReaderIOResult[T9]]) ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-	return apply.SequenceTuple9(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]],
-		Ap[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T2],
-		Ap[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T3],
-		Ap[func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T4],
-		Ap[func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T5],
-		Ap[func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T6],
-		Ap[func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T7],
-		Ap[func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T8],
-		Ap[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T9],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqTuple9 converts a [tuple.Tuple9[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]]]
 func SequenceSeqTuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9 any](t tuple.Tuple9[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6], ReaderIOResult[T7], ReaderIOResult[T8], ReaderIOResult[T9]]) ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-	return apply.SequenceTuple9(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]],
-		ApSeq[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T2],
-		ApSeq[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T3],
-		ApSeq[func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T4],
-		ApSeq[func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T5],
-		ApSeq[func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T6],
-		ApSeq[func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T7],
-		ApSeq[func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T8],
-		ApSeq[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T9],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParTuple9 converts a [tuple.Tuple9[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]]]
 func SequenceParTuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9 any](t tuple.Tuple9[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6], ReaderIOResult[T7], ReaderIOResult[T8], ReaderIOResult[T9]]) ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-	return apply.SequenceTuple9(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]],
-		ApPar[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T2],
-		ApPar[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T3],
-		ApPar[func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T4],
-		ApPar[func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T5],
-		ApPar[func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T6],
-		ApPar[func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T7],
-		ApPar[func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T8],
-		ApPar[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T9],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple9 converts a [tuple.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]] into a [ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]]]
 func TraverseTuple9[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], F7 ~func(A7) ReaderIOResult[T7], F8 ~func(A8) ReaderIOResult[T8], F9 ~func(A9) ReaderIOResult[T9], T1, T2, T3, T4, T5, T6, T7, T8, T9, A1, A2, A3, A4, A5, A6, A7, A8, A9 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9) func(tuple.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-	return func(t tuple.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-		return apply.TraverseTuple9(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]],
-			Ap[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T2],
-			Ap[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T3],
-			Ap[func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T4],
-			Ap[func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T5],
-			Ap[func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T6],
-			Ap[func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T7],
-			Ap[func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T8],
-			Ap[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T9],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple9 converts a [tuple.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]] into a [ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]]]
 func TraverseSeqTuple9[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], F7 ~func(A7) ReaderIOResult[T7], F8 ~func(A8) ReaderIOResult[T8], F9 ~func(A9) ReaderIOResult[T9], T1, T2, T3, T4, T5, T6, T7, T8, T9, A1, A2, A3, A4, A5, A6, A7, A8, A9 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9) func(tuple.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-	return func(t tuple.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-		return apply.TraverseTuple9(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]],
-			ApSeq[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T2],
-			ApSeq[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T3],
-			ApSeq[func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T4],
-			ApSeq[func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T5],
-			ApSeq[func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T6],
-			ApSeq[func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T7],
-			ApSeq[func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T8],
-			ApSeq[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T9],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple9 converts a [tuple.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]] into a [ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]]]
 func TraverseParTuple9[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], F7 ~func(A7) ReaderIOResult[T7], F8 ~func(A8) ReaderIOResult[T8], F9 ~func(A9) ReaderIOResult[T9], T1, T2, T3, T4, T5, T6, T7, T8, T9, A1, A2, A3, A4, A5, A6, A7, A8, A9 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9) func(tuple.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-	return func(t tuple.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9]) ReaderIOResult[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]] {
-		return apply.TraverseTuple9(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9]],
-			ApPar[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T2],
-			ApPar[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T3],
-			ApPar[func(T5) func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T4],
-			ApPar[func(T6) func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T5],
-			ApPar[func(T7) func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T6],
-			ApPar[func(T8) func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T7],
-			ApPar[func(T9) tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T8],
-			ApPar[tuple.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9], T9],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize10 converts a function with 10 parameters returning a tuple into a function with 10 parameters returning a [ReaderIOResult[R]]
@@ -1608,7 +843,8 @@ func TraverseParTuple9[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIORes
 //
 //go:inline
 func Eitherize10[F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) (R, error), T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, R any](f F) func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) ReaderIOResult[R] {
-	return G.Eitherize10[ReaderIOResult[R]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uneitherize10 converts a function with 11 parameters returning a [ReaderIOResult[R]] into a function with 10 parameters returning a tuple.
@@ -1616,7 +852,8 @@ func Eitherize10[F ~func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9
 //
 //go:inline
 func Uneitherize10[F ~func(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) ReaderIOResult[R], T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, R any](f F) func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) (R, error) {
-	return G.Uneitherize10[ReaderIOResult[R], func(context.Context, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9) (R, error)](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT10 converts 10 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]]]
@@ -1632,28 +869,8 @@ func SequenceT10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](
 	t9 ReaderIOResult[T9],
 	t10 ReaderIOResult[T10],
 ) ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-	return apply.SequenceT10(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]],
-		Ap[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T2],
-		Ap[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T3],
-		Ap[func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T4],
-		Ap[func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T5],
-		Ap[func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T6],
-		Ap[func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T7],
-		Ap[func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T8],
-		Ap[func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T9],
-		Ap[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T10],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-		t10,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqT10 converts 10 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]]]
@@ -1669,28 +886,8 @@ func SequenceSeqT10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](
 	t9 ReaderIOResult[T9],
 	t10 ReaderIOResult[T10],
 ) ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-	return apply.SequenceT10(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]],
-		ApSeq[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T2],
-		ApSeq[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T3],
-		ApSeq[func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T4],
-		ApSeq[func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T5],
-		ApSeq[func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T6],
-		ApSeq[func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T7],
-		ApSeq[func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T8],
-		ApSeq[func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T9],
-		ApSeq[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T10],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-		t10,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParT10 converts 10 [ReaderIOResult[T]] into a [ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]]]
@@ -1706,164 +903,42 @@ func SequenceParT10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](
 	t9 ReaderIOResult[T9],
 	t10 ReaderIOResult[T10],
 ) ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-	return apply.SequenceT10(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]],
-		ApPar[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T2],
-		ApPar[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T3],
-		ApPar[func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T4],
-		ApPar[func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T5],
-		ApPar[func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T6],
-		ApPar[func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T7],
-		ApPar[func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T8],
-		ApPar[func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T9],
-		ApPar[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T10],
-		t1,
-		t2,
-		t3,
-		t4,
-		t5,
-		t6,
-		t7,
-		t8,
-		t9,
-		t10,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceTuple10 converts a [tuple.Tuple10[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]]]
 func SequenceTuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](t tuple.Tuple10[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6], ReaderIOResult[T7], ReaderIOResult[T8], ReaderIOResult[T9], ReaderIOResult[T10]]) ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-	return apply.SequenceTuple10(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]],
-		Ap[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T2],
-		Ap[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T3],
-		Ap[func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T4],
-		Ap[func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T5],
-		Ap[func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T6],
-		Ap[func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T7],
-		Ap[func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T8],
-		Ap[func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T9],
-		Ap[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T10],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeqTuple10 converts a [tuple.Tuple10[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]]]
 func SequenceSeqTuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](t tuple.Tuple10[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6], ReaderIOResult[T7], ReaderIOResult[T8], ReaderIOResult[T9], ReaderIOResult[T10]]) ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-	return apply.SequenceTuple10(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]],
-		ApSeq[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T2],
-		ApSeq[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T3],
-		ApSeq[func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T4],
-		ApSeq[func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T5],
-		ApSeq[func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T6],
-		ApSeq[func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T7],
-		ApSeq[func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T8],
-		ApSeq[func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T9],
-		ApSeq[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T10],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceParTuple10 converts a [tuple.Tuple10[ReaderIOResult[T]]] into a [ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]]]
 func SequenceParTuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any](t tuple.Tuple10[ReaderIOResult[T1], ReaderIOResult[T2], ReaderIOResult[T3], ReaderIOResult[T4], ReaderIOResult[T5], ReaderIOResult[T6], ReaderIOResult[T7], ReaderIOResult[T8], ReaderIOResult[T9], ReaderIOResult[T10]]) ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-	return apply.SequenceTuple10(
-		Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]],
-		ApPar[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T2],
-		ApPar[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T3],
-		ApPar[func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T4],
-		ApPar[func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T5],
-		ApPar[func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T6],
-		ApPar[func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T7],
-		ApPar[func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T8],
-		ApPar[func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T9],
-		ApPar[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T10],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseTuple10 converts a [tuple.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]] into a [ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]]]
 func TraverseTuple10[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], F7 ~func(A7) ReaderIOResult[T7], F8 ~func(A8) ReaderIOResult[T8], F9 ~func(A9) ReaderIOResult[T9], F10 ~func(A10) ReaderIOResult[T10], T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10) func(tuple.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-	return func(t tuple.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-		return apply.TraverseTuple10(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]],
-			Ap[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T2],
-			Ap[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T3],
-			Ap[func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T4],
-			Ap[func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T5],
-			Ap[func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T6],
-			Ap[func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T7],
-			Ap[func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T8],
-			Ap[func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T9],
-			Ap[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T10],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			f10,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseSeqTuple10 converts a [tuple.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]] into a [ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]]]
 func TraverseSeqTuple10[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], F7 ~func(A7) ReaderIOResult[T7], F8 ~func(A8) ReaderIOResult[T8], F9 ~func(A9) ReaderIOResult[T9], F10 ~func(A10) ReaderIOResult[T10], T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10) func(tuple.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-	return func(t tuple.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-		return apply.TraverseTuple10(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]],
-			ApSeq[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T2],
-			ApSeq[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T3],
-			ApSeq[func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T4],
-			ApSeq[func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T5],
-			ApSeq[func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T6],
-			ApSeq[func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T7],
-			ApSeq[func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T8],
-			ApSeq[func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T9],
-			ApSeq[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T10],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			f10,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseParTuple10 converts a [tuple.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]] into a [ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]]]
 func TraverseParTuple10[F1 ~func(A1) ReaderIOResult[T1], F2 ~func(A2) ReaderIOResult[T2], F3 ~func(A3) ReaderIOResult[T3], F4 ~func(A4) ReaderIOResult[T4], F5 ~func(A5) ReaderIOResult[T5], F6 ~func(A6) ReaderIOResult[T6], F7 ~func(A7) ReaderIOResult[T7], F8 ~func(A8) ReaderIOResult[T8], F9 ~func(A9) ReaderIOResult[T9], F10 ~func(A10) ReaderIOResult[T10], T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10 any](f1 F1, f2 F2, f3 F3, f4 F4, f5 F5, f6 F6, f7 F7, f8 F8, f9 F9, f10 F10) func(tuple.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-	return func(t tuple.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10]) ReaderIOResult[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]] {
-		return apply.TraverseTuple10(
-			Map[T1, func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]],
-			ApPar[func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T2],
-			ApPar[func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T3],
-			ApPar[func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T4],
-			ApPar[func(T6) func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T5],
-			ApPar[func(T7) func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T6],
-			ApPar[func(T8) func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T7],
-			ApPar[func(T9) func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T8],
-			ApPar[func(T10) tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T9],
-			ApPar[tuple.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10], T10],
-			f1,
-			f2,
-			f3,
-			f4,
-			f5,
-			f6,
-			f7,
-			f8,
-			f9,
-			f10,
-			t,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

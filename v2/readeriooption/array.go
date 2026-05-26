@@ -15,10 +15,6 @@
 
 package readeriooption
 
-import (
-	RA "github.com/IBM/fp-go/v2/internal/array"
-)
-
 // TraverseArray transforms an array by applying a function that returns a ReaderIOOption to each element.
 // If any element results in None, the entire result is None.
 // Otherwise, returns Some containing an array of all the unwrapped values.
@@ -39,13 +35,8 @@ import (
 //	)
 //	// result will be Some([]User) if all users are found, None otherwise
 func TraverseArray[E, A, B any](f Kleisli[E, A, B]) Kleisli[E, []A, []B] {
-	return RA.Traverse[[]A, []B](
-		Of,
-		Map,
-		Ap,
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex is like TraverseArray but the function also receives the index of each element.
@@ -62,11 +53,6 @@ func TraverseArray[E, A, B any](f Kleisli[E, A, B]) Kleisli[E, []A, []B] {
 //	values := []string{"a", "b", "c"}
 //	result := readeroption.TraverseArrayWithIndex[DB](processWithIndex)(values)
 func TraverseArrayWithIndex[E, A, B any](f func(int, A) ReaderIOOption[E, B]) func([]A) ReaderIOOption[E, []B] {
-	return RA.TraverseWithIndex[[]A, []B](
-		Of,
-		Map,
-		Ap,
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

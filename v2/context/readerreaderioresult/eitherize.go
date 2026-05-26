@@ -17,9 +17,6 @@ package readerreaderioresult
 
 import (
 	"context"
-
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/ioresult"
 )
 
 // Eitherize converts a function that returns a value and error into a ReaderReaderIOResult.
@@ -107,10 +104,8 @@ import (
 //   - Eitherize1: For functions that take an additional parameter
 //   - ioresult.Eitherize2: The underlying conversion function
 func Eitherize[R, T any](f func(R, context.Context) (T, error)) ReaderReaderIOResult[R, T] {
-	return F.Pipe1(
-		ioresult.Eitherize2(f),
-		F.Curry2,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize1 converts a function that takes an additional parameter and returns a value
@@ -206,8 +201,6 @@ func Eitherize[R, T any](f func(R, context.Context) (T, error)) ReaderReaderIORe
 //   - Chain: For composing Kleisli arrows
 //   - ioresult.Eitherize3: The underlying conversion function
 func Eitherize1[R, A, T any](f func(R, context.Context, A) (T, error)) Kleisli[R, A, T] {
-	return F.Flow2(
-		F.Bind3of3(ioresult.Eitherize3(f)),
-		F.Curry2,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

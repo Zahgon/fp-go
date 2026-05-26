@@ -15,22 +15,13 @@
 
 package either
 
-import (
-	F "github.com/IBM/fp-go/function"
-)
-
 // Traverse converts an [Either] of some higher kinded type into the higher kinded type of an [Either]
 func Traverse[A, E, B, HKTB, HKTRB any](
 	mof func(Either[E, B]) HKTRB,
 	mmap func(func(B) Either[E, B]) func(HKTB) HKTRB,
 ) func(func(A) HKTB) func(Either[E, A]) HKTRB {
-
-	left := F.Flow2(Left[B, E], mof)
-	right := mmap(Right[E, B])
-
-	return func(f func(A) HKTB) func(Either[E, A]) HKTRB {
-		return Fold(left, F.Flow2(f, right))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Sequence converts an [Either] of some higher kinded type into the higher kinded type of an [Either]
@@ -38,5 +29,6 @@ func Sequence[E, A, HKTA, HKTRA any](
 	mof func(Either[E, A]) HKTRA,
 	mmap func(func(A) Either[E, A]) func(HKTA) HKTRA,
 ) func(Either[E, HKTA]) HKTRA {
-	return Fold(F.Flow2(Left[A, E], mof), mmap(Right[E, A]))
+	_ = "STUB: not implemented"
+	return nil
 }

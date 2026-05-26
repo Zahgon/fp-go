@@ -16,10 +16,7 @@
 package readerreaderioresult
 
 import (
-	"github.com/IBM/fp-go/v2/internal/readert"
 	"github.com/IBM/fp-go/v2/reader"
-	"github.com/IBM/fp-go/v2/readerioeither"
-	RRIOE "github.com/IBM/fp-go/v2/readerreaderioeither"
 )
 
 // Sequence swaps the order of nested environment parameters in a ReaderReaderIOResult computation.
@@ -70,10 +67,8 @@ import (
 //	ctx := context.Background()
 //	result := sequenced(UserPrefs{Theme: "dark"})(AppConfig{DatabaseURL: "db"})(ctx)()
 func Sequence[R1, R2, A any](ma ReaderReaderIOResult[R2, ReaderReaderIOResult[R1, A]]) Kleisli[R2, R1, A] {
-	return readert.Sequence(
-		readerioeither.Chain,
-		ma,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceReader swaps the order of environment parameters when the inner computation is a pure Reader.
@@ -118,10 +113,8 @@ func Sequence[R1, R2, A any](ma ReaderReaderIOResult[R2, ReaderReaderIOResult[R1
 //	ctx := context.Background()
 //	result := sequenced(Database{ConnectionString: "localhost"})(AppConfig{Multiplier: 2})(ctx)()
 func SequenceReader[R1, R2, A any](ma ReaderReaderIOResult[R2, Reader[R1, A]]) Kleisli[R2, R1, A] {
-	return readert.SequenceReader(
-		readerioeither.Map,
-		ma,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceReaderIO swaps the order of environment parameters when the inner computation is a ReaderIO.
@@ -169,7 +162,8 @@ func SequenceReader[R1, R2, A any](ma ReaderReaderIOResult[R2, Reader[R1, A]]) K
 //	ctx := context.Background()
 //	result := sequenced(Logger{Level: "INFO"})(AppConfig{FilePath: "/data"})(ctx)()
 func SequenceReaderIO[R1, R2, A any](ma ReaderReaderIOResult[R2, ReaderIO[R1, A]]) Kleisli[R2, R1, A] {
-	return RRIOE.SequenceReaderIO(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Traverse transforms a ReaderReaderIOResult computation by applying a function that produces
@@ -224,11 +218,8 @@ func SequenceReaderIO[R1, R2, A any](ma ReaderReaderIOResult[R2, ReaderIO[R1, A]
 func Traverse[R2, R1, A, B any](
 	f Kleisli[R1, A, B],
 ) func(ReaderReaderIOResult[R2, A]) Kleisli[R2, R1, B] {
-	return readert.Traverse[ReaderReaderIOResult[R2, A]](
-		readerioeither.Map,
-		readerioeither.Chain,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseReader transforms a ReaderReaderIOResult computation by applying a Reader-based function,
@@ -283,9 +274,6 @@ func Traverse[R2, R1, A, B any](
 func TraverseReader[R2, R1, A, B any](
 	f reader.Kleisli[R1, A, B],
 ) func(ReaderReaderIOResult[R2, A]) Kleisli[R2, R1, B] {
-	return readert.TraverseReader[ReaderReaderIOResult[R2, A]](
-		readerioeither.Map,
-		readerioeither.Map,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

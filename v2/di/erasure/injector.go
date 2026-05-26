@@ -19,23 +19,21 @@ import (
 	A "github.com/IBM/fp-go/v2/array"
 	"github.com/IBM/fp-go/v2/errors"
 	F "github.com/IBM/fp-go/v2/function"
-	I "github.com/IBM/fp-go/v2/identity"
 	IOR "github.com/IBM/fp-go/v2/ioresult"
-	L "github.com/IBM/fp-go/v2/lazy"
 	O "github.com/IBM/fp-go/v2/option"
 	"github.com/IBM/fp-go/v2/pair"
 	R "github.com/IBM/fp-go/v2/record"
 	T "github.com/IBM/fp-go/v2/tuple"
-
-	"sync"
 )
 
 func providerToEntry(p Provider) Entry[string, ProviderFactory] {
-	return pair.MakePair(p.Provides().Id(), p.Factory())
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func itemProviderToMap(p Provider) map[string][]ProviderFactory {
-	return R.Singleton(p.Provides().Id(), A.Of(p.Factory()))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 var (
@@ -93,24 +91,15 @@ var (
 )
 
 // isMultiDependency tests if a dependency is a container dependency
-func isMultiDependency(dep Dependency) bool {
-	return dep.Flag()&MULTI == MULTI
-}
+func isMultiDependency(dep Dependency) bool { _ = "STUB: not implemented"; return false }
 
 // isItemProvider tests if a provivder provides a single item
-func isItemProvider(provider Provider) bool {
-	return provider.Provides().Flag()&ITEM == ITEM
-}
+func isItemProvider(provider Provider) bool { _ = "STUB: not implemented"; return false }
 
 // itemProviderFactory combines multiple factories into one, returning an array
 func itemProviderFactory(fcts []ProviderFactory) ProviderFactory {
-	return func(inj InjectableFactory) IOResult[any] {
-		return F.Pipe2(
-			fcts,
-			IOR.TraverseArray(I.Flap[IOResult[any]](inj)),
-			IOR.Map(F.ToAny[[]any]),
-		)
-	}
+	_ = "STUB: not implemented"
+	return *new(ProviderFactory)
 }
 
 // MakeInjector creates an [InjectableFactory] based on a set of [Provider]s
@@ -118,53 +107,18 @@ func itemProviderFactory(fcts []ProviderFactory) ProviderFactory {
 // The resulting [InjectableFactory] can then be used to retrieve service instances given their [Dependency]. The implementation
 // makes sure to transitively resolve the required dependencies.
 func MakeInjector(providers []Provider) InjectableFactory {
-
-	type Result = IOResult[any]
-	type LazyResult = L.Lazy[Result]
-
-	// resolved stores the values resolved so far, key is the string ID
-	// of the token, value is a lazy result
-	var resolved sync.Map
-
-	// provide a mapping for all providers
-	factoryByID := assembleProviders(providers)
-
-	// the actual factory, we need lazy initialization
-	var injFct InjectableFactory
-
-	// lazy initialization, so we can cross reference it
-	injFct = func(token Dependency) Result {
-
-		key := token.Id()
-
-		// according to https://github.com/golang/go/issues/44159 this
-		// is the best way to use the sync map
-		actual, loaded := resolved.Load(key)
-		if !loaded {
-
-			computeResult := func() Result {
-				return F.Pipe5(
-					token,
-					T.Replicate2[Dependency],
-					T.Map2(F.Flow3(
-						Dependency.Id,
-						R.Lookup[ProviderFactory, string],
-						I.Ap[Option[ProviderFactory]](factoryByID),
-					), handleMissingProvider),
-					T.Tupled2(O.MonadGetOrElse[ProviderFactory]),
-					I.Ap[IOResult[any]](injFct),
-					IOR.Memoize[any],
-				)
-			}
-
-			actual, _ = resolved.LoadOrStore(key, F.Pipe1(
-				computeResult,
-				L.Memoize[Result],
-			))
-		}
-
-		return actual.(LazyResult)()
-	}
-
-	return injFct
+	_ = "STUB: not implemented"
+	return *new(InjectableFactory)
 }
+
+// resolved stores the values resolved so far, key is the string ID
+// of the token, value is a lazy result
+
+// provide a mapping for all providers
+
+// the actual factory, we need lazy initialization
+
+// lazy initialization, so we can cross reference it
+
+// according to https://github.com/golang/go/issues/44159 this
+// is the best way to use the sync map

@@ -15,10 +15,6 @@
 
 package chain
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-)
-
 // HKTA=HKT[A]
 // HKTB=HKT[B]
 func MonadChainFirst[A, B, HKTA, HKTB any](
@@ -27,9 +23,8 @@ func MonadChainFirst[A, B, HKTA, HKTB any](
 	first HKTA,
 	f Kleisli[A, HKTB],
 ) HKTA {
-	return mchain(first, func(a A) HKTA {
-		return mmap(f(a), F.Constant1[B](a))
-	})
+	_ = "STUB: not implemented"
+	return *new(HKTA)
 }
 
 func MonadChain[A, B, HKTA, HKTB any](
@@ -37,26 +32,28 @@ func MonadChain[A, B, HKTA, HKTB any](
 	first HKTA,
 	f Kleisli[A, HKTB],
 ) HKTB {
-	return mchain(first, f)
+	_ = "STUB: not implemented"
+	return *
+
+	// HKTA=HKT[A]
+	// HKTB=HKT[B]
+	new(HKTB)
 }
 
-// HKTA=HKT[A]
-// HKTB=HKT[B]
 func ChainFirst[A, B, HKTA, HKTB any](
 	mchain func(Kleisli[A, HKTA]) Operator[HKTA, HKTA],
 	mmap func(func(B) A) func(HKTB) HKTA,
 	f Kleisli[A, HKTB]) Operator[HKTA, HKTA] {
-
-	return mchain(func(a A) HKTA {
-		return mmap(F.Constant1[B](a))(f(a))
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Chain[A, B, HKTA, HKTB any](
 	mchain func(Kleisli[A, HKTB]) Operator[HKTA, HKTB],
 	f Kleisli[A, HKTB],
 ) Operator[HKTA, HKTB] {
-	return mchain(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadBind[S1, S2, B, HKTS1, HKTS2, HKTB any](
@@ -66,11 +63,8 @@ func MonadBind[S1, S2, B, HKTS1, HKTS2, HKTB any](
 	key func(B) func(S1) S2,
 	f func(S1) HKTB,
 ) HKTS2 {
-	return mchain(first, func(s1 S1) HKTS2 {
-		return mmap(f(s1), func(b B) S2 {
-			return key(b)(s1)
-		})
-	})
+	_ = "STUB: not implemented"
+	return *new(HKTS2)
 }
 
 func Bind[S1, S2, B, HKTS1, HKTS2, HKTB any](
@@ -79,27 +73,16 @@ func Bind[S1, S2, B, HKTS1, HKTS2, HKTB any](
 	key func(B) func(S1) S2,
 	f func(S1) HKTB,
 ) func(HKTS1) HKTS2 {
-	mapb := F.Flow2(
-		F.Flip(key),
-		mmap,
-	)
-	return mchain(func(s1 S1) HKTS2 {
-		return F.Pipe2(
-			s1,
-			f,
-			F.Pipe1(
-				s1,
-				mapb,
-			),
-		)
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func BindTo[S1, B, HKTS1, HKTB any](
 	mmap func(func(B) S1) func(HKTB) HKTS1,
 	key func(B) S1,
 ) func(fa HKTB) HKTS1 {
-	return mmap(key)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadBindTo[S1, B, HKTS1, HKTB any](
@@ -107,5 +90,6 @@ func MonadBindTo[S1, B, HKTS1, HKTB any](
 	first HKTB,
 	key func(B) S1,
 ) HKTS1 {
-	return mmap(first, key)
+	_ = "STUB: not implemented"
+	return *new(HKTS1)
 }

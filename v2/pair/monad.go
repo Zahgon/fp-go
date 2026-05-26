@@ -60,41 +60,41 @@ type (
 	}
 )
 
-func (o *pairMonadHead[A, B, A1]) Of(a A) Pair[A, B] {
-	return MakePair(a, o.m.Empty())
-}
+func (o *pairMonadHead[A, B, A1]) Of(a A) Pair[A, B] { _ = "STUB: not implemented"; return nil }
 
 func (o *pairMonadHead[A, B, A1]) Map(f func(A) A1) func(Pair[A, B]) Pair[A1, B] {
-	return MapHead[B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *pairMonadHead[A, B, A1]) Chain(f func(A) Pair[A1, B]) func(Pair[A, B]) Pair[A1, B] {
-	return ChainHead(o.s, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *pairMonadHead[A, B, A1]) Ap(fa Pair[A, B]) func(Pair[func(A) A1, B]) Pair[A1, B] {
-	return ApHead[B, A, A1](o.s, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (o *pairPointedHead[A, B]) Of(a A) Pair[A, B] {
-	return MakePair(a, o.m.Empty())
-}
+func (o *pairPointedHead[A, B]) Of(a A) Pair[A, B] { _ = "STUB: not implemented"; return nil }
 
 func (o *pairFunctorHead[A, B, A1]) Map(f func(A) A1) func(Pair[A, B]) Pair[A1, B] {
-	return MapHead[B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *pairApplicativeHead[A, B, A1]) Map(f func(A) A1) func(Pair[A, B]) Pair[A1, B] {
-	return MapHead[B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *pairApplicativeHead[A, B, A1]) Ap(fa Pair[A, B]) func(Pair[func(A) A1, B]) Pair[A1, B] {
-	return ApHead[B, A, A1](o.s, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (o *pairApplicativeHead[A, B, A1]) Of(a A) Pair[A, B] {
-	return MakePair(a, o.m.Empty())
-}
+func (o *pairApplicativeHead[A, B, A1]) Of(a A) Pair[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadHead implements the monadic operations for [Pair] operating on the head value.
 // Requires a monoid for the tail type to provide an identity element for the Of operation
@@ -111,7 +111,8 @@ func (o *pairApplicativeHead[A, B, A1]) Of(a A) Pair[A, B] {
 //	monad := pair.MonadHead[int, string, int](stringMonoid)
 //	p := monad.Of(42)  // Pair[int, string]{42, ""}
 func MonadHead[A, B, A1 any](m monoid.Monoid[B]) monad.Monad[A, A1, Pair[A, B], Pair[A1, B], Pair[func(A) A1, B]] {
-	return &pairMonadHead[A, B, A1]{s: monoid.ToSemigroup(m), m: m}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // PointedHead implements the pointed operations for [Pair] operating on the head value.
@@ -128,7 +129,8 @@ func MonadHead[A, B, A1 any](m monoid.Monoid[B]) monad.Monad[A, A1, Pair[A, B], 
 //	pointed := pair.PointedHead[int, string](stringMonoid)
 //	p := pointed.Of(42)  // Pair[int, string]{42, ""}
 func PointedHead[A, B any](m monoid.Monoid[B]) pointed.Pointed[A, Pair[A, B]] {
-	return &pairPointedHead[A, B]{m: m}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FunctorHead implements the functor operations for [Pair] operating on the head value.
@@ -140,7 +142,8 @@ func PointedHead[A, B any](m monoid.Monoid[B]) pointed.Pointed[A, Pair[A, B]] {
 //	p := pair.MakePair(42, "hello")
 //	p2 := mapper(p)  // Pair[string, string]{"42", "hello"}
 func FunctorHead[A, B, A1 any]() functor.Functor[A, A1, Pair[A, B], Pair[A1, B]] {
-	return &pairFunctorHead[A, B, A1]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeHead implements the applicative operations for [Pair] operating on the head value.
@@ -160,44 +163,45 @@ func FunctorHead[A, B, A1 any]() functor.Functor[A, A1, Pair[A, B], Pair[A1, B]]
 //	pv := pair.MakePair(42, "!")
 //	result := applicative.Ap(pv)(pf)  // Pair[string, string]{"42", "!"}
 func ApplicativeHead[A, B, A1 any](m monoid.Monoid[B]) applicative.Applicative[A, A1, Pair[A, B], Pair[A1, B], Pair[func(A) A1, B]] {
-	return &pairApplicativeHead[A, B, A1]{s: monoid.ToSemigroup(m), m: m}
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (o *pairMonadTail[A, B, B1]) Of(b B) Pair[A, B] {
-	return MakePair(o.m.Empty(), b)
-}
+func (o *pairMonadTail[A, B, B1]) Of(b B) Pair[A, B] { _ = "STUB: not implemented"; return nil }
 
 func (o *pairMonadTail[A, B, B1]) Map(f func(B) B1) Operator[A, B, B1] {
-	return MapTail[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *pairMonadTail[A, B, B1]) Chain(f Kleisli[A, B, B1]) Operator[A, B, B1] {
-	return ChainTail(o.s, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *pairMonadTail[A, B, B1]) Ap(fa Pair[A, B]) Operator[A, func(B) B1, B1] {
-	return ApTail[A, B, B1](o.s, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (o *pairPointedTail[A, B]) Of(b B) Pair[A, B] {
-	return MakePair(o.m.Empty(), b)
-}
+func (o *pairPointedTail[A, B]) Of(b B) Pair[A, B] { _ = "STUB: not implemented"; return nil }
 
 func (o *pairFunctorTail[A, B, B1]) Map(f func(B) B1) Operator[A, B, B1] {
-	return MapTail[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *pairApplicativeTail[A, B, B1]) Map(f func(B) B1) Operator[A, B, B1] {
-	return MapTail[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *pairApplicativeTail[A, B, B1]) Ap(fa Pair[A, B]) Operator[A, func(B) B1, B1] {
-	return ApTail[A, B, B1](o.s, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (o *pairApplicativeTail[A, B, B1]) Of(b B) Pair[A, B] {
-	return MakePair(o.m.Empty(), b)
-}
+func (o *pairApplicativeTail[A, B, B1]) Of(b B) Pair[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadTail implements the monadic operations for [Pair] operating on the tail value.
 // Requires a monoid for the head type to provide an identity element for the Of operation
@@ -211,7 +215,8 @@ func (o *pairApplicativeTail[A, B, B1]) Of(b B) Pair[A, B] {
 //	monad := pair.MonadTail[string, int, int](intSum)
 //	p := monad.Of("hello")  // Pair[int, string]{0, "hello"}
 func MonadTail[B, A, B1 any](m monoid.Monoid[A]) monad.Monad[B, B1, Pair[A, B], Pair[A, B1], Pair[A, func(B) B1]] {
-	return &pairMonadTail[A, B, B1]{s: monoid.ToSemigroup(m), m: m}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // PointedTail implements the pointed operations for [Pair] operating on the tail value.
@@ -225,7 +230,8 @@ func MonadTail[B, A, B1 any](m monoid.Monoid[A]) monad.Monad[B, B1, Pair[A, B], 
 //	pointed := pair.PointedTail[string, int](intSum)
 //	p := pointed.Of("hello")  // Pair[int, string]{0, "hello"}
 func PointedTail[B, A any](m monoid.Monoid[A]) pointed.Pointed[B, Pair[A, B]] {
-	return &pairPointedTail[A, B]{m: m}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FunctorTail implements the functor operations for [Pair] operating on the tail value.
@@ -237,7 +243,8 @@ func PointedTail[B, A any](m monoid.Monoid[A]) pointed.Pointed[B, Pair[A, B]] {
 //	p := pair.MakePair(5, "hello")
 //	p2 := mapper(p)  // Pair[int, int]{5, 5}
 func FunctorTail[B, A, B1 any]() functor.Functor[B, B1, Pair[A, B], Pair[A, B1]] {
-	return &pairFunctorTail[A, B, B1]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeTail implements the applicative operations for [Pair] operating on the tail value.
@@ -254,7 +261,8 @@ func FunctorTail[B, A, B1 any]() functor.Functor[B, B1, Pair[A, B], Pair[A, B1]]
 //	pv := pair.MakePair(5, "hello")
 //	result := applicative.Ap(pv)(pf)  // Pair[int, int]{5, 5}
 func ApplicativeTail[B, A, B1 any](m monoid.Monoid[A]) applicative.Applicative[B, B1, Pair[A, B], Pair[A, B1], Pair[A, func(B) B1]] {
-	return &pairApplicativeTail[A, B, B1]{s: monoid.ToSemigroup(m), m: m}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad implements the monadic operations for [Pair] operating on the tail value (alias for MonadTail).
@@ -268,7 +276,8 @@ func ApplicativeTail[B, A, B1 any](m monoid.Monoid[A]) applicative.Applicative[B
 //	monad := pair.Monad[string, int, int](intSum)
 //	p := monad.Of("hello")  // Pair[int, string]{0, "hello"}
 func Monad[B, A, B1 any](m monoid.Monoid[A]) monad.Monad[B, B1, Pair[A, B], Pair[A, B1], Pair[A, func(B) B1]] {
-	return MonadTail[B, A, B1](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pointed implements the pointed operations for [Pair] operating on the tail value (alias for PointedTail).
@@ -282,20 +291,23 @@ func Monad[B, A, B1 any](m monoid.Monoid[A]) monad.Monad[B, B1, Pair[A, B], Pair
 //	pointed := pair.Pointed[string, int](intSum)
 //	p := pointed.Of("hello")  // Pair[int, string]{0, "hello"}
 func Pointed[B, A any](m monoid.Monoid[A]) pointed.Pointed[B, Pair[A, B]] {
-	return PointedTail[B](m)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Functor implements the functor operations for [Pair] operating on the tail value (alias for FunctorTail).
+	// This is the default functor instance for Pair.
+	//
+	// Example:
+	//
+	//	functor := pair.Functor[string, int, int]()
+	//	mapper := functor.Map(S.Size)
+	//	p := pair.MakePair(5, "hello")
+	//	p2 := mapper(p)  // Pair[int, int]{5, 5}
 }
 
-// Functor implements the functor operations for [Pair] operating on the tail value (alias for FunctorTail).
-// This is the default functor instance for Pair.
-//
-// Example:
-//
-//	functor := pair.Functor[string, int, int]()
-//	mapper := functor.Map(S.Size)
-//	p := pair.MakePair(5, "hello")
-//	p2 := mapper(p)  // Pair[int, int]{5, 5}
 func Functor[B, A, B1 any]() functor.Functor[B, B1, Pair[A, B], Pair[A, B1]] {
-	return FunctorTail[B, A, B1]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Applicative implements the applicative operations for [Pair] operating on the tail value (alias for ApplicativeTail).
@@ -311,5 +323,6 @@ func Functor[B, A, B1 any]() functor.Functor[B, B1, Pair[A, B], Pair[A, B1]] {
 //	pv := pair.MakePair(5, "hello")
 //	result := applicative.Ap(pv)(pf)  // Pair[int, int]{5, 5}
 func Applicative[B, A, B1 any](m monoid.Monoid[A]) applicative.Applicative[B, B1, Pair[A, B], Pair[A, B1], Pair[A, func(B) B1]] {
-	return ApplicativeTail[B, A, B1](m)
+	_ = "STUB: not implemented"
+	return nil
 }

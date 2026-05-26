@@ -15,30 +15,22 @@
 
 package option
 
-import (
-	A "github.com/IBM/fp-go/internal/apply"
-	C "github.com/IBM/fp-go/internal/chain"
-	F "github.com/IBM/fp-go/internal/functor"
-)
-
 // Bind creates an empty context of type [S] to be used with the [Bind] operation
 func Do[S any](
 	empty S,
 ) Option[S] {
-	return Of(empty)
+	_ = "STUB: not implemented"
+
+	// Bind attaches the result of a computation to a context [S1] to produce a context [S2]
+	return nil
 }
 
-// Bind attaches the result of a computation to a context [S1] to produce a context [S2]
 func Bind[S1, S2, A any](
 	setter func(A) func(S1) S2,
 	f func(S1) Option[A],
 ) func(Option[S1]) Option[S2] {
-	return C.Bind(
-		Chain[S1, S2],
-		Map[A, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -46,11 +38,8 @@ func Let[S1, S2, B any](
 	key func(B) func(S1) S2,
 	f func(S1) B,
 ) func(Option[S1]) Option[S2] {
-	return F.Let(
-		Map[S1, S2],
-		key,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches the a value to a context [S1] to produce a context [S2]
@@ -58,21 +47,16 @@ func LetTo[S1, S2, B any](
 	key func(B) func(S1) S2,
 	b B,
 ) func(Option[S1]) Option[S2] {
-	return F.LetTo(
-		Map[S1, S2],
-		key,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T]
 func BindTo[S1, T any](
 	setter func(T) S1,
 ) func(Option[T]) Option[S1] {
-	return C.BindTo(
-		Map[T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering the context and the value concurrently
@@ -80,10 +64,6 @@ func ApS[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa Option[T],
 ) func(Option[S1]) Option[S2] {
-	return A.ApS(
-		Ap[S2, T],
-		Map[S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

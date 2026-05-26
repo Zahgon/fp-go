@@ -15,12 +15,6 @@
 
 package identity
 
-import (
-	A "github.com/IBM/fp-go/v2/internal/apply"
-	C "github.com/IBM/fp-go/v2/internal/chain"
-	F "github.com/IBM/fp-go/v2/internal/functor"
-)
-
 // Do creates an empty context of type [S] to be used with the [Bind] operation.
 // This is the starting point for do-notation style composition.
 //
@@ -34,52 +28,50 @@ import (
 func Do[S any](
 	empty S,
 ) S {
-	return empty
+	_ = "STUB: not implemented"
+
+	// Bind attaches the result of a computation to a context [S1] to produce a context [S2].
+	// This enables sequential composition where each step can depend on the results of previous steps.
+	//
+	// The setter function takes the result of the computation and returns a function that
+	// updates the context from S1 to S2.
+	//
+	// Example:
+	//
+	//	type State struct {
+	//	    X int
+	//	    Y int
+	//	}
+	//
+	//	result := F.Pipe2(
+	//	    identity.Do(State{}),
+	//	    identity.Bind(
+	//	        func(x int) func(State) State {
+	//	            return func(s State) State { s.X = x; return s }
+	//	        },
+	//	        func(s State) int {
+	//	            return 42
+	//	        },
+	//	    ),
+	//	    identity.Bind(
+	//	        func(y int) func(State) State {
+	//	            return func(s State) State { s.Y = y; return s }
+	//	        },
+	//	        func(s State) int {
+	//	            // This can access s.X from the previous step
+	//	            return s.X * 2
+	//	        },
+	//	    ),
+	//	) // State{X: 42, Y: 84}
+	return *new(S)
 }
 
-// Bind attaches the result of a computation to a context [S1] to produce a context [S2].
-// This enables sequential composition where each step can depend on the results of previous steps.
-//
-// The setter function takes the result of the computation and returns a function that
-// updates the context from S1 to S2.
-//
-// Example:
-//
-//	type State struct {
-//	    X int
-//	    Y int
-//	}
-//
-//	result := F.Pipe2(
-//	    identity.Do(State{}),
-//	    identity.Bind(
-//	        func(x int) func(State) State {
-//	            return func(s State) State { s.X = x; return s }
-//	        },
-//	        func(s State) int {
-//	            return 42
-//	        },
-//	    ),
-//	    identity.Bind(
-//	        func(y int) func(State) State {
-//	            return func(s State) State { s.Y = y; return s }
-//	        },
-//	        func(s State) int {
-//	            // This can access s.X from the previous step
-//	            return s.X * 2
-//	        },
-//	    ),
-//	) // State{X: 42, Y: 84}
 func Bind[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) func(S1) S2 {
-	return C.Bind(
-		Chain[S1, S2],
-		Map[T, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2].
@@ -110,11 +102,8 @@ func Let[S1, S2, T any](
 	key func(T) func(S1) S2,
 	f func(S1) T,
 ) func(S1) S2 {
-	return F.Let(
-		Map[S1, S2],
-		key,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches a constant value to a context [S1] to produce a context [S2].
@@ -142,11 +131,8 @@ func LetTo[S1, S2, B any](
 	key func(B) func(S1) S2,
 	b B,
 ) func(S1) S2 {
-	return F.LetTo(
-		Map[S1, S2],
-		key,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T].
@@ -177,10 +163,8 @@ func LetTo[S1, S2, B any](
 func BindTo[S1, T any](
 	setter func(T) S1,
 ) func(T) S1 {
-	return C.BindTo(
-		Map[T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering
@@ -217,10 +201,6 @@ func ApS[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa T,
 ) func(S1) S2 {
-	return A.ApS(
-		Ap[S2, T],
-		Map[S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

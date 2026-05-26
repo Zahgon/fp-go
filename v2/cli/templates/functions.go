@@ -11,5 +11,6 @@ var (
 )
 
 func Parse(name, tmpl string) E.Either[error, *template.Template] {
-	return E.TryCatchError(template.New(name).Funcs(templateFunctions).Parse(tmpl))
+	_ = "STUB: not implemented"
+	return nil
 }

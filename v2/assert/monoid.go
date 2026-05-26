@@ -16,11 +16,7 @@
 package assert
 
 import (
-	"testing"
-
-	"github.com/IBM/fp-go/v2/boolean"
 	"github.com/IBM/fp-go/v2/monoid"
-	"github.com/IBM/fp-go/v2/reader"
 )
 
 // ApplicativeMonoid returns a [monoid.Monoid] for combining test assertion [Reader]s.
@@ -147,6 +143,4 @@ import (
 //   - Haskell Monoid: https://hackage.haskell.org/package/base/docs/Data-Monoid.html
 //   - Applicative Functors: https://hackage.haskell.org/package/base/docs/Control-Applicative.html
 //   - Boolean Monoid (All): https://hackage.haskell.org/package/base/docs/Data-Monoid.html#t:All
-func ApplicativeMonoid() monoid.Monoid[Reader] {
-	return reader.ApplicativeMonoid[*testing.T](boolean.MonoidAll)
-}
+func ApplicativeMonoid() monoid.Monoid[Reader] { _ = "STUB: not implemented"; return nil }

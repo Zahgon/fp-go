@@ -16,7 +16,6 @@
 package retry
 
 import (
-	"math"
 	"time"
 
 	F "github.com/IBM/fp-go/function"
@@ -58,23 +57,12 @@ var Monoid = M.FunctionMonoid[RetryStatus](O.ApplicativeMonoid(M.MakeMonoid(
 	ord.MaxSemigroup(ordDuration).Concat, emptyDuration)))
 
 // LimitRetries retries immediately, but only up to `i` times.
-func LimitRetries(i uint) RetryPolicy {
-	pred := func(value uint) bool {
-		return value < i
-	}
-	empty := F.Constant1[uint](emptyDuration)
-	return func(status RetryStatus) O.Option[time.Duration] {
-		return F.Pipe2(
-			status.IterNumber,
-			O.FromPredicate(pred),
-			O.Map(empty),
-		)
-	}
-}
+func LimitRetries(i uint) RetryPolicy { _ = "STUB: not implemented"; return *new(RetryPolicy) }
 
 // ConstantDelay delays with unlimited retries
 func ConstantDelay(delay time.Duration) RetryPolicy {
-	return F.Constant1[RetryStatus](O.Of(delay))
+	_ = "STUB: not implemented"
+	return *new(RetryPolicy)
 }
 
 // CapDelay sets a time-upperbound for any delays that may be directed by the
@@ -84,18 +72,15 @@ func ConstantDelay(delay time.Duration) RetryPolicy {
 // between each one. To get termination you need to use one of the
 // 'limitRetries' function variants.
 func CapDelay(maxDelay time.Duration, policy RetryPolicy) RetryPolicy {
-	return F.Flow2(
-		policy,
-		O.Map(F.Bind1st(ord.Min(ordDuration), maxDelay)),
-	)
+	_ = "STUB: not implemented"
+	return *new(RetryPolicy)
 }
 
 // ExponentialBackoff grows delay exponentially each iteration.
 // Each delay will increase by a factor of two.
 func ExponentialBackoff(delay time.Duration) RetryPolicy {
-	return func(status RetryStatus) O.Option[time.Duration] {
-		return O.Some(delay * time.Duration(math.Pow(2, float64(status.IterNumber))))
-	}
+	_ = "STUB: not implemented"
+	return *new(RetryPolicy)
 }
 
 // DefaultRetryStatus is the default retry status. Exported mostly to allow user code
@@ -112,10 +97,6 @@ var getOrElseDelay = O.GetOrElse(F.Constant(emptyDuration))
  * Apply policy on status to see what the decision would be.
  */
 func ApplyPolicy(policy RetryPolicy, status RetryStatus) RetryStatus {
-	previousDelay := policy(status)
-	return RetryStatus{
-		IterNumber:      status.IterNumber + 1,
-		CumulativeDelay: status.CumulativeDelay + getOrElseDelay(previousDelay),
-		PreviousDelay:   previousDelay,
-	}
+	_ = "STUB: not implemented"
+	return *new(RetryStatus)
 }

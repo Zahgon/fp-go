@@ -16,13 +16,10 @@
 package ord
 
 import (
-	"cmp"
 	"time"
 
 	C "github.com/IBM/fp-go/v2/constraints"
 	E "github.com/IBM/fp-go/v2/eq"
-	F "github.com/IBM/fp-go/v2/function"
-	P "github.com/IBM/fp-go/v2/predicate"
 )
 
 // Ord represents a total ordering type class for type T.
@@ -73,13 +70,9 @@ type ord[T any] struct {
 	e func(x, y T) bool
 }
 
-func (self ord[T]) Equals(x, y T) bool {
-	return self.e(x, y)
-}
+func (self ord[T]) Equals(x, y T) bool { _ = "STUB: not implemented"; return false }
 
-func (self ord[T]) Compare(x, y T) int {
-	return self.c(x, y)
-}
+func (self ord[T]) Compare(x, y T) int { _ = "STUB: not implemented"; return 0 }
 
 // ToEq converts an [Ord] to [E.Eq].
 // This allows using an Ord instance where only equality checking is needed.
@@ -92,51 +85,51 @@ func (self ord[T]) Compare(x, y T) int {
 //
 //go:inline
 func ToEq[T any](o Ord[T]) E.Eq[T] {
-	return o
+	_ = "STUB: not implemented"
+
+	// MakeOrd creates an instance of an Ord from a compare function and an equals function.
+	//
+	// Parameters:
+	//   - c: A comparison function that returns -1 if x < y, 0 if x == y, 1 if x > y
+	//   - e: An equality function that returns true if x and y are equal
+	//
+	// The compare and equals functions must be consistent: c(x, y) == 0 iff e(x, y) == true
+	//
+	// Example:
+	//
+	//	intOrd := ord.MakeOrd(
+	//	    func(a, b int) int {
+	//	        if a < b { return -1 }
+	//	        if a > b { return 1 }
+	//	        return 0
+	//	    },
+	//	    func(a, b int) bool { return a == b },
+	//	)
+	//
+	//go:inline
+	return nil
 }
 
-// MakeOrd creates an instance of an Ord from a compare function and an equals function.
-//
-// Parameters:
-//   - c: A comparison function that returns -1 if x < y, 0 if x == y, 1 if x > y
-//   - e: An equality function that returns true if x and y are equal
-//
-// The compare and equals functions must be consistent: c(x, y) == 0 iff e(x, y) == true
-//
-// Example:
-//
-//	intOrd := ord.MakeOrd(
-//	    func(a, b int) int {
-//	        if a < b { return -1 }
-//	        if a > b { return 1 }
-//	        return 0
-//	    },
-//	    func(a, b int) bool { return a == b },
-//	)
-//
-//go:inline
 func MakeOrd[T any](c func(x, y T) int, e func(x, y T) bool) Ord[T] {
-	return ord[T]{c: c, e: e}
+	_ = "STUB: not implemented"
+	return nil
+
+	// FromCompare creates an instance of an Ord from a compare function.
+	// The equals function is automatically derived from the compare function.
+	//
+	// Parameters:
+	//   - compare: A comparison function that returns -1 if x < y, 0 if x == y, 1 if x > y
+	//
+	// Example:
+	//
+	//	stringOrd := ord.FromCompare(func(a, b string) int {
+	//	    if a < b { return -1 }
+	//	    if a > b { return 1 }
+	//	    return 0
+	//	})
 }
 
-// FromCompare creates an instance of an Ord from a compare function.
-// The equals function is automatically derived from the compare function.
-//
-// Parameters:
-//   - compare: A comparison function that returns -1 if x < y, 0 if x == y, 1 if x > y
-//
-// Example:
-//
-//	stringOrd := ord.FromCompare(func(a, b string) int {
-//	    if a < b { return -1 }
-//	    if a > b { return 1 }
-//	    return 0
-//	})
-func FromCompare[T any](compare func(T, T) int) Ord[T] {
-	return MakeOrd(compare, func(x, y T) bool {
-		return compare(x, y) == 0
-	})
-}
+func FromCompare[T any](compare func(T, T) int) Ord[T] { _ = "STUB: not implemented"; return nil }
 
 // Reverse creates an inverted ordering where the comparison results are reversed.
 // If the original ordering has x < y, the reversed ordering will have x > y.
@@ -146,11 +139,7 @@ func FromCompare[T any](compare func(T, T) int) Ord[T] {
 //	intOrd := ord.FromStrictCompare[int]()
 //	reversedOrd := ord.Reverse(intOrd)
 //	result := reversedOrd.Compare(5, 3)  // -1 (reversed from 1)
-func Reverse[T any](o Ord[T]) Ord[T] {
-	return MakeOrd(func(y, x T) int {
-		return o.Compare(x, y)
-	}, o.Equals)
-}
+func Reverse[T any](o Ord[T]) Ord[T] { _ = "STUB: not implemented"; return nil }
 
 // Contramap creates an ordering under a transformation function.
 // This allows ordering values of type B by first transforming them to type A
@@ -171,15 +160,7 @@ func Reverse[T any](o Ord[T]) Ord[T] {
 //	    return p.Age
 //	})(intOrd)
 //	// Now persons are ordered by age
-func Contramap[A, B any](f func(B) A) Operator[A, B] {
-	return func(o Ord[A]) Ord[B] {
-		return MakeOrd(func(x, y B) int {
-			return o.Compare(f(x), f(y))
-		}, func(x, y B) bool {
-			return o.Equals(f(x), f(y))
-		})
-	}
-}
+func Contramap[A, B any](f func(B) A) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Min takes the minimum of two values according to the given ordering.
 // If the values are considered equal, the first argument is chosen.
@@ -190,14 +171,7 @@ func Contramap[A, B any](f func(B) A) Operator[A, B] {
 //	min := ord.Min(intOrd)
 //	result := min(5, 3)  // 3
 //	result := min(5, 5)  // 5 (first argument)
-func Min[A any](o Ord[A]) func(A, A) A {
-	return func(a, b A) A {
-		if o.Compare(a, b) < 1 {
-			return a
-		}
-		return b
-	}
-}
+func Min[A any](o Ord[A]) func(A, A) A { _ = "STUB: not implemented"; return nil }
 
 // Max takes the maximum of two values according to the given ordering.
 // If the values are considered equal, the first argument is chosen.
@@ -208,14 +182,7 @@ func Min[A any](o Ord[A]) func(A, A) A {
 //	max := ord.Max(intOrd)
 //	result := max(5, 3)  // 5
 //	result := max(5, 5)  // 5 (first argument)
-func Max[A any](o Ord[A]) func(A, A) A {
-	return func(a, b A) A {
-		if o.Compare(a, b) >= 0 {
-			return a
-		}
-		return b
-	}
-}
+func Max[A any](o Ord[A]) func(A, A) A { _ = "STUB: not implemented"; return nil }
 
 // Clamp restricts a value to be within a specified range [low, hi].
 // If the value is less than low, low is returned.
@@ -229,49 +196,33 @@ func Max[A any](o Ord[A]) func(A, A) A {
 //	result := clamp(-10)  // 0
 //	result := clamp(50)   // 50
 //	result := clamp(150)  // 100
-func Clamp[A any](o Ord[A]) func(A, A) func(A) A {
-	return func(low, hi A) func(A) A {
-		clow := F.Bind2nd(o.Compare, low)
-		chi := F.Bind2nd(o.Compare, hi)
-		return func(a A) A {
-			if clow(a) <= 0 {
-				return low
-			}
-			if chi(a) >= 0 {
-				return hi
-			}
-			return a
-		}
-	}
-}
+func Clamp[A any](o Ord[A]) func(A, A) func(A) A { _ = "STUB: not implemented"; return nil }
 
 //go:inline
-func strictCompare[A C.Ordered](a, b A) int {
-	return cmp.Compare(a, b)
-}
+func strictCompare[A C.Ordered](a, b A) int { _ = "STUB: not implemented"; return 0 }
 
 //go:inline
 func strictEq[A comparable](a, b A) bool {
-	return a == b
+	_ = "STUB: not implemented"
+
+	// FromStrictCompare implements the ordering based on the built-in native order
+	// for types that satisfy the Ordered constraint (integers, floats, strings).
+	//
+	// This is the most common way to create an Ord for built-in types.
+	//
+	// Example:
+	//
+	//	intOrd := ord.FromStrictCompare[int]()
+	//	result := intOrd.Compare(5, 3)  // 1
+	//
+	//	stringOrd := ord.FromStrictCompare[string]()
+	//	result := stringOrd.Compare("apple", "banana")  // -1
+	//
+	//go:inline
+	return false
 }
 
-// FromStrictCompare implements the ordering based on the built-in native order
-// for types that satisfy the Ordered constraint (integers, floats, strings).
-//
-// This is the most common way to create an Ord for built-in types.
-//
-// Example:
-//
-//	intOrd := ord.FromStrictCompare[int]()
-//	result := intOrd.Compare(5, 3)  // 1
-//
-//	stringOrd := ord.FromStrictCompare[string]()
-//	result := stringOrd.Compare("apple", "banana")  // -1
-//
-//go:inline
-func FromStrictCompare[A C.Ordered]() Ord[A] {
-	return MakeOrd(strictCompare[A], strictEq[A])
-}
+func FromStrictCompare[A C.Ordered]() Ord[A] { _ = "STUB: not implemented"; return nil }
 
 // Lt tests whether one value is strictly less than another.
 // Returns a curried function that first takes the comparison value,
@@ -284,13 +235,7 @@ func FromStrictCompare[A C.Ordered]() Ord[A] {
 //	result := isLessThan5(3)  // true
 //	result := isLessThan5(5)  // false
 //	result := isLessThan5(7)  // false
-func Lt[A any](o Ord[A]) func(A) func(A) bool {
-	return func(second A) func(A) bool {
-		return func(first A) bool {
-			return o.Compare(first, second) < 0
-		}
-	}
-}
+func Lt[A any](o Ord[A]) func(A) func(A) bool { _ = "STUB: not implemented"; return nil }
 
 // Leq tests whether one value is less than or equal to another.
 // Returns a curried function that first takes the comparison value,
@@ -303,13 +248,7 @@ func Lt[A any](o Ord[A]) func(A) func(A) bool {
 //	result := isAtMost5(3)  // true
 //	result := isAtMost5(5)  // true
 //	result := isAtMost5(7)  // false
-func Leq[A any](o Ord[A]) func(A) func(A) bool {
-	return func(second A) func(A) bool {
-		return func(first A) bool {
-			return o.Compare(first, second) <= 0
-		}
-	}
-}
+func Leq[A any](o Ord[A]) func(A) func(A) bool { _ = "STUB: not implemented"; return nil }
 
 // Gt tests whether one value is strictly greater than another.
 // Returns a curried function that first takes the comparison value,
@@ -322,13 +261,7 @@ func Leq[A any](o Ord[A]) func(A) func(A) bool {
 //	result := isGreaterThan5(3)  // false
 //	result := isGreaterThan5(5)  // false
 //	result := isGreaterThan5(7)  // true
-func Gt[A any](o Ord[A]) func(A) func(A) bool {
-	return func(second A) func(A) bool {
-		return func(first A) bool {
-			return o.Compare(first, second) > 0
-		}
-	}
-}
+func Gt[A any](o Ord[A]) func(A) func(A) bool { _ = "STUB: not implemented"; return nil }
 
 // Geq tests whether one value is greater than or equal to another.
 // Returns a curried function that first takes the comparison value,
@@ -341,13 +274,7 @@ func Gt[A any](o Ord[A]) func(A) func(A) bool {
 //	result := isAtLeast5(3)  // false
 //	result := isAtLeast5(5)  // true
 //	result := isAtLeast5(7)  // true
-func Geq[A any](o Ord[A]) func(A) func(A) bool {
-	return func(second A) func(A) bool {
-		return func(first A) bool {
-			return o.Compare(first, second) >= 0
-		}
-	}
-}
+func Geq[A any](o Ord[A]) func(A) func(A) bool { _ = "STUB: not implemented"; return nil }
 
 // Between tests whether a value is between a minimum (inclusive) and a maximum (exclusive).
 // Returns a curried function that first takes the range bounds,
@@ -364,25 +291,13 @@ func Geq[A any](o Ord[A]) func(A) func(A) bool {
 //	result := isBetween3And7(5)  // true (within range)
 //	result := isBetween3And7(7)  // false (at upper bound, excluded)
 //	result := isBetween3And7(8)  // false (above range)
-func Between[A any](o Ord[A]) func(A, A) func(A) bool {
-	lt := Lt(o)
-	geq := Geq(o)
-	return func(lo, hi A) func(A) bool {
-		// returns the predicate
-		return P.And(lt(hi))(geq(lo))
-	}
-}
+func Between[A any](o Ord[A]) func(A, A) func(A) bool { _ = "STUB: not implemented"; return nil }
+
+// returns the predicate
 
 // compareTime is a helper function that compares two time.Time values.
 // Returns -1 if a is before b, 1 if a is after b, and 0 if they are equal.
-func compareTime(a, b time.Time) int {
-	if a.Before(b) {
-		return -1
-	} else if a.After(b) {
-		return 1
-	}
-	return 0
-}
+func compareTime(a, b time.Time) int { _ = "STUB: not implemented"; return 0 }
 
 // OrdTime returns an Ord instance for time.Time values.
 // Times are ordered chronologically using the Before and After methods.
@@ -393,6 +308,4 @@ func compareTime(a, b time.Time) int {
 //	t1 := time.Date(2023, 1, 1, 0, 0, 0, 0, time.UTC)
 //	t2 := time.Date(2024, 1, 1, 0, 0, 0, 0, time.UTC)
 //	result := timeOrd.Compare(t1, t2)  // -1 (t1 is before t2)
-func OrdTime() Ord[time.Time] {
-	return MakeOrd(compareTime, time.Time.Equal)
-}
+func OrdTime() Ord[time.Time] { _ = "STUB: not implemented"; return nil }

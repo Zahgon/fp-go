@@ -35,8 +35,6 @@ package option
 
 import (
 	"github.com/IBM/fp-go/v2/eq"
-	F "github.com/IBM/fp-go/v2/function"
-	P "github.com/IBM/fp-go/v2/predicate"
 )
 
 // FromPredicate returns a function that creates an Option based on a predicate.
@@ -50,11 +48,7 @@ import (
 //	isPositive := FromPredicate(N.MoreThan(0))
 //	result := isPositive(5)  // Some(5)
 //	result := isPositive(-1) // None
-func FromPredicate[A any](pred func(A) bool) Kleisli[A, A] {
-	return func(a A) (A, bool) {
-		return a, pred(a)
-	}
-}
+func FromPredicate[A any](pred func(A) bool) Kleisli[A, A] { _ = "STUB: not implemented"; return nil }
 
 // FromZero returns a function that creates an Option based on whether a value is the zero value.
 // Returns Some if the value is the zero value, None otherwise.
@@ -66,9 +60,7 @@ func FromPredicate[A any](pred func(A) bool) Kleisli[A, A] {
 //	result := checkZero(5)  // None
 //
 //go:inline
-func FromZero[A comparable]() Kleisli[A, A] {
-	return FromPredicate(P.IsZero[A]())
-}
+func FromZero[A comparable]() Kleisli[A, A] { _ = "STUB: not implemented"; return nil }
 
 // FromNonZero returns a function that creates an Option based on whether a value is non-zero.
 // Returns Some if the value is non-zero, None otherwise.
@@ -80,9 +72,7 @@ func FromZero[A comparable]() Kleisli[A, A] {
 //	result := checkNonZero(0)  // None
 //
 //go:inline
-func FromNonZero[A comparable]() Kleisli[A, A] {
-	return FromPredicate(P.IsNonZero[A]())
-}
+func FromNonZero[A comparable]() Kleisli[A, A] { _ = "STUB: not implemented"; return nil }
 
 // FromEq returns a function that creates an Option based on equality with a given value.
 // The returned function takes a value to compare against and returns a Kleisli function.
@@ -98,9 +88,7 @@ func FromNonZero[A comparable]() Kleisli[A, A] {
 //	result := equals42(10)  // None
 //
 //go:inline
-func FromEq[A any](pred eq.Eq[A]) func(A) Kleisli[A, A] {
-	return F.Flow2(P.IsEqual(pred), FromPredicate[A])
-}
+func FromEq[A any](pred eq.Eq[A]) func(A) Kleisli[A, A] { _ = "STUB: not implemented"; return nil }
 
 // FromNillable converts a pointer to an Option.
 // Returns Some if the pointer is non-nil, None otherwise.
@@ -115,35 +103,26 @@ func FromEq[A any](pred eq.Eq[A]) func(A) Kleisli[A, A] {
 //	val := 42
 //	result := FromNillable(&val) // Some(&val)
 func FromNillable[A any](a *A) (*A, bool) {
-	return a, F.IsNonNil(a)
+	_ = "STUB: not implemented"
+	return nil,
+
+		// Ap is the curried applicative functor for Option.
+		// Returns a function that applies an Option-wrapped function to the given Option value.
+		//
+		// Parameters:
+		//   - fa: The value of the Option
+		//   - faok: Whether the Option contains a value (true for Some, false for None)
+		//
+		// Example:
+		//
+		//	fa := Some(5)
+		//	applyTo5 := Ap[int](fa)
+		//	fab := Some(N.Mul(2))
+		//	result := applyTo5(fab) // Some(10)
+		false
 }
 
-// Ap is the curried applicative functor for Option.
-// Returns a function that applies an Option-wrapped function to the given Option value.
-//
-// Parameters:
-//   - fa: The value of the Option
-//   - faok: Whether the Option contains a value (true for Some, false for None)
-//
-// Example:
-//
-//	fa := Some(5)
-//	applyTo5 := Ap[int](fa)
-//	fab := Some(N.Mul(2))
-//	result := applyTo5(fab) // Some(10)
-func Ap[B, A any](fa A, faok bool) Operator[func(A) B, B] {
-	if faok {
-		return func(fab func(A) B, fabok bool) (b B, bok bool) {
-			if fabok {
-				return fab(fa), true
-			}
-			return
-		}
-	}
-	return func(_ func(A) B, _ bool) (b B, bok bool) {
-		return
-	}
-}
+func Ap[B, A any](fa A, faok bool) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // Map returns a function that applies a transformation to the value inside an Option.
 // If the Option is None, returns None.
@@ -156,14 +135,7 @@ func Ap[B, A any](fa A, faok bool) Operator[func(A) B, B] {
 //	double := Map(N.Mul(2))
 //	result := double(Some(5)) // Some(10)
 //	result := double(None[int]()) // None
-func Map[A, B any](f func(a A) B) Operator[A, B] {
-	return func(fa A, faok bool) (b B, bok bool) {
-		if faok {
-			return f(fa), true
-		}
-		return
-	}
-}
+func Map[A, B any](f func(a A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MapTo returns a function that replaces the value inside an Option with a constant.
 //
@@ -174,11 +146,7 @@ func Map[A, B any](f func(a A) B) Operator[A, B] {
 //
 //	replaceWith42 := MapTo[string, int](42)
 //	result := replaceWith42(Some("hello")) // Some(42)
-func MapTo[A, B any](b B) Operator[A, B] {
-	return func(_ A, faok bool) (B, bool) {
-		return b, faok
-	}
-}
+func MapTo[A, B any](b B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Fold provides a way to handle both Some and None cases of an Option.
 // Returns a function that applies onNone if the Option is None, or onSome if it's Some.
@@ -196,12 +164,8 @@ func MapTo[A, B any](b B) Operator[A, B] {
 //	result := handler(Some(42)) // "value: 42"
 //	result := handler(None[int]()) // "no value"
 func Fold[A, B any](onNone func() B, onSome func(A) B) func(A, bool) B {
-	return func(a A, aok bool) B {
-		if aok {
-			return onSome(a)
-		}
-		return onNone()
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetOrElse returns a function that extracts the value from an Option or returns a default.
@@ -214,14 +178,7 @@ func Fold[A, B any](onNone func() B, onSome func(A) B) func(A, bool) B {
 //	getOrZero := GetOrElse(func() int { return 0 })
 //	result := getOrZero(Some(42)) // 42
 //	result := getOrZero(None[int]()) // 0
-func GetOrElse[A any](onNone func() A) func(A, bool) A {
-	return func(a A, aok bool) A {
-		if aok {
-			return a
-		}
-		return onNone()
-	}
-}
+func GetOrElse[A any](onNone func() A) func(A, bool) A { _ = "STUB: not implemented"; return nil }
 
 // Chain returns a function that applies an Option-returning function to an Option value.
 // This is the curried form of the monadic bind operation.
@@ -236,14 +193,7 @@ func GetOrElse[A any](onNone func() A) func(A, bool) A {
 //	    return 0, false
 //	})
 //	result := validate(Some(5)) // Some(10)
-func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] {
-	return func(a A, aok bool) (b B, bok bool) {
-		if aok {
-			return f(a)
-		}
-		return
-	}
-}
+func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // ChainTo returns a function that ignores its input Option and returns a fixed Option.
 //
@@ -255,11 +205,7 @@ func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] {
 //
 //	replaceWith := ChainTo(Some("hello"))
 //	result := replaceWith(Some(42)) // Some("hello")
-func ChainTo[A, B any](b B, bok bool) Operator[A, B] {
-	return func(_ A, aok bool) (B, bool) {
-		return b, bok && aok
-	}
-}
+func ChainTo[A, B any](b B, bok bool) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // ChainFirst returns a function that applies an Option-returning function but keeps the original value.
 //
@@ -273,15 +219,7 @@ func ChainTo[A, B any](b B, bok bool) Operator[A, B] {
 //	    return "logged", true
 //	})
 //	result := logAndKeep(Some(5)) // Some(5)
-func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] {
-	return func(a A, aok bool) (A, bool) {
-		if aok {
-			_, bok := f(a)
-			return a, bok
-		}
-		return a, false
-	}
-}
+func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Alt returns a function that provides an alternative Option if the input is None.
 //
@@ -293,14 +231,7 @@ func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] {
 //	withDefault := Alt(func() (int, bool) { return 0, true })
 //	result := withDefault(Some(5)) // Some(5)
 //	result := withDefault(None[int]()) // Some(0)
-func Alt[A any](that func() (A, bool)) Operator[A, A] {
-	return func(a A, aok bool) (A, bool) {
-		if aok {
-			return a, aok
-		}
-		return that()
-	}
-}
+func Alt[A any](that func() (A, bool)) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Reduce folds an Option into a single value using a reducer function.
 // If the Option is None, returns the initial value.
@@ -315,12 +246,8 @@ func Alt[A any](that func() (A, bool)) Operator[A, A] {
 //	result := sum(Some(5)) // 5
 //	result := sum(None[int]()) // 0
 func Reduce[A, B any](f func(B, A) B, initial B) func(A, bool) B {
-	return func(a A, aok bool) B {
-		if aok {
-			return f(initial, a)
-		}
-		return initial
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Filter keeps the Option if it's Some and the predicate is satisfied, otherwise returns None.
@@ -334,11 +261,7 @@ func Reduce[A, B any](f func(B, A) B, initial B) func(A, bool) B {
 //	result := isPositive(Some(5)) // Some(5)
 //	result := isPositive(Some(-1)) // None
 //	result := isPositive(None[int]()) // None
-func Filter[A any](pred func(A) bool) Operator[A, A] {
-	return func(a A, aok bool) (A, bool) {
-		return a, aok && pred(a)
-	}
-}
+func Filter[A any](pred func(A) bool) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Flap returns a function that applies a value to an Option-wrapped function.
 //
@@ -350,11 +273,4 @@ func Filter[A any](pred func(A) bool) Operator[A, A] {
 //	applyFive := Flap[int](5)
 //	fab := Some(N.Mul(2))
 //	result := applyFive(fab) // Some(10)
-func Flap[B, A any](a A) Operator[func(A) B, B] {
-	return func(f func(A) B, fabok bool) (b B, bok bool) {
-		if fabok {
-			return f(a), true
-		}
-		return
-	}
-}
+func Flap[B, A any](a A) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }

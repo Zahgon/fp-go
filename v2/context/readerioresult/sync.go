@@ -17,9 +17,6 @@ package readerioresult
 
 import (
 	"context"
-
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/io"
 )
 
 // WithLock executes the provided IO operation in the scope of a lock.
@@ -44,11 +41,6 @@ import (
 //	})
 //	protectedOp := WithLock(lock)(myOperation)
 func WithLock[A any](lock ReaderIOResult[context.CancelFunc]) Operator[A, A] {
-	return function.Flow2(
-		function.Constant1[context.CancelFunc, ReaderIOResult[A]],
-		WithResource[A](lock, function.Flow2(
-			io.FromImpure[context.CancelFunc],
-			FromIO[Void],
-		)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

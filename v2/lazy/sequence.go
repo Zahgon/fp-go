@@ -16,7 +16,6 @@
 package lazy
 
 import (
-	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/tuple"
 )
 
@@ -30,9 +29,7 @@ import (
 //	lazy1 := lazy.Of(42)
 //	result := lazy.SequenceT1(lazy1)()
 //	// result is tuple.Tuple1[int]{F1: 42}
-func SequenceT1[A any](a Lazy[A]) Lazy[tuple.Tuple1[A]] {
-	return io.SequenceT1(a)
-}
+func SequenceT1[A any](a Lazy[A]) Lazy[tuple.Tuple1[A]] { _ = "STUB: not implemented"; return nil }
 
 // SequenceT2 combines two lazy computations into a lazy tuple of two elements.
 // Both computations are evaluated when the result is evaluated.
@@ -44,21 +41,24 @@ func SequenceT1[A any](a Lazy[A]) Lazy[tuple.Tuple1[A]] {
 //	result := lazy.SequenceT2(lazy1, lazy2)()
 //	// result is tuple.Tuple2[int, string]{F1: 42, F2: "hello"}
 func SequenceT2[A, B any](a Lazy[A], b Lazy[B]) Lazy[tuple.Tuple2[A, B]] {
-	return io.SequenceT2(a, b)
+	_ = "STUB: not implemented"
+	return nil
+
+	// SequenceT3 combines three lazy computations into a lazy tuple of three elements.
+	// All computations are evaluated when the result is evaluated.
+	//
+	// Example:
+	//
+	//	lazy1 := lazy.Of(42)
+	//	lazy2 := lazy.Of("hello")
+	//	lazy3 := lazy.Of(true)
+	//	result := lazy.SequenceT3(lazy1, lazy2, lazy3)()
+	//	// result is tuple.Tuple3[int, string, bool]{F1: 42, F2: "hello", F3: true}
 }
 
-// SequenceT3 combines three lazy computations into a lazy tuple of three elements.
-// All computations are evaluated when the result is evaluated.
-//
-// Example:
-//
-//	lazy1 := lazy.Of(42)
-//	lazy2 := lazy.Of("hello")
-//	lazy3 := lazy.Of(true)
-//	result := lazy.SequenceT3(lazy1, lazy2, lazy3)()
-//	// result is tuple.Tuple3[int, string, bool]{F1: 42, F2: "hello", F3: true}
 func SequenceT3[A, B, C any](a Lazy[A], b Lazy[B], c Lazy[C]) Lazy[tuple.Tuple3[A, B, C]] {
-	return io.SequenceT3(a, b, c)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT4 combines four lazy computations into a lazy tuple of four elements.
@@ -73,5 +73,6 @@ func SequenceT3[A, B, C any](a Lazy[A], b Lazy[B], c Lazy[C]) Lazy[tuple.Tuple3[
 //	result := lazy.SequenceT4(lazy1, lazy2, lazy3, lazy4)()
 //	// result is tuple.Tuple4[int, string, bool, float64]{F1: 42, F2: "hello", F3: true, F4: 3.14}
 func SequenceT4[A, B, C, D any](a Lazy[A], b Lazy[B], c Lazy[C], d Lazy[D]) Lazy[tuple.Tuple4[A, B, C, D]] {
-	return io.SequenceT4(a, b, c, d)
+	_ = "STUB: not implemented"
+	return nil
 }

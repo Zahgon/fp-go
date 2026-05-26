@@ -15,10 +15,6 @@
 
 package eq
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-)
-
 // Eq represents an equality type class for type T.
 // It provides a way to define custom equality semantics for any type,
 // not just those that are comparable with Go's == operator.
@@ -67,39 +63,41 @@ type eq[T any] struct {
 
 // Equals implements the Eq interface by delegating to the wrapped comparison function.
 func (e eq[T]) Equals(x, y T) bool {
-	return e.c(x, y)
+	_ = "STUB: not implemented"
+
+	// strictEq is a helper function that uses Go's built-in == operator for comparison.
+	// It can only be used with comparable types.
+	return false
 }
 
-// strictEq is a helper function that uses Go's built-in == operator for comparison.
-// It can only be used with comparable types.
 func strictEq[A comparable](a, b A) bool {
-	return a == b
+	_ = "STUB: not implemented"
+
+	// FromStrictEquals constructs an Eq instance using Go's built-in == operator.
+	// This is the most common way to create an Eq for types that support ==.
+	//
+	// Type Parameters:
+	//   - T: Must be a comparable type (supports ==)
+	//
+	// Returns:
+	//   - An Eq[T] that uses == for equality comparison
+	//
+	// Example:
+	//
+	//	intEq := eq.FromStrictEquals[int]()
+	//	assert.True(t, intEq.Equals(42, 42))
+	//	assert.False(t, intEq.Equals(42, 43))
+	//
+	//	stringEq := eq.FromStrictEquals[string]()
+	//	assert.True(t, stringEq.Equals("hello", "hello"))
+	//	assert.False(t, stringEq.Equals("hello", "world"))
+	//
+	// Note: For types that are not comparable or require custom equality logic,
+	// use FromEquals instead.
+	return false
 }
 
-// FromStrictEquals constructs an Eq instance using Go's built-in == operator.
-// This is the most common way to create an Eq for types that support ==.
-//
-// Type Parameters:
-//   - T: Must be a comparable type (supports ==)
-//
-// Returns:
-//   - An Eq[T] that uses == for equality comparison
-//
-// Example:
-//
-//	intEq := eq.FromStrictEquals[int]()
-//	assert.True(t, intEq.Equals(42, 42))
-//	assert.False(t, intEq.Equals(42, 43))
-//
-//	stringEq := eq.FromStrictEquals[string]()
-//	assert.True(t, stringEq.Equals("hello", "hello"))
-//	assert.False(t, stringEq.Equals("hello", "world"))
-//
-// Note: For types that are not comparable or require custom equality logic,
-// use FromEquals instead.
-func FromStrictEquals[T comparable]() Eq[T] {
-	return FromEquals(strictEq[T])
-}
+func FromStrictEquals[T comparable]() Eq[T] { _ = "STUB: not implemented"; return nil }
 
 // FromEquals constructs an Eq instance from a custom comparison function.
 // This allows defining equality for any type, including non-comparable types
@@ -137,37 +135,37 @@ func FromStrictEquals[T comparable]() Eq[T] {
 // Note: The provided function should satisfy the equivalence relation laws
 // (reflexivity, symmetry, transitivity) for correct behavior.
 func FromEquals[T any](c func(x, y T) bool) Eq[T] {
-	return eq[T]{c: c}
+	_ = "STUB: not implemented"
+
+	// Empty returns an Eq instance that always returns true for any comparison.
+	// This is the identity element for the Eq Monoid and is useful when you need
+	// an equality predicate that accepts everything.
+	//
+	// Type Parameters:
+	//   - T: The type for which the always-true equality is defined
+	//
+	// Returns:
+	//   - An Eq[T] where Equals(x, y) always returns true
+	//
+	// Example:
+	//
+	//	alwaysTrue := eq.Empty[int]()
+	//	assert.True(t, alwaysTrue.Equals(1, 2))
+	//	assert.True(t, alwaysTrue.Equals(42, 100))
+	//
+	//	// Useful as identity in monoid operations
+	//	monoid := eq.Monoid[string]()
+	//	combined := monoid.Concat(eq.FromStrictEquals[string](), monoid.Empty())
+	//	// combined behaves the same as FromStrictEquals
+	//
+	// Use cases:
+	//   - As the identity element in Monoid operations
+	//   - When you need a placeholder equality that accepts everything
+	//   - In generic code that requires an Eq but doesn't need actual comparison
+	return nil
 }
 
-// Empty returns an Eq instance that always returns true for any comparison.
-// This is the identity element for the Eq Monoid and is useful when you need
-// an equality predicate that accepts everything.
-//
-// Type Parameters:
-//   - T: The type for which the always-true equality is defined
-//
-// Returns:
-//   - An Eq[T] where Equals(x, y) always returns true
-//
-// Example:
-//
-//	alwaysTrue := eq.Empty[int]()
-//	assert.True(t, alwaysTrue.Equals(1, 2))
-//	assert.True(t, alwaysTrue.Equals(42, 100))
-//
-//	// Useful as identity in monoid operations
-//	monoid := eq.Monoid[string]()
-//	combined := monoid.Concat(eq.FromStrictEquals[string](), monoid.Empty())
-//	// combined behaves the same as FromStrictEquals
-//
-// Use cases:
-//   - As the identity element in Monoid operations
-//   - When you need a placeholder equality that accepts everything
-//   - In generic code that requires an Eq but doesn't need actual comparison
-func Empty[T any]() Eq[T] {
-	return FromEquals(F.Constant2[T, T](true))
-}
+func Empty[T any]() Eq[T] { _ = "STUB: not implemented"; return nil }
 
 // Equals returns a curried equality checking function.
 // This is useful for partial application and functional composition.
@@ -201,8 +199,4 @@ func Empty[T any]() Eq[T] {
 //
 // This is particularly useful when working with functional programming patterns
 // like map, filter, and other higher-order functions.
-func Equals[T any](eq Eq[T]) func(T) func(T) bool {
-	return func(other T) func(T) bool {
-		return F.Bind2nd(eq.Equals, other)
-	}
-}
+func Equals[T any](eq Eq[T]) func(T) func(T) bool { _ = "STUB: not implemented"; return nil }

@@ -17,22 +17,17 @@ package option
 
 import (
 	C "github.com/IBM/fp-go/constraints"
-	F "github.com/IBM/fp-go/function"
 	"github.com/IBM/fp-go/ord"
 )
 
 // Constructs an order for [Option]
 func Ord[A any](a ord.Ord[A]) ord.Ord[Option[A]] {
+	_ = "STUB: not implemented"
 	// some convenient shortcuts
-	fld := Fold(
-		F.Constant(Fold(F.Constant(0), F.Constant1[A](-1))),
-		F.Flow2(F.Curry2(a.Compare), F.Bind1st(Fold[A, int], F.Constant(1))),
-	)
-	// convert to an ordering predicate
-	return ord.MakeOrd(F.Uncurry2(fld), Eq(ord.ToEq(a)).Equals)
+	return nil
 }
 
+// convert to an ordering predicate
+
 // FromStrictCompare constructs an [Ord] from the canonical comparison function
-func FromStrictCompare[A C.Ordered]() ord.Ord[Option[A]] {
-	return Ord(ord.FromStrictCompare[A]())
-}
+func FromStrictCompare[A C.Ordered]() ord.Ord[Option[A]] { _ = "STUB: not implemented"; return nil }

@@ -21,23 +21,26 @@ import (
 
 type arrayMonad[A, B any, GA ~[]A, GB ~[]B, GAB ~[]func(A) B] struct{}
 
-func (o *arrayMonad[A, B, GA, GB, GAB]) Of(a A) GA {
-	return Of[GA](a)
-}
+func (o *arrayMonad[A, B, GA, GB, GAB]) Of(a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func (o *arrayMonad[A, B, GA, GB, GAB]) Map(f func(A) B) func(GA) GB {
-	return Map[GA, GB](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *arrayMonad[A, B, GA, GB, GAB]) Chain(f func(A) GB) func(GA) GB {
-	return Chain[GA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *arrayMonad[A, B, GA, GB, GAB]) Ap(fa GA) func(GAB) GB {
-	return Ap[GB, GAB](fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Monad implements the monadic operations for an array
 }
 
-// Monad implements the monadic operations for an array
 func Monad[A, B any, GA ~[]A, GB ~[]B, GAB ~[]func(A) B]() monad.Monad[A, B, GA, GB, GAB] {
-	return &arrayMonad[A, B, GA, GB, GAB]{}
+	_ = "STUB: not implemented"
+	return nil
 }

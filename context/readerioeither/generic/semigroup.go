@@ -23,7 +23,6 @@ import (
 )
 
 func AltSemigroup[GRA ~func(context.Context) GIOA, GIOA ~func() ET.Either[error, A], A any]() S.Semigroup[GRA] {
-	return S.AltSemigroup(
-		MonadAlt[func() GRA],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

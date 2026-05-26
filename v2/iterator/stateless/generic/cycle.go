@@ -15,29 +15,8 @@
 
 package generic
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	O "github.com/IBM/fp-go/v2/option"
-	P "github.com/IBM/fp-go/v2/pair"
-)
-
 func Cycle[GU ~func() Option[Pair[GU, U]], U any](ma GU) GU {
+	_ = "STUB: not implemented"
 	// avoid cyclic references
-	var m func(Option[Pair[GU, U]]) Option[Pair[GU, U]]
-
-	recurse := func(mu GU) GU {
-		return F.Nullary2(
-			mu,
-			m,
-		)
-	}
-
-	m = O.Fold(func() Option[Pair[GU, U]] {
-		return recurse(ma)()
-	}, F.Flow2(
-		P.BiMap(recurse, F.Identity[U]),
-		O.Of[Pair[GU, U]],
-	))
-
-	return recurse(ma)
+	return *new(GU)
 }

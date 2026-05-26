@@ -74,11 +74,7 @@ package option
 // See Also:
 //   - Filter: Converts Some values that fail a predicate to None
 //   - IsSome: Tests if Option is Some without checking the value
-func Exists[T any](p Predicate[T]) Predicate[Option[T]] {
-	return func(o Option[T]) bool {
-		return o.isSome && p(o.value)
-	}
-}
+func Exists[T any](p Predicate[T]) Predicate[Option[T]] { _ = "STUB: not implemented"; return nil }
 
 // ForAll creates a predicate that tests whether an Option value is None or its Some value satisfies the given predicate.
 // It returns a function that takes an Option[T] and returns true if the Option is None (regardless of content)
@@ -97,9 +93,9 @@ func Exists[T any](p Predicate[T]) Predicate[Option[T]] {
 //
 // In Haskell, this corresponds to the all function for the Maybe type when viewed as a Foldable:
 //
-//   all :: Foldable t => (a -> Bool) -> t a -> Bool
-//   all p (Just x)  = p x
-//   all p Nothing   = True
+//	all :: Foldable t => (a -> Bool) -> t a -> Bool
+//	all p (Just x)  = p x
+//	all p Nothing   = True
 //
 // From a category theory perspective, Option[T] is a sum type representing optional values.
 // ForAll implements a natural transformation from predicates on T to predicates on Option[T],
@@ -170,8 +166,4 @@ func Exists[T any](p Predicate[T]) Predicate[Option[T]] {
 //   - Exists: Tests if Option is Some and satisfies a predicate (existential quantification)
 //   - Filter: Converts Some values that fail a predicate to None
 //   - IsSome: Tests if Option is Some without checking the value
-func ForAll[T any](p Predicate[T]) Predicate[Option[T]] {
-	return func(o Option[T]) bool {
-		return !o.isSome || p(o.value)
-	}
-}
+func ForAll[T any](p Predicate[T]) Predicate[Option[T]] { _ = "STUB: not implemented"; return nil }

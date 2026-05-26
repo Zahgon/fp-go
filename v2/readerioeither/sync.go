@@ -17,9 +17,6 @@ package readerioeither
 
 import (
 	"context"
-
-	"github.com/IBM/fp-go/v2/either"
-	"github.com/IBM/fp-go/v2/readerio"
 )
 
 // WithLock executes a ReaderIOEither operation within the scope of a lock.
@@ -54,5 +51,6 @@ import (
 //
 //go:inline
 func WithLock[R, E, A any](lock func() context.CancelFunc) Operator[R, E, A, A] {
-	return readerio.WithLock[R, either.Either[E, A]](lock)
+	_ = "STUB: not implemented"
+	return nil
 }

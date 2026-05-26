@@ -19,12 +19,7 @@ import (
 	"context"
 	"testing"
 
-	RIORES "github.com/IBM/fp-go/v2/context/readerioresult"
-	ST "github.com/IBM/fp-go/v2/context/statereaderioresult"
 	EQ "github.com/IBM/fp-go/v2/eq"
-	L "github.com/IBM/fp-go/v2/internal/monad/testing"
-	P "github.com/IBM/fp-go/v2/pair"
-	RES "github.com/IBM/fp-go/v2/result"
 )
 
 // AssertLaws asserts the monad laws for the StateReaderIOResult monad
@@ -40,48 +35,6 @@ func AssertLaws[S, A, B, C any](t *testing.T,
 	s S,
 	ctx context.Context,
 ) func(a A) bool {
-
-	eqra := RIORES.Eq(RES.Eq(P.Eq(eqs, eqa)))(ctx)
-	eqrb := RIORES.Eq(RES.Eq(P.Eq(eqs, eqb)))(ctx)
-	eqrc := RIORES.Eq(RES.Eq(P.Eq(eqs, eqc)))(ctx)
-
-	fofc := ST.Pointed[S, C]()
-	fofaa := ST.Pointed[S, func(A) A]()
-	fofbc := ST.Pointed[S, func(B) C]()
-	fofabb := ST.Pointed[S, func(func(A) B) B]()
-
-	fmap := ST.Functor[S, func(B) C, func(func(A) B) func(A) C]()
-
-	fapabb := ST.Applicative[S, func(A) B, B]()
-	fapabac := ST.Applicative[S, func(A) B, func(A) C]()
-
-	maa := ST.Monad[S, A, A]()
-	mab := ST.Monad[S, A, B]()
-	mac := ST.Monad[S, A, C]()
-	mbc := ST.Monad[S, B, C]()
-
-	return L.MonadAssertLaws(t,
-		ST.Eq(eqra)(s),
-		ST.Eq(eqrb)(s),
-		ST.Eq(eqrc)(s),
-
-		fofc,
-		fofaa,
-		fofbc,
-		fofabb,
-
-		fmap,
-
-		fapabb,
-		fapabac,
-
-		maa,
-		mab,
-		mac,
-		mbc,
-
-		ab,
-		bc,
-	)
-
+	_ = "STUB: not implemented"
+	return nil
 }

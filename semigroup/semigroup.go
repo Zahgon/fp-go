@@ -16,7 +16,6 @@
 package semigroup
 
 import (
-	F "github.com/IBM/fp-go/function"
 	M "github.com/IBM/fp-go/magma"
 )
 
@@ -28,39 +27,24 @@ type semigroup[A any] struct {
 	c func(A, A) A
 }
 
-func (self semigroup[A]) Concat(x A, y A) A {
-	return self.c(x, y)
-}
+func (self semigroup[A]) Concat(x A, y A) A { _ = "STUB: not implemented"; return *new(A) }
 
-func MakeSemigroup[A any](c func(A, A) A) Semigroup[A] {
-	return semigroup[A]{c: c}
-}
+func MakeSemigroup[A any](c func(A, A) A) Semigroup[A] { _ = "STUB: not implemented"; return nil }
 
 // Reverse returns The dual of a `Semigroup`, obtained by swapping the arguments of `concat`.
-func Reverse[A any](m Semigroup[A]) Semigroup[A] {
-	return MakeSemigroup(M.Reverse[A](m).Concat)
-}
+func Reverse[A any](m Semigroup[A]) Semigroup[A] { _ = "STUB: not implemented"; return nil }
 
 // FunctionSemigroup forms a semigroup as long as you can provide a semigroup for the codomain.
 func FunctionSemigroup[A, B any](s Semigroup[B]) Semigroup[func(A) B] {
-	return MakeSemigroup(func(f func(A) B, g func(A) B) func(A) B {
-		return func(a A) B {
-			return s.Concat(f(a), g(a))
-		}
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // First always returns the first argument.
-func First[A any]() Semigroup[A] {
-	return MakeSemigroup(F.First[A, A])
-}
+func First[A any]() Semigroup[A] { _ = "STUB: not implemented"; return nil }
 
 // Last always returns the last argument.
-func Last[A any]() Semigroup[A] {
-	return MakeSemigroup(F.Second[A, A])
-}
+func Last[A any]() Semigroup[A] { _ = "STUB: not implemented"; return nil }
 
 // ToMagma converts a semigroup to a magma
-func ToMagma[A any](s Semigroup[A]) M.Magma[A] {
-	return s
-}
+func ToMagma[A any](s Semigroup[A]) M.Magma[A] { _ = "STUB: not implemented"; return nil }

@@ -15,12 +15,6 @@
 
 package iter
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	O "github.com/IBM/fp-go/v2/option"
-	P "github.com/IBM/fp-go/v2/pair"
-)
-
 // Compress filters elements from a sequence based on a corresponding sequence of boolean selectors.
 //
 // This function takes a sequence of boolean values and returns an operator that filters
@@ -79,13 +73,4 @@ import (
 //	selectors := iter.From(true, true, true)
 //	filtered := iter.Compress(selectors)(data)
 //	// yields: 10, 20, 30 (all elements pass through)
-func Compress[U any](sel Seq[bool]) Operator[U, U] {
-	return F.Flow3(
-		Zip[U](sel),
-		ToSeqPair[U, bool],
-		FilterMap(F.Flow2(
-			O.FromPredicate(P.Tail[U, bool]),
-			O.Map(P.Head[U, bool]),
-		)),
-	)
-}
+func Compress[U any](sel Seq[bool]) Operator[U, U] { _ = "STUB: not implemented"; return nil }

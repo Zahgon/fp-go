@@ -16,11 +16,9 @@
 package lenses
 
 import (
-	__iso_option "github.com/IBM/fp-go/v2/optics/iso/option"
 	__lens "github.com/IBM/fp-go/v2/optics/lens"
 	__lens_option "github.com/IBM/fp-go/v2/optics/lens/option"
 	__prism "github.com/IBM/fp-go/v2/optics/prism"
-	__option "github.com/IBM/fp-go/v2/option"
 )
 
 // MatchLenses provides lenses for accessing and modifying fields of Match structures.
@@ -147,35 +145,16 @@ type MatchPrisms struct {
 //	emptyMatch := Match{Before: "", Groups: []string{}, After: ""}
 //	beforeOpt := lenses.BeforeO.GetOption(emptyMatch) // None
 func MakeMatchLenses() MatchLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensBefore := __lens.MakeLensWithName(
-		func(s __prism.Match) string { return s.Before },
-		func(s __prism.Match, v string) __prism.Match { s.Before = v; return s },
-		"Match.Before",
-	)
-	lensGroups := __lens.MakeLensWithName(
-		func(s __prism.Match) []string { return s.Groups },
-		func(s __prism.Match, v []string) __prism.Match { s.Groups = v; return s },
-		"Match.Groups",
-	)
-	lensAfter := __lens.MakeLensWithName(
-		func(s __prism.Match) string { return s.After },
-		func(s __prism.Match, v string) __prism.Match { s.After = v; return s },
-		"Match.After",
-	)
-	// optional lenses
-	lensBeforeO := __lens_option.FromIso[__prism.Match](__iso_option.FromZero[string]())(lensBefore)
-	lensAfterO := __lens_option.FromIso[__prism.Match](__iso_option.FromZero[string]())(lensAfter)
-	return MatchLenses{
-		// mandatory lenses
-		Before: lensBefore,
-		Groups: lensGroups,
-		After:  lensAfter,
-		// optional lenses
-		BeforeO: lensBeforeO,
-		AfterO:  lensAfterO,
-	}
+	return *new(MatchLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeMatchRefLenses creates a new MatchRefLenses with lenses for all fields of *Match.
 // This function constructs lenses that work with pointers to Match structures,
@@ -204,35 +183,16 @@ func MakeMatchLenses() MatchLenses {
 //	// Use prism for optional access
 //	afterOpt := lenses.AfterP.GetOption(match) // Some(" suffix")
 func MakeMatchRefLenses() MatchRefLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensBefore := __lens.MakeLensStrictWithName(
-		func(s *__prism.Match) string { return s.Before },
-		func(s *__prism.Match, v string) *__prism.Match { s.Before = v; return s },
-		"(*Match).Before",
-	)
-	lensGroups := __lens.MakeLensRefWithName(
-		func(s *__prism.Match) []string { return s.Groups },
-		func(s *__prism.Match, v []string) *__prism.Match { s.Groups = v; return s },
-		"(*Match).Groups",
-	)
-	lensAfter := __lens.MakeLensStrictWithName(
-		func(s *__prism.Match) string { return s.After },
-		func(s *__prism.Match, v string) *__prism.Match { s.After = v; return s },
-		"(*Match).After",
-	)
-	// optional lenses
-	lensBeforeO := __lens_option.FromIso[*__prism.Match](__iso_option.FromZero[string]())(lensBefore)
-	lensAfterO := __lens_option.FromIso[*__prism.Match](__iso_option.FromZero[string]())(lensAfter)
-	return MatchRefLenses{
-		// mandatory lenses
-		Before: lensBefore,
-		Groups: lensGroups,
-		After:  lensAfter,
-		// optional lenses
-		BeforeO: lensBeforeO,
-		AfterO:  lensAfterO,
-	}
+	return *new(MatchRefLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeMatchPrisms creates a new MatchPrisms with prisms for all fields of Match.
 // This function constructs prisms that provide safe optional access to Match fields,
@@ -262,36 +222,7 @@ func MakeMatchRefLenses() MatchRefLenses {
 //	// Construct a Match from a value using ReverseGet
 //	newMatch := prisms.Before.ReverseGet("prefix ")
 //	// newMatch is Match{Before: "prefix ", Groups: nil, After: ""}
-func MakeMatchPrisms() MatchPrisms {
-	_fromNonZeroBefore := __option.FromNonZero[string]()
-	_prismBefore := __prism.MakePrismWithName(
-		func(s __prism.Match) __option.Option[string] { return _fromNonZeroBefore(s.Before) },
-		func(v string) __prism.Match {
-			return __prism.Match{Before: v}
-		},
-		"Match.Before",
-	)
-	_prismGroups := __prism.MakePrismWithName(
-		func(s __prism.Match) __option.Option[[]string] { return __option.Some(s.Groups) },
-		func(v []string) __prism.Match {
-			return __prism.Match{Groups: v}
-		},
-		"Match.Groups",
-	)
-	_fromNonZeroAfter := __option.FromNonZero[string]()
-	_prismAfter := __prism.MakePrismWithName(
-		func(s __prism.Match) __option.Option[string] { return _fromNonZeroAfter(s.After) },
-		func(v string) __prism.Match {
-			return __prism.Match{After: v}
-		},
-		"Match.After",
-	)
-	return MatchPrisms{
-		Before: _prismBefore,
-		Groups: _prismGroups,
-		After:  _prismAfter,
-	}
-}
+func MakeMatchPrisms() MatchPrisms { _ = "STUB: not implemented"; return *new(MatchPrisms) }
 
 // NamedMatchLenses provides lenses for accessing and modifying fields of NamedMatch structures.
 // NamedMatch represents regex matches with named capture groups, and these lenses enable
@@ -444,43 +375,16 @@ type NamedMatchPrisms struct {
 //	// Use optional lens (treats empty string as None)
 //	afterOpt := lenses.AfterO.GetOption(match) // None (because After is empty)
 func MakeNamedMatchLenses() NamedMatchLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensBefore := __lens.MakeLensWithName(
-		func(s __prism.NamedMatch) string { return s.Before },
-		func(s __prism.NamedMatch, v string) __prism.NamedMatch { s.Before = v; return s },
-		"NamedMatch.Before",
-	)
-	lensGroups := __lens.MakeLensWithName(
-		func(s __prism.NamedMatch) map[string]string { return s.Groups },
-		func(s __prism.NamedMatch, v map[string]string) __prism.NamedMatch { s.Groups = v; return s },
-		"NamedMatch.Groups",
-	)
-	lensFull := __lens.MakeLensWithName(
-		func(s __prism.NamedMatch) string { return s.Full },
-		func(s __prism.NamedMatch, v string) __prism.NamedMatch { s.Full = v; return s },
-		"NamedMatch.Full",
-	)
-	lensAfter := __lens.MakeLensWithName(
-		func(s __prism.NamedMatch) string { return s.After },
-		func(s __prism.NamedMatch, v string) __prism.NamedMatch { s.After = v; return s },
-		"NamedMatch.After",
-	)
-	// optional lenses
-	lensBeforeO := __lens_option.FromIso[__prism.NamedMatch](__iso_option.FromZero[string]())(lensBefore)
-	lensFullO := __lens_option.FromIso[__prism.NamedMatch](__iso_option.FromZero[string]())(lensFull)
-	lensAfterO := __lens_option.FromIso[__prism.NamedMatch](__iso_option.FromZero[string]())(lensAfter)
-	return NamedMatchLenses{
-		// mandatory lenses
-		Before: lensBefore,
-		Groups: lensGroups,
-		Full:   lensFull,
-		After:  lensAfter,
-		// optional lenses
-		BeforeO: lensBeforeO,
-		FullO:   lensFullO,
-		AfterO:  lensAfterO,
-	}
+	return *new(NamedMatchLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeNamedMatchRefLenses creates a new NamedMatchRefLenses with lenses for all fields of *NamedMatch.
 // This function constructs lenses that work with pointers to NamedMatch structures,
@@ -514,43 +418,16 @@ func MakeNamedMatchLenses() NamedMatchLenses {
 //	// Use prism for optional access
 //	fullOpt := lenses.FullP.GetOption(match) // Some("alice@test.org")
 func MakeNamedMatchRefLenses() NamedMatchRefLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensBefore := __lens.MakeLensStrictWithName(
-		func(s *__prism.NamedMatch) string { return s.Before },
-		func(s *__prism.NamedMatch, v string) *__prism.NamedMatch { s.Before = v; return s },
-		"(*NamedMatch).Before",
-	)
-	lensGroups := __lens.MakeLensRefWithName(
-		func(s *__prism.NamedMatch) map[string]string { return s.Groups },
-		func(s *__prism.NamedMatch, v map[string]string) *__prism.NamedMatch { s.Groups = v; return s },
-		"(*NamedMatch).Groups",
-	)
-	lensFull := __lens.MakeLensStrictWithName(
-		func(s *__prism.NamedMatch) string { return s.Full },
-		func(s *__prism.NamedMatch, v string) *__prism.NamedMatch { s.Full = v; return s },
-		"(*NamedMatch).Full",
-	)
-	lensAfter := __lens.MakeLensStrictWithName(
-		func(s *__prism.NamedMatch) string { return s.After },
-		func(s *__prism.NamedMatch, v string) *__prism.NamedMatch { s.After = v; return s },
-		"(*NamedMatch).After",
-	)
-	// optional lenses
-	lensBeforeO := __lens_option.FromIso[*__prism.NamedMatch](__iso_option.FromZero[string]())(lensBefore)
-	lensFullO := __lens_option.FromIso[*__prism.NamedMatch](__iso_option.FromZero[string]())(lensFull)
-	lensAfterO := __lens_option.FromIso[*__prism.NamedMatch](__iso_option.FromZero[string]())(lensAfter)
-	return NamedMatchRefLenses{
-		// mandatory lenses
-		Before: lensBefore,
-		Groups: lensGroups,
-		Full:   lensFull,
-		After:  lensAfter,
-		// optional lenses
-		BeforeO: lensBeforeO,
-		FullO:   lensFullO,
-		AfterO:  lensAfterO,
-	}
+	return *new(NamedMatchRefLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeNamedMatchPrisms creates a new NamedMatchPrisms with prisms for all fields of NamedMatch.
 // This function constructs prisms that provide safe optional access to NamedMatch fields,
@@ -587,41 +464,6 @@ func MakeNamedMatchRefLenses() NamedMatchRefLenses {
 //	newMatch := prisms.Full.ReverseGet("test@example.com")
 //	// newMatch is NamedMatch{Before: "", Groups: nil, Full: "test@example.com", After: ""}
 func MakeNamedMatchPrisms() NamedMatchPrisms {
-	_fromNonZeroBefore := __option.FromNonZero[string]()
-	_prismBefore := __prism.MakePrismWithName(
-		func(s __prism.NamedMatch) __option.Option[string] { return _fromNonZeroBefore(s.Before) },
-		func(v string) __prism.NamedMatch {
-			return __prism.NamedMatch{Before: v}
-		},
-		"NamedMatch.Before",
-	)
-	_prismGroups := __prism.MakePrismWithName(
-		func(s __prism.NamedMatch) __option.Option[map[string]string] { return __option.Some(s.Groups) },
-		func(v map[string]string) __prism.NamedMatch {
-			return __prism.NamedMatch{Groups: v}
-		},
-		"NamedMatch.Groups",
-	)
-	_fromNonZeroFull := __option.FromNonZero[string]()
-	_prismFull := __prism.MakePrismWithName(
-		func(s __prism.NamedMatch) __option.Option[string] { return _fromNonZeroFull(s.Full) },
-		func(v string) __prism.NamedMatch {
-			return __prism.NamedMatch{Full: v}
-		},
-		"NamedMatch.Full",
-	)
-	_fromNonZeroAfter := __option.FromNonZero[string]()
-	_prismAfter := __prism.MakePrismWithName(
-		func(s __prism.NamedMatch) __option.Option[string] { return _fromNonZeroAfter(s.After) },
-		func(v string) __prism.NamedMatch {
-			return __prism.NamedMatch{After: v}
-		},
-		"NamedMatch.After",
-	)
-	return NamedMatchPrisms{
-		Before: _prismBefore,
-		Groups: _prismGroups,
-		Full:   _prismFull,
-		After:  _prismAfter,
-	}
+	_ = "STUB: not implemented"
+	return *new(NamedMatchPrisms)
 }

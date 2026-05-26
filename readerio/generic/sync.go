@@ -17,18 +17,10 @@ package generic
 
 import (
 	"context"
-
-	F "github.com/IBM/fp-go/function"
-	G "github.com/IBM/fp-go/io/generic"
 )
 
 // WithLock executes the provided IO operation in the scope of a lock
 func WithLock[GEA ~func(R) GIOA, GIOA ~func() A, R, A any](lock func() context.CancelFunc) func(fa GEA) GEA {
-	l := G.WithLock[GIOA](lock)
-	return func(fa GEA) GEA {
-		return F.Flow2(
-			fa,
-			l,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

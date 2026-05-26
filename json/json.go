@@ -16,19 +16,11 @@
 package json
 
 import (
-	"encoding/json"
-
 	E "github.com/IBM/fp-go/either"
 )
 
 // Unmarshal parses a JSON data structure from bytes
-func Unmarshal[A any](data []byte) E.Either[error, A] {
-	var result A
-	err := json.Unmarshal(data, &result)
-	return E.TryCatchError(result, err)
-}
+func Unmarshal[A any](data []byte) E.Either[error, A] { _ = "STUB: not implemented"; return nil }
 
 // Marshal converts a data structure to json
-func Marshal[A any](a A) E.Either[error, []byte] {
-	return E.TryCatchError(json.Marshal(a))
-}
+func Marshal[A any](a A) E.Either[error, []byte] { _ = "STUB: not implemented"; return nil }

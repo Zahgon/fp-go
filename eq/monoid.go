@@ -20,14 +20,6 @@ import (
 	S "github.com/IBM/fp-go/semigroup"
 )
 
-func Semigroup[A any]() S.Semigroup[Eq[A]] {
-	return S.MakeSemigroup(func(x, y Eq[A]) Eq[A] {
-		return FromEquals(func(a, b A) bool {
-			return x.Equals(a, b) && y.Equals(a, b)
-		})
-	})
-}
+func Semigroup[A any]() S.Semigroup[Eq[A]] { _ = "STUB: not implemented"; return nil }
 
-func Monoid[A any]() M.Monoid[Eq[A]] {
-	return M.MakeMonoid(Semigroup[A]().Concat, Empty[A]())
-}
+func Monoid[A any]() M.Monoid[Eq[A]] { _ = "STUB: not implemented"; return nil }

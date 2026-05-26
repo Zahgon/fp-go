@@ -16,18 +16,20 @@
 package record
 
 import (
-	G "github.com/IBM/fp-go/record/generic"
 	S "github.com/IBM/fp-go/semigroup"
 )
 
 func UnionSemigroup[K comparable, V any](s S.Semigroup[V]) S.Semigroup[map[K]V] {
-	return G.UnionSemigroup[map[K]V](s)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func UnionLastSemigroup[K comparable, V any]() S.Semigroup[map[K]V] {
-	return G.UnionLastSemigroup[map[K]V]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func UnionFirstSemigroup[K comparable, V any]() S.Semigroup[map[K]V] {
-	return G.UnionFirstSemigroup[map[K]V]()
+	_ = "STUB: not implemented"
+	return nil
 }

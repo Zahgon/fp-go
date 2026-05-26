@@ -15,22 +15,20 @@
 
 package readerresult
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/readereither"
-)
-
 // TraverseArray transforms an array
 func TraverseArray[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
-	return readereither.TraverseArray(F.Flow2(f, WithContext))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms an array
 func TraverseArrayWithIndex[A, B any](f func(int, A) ReaderResult[B]) Kleisli[[]A, []B] {
-	return readereither.TraverseArrayWithIndex(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts a homogeneous sequence of either into an either of sequence
 func SequenceArray[A any](ma []ReaderResult[A]) ReaderResult[[]A] {
-	return readereither.SequenceArray(ma)
+	_ = "STUB: not implemented"
+	return nil
 }

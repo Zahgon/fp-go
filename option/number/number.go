@@ -22,10 +22,7 @@ import (
 	O "github.com/IBM/fp-go/option"
 )
 
-func atoi(value string) (int, bool) {
-	data, err := strconv.Atoi(value)
-	return data, err == nil
-}
+func atoi(value string) (int, bool) { _ = "STUB: not implemented"; return 0, false }
 
 var (
 	// Atoi converts a string to an integer

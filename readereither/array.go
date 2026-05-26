@@ -15,21 +15,20 @@
 
 package readereither
 
-import (
-	G "github.com/IBM/fp-go/readereither/generic"
-)
-
 // TraverseArray transforms an array
 func TraverseArray[E, L, A, B any](f func(A) ReaderEither[E, L, B]) func([]A) ReaderEither[E, L, []B] {
-	return G.TraverseArray[ReaderEither[E, L, B], ReaderEither[E, L, []B], []A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms an array
 func TraverseArrayWithIndex[E, L, A, B any](f func(int, A) ReaderEither[E, L, B]) func([]A) ReaderEither[E, L, []B] {
-	return G.TraverseArrayWithIndex[ReaderEither[E, L, B], ReaderEither[E, L, []B], []A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts a homogeneous sequence of either into an either of sequence
 func SequenceArray[E, L, A any](ma []ReaderEither[E, L, A]) ReaderEither[E, L, []A] {
-	return G.SequenceArray[ReaderEither[E, L, A], ReaderEither[E, L, []A]](ma)
+	_ = "STUB: not implemented"
+	return nil
 }

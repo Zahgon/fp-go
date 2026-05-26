@@ -17,20 +17,20 @@ package file
 
 import (
 	"io"
-
-	"github.com/IBM/fp-go/v2/ioeither/file"
 )
 
 // WriteAll uses a generator function to create a stream, writes data to it and closes it
 //
 //go:inline
 func WriteAll[W io.WriteCloser](data []byte) Operator[W, []byte] {
-	return file.WriteAll[W](data)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Write uses a generator function to create a stream, writes data to it and closes it
 //
 //go:inline
 func Write[R any, W io.WriteCloser](acquire IOResult[W]) Kleisli[Kleisli[W, R], R] {
-	return file.Write[R](acquire)
+	_ = "STUB: not implemented"
+	return nil
 }

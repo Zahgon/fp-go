@@ -16,12 +16,7 @@
 package codec
 
 import (
-	"fmt"
-
 	"github.com/IBM/fp-go/v2/either"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/lazy"
-	"github.com/IBM/fp-go/v2/optics/codec/validate"
 )
 
 // encodeEither creates an encoder for Either[A, B] values.
@@ -69,10 +64,8 @@ func encodeEither[A, B, O, I any](
 	leftItem Type[A, O, I],
 	rightItem Type[B, O, I],
 ) Encode[either.Either[A, B], O] {
-	return either.Fold(
-		leftItem.Encode,
-		rightItem.Encode,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // validateEither creates a validator for Either[A, B] values.
@@ -149,21 +142,8 @@ func validateEither[A, B, O, I any](
 	leftItem Type[A, O, I],
 	rightItem Type[B, O, I],
 ) Validate[I, either.Either[A, B]] {
-
-	valRight := F.Pipe1(
-		rightItem.Validate,
-		validate.Map[I, B](either.Right[A]),
-	)
-
-	valLeft := F.Pipe1(
-		leftItem.Validate,
-		validate.Map[I, A](either.Left[B]),
-	)
-
-	return F.Pipe1(
-		valRight,
-		validate.Alt(lazy.Of(valLeft)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Either creates a codec for Either[A, B] values.
@@ -256,10 +236,6 @@ func Either[A, B, O, I any](
 	leftItem Type[A, O, I],
 	rightItem Type[B, O, I],
 ) Type[either.Either[A, B], O, I] {
-	return MakeType(
-		fmt.Sprintf("Either[%s, %s]", leftItem.Name(), rightItem.Name()),
-		Is[either.Either[A, B]](),
-		validateEither(leftItem, rightItem),
-		encodeEither(leftItem, rightItem),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

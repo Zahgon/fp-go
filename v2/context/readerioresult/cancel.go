@@ -17,11 +17,6 @@ package readerioresult
 
 import (
 	"context"
-
-	CIOE "github.com/IBM/fp-go/v2/context/ioresult"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/ioeither"
-	"github.com/IBM/fp-go/v2/pair"
 )
 
 // WithContext wraps an existing [ReaderIOResult] and performs a context check for cancellation before delegating.
@@ -35,12 +30,8 @@ import (
 //
 // Returns a ReaderIOResult that checks for cancellation before executing.
 func WithContext[A any](ma ReaderIOResult[A]) ReaderIOResult[A] {
-	return func(ctx context.Context) IOEither[A] {
-		if ctx.Err() != nil {
-			return ioeither.Left[A](context.Cause(ctx))
-		}
-		return CIOE.WithContext(ctx, ma(ctx))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WithContextK wraps a Kleisli arrow with context cancellation checking.
@@ -80,13 +71,9 @@ func WithContext[A any](ma ReaderIOResult[A]) ReaderIOResult[A] {
 //	result := safeFetch(123)(ctx)() // Returns context.Canceled error
 //
 //go:inline
-func WithContextK[A, B any](f Kleisli[A, B]) Kleisli[A, B] {
-	return F.Flow2(
-		f,
-		WithContext,
-	)
-}
+func WithContextK[A, B any](f Kleisli[A, B]) Kleisli[A, B] { _ = "STUB: not implemented"; return nil }
 
 func pairFromContextCancel(newCtx context.Context, cancelFct context.CancelFunc) ContextCancel {
-	return pair.MakePair(cancelFct, newCtx)
+	_ = "STUB: not implemented"
+	return *new(ContextCancel)
 }

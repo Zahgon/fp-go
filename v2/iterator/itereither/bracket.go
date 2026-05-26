@@ -15,11 +15,6 @@
 
 package itereither
 
-import (
-	BR "github.com/IBM/fp-go/v2/internal/bracket"
-	"github.com/IBM/fp-go/v2/iterator/iter"
-)
-
 // Bracket makes sure that a resource is cleaned up in the event of an error.
 // The release action is called regardless of whether the body action returns an error or not.
 //
@@ -44,14 +39,6 @@ func Bracket[E, A, B, ANY any](
 	use Kleisli[E, A, B],
 	release func(A, Either[E, B]) SeqEither[E, ANY],
 ) SeqEither[E, B] {
-	return BR.MonadBracket[SeqEither[E, A], SeqEither[E, B], SeqEither[E, ANY], Either[E, B], A, B](
-		iter.Of[Either[E, B]],
-		MonadChain[E, A, B],
-		iter.MonadChain[Either[E, B], Either[E, B]],
-		MonadChain[E, ANY, B],
-
-		acquire,
-		use,
-		release,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

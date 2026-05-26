@@ -20,7 +20,6 @@ import (
 
 	E "github.com/IBM/fp-go/eq"
 	L "github.com/IBM/fp-go/optics/lens"
-	"github.com/stretchr/testify/assert"
 )
 
 // LensGet tests the law:
@@ -29,13 +28,8 @@ func LensGet[S, A any](
 	t *testing.T,
 	eqa E.Eq[A],
 ) func(l L.Lens[S, A]) func(s S, a A) bool {
-
-	return func(l L.Lens[S, A]) func(s S, a A) bool {
-
-		return func(s S, a A) bool {
-			return assert.True(t, eqa.Equals(l.Get(l.Set(a)(s)), a), "Lens get(set(a)(s)) = a")
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LensSet tests the laws:
@@ -45,13 +39,8 @@ func LensSet[S, A any](
 	t *testing.T,
 	eqs E.Eq[S],
 ) func(l L.Lens[S, A]) func(s S, a A) bool {
-
-	return func(l L.Lens[S, A]) func(s S, a A) bool {
-
-		return func(s S, a A) bool {
-			return assert.True(t, eqs.Equals(l.Set(l.Get(s))(s), s), "Lens set(get(s))(s) = s") && assert.True(t, eqs.Equals(l.Set(a)(l.Set(a)(s)), l.Set(a)(s)), "Lens set(a)(set(a)(s)) = set(a)(s)")
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AssertLaws tests the lens laws
@@ -64,17 +53,6 @@ func AssertLaws[S, A any](
 	eqa E.Eq[A],
 	eqs E.Eq[S],
 ) func(l L.Lens[S, A]) func(s S, a A) bool {
-
-	lenGet := LensGet[S](t, eqa)
-	lenSet := LensSet[S, A](t, eqs)
-
-	return func(l L.Lens[S, A]) func(s S, a A) bool {
-
-		get := lenGet(l)
-		set := lenSet(l)
-
-		return func(s S, a A) bool {
-			return get(s, a) && set(s, a)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

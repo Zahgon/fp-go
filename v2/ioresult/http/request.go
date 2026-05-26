@@ -41,38 +41,35 @@ var (
 //
 //go:inline
 func MakeBodyRequest(method string, body IOResult[[]byte]) Kleisli[string, *http.Request] {
-	return IOEH.MakeBodyRequest(method, body)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
-func MakeClient(httpClient *http.Client) Client {
-	return IOEH.MakeClient(httpClient)
-}
+func MakeClient(httpClient *http.Client) Client { _ = "STUB: not implemented"; return *new(Client) }
 
 // ReadFullResponse sends a request,  reads the response as a byte array and represents the result as a tuple
 //
 //go:inline
 func ReadFullResponse(client Client) Operator[*http.Request, H.FullResponse] {
-	return IOEH.ReadFullResponse(client)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadAll sends a request and reads the response as bytes
 //
 //go:inline
-func ReadAll(client Client) Operator[*http.Request, []byte] {
-	return IOEH.ReadAll(client)
-}
+func ReadAll(client Client) Operator[*http.Request, []byte] { _ = "STUB: not implemented"; return nil }
 
 // ReadText sends a request, reads the response and represents the response as a text string
 //
 //go:inline
-func ReadText(client Client) Operator[*http.Request, string] {
-	return IOEH.ReadText(client)
-}
+func ReadText(client Client) Operator[*http.Request, string] { _ = "STUB: not implemented"; return nil }
 
 // ReadJSON sends a request, reads the response and parses the response as JSON
 //
 //go:inline
 func ReadJSON[A any](client Client) Operator[*http.Request, A] {
-	return IOEH.ReadJSON[A](client)
+	_ = "STUB: not implemented"
+	return nil
 }

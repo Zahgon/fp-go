@@ -15,26 +15,26 @@
 
 package ioeither
 
-import (
-	G "github.com/IBM/fp-go/ioeither/generic"
-)
-
 // MonadApFirst combines two effectful actions, keeping only the result of the first.
 func MonadApFirst[A, E, B any](first IOEither[E, A], second IOEither[E, B]) IOEither[E, A] {
-	return G.MonadApFirst[IOEither[E, A], IOEither[E, B], IOEither[E, func(B) A]](first, second)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApFirst combines two effectful actions, keeping only the result of the first.
 func ApFirst[A, E, B any](second IOEither[E, B]) func(IOEither[E, A]) IOEither[E, A] {
-	return G.ApFirst[IOEither[E, A], IOEither[E, B], IOEither[E, func(B) A]](second)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadApSecond combines two effectful actions, keeping only the result of the second.
 func MonadApSecond[A, E, B any](first IOEither[E, A], second IOEither[E, B]) IOEither[E, B] {
-	return G.MonadApSecond[IOEither[E, A], IOEither[E, B], IOEither[E, func(B) B]](first, second)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSecond combines two effectful actions, keeping only the result of the second.
 func ApSecond[A, E, B any](second IOEither[E, B]) func(IOEither[E, A]) IOEither[E, B] {
-	return G.ApSecond[IOEither[E, A], IOEither[E, B], IOEither[E, func(B) B]](second)
+	_ = "STUB: not implemented"
+	return nil
 }

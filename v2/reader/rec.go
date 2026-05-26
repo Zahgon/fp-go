@@ -96,16 +96,6 @@ package reader
 // The key benefit is that even with very large recursion depths (e.g., factorial(10000)),
 // the computation will not overflow the stack because it executes iteratively.
 func TailRec[R, A, B any](f Kleisli[R, A, Trampoline[A, B]]) Kleisli[R, A, B] {
-	return func(a A) Reader[R, B] {
-		initialReader := f(a)
-		return func(r R) B {
-			current := initialReader(r)
-			for {
-				if current.Landed {
-					return current.Land
-				}
-				current = f(current.Bounce)(r)
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

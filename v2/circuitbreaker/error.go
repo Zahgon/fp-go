@@ -2,17 +2,9 @@
 package circuitbreaker
 
 import (
-	"crypto/x509"
-	"errors"
-	"fmt"
-	"net"
-	"net/http"
-	"net/url"
-	"syscall"
 	"time"
 
 	E "github.com/IBM/fp-go/v2/errors"
-	FH "github.com/IBM/fp-go/v2/http"
 	"github.com/IBM/fp-go/v2/option"
 )
 
@@ -50,9 +42,7 @@ type CircuitBreakerError struct {
 //	err := &CircuitBreakerError{Name: "API", ResetAt: time.Now().Add(30 * time.Second)}
 //	fmt.Println(err.Error())
 //	// Output: circuit breaker is open [API], will close at 2026-01-09 12:20:47.123 +0100 CET
-func (e *CircuitBreakerError) Error() string {
-	return fmt.Sprintf("circuit breaker is open [%s], will close at %s", e.Name, e.ResetAt)
-}
+func (e *CircuitBreakerError) Error() string { _ = "STUB: not implemented"; return "" }
 
 // MakeCircuitBreakerErrorWithName creates a circuit breaker error constructor with a custom name.
 //
@@ -76,9 +66,8 @@ func (e *CircuitBreakerError) Error() string {
 //	fmt.Println(err.Error())
 //	// Output: circuit breaker is open [Database Circuit Breaker], will close at 2026-01-09 12:20:47.123 +0100 CET
 func MakeCircuitBreakerErrorWithName(name string) func(time.Time) error {
-	return func(resetTime time.Time) error {
-		return &CircuitBreakerError{Name: name, ResetAt: resetTime}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeCircuitBreakerError creates a new CircuitBreakerError with the specified reset time.
@@ -182,53 +171,26 @@ var AnyError = option.FromPredicate(E.IsNonNil)
 //	if shouldOpenCircuit(timeoutErr) {
 //	    // Open circuit breaker
 //	}
-func shouldOpenCircuit(err error) bool {
-	if err == nil {
-		return false
-	}
+func shouldOpenCircuit(err error) bool { _ = "STUB: not implemented"; return false }
 
-	// Check for HTTP errors with server status codes (5xx)
-	var httpErr *FH.HttpError
-	if errors.As(err, &httpErr) {
-		statusCode := httpErr.StatusCode()
-		// Only 5xx errors should open the circuit
-		// 4xx errors are client errors and shouldn't affect circuit state
-		return statusCode >= http.StatusInternalServerError && statusCode < 600
-	}
+// Check for HTTP errors with server status codes (5xx)
 
-	// Check for network operation errors
-	var opErr *net.OpError
-	if errors.As(err, &opErr) {
-		// Network timeouts should open the circuit
-		if opErr.Timeout() {
-			return true
-		}
-		// Check the underlying error
-		if opErr.Err != nil {
-			return isInfrastructureError(opErr.Err)
-		}
-		return true
-	}
+// Only 5xx errors should open the circuit
+// 4xx errors are client errors and shouldn't affect circuit state
 
-	// Check for DNS errors
-	var dnsErr *net.DNSError
-	if errors.As(err, &dnsErr) {
-		return true
-	}
+// Check for network operation errors
 
-	// Check for URL errors (often wrap network errors)
-	var urlErr *url.Error
-	if errors.As(err, &urlErr) {
-		if urlErr.Timeout() {
-			return true
-		}
-		// Recursively check the wrapped error
-		return shouldOpenCircuit(urlErr.Err)
-	}
+// Network timeouts should open the circuit
 
-	// Check for specific syscall errors that indicate infrastructure problems
-	return isInfrastructureError(err) || isTLSError(err)
-}
+// Check the underlying error
+
+// Check for DNS errors
+
+// Check for URL errors (often wrap network errors)
+
+// Recursively check the wrapped error
+
+// Check for specific syscall errors that indicate infrastructure problems
 
 // isInfrastructureError checks if an error is a low-level infrastructure error
 // that should cause the circuit to open.
@@ -252,25 +214,7 @@ func shouldOpenCircuit(err error) bool {
 //   - true if the error is an infrastructure error, false otherwise
 //
 // Thread Safety: This function is pure and safe for concurrent use.
-func isInfrastructureError(err error) bool {
-
-	var syscallErr *syscall.Errno
-
-	if errors.As(err, &syscallErr) {
-		switch *syscallErr {
-		case syscall.ECONNREFUSED,
-			syscall.ECONNRESET,
-			syscall.ECONNABORTED,
-			syscall.ENETUNREACH,
-			syscall.EHOSTUNREACH,
-			syscall.EPIPE,
-			syscall.ETIMEDOUT:
-			return true
-		}
-
-	}
-	return false
-}
+func isInfrastructureError(err error) bool { _ = "STUB: not implemented"; return false }
 
 // isTLSError checks if an error is a TLS/certificate error that should cause the circuit to open.
 //
@@ -290,20 +234,12 @@ func isInfrastructureError(err error) bool {
 //
 // Thread Safety: This function is pure and safe for concurrent use.
 func isTLSError(err error) bool {
+	_ = "STUB: not implemented"
 	// Certificate verification failed
-	var certErr *x509.CertificateInvalidError
-	if errors.As(err, &certErr) {
-		return true
-	}
-
-	// Unknown authority
-	var unknownAuthErr *x509.UnknownAuthorityError
-	if errors.As(err, &unknownAuthErr) {
-		return true
-	}
-
 	return false
 }
+
+// Unknown authority
 
 // InfrastructureError is a predicate that converts errors to Options based on whether
 // they should trigger circuit breaker opening.

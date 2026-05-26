@@ -16,7 +16,6 @@
 package lazy
 
 import (
-	"github.com/IBM/fp-go/v2/io"
 	R "github.com/IBM/fp-go/v2/retry"
 )
 
@@ -30,5 +29,6 @@ func Retrying[A any](
 	action Kleisli[R.RetryStatus, A],
 	check Predicate[A],
 ) Lazy[A] {
-	return io.Retrying(policy, action, check)
+	_ = "STUB: not implemented"
+	return nil
 }

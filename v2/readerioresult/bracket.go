@@ -15,10 +15,6 @@
 
 package readerioresult
 
-import (
-	RIOE "github.com/IBM/fp-go/v2/readerioeither"
-)
-
 // Bracket makes sure that a resource is cleaned up in the event of an error. The release action is called regardless of
 // whether the body action returns and error or not.
 //
@@ -29,5 +25,6 @@ func Bracket[
 	use Kleisli[R, A, B],
 	release func(A, Result[B]) ReaderIOResult[R, ANY],
 ) ReaderIOResult[R, B] {
-	return RIOE.Bracket(acquire, use, release)
+	_ = "STUB: not implemented"
+	return nil
 }

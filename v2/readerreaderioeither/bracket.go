@@ -15,10 +15,6 @@
 
 package readerreaderioeither
 
-import (
-	RIOE "github.com/IBM/fp-go/v2/readerioeither"
-)
-
 // Bracket ensures that a resource is properly cleaned up regardless of whether the operation
 // succeeds or fails. It follows the acquire-use-release pattern with access to both outer (R)
 // and inner (C) reader contexts.
@@ -91,15 +87,6 @@ func Bracket[
 	use Kleisli[R, C, E, A, B],
 	release func(A, Either[E, B]) ReaderReaderIOEither[R, C, E, ANY],
 ) ReaderReaderIOEither[R, C, E, B] {
-	return func(r R) ReaderIOEither[C, E, B] {
-		return RIOE.Bracket(
-			acquire(r),
-			func(a A) ReaderIOEither[C, E, B] {
-				return use(a)(r)
-			},
-			func(a A, e Either[E, B]) ReaderIOEither[C, E, ANY] {
-				return release(a, e)(r)
-			},
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

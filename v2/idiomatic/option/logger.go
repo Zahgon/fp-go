@@ -17,19 +17,11 @@ package option
 
 import (
 	"log"
-
-	L "github.com/IBM/fp-go/v2/logging"
 )
 
 func _log[A any](left, right func(string, ...any), prefix string) Operator[A, A] {
-	return func(a A, aok bool) (A, bool) {
-		if aok {
-			right("%s: %v", prefix, a)
-		} else {
-			left("%s", prefix)
-		}
-		return a, aok
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Logger creates a logging function for Options that logs the state (None or Some with value)
@@ -54,8 +46,6 @@ func _log[A any](left, right func(string, ...any), prefix string) Operator[A, A]
 //	    logger("step1"), // logs "step1"
 //	) // None
 func Logger[A any](loggers ...*log.Logger) func(string) Operator[A, A] {
-	left, right := L.LoggingCallbacks(loggers...)
-	return func(prefix string) Operator[A, A] {
-		return _log[A](left, right, prefix)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

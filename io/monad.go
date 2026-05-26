@@ -17,10 +17,10 @@ package io
 
 import (
 	"github.com/IBM/fp-go/internal/monad"
-	G "github.com/IBM/fp-go/io/generic"
 )
 
 // Monad returns the monadic operations for [IO]
 func Monad[A, B any]() monad.Monad[A, B, IO[A], IO[B], IO[func(A) B]] {
-	return G.Monad[A, B, IO[A], IO[B], IO[func(A) B]]()
+	_ = "STUB: not implemented"
+	return nil
 }

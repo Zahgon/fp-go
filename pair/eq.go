@@ -20,14 +20,7 @@ import (
 )
 
 // Constructs an equal predicate for an `Either`
-func Eq[A, B any](a EQ.Eq[A], b EQ.Eq[B]) EQ.Eq[Pair[A, B]] {
-	return EQ.FromEquals(func(l, r Pair[A, B]) bool {
-		return a.Equals(Head(l), Head(r)) && b.Equals(Tail(l), Tail(r))
-	})
-
-}
+func Eq[A, B any](a EQ.Eq[A], b EQ.Eq[B]) EQ.Eq[Pair[A, B]] { _ = "STUB: not implemented"; return nil }
 
 // FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
-func FromStrictEquals[A, B comparable]() EQ.Eq[Pair[A, B]] {
-	return Eq(EQ.FromStrictEquals[A](), EQ.FromStrictEquals[B]())
-}
+func FromStrictEquals[A, B comparable]() EQ.Eq[Pair[A, B]] { _ = "STUB: not implemented"; return nil }

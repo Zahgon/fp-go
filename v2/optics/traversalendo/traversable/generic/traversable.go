@@ -16,7 +16,6 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/functor"
 )
 
@@ -108,17 +107,6 @@ import (
 func FromTraversableLens[A, HKTA, S, GA, HKTS, HKTRA any](
 	fmap functor.MapType[GA, Endomorphism[S], HKTRA, HKTS],
 ) func(Traversable[A, HKTA, GA, HKTRA]) func(Lens[S, GA]) Traversal[S, A, HKTS, HKTA] {
-	return func(trv Traversable[A, HKTA, GA, HKTRA]) func(Lens[S, GA]) Traversal[S, A, HKTS, HKTA] {
-		return func(l Lens[S, GA]) Traversal[S, A, HKTS, HKTA] {
-			lGet := l.Get
-			lSet := fmap(l.Set)
-			return func(f func(A) HKTA) func(S) HKTS {
-				return F.Flow3(
-					lGet,
-					trv(f),
-					lSet,
-				)
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

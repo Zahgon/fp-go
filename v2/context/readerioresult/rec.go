@@ -15,11 +15,6 @@
 
 package readerioresult
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	RIOR "github.com/IBM/fp-go/v2/readerioresult"
-)
-
 // TailRec implements stack-safe tail recursion for the context-aware ReaderIOResult monad.
 //
 // This function enables recursive computations that combine four powerful concepts:
@@ -179,5 +174,6 @@ import (
 //
 //go:inline
 func TailRec[A, B any](f Kleisli[A, Trampoline[A, B]]) Kleisli[A, B] {
-	return RIOR.TailRec(F.Flow2(f, WithContext))
+	_ = "STUB: not implemented"
+	return nil
 }

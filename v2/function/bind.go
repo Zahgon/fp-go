@@ -45,10 +45,9 @@ package function
 //
 //go:inline
 func Bind1st[T1, T2, R any](f func(T1, T2) R, t1 T1) func(T2) R {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t2 T2) R {
-		return f(t1, t2)
-	}
+	return nil
 }
 
 // Bind2nd performs partial application by fixing the second argument of a binary function.
@@ -81,10 +80,9 @@ func Bind1st[T1, T2, R any](f func(T1, T2) R, t1 T1) func(T2) R {
 //
 //go:inline
 func Bind2nd[T1, T2, R any](f func(T1, T2) R, t2 T2) func(T1) R {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(t1 T1) R {
-		return f(t1, t2)
-	}
+	return nil
 }
 
 // SK is the SK combinator from SKI combinator calculus.
@@ -112,6 +110,4 @@ func Bind2nd[T1, T2, R any](f func(T1, T2) R, t2 T2) func(T1) R {
 //	result := SK(true, 100)    // 100
 //
 //go:inline
-func SK[T1, T2 any](_ T1, t2 T2) T2 {
-	return t2
-}
+func SK[T1, T2 any](_ T1, t2 T2) T2 { _ = "STUB: not implemented"; return *new(T2) }

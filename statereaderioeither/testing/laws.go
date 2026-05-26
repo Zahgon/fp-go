@@ -18,12 +18,7 @@ package testing
 import (
 	"testing"
 
-	ET "github.com/IBM/fp-go/either"
 	EQ "github.com/IBM/fp-go/eq"
-	L "github.com/IBM/fp-go/internal/monad/testing"
-	P "github.com/IBM/fp-go/pair"
-	RIOE "github.com/IBM/fp-go/readerioeither"
-	ST "github.com/IBM/fp-go/statereaderioeither"
 )
 
 // AssertLaws asserts the apply monad laws for the `Either` monad
@@ -40,48 +35,6 @@ func AssertLaws[S, E, R, A, B, C any](t *testing.T,
 	s S,
 	r R,
 ) func(a A) bool {
-
-	eqra := RIOE.Eq[R](ET.Eq(eqe, P.Eq(eqa, eqs)))(r)
-	eqrb := RIOE.Eq[R](ET.Eq(eqe, P.Eq(eqb, eqs)))(r)
-	eqrc := RIOE.Eq[R](ET.Eq(eqe, P.Eq(eqc, eqs)))(r)
-
-	fofc := ST.Pointed[S, R, E, C]()
-	fofaa := ST.Pointed[S, R, E, func(A) A]()
-	fofbc := ST.Pointed[S, R, E, func(B) C]()
-	fofabb := ST.Pointed[S, R, E, func(func(A) B) B]()
-
-	fmap := ST.Functor[S, R, E, func(B) C, func(func(A) B) func(A) C]()
-
-	fapabb := ST.Applicative[S, R, E, func(A) B, B]()
-	fapabac := ST.Applicative[S, R, E, func(A) B, func(A) C]()
-
-	maa := ST.Monad[S, R, E, A, A]()
-	mab := ST.Monad[S, R, E, A, B]()
-	mac := ST.Monad[S, R, E, A, C]()
-	mbc := ST.Monad[S, R, E, B, C]()
-
-	return L.MonadAssertLaws(t,
-		ST.Eq(eqra)(s),
-		ST.Eq(eqrb)(s),
-		ST.Eq(eqrc)(s),
-
-		fofc,
-		fofaa,
-		fofbc,
-		fofabb,
-
-		fmap,
-
-		fapabb,
-		fapabac,
-
-		maa,
-		mab,
-		mac,
-		mbc,
-
-		ab,
-		bc,
-	)
-
+	_ = "STUB: not implemented"
+	return nil
 }

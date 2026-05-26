@@ -37,15 +37,12 @@
 package generic
 
 import (
-	AR "github.com/IBM/fp-go/v2/array/generic"
 	C "github.com/IBM/fp-go/v2/constant"
 	"github.com/IBM/fp-go/v2/endomorphism"
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/chain"
 	"github.com/IBM/fp-go/v2/internal/functor"
 	"github.com/IBM/fp-go/v2/internal/pointed"
 	M "github.com/IBM/fp-go/v2/monoid"
-	"github.com/IBM/fp-go/v2/optics/prism"
 	"github.com/IBM/fp-go/v2/predicate"
 )
 
@@ -161,9 +158,8 @@ func Compose[
 	TSA ~func(func(A) HKTA) func(S) HKTS,
 	TSB ~func(func(B) HKTB) func(S) HKTS,
 	S, A, B, HKTS, HKTA, HKTB any](ab TAB) func(TSA) TSB {
-	return func(sa TSA) TSB {
-		return F.Flow2(ab, sa)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromTraversable creates a traversal from a traversable data structure.
@@ -216,7 +212,8 @@ func FromTraversable[
 	HKTAA any](
 	traverseF func(HKTTA, func(A) HKTFA) HKTAA,
 ) TAB {
-	return F.Bind1st(F.Bind2nd[HKTTA, func(A) HKTFA, HKTAA], traverseF)
+	_ = "STUB: not implemented"
+	return *new(TAB)
 }
 
 // FoldMap maps each target to a monoid and combines the results.
@@ -276,15 +273,8 @@ func FromTraversable[
 //   - GetAll: Extract all values into a slice
 //   - monoid: Monoid operations
 func FoldMap[S, M, A any](f func(A) M) func(sa Traversal[S, A, C.Const[M, S], C.Const[M, A]]) func(S) M {
-	return func(sa Traversal[S, A, C.Const[M, S], C.Const[M, A]]) func(S) M {
-		return F.Flow2(
-			F.Pipe1(
-				F.Flow2(f, C.Make[M, A]),
-				sa,
-			),
-			C.Unwrap[M, S],
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Fold combines all targets of a traversal using their monoid operation.
@@ -325,7 +315,8 @@ func FoldMap[S, M, A any](f func(A) M) func(sa Traversal[S, A, C.Const[M, S], C.
 //   - FoldMap: Fold with a mapping function
 //   - GetAll: Extract all values into a slice
 func Fold[S, A any](sa Traversal[S, A, C.Const[A, S], C.Const[A, A]]) func(S) A {
-	return FoldMap[S](F.Identity[A])(sa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetAll extracts all targets of a traversal into a slice.
@@ -392,10 +383,8 @@ func Fold[S, A any](sa Traversal[S, A, C.Const[A, S], C.Const[A, A]]) func(S) A 
 //   - Fold: Fold without collecting into a slice
 //   - optics/traversal.GetAll: Concrete version with Identity
 func GetAll[GA ~[]A, S, A any](s S) func(sa Traversal[S, A, C.Const[GA, S], C.Const[GA, A]]) GA {
-	fmap := FoldMap[S](AR.Of[GA, A])
-	return func(sa Traversal[S, A, C.Const[GA, S], C.Const[GA, A]]) GA {
-		return fmap(sa)(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Filter creates a function that filters the targets of a traversal based on a predicate.
@@ -459,14 +448,8 @@ func Filter[
 	fof pointed.OfType[A, HKTA],
 	fmap functor.MapType[A, A, HKTA, HKTA],
 ) func(predicate.Predicate[A]) endomorphism.Endomorphism[Traversal[S, A, HKTS, HKTA]] {
-	return F.Flow3(
-		prism.FromPredicate,
-		prism.AsTraversal[Traversal[A, A, HKTA, HKTA]](fof, fmap),
-		Compose[
-			Traversal[A, A, HKTA, HKTA],
-			Traversal[S, A, HKTS, HKTA],
-			Traversal[S, A, HKTS, HKTA]],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Empty creates an empty traversal that focuses on no values.
@@ -521,7 +504,8 @@ func Filter[
 func Empty[A, HKTA, S, HKTS any](
 	fof pointed.OfType[S, HKTS],
 ) Traversal[S, A, HKTS, HKTA] {
-	return F.Constant1[func(A) HKTA](fof)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Concat combines two traversals into a single traversal that focuses on all values from both.
@@ -587,14 +571,8 @@ func Empty[A, HKTA, S, HKTS any](
 func Concat[A, HKTA, S, HKTS any](
 	fchain chain.ChainType[S, HKTS, HKTS],
 ) func(l, r Traversal[S, A, HKTS, HKTA]) Traversal[S, A, HKTS, HKTA] {
-	return func(l, r Traversal[S, A, HKTS, HKTA]) Traversal[S, A, HKTS, HKTA] {
-		return func(f func(A) HKTA) func(S) HKTS {
-			return F.Flow2(
-				r(f),
-				fchain(l(f)),
-			)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monoid creates a monoid instance for traversals.
@@ -677,8 +655,6 @@ func Monoid[S, A, HKTS, HKTA any](
 	fof pointed.OfType[S, HKTS],
 	fchain chain.ChainType[S, HKTS, HKTS],
 ) M.Monoid[Traversal[S, A, HKTS, HKTA]] {
-	return M.MakeMonoid(
-		Concat[A, HKTA](fchain),
-		Empty[A, HKTA](fof),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

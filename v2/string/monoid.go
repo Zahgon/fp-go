@@ -24,6 +24,4 @@ var Monoid = M.MakeMonoid(concat, "")
 
 // IntersperseMonoid creates a monoid that concatenates strings with a middle string in between,
 // with empty string as identity
-func IntersperseMonoid(middle string) M.Monoid[string] {
-	return M.MakeMonoid(Intersperse(middle), "")
-}
+func IntersperseMonoid(middle string) M.Monoid[string] { _ = "STUB: not implemented"; return nil }

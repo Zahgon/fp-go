@@ -19,13 +19,4 @@ import (
 	R "reflect"
 )
 
-func Map[GA ~[]A, A any](f func(R.Value) A) func(R.Value) GA {
-	return func(val R.Value) GA {
-		l := val.Len()
-		res := make(GA, l)
-		for i := l - 1; i >= 0; i-- {
-			res[i] = f(val.Index(i))
-		}
-		return res
-	}
-}
+func Map[GA ~[]A, A any](f func(R.Value) A) func(R.Value) GA { _ = "STUB: not implemented"; return nil }

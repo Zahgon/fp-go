@@ -29,24 +29,18 @@ type monoid[A any] struct {
 	e A
 }
 
-func (m monoid[A]) Concat(x, y A) A {
-	return m.c(x, y)
-}
+func (m monoid[A]) Concat(x, y A) A { _ = "STUB: not implemented"; return *new(A) }
 
 func (m monoid[A]) Empty() A {
-	return m.e
+	_ = "STUB: not implemented"
+
+	// MakeMonoid creates a monoid given a concat function and an empty element
+	return *new(A)
 }
 
-// MakeMonoid creates a monoid given a concat function and an empty element
-func MakeMonoid[A any](c func(A, A) A, e A) Monoid[A] {
-	return monoid[A]{c: c, e: e}
-}
+func MakeMonoid[A any](c func(A, A) A, e A) Monoid[A] { _ = "STUB: not implemented"; return nil }
 
 // Reverse returns the dual of a `Monoid`, obtained by swapping the arguments of `Concat`.
-func Reverse[A any](m Monoid[A]) Monoid[A] {
-	return MakeMonoid(S.Reverse[A](m).Concat, m.Empty())
-}
+func Reverse[A any](m Monoid[A]) Monoid[A] { _ = "STUB: not implemented"; return nil }
 
-func ToSemigroup[A any](m Monoid[A]) S.Semigroup[A] {
-	return S.Semigroup[A](m)
-}
+func ToSemigroup[A any](m Monoid[A]) S.Semigroup[A] { _ = "STUB: not implemented"; return nil }

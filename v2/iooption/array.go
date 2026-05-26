@@ -15,29 +15,17 @@
 
 package iooption
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/io"
-	"github.com/IBM/fp-go/v2/option"
-)
-
 // TraverseArray transforms an array
 func TraverseArray[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
-	return function.Flow2(
-		io.TraverseArray(f),
-		io.Map(option.SequenceArray[B]),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms an array
 func TraverseArrayWithIndex[A, B any](f func(int, A) IOOption[B]) Kleisli[[]A, []B] {
-	return function.Flow2(
-		io.TraverseArrayWithIndex(f),
-		io.Map(option.SequenceArray[B]),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts a homogeneous sequence of either into an either of sequence
-func SequenceArray[A any](ma []IOOption[A]) IOOption[[]A] {
-	return TraverseArray(function.Identity[IOOption[A]])(ma)
-}
+func SequenceArray[A any](ma []IOOption[A]) IOOption[[]A] { _ = "STUB: not implemented"; return nil }

@@ -16,9 +16,7 @@
 package state
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/optics/iso"
-	"github.com/IBM/fp-go/v2/pair"
 )
 
 // IMap is a profunctor-like operation for State that transforms both the state and value using an isomorphism.
@@ -48,7 +46,8 @@ import (
 //
 //go:inline
 func IMap[A, S2, S1, B any](f iso.Iso[S2, S1], g func(A) B) Kleisli[S2, State[S1, A], B] {
-	return F.Bind13of3(F.Flow3[func(s S2) S1, State[S1, A], func(pair.Pair[S1, A]) pair.Pair[S2, B]])(f.Get, pair.BiMap(f.ReverseGet, g))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MapState is a contravariant-like operation for State that transforms the state type using an isomorphism.
@@ -75,5 +74,6 @@ func IMap[A, S2, S1, B any](f iso.Iso[S2, S1], g func(A) B) Kleisli[S2, State[S1
 //
 //go:inline
 func MapState[A, S2, S1 any](f iso.Iso[S2, S1]) Kleisli[S2, State[S1, A], A] {
-	return F.Bind13of3(F.Flow3[func(S2) S1, State[S1, A], func(pair.Pair[S1, A]) pair.Pair[S2, A]])(f.Get, pair.MapHead[A](f.ReverseGet))
+	_ = "STUB: not implemented"
+	return nil
 }

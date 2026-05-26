@@ -16,7 +16,6 @@
 package readerresult
 
 import (
-	"github.com/IBM/fp-go/v2/idiomatic/result"
 	"github.com/IBM/fp-go/v2/reader"
 )
 
@@ -71,15 +70,8 @@ import (
 //	result, err := sequenced(db)(cfg)
 //	// result: "Query on localhost:5432 with timeout 30"
 func Sequence[R1, R2, A any](ma ReaderResult[R2, ReaderResult[R1, A]]) Kleisli[R2, R1, A] {
-	return func(r1 R1) ReaderResult[R2, A] {
-		return func(r2 R2) (A, error) {
-			mr1, err := ma(r2)
-			if err != nil {
-				return result.Left[A](err)
-			}
-			return mr1(r1)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceReader swaps the order of environment parameters when the inner computation is a pure Reader.
@@ -124,15 +116,8 @@ func Sequence[R1, R2, A any](ma ReaderResult[R2, ReaderResult[R1, A]]) Kleisli[R
 //	result, err := sequenced(cfg)(10)
 //	// result: 50, err: nil
 func SequenceReader[R1, R2, A any](ma ReaderResult[R2, Reader[R1, A]]) Kleisli[R2, R1, A] {
-	return func(r1 R1) ReaderResult[R2, A] {
-		return func(r2 R2) (A, error) {
-			mr1, err := ma(r2)
-			if err != nil {
-				return result.Left[A](err)
-			}
-			return result.Of(mr1(r1))
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Traverse transforms a ReaderResult computation by applying a Kleisli arrow that introduces
@@ -189,17 +174,8 @@ func SequenceReader[R1, R2, A any](ma ReaderResult[R2, Reader[R1, A]]) Kleisli[R
 func Traverse[R2, R1, A, B any](
 	f Kleisli[R1, A, B],
 ) func(ReaderResult[R2, A]) Kleisli[R2, R1, B] {
-	return func(rr ReaderResult[R2, A]) Kleisli[R2, R1, B] {
-		return func(r1 R1) ReaderResult[R2, B] {
-			return func(r2 R2) (B, error) {
-				a, err := rr(r2)
-				if err != nil {
-					return result.Left[B](err)
-				}
-				return f(a)(r1)
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseReader transforms a ReaderResult computation by applying a Reader-based Kleisli arrow,
@@ -256,15 +232,6 @@ func Traverse[R2, R1, A, B any](
 func TraverseReader[R2, R1, A, B any](
 	f reader.Kleisli[R1, A, B],
 ) func(ReaderResult[R2, A]) Kleisli[R2, R1, B] {
-	return func(rr ReaderResult[R2, A]) Kleisli[R2, R1, B] {
-		return func(r1 R1) ReaderResult[R2, B] {
-			return func(r2 R2) (B, error) {
-				a, err := rr(r2)
-				if err != nil {
-					return result.Left[B](err)
-				}
-				return result.Of(f(a)(r1))
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

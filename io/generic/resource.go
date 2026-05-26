@@ -15,16 +15,13 @@
 
 package generic
 
-import (
-	F "github.com/IBM/fp-go/function"
-)
-
 // WithResource constructs a function that creates a resource, then operates on it and then releases the resource
 func WithResource[
 	GA ~func() A,
 	GR ~func() R,
 	GANY ~func() ANY,
 	R, A, ANY any](onCreate GR, onRelease func(R) GANY) func(func(R) GA) GA {
+	_ = "STUB: not implemented"
 	// simply map to implementation of bracket
-	return F.Bind13of3(Bracket[GR, GA, GANY, R, A, ANY])(onCreate, F.Ignore2of2[A](onRelease))
+	return nil
 }

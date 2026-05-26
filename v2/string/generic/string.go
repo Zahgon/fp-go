@@ -20,25 +20,31 @@ package generic
 
 // ToBytes converts the string to bytes
 func ToBytes[T ~string](s T) []byte {
-	return []byte(s)
+	_ = "STUB: not implemented"
+
+	// ToRunes converts the string to runes
+	return nil
 }
 
-// ToRunes converts the string to runes
 func ToRunes[T ~string](s T) []rune {
-	return []rune(s)
+	_ = "STUB: not implemented"
+
+	// IsEmpty tests if the string is empty
+	return nil
 }
 
-// IsEmpty tests if the string is empty
 func IsEmpty[T ~string](s T) bool {
-	return len(s) == 0
+	_ = "STUB: not implemented"
+
+	// IsNonEmpty tests if the string is not empty
+	return false
 }
 
-// IsNonEmpty tests if the string is not empty
 func IsNonEmpty[T ~string](s T) bool {
-	return len(s) > 0
+	_ = "STUB: not implemented"
+
+	// Size returns the size of the string
+	return false
 }
 
-// Size returns the size of the string
-func Size[T ~string](s T) int {
-	return len(s)
-}
+func Size[T ~string](s T) int { _ = "STUB: not implemented"; return 0 }

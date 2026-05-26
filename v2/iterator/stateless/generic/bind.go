@@ -15,12 +15,6 @@
 
 package generic
 
-import (
-	"github.com/IBM/fp-go/v2/internal/apply"
-	C "github.com/IBM/fp-go/v2/internal/chain"
-	F "github.com/IBM/fp-go/v2/internal/functor"
-)
-
 // Do creates an empty context of type [S] to be used with the [Bind] operation.
 // This is the starting point for do-notation style composition.
 //
@@ -34,54 +28,52 @@ import (
 func Do[GS ~func() Option[Pair[GS, S]], S any](
 	empty S,
 ) GS {
-	return Of[GS](empty)
+	_ = "STUB: not implemented"
+	return *
+
+	// Bind attaches the result of a computation to a context [S1] to produce a context [S2].
+	// This enables sequential composition where each step can depend on the results of previous steps.
+	// For iterators, this produces the cartesian product where later steps can use values from earlier steps.
+	//
+	// The setter function takes the result of the computation and returns a function that
+	// updates the context from S1 to S2.
+	//
+	// Example:
+	//
+	//	type State struct {
+	//	    X int
+	//	    Y int
+	//	}
+	//
+	//	result := F.Pipe2(
+	//	    generic.Do[Iterator[State]](State{}),
+	//	    generic.Bind[Iterator[State], Iterator[State], Iterator[int], State, State, int](
+	//	        func(x int) func(State) State {
+	//	            return func(s State) State { s.X = x; return s }
+	//	        },
+	//	        func(s State) Iterator[int] {
+	//	            return generic.Of[Iterator[int]](1, 2, 3)
+	//	        },
+	//	    ),
+	//	    generic.Bind[Iterator[State], Iterator[State], Iterator[int], State, State, int](
+	//	        func(y int) func(State) State {
+	//	            return func(s State) State { s.Y = y; return s }
+	//	        },
+	//	        func(s State) Iterator[int] {
+	//	            // This can access s.X from the previous step
+	//	            return generic.Of[Iterator[int]](s.X * 10, s.X * 20)
+	//	        },
+	//	    ),
+	//	) // Produces: {1,10}, {1,20}, {2,20}, {2,40}, {3,30}, {3,60}
+	new(GS)
 }
 
-// Bind attaches the result of a computation to a context [S1] to produce a context [S2].
-// This enables sequential composition where each step can depend on the results of previous steps.
-// For iterators, this produces the cartesian product where later steps can use values from earlier steps.
-//
-// The setter function takes the result of the computation and returns a function that
-// updates the context from S1 to S2.
-//
-// Example:
-//
-//	type State struct {
-//	    X int
-//	    Y int
-//	}
-//
-//	result := F.Pipe2(
-//	    generic.Do[Iterator[State]](State{}),
-//	    generic.Bind[Iterator[State], Iterator[State], Iterator[int], State, State, int](
-//	        func(x int) func(State) State {
-//	            return func(s State) State { s.X = x; return s }
-//	        },
-//	        func(s State) Iterator[int] {
-//	            return generic.Of[Iterator[int]](1, 2, 3)
-//	        },
-//	    ),
-//	    generic.Bind[Iterator[State], Iterator[State], Iterator[int], State, State, int](
-//	        func(y int) func(State) State {
-//	            return func(s State) State { s.Y = y; return s }
-//	        },
-//	        func(s State) Iterator[int] {
-//	            // This can access s.X from the previous step
-//	            return generic.Of[Iterator[int]](s.X * 10, s.X * 20)
-//	        },
-//	    ),
-//	) // Produces: {1,10}, {1,20}, {2,20}, {2,40}, {3,30}, {3,60}
 func Bind[GS1 ~func() Option[Pair[GS1, S1]], GS2 ~func() Option[Pair[GS2, S2]], GA ~func() Option[Pair[GA, A]], S1, S2, A any](
 	setter func(A) func(S1) S2,
 	f func(S1) GA,
 ) func(GS1) GS2 {
-
-	return C.Bind(
-		Chain[GS2, GS1, S1, S2],
-		Map[GS2, GA, func(A) S2, A, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -89,11 +81,8 @@ func Let[GS1 ~func() Option[Pair[GS1, S1]], GS2 ~func() Option[Pair[GS2, S2]], S
 	key func(A) func(S1) S2,
 	f func(S1) A,
 ) func(GS1) GS2 {
-	return F.Let(
-		Map[GS2, GS1, func(S1) S2, S1, S2],
-		key,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches the a value to a context [S1] to produce a context [S2]
@@ -101,21 +90,16 @@ func LetTo[GS1 ~func() Option[Pair[GS1, S1]], GS2 ~func() Option[Pair[GS2, S2]],
 	key func(B) func(S1) S2,
 	b B,
 ) func(GS1) GS2 {
-	return F.LetTo(
-		Map[GS2, GS1, func(S1) S2, S1, S2],
-		key,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T]
 func BindTo[GS1 ~func() Option[Pair[GS1, S1]], GA ~func() Option[Pair[GA, A]], S1, A any](
 	setter func(A) S1,
 ) func(GA) GS1 {
-	return C.BindTo(
-		Map[GS1, GA, func(A) S1, A, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering
@@ -155,10 +139,6 @@ func ApS[GAS2 ~func() Option[Pair[GAS2, func(A) S2]], GS1 ~func() Option[Pair[GS
 	setter func(A) func(S1) S2,
 	fa GA,
 ) func(GS1) GS2 {
-	return apply.ApS(
-		Ap[GAS2, GS2, GA, A, S2],
-		Map[GAS2, GS1, func(S1) func(A) S2, S1, func(A) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,20 +15,18 @@
 
 package ioeither
 
-import (
-	G "github.com/IBM/fp-go/ioeither/generic"
-)
-
 // LogJson converts the argument to pretty printed JSON and then logs it via the format string
 // Can be used with [ChainFirst]
 //
 // Deprecated: use [LogJSON] instead
 func LogJson[A any](prefix string) func(A) IOEither[error, any] {
-	return G.LogJson[IOEither[error, any], A](prefix)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LogJSON converts the argument to pretty printed JSON and then logs it via the format string
 // Can be used with [ChainFirst]
 func LogJSON[A any](prefix string) func(A) IOEither[error, any] {
-	return G.LogJSON[IOEither[error, any], A](prefix)
+	_ = "STUB: not implemented"
+	return nil
 }

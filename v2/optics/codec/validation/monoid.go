@@ -1,11 +1,5 @@
 package validation
 
-import (
-	A "github.com/IBM/fp-go/v2/array"
-	"github.com/IBM/fp-go/v2/either"
-	M "github.com/IBM/fp-go/v2/monoid"
-)
-
 // ErrorsMonoid returns a Monoid instance for Errors (array of ValidationError pointers).
 // The monoid concatenates error arrays, with an empty array as the identity element.
 // This is used internally by the applicative operations to accumulate validation errors.
@@ -15,9 +9,7 @@ import (
 //	m := ErrorsMonoid()
 //	combined := m.Concat(errors1, errors2) // Concatenates both error arrays
 //	empty := m.Empty()                      // Returns empty error array
-func ErrorsMonoid() Monoid[Errors] {
-	return A.Monoid[*ValidationError]()
-}
+func ErrorsMonoid() Monoid[Errors] { _ = "STUB: not implemented"; return nil }
 
 // ApplicativeMonoid creates a Monoid instance for Validation[A] given a Monoid for A.
 // This allows combining validation results where the success values are also combined
@@ -43,14 +35,8 @@ func ErrorsMonoid() Monoid[Errors] {
 //	v3 := Failures[string](someErrors)
 //	failed := m.Concat(v1, v3) // Failures with accumulated errors
 func ApplicativeMonoid[A any](m Monoid[A]) Monoid[Validation[A]] {
-
-	return M.ApplicativeMonoid(
-		Of,
-		either.MonadMap,
-		either.MonadApV[A, A](ErrorsMonoid()),
-
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AlternativeMonoid creates a Monoid instance for Validation[A] using the Alternative pattern.
@@ -124,13 +110,8 @@ func ApplicativeMonoid[A any](m Monoid[A]) Monoid[Validation[A]] {
 //	result := m.Concat(m.Concat(fromEnv, fromConfig), fromDefault)
 //	// Result: Success(42) - uses first successful validation
 func AlternativeMonoid[A any](m Monoid[A]) Monoid[Validation[A]] {
-	return M.AlternativeMonoid(
-		Of[A],
-		MonadMap[A, func(A) A],
-		MonadAp[A, A],
-		MonadAlt[A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltMonoid creates a Monoid instance for Validation[A] using the Alt (alternative) operation.
@@ -221,8 +202,6 @@ func AlternativeMonoid[A any](m Monoid[A]) Monoid[Validation[A]] {
 //	result := A.MonoidFold(m)(configs)
 //	// Result: First successful config, or defaultConfig if all fail
 func AltMonoid[A any](zero Lazy[Validation[A]]) Monoid[Validation[A]] {
-	return M.AltMonoid(
-		zero,
-		MonadAlt[A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

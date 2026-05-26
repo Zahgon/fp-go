@@ -15,10 +15,6 @@
 
 package readerioresult
 
-import (
-	"github.com/IBM/fp-go/v2/readerioeither"
-)
-
 // ChainConsumer chains a consumer (side-effect function) into a ReaderIOResult computation,
 // replacing the success value with Void (empty struct).
 //
@@ -58,7 +54,8 @@ import (
 //
 //go:inline
 func ChainConsumer[R, A any](c Consumer[A]) Operator[R, A, Void] {
-	return readerioeither.ChainConsumer[R, error](c)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstConsumer chains a consumer into a ReaderIOResult computation while preserving
@@ -104,5 +101,6 @@ func ChainConsumer[R, A any](c Consumer[A]) Operator[R, A, Void] {
 //
 //go:inline
 func ChainFirstConsumer[R, A any](c Consumer[A]) Operator[R, A, A] {
-	return readerioeither.ChainFirstConsumer[R, error](c)
+	_ = "STUB: not implemented"
+	return nil
 }

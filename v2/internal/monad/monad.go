@@ -75,25 +75,34 @@ type Monad[A, B, HKTA, HKTB, HKTFAB any] interface {
 
 // ToFunctor converts from [Monad] to [functor.Functor]
 func ToFunctor[A, B, HKTA, HKTB, HKTFAB any](ap Monad[A, B, HKTA, HKTB, HKTFAB]) functor.Functor[A, B, HKTA, HKTB] {
-	return ap
+	_ = "STUB: not implemented"
+
+	// ToApply converts from [Monad] to [apply.Apply]
+	return nil
 }
 
-// ToApply converts from [Monad] to [apply.Apply]
 func ToApply[A, B, HKTA, HKTB, HKTFAB any](ap Monad[A, B, HKTA, HKTB, HKTFAB]) apply.Apply[A, B, HKTA, HKTB, HKTFAB] {
-	return ap
+	_ = "STUB: not implemented"
+
+	// ToPointed converts from [Monad] to [pointed.Pointed]
+	return nil
 }
 
-// ToPointed converts from [Monad] to [pointed.Pointed]
 func ToPointed[A, B, HKTA, HKTB, HKTFAB any](ap Monad[A, B, HKTA, HKTB, HKTFAB]) pointed.Pointed[A, HKTA] {
-	return ap
+	_ = "STUB: not implemented"
+
+	// ToApplicative converts from [Monad] to [applicative.Applicative]
+	return nil
 }
 
-// ToApplicative converts from [Monad] to [applicative.Applicative]
 func ToApplicative[A, B, HKTA, HKTB, HKTFAB any](ap Monad[A, B, HKTA, HKTB, HKTFAB]) applicative.Applicative[A, B, HKTA, HKTB, HKTFAB] {
-	return ap
+	_ = "STUB: not implemented"
+
+	// ToChainable converts from [Monad] to [chain.Chainable]
+	return nil
 }
 
-// ToChainable converts from [Monad] to [chain.Chainable]
 func ToChainable[A, B, HKTA, HKTB, HKTFAB any](ap Monad[A, B, HKTA, HKTB, HKTFAB]) chain.Chainable[A, B, HKTA, HKTB, HKTFAB] {
-	return ap
+	_ = "STUB: not implemented"
+	return nil
 }

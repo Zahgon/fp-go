@@ -16,8 +16,6 @@
 package readereither
 
 import (
-	"github.com/IBM/fp-go/v2/either"
-	"github.com/IBM/fp-go/v2/internal/readert"
 	"github.com/IBM/fp-go/v2/reader"
 )
 
@@ -79,10 +77,8 @@ import (
 //	result := configReader(cfg)
 //	// result is Either[error, string]
 func Sequence[R1, R2, E, A any](ma ReaderEither[R2, E, ReaderEither[R1, E, A]]) Kleisli[R2, E, R1, A] {
-	return readert.Sequence(
-		either.Chain,
-		ma,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceReader swaps the order of environment parameters when the inner computation is a Reader.
@@ -138,10 +134,8 @@ func Sequence[R1, R2, E, A any](ma ReaderEither[R2, E, ReaderEither[R1, E, A]]) 
 //	result := configReader(cfg)
 //	// result is Either[error, string]
 func SequenceReader[R1, R2, E, A any](ma ReaderEither[R2, E, Reader[R1, A]]) Kleisli[R2, E, R1, A] {
-	return readert.SequenceReader(
-		either.Map,
-		ma,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Traverse transforms a ReaderEither computation by applying a function that produces
@@ -210,19 +204,13 @@ func SequenceReader[R1, R2, E, A any](ma ReaderEither[R2, E, Reader[R1, A]]) Kle
 func Traverse[R2, R1, E, A, B any](
 	f Kleisli[R1, E, A, B],
 ) func(ReaderEither[R2, E, A]) Kleisli[R2, E, R1, B] {
-	return readert.Traverse[ReaderEither[R2, E, A]](
-		either.Map,
-		either.Chain,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraverseReader[R2, R1, E, A, B any](
 	f reader.Kleisli[R1, A, B],
 ) func(ReaderEither[R2, E, A]) Kleisli[R2, E, R1, B] {
-	return readert.TraverseReader[ReaderEither[R2, E, A]](
-		either.Map,
-		either.Map,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

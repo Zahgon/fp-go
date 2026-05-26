@@ -17,9 +17,6 @@ package function
 
 // Flip reverses the order of parameters of a curried function
 func Flip[T1, T2, R any](f func(T1) func(T2) R) func(T2) func(T1) R {
-	return func(t2 T2) func(T1) R {
-		return func(t1 T1) R {
-			return f(t1)(t2)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

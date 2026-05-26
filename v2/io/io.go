@@ -17,14 +17,6 @@ package io
 
 import (
 	"time"
-
-	"github.com/IBM/fp-go/v2/function"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/apply"
-	"github.com/IBM/fp-go/v2/internal/chain"
-	"github.com/IBM/fp-go/v2/internal/functor"
-	INTL "github.com/IBM/fp-go/v2/internal/lazy"
-	"github.com/IBM/fp-go/v2/pair"
 )
 
 const (
@@ -41,33 +33,26 @@ const (
 //	result := greeting() // returns "Hello, World!"
 //
 //go:inline
-func Of[A any](a A) IO[A] {
-	return F.Constant(a)
-}
+func Of[A any](a A) IO[A] { _ = "STUB: not implemented"; return nil }
 
 // FromIO is an identity function that returns the IO value unchanged.
 // Useful for type conversions and maintaining consistency with other monad packages.
 //
 //go:inline
 func FromIO[A any](a IO[A]) IO[A] {
-	return a
+	_ = "STUB: not implemented"
+
+	// FromImpure converts a side effect without a return value into a side effect that returns any
+	return nil
 }
 
-// FromImpure converts a side effect without a return value into a side effect that returns any
-func FromImpure[ANY ~func()](f ANY) IO[Void] {
-	return func() Void {
-		f()
-		return function.VOID
-	}
-}
+func FromImpure[ANY ~func()](f ANY) IO[Void] { _ = "STUB: not implemented"; return nil }
 
 // MonadOf wraps a pure value in an IO context.
 // This is an alias for Of, following the monadic naming convention.
 //
 //go:inline
-func MonadOf[A any](a A) IO[A] {
-	return F.Constant(a)
-}
+func MonadOf[A any](a A) IO[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap transforms the result of an IO computation by applying a function to it.
 // The function is only applied when the IO is executed.
@@ -79,10 +64,9 @@ func MonadOf[A any](a A) IO[A] {
 //
 //go:inline
 func MonadMap[A, B any](fa IO[A], f func(A) B) IO[B] {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func() B {
-		return f(fa())
-	}
+	return nil
 }
 
 // Map returns an operator that transforms the result of an IO computation.
@@ -94,9 +78,7 @@ func MonadMap[A, B any](fa IO[A], f func(A) B) IO[B] {
 //	doubled := double(io.Of(21))
 //
 //go:inline
-func Map[A, B any](f func(A) B) Operator[A, B] {
-	return F.Bind2nd(MonadMap[A, B], f)
-}
+func Map[A, B any](f func(A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadMapTo replaces the result of an IO computation with a constant value.
 // The original computation is still executed, but its result is discarded.
@@ -106,65 +88,42 @@ func Map[A, B any](f func(A) B) Operator[A, B] {
 //	always42 := io.MonadMapTo(sideEffect, 42)
 //
 //go:inline
-func MonadMapTo[A, B any](fa IO[A], b B) IO[B] {
-	return MonadMap(fa, F.Constant1[A](b))
-}
+func MonadMapTo[A, B any](fa IO[A], b B) IO[B] { _ = "STUB: not implemented"; return nil }
 
 // MapTo returns an operator that replaces the result with a constant value.
 // This is the curried version of MonadMapTo.
 //
 //go:inline
-func MapTo[A, B any](b B) Operator[A, B] {
-	return Map(F.Constant1[A](b))
-}
+func MapTo[A, B any](b B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChain composes computations in sequence, using the return value of one computation to determine the next computation.
 //
 //go:inline
 func MonadChain[A, B any](fa IO[A], f Kleisli[A, B]) IO[B] {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func() B {
-		return f(fa())()
-	}
+	return nil
 }
 
 // Chain composes computations in sequence, using the return value of one computation to determine the next computation.
 //
 //go:inline
-func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] {
-	return F.Bind2nd(MonadChain[A, B], f)
-}
+func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadApSeq implements the applicative on a single thread by first executing mab and the ma
 //
 //go:inline
-func MonadApSeq[A, B any](mab IO[func(A) B], ma IO[A]) IO[B] {
-	return MonadChain(mab, F.Bind1st(MonadMap[A, B], ma))
-}
+func MonadApSeq[A, B any](mab IO[func(A) B], ma IO[A]) IO[B] { _ = "STUB: not implemented"; return nil }
 
 // MonadApPar implements the applicative on two threads, the main thread executes mab and the actuall
 // apply operation and the second thread computes ma. Communication between the threads happens via a channel
-func MonadApPar[A, B any](mab IO[func(A) B], ma IO[A]) IO[B] {
-	return func() B {
-		c := make(chan A, 1)
-		go func() {
-			c <- ma()
-			close(c)
-		}()
-		return mab()(<-c)
-	}
-}
+func MonadApPar[A, B any](mab IO[func(A) B], ma IO[A]) IO[B] { _ = "STUB: not implemented"; return nil }
 
 // MonadAp implements the `ap` operation. Depending on a feature flag this will be sequential or parallel, the preferred implementation
 // is parallel
 //
 //go:inline
-func MonadAp[A, B any](mab IO[func(A) B], ma IO[A]) IO[B] {
-	if useParallel {
-		return MonadApPar(mab, ma)
-	}
-	return MonadApSeq(mab, ma)
-}
+func MonadAp[A, B any](mab IO[func(A) B], ma IO[A]) IO[B] { _ = "STUB: not implemented"; return nil }
 
 // Ap returns an operator that applies a function wrapped in IO to a value wrapped in IO.
 // This is the curried version of MonadAp and uses parallel execution by default.
@@ -175,25 +134,19 @@ func MonadAp[A, B any](mab IO[func(A) B], ma IO[A]) IO[B] {
 //	result := io.Ap(io.Of(2))(io.Of(add(3))) // parallel execution
 //
 //go:inline
-func Ap[B, A any](ma IO[A]) Operator[func(A) B, B] {
-	return F.Bind2nd(MonadAp[A, B], ma)
-}
+func Ap[B, A any](ma IO[A]) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // ApSeq returns an operator that applies a function wrapped in IO to a value wrapped in IO sequentially.
 // Unlike Ap, this executes the function and value computations in sequence.
 //
 //go:inline
-func ApSeq[B, A any](ma IO[A]) Operator[func(A) B, B] {
-	return Chain(F.Bind1st(MonadMap[A, B], ma))
-}
+func ApSeq[B, A any](ma IO[A]) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // ApPar returns an operator that applies a function wrapped in IO to a value wrapped in IO in parallel.
 // This explicitly uses parallel execution (same as Ap when useParallel is true).
 //
 //go:inline
-func ApPar[B, A any](ma IO[A]) Operator[func(A) B, B] {
-	return F.Bind2nd(MonadApPar[A, B], ma)
-}
+func ApPar[B, A any](ma IO[A]) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // Flatten removes one level of nesting from a nested IO computation.
 // Converts IO[IO[A]] to IO[A].
@@ -205,82 +158,42 @@ func ApPar[B, A any](ma IO[A]) Operator[func(A) B, B] {
 //	result := flattened() // returns 42
 //
 //go:inline
-func Flatten[A any](mma IO[IO[A]]) IO[A] {
-	return MonadChain(mma, F.Identity)
-}
+func Flatten[A any](mma IO[IO[A]]) IO[A] { _ = "STUB: not implemented"; return nil }
 
 // Memoize computes the value of the provided [IO] monad lazily but exactly once
-func Memoize[A any](ma IO[A]) IO[A] {
-	return INTL.Memoize(ma)
-}
+func Memoize[A any](ma IO[A]) IO[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainFirst composes computations in sequence, using the return value of one computation to determine the next computation and
 // keeping only the result of the first.
 func MonadChainFirst[A, B any](fa IO[A], f Kleisli[A, B]) IO[A] {
-	return chain.MonadChainFirst(MonadChain[A, A], MonadMap[B, A], fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirst composes computations in sequence, using the return value of one computation to determine the next computation and
 // keeping only the result of the first.
-func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] {
-	return chain.ChainFirst(
-		Chain[A, A],
-		Map[B, A],
-		f,
-	)
-}
+func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadApFirst combines two effectful actions, keeping only the result of the first.
-func MonadApFirst[A, B any](first IO[A], second IO[B]) IO[A] {
-	return apply.MonadApFirst(
-		MonadAp[B, A],
-		MonadMap[A, func(B) A],
-
-		first,
-		second,
-	)
-}
+func MonadApFirst[A, B any](first IO[A], second IO[B]) IO[A] { _ = "STUB: not implemented"; return nil }
 
 // ApFirst combines two effectful actions, keeping only the result of the first.
-func ApFirst[A, B any](second IO[B]) Operator[A, A] {
-	return apply.ApFirst(
-		Ap[A, B],
-		Map[A, func(B) A],
-
-		second,
-	)
-}
+func ApFirst[A, B any](second IO[B]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadApSecond combines two effectful actions, keeping only the result of the second.
 func MonadApSecond[A, B any](first IO[A], second IO[B]) IO[B] {
-	return apply.MonadApSecond(
-		MonadAp[B, B],
-		MonadMap[A, func(B) B],
-
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSecond combines two effectful actions, keeping only the result of the second.
-func ApSecond[A, B any](second IO[B]) Operator[A, B] {
-	return apply.ApSecond(
-		Ap[B, B],
-		Map[A, func(B) B],
-
-		second,
-	)
-}
+func ApSecond[A, B any](second IO[B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainTo composes computations in sequence, ignoring the return value of the first computation
-func MonadChainTo[A, B any](fa IO[A], fb IO[B]) IO[B] {
-	return MonadChain(fa, F.Constant1[A](fb))
-}
+func MonadChainTo[A, B any](fa IO[A], fb IO[B]) IO[B] { _ = "STUB: not implemented"; return nil }
 
 // ChainTo composes computations in sequence, ignoring the return value of the first computation
-func ChainTo[A, B any](fb IO[B]) Operator[A, B] {
-	return Chain(F.Constant1[A](fb))
-}
+func ChainTo[A, B any](fb IO[B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Now is an IO computation that returns the current timestamp when executed.
 // Each execution returns the current time at that moment.
@@ -301,11 +214,7 @@ var Now IO[time.Time] = time.Now
 //	    }
 //	    return io.Of(2)
 //	})
-func Defer[A any](gen func() IO[A]) IO[A] {
-	return func() A {
-		return gen()()
-	}
-}
+func Defer[A any](gen func() IO[A]) IO[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadFlap applies a value to a function wrapped in IO.
 // This is the reverse of Ap - instead of applying IO[func] to IO[value],
@@ -315,15 +224,11 @@ func Defer[A any](gen func() IO[A]) IO[A] {
 //
 //	addFive := io.Of(N.Add(5))
 //	result := io.MonadFlap(addFive, 10) // returns IO[15]
-func MonadFlap[B, A any](fab IO[func(A) B], a A) IO[B] {
-	return functor.MonadFlap(MonadMap[func(A) B, B], fab, a)
-}
+func MonadFlap[B, A any](fab IO[func(A) B], a A) IO[B] { _ = "STUB: not implemented"; return nil }
 
 // Flap returns an operator that applies a pure value to a function wrapped in IO.
 // This is the curried version of MonadFlap.
-func Flap[B, A any](a A) Operator[func(A) B, B] {
-	return functor.Flap(Map[func(A) B, B], a)
-}
+func Flap[B, A any](a A) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // Delay creates an operator that delays execution by the specified duration.
 // The delay occurs before executing the wrapped computation.
@@ -332,23 +237,13 @@ func Flap[B, A any](a A) Operator[func(A) B, B] {
 //
 //	delayed := io.Delay(time.Second)(io.Of(42))
 //	result := delayed() // waits 1 second, then returns 42
-func Delay[A any](delay time.Duration) Operator[A, A] {
-	return func(ga IO[A]) IO[A] {
-		return func() A {
-			time.Sleep(delay)
-			return ga()
-		}
-	}
-}
+func Delay[A any](delay time.Duration) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 func after(timestamp time.Time) func() {
-	return func() {
-		// check if we need to wait
-		current := time.Now()
-		if current.Before(timestamp) {
-			time.Sleep(timestamp.Sub(current))
-		}
-	}
+	_ = "STUB: not implemented"
+
+	// check if we need to wait
+	return nil
 }
 
 // After creates an operator that delays execution until after the given timestamp.
@@ -359,17 +254,11 @@ func after(timestamp time.Time) func() {
 //	future := time.Now().Add(5 * time.Second)
 //	scheduled := io.After(future)(io.Of(42))
 //	result := scheduled() // waits until future time, then returns 42
-func After[A any](timestamp time.Time) Operator[A, A] {
-	aft := after(timestamp)
-	return func(ga IO[A]) IO[A] {
-		return func() A {
-			// wait as long as necessary
-			aft()
-			// execute after wait
-			return ga()
-		}
-	}
-}
+func After[A any](timestamp time.Time) Operator[A, A] { _ = "STUB: not implemented"; return nil }
+
+// wait as long as necessary
+
+// execute after wait
 
 // WithTime returns an IO that measures the start and end time.Time of the operation.
 // Returns a Pair[Pair[time.Time, time.Time], A] where the head contains a nested pair of
@@ -386,12 +275,8 @@ func After[A any](timestamp time.Time) Operator[A, A] {
 //	start := pair.Head(times)  // time.Time
 //	end := pair.Tail(times)    // time.Time
 func WithTime[A any](a IO[A]) IO[Pair[Pair[time.Time, time.Time], A]] {
-	return func() Pair[Pair[time.Time, time.Time], A] {
-		t0 := time.Now()
-		res := a()
-		t1 := time.Now()
-		return pair.MakePair(pair.MakePair(t0, t1), res)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WithDuration returns an IO that measures the execution time.Duration of the operation.
@@ -406,11 +291,4 @@ func WithTime[A any](a IO[A]) IO[Pair[Pair[time.Time, time.Time], A]] {
 //	duration := pair.Head(p)
 //	result := pair.Tail(p)
 //	fmt.Printf("Took %v\n", duration)
-func WithDuration[A any](a IO[A]) IO[Pair[time.Duration, A]] {
-	return func() Pair[time.Duration, A] {
-		t0 := time.Now()
-		res := a()
-		t1 := time.Now()
-		return pair.MakePair(t1.Sub(t0), res)
-	}
-}
+func WithDuration[A any](a IO[A]) IO[Pair[time.Duration, A]] { _ = "STUB: not implemented"; return nil }

@@ -1,7 +1,6 @@
 package traversable
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/applicative"
 	"github.com/IBM/fp-go/v2/internal/apply"
 	"github.com/IBM/fp-go/v2/internal/functor"
@@ -64,27 +63,13 @@ func ComposeTraverse[
 	g_map functor.MapType[HKT_G_B, func(B) HKT_G_B, HKT_F_G_B, HKT_F_T_A_B],
 	g_ap apply.ApType[HKT_F_B, HKT_F_G_B, HKT_F_T_A_B],
 ) func(func(A) HKT_F_B) func(HKT_T_G_A) HKT_F_T_G_B {
+	_ = "STUB: not implemented"
 
-	return func(
-		// applicative F
-		f_of pointed.OfType[HKT_T_G_B, HKT_F_T_G_B],
-		f_map functor.MapType[HKT_T_G_B, func(HKT_G_B) HKT_T_G_B, HKT_F_T_G_B, HKT_F_T_A_B],
-		f_ap apply.ApType[HKT_F_G_B, HKT_F_T_G_B, HKT_F_T_A_B],
-
-		// applicative G
-		g_of pointed.OfType[HKT_G_B, HKT_F_G_B],
-		g_map functor.MapType[HKT_G_B, func(B) HKT_G_B, HKT_F_G_B, HKT_F_T_A_B],
-		g_ap apply.ApType[HKT_F_B, HKT_F_G_B, HKT_F_T_A_B],
-
-	) func(func(A) HKT_F_B) func(HKT_T_G_A) HKT_F_T_G_B {
-
-		return F.Flow2(
-			g(g_of, g_map, g_ap),
-			t(f_of, f_map, f_ap),
-		)
-	}
-
+	// applicative F
+	return nil
 }
+
+// applicative G
 
 // func ComposeSequence[
 // 	HKT_F_G_A,
@@ -113,16 +98,8 @@ func SequenceFromTraverse[
 	A, HKT_T_A, HKT_F_B, HKT_F_T_B any](
 	t TraverseType[HKT_T_A, HKT_T_A, HKT_T_A, HKT_T_A, HKT_T_A, HKT_F_T_B, HKT_T_A],
 ) SequenceType[HKT_T_A, HKT_F_T_B] {
+	_ = "STUB: not implemented"
 
-	return func(
-		// applicative F
-		f_of pointed.OfType[HKT_T_A, HKT_F_T_B],
-		f_map functor.MapType[HKT_T_A, func(HKT_T_A) HKT_T_A, HKT_F_T_B, HKT_T_A],
-		f_ap apply.ApType[HKT_T_A, HKT_F_T_B, HKT_T_A],
-	) func(HKT_T_A) HKT_F_T_B {
-		return F.Pipe1(
-			F.Identity[HKT_T_A],
-			t(f_of, f_map, f_ap),
-		)
-	}
+	// applicative F
+	return nil
 }

@@ -16,11 +16,11 @@
 package result
 
 import (
-	"github.com/IBM/fp-go/v2/either"
 	"github.com/IBM/fp-go/v2/tailrec"
 )
 
 //go:inline
 func TailRec[A, B any](f Kleisli[A, tailrec.Trampoline[A, B]]) Kleisli[A, B] {
-	return either.TailRec(f)
+	_ = "STUB: not implemented"
+	return nil
 }

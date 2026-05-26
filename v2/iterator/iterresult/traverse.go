@@ -15,36 +15,35 @@
 
 package iterresult
 
-import (
-	"github.com/IBM/fp-go/v2/iterator/itereither"
-)
-
 // TraverseArray transforms an array
 func TraverseArray[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
-	return itereither.TraverseArray(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms an array
 func TraverseArrayWithIndex[A, B any](f func(int, A) SeqResult[B]) Kleisli[[]A, []B] {
-	return itereither.TraverseArrayWithIndex(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts a homogeneous sequence of either into an either of sequence
-func SequenceArray[A any](ma []SeqResult[A]) SeqResult[[]A] {
-	return itereither.SequenceArray(ma)
-}
+func SequenceArray[A any](ma []SeqResult[A]) SeqResult[[]A] { _ = "STUB: not implemented"; return nil }
 
 // TraverseRecord transforms a record
 func TraverseRecord[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, map[K]B] {
-	return itereither.TraverseRecord[K](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndex transforms a record
 func TraverseRecordWithIndex[K comparable, A, B any](f func(K, A) SeqResult[B]) Kleisli[map[K]A, map[K]B] {
-	return itereither.TraverseRecordWithIndex(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecord converts a homogeneous sequence of either into an either of sequence
 func SequenceRecord[K comparable, A any](ma map[K]SeqResult[A]) SeqResult[map[K]A] {
-	return itereither.SequenceRecord(ma)
+	_ = "STUB: not implemented"
+	return nil
 }

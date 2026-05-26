@@ -17,8 +17,6 @@ package readerioresult
 
 import (
 	"context"
-
-	"github.com/IBM/fp-go/v2/readerio"
 )
 
 // WithLock executes a ReaderIOResult operation within the scope of a lock.
@@ -53,5 +51,6 @@ import (
 //
 //go:inline
 func WithLock[R, A any](lock func() context.CancelFunc) Operator[R, A, A] {
-	return readerio.WithLock[R, Result[A]](lock)
+	_ = "STUB: not implemented"
+	return nil
 }

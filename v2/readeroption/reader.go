@@ -16,12 +16,6 @@
 package readeroption
 
 import (
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/fromoption"
-	"github.com/IBM/fp-go/v2/internal/fromreader"
-	"github.com/IBM/fp-go/v2/internal/functor"
-	"github.com/IBM/fp-go/v2/internal/optiont"
-	"github.com/IBM/fp-go/v2/internal/readert"
 	O "github.com/IBM/fp-go/v2/option"
 	"github.com/IBM/fp-go/v2/reader"
 )
@@ -30,33 +24,25 @@ import (
 // The resulting computation ignores the environment and returns the given option.
 //
 //go:inline
-func FromOption[E, A any](e Option[A]) ReaderOption[E, A] {
-	return reader.Of[E](e)
-}
+func FromOption[E, A any](e Option[A]) ReaderOption[E, A] { _ = "STUB: not implemented"; return nil }
 
 // Some wraps a value in a ReaderOption, representing a successful computation.
 // This is equivalent to Of but more explicit about the Option semantics.
 //
 //go:inline
-func Some[E, A any](r A) ReaderOption[E, A] {
-	return optiont.Of(reader.Of[E, Option[A]], r)
-}
+func Some[E, A any](r A) ReaderOption[E, A] { _ = "STUB: not implemented"; return nil }
 
 // FromReader lifts a Reader[E, A] into a ReaderOption[E, A].
 // The resulting computation always succeeds (returns Some).
 //
 //go:inline
-func FromReader[E, A any](r Reader[E, A]) ReaderOption[E, A] {
-	return SomeReader(r)
-}
+func FromReader[E, A any](r Reader[E, A]) ReaderOption[E, A] { _ = "STUB: not implemented"; return nil }
 
 // SomeReader lifts a Reader[E, A] into a ReaderOption[E, A].
 // The resulting computation always succeeds (returns Some).
 //
 //go:inline
-func SomeReader[E, A any](r Reader[E, A]) ReaderOption[E, A] {
-	return optiont.SomeF(reader.MonadMap[E, A, Option[A]], r)
-}
+func SomeReader[E, A any](r Reader[E, A]) ReaderOption[E, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap applies a function to the value inside a ReaderOption.
 // If the ReaderOption contains None, the function is not applied.
@@ -68,7 +54,8 @@ func SomeReader[E, A any](r Reader[E, A]) ReaderOption[E, A] {
 //
 //go:inline
 func MonadMap[E, A, B any](fa ReaderOption[E, A], f func(A) B) ReaderOption[E, B] {
-	return readert.MonadMap[ReaderOption[E, A], ReaderOption[E, B]](O.MonadMap[A, B], fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map returns a function that applies a transformation to the value inside a ReaderOption.
@@ -82,9 +69,7 @@ func MonadMap[E, A, B any](fa ReaderOption[E, A], f func(A) B) ReaderOption[E, B
 //	)
 //
 //go:inline
-func Map[E, A, B any](f func(A) B) Operator[E, A, B] {
-	return readert.Map[ReaderOption[E, A], ReaderOption[E, B]](O.Map[A, B], f)
-}
+func Map[E, A, B any](f func(A) B) Operator[E, A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChain sequences two ReaderOption computations, where the second depends on the result of the first.
 // If the first computation returns None, the second is not executed.
@@ -97,7 +82,8 @@ func Map[E, A, B any](f func(A) B) Operator[E, A, B] {
 //
 //go:inline
 func MonadChain[E, A, B any](ma ReaderOption[E, A], f Kleisli[E, A, B]) ReaderOption[E, B] {
-	return readert.MonadChain(O.MonadChain[A, B], ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain returns a function that sequences ReaderOption computations.
@@ -112,7 +98,8 @@ func MonadChain[E, A, B any](ma ReaderOption[E, A], f Kleisli[E, A, B]) ReaderOp
 //
 //go:inline
 func Chain[E, A, B any](f Kleisli[E, A, B]) Operator[E, A, B] {
-	return readert.Chain[ReaderOption[E, A]](O.Chain[A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Of wraps a value in a ReaderOption, representing a successful computation.
@@ -124,9 +111,7 @@ func Chain[E, A, B any](f Kleisli[E, A, B]) Operator[E, A, B] {
 //	result := ro(config) // Returns option.Some(42)
 //
 //go:inline
-func Of[E, A any](a A) ReaderOption[E, A] {
-	return readert.MonadOf[ReaderOption[E, A]](O.Of[A], a)
-}
+func Of[E, A any](a A) ReaderOption[E, A] { _ = "STUB: not implemented"; return nil }
 
 // None creates a ReaderOption representing a failed computation.
 // The resulting computation ignores the environment and returns None.
@@ -137,9 +122,7 @@ func Of[E, A any](a A) ReaderOption[E, A] {
 //	result := ro(config) // Returns option.None[int]()
 //
 //go:inline
-func None[E, A any]() ReaderOption[E, A] {
-	return reader.Of[E](O.None[A]())
-}
+func None[E, A any]() ReaderOption[E, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadAp applies a function wrapped in a ReaderOption to a value wrapped in a ReaderOption.
 // Both computations are executed with the same environment.
@@ -147,7 +130,8 @@ func None[E, A any]() ReaderOption[E, A] {
 //
 //go:inline
 func MonadAp[E, A, B any](fab ReaderOption[E, func(A) B], fa ReaderOption[E, A]) ReaderOption[E, B] {
-	return readert.MonadAp[ReaderOption[E, A], ReaderOption[E, B], ReaderOption[E, func(A) B], E, A](O.MonadAp[B, A], fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap returns a function that applies a function wrapped in a ReaderOption to a value.
@@ -155,7 +139,8 @@ func MonadAp[E, A, B any](fab ReaderOption[E, func(A) B], fa ReaderOption[E, A])
 //
 //go:inline
 func Ap[B, E, A any](fa ReaderOption[E, A]) Operator[E, func(A) B, B] {
-	return readert.Ap[ReaderOption[E, A], ReaderOption[E, B], ReaderOption[E, func(A) B], E, A](O.Ap[B, A], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromPredicate creates a Kleisli arrow that filters a value based on a predicate.
@@ -171,7 +156,8 @@ func Ap[B, E, A any](fa ReaderOption[E, A]) Operator[E, func(A) B, B] {
 //
 //go:inline
 func FromPredicate[E, A any](pred Predicate[A]) Kleisli[E, A, A] {
-	return fromoption.FromPredicate(FromOption[E, A], pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Fold extracts the value from a ReaderOption by providing handlers for both cases.
@@ -187,7 +173,8 @@ func FromPredicate[E, A any](pred Predicate[A]) Kleisli[E, A, A] {
 //
 //go:inline
 func Fold[E, A, B any](onNone Reader[E, B], onRight reader.Kleisli[E, A, B]) reader.Operator[E, Option[A], B] {
-	return optiont.MatchE(reader.Chain[E, Option[A], B], function.Constant(onNone), onRight)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFold extracts the value from a ReaderOption by providing handlers for both cases.
@@ -205,7 +192,8 @@ func Fold[E, A, B any](onNone Reader[E, B], onRight reader.Kleisli[E, A, B]) rea
 //
 //go:inline
 func MonadFold[E, A, B any](fa ReaderOption[E, A], onNone Reader[E, B], onRight reader.Kleisli[E, A, B]) Reader[E, B] {
-	return optiont.MonadMatchE(fa, reader.MonadChain[E, Option[A], B], function.Constant(onNone), onRight)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetOrElse returns the value from a ReaderOption, or a default value if it's None.
@@ -218,7 +206,8 @@ func MonadFold[E, A, B any](fa ReaderOption[E, A], onNone Reader[E, B], onRight 
 //
 //go:inline
 func GetOrElse[E, A any](onNone Reader[E, A]) reader.Operator[E, Option[A], A] {
-	return optiont.GetOrElse(reader.Chain[E, Option[A], A], function.Constant(onNone), reader.Of[E, A])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ask retrieves the current environment as a ReaderOption.
@@ -230,9 +219,7 @@ func GetOrElse[E, A any](onNone Reader[E, A]) reader.Operator[E, Option[A], A] {
 //	result := getConfig(myConfig) // Returns option.Some(myConfig)
 //
 //go:inline
-func Ask[E any]() ReaderOption[E, E] {
-	return fromreader.Ask(FromReader[E, E])()
-}
+func Ask[E any]() ReaderOption[E, E] { _ = "STUB: not implemented"; return nil }
 
 // Asks creates a ReaderOption that applies a function to the environment.
 // This always succeeds and returns Some(f(environment)).
@@ -243,9 +230,7 @@ func Ask[E any]() ReaderOption[E, E] {
 //	result := getTimeout(myConfig) // Returns option.Some(myConfig.Timeout)
 //
 //go:inline
-func Asks[E, A any](r Reader[E, A]) ReaderOption[E, A] {
-	return fromreader.Asks(FromReader[E, A])(r)
-}
+func Asks[E, A any](r Reader[E, A]) ReaderOption[E, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainOptionK chains a ReaderOption with a function that returns an Option.
 // This is useful for integrating functions that return Option directly.
@@ -260,12 +245,8 @@ func Asks[E, A any](r Reader[E, A]) ReaderOption[E, A] {
 //
 //go:inline
 func MonadChainOptionK[E, A, B any](ma ReaderOption[E, A], f O.Kleisli[A, B]) ReaderOption[E, B] {
-	return fromoption.MonadChainOptionK(
-		MonadChain[E, A, B],
-		FromOption[E, B],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainOptionK returns a function that chains a ReaderOption with a function returning an Option.
@@ -281,11 +262,8 @@ func MonadChainOptionK[E, A, B any](ma ReaderOption[E, A], f O.Kleisli[A, B]) Re
 //
 //go:inline
 func ChainOptionK[E, A, B any](f O.Kleisli[A, B]) Operator[E, A, B] {
-	return fromoption.ChainOptionK(
-		Chain[E, A, B],
-		FromOption[E, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainReaderK returns a function that chains a ReaderOption with a function returning a Reader.
@@ -302,11 +280,8 @@ func ChainOptionK[E, A, B any](f O.Kleisli[A, B]) Operator[E, A, B] {
 //
 //go:inline
 func ChainReaderK[E, A, B any](f reader.Kleisli[E, A, B]) Operator[E, A, B] {
-	return fromreader.ChainReaderK(
-		Chain[E, A, B],
-		FromReader[E, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainReaderK chains a ReaderOption with a function that returns a Reader.
@@ -324,12 +299,8 @@ func ChainReaderK[E, A, B any](f reader.Kleisli[E, A, B]) Operator[E, A, B] {
 //
 //go:inline
 func MonadChainReaderK[E, A, B any](ma ReaderOption[E, A], f reader.Kleisli[E, A, B]) ReaderOption[E, B] {
-	return fromreader.MonadChainReaderK(
-		MonadChain[E, A, B],
-		FromReader[E, B],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flatten removes one level of nesting from a ReaderOption.
@@ -342,7 +313,8 @@ func MonadChainReaderK[E, A, B any](ma ReaderOption[E, A], f reader.Kleisli[E, A
 //
 //go:inline
 func Flatten[E, A any](mma ReaderOption[E, ReaderOption[E, A]]) ReaderOption[E, A] {
-	return MonadChain(mma, function.Identity[ReaderOption[E, A]])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Local changes the value of the local context during the execution of the action `ma` (similar to `Contravariant`'s
@@ -365,7 +337,8 @@ func Flatten[E, A any](mma ReaderOption[E, ReaderOption[E, A]]) ReaderOption[E, 
 //
 //go:inline
 func Local[A, R1, R2 any](f func(R2) R1) func(ReaderOption[R1, A]) ReaderOption[R2, A] {
-	return reader.Local[Option[A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Read applies a context to a reader to obtain its value.
@@ -377,9 +350,7 @@ func Local[A, R1, R2 any](f func(R2) R1) func(ReaderOption[R1, A]) ReaderOption[
 //	result := readeroption.Read[int](myConfig)(ro) // Returns option.Some(42)
 //
 //go:inline
-func Read[A, E any](e E) func(ReaderOption[E, A]) Option[A] {
-	return reader.Read[Option[A]](e)
-}
+func Read[A, E any](e E) func(ReaderOption[E, A]) Option[A] { _ = "STUB: not implemented"; return nil }
 
 // ReadOption executes a ReaderOption with an optional environment.
 // If the environment is None, the result is None.
@@ -395,10 +366,8 @@ func Read[A, E any](e E) func(ReaderOption[E, A]) Option[A] {
 //
 //go:inline
 func ReadOption[A, E any](e Option[E]) func(ReaderOption[E, A]) Option[A] {
-	return function.Flow2(
-		O.Chain[E],
-		Read[A](e),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFlap applies a value to a function wrapped in a ReaderOption.
@@ -406,16 +375,15 @@ func ReadOption[A, E any](e Option[E]) func(ReaderOption[E, A]) Option[A] {
 //
 //go:inline
 func MonadFlap[E, A, B any](fab ReaderOption[E, func(A) B], a A) ReaderOption[E, B] {
-	return functor.MonadFlap(MonadMap[E, func(A) B, B], fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flap returns a function that applies a value to a function wrapped in a ReaderOption.
 // This is the curried version of MonadFlap.
 //
 //go:inline
-func Flap[E, B, A any](a A) Operator[E, func(A) B, B] {
-	return functor.Flap(Map[E, func(A) B, B], a)
-}
+func Flap[E, B, A any](a A) Operator[E, func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadAlt provides an alternative ReaderOption if the first one returns None.
 // If fa returns Some(a), that value is returned; otherwise, the alternative computation is executed.
@@ -429,12 +397,8 @@ func Flap[E, B, A any](a A) Operator[E, func(A) B, B] {
 //
 //go:inline
 func MonadAlt[E, A any](first ReaderOption[E, A], second Lazy[ReaderOption[E, A]]) ReaderOption[E, A] {
-	return optiont.MonadAlt(
-		reader.Of[E, Option[A]],
-		reader.MonadChain[E, Option[A], Option[A]],
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Alt returns a function that provides an alternative ReaderOption if the first one returns None.
@@ -449,9 +413,6 @@ func MonadAlt[E, A any](first ReaderOption[E, A], second Lazy[ReaderOption[E, A]
 //
 //go:inline
 func Alt[E, A any](second Lazy[ReaderOption[E, A]]) Operator[E, A, A] {
-	return optiont.Alt(
-		reader.Of[E, Option[A]],
-		reader.Chain[E, Option[A], Option[A]],
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

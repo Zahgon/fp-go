@@ -15,10 +15,6 @@
 
 package result
 
-import (
-	"github.com/IBM/fp-go/v2/either"
-)
-
 // Traverse converts an Either of some higher kinded type into the higher kinded type of an Either.
 // This is a generic traversal operation that works with any applicative functor.
 //
@@ -39,7 +35,8 @@ func Traverse[A, B, HKTB, HKTRB any](
 	mof func(Result[B]) HKTRB,
 	mmap func(Kleisli[B, B]) func(HKTB) HKTRB,
 ) func(func(A) HKTB) func(Result[A]) HKTRB {
-	return either.Traverse[A](mof, mmap)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Sequence converts an Either of some higher kinded type into the higher kinded type of an Either.
@@ -62,5 +59,6 @@ func Sequence[A, HKTA, HKTRA any](
 	mof func(Result[A]) HKTRA,
 	mmap func(Kleisli[A, A]) func(HKTA) HKTRA,
 ) func(Result[HKTA]) HKTRA {
-	return either.Sequence(mof, mmap)
+	_ = "STUB: not implemented"
+	return nil
 }

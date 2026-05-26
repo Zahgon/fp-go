@@ -16,35 +16,14 @@
 package generic
 
 import (
-	"fmt"
 	"log"
-
-	Logging "github.com/IBM/fp-go/logging"
 )
 
 func Logger[GA ~func() any, A any](loggers ...*log.Logger) func(string) func(A) GA {
-	_, right := Logging.LoggingCallbacks(loggers...)
-	return func(prefix string) func(A) GA {
-		return func(a A) GA {
-			return FromImpure[GA](func() {
-				right("%s: %v", prefix, a)
-			})
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Logf[GA ~func() any, A any](prefix string) func(A) GA {
-	return func(a A) GA {
-		return FromImpure[GA](func() {
-			log.Printf(prefix, a)
-		})
-	}
-}
+func Logf[GA ~func() any, A any](prefix string) func(A) GA { _ = "STUB: not implemented"; return nil }
 
-func Printf[GA ~func() any, A any](prefix string) func(A) GA {
-	return func(a A) GA {
-		return FromImpure[GA](func() {
-			fmt.Printf(prefix, a)
-		})
-	}
-}
+func Printf[GA ~func() any, A any](prefix string) func(A) GA { _ = "STUB: not implemented"; return nil }

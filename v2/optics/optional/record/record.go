@@ -17,10 +17,10 @@ package record
 
 import (
 	OP "github.com/IBM/fp-go/v2/optics/optional"
-	G "github.com/IBM/fp-go/v2/optics/optional/record/generic"
 )
 
 // FromProperty returns a Optional that gets and sets properties of a map
 func AtKey[K comparable, V any](key K) OP.Optional[map[K]V, V] {
-	return G.AtKey[map[K]V](key)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,13 +15,6 @@
 
 package stateio
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	A "github.com/IBM/fp-go/v2/internal/apply"
-	C "github.com/IBM/fp-go/v2/internal/chain"
-	F "github.com/IBM/fp-go/v2/internal/functor"
-)
-
 // Do starts a do-notation chain for building computations in a fluent style.
 // This is typically used with Bind, Let, and other combinators to compose
 // stateful computations with side effects.
@@ -42,41 +35,39 @@ import (
 func Do[ST, A any](
 	empty A,
 ) StateIO[ST, A] {
-	return Of[ST](empty)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Bind executes a computation and binds its result to a field in the accumulator state.
+	// This is used in do-notation to sequence dependent computations.
+	//
+	// The setter function takes the computed value and returns a function that updates
+	// the accumulator state. The computation function (f) receives the current accumulator
+	// state and returns a StateIO computation.
+	//
+	// Example:
+	//
+	//	result := function.Pipe2(
+	//	    Do[AppState](Result{}),
+	//	    Bind(
+	//	        func(name string) func(Result) Result {
+	//	            return func(r Result) Result { return Result{name: name, age: r.age} }
+	//	        },
+	//	        func(r Result) StateIO[AppState, string] {
+	//	            return Of[AppState]("John")
+	//	        },
+	//	    ),
+	//	)
+	//
+	//go:inline
 }
 
-// Bind executes a computation and binds its result to a field in the accumulator state.
-// This is used in do-notation to sequence dependent computations.
-//
-// The setter function takes the computed value and returns a function that updates
-// the accumulator state. The computation function (f) receives the current accumulator
-// state and returns a StateIO computation.
-//
-// Example:
-//
-//	result := function.Pipe2(
-//	    Do[AppState](Result{}),
-//	    Bind(
-//	        func(name string) func(Result) Result {
-//	            return func(r Result) Result { return Result{name: name, age: r.age} }
-//	        },
-//	        func(r Result) StateIO[AppState, string] {
-//	            return Of[AppState]("John")
-//	        },
-//	    ),
-//	)
-//
-//go:inline
 func Bind[ST, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[ST, S1, T],
 ) Operator[ST, S1, S2] {
-	return C.Bind(
-		Chain[ST, S1, S2],
-		Map[ST, T, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let computes a derived value and binds it to a field in the accumulator state.
@@ -103,11 +94,8 @@ func Let[ST, S1, S2, T any](
 	key func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[ST, S1, S2] {
-	return F.Let(
-		Map[ST, S1, S2],
-		key,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo binds a constant value to a field in the accumulator state.
@@ -130,11 +118,8 @@ func LetTo[ST, S1, S2, T any](
 	key func(T) func(S1) S2,
 	b T,
 ) Operator[ST, S1, S2] {
-	return F.LetTo(
-		Map[ST, S1, S2],
-		key,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo wraps a value in a simple constructor, typically used to start a do-notation chain
@@ -152,10 +137,8 @@ func LetTo[ST, S1, S2, T any](
 func BindTo[ST, S1, T any](
 	setter func(T) S1,
 ) Operator[ST, T, S1] {
-	return C.BindTo(
-		Map[ST, T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS applies a computation in sequence and binds the result to a field.
@@ -179,12 +162,8 @@ func ApS[ST, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa StateIO[ST, T],
 ) Operator[ST, S1, S2] {
-	return A.ApS(
-		Ap[S2, ST, T],
-		Map[ST, S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL is a lens-based variant of ApS for working with nested structures.
@@ -204,29 +183,32 @@ func ApSL[ST, S, T any](
 	lens Lens[S, T],
 	fa StateIO[ST, T],
 ) Endomorphism[StateIO[ST, S]] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL is a lens-based variant of Bind for working with nested structures.
+	// It uses a lens to focus on a specific field in the accumulator state,
+	// allowing you to update that field based on a computation that depends on its current value.
+	//
+	// Example:
+	//
+	//	counterLens := lens.Prop[Result, int]("counter")
+	//	result := function.Pipe2(
+	//	    Do[AppState](Result{counter: 0}),
+	//	    BindL(counterLens, func(n int) StateIO[AppState, int] {
+	//	        return Of[AppState](n + 1)
+	//	    }),
+	//	)
+	//
+	//go:inline
 }
 
-// BindL is a lens-based variant of Bind for working with nested structures.
-// It uses a lens to focus on a specific field in the accumulator state,
-// allowing you to update that field based on a computation that depends on its current value.
-//
-// Example:
-//
-//	counterLens := lens.Prop[Result, int]("counter")
-//	result := function.Pipe2(
-//	    Do[AppState](Result{counter: 0}),
-//	    BindL(counterLens, func(n int) StateIO[AppState, int] {
-//	        return Of[AppState](n + 1)
-//	    }),
-//	)
-//
-//go:inline
 func BindL[ST, S, T any](
 	lens Lens[S, T],
 	f Kleisli[ST, T, T],
 ) Endomorphism[StateIO[ST, S]] {
-	return Bind(lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL is a lens-based variant of Let for working with nested structures.
@@ -246,7 +228,8 @@ func LetL[ST, S, T any](
 	lens Lens[S, T],
 	f Endomorphism[T],
 ) Endomorphism[StateIO[ST, S]] {
-	return Let[ST](lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL is a lens-based variant of LetTo for working with nested structures.
@@ -266,5 +249,6 @@ func LetToL[ST, S, T any](
 	lens Lens[S, T],
 	b T,
 ) Endomorphism[StateIO[ST, S]] {
-	return LetTo[ST](lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }

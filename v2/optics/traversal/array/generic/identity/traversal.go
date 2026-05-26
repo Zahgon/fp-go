@@ -16,8 +16,6 @@
 package generic
 
 import (
-	I "github.com/IBM/fp-go/v2/identity"
-	AR "github.com/IBM/fp-go/v2/optics/traversal/array/generic"
 	G "github.com/IBM/fp-go/v2/optics/traversal/generic"
 )
 
@@ -66,13 +64,7 @@ import (
 //   - I.Of: Identity functor's pure/of operation
 //   - I.Map: Identity functor's map operation
 //   - I.Ap: Identity functor's applicative operation
-func FromArray[GA ~[]A, A any]() G.Traversal[GA, A, GA, A] {
-	return AR.FromArray[GA](
-		I.Of[GA],
-		I.Map[GA, func(A) GA],
-		I.Ap[GA, A],
-	)
-}
+func FromArray[GA ~[]A, A any]() G.Traversal[GA, A, GA, A] { _ = "STUB: not implemented"; return nil }
 
 // At creates a function that focuses a traversal on a specific array index using the Identity functor.
 //
@@ -140,8 +132,6 @@ func FromArray[GA ~[]A, A any]() G.Traversal[GA, A, GA, A] {
 //   - I.Of: Identity functor's pure/of operation
 //   - I.Map: Identity functor's map operation
 func At[GA ~[]A, S, A any](idx int) func(G.Traversal[S, GA, S, GA]) G.Traversal[S, A, S, A] {
-	return AR.At[GA, S, A, S](
-		I.Of[GA],
-		I.Map[A, GA],
-	)(idx)
+	_ = "STUB: not implemented"
+	return nil
 }

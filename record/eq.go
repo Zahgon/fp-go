@@ -17,14 +17,9 @@ package record
 
 import (
 	E "github.com/IBM/fp-go/eq"
-	G "github.com/IBM/fp-go/record/generic"
 )
 
-func Eq[K comparable, V any](e E.Eq[V]) E.Eq[map[K]V] {
-	return G.Eq[map[K]V, K, V](e)
-}
+func Eq[K comparable, V any](e E.Eq[V]) E.Eq[map[K]V] { _ = "STUB: not implemented"; return nil }
 
 // FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
-func FromStrictEquals[K, V comparable]() E.Eq[map[K]V] {
-	return G.FromStrictEquals[map[K]V]()
-}
+func FromStrictEquals[K, V comparable]() E.Eq[map[K]V] { _ = "STUB: not implemented"; return nil }

@@ -21,23 +21,26 @@ import (
 
 type iteratorMonad[A, B any, GA ~func() Option[Pair[GA, A]], GB ~func() Option[Pair[GB, B]], GAB ~func() Option[Pair[GAB, func(A) B]]] struct{}
 
-func (o *iteratorMonad[A, B, GA, GB, GAB]) Of(a A) GA {
-	return Of[GA](a)
-}
+func (o *iteratorMonad[A, B, GA, GB, GAB]) Of(a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func (o *iteratorMonad[A, B, GA, GB, GAB]) Map(f func(A) B) func(GA) GB {
-	return Map[GB, GA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *iteratorMonad[A, B, GA, GB, GAB]) Chain(f func(A) GB) func(GA) GB {
-	return Chain[GB, GA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *iteratorMonad[A, B, GA, GB, GAB]) Ap(fa GA) func(GAB) GB {
-	return Ap[GAB, GB](fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Monad implements the monadic operations for iterators
 }
 
-// Monad implements the monadic operations for iterators
 func Monad[A, B any, GA ~func() Option[Pair[GA, A]], GB ~func() Option[Pair[GB, B]], GAB ~func() Option[Pair[GAB, func(A) B]]]() monad.Monad[A, B, GA, GB, GAB] {
-	return &iteratorMonad[A, B, GA, GB, GAB]{}
+	_ = "STUB: not implemented"
+	return nil
 }

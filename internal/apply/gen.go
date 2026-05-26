@@ -5,14 +5,11 @@
 package apply
 
 import (
-	F "github.com/IBM/fp-go/function"
 	T "github.com/IBM/fp-go/tuple"
 )
 
 // tupleConstructor1 returns a curried version of [T.MakeTuple1]
-func tupleConstructor1[T1 any]() func(T1) T.Tuple1[T1] {
-	return F.Curry1(T.MakeTuple1[T1])
-}
+func tupleConstructor1[T1 any]() func(T1) T.Tuple1[T1] { _ = "STUB: not implemented"; return nil }
 
 // SequenceT1 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
 // The function takes 1 higher higher kinded types and returns a higher kinded type of a [Tuple1] with the resolved values.
@@ -25,10 +22,8 @@ func SequenceT1[
 	fmap MAP,
 	t1 HKT_T1,
 ) HKT_TUPLE1 {
-	return F.Pipe1(
-		t1,
-		fmap(tupleConstructor1[T1]()),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE1)
 }
 
 // SequenceTuple1 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -42,10 +37,8 @@ func SequenceTuple1[
 	fmap MAP,
 	t T.Tuple1[HKT_T1],
 ) HKT_TUPLE1 {
-	return F.Pipe1(
-		t.F1,
-		fmap(tupleConstructor1[T1]()),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE1)
 }
 
 // TraverseTuple1 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -61,15 +54,14 @@ func TraverseTuple1[
 	f1 F1,
 	t T.Tuple1[A1],
 ) HKT_TUPLE1 {
-	return F.Pipe1(
-		f1(t.F1),
-		fmap(tupleConstructor1[T1]()),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE1)
 }
 
 // tupleConstructor2 returns a curried version of [T.MakeTuple2]
 func tupleConstructor2[T1, T2 any]() func(T1) func(T2) T.Tuple2[T1, T2] {
-	return F.Curry2(T.MakeTuple2[T1, T2])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT2 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -89,11 +81,8 @@ func SequenceT2[
 	t1 HKT_T1,
 	t2 HKT_T2,
 ) HKT_TUPLE2 {
-	return F.Pipe2(
-		t1,
-		fmap(tupleConstructor2[T1, T2]()),
-		fap1(t2),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE2)
 }
 
 // SequenceTuple2 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -112,11 +101,8 @@ func SequenceTuple2[
 	fap1 AP1,
 	t T.Tuple2[HKT_T1, HKT_T2],
 ) HKT_TUPLE2 {
-	return F.Pipe2(
-		t.F1,
-		fmap(tupleConstructor2[T1, T2]()),
-		fap1(t.F2),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE2)
 }
 
 // TraverseTuple2 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -139,16 +125,14 @@ func TraverseTuple2[
 	f2 F2,
 	t T.Tuple2[A1, A2],
 ) HKT_TUPLE2 {
-	return F.Pipe2(
-		f1(t.F1),
-		fmap(tupleConstructor2[T1, T2]()),
-		fap1(f2(t.F2)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE2)
 }
 
 // tupleConstructor3 returns a curried version of [T.MakeTuple3]
 func tupleConstructor3[T1, T2, T3 any]() func(T1) func(T2) func(T3) T.Tuple3[T1, T2, T3] {
-	return F.Curry3(T.MakeTuple3[T1, T2, T3])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT3 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -174,12 +158,8 @@ func SequenceT3[
 	t2 HKT_T2,
 	t3 HKT_T3,
 ) HKT_TUPLE3 {
-	return F.Pipe3(
-		t1,
-		fmap(tupleConstructor3[T1, T2, T3]()),
-		fap1(t2),
-		fap2(t3),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE3)
 }
 
 // SequenceTuple3 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -203,12 +183,8 @@ func SequenceTuple3[
 	fap2 AP2,
 	t T.Tuple3[HKT_T1, HKT_T2, HKT_T3],
 ) HKT_TUPLE3 {
-	return F.Pipe3(
-		t.F1,
-		fmap(tupleConstructor3[T1, T2, T3]()),
-		fap1(t.F2),
-		fap2(t.F3),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE3)
 }
 
 // TraverseTuple3 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -238,17 +214,14 @@ func TraverseTuple3[
 	f3 F3,
 	t T.Tuple3[A1, A2, A3],
 ) HKT_TUPLE3 {
-	return F.Pipe3(
-		f1(t.F1),
-		fmap(tupleConstructor3[T1, T2, T3]()),
-		fap1(f2(t.F2)),
-		fap2(f3(t.F3)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE3)
 }
 
 // tupleConstructor4 returns a curried version of [T.MakeTuple4]
 func tupleConstructor4[T1, T2, T3, T4 any]() func(T1) func(T2) func(T3) func(T4) T.Tuple4[T1, T2, T3, T4] {
-	return F.Curry4(T.MakeTuple4[T1, T2, T3, T4])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT4 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -280,13 +253,8 @@ func SequenceT4[
 	t3 HKT_T3,
 	t4 HKT_T4,
 ) HKT_TUPLE4 {
-	return F.Pipe4(
-		t1,
-		fmap(tupleConstructor4[T1, T2, T3, T4]()),
-		fap1(t2),
-		fap2(t3),
-		fap3(t4),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE4)
 }
 
 // SequenceTuple4 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -315,13 +283,8 @@ func SequenceTuple4[
 	fap3 AP3,
 	t T.Tuple4[HKT_T1, HKT_T2, HKT_T3, HKT_T4],
 ) HKT_TUPLE4 {
-	return F.Pipe4(
-		t.F1,
-		fmap(tupleConstructor4[T1, T2, T3, T4]()),
-		fap1(t.F2),
-		fap2(t.F3),
-		fap3(t.F4),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE4)
 }
 
 // TraverseTuple4 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -358,18 +321,14 @@ func TraverseTuple4[
 	f4 F4,
 	t T.Tuple4[A1, A2, A3, A4],
 ) HKT_TUPLE4 {
-	return F.Pipe4(
-		f1(t.F1),
-		fmap(tupleConstructor4[T1, T2, T3, T4]()),
-		fap1(f2(t.F2)),
-		fap2(f3(t.F3)),
-		fap3(f4(t.F4)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE4)
 }
 
 // tupleConstructor5 returns a curried version of [T.MakeTuple5]
 func tupleConstructor5[T1, T2, T3, T4, T5 any]() func(T1) func(T2) func(T3) func(T4) func(T5) T.Tuple5[T1, T2, T3, T4, T5] {
-	return F.Curry5(T.MakeTuple5[T1, T2, T3, T4, T5])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT5 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -407,14 +366,8 @@ func SequenceT5[
 	t4 HKT_T4,
 	t5 HKT_T5,
 ) HKT_TUPLE5 {
-	return F.Pipe5(
-		t1,
-		fmap(tupleConstructor5[T1, T2, T3, T4, T5]()),
-		fap1(t2),
-		fap2(t3),
-		fap3(t4),
-		fap4(t5),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE5)
 }
 
 // SequenceTuple5 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -448,14 +401,8 @@ func SequenceTuple5[
 	fap4 AP4,
 	t T.Tuple5[HKT_T1, HKT_T2, HKT_T3, HKT_T4, HKT_T5],
 ) HKT_TUPLE5 {
-	return F.Pipe5(
-		t.F1,
-		fmap(tupleConstructor5[T1, T2, T3, T4, T5]()),
-		fap1(t.F2),
-		fap2(t.F3),
-		fap3(t.F4),
-		fap4(t.F5),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE5)
 }
 
 // TraverseTuple5 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -499,19 +446,14 @@ func TraverseTuple5[
 	f5 F5,
 	t T.Tuple5[A1, A2, A3, A4, A5],
 ) HKT_TUPLE5 {
-	return F.Pipe5(
-		f1(t.F1),
-		fmap(tupleConstructor5[T1, T2, T3, T4, T5]()),
-		fap1(f2(t.F2)),
-		fap2(f3(t.F3)),
-		fap3(f4(t.F4)),
-		fap4(f5(t.F5)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE5)
 }
 
 // tupleConstructor6 returns a curried version of [T.MakeTuple6]
 func tupleConstructor6[T1, T2, T3, T4, T5, T6 any]() func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) T.Tuple6[T1, T2, T3, T4, T5, T6] {
-	return F.Curry6(T.MakeTuple6[T1, T2, T3, T4, T5, T6])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT6 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -555,15 +497,8 @@ func SequenceT6[
 	t5 HKT_T5,
 	t6 HKT_T6,
 ) HKT_TUPLE6 {
-	return F.Pipe6(
-		t1,
-		fmap(tupleConstructor6[T1, T2, T3, T4, T5, T6]()),
-		fap1(t2),
-		fap2(t3),
-		fap3(t4),
-		fap4(t5),
-		fap5(t6),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE6)
 }
 
 // SequenceTuple6 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -602,15 +537,8 @@ func SequenceTuple6[
 	fap5 AP5,
 	t T.Tuple6[HKT_T1, HKT_T2, HKT_T3, HKT_T4, HKT_T5, HKT_T6],
 ) HKT_TUPLE6 {
-	return F.Pipe6(
-		t.F1,
-		fmap(tupleConstructor6[T1, T2, T3, T4, T5, T6]()),
-		fap1(t.F2),
-		fap2(t.F3),
-		fap3(t.F4),
-		fap4(t.F5),
-		fap5(t.F6),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE6)
 }
 
 // TraverseTuple6 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -661,20 +589,14 @@ func TraverseTuple6[
 	f6 F6,
 	t T.Tuple6[A1, A2, A3, A4, A5, A6],
 ) HKT_TUPLE6 {
-	return F.Pipe6(
-		f1(t.F1),
-		fmap(tupleConstructor6[T1, T2, T3, T4, T5, T6]()),
-		fap1(f2(t.F2)),
-		fap2(f3(t.F3)),
-		fap3(f4(t.F4)),
-		fap4(f5(t.F5)),
-		fap5(f6(t.F6)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE6)
 }
 
 // tupleConstructor7 returns a curried version of [T.MakeTuple7]
 func tupleConstructor7[T1, T2, T3, T4, T5, T6, T7 any]() func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) T.Tuple7[T1, T2, T3, T4, T5, T6, T7] {
-	return F.Curry7(T.MakeTuple7[T1, T2, T3, T4, T5, T6, T7])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT7 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -724,16 +646,8 @@ func SequenceT7[
 	t6 HKT_T6,
 	t7 HKT_T7,
 ) HKT_TUPLE7 {
-	return F.Pipe7(
-		t1,
-		fmap(tupleConstructor7[T1, T2, T3, T4, T5, T6, T7]()),
-		fap1(t2),
-		fap2(t3),
-		fap3(t4),
-		fap4(t5),
-		fap5(t6),
-		fap6(t7),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE7)
 }
 
 // SequenceTuple7 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -777,16 +691,8 @@ func SequenceTuple7[
 	fap6 AP6,
 	t T.Tuple7[HKT_T1, HKT_T2, HKT_T3, HKT_T4, HKT_T5, HKT_T6, HKT_T7],
 ) HKT_TUPLE7 {
-	return F.Pipe7(
-		t.F1,
-		fmap(tupleConstructor7[T1, T2, T3, T4, T5, T6, T7]()),
-		fap1(t.F2),
-		fap2(t.F3),
-		fap3(t.F4),
-		fap4(t.F5),
-		fap5(t.F6),
-		fap6(t.F7),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE7)
 }
 
 // TraverseTuple7 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -844,21 +750,14 @@ func TraverseTuple7[
 	f7 F7,
 	t T.Tuple7[A1, A2, A3, A4, A5, A6, A7],
 ) HKT_TUPLE7 {
-	return F.Pipe7(
-		f1(t.F1),
-		fmap(tupleConstructor7[T1, T2, T3, T4, T5, T6, T7]()),
-		fap1(f2(t.F2)),
-		fap2(f3(t.F3)),
-		fap3(f4(t.F4)),
-		fap4(f5(t.F5)),
-		fap5(f6(t.F6)),
-		fap6(f7(t.F7)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE7)
 }
 
 // tupleConstructor8 returns a curried version of [T.MakeTuple8]
 func tupleConstructor8[T1, T2, T3, T4, T5, T6, T7, T8 any]() func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) T.Tuple8[T1, T2, T3, T4, T5, T6, T7, T8] {
-	return F.Curry8(T.MakeTuple8[T1, T2, T3, T4, T5, T6, T7, T8])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT8 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -914,17 +813,8 @@ func SequenceT8[
 	t7 HKT_T7,
 	t8 HKT_T8,
 ) HKT_TUPLE8 {
-	return F.Pipe8(
-		t1,
-		fmap(tupleConstructor8[T1, T2, T3, T4, T5, T6, T7, T8]()),
-		fap1(t2),
-		fap2(t3),
-		fap3(t4),
-		fap4(t5),
-		fap5(t6),
-		fap6(t7),
-		fap7(t8),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE8)
 }
 
 // SequenceTuple8 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -973,17 +863,8 @@ func SequenceTuple8[
 	fap7 AP7,
 	t T.Tuple8[HKT_T1, HKT_T2, HKT_T3, HKT_T4, HKT_T5, HKT_T6, HKT_T7, HKT_T8],
 ) HKT_TUPLE8 {
-	return F.Pipe8(
-		t.F1,
-		fmap(tupleConstructor8[T1, T2, T3, T4, T5, T6, T7, T8]()),
-		fap1(t.F2),
-		fap2(t.F3),
-		fap3(t.F4),
-		fap4(t.F5),
-		fap5(t.F6),
-		fap6(t.F7),
-		fap7(t.F8),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE8)
 }
 
 // TraverseTuple8 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -1048,22 +929,14 @@ func TraverseTuple8[
 	f8 F8,
 	t T.Tuple8[A1, A2, A3, A4, A5, A6, A7, A8],
 ) HKT_TUPLE8 {
-	return F.Pipe8(
-		f1(t.F1),
-		fmap(tupleConstructor8[T1, T2, T3, T4, T5, T6, T7, T8]()),
-		fap1(f2(t.F2)),
-		fap2(f3(t.F3)),
-		fap3(f4(t.F4)),
-		fap4(f5(t.F5)),
-		fap5(f6(t.F6)),
-		fap6(f7(t.F7)),
-		fap7(f8(t.F8)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE8)
 }
 
 // tupleConstructor9 returns a curried version of [T.MakeTuple9]
 func tupleConstructor9[T1, T2, T3, T4, T5, T6, T7, T8, T9 any]() func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) T.Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9] {
-	return F.Curry9(T.MakeTuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT9 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -1125,18 +998,8 @@ func SequenceT9[
 	t8 HKT_T8,
 	t9 HKT_T9,
 ) HKT_TUPLE9 {
-	return F.Pipe9(
-		t1,
-		fmap(tupleConstructor9[T1, T2, T3, T4, T5, T6, T7, T8, T9]()),
-		fap1(t2),
-		fap2(t3),
-		fap3(t4),
-		fap4(t5),
-		fap5(t6),
-		fap6(t7),
-		fap7(t8),
-		fap8(t9),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE9)
 }
 
 // SequenceTuple9 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -1190,18 +1053,8 @@ func SequenceTuple9[
 	fap8 AP8,
 	t T.Tuple9[HKT_T1, HKT_T2, HKT_T3, HKT_T4, HKT_T5, HKT_T6, HKT_T7, HKT_T8, HKT_T9],
 ) HKT_TUPLE9 {
-	return F.Pipe9(
-		t.F1,
-		fmap(tupleConstructor9[T1, T2, T3, T4, T5, T6, T7, T8, T9]()),
-		fap1(t.F2),
-		fap2(t.F3),
-		fap3(t.F4),
-		fap4(t.F5),
-		fap5(t.F6),
-		fap6(t.F7),
-		fap7(t.F8),
-		fap8(t.F9),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE9)
 }
 
 // TraverseTuple9 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -1273,23 +1126,14 @@ func TraverseTuple9[
 	f9 F9,
 	t T.Tuple9[A1, A2, A3, A4, A5, A6, A7, A8, A9],
 ) HKT_TUPLE9 {
-	return F.Pipe9(
-		f1(t.F1),
-		fmap(tupleConstructor9[T1, T2, T3, T4, T5, T6, T7, T8, T9]()),
-		fap1(f2(t.F2)),
-		fap2(f3(t.F3)),
-		fap3(f4(t.F4)),
-		fap4(f5(t.F5)),
-		fap5(f6(t.F6)),
-		fap6(f7(t.F7)),
-		fap7(f8(t.F8)),
-		fap8(f9(t.F9)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE9)
 }
 
 // tupleConstructor10 returns a curried version of [T.MakeTuple10]
 func tupleConstructor10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 any]() func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) T.Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10] {
-	return F.Curry10(T.MakeTuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT10 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -1357,19 +1201,8 @@ func SequenceT10[
 	t9 HKT_T9,
 	t10 HKT_T10,
 ) HKT_TUPLE10 {
-	return F.Pipe10(
-		t1,
-		fmap(tupleConstructor10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]()),
-		fap1(t2),
-		fap2(t3),
-		fap3(t4),
-		fap4(t5),
-		fap5(t6),
-		fap6(t7),
-		fap7(t8),
-		fap8(t9),
-		fap9(t10),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE10)
 }
 
 // SequenceTuple10 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -1428,19 +1261,8 @@ func SequenceTuple10[
 	fap9 AP9,
 	t T.Tuple10[HKT_T1, HKT_T2, HKT_T3, HKT_T4, HKT_T5, HKT_T6, HKT_T7, HKT_T8, HKT_T9, HKT_T10],
 ) HKT_TUPLE10 {
-	return F.Pipe10(
-		t.F1,
-		fmap(tupleConstructor10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]()),
-		fap1(t.F2),
-		fap2(t.F3),
-		fap3(t.F4),
-		fap4(t.F5),
-		fap5(t.F6),
-		fap6(t.F7),
-		fap7(t.F8),
-		fap8(t.F9),
-		fap9(t.F10),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE10)
 }
 
 // TraverseTuple10 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -1519,24 +1341,14 @@ func TraverseTuple10[
 	f10 F10,
 	t T.Tuple10[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10],
 ) HKT_TUPLE10 {
-	return F.Pipe10(
-		f1(t.F1),
-		fmap(tupleConstructor10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]()),
-		fap1(f2(t.F2)),
-		fap2(f3(t.F3)),
-		fap3(f4(t.F4)),
-		fap4(f5(t.F5)),
-		fap5(f6(t.F6)),
-		fap6(f7(t.F7)),
-		fap7(f8(t.F8)),
-		fap8(f9(t.F9)),
-		fap9(f10(t.F10)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE10)
 }
 
 // tupleConstructor11 returns a curried version of [T.MakeTuple11]
 func tupleConstructor11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 any]() func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) T.Tuple11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11] {
-	return F.Curry11(T.MakeTuple11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT11 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -1610,20 +1422,8 @@ func SequenceT11[
 	t10 HKT_T10,
 	t11 HKT_T11,
 ) HKT_TUPLE11 {
-	return F.Pipe11(
-		t1,
-		fmap(tupleConstructor11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11]()),
-		fap1(t2),
-		fap2(t3),
-		fap3(t4),
-		fap4(t5),
-		fap5(t6),
-		fap6(t7),
-		fap7(t8),
-		fap8(t9),
-		fap9(t10),
-		fap10(t11),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE11)
 }
 
 // SequenceTuple11 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -1687,20 +1487,8 @@ func SequenceTuple11[
 	fap10 AP10,
 	t T.Tuple11[HKT_T1, HKT_T2, HKT_T3, HKT_T4, HKT_T5, HKT_T6, HKT_T7, HKT_T8, HKT_T9, HKT_T10, HKT_T11],
 ) HKT_TUPLE11 {
-	return F.Pipe11(
-		t.F1,
-		fmap(tupleConstructor11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11]()),
-		fap1(t.F2),
-		fap2(t.F3),
-		fap3(t.F4),
-		fap4(t.F5),
-		fap5(t.F6),
-		fap6(t.F7),
-		fap7(t.F8),
-		fap8(t.F9),
-		fap9(t.F10),
-		fap10(t.F11),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE11)
 }
 
 // TraverseTuple11 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -1786,25 +1574,14 @@ func TraverseTuple11[
 	f11 F11,
 	t T.Tuple11[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11],
 ) HKT_TUPLE11 {
-	return F.Pipe11(
-		f1(t.F1),
-		fmap(tupleConstructor11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11]()),
-		fap1(f2(t.F2)),
-		fap2(f3(t.F3)),
-		fap3(f4(t.F4)),
-		fap4(f5(t.F5)),
-		fap5(f6(t.F6)),
-		fap6(f7(t.F7)),
-		fap7(f8(t.F8)),
-		fap8(f9(t.F9)),
-		fap9(f10(t.F10)),
-		fap10(f11(t.F11)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE11)
 }
 
 // tupleConstructor12 returns a curried version of [T.MakeTuple12]
 func tupleConstructor12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 any]() func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) T.Tuple12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12] {
-	return F.Curry12(T.MakeTuple12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT12 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -1884,21 +1661,8 @@ func SequenceT12[
 	t11 HKT_T11,
 	t12 HKT_T12,
 ) HKT_TUPLE12 {
-	return F.Pipe12(
-		t1,
-		fmap(tupleConstructor12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]()),
-		fap1(t2),
-		fap2(t3),
-		fap3(t4),
-		fap4(t5),
-		fap5(t6),
-		fap6(t7),
-		fap7(t8),
-		fap8(t9),
-		fap9(t10),
-		fap10(t11),
-		fap11(t12),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE12)
 }
 
 // SequenceTuple12 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -1967,21 +1731,8 @@ func SequenceTuple12[
 	fap11 AP11,
 	t T.Tuple12[HKT_T1, HKT_T2, HKT_T3, HKT_T4, HKT_T5, HKT_T6, HKT_T7, HKT_T8, HKT_T9, HKT_T10, HKT_T11, HKT_T12],
 ) HKT_TUPLE12 {
-	return F.Pipe12(
-		t.F1,
-		fmap(tupleConstructor12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]()),
-		fap1(t.F2),
-		fap2(t.F3),
-		fap3(t.F4),
-		fap4(t.F5),
-		fap5(t.F6),
-		fap6(t.F7),
-		fap7(t.F8),
-		fap8(t.F9),
-		fap9(t.F10),
-		fap10(t.F11),
-		fap11(t.F12),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE12)
 }
 
 // TraverseTuple12 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -2074,26 +1825,14 @@ func TraverseTuple12[
 	f12 F12,
 	t T.Tuple12[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12],
 ) HKT_TUPLE12 {
-	return F.Pipe12(
-		f1(t.F1),
-		fmap(tupleConstructor12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]()),
-		fap1(f2(t.F2)),
-		fap2(f3(t.F3)),
-		fap3(f4(t.F4)),
-		fap4(f5(t.F5)),
-		fap5(f6(t.F6)),
-		fap6(f7(t.F7)),
-		fap7(f8(t.F8)),
-		fap8(f9(t.F9)),
-		fap9(f10(t.F10)),
-		fap10(f11(t.F11)),
-		fap11(f12(t.F12)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE12)
 }
 
 // tupleConstructor13 returns a curried version of [T.MakeTuple13]
 func tupleConstructor13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13 any]() func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) T.Tuple13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13] {
-	return F.Curry13(T.MakeTuple13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT13 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -2179,22 +1918,8 @@ func SequenceT13[
 	t12 HKT_T12,
 	t13 HKT_T13,
 ) HKT_TUPLE13 {
-	return F.Pipe13(
-		t1,
-		fmap(tupleConstructor13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]()),
-		fap1(t2),
-		fap2(t3),
-		fap3(t4),
-		fap4(t5),
-		fap5(t6),
-		fap6(t7),
-		fap7(t8),
-		fap8(t9),
-		fap9(t10),
-		fap10(t11),
-		fap11(t12),
-		fap12(t13),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE13)
 }
 
 // SequenceTuple13 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -2268,22 +1993,8 @@ func SequenceTuple13[
 	fap12 AP12,
 	t T.Tuple13[HKT_T1, HKT_T2, HKT_T3, HKT_T4, HKT_T5, HKT_T6, HKT_T7, HKT_T8, HKT_T9, HKT_T10, HKT_T11, HKT_T12, HKT_T13],
 ) HKT_TUPLE13 {
-	return F.Pipe13(
-		t.F1,
-		fmap(tupleConstructor13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]()),
-		fap1(t.F2),
-		fap2(t.F3),
-		fap3(t.F4),
-		fap4(t.F5),
-		fap5(t.F6),
-		fap6(t.F7),
-		fap7(t.F8),
-		fap8(t.F9),
-		fap9(t.F10),
-		fap10(t.F11),
-		fap11(t.F12),
-		fap12(t.F13),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE13)
 }
 
 // TraverseTuple13 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -2383,27 +2094,14 @@ func TraverseTuple13[
 	f13 F13,
 	t T.Tuple13[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13],
 ) HKT_TUPLE13 {
-	return F.Pipe13(
-		f1(t.F1),
-		fmap(tupleConstructor13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13]()),
-		fap1(f2(t.F2)),
-		fap2(f3(t.F3)),
-		fap3(f4(t.F4)),
-		fap4(f5(t.F5)),
-		fap5(f6(t.F6)),
-		fap6(f7(t.F7)),
-		fap7(f8(t.F8)),
-		fap8(f9(t.F9)),
-		fap9(f10(t.F10)),
-		fap10(f11(t.F11)),
-		fap11(f12(t.F12)),
-		fap12(f13(t.F13)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE13)
 }
 
 // tupleConstructor14 returns a curried version of [T.MakeTuple14]
 func tupleConstructor14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14 any]() func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) T.Tuple14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14] {
-	return F.Curry14(T.MakeTuple14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT14 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -2495,23 +2193,8 @@ func SequenceT14[
 	t13 HKT_T13,
 	t14 HKT_T14,
 ) HKT_TUPLE14 {
-	return F.Pipe14(
-		t1,
-		fmap(tupleConstructor14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14]()),
-		fap1(t2),
-		fap2(t3),
-		fap3(t4),
-		fap4(t5),
-		fap5(t6),
-		fap6(t7),
-		fap7(t8),
-		fap8(t9),
-		fap9(t10),
-		fap10(t11),
-		fap11(t12),
-		fap12(t13),
-		fap13(t14),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE14)
 }
 
 // SequenceTuple14 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -2590,23 +2273,8 @@ func SequenceTuple14[
 	fap13 AP13,
 	t T.Tuple14[HKT_T1, HKT_T2, HKT_T3, HKT_T4, HKT_T5, HKT_T6, HKT_T7, HKT_T8, HKT_T9, HKT_T10, HKT_T11, HKT_T12, HKT_T13, HKT_T14],
 ) HKT_TUPLE14 {
-	return F.Pipe14(
-		t.F1,
-		fmap(tupleConstructor14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14]()),
-		fap1(t.F2),
-		fap2(t.F3),
-		fap3(t.F4),
-		fap4(t.F5),
-		fap5(t.F6),
-		fap6(t.F7),
-		fap7(t.F8),
-		fap8(t.F9),
-		fap9(t.F10),
-		fap10(t.F11),
-		fap11(t.F12),
-		fap12(t.F13),
-		fap13(t.F14),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE14)
 }
 
 // TraverseTuple14 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -2713,28 +2381,14 @@ func TraverseTuple14[
 	f14 F14,
 	t T.Tuple14[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13, A14],
 ) HKT_TUPLE14 {
-	return F.Pipe14(
-		f1(t.F1),
-		fmap(tupleConstructor14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14]()),
-		fap1(f2(t.F2)),
-		fap2(f3(t.F3)),
-		fap3(f4(t.F4)),
-		fap4(f5(t.F5)),
-		fap5(f6(t.F6)),
-		fap6(f7(t.F7)),
-		fap7(f8(t.F8)),
-		fap8(f9(t.F9)),
-		fap9(f10(t.F10)),
-		fap10(f11(t.F11)),
-		fap11(f12(t.F12)),
-		fap12(f13(t.F13)),
-		fap13(f14(t.F14)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE14)
 }
 
 // tupleConstructor15 returns a curried version of [T.MakeTuple15]
 func tupleConstructor15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15 any]() func(T1) func(T2) func(T3) func(T4) func(T5) func(T6) func(T7) func(T8) func(T9) func(T10) func(T11) func(T12) func(T13) func(T14) func(T15) T.Tuple15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15] {
-	return F.Curry15(T.MakeTuple15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT15 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -2832,24 +2486,8 @@ func SequenceT15[
 	t14 HKT_T14,
 	t15 HKT_T15,
 ) HKT_TUPLE15 {
-	return F.Pipe15(
-		t1,
-		fmap(tupleConstructor15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15]()),
-		fap1(t2),
-		fap2(t3),
-		fap3(t4),
-		fap4(t5),
-		fap5(t6),
-		fap6(t7),
-		fap7(t8),
-		fap8(t9),
-		fap9(t10),
-		fap10(t11),
-		fap11(t12),
-		fap12(t13),
-		fap13(t14),
-		fap14(t15),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE15)
 }
 
 // SequenceTuple15 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -2933,24 +2571,8 @@ func SequenceTuple15[
 	fap14 AP14,
 	t T.Tuple15[HKT_T1, HKT_T2, HKT_T3, HKT_T4, HKT_T5, HKT_T6, HKT_T7, HKT_T8, HKT_T9, HKT_T10, HKT_T11, HKT_T12, HKT_T13, HKT_T14, HKT_T15],
 ) HKT_TUPLE15 {
-	return F.Pipe15(
-		t.F1,
-		fmap(tupleConstructor15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15]()),
-		fap1(t.F2),
-		fap2(t.F3),
-		fap3(t.F4),
-		fap4(t.F5),
-		fap5(t.F6),
-		fap6(t.F7),
-		fap7(t.F8),
-		fap8(t.F9),
-		fap9(t.F10),
-		fap10(t.F11),
-		fap11(t.F12),
-		fap12(t.F13),
-		fap13(t.F14),
-		fap14(t.F15),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE15)
 }
 
 // TraverseTuple15 is a utility function used to implement the sequence operation for higher kinded types based only on map and ap.
@@ -3064,22 +2686,6 @@ func TraverseTuple15[
 	f15 F15,
 	t T.Tuple15[A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13, A14, A15],
 ) HKT_TUPLE15 {
-	return F.Pipe15(
-		f1(t.F1),
-		fmap(tupleConstructor15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15]()),
-		fap1(f2(t.F2)),
-		fap2(f3(t.F3)),
-		fap3(f4(t.F4)),
-		fap4(f5(t.F5)),
-		fap5(f6(t.F6)),
-		fap6(f7(t.F7)),
-		fap7(f8(t.F8)),
-		fap8(f9(t.F9)),
-		fap9(f10(t.F10)),
-		fap10(f11(t.F11)),
-		fap11(f12(t.F12)),
-		fap12(f13(t.F13)),
-		fap13(f14(t.F14)),
-		fap14(f15(t.F15)),
-	)
+	_ = "STUB: not implemented"
+	return *new(HKT_TUPLE15)
 }

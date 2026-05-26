@@ -17,7 +17,6 @@ package readerio
 
 import (
 	"github.com/IBM/fp-go/v2/retry"
-	RG "github.com/IBM/fp-go/v2/retry/generic"
 )
 
 // Retrying retries a ReaderIO computation according to a retry policy.
@@ -89,18 +88,7 @@ func Retrying[A any](
 	action Kleisli[retry.RetryStatus, A],
 	check Predicate[A],
 ) ReaderIO[A] {
+	_ = "STUB: not implemented"
 	// get an implementation for the types
-	return RG.Retrying(
-		Chain[A, Trampoline[retry.RetryStatus, A]],
-		Map[retry.RetryStatus, Trampoline[retry.RetryStatus, A]],
-		Of[Trampoline[retry.RetryStatus, A]],
-		Of[retry.RetryStatus],
-		Delay[retry.RetryStatus],
-
-		TailRec,
-
-		policy,
-		action,
-		check,
-	)
+	return nil
 }

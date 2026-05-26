@@ -15,10 +15,6 @@
 
 package array
 
-import (
-	F "github.com/IBM/fp-go/function"
-)
-
 /*
 *
 We need to pass the members of the applicative explicitly, because golang does neither support higher kinded types nor template methods on structs or interfaces
@@ -34,7 +30,8 @@ func MonadTraverse[GA ~[]A, GB ~[]B, A, B, HKTB, HKTAB, HKTRB any](
 
 	ta GA,
 	f func(A) HKTB) HKTRB {
-	return MonadTraverseReduce(fof, fmap, fap, ta, f, Append[GB, B], Empty[GB]())
+	_ = "STUB: not implemented"
+	return *new(HKTRB)
 }
 
 /*
@@ -52,7 +49,8 @@ func MonadTraverseWithIndex[GA ~[]A, GB ~[]B, A, B, HKTB, HKTAB, HKTRB any](
 
 	ta GA,
 	f func(int, A) HKTB) HKTRB {
-	return MonadTraverseReduceWithIndex(fof, fmap, fap, ta, f, Append[GB, B], Empty[GB]())
+	_ = "STUB: not implemented"
+	return *new(HKTRB)
 }
 
 func Traverse[GA ~[]A, GB ~[]B, A, B, HKTB, HKTAB, HKTRB any](
@@ -61,10 +59,8 @@ func Traverse[GA ~[]A, GB ~[]B, A, B, HKTB, HKTAB, HKTRB any](
 	fap func(HKTB) func(HKTAB) HKTRB,
 
 	f func(A) HKTB) func(GA) HKTRB {
-
-	return func(ma GA) HKTRB {
-		return MonadTraverse(fof, fmap, fap, ma, f)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraverseWithIndex[GA ~[]A, GB ~[]B, A, B, HKTB, HKTAB, HKTRB any](
@@ -73,10 +69,8 @@ func TraverseWithIndex[GA ~[]A, GB ~[]B, A, B, HKTB, HKTAB, HKTRB any](
 	fap func(HKTB) func(HKTAB) HKTRB,
 
 	f func(int, A) HKTB) func(GA) HKTRB {
-
-	return func(ma GA) HKTRB {
-		return MonadTraverseWithIndex(fof, fmap, fap, ma, f)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadTraverseReduce[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
@@ -90,15 +84,8 @@ func MonadTraverseReduce[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
 	reduce func(GB, B) GB,
 	initial GB,
 ) HKTRB {
-	mmap := fmap(F.Curry2(reduce))
-
-	return Reduce(ta, func(r HKTRB, a A) HKTRB {
-		return F.Pipe2(
-			r,
-			mmap,
-			fap(transform(a)),
-		)
-	}, fof(initial))
+	_ = "STUB: not implemented"
+	return *new(HKTRB)
 }
 
 func MonadTraverseReduceWithIndex[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
@@ -112,15 +99,8 @@ func MonadTraverseReduceWithIndex[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
 	reduce func(GB, B) GB,
 	initial GB,
 ) HKTRB {
-	mmap := fmap(F.Curry2(reduce))
-
-	return ReduceWithIndex(ta, func(idx int, r HKTRB, a A) HKTRB {
-		return F.Pipe2(
-			r,
-			mmap,
-			fap(transform(idx, a)),
-		)
-	}, fof(initial))
+	_ = "STUB: not implemented"
+	return *new(HKTRB)
 }
 
 func TraverseReduce[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
@@ -132,9 +112,8 @@ func TraverseReduce[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
 	reduce func(GB, B) GB,
 	initial GB,
 ) func(GA) HKTRB {
-	return func(ta GA) HKTRB {
-		return MonadTraverseReduce(fof, fmap, fap, ta, transform, reduce, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraverseReduceWithIndex[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
@@ -146,7 +125,6 @@ func TraverseReduceWithIndex[GA ~[]A, GB, A, B, HKTB, HKTAB, HKTRB any](
 	reduce func(GB, B) GB,
 	initial GB,
 ) func(GA) HKTRB {
-	return func(ta GA) HKTRB {
-		return MonadTraverseReduceWithIndex(fof, fmap, fap, ta, transform, reduce, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -28,5 +28,6 @@ type (
 func ApplicativeMonoid[A any](
 	m monoid.Monoid[A],
 ) Monoid[A] {
-	return itereither.ApplicativeMonoid[error](m)
+	_ = "STUB: not implemented"
+	return nil
 }

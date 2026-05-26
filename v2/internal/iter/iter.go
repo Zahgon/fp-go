@@ -19,15 +19,10 @@
 package iter
 
 import (
-	"slices"
-
-	F "github.com/IBM/fp-go/v2/function"
 	M "github.com/IBM/fp-go/v2/monoid"
 )
 
-func From[A any](as ...A) Seq[A] {
-	return slices.Values(as)
-}
+func From[A any](as ...A) Seq[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadReduceWithIndex reduces an iterator sequence to a single value using a reducer function
 // that receives the current index, accumulated value, and current element.
@@ -56,15 +51,8 @@ func From[A any](as ...A) Seq[A] {
 //	    return acc + i*val
 //	}, 0)
 func MonadReduceWithIndex[GB ~func() B, GA ~func(yield func(A) bool), A, B any](fa GA, f func(int, B, A) B, initial B) GB {
-	return func() B {
-		current := initial
-		var i int
-		for a := range fa {
-			current = f(i, current, a)
-			i += 1
-		}
-		return current
-	}
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // MonadReduce reduces an iterator sequence to a single value using a reducer function.
@@ -91,13 +79,8 @@ func MonadReduceWithIndex[GB ~func() B, GA ~func(yield func(A) bool), A, B any](
 //	    return acc + val
 //	}, 0) // Returns: 6
 func MonadReduce[GB ~func() B, GA ~func(yield func(A) bool), A, B any](fa GA, f func(B, A) B, initial B) GB {
-	return func() B {
-		current := initial
-		for a := range fa {
-			current = f(current, a)
-		}
-		return current
-	}
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // Concat concatenates two iterator sequences, yielding all elements from left followed by all elements from right.
@@ -125,18 +108,8 @@ func MonadReduce[GB ~func() B, GA ~func(yield func(A) bool), A, B any](fa GA, f 
 //	}
 //	combined := Concat(left, right) // Yields: 1, 2, 3, 4
 func Concat[GT ~func(yield func(T) bool), T any](left, right GT) GT {
-	return func(yield func(T) bool) {
-		for t := range left {
-			if !yield(t) {
-				return
-			}
-		}
-		for t := range right {
-			if !yield(t) {
-				return
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return *new(GT)
 }
 
 // Of creates an iterator sequence containing a single element.
@@ -154,11 +127,7 @@ func Concat[GT ~func(yield func(T) bool), T any](left, right GT) GT {
 //
 //	iter := Of[func(yield func(int) bool)](42)
 //	// Yields: 42
-func Of[GA ~func(yield func(A) bool), A any](a A) GA {
-	return func(yield func(A) bool) {
-		yield(a)
-	}
-}
+func Of[GA ~func(yield func(A) bool), A any](a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 // MonadAppend appends a single element to the end of an iterator sequence.
 //
@@ -180,7 +149,8 @@ func Of[GA ~func(yield func(A) bool), A any](a A) GA {
 //	}
 //	result := MonadAppend(iter, 3) // Yields: 1, 2, 3
 func MonadAppend[GA ~func(yield func(A) bool), A any](f GA, tail A) GA {
-	return Concat(f, Of[GA](tail))
+	_ = "STUB: not implemented"
+	return *new(GA)
 }
 
 // Append returns a function that appends a single element to the end of an iterator sequence.
@@ -202,7 +172,8 @@ func MonadAppend[GA ~func(yield func(A) bool), A any](f GA, tail A) GA {
 //	}
 //	result := appendThree(iter) // Yields: 1, 2, 3
 func Append[GA ~func(yield func(A) bool), A any](tail A) func(GA) GA {
-	return F.Bind2nd(Concat[GA], Of[GA](tail))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Prepend returns a function that prepends a single element to the beginning of an iterator sequence.
@@ -224,7 +195,8 @@ func Append[GA ~func(yield func(A) bool), A any](tail A) func(GA) GA {
 //	}
 //	result := prependZero(iter) // Yields: 0, 1, 2
 func Prepend[GA ~func(yield func(A) bool), A any](head A) func(GA) GA {
-	return F.Bind1st(Concat[GA], Of[GA](head))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Empty creates an empty iterator sequence that yields no elements.
@@ -239,9 +211,7 @@ func Prepend[GA ~func(yield func(A) bool), A any](head A) func(GA) GA {
 //
 //	iter := Empty[func(yield func(int) bool), int]()
 //	// Yields nothing
-func Empty[GA ~func(yield func(A) bool), A any]() GA {
-	return func(_ func(A) bool) {}
-}
+func Empty[GA ~func(yield func(A) bool), A any]() GA { _ = "STUB: not implemented"; return *new(GA) }
 
 // ToArray collects all elements from an iterator sequence into a slice.
 //
@@ -263,11 +233,8 @@ func Empty[GA ~func(yield func(A) bool), A any]() GA {
 //	}
 //	arr := ToArray[func(yield func(int) bool), []int](iter) // Returns: []int{1, 2, 3}
 func ToArray[GA ~func(yield func(A) bool), GB ~[]A, A any](fa GA) GB {
-	bs := make(GB, 0)
-	for a := range fa {
-		bs = append(bs, a)
-	}
-	return bs
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // MonadMapToArray maps each element of an iterator sequence through a function and collects the results into a slice.
@@ -293,11 +260,8 @@ func ToArray[GA ~func(yield func(A) bool), GB ~[]A, A any](fa GA) GB {
 //	    return x * 2
 //	}) // Returns: []int{2, 4, 6}
 func MonadMapToArray[GA ~func(yield func(A) bool), GB ~[]B, A, B any](fa GA, f func(A) B) GB {
-	bs := make(GB, 0)
-	for a := range fa {
-		bs = append(bs, f(a))
-	}
-	return bs
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // MapToArray returns a function that maps each element through a function and collects the results into a slice.
@@ -321,7 +285,8 @@ func MonadMapToArray[GA ~func(yield func(A) bool), GB ~[]B, A, B any](fa GA, f f
 //	}
 //	result := double(iter) // Returns: []int{2, 4}
 func MapToArray[GA ~func(yield func(A) bool), GB ~[]B, A, B any](f func(A) B) func(GA) GB {
-	return F.Bind2nd(MonadMapToArray[GA, GB], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMapToArrayWithIndex maps each element of an iterator sequence through a function that receives
@@ -349,13 +314,8 @@ func MapToArray[GA ~func(yield func(A) bool), GB ~[]B, A, B any](f func(A) B) fu
 //	        return fmt.Sprintf("%d:%s", i, s)
 //	    }) // Returns: []string{"0:a", "1:b", "2:c"}
 func MonadMapToArrayWithIndex[GA ~func(yield func(A) bool), GB ~[]B, A, B any](fa GA, f func(int, A) B) GB {
-	bs := make(GB, 0)
-	var i int
-	for a := range fa {
-		bs = append(bs, f(i, a))
-		i += 1
-	}
-	return bs
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // MapToArrayWithIndex returns a function that maps each element through an indexed function
@@ -381,7 +341,8 @@ func MonadMapToArrayWithIndex[GA ~func(yield func(A) bool), GB ~[]B, A, B any](f
 //	}
 //	result := addIndex(iter) // Returns: []string{"0:a", "1:b"}
 func MapToArrayWithIndex[GA ~func(yield func(A) bool), GB ~[]B, A, B any](f func(int, A) B) func(GA) GB {
-	return F.Bind2nd(MonadMapToArrayWithIndex[GA, GB], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monoid returns a Monoid instance for iterator sequences.
@@ -402,5 +363,6 @@ func MapToArrayWithIndex[GA ~func(yield func(A) bool), GB ~[]B, A, B any](f func
 //	combined := m.Concat(iter1, iter2) // Yields: 1, 2, 3, 4
 //	empty := m.Empty() // Yields nothing
 func Monoid[GA ~func(yield func(A) bool), A any]() M.Monoid[GA] {
-	return M.MakeMonoid(Concat[GA], Empty[GA]())
+	_ = "STUB: not implemented"
+	return nil
 }

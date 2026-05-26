@@ -16,25 +16,20 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/function"
-	I "github.com/IBM/fp-go/io/generic"
 	O "github.com/IBM/fp-go/option"
 )
 
 func TraverseArray[TB ~func() O.Option[B], TBS ~func() O.Option[GB], GA ~[]A, GB ~[]B, A, B any](f func(A) TB) func(GA) TBS {
-	return F.Flow2(
-		I.TraverseArray[TB, func() []O.Option[B], GA](f),
-		I.Map[func() []O.Option[B], TBS](O.SequenceArrayG[GB, []O.Option[B], B]),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraverseArrayWithIndex[TB ~func() O.Option[B], TBS ~func() O.Option[GB], GA ~[]A, GB ~[]B, A, B any](f func(int, A) TB) func(GA) TBS {
-	return F.Flow2(
-		I.TraverseArrayWithIndex[TB, func() []O.Option[B], GA](f),
-		I.Map[func() []O.Option[B], TBS](O.SequenceArrayG[GB, []O.Option[B], B]),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func SequenceArray[TB ~func() O.Option[B], TBS ~func() O.Option[GB], GA ~[]TB, GB ~[]B, A, B any](ma GA) TBS {
-	return TraverseArray[TB, TBS, GA](F.Identity[TB])(ma)
+	_ = "STUB: not implemented"
+	return *new(TBS)
 }

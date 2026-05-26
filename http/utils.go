@@ -16,9 +16,7 @@
 package http
 
 import (
-	"fmt"
 	"io"
-	"mime"
 	H "net/http"
 	"net/url"
 	"regexp"
@@ -78,54 +76,36 @@ const (
 
 // ParseMediaType parses a media type into a tuple
 func ParseMediaType(mediaType string) E.Either[error, ParsedMediaType] {
-	m, p, err := mime.ParseMediaType(mediaType)
-	return E.TryCatchError(P.MakePair(m, p), err)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Error fulfills the error interface
-func (r *HttpError) Error() string {
-	return fmt.Sprintf("invalid status code [%d] when accessing URL [%s]", r.statusCode, r.url)
-}
+func (r *HttpError) Error() string { _ = "STUB: not implemented"; return "" }
 
-func (r *HttpError) String() string {
-	return r.Error()
-}
+func (r *HttpError) String() string { _ = "STUB: not implemented"; return "" }
 
-func (r *HttpError) StatusCode() int {
-	return r.statusCode
-}
+func (r *HttpError) StatusCode() int { _ = "STUB: not implemented"; return 0 }
 
-func (r *HttpError) Headers() H.Header {
-	return r.headers
-}
+func (r *HttpError) Headers() H.Header { _ = "STUB: not implemented"; return *new(H.Header) }
 
-func (r *HttpError) URL() *url.URL {
-	return r.url
-}
+func (r *HttpError) URL() *url.URL { _ = "STUB: not implemented"; return nil }
 
-func (r *HttpError) Body() []byte {
-	return r.body
-}
+func (r *HttpError) Body() []byte { _ = "STUB: not implemented"; return nil }
 
-func GetHeader(resp *H.Response) H.Header {
-	return resp.Header
-}
+func GetHeader(resp *H.Response) H.Header { _ = "STUB: not implemented"; return *new(H.Header) }
 
-func GetBody(resp *H.Response) io.ReadCloser {
-	return resp.Body
-}
+func GetBody(resp *H.Response) io.ReadCloser { _ = "STUB: not implemented"; return *new(io.ReadCloser) }
 
-func isValidStatus(resp *H.Response) bool {
-	return resp.StatusCode >= H.StatusOK && resp.StatusCode < H.StatusMultipleChoices
-}
+func isValidStatus(resp *H.Response) bool { _ = "STUB: not implemented"; return false }
 
 // StatusCodeError creates an instance of [HttpError] filled with information from the response
 func StatusCodeError(resp *H.Response) error {
+	_ = "STUB: not implemented"
 	// read the body
-	bodyRdr := GetBody(resp)
-	defer bodyRdr.Close()
-	// try to access body content
-	body, _ := io.ReadAll(bodyRdr)
-	// return an error with comprehensive information
-	return &HttpError{statusCode: resp.StatusCode, headers: GetHeader(resp).Clone(), body: body, url: resp.Request.URL}
+	return nil
 }
+
+// try to access body content
+
+// return an error with comprehensive information

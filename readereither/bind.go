@@ -15,15 +15,12 @@
 
 package readereither
 
-import (
-	G "github.com/IBM/fp-go/readereither/generic"
-)
-
 // Bind creates an empty context of type [S] to be used with the [Bind] operation
 func Do[R, E, S any](
 	empty S,
 ) ReaderEither[R, E, S] {
-	return G.Do[ReaderEither[R, E, S], R, E, S](empty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Bind attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -31,7 +28,8 @@ func Bind[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) ReaderEither[R, E, T],
 ) func(ReaderEither[R, E, S1]) ReaderEither[R, E, S2] {
-	return G.Bind[ReaderEither[R, E, S1], ReaderEither[R, E, S2], ReaderEither[R, E, T], R, E, S1, S2, T](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -39,7 +37,8 @@ func Let[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) func(ReaderEither[R, E, S1]) ReaderEither[R, E, S2] {
-	return G.Let[ReaderEither[R, E, S1], ReaderEither[R, E, S2], R, E, S1, S2, T](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches the a value to a context [S1] to produce a context [S2]
@@ -47,14 +46,16 @@ func LetTo[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) func(ReaderEither[R, E, S1]) ReaderEither[R, E, S2] {
-	return G.LetTo[ReaderEither[R, E, S1], ReaderEither[R, E, S2], R, E, S1, S2, T](setter, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T]
 func BindTo[R, E, S1, T any](
 	setter func(T) S1,
 ) func(ReaderEither[R, E, T]) ReaderEither[R, E, S1] {
-	return G.BindTo[ReaderEither[R, E, S1], ReaderEither[R, E, T], R, E, S1, T](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering the context and the value concurrently
@@ -62,5 +63,6 @@ func ApS[R, E, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa ReaderEither[R, E, T],
 ) func(ReaderEither[R, E, S1]) ReaderEither[R, E, S2] {
-	return G.ApS[ReaderEither[R, E, S1], ReaderEither[R, E, S2], ReaderEither[R, E, T], R, E, S1, S2, T](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }

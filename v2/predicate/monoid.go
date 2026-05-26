@@ -16,7 +16,6 @@
 package predicate
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/monoid"
 	"github.com/IBM/fp-go/v2/semigroup"
 )
@@ -50,14 +49,7 @@ type (
 //	isPositiveOrEven(3)  // true (positive)
 //	isPositiveOrEven(-2) // true (even)
 //	isPositiveOrEven(-3) // false (neither)
-func SemigroupAny[A any]() Semigroup[A] {
-	return semigroup.MakeSemigroup(func(first Predicate[A], second Predicate[A]) Predicate[A] {
-		return F.Pipe1(
-			first,
-			Or(second),
-		)
-	})
-}
+func SemigroupAny[A any]() Semigroup[A] { _ = "STUB: not implemented"; return nil }
 
 // SemigroupAll creates a semigroup that combines predicates using logical AND (&&).
 //
@@ -78,14 +70,7 @@ func SemigroupAny[A any]() Semigroup[A] {
 //	isPositiveAndEven(3)  // false (not even)
 //	isPositiveAndEven(-2) // false (not positive)
 //	isPositiveAndEven(-3) // false (neither)
-func SemigroupAll[A any]() Semigroup[A] {
-	return semigroup.MakeSemigroup(func(first Predicate[A], second Predicate[A]) Predicate[A] {
-		return F.Pipe1(
-			first,
-			And(second),
-		)
-	})
-}
+func SemigroupAll[A any]() Semigroup[A] { _ = "STUB: not implemented"; return nil }
 
 // MonoidAny creates a monoid that combines predicates using logical OR (||).
 //
@@ -108,12 +93,7 @@ func SemigroupAll[A any]() Semigroup[A] {
 //	combined(15)  // true (> 10)
 //	combined(-5)  // true (< 0)
 //	combined(5)   // false (neither)
-func MonoidAny[A any]() Monoid[A] {
-	return monoid.MakeMonoid(
-		SemigroupAny[A]().Concat,
-		F.Constant1[A](false),
-	)
-}
+func MonoidAny[A any]() Monoid[A] { _ = "STUB: not implemented"; return nil }
 
 // MonoidAll creates a monoid that combines predicates using logical AND (&&).
 //
@@ -136,9 +116,4 @@ func MonoidAny[A any]() Monoid[A] {
 //	combined(50)  // true (both conditions)
 //	combined(-5)  // false (not > 0)
 //	combined(150) // false (not < 100)
-func MonoidAll[A any]() Monoid[A] {
-	return monoid.MakeMonoid(
-		SemigroupAll[A]().Concat,
-		F.Constant1[A](true),
-	)
-}
+func MonoidAll[A any]() Monoid[A] { _ = "STUB: not implemented"; return nil }

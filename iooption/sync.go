@@ -19,10 +19,10 @@ import (
 	"context"
 
 	IO "github.com/IBM/fp-go/io"
-	G "github.com/IBM/fp-go/iooption/generic"
 )
 
 // WithLock executes the provided IO operation in the scope of a lock
 func WithLock[E, A any](lock IO.IO[context.CancelFunc]) func(fa IOOption[A]) IOOption[A] {
-	return G.WithLock[IOOption[A]](lock)
+	_ = "STUB: not implemented"
+	return nil
 }

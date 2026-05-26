@@ -52,17 +52,8 @@ package result
 //	result := result.TraverseArrayG[[]string, []int](parse)([]string{"1", "bad", "3"})
 //	// result is ([]int(nil), error) - stops at "bad"
 func TraverseArrayG[GA ~[]A, GB ~[]B, A, B any](f Kleisli[A, B]) Kleisli[GA, GB] {
-	return func(ga GA) (GB, error) {
-		bs := make(GB, len(ga))
-		for i, a := range ga {
-			b, err := f(a)
-			if err != nil {
-				return Left[GB](err)
-			}
-			bs[i] = b
-		}
-		return Of(bs)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArray transforms an array by applying a function that returns a Result (value, error) to each element.
@@ -99,7 +90,8 @@ func TraverseArrayG[GA ~[]A, GB ~[]B, A, B any](f Kleisli[A, B]) Kleisli[GA, GB]
 //
 //go:inline
 func TraverseArray[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
-	return TraverseArrayG[[]A, []B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndexG transforms an array by applying an indexed function that returns a Result (value, error).
@@ -137,17 +129,8 @@ func TraverseArray[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
 //	result := result.TraverseArrayWithIndexG[[]string, []string](annotate)([]string{"a", "b", "c"})
 //	// result is ([]string{"[0]=a", "[1]=b", "[2]=c"}, nil)
 func TraverseArrayWithIndexG[GA ~[]A, GB ~[]B, A, B any](f func(int, A) (B, error)) Kleisli[GA, GB] {
-	return func(ga GA) (GB, error) {
-		bs := make(GB, len(ga))
-		for i, a := range ga {
-			b, err := f(i, a)
-			if err != nil {
-				return Left[GB](err)
-			}
-			bs[i] = b
-		}
-		return Of(bs)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms an array by applying an indexed function that returns a Result (value, error).
@@ -180,5 +163,6 @@ func TraverseArrayWithIndexG[GA ~[]A, GB ~[]B, A, B any](f func(int, A) (B, erro
 //
 //go:inline
 func TraverseArrayWithIndex[A, B any](f func(int, A) (B, error)) Kleisli[[]A, []B] {
-	return TraverseArrayWithIndexG[[]A, []B](f)
+	_ = "STUB: not implemented"
+	return nil
 }

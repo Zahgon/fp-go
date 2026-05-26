@@ -15,16 +15,11 @@
 
 package array
 
-import (
-	G "github.com/IBM/fp-go/array/generic"
-)
-
 // AnyWithIndex tests if any of the elements in the array matches the predicate
 func AnyWithIndex[A any](pred func(int, A) bool) func([]A) bool {
-	return G.AnyWithIndex[[]A](pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Any tests if any of the elements in the array matches the predicate
-func Any[A any](pred func(A) bool) func([]A) bool {
-	return G.Any[[]A](pred)
-}
+func Any[A any](pred func(A) bool) func([]A) bool { _ = "STUB: not implemented"; return nil }

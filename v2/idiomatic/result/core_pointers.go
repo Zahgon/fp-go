@@ -26,69 +26,36 @@ type Either[A any] struct {
 // String prints some debug info for the object
 //
 //go:noinline
-func eitherString[A any](s *Either[A]) string {
-	if s.right != nil {
-		return fmt.Sprintf("Right[%T](%v)", *s.right, *s.right)
-	}
-	return fmt.Sprintf("Left[%T](%v)", *s.left, *s.left)
-}
+func eitherString[A any](s *Either[A]) string { _ = "STUB: not implemented"; return "" }
 
 // Format prints some debug info for the object
 //
 //go:noinline
-func eitherFormat[A any](e *Either[A], f fmt.State, c rune) {
-	switch c {
-	case 's':
-		fmt.Fprint(f, eitherString(e))
-	default:
-		fmt.Fprint(f, eitherString(e))
-	}
-}
+func eitherFormat[A any](e *Either[A], f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 // String prints some debug info for the object
-func (s Either[A]) String() string {
-	return eitherString(&s)
-}
+func (s Either[A]) String() string { _ = "STUB: not implemented"; return "" }
 
 // Format prints some debug info for the object
-func (s Either[A]) Format(f fmt.State, c rune) {
-	eitherFormat(&s, f, c)
-}
+func (s Either[A]) Format(f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 //go:inline
-func Left[A, E any](value E) Either[A] {
-	return Either[A]{left: &value}
-}
+func Left[A, E any](value E) Either[A] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
-func Right[A any](value A) Either[A] {
-	return Either[A]{right: &value}
-}
+func Right[A any](value A) Either[A] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
-func IsLeft[A any](e Either[A]) bool {
-	return e.left != nil
-}
+func IsLeft[A any](e Either[A]) bool { _ = "STUB: not implemented"; return false }
 
 //go:inline
-func IsRight[A any](e Either[A]) bool {
-	return e.right != nil
-}
+func IsRight[A any](e Either[A]) bool { _ = "STUB: not implemented"; return false }
 
 //go:inline
 func MonadFold[A, B any](ma Either[A], onLeft func(E) B, onRight func(A) B) B {
-	if ma.right != nil {
-		return onRight(*ma.right)
-	}
-	return onLeft(*ma.left)
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 //go:inline
-func Unwrap[A any](ma Either[A]) (A, E) {
-	if ma.right != nil {
-		var e E
-		return *ma.right, e
-	}
-	var a A
-	return a, *ma.left
-}
+func Unwrap[A any](ma Either[A]) (A, E) { _ = "STUB: not implemented"; return *new(A), *new(E) }

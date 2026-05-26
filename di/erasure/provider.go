@@ -21,7 +21,6 @@ import (
 	A "github.com/IBM/fp-go/array"
 	E "github.com/IBM/fp-go/either"
 	F "github.com/IBM/fp-go/function"
-	I "github.com/IBM/fp-go/identity"
 	IO "github.com/IBM/fp-go/io"
 	IOG "github.com/IBM/fp-go/io/generic"
 	IOE "github.com/IBM/fp-go/ioeither"
@@ -55,24 +54,23 @@ type (
 	}
 )
 
-func (p *provider) Provides() Dependency {
-	return p.provides
-}
+func (p *provider) Provides() Dependency { _ = "STUB: not implemented"; return *new(Dependency) }
 
 func (p *provider) Factory() ProviderFactory {
-	return p.factory
+	_ = "STUB: not implemented"
+	return *new(ProviderFactory)
 }
 
-func (p *provider) String() string {
-	return fmt.Sprintf("Provider for [%s]", p.provides)
-}
+func (p *provider) String() string { _ = "STUB: not implemented"; return "" }
 
 func MakeProvider(token Dependency, fct ProviderFactory) Provider {
-	return &provider{token, fct}
+	_ = "STUB: not implemented"
+	return *new(Provider)
 }
 
 func mapFromToken(idx int, token Dependency) map[int]paramIndex {
-	return R.Singleton(token.Flag()&BehaviourMask, R.Singleton(idx, idx))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 var (
@@ -136,35 +134,11 @@ var (
 	}
 )
 
-func getAt[T any](ar []T) func(idx int) T {
-	return func(idx int) T {
-		return ar[idx]
-	}
-}
+func getAt[T any](ar []T) func(idx int) T { _ = "STUB: not implemented"; return nil }
 
 func handleMapping(mp mapping) func(res []IOE.IOEither[error, any]) IOE.IOEither[error, []any] {
-	preFct := F.Pipe1(
-		mp,
-		R.Collect(func(idx int, p paramIndex) func([]IOE.IOEither[error, any]) IOE.IOEither[error, paramValue] {
-			return handlers[idx](p)
-		}),
-	)
-	doFct := F.Flow2(
-		I.Flap[IOE.IOEither[error, paramValue], []IOE.IOEither[error, any]],
-		IOE.TraverseArray[error, func([]IOE.IOEither[error, any]) IOE.IOEither[error, paramValue], paramValue],
-	)
-	postFct := IOE.Map[error](F.Flow2(
-		A.Fold(mergeMaps),
-		collectParams,
-	))
-
-	return func(res []IOE.IOEither[error, any]) IOE.IOEither[error, []any] {
-		return F.Pipe2(
-			preFct,
-			doFct(res),
-			postFct,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeProviderFactory constructs a [ProviderFactory] based on a set of [Dependency]s and
@@ -172,10 +146,6 @@ func handleMapping(mp mapping) func(res []IOE.IOEither[error, any]) IOE.IOEither
 func MakeProviderFactory(
 	deps []Dependency,
 	fct func(param ...any) IOE.IOEither[error, any]) ProviderFactory {
-
-	return F.Flow3(
-		mapDeps(deps),
-		handleMapping(foldDeps(deps)),
-		IOE.Chain(F.Unvariadic0(fct)),
-	)
+	_ = "STUB: not implemented"
+	return *new(ProviderFactory)
 }

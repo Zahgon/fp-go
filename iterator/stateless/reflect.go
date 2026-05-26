@@ -17,11 +17,7 @@ package stateless
 
 import (
 	R "reflect"
-
-	G "github.com/IBM/fp-go/iterator/stateless/generic"
 )
 
 // FromReflect creates an iterator that can iterate over types that define [R.Index] and [R.Len]
-func FromReflect(val R.Value) Iterator[R.Value] {
-	return G.FromReflect[Iterator[R.Value]](val)
-}
+func FromReflect(val R.Value) Iterator[R.Value] { _ = "STUB: not implemented"; return nil }

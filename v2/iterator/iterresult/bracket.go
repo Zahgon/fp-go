@@ -15,10 +15,6 @@
 
 package iterresult
 
-import (
-	"github.com/IBM/fp-go/v2/iterator/itereither"
-)
-
 // Bracket makes sure that a resource is cleaned up in the event of an error.
 // The release action is called regardless of whether the body action returns an error or not.
 //
@@ -43,5 +39,6 @@ func Bracket[A, B, ANY any](
 	use Kleisli[A, B],
 	release func(A, Result[B]) SeqResult[ANY],
 ) SeqResult[B] {
-	return itereither.Bracket(acquire, use, release)
+	_ = "STUB: not implemented"
+	return nil
 }

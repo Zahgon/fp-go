@@ -17,20 +17,18 @@ package ioresult
 
 import (
 	EQ "github.com/IBM/fp-go/v2/eq"
-	"github.com/IBM/fp-go/v2/io"
-	"github.com/IBM/fp-go/v2/result"
 )
 
 // Eq implements the equals predicate for values contained in the IOResult monad
 //
 //go:inline
 func Eq[A any](eq EQ.Eq[Result[A]]) EQ.Eq[IOResult[A]] {
-	return io.Eq(eq)
+	_ = "STUB: not implemented"
+
+	// FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
+	//
+	//go:inline
+	return nil
 }
 
-// FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
-//
-//go:inline
-func FromStrictEquals[A comparable]() EQ.Eq[IOResult[A]] {
-	return Eq(result.FromStrictEquals[A]())
-}
+func FromStrictEquals[A comparable]() EQ.Eq[IOResult[A]] { _ = "STUB: not implemented"; return nil }

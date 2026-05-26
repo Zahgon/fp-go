@@ -15,13 +15,6 @@
 
 package readerresult
 
-import (
-	"context"
-
-	E "github.com/IBM/fp-go/v2/either"
-	F "github.com/IBM/fp-go/v2/function"
-)
-
 // WithContext wraps an existing ReaderResult and performs a context check for cancellation
 // before delegating to the wrapped computation. This provides early cancellation detection,
 // allowing computations to fail fast when the context has been cancelled or has exceeded
@@ -91,14 +84,7 @@ import (
 //   - Building cancellation-aware pipelines
 //
 //go:inline
-func WithContext[A any](ma ReaderResult[A]) ReaderResult[A] {
-	return func(ctx context.Context) E.Either[error, A] {
-		if ctx.Err() != nil {
-			return E.Left[A](context.Cause(ctx))
-		}
-		return ma(ctx)
-	}
-}
+func WithContext[A any](ma ReaderResult[A]) ReaderResult[A] { _ = "STUB: not implemented"; return nil }
 
 // WithContextK wraps a Kleisli arrow with context cancellation checking.
 // This is a higher-order function that takes a Kleisli arrow and returns a new
@@ -176,9 +162,4 @@ func WithContext[A any](ma ReaderResult[A]) ReaderResult[A] {
 //   - Preventing cascading failures in long pipelines
 //
 //go:inline
-func WithContextK[A, B any](f Kleisli[A, B]) Kleisli[A, B] {
-	return F.Flow2(
-		f,
-		WithContext,
-	)
-}
+func WithContextK[A, B any](f Kleisli[A, B]) Kleisli[A, B] { _ = "STUB: not implemented"; return nil }

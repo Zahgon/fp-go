@@ -16,7 +16,6 @@
 package array
 
 import (
-	F "github.com/IBM/fp-go/function"
 	O "github.com/IBM/fp-go/option"
 )
 
@@ -39,20 +38,9 @@ func Sequence[A, HKTA, HKTRA, HKTFRA any](
 	_map func(HKTRA, func([]A) func(A) []A) HKTFRA,
 	_ap func(HKTFRA, HKTA) HKTRA,
 ) func([]HKTA) HKTRA {
-	ca := F.Curry2(Append[A])
-	return Reduce(func(fas HKTRA, fa HKTA) HKTRA {
-		return _ap(
-			_map(fas, ca),
-			fa,
-		)
-	}, _of(Empty[A]()))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ArrayOption returns a function to convert sequence of options into an option of a sequence
-func ArrayOption[A any]() func([]O.Option[A]) O.Option[[]A] {
-	return Sequence(
-		O.Of[[]A],
-		O.MonadMap[[]A, func(A) []A],
-		O.MonadAp[[]A, A],
-	)
-}
+func ArrayOption[A any]() func([]O.Option[A]) O.Option[[]A] { _ = "STUB: not implemented"; return nil }

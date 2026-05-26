@@ -15,48 +15,15 @@
 
 package generic
 
-import (
-	"maps"
-
-	F "github.com/IBM/fp-go/v2/function"
-	O "github.com/IBM/fp-go/v2/option"
-	P "github.com/IBM/fp-go/v2/pair"
-)
-
 // addToMap makes a deep copy of a map and adds a value
-func addToMap[A comparable](a A, m map[A]bool) map[A]bool {
-	cpy := make(map[A]bool, len(m)+1)
-	maps.Copy(cpy, m)
-	cpy[a] = true
-	return cpy
-}
+func addToMap[A comparable](a A, m map[A]bool) map[A]bool { _ = "STUB: not implemented"; return nil }
 
 func Uniq[AS ~func() Option[Pair[AS, A]], K comparable, A any](f func(A) K) func(as AS) AS {
-
-	var recurse func(as AS, mp map[K]bool) AS
-
-	recurse = func(as AS, mp map[K]bool) AS {
-		return F.Nullary2(
-			as,
-			O.Chain(func(a Pair[AS, A]) Option[Pair[AS, A]] {
-				return F.Pipe3(
-					P.Tail(a),
-					f,
-					O.FromPredicate(func(k K) bool {
-						_, ok := mp[k]
-						return !ok
-					}),
-					O.Fold(recurse(P.Head(a), mp), func(k K) Option[Pair[AS, A]] {
-						return O.Of(P.MakePair(recurse(P.Head(a), addToMap(k, mp)), P.Tail(a)))
-					}),
-				)
-			}),
-		)
-	}
-
-	return F.Bind2nd(recurse, make(map[K]bool, 0))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func StrictUniq[AS ~func() Option[Pair[AS, A]], A comparable](as AS) AS {
-	return Uniq[AS](F.Identity[A])(as)
+	_ = "STUB: not implemented"
+	return *new(AS)
 }

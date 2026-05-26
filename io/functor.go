@@ -17,10 +17,7 @@ package io
 
 import (
 	"github.com/IBM/fp-go/internal/functor"
-	G "github.com/IBM/fp-go/io/generic"
 )
 
 // Functor returns the monadic operations for [IO]
-func Functor[A, B any]() functor.Functor[A, B, IO[A], IO[B]] {
-	return G.Functor[A, B, IO[A], IO[B]]()
-}
+func Functor[A, B any]() functor.Functor[A, B, IO[A], IO[B]] { _ = "STUB: not implemented"; return nil }

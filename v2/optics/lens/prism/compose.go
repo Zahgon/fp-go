@@ -16,55 +16,31 @@
 package prism
 
 import (
-	"fmt"
-
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/lazy"
-	O "github.com/IBM/fp-go/v2/optics/optional"
 	"github.com/IBM/fp-go/v2/option"
 )
 
 func compose[S, A, B any](
 	creator func(get option.Kleisli[S, B], set func(B) Endomorphism[S], name string) Optional[S, B],
 	p Prism[A, B]) func(Lens[S, A]) Optional[S, B] {
-
-	return func(l Lens[S, A]) Optional[S, B] {
-		// GetOption: Lens.Get followed by Prism.GetOption
-		// This extracts A from S, then tries to extract B from A
-		getOption := F.Flow2(l.Get, p.GetOption)
-
-		// Set: Constructs a setter that respects the Optional laws
-		setOption := func(b B) func(S) S {
-			// Pre-compute the new A value by using Prism.ReverseGet
-			// This constructs an A from the given B
-			setl := l.Set(p.ReverseGet(b))
-
-			return func(s S) S {
-				// Check if the Prism matches the current value
-				return F.Pipe1(
-					getOption(s),
-					option.Fold(
-						// None case: Prism doesn't match, return s unchanged (no-op)
-						// This satisfies the GetSet law for Optional
-						lazy.Of(s),
-						// Some case: Prism matches, update the value
-						// This satisfies the SetGet law for Optional
-						func(_ B) S {
-							return setl(s)
-						},
-					),
-				)
-			}
-		}
-
-		return creator(
-			getOption,
-			setOption,
-			fmt.Sprintf("Compose[%s -> %s]", l, p),
-		)
-	}
-
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// GetOption: Lens.Get followed by Prism.GetOption
+// This extracts A from S, then tries to extract B from A
+
+// Set: Constructs a setter that respects the Optional laws
+
+// Pre-compute the new A value by using Prism.ReverseGet
+// This constructs an A from the given B
+
+// Check if the Prism matches the current value
+
+// None case: Prism doesn't match, return s unchanged (no-op)
+// This satisfies the GetSet law for Optional
+
+// Some case: Prism matches, update the value
+// This satisfies the SetGet law for Optional
 
 // Compose composes a Lens with a Prism to create an Optional.
 //
@@ -150,7 +126,8 @@ func compose[S, A, B any](
 //	unchanged := configPgOptional.Set(PostgreSQL{Host: "remote"})(configMySQL)
 //	// unchanged == configMySQL (no-op because Prism doesn't match)
 func Compose[S, A, B any](p Prism[A, B]) func(Lens[S, A]) Optional[S, B] {
-	return compose(O.MakeOptionalCurriedWithName[S, B], p)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ComposeRef composes a Lens operating on pointer types with a Prism to create an Optional.
@@ -248,5 +225,6 @@ func Compose[S, A, B any](p Prism[A, B]) func(Lens[S, A]) Optional[S, B] {
 //	unchanged = configPgOptional.Set(PostgreSQL{Host: "remote"})(configMySQL)
 //	// unchanged == configMySQL (no-op because Prism doesn't match)
 func ComposeRef[S, A, B any](p Prism[A, B]) func(Lens[*S, A]) Optional[*S, B] {
-	return compose(O.MakeOptionalRefCurriedWithName[S, B], p)
+	_ = "STUB: not implemented"
+	return nil
 }

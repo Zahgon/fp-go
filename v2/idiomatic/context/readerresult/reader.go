@@ -17,14 +17,10 @@ package readerresult
 
 import (
 	"context"
-	"sync"
 	"time"
 
 	RS "github.com/IBM/fp-go/v2/context/readerresult"
-	"github.com/IBM/fp-go/v2/either"
-	"github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/idiomatic/option"
-	RR "github.com/IBM/fp-go/v2/idiomatic/readerresult"
 	"github.com/IBM/fp-go/v2/idiomatic/result"
 	"github.com/IBM/fp-go/v2/reader"
 	RES "github.com/IBM/fp-go/v2/result"
@@ -46,9 +42,7 @@ import (
 //   - A ReaderResult[A] that ignores the context and returns the Result
 //
 //go:inline
-func FromEither[A any](e Result[A]) ReaderResult[A] {
-	return RR.FromEither[context.Context](e)
-}
+func FromEither[A any](e Result[A]) ReaderResult[A] { _ = "STUB: not implemented"; return nil }
 
 // FromResult creates a ReaderResult from a Go-style (value, error) tuple.
 //
@@ -66,38 +60,38 @@ func FromEither[A any](e Result[A]) ReaderResult[A] {
 //   - A ReaderResult[A] that returns the given value and error
 //
 //go:inline
-func FromResult[A any](a A, err error) ReaderResult[A] {
-	return RR.FromResult[context.Context](a, err)
-}
+func FromResult[A any](a A, err error) ReaderResult[A] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
 func RightReader[A any](rdr Reader[context.Context, A]) ReaderResult[A] {
-	return RR.RightReader(rdr)
+	_ = "STUB: not implemented"
+	return nil
+
+	//go:inline
 }
 
-//go:inline
 func LeftReader[A, R any](l Reader[context.Context, error]) ReaderResult[A] {
-	return RR.LeftReader[A](l)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Left creates a ReaderResult that always fails with the given error.
+	//
+	// This is the error constructor for ReaderResult, analogous to Either's Left.
+	// The resulting computation ignores the context and immediately returns the error.
+	//
+	// Type Parameters:
+	//   - A: The success type (for type inference)
+	//
+	// Parameters:
+	//   - err: The error to return
+	//
+	// Returns:
+	//   - A ReaderResult[A] that always fails with the given error
+	//
+	//go:inline
 }
 
-// Left creates a ReaderResult that always fails with the given error.
-//
-// This is the error constructor for ReaderResult, analogous to Either's Left.
-// The resulting computation ignores the context and immediately returns the error.
-//
-// Type Parameters:
-//   - A: The success type (for type inference)
-//
-// Parameters:
-//   - err: The error to return
-//
-// Returns:
-//   - A ReaderResult[A] that always fails with the given error
-//
-//go:inline
-func Left[A any](err error) ReaderResult[A] {
-	return RR.Left[context.Context, A](err)
-}
+func Left[A any](err error) ReaderResult[A] { _ = "STUB: not implemented"; return nil }
 
 // Right creates a ReaderResult that always succeeds with the given value.
 //
@@ -114,9 +108,7 @@ func Left[A any](err error) ReaderResult[A] {
 //   - A ReaderResult[A] that always succeeds with the given value
 //
 //go:inline
-func Right[A any](a A) ReaderResult[A] {
-	return RR.Right[context.Context](a)
-}
+func Right[A any](a A) ReaderResult[A] { _ = "STUB: not implemented"; return nil }
 
 // FromReader lifts a Reader into a ReaderResult that always succeeds.
 //
@@ -134,21 +126,21 @@ func Right[A any](a A) ReaderResult[A] {
 //
 //go:inline
 func FromReader[A any](r Reader[context.Context, A]) ReaderResult[A] {
-	return RR.FromReader(r)
+	_ = "STUB: not implemented"
+	return nil
+
+	//go:inline
 }
 
-//go:inline
 func FromReaderResult[A any](r RS.ReaderResult[A]) ReaderResult[A] {
-	return func(ctx context.Context) (A, error) {
-		return either.Unwrap(r(ctx))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func ToReaderResult[A any](r ReaderResult[A]) RS.ReaderResult[A] {
-	return func(ctx context.Context) Result[A] {
-		return either.TryCatchError(r(ctx))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMap transforms the success value of a ReaderResult using the given function.
@@ -169,27 +161,27 @@ func ToReaderResult[A any](r ReaderResult[A]) RS.ReaderResult[A] {
 //
 //go:inline
 func MonadMap[A, B any](fa ReaderResult[A], f func(A) B) ReaderResult[B] {
-	return RR.MonadMap(fa, f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Map is the curried version of MonadMap, useful for function composition.
+	//
+	// It returns an Operator that can be used in pipelines with F.Pipe.
+	//
+	// Type Parameters:
+	//   - A: The input value type
+	//   - B: The output value type
+	//
+	// Parameters:
+	//   - f: The transformation function
+	//
+	// Returns:
+	//   - An Operator that transforms ReaderResult[A] to ReaderResult[B]
+	//
+	//go:inline
 }
 
-// Map is the curried version of MonadMap, useful for function composition.
-//
-// It returns an Operator that can be used in pipelines with F.Pipe.
-//
-// Type Parameters:
-//   - A: The input value type
-//   - B: The output value type
-//
-// Parameters:
-//   - f: The transformation function
-//
-// Returns:
-//   - An Operator that transforms ReaderResult[A] to ReaderResult[B]
-//
-//go:inline
-func Map[A, B any](f func(A) B) Operator[A, B] {
-	return RR.Map[context.Context](f)
-}
+func Map[A, B any](f func(A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChain sequences two ReaderResult computations where the second depends on the first.
 //
@@ -210,7 +202,8 @@ func Map[A, B any](f func(A) B) Operator[A, B] {
 //
 //go:inline
 func MonadChain[A, B any](ma ReaderResult[A], f Kleisli[A, B]) ReaderResult[B] {
-	return RR.MonadChain(ma, WithContextK(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain is the curried version of MonadChain, useful for function composition.
@@ -228,9 +221,7 @@ func MonadChain[A, B any](ma ReaderResult[A], f Kleisli[A, B]) ReaderResult[B] {
 //   - An Operator that chains ReaderResult computations
 //
 //go:inline
-func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] {
-	return RR.Chain(WithContextK(f))
-}
+func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Of creates a ReaderResult that always succeeds with the given value.
 //
@@ -247,9 +238,7 @@ func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] {
 //   - A ReaderResult[A] that always succeeds with the given value
 //
 //go:inline
-func Of[A any](a A) ReaderResult[A] {
-	return RR.Of[context.Context](a)
-}
+func Of[A any](a A) ReaderResult[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadAp applies a function wrapped in a ReaderResult to a value wrapped in a ReaderResult.
 //
@@ -304,44 +293,8 @@ func Of[A any](a A) ReaderResult[A] {
 //	result := readerresult.MonadAp(addTen, value)
 //	_, err := result(ctx)  // Returns context cancellation error
 func MonadAp[B, A any](fab ReaderResult[func(A) B], fa ReaderResult[A]) ReaderResult[B] {
-	return func(ctx context.Context) (B, error) {
-
-		if ctx.Err() != nil {
-			return result.Left[B](context.Cause(ctx))
-		}
-
-		var wg sync.WaitGroup
-		wg.Add(1)
-
-		cancelCtx, cancelFct := context.WithCancel(ctx)
-		defer cancelFct()
-
-		var a A
-		var aerr error
-
-		go func() {
-			defer wg.Done()
-			a, aerr = fa(cancelCtx)
-			if aerr != nil {
-				cancelFct()
-			}
-		}()
-
-		ab, aberr := fab(cancelCtx)
-		if aberr != nil {
-			cancelFct()
-			wg.Wait()
-			return result.Left[B](aberr)
-		}
-
-		wg.Wait()
-
-		if aerr != nil {
-			return result.Left[B](aerr)
-		}
-
-		return result.Of(ab(a))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap is the curried version of MonadAp, useful for function composition.
@@ -374,23 +327,24 @@ func MonadAp[B, A any](fab ReaderResult[func(A) B], fa ReaderResult[A]) ReaderRe
 //	output, err := result(ctx)  // Returns (42, nil)
 //
 //go:inline
-func Ap[B, A any](fa ReaderResult[A]) Operator[func(A) B, B] {
-	return function.Bind2nd(MonadAp[B, A], fa)
-}
+func Ap[B, A any](fa ReaderResult[A]) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
 func FromPredicate[A any](pred func(A) bool, onFalse func(A) error) Kleisli[A, A] {
-	return WithContextK(RR.FromPredicate[context.Context](pred, onFalse))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func Fold[A, B any](onLeft reader.Kleisli[context.Context, error, B], onRight reader.Kleisli[context.Context, A, B]) func(ReaderResult[A]) Reader[context.Context, B] {
-	return RR.Fold(onLeft, onRight)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func GetOrElse[A any](onLeft reader.Kleisli[context.Context, error, A]) func(ReaderResult[A]) Reader[context.Context, A] {
-	return RR.GetOrElse(onLeft)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // OrElse recovers from a Left (error) by providing an alternative computation.
@@ -414,13 +368,12 @@ func GetOrElse[A any](onLeft reader.Kleisli[context.Context, error, A]) func(Rea
 //	result := recover(readerresult.Of(42))(ctx) // Right(42) - unchanged
 //
 //go:inline
-func OrElse[A any](onLeft Kleisli[error, A]) Operator[A, A] {
-	return RR.OrElse(WithContextK(onLeft))
-}
+func OrElse[A any](onLeft Kleisli[error, A]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
 func OrLeft[A any](onLeft reader.Kleisli[context.Context, error, error]) Operator[A, A] {
-	return RR.OrLeft[A](onLeft)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ask retrieves the current context.Context environment.
@@ -432,9 +385,7 @@ func OrLeft[A any](onLeft reader.Kleisli[context.Context, error, error]) Operato
 //   - A ReaderResult[context.Context] that returns the environment
 //
 //go:inline
-func Ask() ReaderResult[context.Context] {
-	return RR.Ask[context.Context]()
-}
+func Ask() ReaderResult[context.Context] { _ = "STUB: not implemented"; return nil }
 
 // Asks extracts a value from the context.Context environment using a Reader function.
 //
@@ -452,32 +403,39 @@ func Ask() ReaderResult[context.Context] {
 //
 //go:inline
 func Asks[A any](r Reader[context.Context, A]) ReaderResult[A] {
-	return RR.Asks(r)
+	_ = "STUB: not implemented"
+
+	//go:inline
+	return nil
 }
 
-//go:inline
 func MonadChainEitherK[A, B any](ma ReaderResult[A], f RES.Kleisli[A, B]) ReaderResult[B] {
-	return RR.MonadChainEitherK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func ChainEitherK[A, B any](f RES.Kleisli[A, B]) Operator[A, B] {
-	return RR.ChainEitherK[context.Context](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MonadChainReaderK[A, B any](ma ReaderResult[A], f result.Kleisli[A, B]) ReaderResult[B] {
-	return RR.MonadChainReaderK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func ChainReaderK[A, B any](f result.Kleisli[A, B]) Operator[A, B] {
-	return RR.ChainReaderK[context.Context](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func ChainOptionK[A, B any](onNone Lazy[error]) func(option.Kleisli[A, B]) Operator[A, B] {
-	return RR.ChainOptionK[context.Context, A, B](onNone)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flatten removes one level of ReaderResult nesting.
@@ -496,17 +454,21 @@ func ChainOptionK[A, B any](onNone Lazy[error]) func(option.Kleisli[A, B]) Opera
 //
 //go:inline
 func Flatten[A any](mma ReaderResult[ReaderResult[A]]) ReaderResult[A] {
-	return RR.Flatten(mma)
+	_ = "STUB: not implemented"
+	return nil
+
+	//go:inline
 }
 
-//go:inline
 func MonadBiMap[A, B any](fa ReaderResult[A], f Endomorphism[error], g func(A) B) ReaderResult[B] {
-	return RR.MonadBiMap(fa, f, g)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func BiMap[A, B any](f Endomorphism[error], g func(A) B) Operator[A, B] {
-	return RR.BiMap[context.Context](f, g)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Read executes a ReaderResult by providing it with a context.Context.
@@ -525,38 +487,37 @@ func BiMap[A, B any](f Endomorphism[error], g func(A) B) Operator[A, B] {
 //
 //go:inline
 func Read[A any](ctx context.Context) func(ReaderResult[A]) (A, error) {
-	return RR.Read[A](ctx)
+	_ = "STUB: not implemented"
+	return nil
+
+	//go:inline
 }
 
-//go:inline
 func MonadFlap[A, B any](fab ReaderResult[func(A) B], a A) ReaderResult[B] {
-	return RR.MonadFlap(fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
-func Flap[B, A any](a A) Operator[func(A) B, B] {
-	return RR.Flap[context.Context, B](a)
-}
+func Flap[B, A any](a A) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
 func MonadMapLeft[A any](fa ReaderResult[A], f Endomorphism[error]) ReaderResult[A] {
-	return RR.MonadMapLeft(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
-func MapLeft[A any](f Endomorphism[error]) Operator[A, A] {
-	return RR.MapLeft[context.Context, A](f)
-}
+func MapLeft[A any](f Endomorphism[error]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
 func MonadAlt[A any](first ReaderResult[A], second Lazy[ReaderResult[A]]) ReaderResult[A] {
-	return RR.MonadAlt(first, second)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
-func Alt[A any](second Lazy[ReaderResult[A]]) Operator[A, A] {
-	return RR.Alt(second)
-}
+func Alt[A any](second Lazy[ReaderResult[A]]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Local transforms the context.Context environment before passing it to a ReaderResult computation.
 //
@@ -616,16 +577,8 @@ func Alt[A any](second Lazy[ReaderResult[A]]) Operator[A, A] {
 //	    withTimeout,
 //	)
 func Local[A any](f func(context.Context) (context.Context, context.CancelFunc)) Operator[A, A] {
-	return func(rr ReaderResult[A]) ReaderResult[A] {
-		return func(ctx context.Context) (A, error) {
-			if ctx.Err() != nil {
-				return result.Left[A](context.Cause(ctx))
-			}
-			otherCtx, otherCancel := f(ctx)
-			defer otherCancel()
-			return rr(otherCtx)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WithTimeout adds a timeout to the context for a ReaderResult computation.
@@ -681,9 +634,8 @@ func Local[A any](f func(context.Context) (context.Context, context.CancelFunc))
 //	)
 //	data, err := result(context.Background())  // Returns (Data{Value: "quick"}, nil)
 func WithTimeout[A any](timeout time.Duration) Operator[A, A] {
-	return Local[A](func(ctx context.Context) (context.Context, context.CancelFunc) {
-		return context.WithTimeout(ctx, timeout)
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WithDeadline adds an absolute deadline to the context for a ReaderResult computation.
@@ -705,8 +657,4 @@ func WithTimeout[A any](timeout time.Duration) Operator[A, A] {
 //
 // Returns:
 //   - An Operator that runs the computation with a deadline
-func WithDeadline[A any](deadline time.Time) Operator[A, A] {
-	return Local[A](func(ctx context.Context) (context.Context, context.CancelFunc) {
-		return context.WithDeadline(ctx, deadline)
-	})
-}
+func WithDeadline[A any](deadline time.Time) Operator[A, A] { _ = "STUB: not implemented"; return nil }

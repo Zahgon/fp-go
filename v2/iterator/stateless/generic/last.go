@@ -15,12 +15,8 @@
 
 package generic
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	O "github.com/IBM/fp-go/v2/option"
-)
-
 // Last returns the last item in an iterator if such an item exists
 func Last[GU ~func() Option[Pair[GU, U]], U any](mu GU) Option[U] {
-	return reduce(mu, F.Ignore1of2[Option[U]](O.Of[U]), O.None[U]())
+	_ = "STUB: not implemented"
+	return nil
 }

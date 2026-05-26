@@ -51,18 +51,8 @@
 package iter
 
 import (
-	"slices"
-
-	I "iter"
-
-	A "github.com/IBM/fp-go/v2/array"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/functor"
-	G "github.com/IBM/fp-go/v2/internal/iter"
 	M "github.com/IBM/fp-go/v2/monoid"
 	"github.com/IBM/fp-go/v2/option"
-	"github.com/IBM/fp-go/v2/pair"
-	"github.com/IBM/fp-go/v2/reader"
 )
 
 // Of creates a sequence containing a single element.
@@ -91,14 +81,10 @@ import (
 //   - MonadOf: Alias for Of in monadic context
 //
 //go:inline
-func Of[A any](a A) Seq[A] {
-	return G.Of[Seq[A]](a)
-}
+func Of[A any](a A) Seq[A] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
-func MonadOf[A any](a A) Seq[A] {
-	return G.Of[Seq[A]](a)
-}
+func MonadOf[A any](a A) Seq[A] { _ = "STUB: not implemented"; return nil }
 
 // FromIO converts an IO computation into a single-element sequence.
 // The IO computation is executed when the sequence is consumed, and its result
@@ -127,11 +113,7 @@ func MonadOf[A any](a A) Seq[A] {
 // See Also:
 //   - FromLazy: Converts a Lazy computation to a sequence
 //   - Of: Creates a sequence from a pure value
-func FromIO[A any](io IO[A]) Seq[A] {
-	return func(yield func(A) bool) {
-		yield(io())
-	}
-}
+func FromIO[A any](io IO[A]) Seq[A] { _ = "STUB: not implemented"; return nil }
 
 // FromLazy converts a Lazy computation into a single-element sequence.
 // The Lazy computation is executed when the sequence is consumed, and its result
@@ -165,20 +147,18 @@ func FromIO[A any](io IO[A]) Seq[A] {
 //   - FromIO: Converts an IO computation to a sequence
 //   - Of: Creates a sequence from a pure value
 func FromLazy[A any](l Lazy[A]) Seq[A] {
-	return FromIO(l)
+	_ = "STUB: not implemented"
+
+	// Of2 creates a key-value sequence containing a single key-value pair.
+	//
+	// Example:
+	//
+	//	seq := Of2("key", 100)
+	//	// yields: ("key", 100)
+	return nil
 }
 
-// Of2 creates a key-value sequence containing a single key-value pair.
-//
-// Example:
-//
-//	seq := Of2("key", 100)
-//	// yields: ("key", 100)
-func Of2[K, A any](k K, a A) Seq2[K, A] {
-	return func(yield func(K, A) bool) {
-		yield(k, a)
-	}
-}
+func Of2[K, A any](k K, a A) Seq2[K, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap transforms each element in a sequence using the provided function.
 // This is the monadic version that takes the sequence as the first parameter.
@@ -196,15 +176,7 @@ func Of2[K, A any](k K, a A) Seq2[K, A] {
 //	seq := From(1, 2, 3)
 //	result := MonadMap(seq, N.Mul(2))
 //	// yields: 2, 4, 6
-func MonadMap[A, B any](as Seq[A], f func(A) B) Seq[B] {
-	return func(yield Predicate[B]) {
-		for a := range as {
-			if !yield(f(a)) {
-				return
-			}
-		}
-	}
-}
+func MonadMap[A, B any](as Seq[A], f func(A) B) Seq[B] { _ = "STUB: not implemented"; return nil }
 
 // Map returns a function that transforms each element in a sequence.
 // This is the curried version of MonadMap.
@@ -217,9 +189,7 @@ func MonadMap[A, B any](as Seq[A], f func(A) B) Seq[B] {
 //	// yields: 2, 4, 6
 //
 //go:inline
-func Map[A, B any](f func(A) B) Operator[A, B] {
-	return F.Bind2nd(MonadMap[A, B], f)
-}
+func Map[A, B any](f func(A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadMapWithIndex transforms each element in a sequence using a function that also receives the element's index.
 //
@@ -231,15 +201,8 @@ func Map[A, B any](f func(A) B) Operator[A, B] {
 //	})
 //	// yields: "0:a", "1:b", "2:c"
 func MonadMapWithIndex[A, B any](as Seq[A], f func(int, A) B) Seq[B] {
-	return func(yield Predicate[B]) {
-		var i int
-		for a := range as {
-			if !yield(f(i, a)) {
-				return
-			}
-			i += 1
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MapWithIndex returns a function that transforms elements with their indices.
@@ -255,9 +218,7 @@ func MonadMapWithIndex[A, B any](as Seq[A], f func(int, A) B) Seq[B] {
 //	// yields: "0:a", "1:b", "2:c"
 //
 //go:inline
-func MapWithIndex[A, B any](f func(int, A) B) Operator[A, B] {
-	return F.Bind2nd(MonadMapWithIndex[A, B], f)
-}
+func MapWithIndex[A, B any](f func(int, A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadMapWithKey transforms values in a key-value sequence using a function that receives both key and value.
 //
@@ -267,13 +228,8 @@ func MapWithIndex[A, B any](f func(int, A) B) Operator[A, B] {
 //	result := MonadMapWithKey(seq, func(k string, v int) int { return v * 2 })
 //	// yields: ("x", 20)
 func MonadMapWithKey[K, A, B any](as Seq2[K, A], f func(K, A) B) Seq2[K, B] {
-	return func(yield func(K, B) bool) {
-		for k, a := range as {
-			if !yield(k, f(k, a)) {
-				return
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MapWithKey returns a function that transforms values using their keys.
@@ -288,7 +244,8 @@ func MonadMapWithKey[K, A, B any](as Seq2[K, A], f func(K, A) B) Seq2[K, B] {
 //
 //go:inline
 func MapWithKey[K, A, B any](f func(K, A) B) Operator2[K, A, B] {
-	return F.Bind2nd(MonadMapWithKey[K, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFilter returns a sequence containing only elements that satisfy the predicate.
@@ -306,17 +263,7 @@ func MapWithKey[K, A, B any](f func(K, A) B) Operator2[K, A, B] {
 //	seq := From(1, 2, 3, 4, 5)
 //	result := MonadFilter(seq, func(x int) bool { return x%2 == 0 })
 //	// yields: 2, 4
-func MonadFilter[A any](as Seq[A], pred func(A) bool) Seq[A] {
-	return func(yield Predicate[A]) {
-		for a := range as {
-			if pred(a) {
-				if !yield(a) {
-					return
-				}
-			}
-		}
-	}
-}
+func MonadFilter[A any](as Seq[A], pred func(A) bool) Seq[A] { _ = "STUB: not implemented"; return nil }
 
 // Filter returns a function that filters elements based on a predicate.
 // This is the curried version of MonadFilter.
@@ -329,9 +276,7 @@ func MonadFilter[A any](as Seq[A], pred func(A) bool) Seq[A] {
 //	// yields: 2, 4
 //
 //go:inline
-func Filter[A any](pred func(A) bool) Operator[A, A] {
-	return F.Bind2nd(MonadFilter[A], pred)
-}
+func Filter[A any](pred func(A) bool) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadFilterWithIndex filters elements using a predicate that also receives the element's index.
 //
@@ -341,17 +286,8 @@ func Filter[A any](pred func(A) bool) Operator[A, A] {
 //	result := MonadFilterWithIndex(seq, func(i int, s string) bool { return i%2 == 0 })
 //	// yields: "a", "c" (elements at even indices)
 func MonadFilterWithIndex[A any](as Seq[A], pred func(int, A) bool) Seq[A] {
-	return func(yield Predicate[A]) {
-		var i int
-		for a := range as {
-			if pred(i, a) {
-				if !yield(a) {
-					return
-				}
-			}
-			i++
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterWithIndex returns a function that filters elements based on their index and value.
@@ -366,7 +302,8 @@ func MonadFilterWithIndex[A any](as Seq[A], pred func(int, A) bool) Seq[A] {
 //
 //go:inline
 func FilterWithIndex[A any](pred func(int, A) bool) Operator[A, A] {
-	return F.Bind2nd(MonadFilterWithIndex[A], pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFilterWithKey filters key-value pairs using a predicate that receives both key and value.
@@ -377,15 +314,8 @@ func FilterWithIndex[A any](pred func(int, A) bool) Operator[A, A] {
 //	result := MonadFilterWithKey(seq, func(k string, v int) bool { return v > 5 })
 //	// yields: ("x", 10)
 func MonadFilterWithKey[K, A any](as Seq2[K, A], pred func(K, A) bool) Seq2[K, A] {
-	return func(yield func(K, A) bool) {
-		for k, a := range as {
-			if pred(k, a) {
-				if !yield(k, a) {
-					return
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterWithKey returns a function that filters key-value pairs based on a predicate.
@@ -400,7 +330,8 @@ func MonadFilterWithKey[K, A any](as Seq2[K, A], pred func(K, A) bool) Seq2[K, A
 //
 //go:inline
 func FilterWithKey[K, A any](pred func(K, A) bool) Operator2[K, A, A] {
-	return F.Bind2nd(MonadFilterWithKey[K, A], pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFilterMap applies a function that returns an Option to each element,
@@ -423,15 +354,8 @@ func FilterWithKey[K, A any](pred func(K, A) bool) Operator2[K, A, A] {
 //	})
 //	// yields: 20, 40
 func MonadFilterMap[A, B any](as Seq[A], f option.Kleisli[A, B]) Seq[B] {
-	return func(yield Predicate[B]) {
-		for a := range as {
-			if b, ok := option.Unwrap(f(a)); ok {
-				if !yield(b) {
-					return
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterMap returns a function that filters and maps in one operation.
@@ -451,7 +375,8 @@ func MonadFilterMap[A, B any](as Seq[A], f option.Kleisli[A, B]) Seq[B] {
 //
 //go:inline
 func FilterMap[A, B any](f option.Kleisli[A, B]) Operator[A, B] {
-	return F.Bind2nd(MonadFilterMap[A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFilterMapWithIndex applies a function with index that returns an Option,
@@ -468,17 +393,8 @@ func FilterMap[A, B any](f option.Kleisli[A, B]) Operator[A, B] {
 //	})
 //	// yields: "0:a", "2:c"
 func MonadFilterMapWithIndex[A, B any](as Seq[A], f func(int, A) Option[B]) Seq[B] {
-	return func(yield Predicate[B]) {
-		var i int
-		for a := range as {
-			if b, ok := option.Unwrap(f(i, a)); ok {
-				if !yield(b) {
-					return
-				}
-			}
-			i++
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterMapWithIndex returns a function that filters and maps with index.
@@ -498,7 +414,8 @@ func MonadFilterMapWithIndex[A, B any](as Seq[A], f func(int, A) Option[B]) Seq[
 //
 //go:inline
 func FilterMapWithIndex[A, B any](f func(int, A) Option[B]) Operator[A, B] {
-	return F.Bind2nd(MonadFilterMapWithIndex[A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFilterMapWithKey applies a function with key that returns an Option to key-value pairs,
@@ -515,15 +432,8 @@ func FilterMapWithIndex[A, B any](f func(int, A) Option[B]) Operator[A, B] {
 //	})
 //	// yields: ("x", 20)
 func MonadFilterMapWithKey[K, A, B any](as Seq2[K, A], f func(K, A) Option[B]) Seq2[K, B] {
-	return func(yield func(K, B) bool) {
-		for k, a := range as {
-			if b, ok := option.Unwrap(f(k, a)); ok {
-				if !yield(k, b) {
-					return
-				}
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FilterMapWithKey returns a function that filters and maps key-value pairs.
@@ -543,7 +453,8 @@ func MonadFilterMapWithKey[K, A, B any](as Seq2[K, A], f func(K, A) Option[B]) S
 //
 //go:inline
 func FilterMapWithKey[K, A, B any](f func(K, A) Option[B]) Operator2[K, A, B] {
-	return F.Bind2nd(MonadFilterMapWithKey[K, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChain applies a function that returns a sequence to each element and flattens the results.
@@ -564,17 +475,7 @@ func FilterMapWithKey[K, A, B any](f func(K, A) Option[B]) Operator2[K, A, B] {
 //	    return From(x, x*10)
 //	})
 //	// yields: 1, 10, 2, 20, 3, 30
-func MonadChain[A, B any](as Seq[A], f Kleisli[A, B]) Seq[B] {
-	return func(yield Predicate[B]) {
-		for a := range as {
-			for b := range f(a) {
-				if !yield(b) {
-					return
-				}
-			}
-		}
-	}
-}
+func MonadChain[A, B any](as Seq[A], f Kleisli[A, B]) Seq[B] { _ = "STUB: not implemented"; return nil }
 
 // Chain returns a function that chains (flatMaps) a sequence transformation.
 // This is the curried version of MonadChain.
@@ -587,60 +488,58 @@ func MonadChain[A, B any](as Seq[A], f Kleisli[A, B]) Seq[B] {
 //	// yields: 1, 1, 2, 2, 3, 3
 //
 //go:inline
-func Chain[A, B any](f func(A) Seq[B]) Operator[A, B] {
-	return F.Bind2nd(MonadChain[A, B], f)
-}
+func Chain[A, B any](f func(A) Seq[B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
 func FlatMap[A, B any](f func(A) Seq[B]) Operator[A, B] {
-	return Chain(f)
+	_ = "STUB: not implemented"
+
+	// ConcatMap is an alias for Chain that emphasizes sequential concatenation.
+	// It maps each element to a sequence and concatenates the results in order.
+	//
+	// Unlike concurrent operations, ConcatMap preserves the order of elements:
+	// it fully processes each input element (yielding all elements from f(a))
+	// before moving to the next input element.
+	//
+	// Example:
+	//
+	//	seq := From(1, 2, 3)
+	//	result := ConcatMap(func(x int) Seq[int] {
+	//	    return From(x, x*10)
+	//	})(seq)
+	//	// yields: 1, 10, 2, 20, 3, 30 (order preserved)
+	//
+	//go:inline
+	return nil
 }
 
-// ConcatMap is an alias for Chain that emphasizes sequential concatenation.
-// It maps each element to a sequence and concatenates the results in order.
-//
-// Unlike concurrent operations, ConcatMap preserves the order of elements:
-// it fully processes each input element (yielding all elements from f(a))
-// before moving to the next input element.
-//
-// Example:
-//
-//	seq := From(1, 2, 3)
-//	result := ConcatMap(func(x int) Seq[int] {
-//	    return From(x, x*10)
-//	})(seq)
-//	// yields: 1, 10, 2, 20, 3, 30 (order preserved)
-//
-//go:inline
 func ConcatMap[A, B any](f func(A) Seq[B]) Operator[A, B] {
-	return Chain(f)
+	_ = "STUB: not implemented"
+
+	// Flatten flattens a sequence of sequences into a single sequence.
+	//
+	// Marble Diagram:
+	//
+	//	Input:  --[1,2]--[3,4]--[5]-->
+	//	Flatten
+	//	Output: --1-2----3-4----5---->
+	//
+	// RxJS Equivalent: [mergeAll] - https://rxjs.dev/api/operators/mergeAll
+	//
+	// Example:
+	//
+	//	nested := From(From(1, 2), From(3, 4), From(5))
+	//	result := Flatten(nested)
+	//	// yields: 1, 2, 3, 4, 5
+	//
+	//go:inline
+	return nil
 }
 
-// Flatten flattens a sequence of sequences into a single sequence.
-//
-// Marble Diagram:
-//
-//	Input:  --[1,2]--[3,4]--[5]-->
-//	Flatten
-//	Output: --1-2----3-4----5---->
-//
-// RxJS Equivalent: [mergeAll] - https://rxjs.dev/api/operators/mergeAll
-//
-// Example:
-//
-//	nested := From(From(1, 2), From(3, 4), From(5))
-//	result := Flatten(nested)
-//	// yields: 1, 2, 3, 4, 5
-//
-//go:inline
-func Flatten[A any](mma Seq[Seq[A]]) Seq[A] {
-	return MonadChain(mma, F.Identity[Seq[A]])
-}
+func Flatten[A any](mma Seq[Seq[A]]) Seq[A] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
-func ConcatAll[A any](mma Seq[Seq[A]]) Seq[A] {
-	return Flatten(mma)
-}
+func ConcatAll[A any](mma Seq[Seq[A]]) Seq[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadAp applies a sequence of functions to a sequence of values.
 // This is the applicative apply operation.
@@ -661,9 +560,7 @@ func ConcatAll[A any](mma Seq[Seq[A]]) Seq[A] {
 //	// yields: 10, 6, 15, 13 (each function applied to each value)
 //
 //go:inline
-func MonadAp[B, A any](fab Seq[func(A) B], fa Seq[A]) Seq[B] {
-	return MonadChain(fab, F.Bind1st(MonadMap[A, B], fa))
-}
+func MonadAp[B, A any](fab Seq[func(A) B], fa Seq[A]) Seq[B] { _ = "STUB: not implemented"; return nil }
 
 // Ap returns a function that applies functions to values.
 // This is the curried version of MonadAp.
@@ -676,9 +573,7 @@ func MonadAp[B, A any](fab Seq[func(A) B], fa Seq[A]) Seq[B] {
 //	// yields: 10, 15
 //
 //go:inline
-func Ap[B, A any](fa Seq[A]) Operator[func(A) B, B] {
-	return Chain(F.Bind1st(MonadMap[A, B], fa))
-}
+func Ap[B, A any](fa Seq[A]) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // From creates a sequence from a variadic list of elements.
 //
@@ -688,9 +583,7 @@ func Ap[B, A any](fa Seq[A]) Operator[func(A) B, B] {
 //	// yields: 1, 2, 3, 4, 5
 //
 //go:inline
-func From[A any](data ...A) Seq[A] {
-	return slices.Values(data)
-}
+func From[A any](data ...A) Seq[A] { _ = "STUB: not implemented"; return nil }
 
 // Empty returns an empty sequence that yields no elements.
 //
@@ -700,9 +593,7 @@ func From[A any](data ...A) Seq[A] {
 //	// yields nothing
 //
 //go:inline
-func Empty[A any]() Seq[A] {
-	return G.Empty[Seq[A]]()
-}
+func Empty[A any]() Seq[A] { _ = "STUB: not implemented"; return nil }
 
 // MakeBy creates a sequence of n elements by applying a function to each index.
 // Returns an empty sequence if n <= 0.
@@ -712,19 +603,12 @@ func Empty[A any]() Seq[A] {
 //	seq := MakeBy(5, func(i int) int { return i * i })
 //	// yields: 0, 1, 4, 9, 16
 func MakeBy[A any](n int, f func(int) A) Seq[A] {
+	_ = "STUB: not implemented"
 	// sanity check
-	if n <= 0 {
-		return Empty[A]()
-	}
-	// run the generator function across the input
-	return func(yield Predicate[A]) {
-		for i := range n {
-			if !yield(f(i)) {
-				return
-			}
-		}
-	}
+	return nil
 }
+
+// run the generator function across the input
 
 // Replicate creates a sequence containing n copies of the same element.
 //
@@ -734,9 +618,7 @@ func MakeBy[A any](n int, f func(int) A) Seq[A] {
 //	// yields: "hello", "hello", "hello"
 //
 //go:inline
-func Replicate[A any](n int, a A) Seq[A] {
-	return MakeBy(n, F.Constant1[int](a))
-}
+func Replicate[A any](n int, a A) Seq[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadReduce reduces a sequence to a single value by applying a function to each element
 // and an accumulator, starting with an initial value.
@@ -762,7 +644,8 @@ func Replicate[A any](n int, a A) Seq[A] {
 //
 //go:inline
 func MonadReduce[A, B any](fa Seq[A], f func(B, A) B, initial B) IO[B] {
-	return G.MonadReduce[IO[B]](fa, f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Reduce returns a function that reduces a sequence to a single value and produces an IO.
@@ -781,9 +664,8 @@ func MonadReduce[A, B any](fa Seq[A], f func(B, A) B, initial B) IO[B] {
 //	result := resultIO()
 //	// result == 15
 func Reduce[A, B any](f func(B, A) B, initial B) func(Seq[A]) IO[B] {
-	return func(fa Seq[A]) IO[B] {
-		return MonadReduce(fa, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadReduceWithIndex reduces a sequence using a function that also receives the element's index.
@@ -798,7 +680,8 @@ func Reduce[A, B any](f func(B, A) B, initial B) func(Seq[A]) IO[B] {
 //
 //go:inline
 func MonadReduceWithIndex[A, B any](fa Seq[A], f func(int, B, A) B, initial B) IO[B] {
-	return G.MonadReduceWithIndex[IO[B]](fa, f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReduceWithIndex returns a function that reduces with index.
@@ -813,9 +696,8 @@ func MonadReduceWithIndex[A, B any](fa Seq[A], f func(int, B, A) B, initial B) I
 //	result := weightedSum(seq)
 //	// returns: 80
 func ReduceWithIndex[A, B any](f func(int, B, A) B, initial B) func(Seq[A]) IO[B] {
-	return func(fa Seq[A]) IO[B] {
-		return MonadReduceWithIndex(fa, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadReduceWithKey reduces a key-value sequence using a function that receives the key.
@@ -828,13 +710,8 @@ func ReduceWithIndex[A, B any](f func(int, B, A) B, initial B) func(Seq[A]) IO[B
 //	}, 0)
 //	// returns: 10
 func MonadReduceWithKey[K, A, B any](fa Seq2[K, A], f func(K, B, A) B, initial B) IO[B] {
-	return func() B {
-		current := initial
-		for k, a := range fa {
-			current = f(k, current, a)
-		}
-		return current
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReduceWithKey returns a function that reduces key-value pairs.
@@ -849,9 +726,8 @@ func MonadReduceWithKey[K, A, B any](fa Seq2[K, A], f func(K, B, A) B, initial B
 //	result := sumValues(seq)
 //	// returns: 10
 func ReduceWithKey[K, A, B any](f func(K, B, A) B, initial B) func(Seq2[K, A]) IO[B] {
-	return func(fa Seq2[K, A]) IO[B] {
-		return MonadReduceWithKey(fa, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFold folds a sequence using a monoid's concat operation and empty value.
@@ -864,9 +740,7 @@ func ReduceWithKey[K, A, B any](f func(K, B, A) B, initial B) func(Seq2[K, A]) I
 //	// returns: 15
 //
 //go:inline
-func MonadFold[A any](fa Seq[A], m M.Monoid[A]) IO[A] {
-	return MonadReduce(fa, m.Concat, m.Empty())
-}
+func MonadFold[A any](fa Seq[A], m M.Monoid[A]) IO[A] { _ = "STUB: not implemented"; return nil }
 
 // Fold returns a function that folds a sequence using a monoid.
 // This is the curried version of MonadFold.
@@ -880,9 +754,7 @@ func MonadFold[A any](fa Seq[A], m M.Monoid[A]) IO[A] {
 //	// returns: 15
 //
 //go:inline
-func Fold[A any](m M.Monoid[A]) func(Seq[A]) IO[A] {
-	return Reduce(m.Concat, m.Empty())
-}
+func Fold[A any](m M.Monoid[A]) func(Seq[A]) IO[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadFoldMap maps each element to a monoid value and combines them using the monoid.
 //
@@ -897,7 +769,8 @@ func Fold[A any](m M.Monoid[A]) func(Seq[A]) IO[A] {
 //
 //go:inline
 func MonadFoldMap[A, B any](fa Seq[A], f func(A) B, m M.Monoid[B]) IO[B] {
-	return MonadFold(MonadMap(fa, f), m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FoldMap returns a function that maps and folds using a monoid.
@@ -915,10 +788,8 @@ func MonadFoldMap[A, B any](fa Seq[A], f func(A) B, m M.Monoid[B]) IO[B] {
 //
 //go:inline
 func FoldMap[A, B any](m M.Monoid[B]) func(func(A) B) func(Seq[A]) IO[B] {
-	return F.Pipe1(
-		Map[A, B],
-		reader.Map[func(A) B](reader.Map[Seq[A]](Fold(m))),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFoldMapWithIndex maps each element with its index to a monoid value and combines them.
@@ -934,9 +805,8 @@ func FoldMap[A, B any](m M.Monoid[B]) func(func(A) B) func(Seq[A]) IO[B] {
 //
 //go:inline
 func MonadFoldMapWithIndex[A, B any](fa Seq[A], f func(int, A) B, m M.Monoid[B]) IO[B] {
-	return MonadReduceWithIndex(fa, func(i int, b B, a A) B {
-		return m.Concat(b, f(i, a))
-	}, m.Empty())
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FoldMapWithIndex returns a function that maps with index and folds.
@@ -954,11 +824,8 @@ func MonadFoldMapWithIndex[A, B any](fa Seq[A], f func(int, A) B, m M.Monoid[B])
 //
 //go:inline
 func FoldMapWithIndex[A, B any](m M.Monoid[B]) func(func(int, A) B) func(Seq[A]) IO[B] {
-	return func(f func(int, A) B) func(Seq[A]) IO[B] {
-		return func(as Seq[A]) IO[B] {
-			return MonadFoldMapWithIndex(as, f, m)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFoldMapWithKey maps each key-value pair to a monoid value and combines them.
@@ -974,9 +841,8 @@ func FoldMapWithIndex[A, B any](m M.Monoid[B]) func(func(int, A) B) func(Seq[A])
 //
 //go:inline
 func MonadFoldMapWithKey[K, A, B any](fa Seq2[K, A], f func(K, A) B, m M.Monoid[B]) IO[B] {
-	return MonadReduceWithKey(fa, func(k K, b B, a A) B {
-		return m.Concat(b, f(k, a))
-	}, m.Empty())
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FoldMapWithKey returns a function that maps with key and folds.
@@ -984,11 +850,8 @@ func MonadFoldMapWithKey[K, A, B any](fa Seq2[K, A], f func(K, A) B, m M.Monoid[
 //
 //go:inline
 func FoldMapWithKey[K, A, B any](m M.Monoid[B]) func(func(K, A) B) func(Seq2[K, A]) IO[B] {
-	return func(f func(K, A) B) func(Seq2[K, A]) IO[B] {
-		return func(as Seq2[K, A]) IO[B] {
-			return MonadFoldMapWithKey(as, f, m)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFlap applies a fixed value to a sequence of functions.
@@ -1008,17 +871,13 @@ func FoldMapWithKey[K, A, B any](m M.Monoid[B]) func(func(K, A) B) func(Seq2[K, 
 //	// yields: 10, 15
 //
 //go:inline
-func MonadFlap[B, A any](fab Seq[func(A) B], a A) Seq[B] {
-	return functor.MonadFlap(MonadMap[func(A) B, B], fab, a)
-}
+func MonadFlap[B, A any](fab Seq[func(A) B], a A) Seq[B] { _ = "STUB: not implemented"; return nil }
 
 // Flap returns a function that applies a fixed value to functions.
 // This is the curried version of MonadFlap.
 //
 //go:inline
-func Flap[B, A any](a A) Operator[func(A) B, B] {
-	return functor.Flap(Map[func(A) B, B], a)
-}
+func Flap[B, A any](a A) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // Prepend returns a function that adds an element to the beginning of a sequence.
 //
@@ -1037,9 +896,7 @@ func Flap[B, A any](a A) Operator[func(A) B, B] {
 //	// yields: 1, 2, 3, 4
 //
 //go:inline
-func Prepend[A any](head A) Operator[A, A] {
-	return G.Prepend[Seq[A]](head)
-}
+func Prepend[A any](head A) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Append returns a function that adds an element to the end of a sequence.
 //
@@ -1058,9 +915,7 @@ func Prepend[A any](head A) Operator[A, A] {
 //	// yields: 1, 2, 3, 4
 //
 //go:inline
-func Append[A any](tail A) Operator[A, A] {
-	return G.Append[Seq[A]](tail)
-}
+func Append[A any](tail A) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadZip combines two sequences into a sequence of pairs.
 // The resulting sequence stops when either input sequence is exhausted.
@@ -1081,24 +936,7 @@ func Append[A any](tail A) Operator[A, A] {
 //	seqB := From("a", "b")
 //	result := MonadZip(seqA, seqB)
 //	// yields: (1, "a"), (2, "b")
-func MonadZip[A, B any](fa Seq[A], fb Seq[B]) Seq2[A, B] {
-
-	return func(yield func(A, B) bool) {
-		na, sa := I.Pull(fa)
-		defer sa()
-
-		for b := range fb {
-			a, ok := na()
-			if !ok {
-				return
-			}
-
-			if !yield(a, b) {
-				return
-			}
-		}
-	}
-}
+func MonadZip[A, B any](fa Seq[A], fb Seq[B]) Seq2[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Zip returns a function that zips a sequence with another sequence.
 // This is the curried version of MonadZip.
@@ -1112,9 +950,7 @@ func MonadZip[A, B any](fa Seq[A], fb Seq[B]) Seq2[A, B] {
 //	// yields: (1, "a"), (2, "b"), (3, "c")
 //
 //go:inline
-func Zip[A, B any](fb Seq[B]) func(Seq[A]) Seq2[A, B] {
-	return F.Bind2nd(MonadZip[A, B], fb)
-}
+func Zip[A, B any](fb Seq[B]) func(Seq[A]) Seq2[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadMapToArray maps each element in a sequence using a function and collects the results into an array.
 // This is a convenience function that combines Map and collection into a single operation.
@@ -1137,9 +973,7 @@ func Zip[A, B any](fb Seq[B]) func(Seq[A]) Seq2[A, B] {
 //	// returns: []int{2, 4, 6}
 //
 //go:inline
-func MonadMapToArray[A, B any](fa Seq[A], f func(A) B) []B {
-	return G.MonadMapToArray[Seq[A], []B](fa, f)
-}
+func MonadMapToArray[A, B any](fa Seq[A], f func(A) B) []B { _ = "STUB: not implemented"; return nil }
 
 // MapToArray returns a function that maps elements and collects them into an array.
 // This is the curried version of MonadMapToArray.
@@ -1162,9 +996,7 @@ func MonadMapToArray[A, B any](fa Seq[A], f func(A) B) []B {
 //	// returns: []int{2, 4, 6}
 //
 //go:inline
-func MapToArray[A, B any](f func(A) B) func(Seq[A]) []B {
-	return G.MapToArray[Seq[A], []B](f)
-}
+func MapToArray[A, B any](f func(A) B) func(Seq[A]) []B { _ = "STUB: not implemented"; return nil }
 
 // ToSeqPair converts a key-value sequence (Seq2) into a sequence of Pairs.
 //
@@ -1203,15 +1035,7 @@ func MapToArray[A, B any](f func(A) B) func(Seq[A]) []B {
 //	zipped := iter.MonadZip(seq2, iter.Empty[string]())
 //	pairs := iter.ToSeqPair(zipped)
 //	// yields: nothing (empty sequence)
-func ToSeqPair[A, B any](as Seq2[A, B]) Seq[Pair[A, B]] {
-	return func(yield Predicate[Pair[A, B]]) {
-		for a, b := range as {
-			if !yield(pair.MakePair(a, b)) {
-				return
-			}
-		}
-	}
-}
+func ToSeqPair[A, B any](as Seq2[A, B]) Seq[Pair[A, B]] { _ = "STUB: not implemented"; return nil }
 
 // FromSeqPair converts a sequence of Pairs into a key-value sequence.
 //
@@ -1280,15 +1104,7 @@ func ToSeqPair[A, B any](as Seq2[A, B]) Seq[Pair[A, B]] {
 //   - MonadZip: Creates key-value sequences from two sequences
 //   - pair.MakePair: Creates a Pair from two values
 //   - pair.Unpack: Unpacks a Pair into two values
-func FromSeqPair[A, B any](as Seq[Pair[A, B]]) Seq2[A, B] {
-	return func(yield func(A, B) bool) {
-		for p := range as {
-			if !yield(pair.Unpack(p)) {
-				return
-			}
-		}
-	}
-}
+func FromSeqPair[A, B any](as Seq[Pair[A, B]]) Seq2[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Skip returns an operator that skips the first n elements of a sequence.
 //
@@ -1344,9 +1160,7 @@ func FromSeqPair[A, B any](as Seq[Pair[A, B]]) Seq2[A, B] {
 //	    MonadFilter(seq, func(x int) bool { return x%2 == 0 }),
 //	)
 //	// yields: 4, 6, 8, 10 (skip first 3, then filter evens)
-func Skip[U any](count int) Operator[U, U] {
-	return FilterWithIndex(func(idx int, _ U) bool { return idx >= count })
-}
+func Skip[U any](count int) Operator[U, U] { _ = "STUB: not implemented"; return nil }
 
 // Collect materializes a lazy sequence into a slice by consuming all elements.
 // This function eagerly evaluates the entire sequence and collects all values
@@ -1395,6 +1209,4 @@ func Skip[U any](count int) Operator[U, U] {
 //   - From: Creates a sequence from slice elements
 //   - MonadReduce: Reduces a sequence to a single value
 //   - ToSeqPair: Converts Seq2 to Seq of pairs
-func Collect[T any](fa Seq[T]) IO[[]T] {
-	return MonadReduce(fa, A.Append, nil)
-}
+func Collect[T any](fa Seq[T]) IO[[]T] { _ = "STUB: not implemented"; return nil }

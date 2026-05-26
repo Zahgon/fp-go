@@ -118,13 +118,6 @@
 // See the validation package for error types and formatting options.
 package validate
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/readert"
-	"github.com/IBM/fp-go/v2/optics/codec/decode"
-	"github.com/IBM/fp-go/v2/reader"
-)
-
 // Of creates a Validate that always succeeds with the given value.
 //
 // This is the "pure" or "return" operation for the Validate monad. It lifts a plain
@@ -156,9 +149,7 @@ import (
 //   - This is useful for lifting pure values into the validation context
 //   - The input type I is ignored; the validator succeeds regardless of input
 //   - This satisfies the monad laws: Of is the left and right identity for Chain
-func Of[I, A any](a A) Validate[I, A] {
-	return reader.Of[I](decode.Of[Context](a))
-}
+func Of[I, A any](a A) Validate[I, A] { _ = "STUB: not implemented"; return nil }
 
 // OfLazy creates a Validate that defers the computation of a value until needed.
 //
@@ -259,9 +250,7 @@ func Of[I, A any](a A) Validate[I, A] {
 //   - Of: For non-lazy values
 //   - decode.OfLazy: The underlying decode operation
 //   - reader.Of: The reader lifting operation
-func OfLazy[I, A any](fa Lazy[A]) Validate[I, A] {
-	return reader.Of[I](decode.OfLazy[Context](fa))
-}
+func OfLazy[I, A any](fa Lazy[A]) Validate[I, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap applies a function to the successful result of a validation.
 //
@@ -303,13 +292,8 @@ func OfLazy[I, A any](fa Lazy[A]) Validate[I, A] {
 //   - Only applies the function to successful validations
 //   - Satisfies the functor laws: composition and identity
 func MonadMap[I, A, B any](fa Validate[I, A], f func(A) B) Validate[I, B] {
-	return readert.MonadMap[
-		Validate[I, A],
-		Validate[I, B]](
-		decode.MonadMap,
-		fa,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map creates an operator that transforms validation results.
@@ -345,14 +329,7 @@ func MonadMap[I, A, B any](fa Validate[I, A], f func(A) B) Validate[I, B] {
 //   - This is the point-free style version of MonadMap
 //   - Useful for building transformation pipelines
 //   - Can be composed with other operators
-func Map[I, A, B any](f func(A) B) Operator[I, A, B] {
-	return readert.Map[
-		Validate[I, A],
-		Validate[I, B]](
-		decode.Map,
-		f,
-	)
-}
+func Map[I, A, B any](f func(A) B) Operator[I, A, B] { _ = "STUB: not implemented"; return nil }
 
 // Chain sequences two validators, where the second depends on the result of the first.
 //
@@ -407,10 +384,8 @@ func Map[I, A, B any](f func(A) B) Operator[I, A, B] {
 //   - This enables dependent validation logic
 //   - Satisfies the monad laws: associativity and identity
 func Chain[I, A, B any](f Kleisli[I, A, B]) Operator[I, A, B] {
-	return readert.Chain[Validate[I, A]](
-		decode.Chain,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainLeft sequences a computation on the failure (Left) channel of a validation.
@@ -527,10 +502,8 @@ func Chain[I, A, B any](f Kleisli[I, A, B]) Operator[I, A, B] {
 //   - This enables sophisticated error handling strategies including recovery, enrichment, and transformation
 //   - Use OrElse as a semantic alias when emphasizing fallback/alternative logic
 func ChainLeft[I, A any](f Kleisli[I, Errors, A]) Operator[I, A, A] {
-	return readert.Chain[Validate[I, A]](
-		decode.ChainLeft,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainLeft sequences a computation on the failure (Left) channel of a validation.
@@ -665,11 +638,8 @@ func ChainLeft[I, A any](f Kleisli[I, Errors, A]) Operator[I, A, A] {
 //   - MonadAlt: Simplified alternative that ignores error details
 //   - Alt: Curried version of MonadAlt
 func MonadChainLeft[I, A any](fa Validate[I, A], f Kleisli[I, Errors, A]) Validate[I, A] {
-	return readert.MonadChain(
-		decode.MonadChainLeft,
-		fa,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // OrElse provides an alternative validation when the primary validation fails.
@@ -768,58 +738,54 @@ func MonadChainLeft[I, A any](fa Validate[I, A], f Kleisli[I, Errors, A]) Valida
 //   - Choose OrElse for better readability when providing alternatives
 //   - See ChainLeft documentation for detailed behavior and additional examples
 func OrElse[I, A any](f Kleisli[I, Errors, A]) Operator[I, A, A] {
-	return ChainLeft(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// MonadAp applies a validator containing a function to a validator containing a value.
+	//
+	// This is the applicative apply operation for Validate. It allows you to apply
+	// functions wrapped in validation context to values wrapped in validation context,
+	// accumulating errors from both if either fails.
+	//
+	// # Type Parameters
+	//
+	//   - B: The result type after applying the function
+	//   - I: The input type
+	//   - A: The type of the value to which the function is applied
+	//
+	// # Parameters
+	//
+	//   - fab: A validator that produces a function from A to B
+	//   - fa: A validator that produces a value of type A
+	//
+	// # Returns
+	//
+	// A Validate[I, B] that applies the function to the value if both validations succeed.
+	//
+	// # Example
+	//
+	//	// Create a validator that produces a function
+	//	validateFunc := validate.Of[string, func(int) int](N.Mul(2))
+	//
+	//	// Create a validator that produces a value
+	//	validateValue := validate.Of[string, int](21)
+	//
+	//	// Apply them
+	//	result := validate.MonadAp(validateFunc, validateValue)
+	//	// When run, produces validation.Success(42)
+	//
+	// # Notes
+	//
+	//   - Both validators receive the same input
+	//   - If either validation fails, all errors are accumulated
+	//   - If both succeed, the function is applied to the value
+	//   - This enables parallel validation with error accumulation
+	//   - Satisfies the applicative functor laws
 }
 
-// MonadAp applies a validator containing a function to a validator containing a value.
-//
-// This is the applicative apply operation for Validate. It allows you to apply
-// functions wrapped in validation context to values wrapped in validation context,
-// accumulating errors from both if either fails.
-//
-// # Type Parameters
-//
-//   - B: The result type after applying the function
-//   - I: The input type
-//   - A: The type of the value to which the function is applied
-//
-// # Parameters
-//
-//   - fab: A validator that produces a function from A to B
-//   - fa: A validator that produces a value of type A
-//
-// # Returns
-//
-// A Validate[I, B] that applies the function to the value if both validations succeed.
-//
-// # Example
-//
-//	// Create a validator that produces a function
-//	validateFunc := validate.Of[string, func(int) int](N.Mul(2))
-//
-//	// Create a validator that produces a value
-//	validateValue := validate.Of[string, int](21)
-//
-//	// Apply them
-//	result := validate.MonadAp(validateFunc, validateValue)
-//	// When run, produces validation.Success(42)
-//
-// # Notes
-//
-//   - Both validators receive the same input
-//   - If either validation fails, all errors are accumulated
-//   - If both succeed, the function is applied to the value
-//   - This enables parallel validation with error accumulation
-//   - Satisfies the applicative functor laws
 func MonadAp[B, I, A any](fab Validate[I, func(A) B], fa Validate[I, A]) Validate[I, B] {
-	return readert.MonadAp[
-		Validate[I, A],
-		Validate[I, B],
-		Validate[I, func(A) B], I, A](
-		decode.MonadAp[B, Context, A],
-		fab,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap creates an operator that applies a function validator to a value validator.
@@ -863,13 +829,8 @@ func MonadAp[B, I, A any](fab Validate[I, func(A) B], fa Validate[I, A]) Validat
 //   - Enables parallel validation with error accumulation
 //   - Can be composed with other applicative operators
 func Ap[B, I, A any](fa Validate[I, A]) Operator[I, func(A) B, B] {
-	return readert.Ap[
-		Validate[I, A],
-		Validate[I, B],
-		Validate[I, func(A) B], I, A](
-		decode.Ap[B, Context, A],
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Alt provides an alternative validator when the primary validator fails.
@@ -969,7 +930,8 @@ func Ap[B, I, A any](fa Validate[I, A]) Operator[I, func(A) B, B] {
 //   - OrElse: Semantic alias for ChainLeft
 //   - AltMonoid: For combining multiple alternatives with monoid structure
 func Alt[I, A any](second Lazy[Validate[I, A]]) Operator[I, A, A] {
-	return ChainLeft(function.Ignore1of1[Errors](second))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAlt provides an alternative validator when the primary validator fails.
@@ -1084,5 +1046,6 @@ func Alt[I, A any](second Lazy[Validate[I, A]]) Operator[I, A, A] {
 //   - OrElse: Semantic alias for ChainLeft
 //   - AltMonoid: For combining multiple alternatives with monoid structure
 func MonadAlt[I, A any](first Validate[I, A], second Lazy[Validate[I, A]]) Validate[I, A] {
-	return MonadChainLeft(first, function.Ignore1of1[Errors](second))
+	_ = "STUB: not implemented"
+	return nil
 }

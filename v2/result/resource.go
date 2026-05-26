@@ -15,10 +15,6 @@
 
 package result
 
-import (
-	"github.com/IBM/fp-go/v2/either"
-)
-
 // WithResource constructs a function that creates a resource, operates on it, and then releases it.
 // This ensures proper resource cleanup even if operations fail.
 // The resource is released immediately after the operation completes.
@@ -47,5 +43,6 @@ func WithResource[A, R, ANY any](
 	onCreate func() Result[R],
 	onRelease Kleisli[R, ANY],
 ) Kleisli[Kleisli[R, A], A] {
-	return either.WithResource[A](onCreate, onRelease)
+	_ = "STUB: not implemented"
+	return nil
 }

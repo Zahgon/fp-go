@@ -18,8 +18,6 @@ package optional
 import (
 	"fmt"
 	"log/slog"
-
-	"github.com/IBM/fp-go/v2/internal/formatting"
 )
 
 // String returns the name of the optional for debugging and display purposes.
@@ -29,27 +27,27 @@ import (
 //	fieldOptional := optional.MakeOptionalWithName(..., "Person.Email")
 //	fmt.Println(fieldOptional)  // Prints: "Person.Email"
 func (o Optional[S, T]) String() string {
-	return o.name
+	_ = "STUB: not implemented"
+
+	// Format implements fmt.Formatter for Optional.
+	// Supports all standard format verbs:
+	//   - %s, %v, %+v: uses String() representation (optional name)
+	//   - %#v: uses GoString() representation
+	//   - %q: quoted String() representation
+	//   - other verbs: uses String() representation
+	//
+	// Example:
+	//
+	//	fieldOptional := optional.MakeOptionalWithName(..., "Person.Email")
+	//	fmt.Printf("%s", fieldOptional)   // "Person.Email"
+	//	fmt.Printf("%v", fieldOptional)   // "Person.Email"
+	//	fmt.Printf("%#v", fieldOptional)  // "optional.Optional[Person, string]{name: \"Person.Email\"}"
+	//
+	//go:noinline
+	return ""
 }
 
-// Format implements fmt.Formatter for Optional.
-// Supports all standard format verbs:
-//   - %s, %v, %+v: uses String() representation (optional name)
-//   - %#v: uses GoString() representation
-//   - %q: quoted String() representation
-//   - other verbs: uses String() representation
-//
-// Example:
-//
-//	fieldOptional := optional.MakeOptionalWithName(..., "Person.Email")
-//	fmt.Printf("%s", fieldOptional)   // "Person.Email"
-//	fmt.Printf("%v", fieldOptional)   // "Person.Email"
-//	fmt.Printf("%#v", fieldOptional)  // "optional.Optional[Person, string]{name: \"Person.Email\"}"
-//
-//go:noinline
-func (o Optional[S, T]) Format(f fmt.State, c rune) {
-	formatting.FmtString(o, f, c)
-}
+func (o Optional[S, T]) Format(f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 // GoString implements fmt.GoStringer for Optional.
 // Returns a Go-syntax representation of the Optional value.
@@ -60,13 +58,7 @@ func (o Optional[S, T]) Format(f fmt.State, c rune) {
 //	fieldOptional.GoString() // "optional.Optional[Person, string]{name: \"Person.Email\"}"
 //
 //go:noinline
-func (o Optional[S, T]) GoString() string {
-	return fmt.Sprintf("optional.Optional[%s, %s]{name: %q}",
-		formatting.TypeInfo(new(S)),
-		formatting.TypeInfo(new(T)),
-		o.name,
-	)
-}
+func (o Optional[S, T]) GoString() string { _ = "STUB: not implemented"; return "" }
 
 // LogValue implements slog.LogValuer for Optional.
 // Returns a slog.Value that represents the Optional for structured logging.
@@ -80,6 +72,4 @@ func (o Optional[S, T]) GoString() string {
 //	// Logs: {"msg":"using optional","optional":"Person.Email"}
 //
 //go:noinline
-func (o Optional[S, T]) LogValue() slog.Value {
-	return slog.StringValue(o.name)
-}
+func (o Optional[S, T]) LogValue() slog.Value { _ = "STUB: not implemented"; return *new(slog.Value) }

@@ -16,13 +16,7 @@
 package readerresult
 
 import (
-	"github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/idiomatic/result"
-	AP "github.com/IBM/fp-go/v2/internal/apply"
-	C "github.com/IBM/fp-go/v2/internal/chain"
-	FE "github.com/IBM/fp-go/v2/internal/fromeither"
-	FR "github.com/IBM/fp-go/v2/internal/fromreader"
-	FC "github.com/IBM/fp-go/v2/internal/functor"
 	L "github.com/IBM/fp-go/v2/optics/lens"
 	"github.com/IBM/fp-go/v2/reader"
 	RES "github.com/IBM/fp-go/v2/result"
@@ -47,63 +41,61 @@ import (
 func Do[R, S any](
 	empty S,
 ) ReaderResult[R, S] {
-	return Of[R](empty)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Bind attaches the result of a computation to a context [S1] to produce a context [S2].
+	// This enables sequential composition where each step can depend on the results of previous steps
+	// and access the shared environment.
+	//
+	// The setter function takes the result of the computation and returns a function that
+	// updates the context from S1 to S2.
+	//
+	// Example:
+	//
+	//	type State struct {
+	//	    User   User
+	//	    Config Config
+	//	}
+	//	type Env struct {
+	//	    UserService   UserService
+	//	    ConfigService ConfigService
+	//	}
+	//
+	//	result := function.Pipe2(
+	//	    readereither.Do[Env, error](State{}),
+	//	    readereither.Bind(
+	//	        func(user User) func(State) State {
+	//	            return func(s State) State { s.User = user; return s }
+	//	        },
+	//	        func(s State) readereither.ReaderResult[Env, error, User] {
+	//	            return readereither.Asks(func(env Env) either.Either[error, User] {
+	//	                return env.UserService.GetUser()
+	//	            })
+	//	        },
+	//	    ),
+	//	    readereither.Bind(
+	//	        func(cfg Config) func(State) State {
+	//	            return func(s State) State { s.Config = cfg; return s }
+	//	        },
+	//	        func(s State) readereither.ReaderResult[Env, error, Config] {
+	//	            // This can access s.User from the previous step
+	//	            return readereither.Asks(func(env Env) either.Either[error, Config] {
+	//	                return env.ConfigService.GetConfigForUser(s.User.ID)
+	//	            })
+	//	        },
+	//	    ),
+	//	)
+	//
+	//go:inline
 }
 
-// Bind attaches the result of a computation to a context [S1] to produce a context [S2].
-// This enables sequential composition where each step can depend on the results of previous steps
-// and access the shared environment.
-//
-// The setter function takes the result of the computation and returns a function that
-// updates the context from S1 to S2.
-//
-// Example:
-//
-//	type State struct {
-//	    User   User
-//	    Config Config
-//	}
-//	type Env struct {
-//	    UserService   UserService
-//	    ConfigService ConfigService
-//	}
-//
-//	result := function.Pipe2(
-//	    readereither.Do[Env, error](State{}),
-//	    readereither.Bind(
-//	        func(user User) func(State) State {
-//	            return func(s State) State { s.User = user; return s }
-//	        },
-//	        func(s State) readereither.ReaderResult[Env, error, User] {
-//	            return readereither.Asks(func(env Env) either.Either[error, User] {
-//	                return env.UserService.GetUser()
-//	            })
-//	        },
-//	    ),
-//	    readereither.Bind(
-//	        func(cfg Config) func(State) State {
-//	            return func(s State) State { s.Config = cfg; return s }
-//	        },
-//	        func(s State) readereither.ReaderResult[Env, error, Config] {
-//	            // This can access s.User from the previous step
-//	            return readereither.Asks(func(env Env) either.Either[error, Config] {
-//	                return env.ConfigService.GetConfigForUser(s.User.ID)
-//	            })
-//	        },
-//	    ),
-//	)
-//
-//go:inline
 func Bind[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[R, S1, T],
 ) Operator[R, S1, S2] {
-	return C.Bind(
-		Chain[R, S1, S2],
-		Map[R, T, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -113,11 +105,8 @@ func Let[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[R, S1, S2] {
-	return FC.Let(
-		Map[R, S1, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches the a value to a context [S1] to produce a context [S2]
@@ -127,11 +116,8 @@ func LetTo[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) func(ReaderResult[R, S1]) ReaderResult[R, S2] {
-	return FC.LetTo(
-		Map[R, S1, S2],
-		setter,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T]
@@ -140,10 +126,8 @@ func LetTo[R, S1, S2, T any](
 func BindTo[R, S1, T any](
 	setter func(T) S1,
 ) Operator[R, T, S1] {
-	return C.BindTo(
-		Map[R, T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering
@@ -193,12 +177,8 @@ func ApS[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa ReaderResult[R, T],
 ) Operator[R, S1, S2] {
-	return AP.ApS(
-		Ap[S2, R, T],
-		Map[R, S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL attaches a value to a context using a lens-based setter.
@@ -237,48 +217,51 @@ func ApSL[R, S, T any](
 	lens L.Lens[S, T],
 	fa ReaderResult[R, T],
 ) Operator[R, S, S] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL is a variant of Bind that uses a lens to focus on a specific part of the context.
+	// This provides a more ergonomic API when working with nested structures, eliminating
+	// the need to manually write setter functions.
+	//
+	// The lens parameter provides both a getter and setter for a field of type T within
+	// the context S. The function f receives the current value of the focused field and
+	// returns a ReaderEither computation that produces an updated value.
+	//
+	// Example:
+	//
+	//	type State struct {
+	//	    User   User
+	//	    Config Config
+	//	}
+	//	type Env struct {
+	//	    UserService   UserService
+	//	    ConfigService ConfigService
+	//	}
+	//
+	//	userLens := lens.MakeLens(
+	//	    func(s State) User { return s.User },
+	//	    func(s State, u User) State { s.User = u; return s },
+	//	)
+	//
+	//	result := function.Pipe2(
+	//	    readereither.Do[Env, error](State{}),
+	//	    readereither.BindL(userLens, func(user User) readereither.ReaderResult[Env, error, User] {
+	//	        return readereither.Asks(func(env Env) either.Either[error, User] {
+	//	            return env.UserService.GetUser()
+	//	        })
+	//	    }),
+	//	)
+	//
+	//go:inline
 }
 
-// BindL is a variant of Bind that uses a lens to focus on a specific part of the context.
-// This provides a more ergonomic API when working with nested structures, eliminating
-// the need to manually write setter functions.
-//
-// The lens parameter provides both a getter and setter for a field of type T within
-// the context S. The function f receives the current value of the focused field and
-// returns a ReaderEither computation that produces an updated value.
-//
-// Example:
-//
-//	type State struct {
-//	    User   User
-//	    Config Config
-//	}
-//	type Env struct {
-//	    UserService   UserService
-//	    ConfigService ConfigService
-//	}
-//
-//	userLens := lens.MakeLens(
-//	    func(s State) User { return s.User },
-//	    func(s State, u User) State { s.User = u; return s },
-//	)
-//
-//	result := function.Pipe2(
-//	    readereither.Do[Env, error](State{}),
-//	    readereither.BindL(userLens, func(user User) readereither.ReaderResult[Env, error, User] {
-//	        return readereither.Asks(func(env Env) either.Either[error, User] {
-//	            return env.UserService.GetUser()
-//	        })
-//	    }),
-//	)
-//
-//go:inline
 func BindL[R, S, T any](
 	lens L.Lens[S, T],
 	f Kleisli[R, T, T],
 ) Operator[R, S, S] {
-	return Bind(lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL is a variant of Let that uses a lens to focus on a specific part of the context.
@@ -314,7 +297,8 @@ func LetL[R, S, T any](
 	lens L.Lens[S, T],
 	f Endomorphism[T],
 ) Operator[R, S, S] {
-	return Let[R](lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL is a variant of LetTo that uses a lens to focus on a specific part of the context.
@@ -347,7 +331,8 @@ func LetToL[R, S, T any](
 	lens L.Lens[S, T],
 	b T,
 ) Operator[R, S, S] {
-	return LetTo[R](lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindReaderK lifts a Reader Kleisli arrow into a ReaderResult context and binds it to the state.
@@ -388,13 +373,8 @@ func BindReaderK[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f reader.Kleisli[R, S1, T],
 ) Operator[R, S1, S2] {
-	return FR.BindReaderK(
-		Chain[R, S1, S2],
-		Map[R, T, S2],
-		FromReader[R, T],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -402,13 +382,8 @@ func BindEitherK[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f RES.Kleisli[S1, T],
 ) Operator[R, S1, S2] {
-	return FE.BindEitherK(
-		Chain[R, S1, S2],
-		Map[R, T, S2],
-		FromEither[R, T],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindResultK lifts a Result Kleisli arrow into a ReaderResult context and binds it to the state.
@@ -449,14 +424,8 @@ func BindResultK[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f result.Kleisli[S1, T],
 ) Operator[R, S1, S2] {
-	return C.Bind(
-		Chain[R, S1, S2],
-		Map[R, T, S2],
-		setter,
-		func(s1 S1) ReaderResult[R, T] {
-			return FromResult[R](f(s1))
-		},
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindToReader initializes a new state S1 from a Reader[R, T] computation.
@@ -492,10 +461,8 @@ func BindToReader[
 	R, S1, T any](
 	setter func(T) S1,
 ) func(Reader[R, T]) ReaderResult[R, S1] {
-	return function.Flow2(
-		FromReader[R],
-		BindTo[R](setter),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -503,10 +470,8 @@ func BindToEither[
 	R, S1, T any](
 	setter func(T) S1,
 ) func(Result[T]) ReaderResult[R, S1] {
-	return function.Flow2(
-		FromEither[R],
-		BindTo[R](setter),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindToResult initializes a new state S1 from a Result[T] value.
@@ -541,10 +506,8 @@ func BindToResult[
 	R, S1, T any](
 	setter func(T) S1,
 ) func(T, error) ReaderResult[R, S1] {
-	bt := BindTo[R](setter)
-	return func(t T, err error) ReaderResult[R, S1] {
-		return bt(FromResult[R](t, err))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApReaderS attaches a value from a pure Reader computation to a context [S1] to produce a context [S2]
@@ -593,10 +556,8 @@ func ApReaderS[
 	setter func(T) func(S1) S2,
 	fa Reader[R, T],
 ) Operator[R, S1, S2] {
-	return ApS(
-		setter,
-		FromReader(fa),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -604,12 +565,8 @@ func ApResultS[
 	R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 ) func(T, error) Operator[R, S1, S2] {
-	return func(t T, err error) Operator[R, S1, S2] {
-		return ApS(
-			setter,
-			FromResult[R](t, err),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApResultS attaches a value from a Result to a context [S1] to produce a context [S2]
@@ -656,8 +613,6 @@ func ApEitherS[
 	setter func(T) func(S1) S2,
 	fa Result[T],
 ) Operator[R, S1, S2] {
-	return ApS(
-		setter,
-		FromEither[R](fa),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

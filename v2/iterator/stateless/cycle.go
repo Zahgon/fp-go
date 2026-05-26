@@ -15,10 +15,6 @@
 
 package stateless
 
-import (
-	G "github.com/IBM/fp-go/v2/iterator/stateless/generic"
-)
-
 // Cycle creates an [Iterator] that repeats the elements of the input [Iterator] indefinitely.
 // The iterator cycles through all elements of the input, and when it reaches the end, it starts over from the beginning.
 // This creates an infinite iterator, so it should be used with caution and typically combined with operations that limit the output.
@@ -41,6 +37,4 @@ import (
 //	// Typically used with Take to limit output:
 //	limited := stateless.Take(7)(cycled)
 //	// Produces: 1, 2, 3, 1, 2, 3, 1
-func Cycle[U any](ma Iterator[U]) Iterator[U] {
-	return G.Cycle(ma)
-}
+func Cycle[U any](ma Iterator[U]) Iterator[U] { _ = "STUB: not implemented"; return nil }

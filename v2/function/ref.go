@@ -46,40 +46,40 @@ package function
 //	}
 //	config := Config{Timeout: Ref(30)}
 func Ref[A any](a A) *A {
-	return &a
+	_ = "STUB: not implemented"
+
+	// Deref dereferences a pointer to get its value.
+	//
+	// This function takes a pointer and returns the value it points to. It will panic
+	// if the pointer is nil, so it should only be used when you're certain the pointer
+	// is not nil. For safe dereferencing, check with IsNonNil first.
+	//
+	// Type Parameters:
+	//   - A: The type of the value
+	//
+	// Parameters:
+	//   - a: The pointer to dereference
+	//
+	// Returns:
+	//   - The value pointed to by the pointer
+	//
+	// Example:
+	//
+	//	value := 42
+	//	ptr := &value
+	//	result := Deref(ptr)  // 42
+	//
+	//	// Safe usage with nil check
+	//	var ptr *int
+	//	if IsNonNil(ptr) {
+	//	    result := Deref(ptr)
+	//	    fmt.Println(result)
+	//	}
+	//
+	//	// Chaining with Ref
+	//	original := "hello"
+	//	copy := Deref(Ref(original))  // "hello"
+	return nil
 }
 
-// Deref dereferences a pointer to get its value.
-//
-// This function takes a pointer and returns the value it points to. It will panic
-// if the pointer is nil, so it should only be used when you're certain the pointer
-// is not nil. For safe dereferencing, check with IsNonNil first.
-//
-// Type Parameters:
-//   - A: The type of the value
-//
-// Parameters:
-//   - a: The pointer to dereference
-//
-// Returns:
-//   - The value pointed to by the pointer
-//
-// Example:
-//
-//	value := 42
-//	ptr := &value
-//	result := Deref(ptr)  // 42
-//
-//	// Safe usage with nil check
-//	var ptr *int
-//	if IsNonNil(ptr) {
-//	    result := Deref(ptr)
-//	    fmt.Println(result)
-//	}
-//
-//	// Chaining with Ref
-//	original := "hello"
-//	copy := Deref(Ref(original))  // "hello"
-func Deref[A any](a *A) A {
-	return *a
-}
+func Deref[A any](a *A) A { _ = "STUB: not implemented"; return *new(A) }

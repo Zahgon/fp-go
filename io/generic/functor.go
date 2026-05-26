@@ -22,10 +22,12 @@ import (
 type ioFunctor[A, B any, GA ~func() A, GB ~func() B] struct{}
 
 func (o *ioFunctor[A, B, GA, GB]) Map(f func(A) B) func(GA) GB {
-	return Map[GA, GB, A, B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Functor implements the functoric operations for [IO]
 func Functor[A, B any, GA ~func() A, GB ~func() B]() functor.Functor[A, B, GA, GB] {
-	return &ioFunctor[A, B, GA, GB]{}
+	_ = "STUB: not implemented"
+	return nil
 }

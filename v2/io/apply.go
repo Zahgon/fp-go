@@ -28,9 +28,7 @@ import (
 //	intAdd := semigroup.MakeSemigroup(func(a, b int) int { return a + b })
 //	ioAdd := io.ApplySemigroup(intAdd)
 //	result := ioAdd.Concat(io.Of(1), io.Of(2)) // IO[3]
-func ApplySemigroup[A any](s S.Semigroup[A]) Semigroup[A] {
-	return S.ApplySemigroup(MonadMap[A, func(A) A], MonadAp[A, A], s)
-}
+func ApplySemigroup[A any](s S.Semigroup[A]) Semigroup[A] { _ = "STUB: not implemented"; return nil }
 
 // ApplicativeMonoid lifts a Monoid[A] into a Monoid[IO[A]].
 // This allows combining IO computations using the monoid operation on their results,
@@ -42,6 +40,4 @@ func ApplySemigroup[A any](s S.Semigroup[A]) Semigroup[A] {
 //	ioAdd := io.ApplicativeMonoid(intAdd)
 //	result := ioAdd.Concat(io.Of(1), io.Of(2)) // IO[3]
 //	empty := ioAdd.Empty() // IO[0]
-func ApplicativeMonoid[A any](m M.Monoid[A]) Monoid[A] {
-	return M.ApplicativeMonoid(Of[A], MonadMap[A, func(A) A], MonadAp[A, A], m)
-}
+func ApplicativeMonoid[A any](m M.Monoid[A]) Monoid[A] { _ = "STUB: not implemented"; return nil }

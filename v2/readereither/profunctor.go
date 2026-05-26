@@ -15,11 +15,6 @@
 
 package readereither
 
-import (
-	"github.com/IBM/fp-go/v2/either"
-	"github.com/IBM/fp-go/v2/reader"
-)
-
 // Promap is the profunctor map operation that transforms both the input and output of a ReaderEither.
 // It applies f to the input environment (contravariantly) and g to the output value (covariantly).
 //
@@ -47,7 +42,8 @@ import (
 //
 //go:inline
 func Promap[R, E, A, D, B any](f func(D) R, g func(A) B) Kleisli[D, E, ReaderEither[R, E, A], B] {
-	return reader.Promap(f, either.Map[E](g))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Contramap changes the value of the local environment during the execution of a ReaderEither.
@@ -72,5 +68,6 @@ func Promap[R, E, A, D, B any](f func(D) R, g func(A) B) Kleisli[D, E, ReaderEit
 //
 //go:inline
 func Contramap[E, A, R1, R2 any](f func(R2) R1) Kleisli[R2, E, ReaderEither[R1, E, A], A] {
-	return reader.Contramap[Either[E, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }

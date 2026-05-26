@@ -33,12 +33,7 @@ import "github.com/IBM/fp-go/v2/eq"
 //	p3 := pair.MakePair("world", 42)
 //	pairEq.Equals(p1, p2)  // true
 //	pairEq.Equals(p1, p3)  // false
-func Eq[A, B any](a eq.Eq[A], b eq.Eq[B]) eq.Eq[Pair[A, B]] {
-	return eq.FromEquals(func(l, r Pair[A, B]) bool {
-		return a.Equals(Head(l), Head(r)) && b.Equals(Tail(l), Tail(r))
-	})
-
-}
+func Eq[A, B any](a eq.Eq[A], b eq.Eq[B]) eq.Eq[Pair[A, B]] { _ = "STUB: not implemented"; return nil }
 
 // FromStrictEquals constructs an [eq.Eq] for [Pair] using the built-in equality operator (==)
 // for both components. This is only available when both type parameters are comparable.
@@ -49,6 +44,4 @@ func Eq[A, B any](a eq.Eq[A], b eq.Eq[B]) eq.Eq[Pair[A, B]] {
 //	p1 := pair.MakePair("hello", 42)
 //	p2 := pair.MakePair("hello", 42)
 //	pairEq.Equals(p1, p2)  // true
-func FromStrictEquals[A, B comparable]() eq.Eq[Pair[A, B]] {
-	return Eq(eq.FromStrictEquals[A](), eq.FromStrictEquals[B]())
-}
+func FromStrictEquals[A, B comparable]() eq.Eq[Pair[A, B]] { _ = "STUB: not implemented"; return nil }

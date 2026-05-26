@@ -15,32 +15,11 @@
 
 package prism
 
-import (
-	F "github.com/IBM/fp-go/function"
-	O "github.com/IBM/fp-go/option"
-)
-
 // AsTraversal converts a prism to a traversal
 func AsTraversal[R ~func(func(A) HKTA) func(S) HKTS, S, A, HKTS, HKTA any](
 	fof func(S) HKTS,
 	fmap func(HKTA, func(A) S) HKTS,
 ) func(Prism[S, A]) R {
-	return func(sa Prism[S, A]) R {
-		return func(f func(a A) HKTA) func(S) HKTS {
-			return func(s S) HKTS {
-				return F.Pipe2(
-					s,
-					sa.GetOption,
-					O.Fold(
-						F.Nullary2(F.Constant(s), fof),
-						func(a A) HKTS {
-							return fmap(f(a), func(a A) S {
-								return prismModify(F.Constant1[A](a), sa, s)
-							})
-						},
-					),
-				)
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

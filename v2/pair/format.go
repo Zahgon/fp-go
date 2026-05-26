@@ -18,8 +18,6 @@ package pair
 import (
 	"fmt"
 	"log/slog"
-
-	"github.com/IBM/fp-go/v2/internal/formatting"
 )
 
 const (
@@ -27,16 +25,12 @@ const (
 	pairFmtTemplate = "Pair[%T, %T](%v, %v)"
 )
 
-func goString[L, R any](l L, r R) string {
-	return fmt.Sprintf(pairGoTemplate, formatting.TypeInfo(new(L)), formatting.TypeInfo(new(R)), l, r)
-}
+func goString[L, R any](l L, r R) string { _ = "STUB: not implemented"; return "" }
 
 // String prints some debug info for the object
 //
 //go:noinline
-func (p Pair[L, R]) String() string {
-	return fmt.Sprintf(pairFmtTemplate, p.l, p.r, p.l, p.r)
-}
+func (p Pair[L, R]) String() string { _ = "STUB: not implemented"; return "" }
 
 // Format implements fmt.Formatter for Pair.
 // Supports all standard format verbs:
@@ -53,9 +47,7 @@ func (p Pair[L, R]) String() string {
 //	fmt.Printf("%#v", p)  // "pair.MakePair[string, int]("key", 42)"
 //
 //go:noinline
-func (p Pair[L, R]) Format(f fmt.State, c rune) {
-	formatting.FmtString(p, f, c)
-}
+func (p Pair[L, R]) Format(f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 // GoString implements fmt.GoStringer for Pair.
 // Returns a Go-syntax representation of the Pair value.
@@ -65,9 +57,7 @@ func (p Pair[L, R]) Format(f fmt.State, c rune) {
 //	pair.MakePair("key", 42).GoString() // "pair.MakePair[string, int]("key", 42)"
 //
 //go:noinline
-func (p Pair[L, R]) GoString() string {
-	return goString(p.l, p.r)
-}
+func (p Pair[L, R]) GoString() string { _ = "STUB: not implemented"; return "" }
 
 // LogValue implements slog.LogValuer for Pair.
 // Returns a slog.Value that represents the Pair for structured logging.
@@ -81,9 +71,4 @@ func (p Pair[L, R]) GoString() string {
 //	// Logs: {"msg":"pair value","data":{"head":"key","tail":42}}
 //
 //go:noinline
-func (p Pair[L, R]) LogValue() slog.Value {
-	return slog.GroupValue(
-		slog.Any("head", p.l),
-		slog.Any("tail", p.r),
-	)
-}
+func (p Pair[L, R]) LogValue() slog.Value { _ = "STUB: not implemented"; return *new(slog.Value) }

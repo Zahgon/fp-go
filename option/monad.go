@@ -21,23 +21,26 @@ import (
 
 type optionMonad[A, B any] struct{}
 
-func (o *optionMonad[A, B]) Of(a A) Option[A] {
-	return Of[A](a)
-}
+func (o *optionMonad[A, B]) Of(a A) Option[A] { _ = "STUB: not implemented"; return nil }
 
 func (o *optionMonad[A, B]) Map(f func(A) B) func(Option[A]) Option[B] {
-	return Map[A, B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *optionMonad[A, B]) Chain(f func(A) Option[B]) func(Option[A]) Option[B] {
-	return Chain[A, B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *optionMonad[A, B]) Ap(fa Option[A]) func(Option[func(A) B]) Option[B] {
-	return Ap[B, A](fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Monad implements the monadic operations for [Option]
 }
 
-// Monad implements the monadic operations for [Option]
 func Monad[A, B any]() monad.Monad[A, B, Option[A], Option[B], Option[func(A) B]] {
-	return &optionMonad[A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }

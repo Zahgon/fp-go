@@ -19,20 +19,22 @@ import (
 	"github.com/IBM/fp-go/internal/functor"
 	"github.com/IBM/fp-go/internal/monad"
 	"github.com/IBM/fp-go/internal/pointed"
-	G "github.com/IBM/fp-go/readerioeither/generic"
 )
 
 // Pointed returns the pointed operations for [ReaderIOEither]
 func Pointed[R, E, A any]() pointed.Pointed[A, ReaderIOEither[R, E, A]] {
-	return G.Pointed[R, E, A, ReaderIOEither[R, E, A]]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Functor returns the functor operations for [ReaderIOEither]
 func Functor[R, E, A, B any]() functor.Functor[A, B, ReaderIOEither[R, E, A], ReaderIOEither[R, E, B]] {
-	return G.Functor[R, E, A, B, ReaderIOEither[R, E, A], ReaderIOEither[R, E, B]]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad returns the monadic operations for [ReaderIOEither]
 func Monad[R, E, A, B any]() monad.Monad[A, B, ReaderIOEither[R, E, A], ReaderIOEither[R, E, B], ReaderIOEither[R, E, func(A) B]] {
-	return G.Monad[R, E, A, B, ReaderIOEither[R, E, A], ReaderIOEither[R, E, B], ReaderIOEither[R, E, func(A) B]]()
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -17,19 +17,19 @@ package fromeither
 
 import (
 	ET "github.com/IBM/fp-go/v2/either"
-	F "github.com/IBM/fp-go/v2/function"
-	C "github.com/IBM/fp-go/v2/internal/chain"
 	O "github.com/IBM/fp-go/v2/option"
 )
 
 //go:inline
 func FromOption[A, HKTEA, E any](fromEither func(ET.Either[E, A]) HKTEA, onNone func() E) func(ma O.Option[A]) HKTEA {
-	return F.Flow2(ET.FromOption[A](onNone), fromEither)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func FromPredicate[E, A, HKTEA any](fromEither func(ET.Either[E, A]) HKTEA, pred func(A) bool, onFalse func(A) E) func(A) HKTEA {
-	return F.Flow2(ET.FromPredicate(pred, onFalse), fromEither)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadFromOption[E, A, HKTEA any](
@@ -37,22 +37,17 @@ func MonadFromOption[E, A, HKTEA any](
 	onNone func() E,
 	ma O.Option[A],
 ) HKTEA {
-	return F.Pipe1(
-		O.MonadFold(
-			ma,
-			F.Nullary2(onNone, ET.Left[A, E]),
-			ET.Right[E, A],
-		),
-		fromEither,
-	)
+	_ = "STUB: not implemented"
+	return *new(HKTEA)
 }
 
 //go:inline
 func FromOptionK[A, E, B, HKTEB any](
 	fromEither func(ET.Either[E, B]) HKTEB,
 	onNone func() E) func(f func(A) O.Option[B]) func(A) HKTEB {
+	_ = "STUB: not implemented"
 	// helper
-	return F.Bind2nd(F.Flow2[func(A) O.Option[B], func(O.Option[B]) HKTEB, A, O.Option[B], HKTEB], FromOption(fromEither, onNone))
+	return nil
 }
 
 //go:inline
@@ -61,7 +56,8 @@ func MonadChainEitherK[A, E, B, HKTEA, HKTEB any](
 	fromEither func(ET.Either[E, B]) HKTEB,
 	ma HKTEA,
 	f func(A) ET.Either[E, B]) HKTEB {
-	return mchain(ma, F.Flow2(f, fromEither))
+	_ = "STUB: not implemented"
+	return *new(HKTEB)
 }
 
 //go:inline
@@ -69,7 +65,8 @@ func ChainEitherK[A, E, B, HKTEA, HKTEB any](
 	mchain func(func(A) HKTEB) func(HKTEA) HKTEB,
 	fromEither func(ET.Either[E, B]) HKTEB,
 	f func(A) ET.Either[E, B]) func(HKTEA) HKTEB {
-	return mchain(F.Flow2(f, fromEither))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -78,7 +75,8 @@ func ChainOptionK[A, E, B, HKTEA, HKTEB any](
 	fromEither func(ET.Either[E, B]) HKTEB,
 	onNone func() E,
 ) func(f func(A) O.Option[B]) func(ma HKTEA) HKTEB {
-	return F.Flow2(FromOptionK[A](fromEither, onNone), F.Bind1st(F.Bind2nd[HKTEA, func(A) HKTEB, HKTEB], mchain))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -88,7 +86,8 @@ func MonadChainFirstEitherK[A, E, B, HKTEA, HKTEB any](
 	fromEither func(ET.Either[E, B]) HKTEB,
 	ma HKTEA,
 	f func(A) ET.Either[E, B]) HKTEA {
-	return C.MonadChainFirst(mchain, mmap, ma, F.Flow2(f, fromEither))
+	_ = "STUB: not implemented"
+	return *new(HKTEA)
 }
 
 //go:inline
@@ -97,7 +96,8 @@ func ChainFirstEitherK[A, E, B, HKTEA, HKTEB any](
 	mmap func(func(B) A) func(HKTEB) HKTEA,
 	fromEither func(ET.Either[E, B]) HKTEB,
 	f func(A) ET.Either[E, B]) func(HKTEA) HKTEA {
-	return C.ChainFirst(mchain, mmap, F.Flow2(f, fromEither))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -112,10 +112,6 @@ func BindEitherK[
 	setter func(T) func(S1) S2,
 	f func(S1) ET.Either[E, T],
 ) func(HKTES1) HKTES2 {
-	return C.Bind(
-		mchain,
-		mmap,
-		setter,
-		F.Flow2(f, fromEither),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

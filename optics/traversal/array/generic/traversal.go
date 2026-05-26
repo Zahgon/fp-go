@@ -16,7 +16,6 @@
 package generic
 
 import (
-	AR "github.com/IBM/fp-go/internal/array"
 	G "github.com/IBM/fp-go/optics/traversal/generic"
 )
 
@@ -26,9 +25,6 @@ func FromArray[GA ~[]A, GB ~[]B, A, B, HKTB, HKTAB, HKTRB any](
 	fmap func(func(GB) func(B) GB) func(HKTRB) HKTAB,
 	fap func(HKTB) func(HKTAB) HKTRB,
 ) G.Traversal[GA, A, HKTRB, HKTB] {
-	return func(f func(A) HKTB) func(s GA) HKTRB {
-		return func(s GA) HKTRB {
-			return AR.MonadTraverse(fof, fmap, fap, s, f)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,8 +15,6 @@
 
 package readerresult
 
-import "github.com/IBM/fp-go/v2/idiomatic/result"
-
 // Promap is the profunctor map operation that transforms both the input and output of a ReaderResult.
 // It applies f to the input environment (contravariantly) and g to the output value (covariantly).
 //
@@ -43,12 +41,8 @@ import "github.com/IBM/fp-go/v2/idiomatic/result"
 //
 //go:inline
 func Promap[E, A, D, B any](f func(D) E, g func(A) B) Kleisli[D, ReaderResult[E, A], B] {
-	mp := result.Map(g)
-	return func(rr ReaderResult[E, A]) ReaderResult[D, B] {
-		return func(d D) (B, error) {
-			return mp(rr(f(d)))
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Contramap changes the value of the local environment during the execution of a ReaderResult.
@@ -72,5 +66,6 @@ func Promap[E, A, D, B any](f func(D) E, g func(A) B) Kleisli[D, ReaderResult[E,
 //
 //go:inline
 func Contramap[A, R1, R2 any](f func(R2) R1) Kleisli[R2, ReaderResult[R1, A], A] {
-	return Local[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }

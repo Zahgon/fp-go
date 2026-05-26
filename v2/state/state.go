@@ -15,14 +15,6 @@
 
 package state
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/chain"
-	"github.com/IBM/fp-go/v2/internal/functor"
-	"github.com/IBM/fp-go/v2/pair"
-	"github.com/IBM/fp-go/v2/reader"
-)
-
 // Get returns a State computation that retrieves the current state and returns it as the value.
 // The state is unchanged by this operation.
 //
@@ -35,26 +27,24 @@ import (
 //
 //go:inline
 func Get[S any]() State[S, S] {
-	return pair.Of[S]
+	_ = "STUB: not implemented"
+
+	// Gets applies a function to the current state and returns the result as the value.
+	// The state itself remains unchanged. This is useful for extracting or computing
+	// values from the state without modifying it.
+	//
+	// Example:
+	//
+	//	type Counter struct { count int }
+	//	getDouble := Gets(func(c Counter) int { return c.count * 2 })
+	//	result := getDouble(Counter{count: 5})
+	//	// result = Pair{head: Counter{count: 5}, tail: 10}
+	//
+	//go:line
+	return nil
 }
 
-// Gets applies a function to the current state and returns the result as the value.
-// The state itself remains unchanged. This is useful for extracting or computing
-// values from the state without modifying it.
-//
-// Example:
-//
-//	type Counter struct { count int }
-//	getDouble := Gets(func(c Counter) int { return c.count * 2 })
-//	result := getDouble(Counter{count: 5})
-//	// result = Pair{head: Counter{count: 5}, tail: 10}
-//
-//go:line
-func Gets[FCT ~func(S) A, A, S any](f FCT) State[S, A] {
-	return func(s S) Pair[S, A] {
-		return pair.MakePair(s, f(s))
-	}
-}
+func Gets[FCT ~func(S) A, A, S any](f FCT) State[S, A] { _ = "STUB: not implemented"; return nil }
 
 // Put returns a State computation that replaces the current state with a new state.
 // The returned value is Void, indicating this operation is performed for its side effect.
@@ -67,9 +57,7 @@ func Gets[FCT ~func(S) A, A, S any](f FCT) State[S, A] {
 //	// result = Pair{head: Counter{count: 10}, tail: Void}
 //
 //go:inline
-func Put[S any]() State[S, Void] {
-	return Of[S](function.VOID)
-}
+func Put[S any]() State[S, Void] { _ = "STUB: not implemented"; return nil }
 
 // Modify applies a transformation function to the current state, producing a new state.
 // The returned value is Void, indicating this operation is performed for its side effect.
@@ -80,12 +68,7 @@ func Put[S any]() State[S, Void] {
 //	increment := Modify(func(c Counter) Counter { return Counter{count: c.count + 1} })
 //	result := increment(Counter{count: 5})
 //	// result = Pair{head: Counter{count: 6}, tail: Void}
-func Modify[FCT ~func(S) S, S any](f FCT) State[S, Void] {
-	return function.Flow2(
-		f,
-		Put[S](),
-	)
-}
+func Modify[FCT ~func(S) S, S any](f FCT) State[S, Void] { _ = "STUB: not implemented"; return nil }
 
 // Of creates a State computation that returns the given value without modifying the state.
 // This is the Pointed interface implementation for State, lifting a pure value into
@@ -99,9 +82,7 @@ func Modify[FCT ~func(S) S, S any](f FCT) State[S, Void] {
 //	// result = Pair{head: Counter{count: 5}, tail: 42}
 //
 //go:inline
-func Of[S, A any](a A) State[S, A] {
-	return pair.FromTail[S](a)
-}
+func Of[S, A any](a A) State[S, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap transforms the value produced by a State computation using the given function,
 // while preserving the state. This is the Functor interface implementation for State.
@@ -116,7 +97,8 @@ func Of[S, A any](a A) State[S, A] {
 //
 //go:inline
 func MonadMap[S any, FCT ~func(A) B, A, B any](fa State[S, A], f FCT) State[S, B] {
-	return reader.MonadMap(fa, pair.Map[S](f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map returns a function that transforms the value of a State computation.
@@ -132,7 +114,8 @@ func MonadMap[S any, FCT ~func(A) B, A, B any](fa State[S, A], f FCT) State[S, B
 //
 //go:inline
 func Map[S any, FCT ~func(A) B, A, B any](f FCT) Operator[S, A, B] {
-	return reader.Map[S](pair.Map[S](f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChain sequences two State computations, where the second computation depends
@@ -152,10 +135,8 @@ func Map[S any, FCT ~func(A) B, A, B any](f FCT) Operator[S, A, B] {
 //	result := chained(Counter{count: 10})
 //	// result = Pair{head: Counter{count: 15}, tail: 10}
 func MonadChain[S any, FCT ~func(A) State[S, B], A, B any](fa State[S, A], f FCT) State[S, B] {
-	return func(s S) Pair[S, B] {
-		a := fa(s)
-		return f(pair.Tail(a))(pair.Head(a))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain returns a function that sequences State computations.
@@ -176,7 +157,8 @@ func MonadChain[S any, FCT ~func(A) State[S, B], A, B any](fa State[S, A], f FCT
 //
 //go:inline
 func Chain[S any, FCT ~func(A) State[S, B], A, B any](f FCT) Operator[S, A, B] {
-	return function.Bind2nd(MonadChain[S, FCT, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAp applies a State computation containing a function to a State computation
@@ -191,12 +173,8 @@ func Chain[S any, FCT ~func(A) State[S, B], A, B any](f FCT) Operator[S, A, B] {
 //	result := MonadAp(fab, fa)(Counter{count: 5})
 //	// result = Pair{head: Counter{count: 5}, tail: 42}
 func MonadAp[B, S, A any](fab State[S, func(A) B], fa State[S, A]) State[S, B] {
-	return func(s S) Pair[S, B] {
-		f := fab(s)
-		a := fa(pair.Head(f))
-
-		return pair.MakePair(pair.Head(a), pair.Tail(f)(pair.Tail(a)))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap returns a function that applies a State computation containing a function
@@ -214,7 +192,8 @@ func MonadAp[B, S, A any](fab State[S, func(A) B], fa State[S, A]) State[S, B] {
 //
 //go:inline
 func Ap[B, S, A any](ga State[S, A]) Operator[S, func(A) B, B] {
-	return function.Bind2nd(MonadAp[B, S, A], ga)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainFirst sequences two State computations but returns the value from the first
@@ -231,12 +210,8 @@ func Ap[B, S, A any](ga State[S, A]) Operator[S, func(A) B, B] {
 //	result := MonadChainFirst(computation, increment)(Counter{count: 5})
 //	// result = Pair{head: Counter{count: 6}, tail: 42}
 func MonadChainFirst[S any, FCT ~func(A) State[S, B], A, B any](ma State[S, A], f FCT) State[S, A] {
-	return chain.MonadChainFirst(
-		MonadChain[S, func(A) State[S, A], A, A],
-		MonadMap[S, func(B) A],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirst returns a function that sequences State computations but keeps the first value.
@@ -252,11 +227,8 @@ func MonadChainFirst[S any, FCT ~func(A) State[S, B], A, B any](ma State[S, A], 
 //	result := computation(Counter{count: 5})
 //	// result = Pair{head: Counter{count: 6}, tail: 42}
 func ChainFirst[S any, FCT ~func(A) State[S, B], A, B any](f FCT) Operator[S, A, A] {
-	return chain.ChainFirst(
-		Chain[S, func(A) State[S, A], A, A],
-		Map[S, func(B) A],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flatten removes one level of nesting from a State computation that produces another
@@ -272,7 +244,8 @@ func ChainFirst[S any, FCT ~func(A) State[S, B], A, B any](f FCT) Operator[S, A,
 //
 //go:inline
 func Flatten[S, A any](mma State[S, State[S, A]]) State[S, A] {
-	return MonadChain(mma, function.Identity[State[S, A]])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Execute runs a State computation with the given initial state and returns only
@@ -285,11 +258,7 @@ func Flatten[S, A any](mma State[S, State[S, A]]) State[S, A] {
 //	computation := Modify(func(c Counter) Counter { return Counter{count: c.count + 1} })
 //	finalState := Execute[Void, Counter](Counter{count: 5})(computation)
 //	// finalState = Counter{count: 6}
-func Execute[A, S any](s S) func(State[S, A]) S {
-	return func(fa State[S, A]) S {
-		return pair.Head(fa(s))
-	}
-}
+func Execute[A, S any](s S) func(State[S, A]) S { _ = "STUB: not implemented"; return nil }
 
 // Evaluate runs a State computation with the given initial state and returns only
 // the computed value, discarding the final state. This is useful when you only
@@ -301,11 +270,7 @@ func Execute[A, S any](s S) func(State[S, A]) S {
 //	computation := Of[Counter](42)
 //	value := Evaluate[int, Counter](Counter{count: 5})(computation)
 //	// value = 42
-func Evaluate[A, S any](s S) func(State[S, A]) A {
-	return func(fa State[S, A]) A {
-		return pair.Tail(fa(s))
-	}
-}
+func Evaluate[A, S any](s S) func(State[S, A]) A { _ = "STUB: not implemented"; return nil }
 
 // MonadFlap applies a fixed value to a State computation containing a function.
 // This is the reverse of MonadAp, where the value is known but the function is
@@ -318,10 +283,8 @@ func Evaluate[A, S any](s S) func(State[S, A]) A {
 //	result := MonadFlap(fab, 21)(Counter{count: 5})
 //	// result = Pair{head: Counter{count: 5}, tail: 42}
 func MonadFlap[FAB ~func(A) B, S, A, B any](fab State[S, FAB], a A) State[S, B] {
-	return functor.MonadFlap(
-		MonadMap[S, func(FAB) B],
-		fab,
-		a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flap returns a function that applies a fixed value to a State computation containing
@@ -337,8 +300,4 @@ func MonadFlap[FAB ~func(A) B, S, A, B any](fab State[S, FAB], a A) State[S, B] 
 //	)
 //	result := computation(Counter{count: 5})
 //	// result = Pair{head: Counter{count: 5}, tail: 42}
-func Flap[S, A, B any](a A) Operator[S, func(A) B, B] {
-	return functor.Flap(
-		Map[S, func(func(A) B) B],
-		a)
-}
+func Flap[S, A, B any](a A) Operator[S, func(A) B, B] { _ = "STUB: not implemented"; return nil }

@@ -15,10 +15,6 @@
 
 package monoid
 
-import (
-	S "github.com/IBM/fp-go/semigroup"
-)
-
 func AlternativeMonoid[A, HKTA, HKTFA any, LAZYHKTA ~func() HKTA](
 	fof func(A) HKTA,
 
@@ -30,19 +26,8 @@ func AlternativeMonoid[A, HKTA, HKTFA any, LAZYHKTA ~func() HKTA](
 	m Monoid[A],
 
 ) Monoid[HKTA] {
-
-	sg := ApplicativeMonoid(fof, fmap, fap, m)
-
-	return MakeMonoid(
-		func(first, second HKTA) HKTA {
-			snd := func() HKTA { return second }
-
-			return falt(sg.Concat(first, second), func() HKTA {
-				return falt(first, snd)
-			})
-		},
-		sg.Empty(),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func AltMonoid[HKTA any, LAZYHKTA ~func() HKTA](
@@ -50,9 +35,6 @@ func AltMonoid[HKTA any, LAZYHKTA ~func() HKTA](
 	falt func(HKTA, LAZYHKTA) HKTA,
 
 ) Monoid[HKTA] {
-
-	return MakeMonoid(
-		S.AltSemigroup(falt).Concat,
-		fzero(),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

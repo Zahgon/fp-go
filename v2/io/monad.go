@@ -27,32 +27,29 @@ type (
 	IOMonad[A, B any] = monad.Monad[A, B, IO[A], IO[B], IO[func(A) B]]
 )
 
-func (o *ioMonad[A, B]) Of(a A) IO[A] {
-	return Of(a)
-}
+func (o *ioMonad[A, B]) Of(a A) IO[A] { _ = "STUB: not implemented"; return nil }
 
-func (o *ioMonad[A, B]) Map(f func(A) B) Operator[A, B] {
-	return Map(f)
-}
+func (o *ioMonad[A, B]) Map(f func(A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 func (o *ioMonad[A, B]) Chain(f Kleisli[A, B]) Operator[A, B] {
-	return Chain(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *ioMonad[A, B]) Ap(fa IO[A]) Operator[func(A) B, B] {
-	return Ap[B](fa)
+	_ = "STUB: not implemented"
+
+	// Monad returns an instance of the Monad type class for IO.
+	// This provides a structured way to access monadic operations (Of, Map, Chain, Ap)
+	// for IO computations.
+	//
+	// Example:
+	//
+	//	m := io.Monad[int, string]()
+	//	result := m.Chain(func(n int) io.IO[string] {
+	//	    return io.Of(strconv.Itoa(n))
+	//	})(m.Of(42))
+	return nil
 }
 
-// Monad returns an instance of the Monad type class for IO.
-// This provides a structured way to access monadic operations (Of, Map, Chain, Ap)
-// for IO computations.
-//
-// Example:
-//
-//	m := io.Monad[int, string]()
-//	result := m.Chain(func(n int) io.IO[string] {
-//	    return io.Of(strconv.Itoa(n))
-//	})(m.Of(42))
-func Monad[A, B any]() IOMonad[A, B] {
-	return &ioMonad[A, B]{}
-}
+func Monad[A, B any]() IOMonad[A, B] { _ = "STUB: not implemented"; return nil }

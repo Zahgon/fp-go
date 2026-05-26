@@ -15,12 +15,6 @@
 
 package stateless
 
-import (
-	G "github.com/IBM/fp-go/v2/iterator/stateless/generic"
-)
-
 // Last returns the last item in an iterator if such an item exists
 // Note that the function will consume the [Iterator] in this call completely, to identify the last element. Do not use this for infinite iterators
-func Last[U any](mu Iterator[U]) Option[U] {
-	return G.Last(mu)
-}
+func Last[U any](mu Iterator[U]) Option[U] { _ = "STUB: not implemented"; return nil }

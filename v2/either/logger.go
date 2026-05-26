@@ -20,7 +20,6 @@ import (
 	"log/slog"
 
 	F "github.com/IBM/fp-go/v2/function"
-	L "github.com/IBM/fp-go/v2/logging"
 )
 
 var (
@@ -31,15 +30,8 @@ var (
 )
 
 func _log[E, A any](left func(string, ...any), right func(string, ...any), prefix string) Operator[E, A, A] {
-	return Fold(
-		func(e E) Either[E, A] {
-			left("%s: %v", prefix, e)
-			return Left[A](e)
-		},
-		func(a A) Either[E, A] {
-			right("%s: %v", prefix, a)
-			return Right[E](a)
-		})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Logger creates a logging function for Either values that logs both Left and Right cases.
@@ -59,16 +51,8 @@ func _log[E, A any](left func(string, ...any), right func(string, ...any), prefi
 //	// Logs: "Processing: 42"
 //	// result is Right(84)
 func Logger[E, A any](loggers ...*log.Logger) func(string) Operator[E, A, A] {
-	left, right := L.LoggingCallbacks(loggers...)
-	return func(prefix string) Operator[E, A, A] {
-		delegate := _log[E, A](left, right, prefix)
-		return func(ma Either[E, A]) Either[E, A] {
-			return F.Pipe1(
-				delegate(ma),
-				ChainTo[A](ma),
-			)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ToSLogAttr converts an Either value to a structured logging attribute (slog.Attr).
@@ -146,15 +130,4 @@ func Logger[E, A any](loggers ...*log.Logger) func(string) Operator[E, A, A] {
 //
 // Note: The returned slog.Attr uses "error" for Left values and "value" for Right values.
 // These keys are consistent with common structured logging conventions.
-func ToSLogAttr[E, A any]() func(Either[E, A]) slog.Attr {
-	return Fold(
-		F.Flow2(
-			F.ToAny[E],
-			slogError,
-		),
-		F.Flow2(
-			F.ToAny[A],
-			slogValue,
-		),
-	)
-}
+func ToSLogAttr[E, A any]() func(Either[E, A]) slog.Attr { _ = "STUB: not implemented"; return nil }

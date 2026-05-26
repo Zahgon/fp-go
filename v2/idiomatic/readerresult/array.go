@@ -15,11 +15,6 @@
 
 package readerresult
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/array"
-)
-
 // TraverseArray applies a ReaderResult-returning function to each element of an array,
 // collecting the results. If any element fails, the entire operation fails with the first error.
 //
@@ -32,24 +27,14 @@ import (
 //
 //go:inline
 func TraverseArray[R, A, B any](f Kleisli[R, A, B]) Kleisli[R, []A, []B] {
-	return array.Traverse[[]A](
-		Of[R, []B],
-		Map[R, []B, func(B) []B],
-		Ap[[]B, R, B],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MonadTraverseArray[R, A, B any](as []A, f Kleisli[R, A, B]) ReaderResult[R, []B] {
-	return array.MonadTraverse(
-		Of[R, []B],
-		Map[R, []B, func(B) []B],
-		Ap[[]B, R, B],
-		as,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex is like TraverseArray but the function also receives the element's index.
@@ -65,13 +50,8 @@ func MonadTraverseArray[R, A, B any](as []A, f Kleisli[R, A, B]) ReaderResult[R,
 //
 //go:inline
 func TraverseArrayWithIndex[R, A, B any](f func(int, A) ReaderResult[R, B]) Kleisli[R, []A, []B] {
-	return array.TraverseWithIndex[[]A](
-		Of[R, []B],
-		Map[R, []B, func(B) []B],
-		Ap[[]B, R, B],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts an array of ReaderResult values into a single ReaderResult of an array.
@@ -90,5 +70,6 @@ func TraverseArrayWithIndex[R, A, B any](f func(int, A) ReaderResult[R, B]) Klei
 //
 //go:inline
 func SequenceArray[R, A any](ma []ReaderResult[R, A]) ReaderResult[R, []A] {
-	return MonadTraverseArray(ma, F.Identity[ReaderResult[R, A]])
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -1,9 +1,5 @@
 package iter
 
-import (
-	"github.com/IBM/fp-go/v2/option"
-)
-
 // Last returns the last element from an [Iterator] wrapped in an [Option].
 //
 // This function retrieves the last element from the iterator by consuming the entire
@@ -49,19 +45,4 @@ import (
 //	filtered := iter.Filter(func(x int) bool { return x < 4 })(seq)
 //	last := iter.Last(filtered)
 //	// Returns: Some(3)
-func Last[U any](it Seq[U]) IOOption[U] {
-	none := option.None[U]()
-	return func() Option[U] {
-		var last U
-		found := false
-
-		for last = range it {
-			found = true
-		}
-
-		if !found {
-			return none
-		}
-		return option.Some(last)
-	}
-}
+func Last[U any](it Seq[U]) IOOption[U] { _ = "STUB: not implemented"; return nil }

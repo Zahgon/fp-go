@@ -15,10 +15,6 @@
 
 package validate
 
-import (
-	"github.com/IBM/fp-go/v2/monoid"
-)
-
 // ApplicativeMonoid creates a Monoid instance for Validate[I, A] given a Monoid[A].
 //
 // This function lifts a monoid operation on values of type A to work with validators
@@ -115,12 +111,8 @@ import (
 //   - reader.ApplicativeMonoid: The monoid for reader computations
 //   - Monoid[A]: The monoid instance for the result type
 func ApplicativeMonoid[I, A any](m Monoid[A]) Monoid[Validate[I, A]] {
-	return monoid.ApplicativeMonoid[A, Validate[I, A]](
-		Of,
-		MonadMap,
-		MonadAp,
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AlternativeMonoid creates a Monoid instance for Validate[I, A] that combines both
@@ -242,13 +234,8 @@ func ApplicativeMonoid[I, A any](m Monoid[A]) Monoid[Validate[I, A]] {
 //   - AltMonoid: For pure alternative behavior without result combination
 //   - MonadAlt: The underlying alternative operation
 func AlternativeMonoid[I, A any](m Monoid[A]) Monoid[Validate[I, A]] {
-	return monoid.AlternativeMonoid(
-		Of[I, A],
-		MonadMap[I, A, func(A) A],
-		MonadAp[A, I, A],
-		MonadAlt[I, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltMonoid creates a Monoid instance for Validate[I, A] using alternative semantics
@@ -382,8 +369,6 @@ func AlternativeMonoid[I, A any](m Monoid[A]) Monoid[Validate[I, A]] {
 //   - MonadAlt: The underlying alternative operation
 //   - Alt: The curried version for pipeline composition
 func AltMonoid[I, A any](zero Lazy[Validate[I, A]]) Monoid[Validate[I, A]] {
-	return monoid.AltMonoid(
-		zero,
-		MonadAlt[I, A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

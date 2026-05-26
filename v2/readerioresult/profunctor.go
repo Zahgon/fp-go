@@ -19,7 +19,6 @@ import (
 	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/ioeither"
 	"github.com/IBM/fp-go/v2/ioresult"
-	RIOE "github.com/IBM/fp-go/v2/readerioeither"
 )
 
 // Promap is the profunctor map operation that transforms both the input and output of a ReaderIOResult.
@@ -48,7 +47,8 @@ import (
 //
 //go:inline
 func Promap[R, A, D, B any](f func(D) R, g func(A) B) Kleisli[D, ReaderIOResult[R, A], B] {
-	return RIOE.Promap[R, error](f, g)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Contramap changes the value of the local environment during the execution of a ReaderIOResult.
@@ -72,7 +72,8 @@ func Promap[R, A, D, B any](f func(D) R, g func(A) B) Kleisli[D, ReaderIOResult[
 //
 //go:inline
 func Contramap[A, R1, R2 any](f func(R2) R1) Kleisli[R2, ReaderIOResult[R1, A], A] {
-	return RIOE.Contramap[error, A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalIOK transforms the environment of a ReaderIOResult using an IO-based Kleisli arrow.
@@ -123,7 +124,8 @@ func Contramap[A, R1, R2 any](f func(R2) R1) Kleisli[R2, ReaderIOResult[R1, A], 
 //
 //go:inline
 func LocalIOK[A, R1, R2 any](f io.Kleisli[R2, R1]) Kleisli[R2, ReaderIOResult[R1, A], A] {
-	return RIOE.LocalIOK[error, A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalIOEitherK transforms the environment of a ReaderIOResult using an IOEither-based Kleisli arrow.
@@ -179,7 +181,8 @@ func LocalIOK[A, R1, R2 any](f io.Kleisli[R2, R1]) Kleisli[R2, ReaderIOResult[R1
 //
 //go:inline
 func LocalIOEitherK[A, R1, R2 any](f ioeither.Kleisli[error, R2, R1]) Kleisli[R2, ReaderIOResult[R1, A], A] {
-	return RIOE.LocalIOEitherK[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalIOResultK transforms the environment of a ReaderIOResult using an IOResult-based Kleisli arrow.
@@ -234,5 +237,6 @@ func LocalIOEitherK[A, R1, R2 any](f ioeither.Kleisli[error, R2, R1]) Kleisli[R2
 //
 //go:inline
 func LocalIOResultK[A, R1, R2 any](f ioresult.Kleisli[R2, R1]) Kleisli[R2, ReaderIOResult[R1, A], A] {
-	return RIOE.LocalIOEitherK[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }

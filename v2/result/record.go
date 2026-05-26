@@ -15,10 +15,6 @@
 
 package result
 
-import (
-	"github.com/IBM/fp-go/v2/either"
-)
-
 // TraverseRecordG transforms a map by applying a function that returns an Either to each value.
 // If any value produces a Left, the entire result is that Left (short-circuits).
 // Otherwise, returns Right containing the map of all Right values.
@@ -35,7 +31,8 @@ import (
 //
 //go:inline
 func TraverseRecordG[GA ~map[K]A, GB ~map[K]B, K comparable, A, B any](f Kleisli[A, B]) Kleisli[GA, GB] {
-	return either.TraverseRecordG[GA, GB](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecord transforms a map by applying a function that returns an Either to each value.
@@ -53,7 +50,8 @@ func TraverseRecordG[GA ~map[K]A, GB ~map[K]B, K comparable, A, B any](f Kleisli
 //
 //go:inline
 func TraverseRecord[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, map[K]B] {
-	return either.TraverseRecord[K](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndexG transforms a map by applying an indexed function that returns an Either.
@@ -74,7 +72,8 @@ func TraverseRecord[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, ma
 //
 //go:inline
 func TraverseRecordWithIndexG[GA ~map[K]A, GB ~map[K]B, K comparable, A, B any](f func(K, A) Result[B]) Kleisli[GA, GB] {
-	return either.TraverseRecordWithIndexG[GA, GB](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndex transforms a map by applying an indexed function that returns an Either.
@@ -94,12 +93,14 @@ func TraverseRecordWithIndexG[GA ~map[K]A, GB ~map[K]B, K comparable, A, B any](
 //
 //go:inline
 func TraverseRecordWithIndex[K comparable, A, B any](f func(K, A) Result[B]) Kleisli[map[K]A, map[K]B] {
-	return either.TraverseRecordWithIndex(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func SequenceRecordG[GA ~map[K]A, GOA ~map[K]Result[A], K comparable, A any](ma GOA) Result[GA] {
-	return either.SequenceRecordG[GA](ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecord converts a map of Either values into an Either of a map.
@@ -117,7 +118,8 @@ func SequenceRecordG[GA ~map[K]A, GOA ~map[K]Result[A], K comparable, A any](ma 
 //
 //go:inline
 func SequenceRecord[K comparable, A any](ma map[K]Result[A]) Result[map[K]A] {
-	return either.SequenceRecord(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // CompactRecordG discards all Left values and keeps only the Right values.
@@ -133,7 +135,8 @@ func SequenceRecord[K comparable, A any](ma map[K]Result[A]) Result[map[K]A] {
 //	result := either.CompactRecordG[map[string]either.Result[int], map[string]int](eithers)
 //	// result is map[string]int{"a": 1, "c": 3}
 func CompactRecordG[M1 ~map[K]Result[A], M2 ~map[K]A, K comparable, A any](m M1) M2 {
-	return either.CompactRecordG[M1, M2](m)
+	_ = "STUB: not implemented"
+	return *new(M2)
 }
 
 // CompactRecord discards all Left values and keeps only the Right values.
@@ -150,9 +153,11 @@ func CompactRecordG[M1 ~map[K]Result[A], M2 ~map[K]A, K comparable, A any](m M1)
 //
 //go:inline
 func CompactRecord[K comparable, A any](m map[K]Result[A]) map[K]A {
-	return either.CompactRecord(m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraversableRecord[K comparable, A, B any]() Traversable[A, B, map[K]A, map[K]B] {
-	return either.TraversableRecord[K, error, A, B]()
+	_ = "STUB: not implemented"
+	return nil
 }

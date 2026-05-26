@@ -17,44 +17,28 @@ package generic
 
 import (
 	ET "github.com/IBM/fp-go/v2/either"
-	F "github.com/IBM/fp-go/v2/function"
-	RA "github.com/IBM/fp-go/v2/internal/array"
 )
 
 // MonadTraverseArray transforms an array
 func MonadTraverseArray[GB ~func(E) ET.Either[L, B], GBS ~func(E) ET.Either[L, BBS], AAS ~[]A, BBS ~[]B, L, E, A, B any](ma AAS, f func(A) GB) GBS {
-	return RA.MonadTraverse(
-		Of[GBS, L, E, BBS],
-		Map[GBS, func(E) ET.Either[L, func(B) BBS], L, E, BBS, func(B) BBS],
-		Ap[GB, GBS, func(E) ET.Either[L, func(B) BBS], L, E, B, BBS],
-
-		ma, f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GBS)
 }
 
 // TraverseArray transforms an array
 func TraverseArray[GB ~func(E) ET.Either[L, B], GBS ~func(E) ET.Either[L, BBS], AAS ~[]A, BBS ~[]B, L, E, A, B any](f func(A) GB) func(AAS) GBS {
-	return RA.Traverse[AAS](
-		Of[GBS, L, E, BBS],
-		Map[GBS, func(E) ET.Either[L, func(B) BBS], L, E, BBS, func(B) BBS],
-		Ap[GB, GBS, func(E) ET.Either[L, func(B) BBS], L, E, B, BBS],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms an array
 func TraverseArrayWithIndex[GB ~func(E) ET.Either[L, B], GBS ~func(E) ET.Either[L, BBS], AAS ~[]A, BBS ~[]B, L, E, A, B any](f func(int, A) GB) func(AAS) GBS {
-	return RA.TraverseWithIndex[AAS](
-		Of[GBS, L, E, BBS],
-		Map[GBS, func(E) ET.Either[L, func(B) BBS], L, E, BBS, func(B) BBS],
-		Ap[GB, GBS, func(E) ET.Either[L, func(B) BBS], L, E, B, BBS],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts a homogeneous sequence of either into an either of sequence
 func SequenceArray[GA ~func(E) ET.Either[L, A], GAS ~func(E) ET.Either[L, AAS], AAS ~[]A, GAAS ~[]GA, L, E, A any](ma GAAS) GAS {
-	return MonadTraverseArray[GA, GAS](ma, F.Identity[GA])
+	_ = "STUB: not implemented"
+	return *new(GAS)
 }

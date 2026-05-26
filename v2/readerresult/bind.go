@@ -16,12 +16,10 @@
 package readerresult
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	RRI "github.com/IBM/fp-go/v2/idiomatic/readerresult"
 	RI "github.com/IBM/fp-go/v2/idiomatic/result"
 	L "github.com/IBM/fp-go/v2/optics/lens"
 	"github.com/IBM/fp-go/v2/reader"
-	G "github.com/IBM/fp-go/v2/readereither/generic"
 	"github.com/IBM/fp-go/v2/result"
 )
 
@@ -44,7 +42,8 @@ import (
 func Do[R, S any](
 	empty S,
 ) ReaderResult[R, S] {
-	return G.Do[ReaderResult[R, S]](empty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Bind attaches the result of a computation to a context [S1] to produce a context [S2].
@@ -95,7 +94,8 @@ func Bind[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[R, S1, T],
 ) Operator[R, S1, S2] {
-	return G.Bind[ReaderResult[R, S1], ReaderResult[R, S2]](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindI attaches the result of an idiomatic computation to a context [S1] to produce a context [S2].
@@ -135,7 +135,8 @@ func BindI[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f RRI.Kleisli[R, S1, T],
 ) Operator[R, S1, S2] {
-	return Bind(setter, fromReaderResultKleisliI(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a computation to a context [S1] to produce a context [S2]
@@ -145,7 +146,8 @@ func Let[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[R, S1, S2] {
-	return G.Let[ReaderResult[R, S1], ReaderResult[R, S2]](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches the a value to a context [S1] to produce a context [S2]
@@ -155,7 +157,8 @@ func LetTo[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) Operator[R, S1, S2] {
-	return G.LetTo[ReaderResult[R, S1], ReaderResult[R, S2]](setter, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T]
@@ -164,7 +167,8 @@ func LetTo[R, S1, S2, T any](
 func BindTo[R, S1, T any](
 	setter func(T) S1,
 ) Operator[R, T, S1] {
-	return G.BindTo[ReaderResult[R, S1], ReaderResult[R, T]](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering
@@ -214,7 +218,8 @@ func ApS[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa ReaderResult[R, T],
 ) Operator[R, S1, S2] {
-	return G.ApS[ReaderResult[R, S1], ReaderResult[R, S2]](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApIS attaches a value from an idiomatic ReaderResult to a context [S1] to produce a context [S2].
@@ -252,7 +257,8 @@ func ApIS[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa RRI.ReaderResult[R, T],
 ) Operator[R, S1, S2] {
-	return ApS(setter, FromReaderResultI(fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL attaches a value to a context using a lens-based setter.
@@ -291,44 +297,47 @@ func ApSL[R, S, T any](
 	lens L.Lens[S, T],
 	fa ReaderResult[R, T],
 ) Operator[R, S, S] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// ApISL attaches a value from an idiomatic ReaderResult to a context using a lens-based setter.
+	// This is the idiomatic version of ApSL, where the computation returns (T, error) instead of Result[T].
+	// It combines ApIS with a lens, allowing you to use optics to update nested structures in a more composable way.
+	//
+	// Example:
+	//
+	//	type State struct {
+	//	    User   User
+	//	    Config Config
+	//	}
+	//	type Env struct {
+	//	    ConfigService ConfigService
+	//	}
+	//
+	//	configLens := lens.MakeLens(
+	//	    func(s State) Config { return s.Config },
+	//	    func(s State, c Config) State { s.Config = c; return s },
+	//	)
+	//
+	//	// Idiomatic computation returning (Config, error)
+	//	getConfig := func(env Env) (Config, error) {
+	//	    return env.ConfigService.GetConfig()
+	//	}
+	//
+	//	result := F.Pipe1(
+	//	    readerresult.Of[Env](State{}),
+	//	    readerresult.ApISL(configLens, getConfig),
+	//	)
+	//
+	//go:inline
 }
 
-// ApISL attaches a value from an idiomatic ReaderResult to a context using a lens-based setter.
-// This is the idiomatic version of ApSL, where the computation returns (T, error) instead of Result[T].
-// It combines ApIS with a lens, allowing you to use optics to update nested structures in a more composable way.
-//
-// Example:
-//
-//	type State struct {
-//	    User   User
-//	    Config Config
-//	}
-//	type Env struct {
-//	    ConfigService ConfigService
-//	}
-//
-//	configLens := lens.MakeLens(
-//	    func(s State) Config { return s.Config },
-//	    func(s State, c Config) State { s.Config = c; return s },
-//	)
-//
-//	// Idiomatic computation returning (Config, error)
-//	getConfig := func(env Env) (Config, error) {
-//	    return env.ConfigService.GetConfig()
-//	}
-//
-//	result := F.Pipe1(
-//	    readerresult.Of[Env](State{}),
-//	    readerresult.ApISL(configLens, getConfig),
-//	)
-//
-//go:inline
 func ApISL[R, S, T any](
 	lens L.Lens[S, T],
 	fa RRI.ReaderResult[R, T],
 ) Operator[R, S, S] {
-	return ApS(lens.Set, FromReaderResultI(fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindL is a variant of Bind that uses a lens to focus on a specific part of the context.
@@ -369,7 +378,8 @@ func BindL[R, S, T any](
 	lens L.Lens[S, T],
 	f Kleisli[R, T, T],
 ) Operator[R, S, S] {
-	return Bind(lens.Set, F.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindIL is a variant of BindI that uses a lens to focus on a specific part of the context.
@@ -409,7 +419,8 @@ func BindIL[R, S, T any](
 	lens L.Lens[S, T],
 	f RRI.Kleisli[R, T, T],
 ) Operator[R, S, S] {
-	return Bind(lens.Set, F.Flow3(lens.Get, f, FromReaderResultI[R, T]))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL is a variant of Let that uses a lens to focus on a specific part of the context.
@@ -445,7 +456,8 @@ func LetL[R, S, T any](
 	lens L.Lens[S, T],
 	f Endomorphism[T],
 ) Operator[R, S, S] {
-	return Let[R](lens.Set, F.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL is a variant of LetTo that uses a lens to focus on a specific part of the context.
@@ -478,7 +490,8 @@ func LetToL[R, S, T any](
 	lens L.Lens[S, T],
 	b T,
 ) Operator[R, S, S] {
-	return LetTo[R](lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindReaderK lifts a Reader Kleisli arrow into a ReaderResult context and binds it to the state.
@@ -519,7 +532,8 @@ func BindReaderK[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f reader.Kleisli[R, S1, T],
 ) Operator[R, S1, S2] {
-	return G.BindReaderK[ReaderResult[R, S1], ReaderResult[R, S2]](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -527,7 +541,8 @@ func BindEitherK[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f result.Kleisli[S1, T],
 ) Operator[R, S1, S2] {
-	return G.BindEitherK[ReaderResult[R, S1], ReaderResult[R, S2]](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindEitherIK lifts an idiomatic Result Kleisli arrow into a ReaderResult context and binds it to the state.
@@ -565,7 +580,8 @@ func BindEitherIK[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f RI.Kleisli[S1, T],
 ) Operator[R, S1, S2] {
-	return BindEitherK[R](setter, fromResultKleisliI(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindResultK lifts a Result Kleisli arrow into a ReaderResult context and binds it to the state.
@@ -606,7 +622,8 @@ func BindResultK[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f result.Kleisli[S1, T],
 ) Operator[R, S1, S2] {
-	return G.BindEitherK[ReaderResult[R, S1], ReaderResult[R, S2]](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindResultIK is an alias for BindEitherIK.
@@ -618,7 +635,8 @@ func BindResultIK[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f RI.Kleisli[S1, T],
 ) Operator[R, S1, S2] {
-	return BindResultK[R](setter, fromResultKleisliI(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindToReader initializes a new state S1 from a Reader[R, T] computation.
@@ -654,7 +672,8 @@ func BindToReader[
 	R, S1, T any](
 	setter func(T) S1,
 ) func(Reader[R, T]) ReaderResult[R, S1] {
-	return G.BindToReader[ReaderResult[R, S1], Reader[R, T]](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -662,7 +681,8 @@ func BindToEither[
 	R, S1, T any](
 	setter func(T) S1,
 ) func(Result[T]) ReaderResult[R, S1] {
-	return G.BindToEither[ReaderResult[R, S1]](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindToEitherI initializes a new state S1 from an idiomatic (value, error) pair.
@@ -689,10 +709,8 @@ func BindToEitherI[
 	R, S1, T any](
 	setter func(T) S1,
 ) func(T, error) ReaderResult[R, S1] {
-	bte := BindToEither[R](setter)
-	return func(t T, err error) ReaderResult[R, S1] {
-		return bte(result.TryCatchError(t, err))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindToResult initializes a new state S1 from a Result[T] value.
@@ -727,7 +745,8 @@ func BindToResult[
 	R, S1, T any](
 	setter func(T) S1,
 ) func(Result[T]) ReaderResult[R, S1] {
-	return G.BindToEither[ReaderResult[R, S1]](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindToResultI is an alias for BindToEitherI.
@@ -738,7 +757,8 @@ func BindToResultI[
 	R, S1, T any](
 	setter func(T) S1,
 ) func(T, error) ReaderResult[R, S1] {
-	return BindToEitherI[R](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApReaderS attaches a value from a pure Reader computation to a context [S1] to produce a context [S2]
@@ -787,7 +807,8 @@ func ApReaderS[
 	setter func(T) func(S1) S2,
 	fa Reader[R, T],
 ) Operator[R, S1, S2] {
-	return G.ApReaderS[ReaderResult[R, S1], ReaderResult[R, S2]](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
@@ -796,7 +817,8 @@ func ApEitherS[
 	setter func(T) func(S1) S2,
 	fa Result[T],
 ) Operator[R, S1, S2] {
-	return G.ApEitherS[ReaderResult[R, S1], ReaderResult[R, S2]](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApEitherIS attaches a value from an idiomatic (value, error) pair to a context [S1] to produce a context [S2].
@@ -827,9 +849,8 @@ func ApEitherIS[
 	R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 ) func(T, error) Operator[R, S1, S2] {
-	return func(t T, err error) Operator[R, S1, S2] {
-		return ApEitherS[R](setter, result.TryCatchError(t, err))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApResultS attaches a value from a Result to a context [S1] to produce a context [S2]
@@ -876,7 +897,8 @@ func ApResultS[
 	setter func(T) func(S1) S2,
 	fa Result[T],
 ) Operator[R, S1, S2] {
-	return G.ApEitherS[ReaderResult[R, S1], ReaderResult[R, S2]](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApResultIS is an alias for ApEitherIS.
@@ -887,5 +909,6 @@ func ApResultIS[
 	R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 ) func(T, error) Operator[R, S1, S2] {
-	return ApEitherIS[R](setter)
+	_ = "STUB: not implemented"
+	return nil
 }

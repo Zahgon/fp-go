@@ -88,7 +88,6 @@ package optional
 
 import (
 	EM "github.com/IBM/fp-go/v2/endomorphism"
-	F "github.com/IBM/fp-go/v2/function"
 	O "github.com/IBM/fp-go/v2/option"
 )
 
@@ -122,27 +121,13 @@ type (
 // setCopyRef wraps a setter for a pointer into a setter that first creates a copy before
 // modifying that copy
 func setCopyRef[SET ~func(A) func(*S) *S, S, A any](setter SET) func(a A) func(*S) *S {
-	return func(a A) func(*S) *S {
-
-		sa := setter(a)
-
-		return func(s *S) *S {
-			if s == nil {
-				return s
-			}
-			cpy := *s
-			return sa(&cpy)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func getRef[GET ~func(*S) O.Option[A], S, A any](getter GET) func(*S) O.Option[A] {
-	return func(s *S) O.Option[A] {
-		if s == nil {
-			return O.None[A]()
-		}
-		return getter(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeOptional creates an Optional based on a getter and a setter function. Make sure that the setter creates a (shallow) copy of the
@@ -151,21 +136,25 @@ func getRef[GET ~func(*S) O.Option[A], S, A any](getter GET) func(*S) O.Option[A
 //
 //go:inline
 func MakeOptional[S, A any](get O.Kleisli[S, A], set func(S, A) S) Optional[S, A] {
-	return MakeOptionalWithName(get, set, "GenericOptional")
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MakeOptionalCurried[S, A any](get O.Kleisli[S, A], set func(A) func(S) S) Optional[S, A] {
-	return MakeOptionalCurriedWithName(get, set, "GenericOptional")
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MakeOptionalWithName[S, A any](get O.Kleisli[S, A], set func(S, A) S, name string) Optional[S, A] {
-	return MakeOptionalCurriedWithName(get, F.Bind2of2(set), name)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MakeOptionalCurriedWithName[S, A any](get O.Kleisli[S, A], set func(A) func(S) S, name string) Optional[S, A] {
-	return Optional[S, A]{GetOption: get, Set: set, name: name}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeOptionalRef creates an Optional based on a getter and a setter function. The setter passed in does not have to create a shallow
@@ -173,156 +162,113 @@ func MakeOptionalCurriedWithName[S, A any](get O.Kleisli[S, A], set func(A) func
 //
 //go:inline
 func MakeOptionalRef[S, A any](get O.Kleisli[*S, A], set func(*S, A) *S) Optional[*S, A] {
-	return MakeOptionalCurried(getRef(get), setCopyRef(F.Bind2of2(set)))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MakeOptionalRefWithName[S, A any](get O.Kleisli[*S, A], set func(*S, A) *S, name string) Optional[*S, A] {
-	return MakeOptionalCurriedWithName(getRef(get), setCopyRef(F.Bind2of2(set)), name)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MakeOptionalRefCurriedWithName[S, A any](get O.Kleisli[*S, A], set func(A) func(*S) *S, name string) Optional[*S, A] {
-	return MakeOptionalCurriedWithName(getRef(get), setCopyRef(set), name)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Id returns am optional implementing the identity operation
 func idWithName[S any](creator func(get O.Kleisli[S, S], set func(S, S) S, name string) Optional[S, S], name string) Optional[S, S] {
-	return creator(O.Some[S], F.Second[S, S], name)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Id returns am optional implementing the identity operation
-func Id[S any]() Optional[S, S] {
-	return idWithName(MakeOptionalWithName[S, S], "Identity")
-}
+func Id[S any]() Optional[S, S] { _ = "STUB: not implemented"; return nil }
 
 // Id returns am optional implementing the identity operation
-func IdRef[S any]() Optional[*S, *S] {
-	return idWithName(MakeOptionalRefWithName[S, *S], "Identity")
-}
+func IdRef[S any]() Optional[*S, *S] { _ = "STUB: not implemented"; return nil }
 
 func optionalModifyOption[S, A any](f func(A) A, optional Optional[S, A], s S) O.Option[S] {
-	return F.Pipe1(
-		optional.GetOption(s),
-		O.Map(func(a A) S {
-			return optional.Set(f(a))(s)
-		}),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func optionalModify[S, A any](f func(A) A, optional Optional[S, A], s S) S {
-	return F.Pipe1(
-		optionalModifyOption(f, optional, s),
-		O.GetOrElse(F.Constant(s)),
-	)
+	_ = "STUB: not implemented"
+	return *new(S)
 }
 
 // Compose combines two Optional and allows to narrow down the focus to a sub-Optional
 func compose[S, A, B any](creator func(get O.Kleisli[S, B], set func(S, B) S) Optional[S, B], ab Optional[A, B]) Operator[S, A, B] {
-	abget := ab.GetOption
-	abset := ab.Set
-	return func(sa Optional[S, A]) Optional[S, B] {
-		saget := sa.GetOption
-		return creator(
-			F.Flow2(saget, O.Chain(abget)),
-			func(s S, b B) S {
-				return optionalModify(abset(b), sa, s)
-			},
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Compose combines two Optional and allows to narrow down the focus to a sub-Optional
 func Compose[S, A, B any](ab Optional[A, B]) Operator[S, A, B] {
-	return compose(MakeOptional[S, B], ab)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ComposeRef combines two Optional and allows to narrow down the focus to a sub-Optional
 func ComposeRef[S, A, B any](ab Optional[A, B]) Operator[*S, A, B] {
-	return compose(MakeOptionalRef[S, B], ab)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // fromPredicate implements the function generically for both the ref and the direct case
 func fromPredicate[S, A any](creator func(get O.Kleisli[S, A], set func(S, A) S) Optional[S, A], pred func(A) bool) func(func(S) A, func(S, A) S) Optional[S, A] {
-	fromPred := O.FromPredicate(pred)
-	return func(get func(S) A, set func(S, A) S) Optional[S, A] {
-		return creator(
-			F.Flow2(get, fromPred),
-			func(s S, a A) S {
-				return F.Pipe3(
-					s,
-					get,
-					fromPred,
-					O.Fold(F.Constant(s), func(_ A) S {
-						return set(s, a)
-					}),
-				)
-			},
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromPredicate creates an optional from getter and setter functions. It checks
 // for optional values and the correct update procedure
 func FromPredicate[S, A any](pred func(A) bool) func(func(S) A, func(S, A) S) Optional[S, A] {
-	return fromPredicate(MakeOptional[S, A], pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromPredicate creates an optional from getter and setter functions. It checks
 // for optional values and the correct update procedure
 func FromPredicateRef[S, A any](pred func(A) bool) func(func(*S) A, func(*S, A) *S) Optional[*S, A] {
-	return fromPredicate(MakeOptionalRef[S, A], pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func imap[S, A, B any](sa Optional[S, A], ab func(A) B, ba func(B) A) Optional[S, B] {
-	return MakeOptional(
-		F.Flow2(sa.GetOption, O.Map(ab)),
-		func(s S, b B) S {
-			return sa.Set(ba(b))(s)
-		},
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // IMap implements a bidirectional mapping of the transform
 func IMap[S, A, B any](ab func(A) B, ba func(B) A) Operator[S, A, B] {
-	return func(sa Optional[S, A]) Optional[S, B] {
-		return imap(sa, ab, ba)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ModifyOption[S, A any](f func(A) A) func(Optional[S, A]) O.Kleisli[S, S] {
-	return func(o Optional[S, A]) O.Kleisli[S, S] {
-		return func(s S) O.Option[S] {
-			return optionalModifyOption(f, o, s)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func SetOption[S, A any](a A) func(Optional[S, A]) O.Kleisli[S, S] {
-	return ModifyOption[S](F.Constant1[A](a))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ichain[S, A, B any](sa Optional[S, A], ab O.Kleisli[A, B], ba O.Kleisli[B, A]) Optional[S, B] {
-	return MakeOptional(
-		F.Flow2(sa.GetOption, O.Chain(ab)),
-		func(s S, b B) S {
-			return O.MonadFold(ba(b), EM.Identity[S], sa.Set)(s)
-		},
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // IChain implements a bidirectional mapping of the transform if the transform can produce optionals (e.g. in case of type mappings)
 func IChain[S, A, B any](ab O.Kleisli[A, B], ba O.Kleisli[B, A]) Operator[S, A, B] {
-	return func(sa Optional[S, A]) Optional[S, B] {
-		return ichain(sa, ab, ba)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // IChainAny implements a bidirectional mapping to and from any
-func IChainAny[S, A any]() Operator[S, any, A] {
-	fromAny := O.InstanceOf[A]
-	toAny := O.ToAny[A]
-	return func(sa Optional[S, any]) Optional[S, A] {
-		return ichain(sa, fromAny, toAny)
-	}
-}
+func IChainAny[S, A any]() Operator[S, any, A] { _ = "STUB: not implemented"; return nil }

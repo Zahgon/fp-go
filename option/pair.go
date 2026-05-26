@@ -17,14 +17,10 @@ package option
 
 import (
 	P "github.com/IBM/fp-go/pair"
-	PG "github.com/IBM/fp-go/pair/generic"
 )
 
 // SequencePair converts a [Pair] of [Option[T]] into an [Option[Pair]].
 func SequencePair[T1, T2 any](t P.Pair[Option[T1], Option[T2]]) Option[P.Pair[T1, T2]] {
-	return PG.SequencePair(
-		Map[T1, func(T2) P.Pair[T1, T2]],
-		Ap[P.Pair[T1, T2], T2],
-		t,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,14 +16,12 @@
 package statereaderioeither
 
 import (
-	"github.com/IBM/fp-go/v2/pair"
 	"github.com/IBM/fp-go/v2/readerioeither"
 )
 
 func uncurryState[S, R, E, A, B any](f func(A) readerioeither.Kleisli[R, E, S, B]) readerioeither.Kleisli[R, E, Pair[S, A], B] {
-	return func(r Pair[S, A]) ReaderIOEither[R, E, B] {
-		return f(pair.Tail(r))(pair.Head(r))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WithResource constructs a function that creates a resource with state management, operates on it, and then releases the resource.
@@ -70,11 +68,6 @@ func WithResource[A, S, R, E, RES, ANY any](
 	onCreate StateReaderIOEither[S, R, E, RES],
 	onRelease Kleisli[S, R, E, RES, ANY],
 ) Kleisli[S, R, E, Kleisli[S, R, E, RES, A], A] {
-	release := uncurryState(onRelease)
-	return func(f Kleisli[S, R, E, RES, A]) StateReaderIOEither[S, R, E, A] {
-		use := uncurryState(f)
-		return func(s S) ReaderIOEither[R, E, Pair[S, A]] {
-			return readerioeither.WithResource[Pair[S, A]](onCreate(s), release)(use)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

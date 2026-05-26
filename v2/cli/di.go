@@ -16,216 +16,39 @@
 package cli
 
 import (
-	"context"
-	"fmt"
-	"log"
 	"os"
-	"path/filepath"
 
 	C "github.com/urfave/cli/v3"
 )
 
 func generateMakeProvider(f *os.File, i int) {
+	_ = "STUB: not implemented"
 	// non generic version
-	fmt.Fprintf(f, "\n// MakeProvider%d creates a [DIE.Provider] for an [InjectionToken] from a function with %d dependencies\n", i, i)
-	fmt.Fprintf(f, "func MakeProvider%d[", i)
-	for j := range i {
-		if j > 0 {
-			fmt.Fprintf(f, ", ")
-		}
-		fmt.Fprintf(f, "T%d", j+1)
-	}
-	fmt.Fprintf(f, " any, R any](\n")
-	fmt.Fprintf(f, "  token InjectionToken[R],\n")
-	for j := range i {
-		fmt.Fprintf(f, "  d%d Dependency[T%d],\n", j+1, j+1)
-	}
-	fmt.Fprintf(f, "  f func(")
-	for j := range i {
-		if j > 0 {
-			fmt.Fprintf(f, ", ")
-		}
-		fmt.Fprintf(f, "T%d", j+1)
-	}
-	fmt.Fprintf(f, ") IOE.IOEither[error, R],\n")
-	fmt.Fprintf(f, ") DIE.Provider {\n")
-	fmt.Fprint(f, "  return DIE.MakeProvider(\n")
-	fmt.Fprint(f, "    token,\n")
-	fmt.Fprintf(f, "    MakeProviderFactory%d(\n", i)
-	for j := range i {
-		fmt.Fprintf(f, "      d%d,\n", j+1)
-	}
-	fmt.Fprint(f, "      f,\n")
-	fmt.Fprint(f, "  ))\n")
-	fmt.Fprintf(f, "}\n")
+	return
 }
 
 func generateMakeTokenWithDefault(f *os.File, i int) {
+	_ = "STUB: not implemented"
 	// non generic version
-	fmt.Fprintf(f, "\n// MakeTokenWithDefault%d creates an [InjectionToken] with a default implementation with %d dependencies\n", i, i)
-	fmt.Fprintf(f, "func MakeTokenWithDefault%d[", i)
-	for j := range i {
-		if j > 0 {
-			fmt.Fprintf(f, ", ")
-		}
-		fmt.Fprintf(f, "T%d", j+1)
-	}
-	fmt.Fprintf(f, " any, R any](\n")
-	fmt.Fprintf(f, "  name string,\n")
-	for j := range i {
-		fmt.Fprintf(f, "  d%d Dependency[T%d],\n", j+1, j+1)
-	}
-	fmt.Fprintf(f, "  f func(")
-	for j := range i {
-		if j > 0 {
-			fmt.Fprintf(f, ", ")
-		}
-		fmt.Fprintf(f, "T%d", j+1)
-	}
-	fmt.Fprintf(f, ") IOE.IOEither[error, R],\n")
-	fmt.Fprintf(f, ") InjectionToken[R] {\n")
-	fmt.Fprintf(f, "  return MakeTokenWithDefault[R](name, MakeProviderFactory%d(\n", i)
-	for j := range i {
-		fmt.Fprintf(f, "    d%d,\n", j+1)
-	}
-	fmt.Fprint(f, "    f,\n")
-	fmt.Fprint(f, "  ))\n")
-	fmt.Fprintf(f, "}\n")
+	return
 }
 
 func generateMakeProviderFactory(f *os.File, i int) {
+	_ = "STUB: not implemented"
 	// non generic version
-	fmt.Fprintf(f, "\n// MakeProviderFactory%d creates a [DIE.ProviderFactory] from a function with %d arguments and %d dependencies\n", i, i, i)
-	fmt.Fprintf(f, "func MakeProviderFactory%d[", i)
-	for j := range i {
-		if j > 0 {
-			fmt.Fprintf(f, ", ")
-		}
-		fmt.Fprintf(f, "T%d", j+1)
-	}
-	fmt.Fprintf(f, " any, R any](\n")
-	for j := range i {
-		fmt.Fprintf(f, "  d%d Dependency[T%d],\n", j+1, j+1)
-	}
-	fmt.Fprintf(f, "  f func(")
-	for j := range i {
-		if j > 0 {
-			fmt.Fprintf(f, ", ")
-		}
-		fmt.Fprintf(f, "T%d", j+1)
-	}
-	fmt.Fprintf(f, ") IOE.IOEither[error, R],\n")
-	fmt.Fprintf(f, ") DIE.ProviderFactory {\n")
-	fmt.Fprint(f, "  return DIE.MakeProviderFactory(\n")
-	fmt.Fprint(f, "    A.From[DIE.Dependency](\n")
-	for j := range i {
-		fmt.Fprintf(f, "      d%d,\n", j+1)
-	}
-	fmt.Fprint(f, "    ),\n")
-	fmt.Fprintf(f, "    eraseProviderFactory%d(\n", i)
-	for j := range i {
-		fmt.Fprintf(f, "      d%d,\n", j+1)
-	}
-	fmt.Fprint(f, "      f,\n")
-	fmt.Fprint(f, "    ),\n")
-	fmt.Fprint(f, "  )\n")
-	fmt.Fprintf(f, "}\n")
+	return
 }
 
 func generateEraseProviderFactory(f *os.File, i int) {
+	_ = "STUB: not implemented"
 	// non generic version
-	fmt.Fprintf(f, "\n// eraseProviderFactory%d creates a function that takes a variadic number of untyped arguments and from a function of %d strongly typed arguments and %d dependencies\n", i, i, i)
-	fmt.Fprintf(f, "func eraseProviderFactory%d[", i)
-	for j := range i {
-		if j > 0 {
-			fmt.Fprintf(f, ", ")
-		}
-		fmt.Fprintf(f, "T%d", j+1)
-	}
-	fmt.Fprintf(f, " any, R any](\n")
-	for j := range i {
-		fmt.Fprintf(f, "  d%d Dependency[T%d],\n", j+1, j+1)
-	}
-	fmt.Fprintf(f, "  f func(")
-	for j := range i {
-		if j > 0 {
-			fmt.Fprintf(f, ", ")
-		}
-		fmt.Fprintf(f, "T%d", j+1)
-	}
-	fmt.Fprintf(f, ") IOE.IOEither[error, R]) func(params ...any) IOE.IOEither[error, any] {\n")
-	fmt.Fprintf(f, "  ft := eraseTuple(T.Tupled%d(f))\n", i)
-	for j := range i {
-		fmt.Fprintf(f, "  t%d := lookupAt[T%d](%d, d%d)\n", j+1, j+1, j, j+1)
-	}
-	fmt.Fprint(f, "  return func(params ...any) IOE.IOEither[error, any] {\n")
-	fmt.Fprintf(f, "    return ft(E.SequenceT%d(\n", i)
-	for j := range i {
-		fmt.Fprintf(f, "      t%d(params),\n", j+1)
-	}
-	fmt.Fprint(f, "    ))\n")
-	fmt.Fprint(f, "  }\n")
-	fmt.Fprintf(f, "}\n")
+	return
 }
 
-func generateDIHelpers(filename string, count int) error {
-	dir, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	absDir, err := filepath.Abs(dir)
-	if err != nil {
-		return err
-	}
-	pkg := filepath.Base(absDir)
-	f, err := os.Create(filepath.Clean(filename))
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-	// log
-	log.Printf("Generating code in [%s] for package [%s] with [%d] repetitions ...", filename, pkg, count)
+func generateDIHelpers(filename string, count int) error { _ = "STUB: not implemented"; return nil }
 
-	// some header
-	fmt.Fprintln(f, "// Code generated by go generate; DO NOT EDIT.")
-	fmt.Fprintln(f, "// This file was generated by robots.")
-	fmt.Fprintln(f)
+// log
 
-	fmt.Fprintf(f, "package %s\n\n", pkg)
+// some header
 
-	fmt.Fprint(f, `
-import (
-	E "github.com/IBM/fp-go/v2/either"
-	IOE "github.com/IBM/fp-go/v2/ioeither"
-	T "github.com/IBM/fp-go/v2/tuple"
-	A "github.com/IBM/fp-go/v2/array"
-	DIE "github.com/IBM/fp-go/v2/di/erasure"
-)
-`)
-
-	for i := 1; i <= count; i++ {
-		generateEraseProviderFactory(f, i)
-		generateMakeProviderFactory(f, i)
-		generateMakeTokenWithDefault(f, i)
-		generateMakeProvider(f, i)
-	}
-
-	return nil
-}
-
-func DICommand() *C.Command {
-	return &C.Command{
-		Name:  "di",
-		Usage: "generate code for the dependency injection package",
-		Flags: []C.Flag{
-			flagCount,
-			flagFilename,
-		},
-		Action: func(ctx context.Context, cmd *C.Command) error {
-			return generateDIHelpers(
-				cmd.String(keyFilename),
-				cmd.Int(keyCount),
-			)
-		},
-	}
-}
+func DICommand() *C.Command { _ = "STUB: not implemented"; return nil }

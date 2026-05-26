@@ -16,255 +16,172 @@
 package generic
 
 import (
-	A "github.com/IBM/fp-go/array/generic"
-	F "github.com/IBM/fp-go/function"
-	C "github.com/IBM/fp-go/internal/chain"
-	"github.com/IBM/fp-go/internal/utils"
-	IO "github.com/IBM/fp-go/iooption/generic"
 	M "github.com/IBM/fp-go/monoid"
-	N "github.com/IBM/fp-go/number"
 	O "github.com/IBM/fp-go/option"
 	P "github.com/IBM/fp-go/pair"
 )
 
 // Next returns the iterator for the next element in an iterator `P.Pair`
 func Next[GU ~func() O.Option[P.Pair[GU, U]], U any](m P.Pair[GU, U]) GU {
-	return P.Head(m)
+	_ = "STUB: not implemented"
+
+	// Current returns the current element in an iterator `P.Pair`
+	return *new(GU)
 }
 
-// Current returns the current element in an iterator `P.Pair`
 func Current[GU ~func() O.Option[P.Pair[GU, U]], U any](m P.Pair[GU, U]) U {
-	return P.Tail(m)
+	_ = "STUB: not implemented"
+
+	// From constructs an array from a set of variadic arguments
+	return *new(U)
 }
 
-// From constructs an array from a set of variadic arguments
 func From[GU ~func() O.Option[P.Pair[GU, U]], U any](data ...U) GU {
-	return FromArray[GU](data)
+	_ = "STUB: not implemented"
+	return *new(GU)
 }
 
 // Empty returns the empty iterator
 func Empty[GU ~func() O.Option[P.Pair[GU, U]], U any]() GU {
-	return IO.None[GU]()
+	_ = "STUB: not implemented"
+	return *
+
+	// Of returns an iterator with one single element
+	new(GU)
 }
 
-// Of returns an iterator with one single element
 func Of[GU ~func() O.Option[P.Pair[GU, U]], U any](a U) GU {
-	return IO.Of[GU](P.MakePair(Empty[GU](), a))
+	_ = "STUB: not implemented"
+	return *new(GU)
 }
 
 // FromArray returns an iterator from multiple elements
 func FromArray[GU ~func() O.Option[P.Pair[GU, U]], US ~[]U, U any](as US) GU {
-	return A.MatchLeft(Empty[GU], func(head U, tail US) GU {
-		return func() O.Option[P.Pair[GU, U]] {
-			return O.Of(P.MakePair(FromArray[GU](tail), head))
-		}
-	})(as)
+	_ = "STUB: not implemented"
+	return *new(GU)
 }
 
 // reduce applies a function for each value of the iterator with a floating result
 func reduce[GU ~func() O.Option[P.Pair[GU, U]], U, V any](as GU, f func(V, U) V, initial V) V {
-	next, ok := O.Unwrap(as())
-	current := initial
-	for ok {
-		// next (with bad side effect)
-		current = f(current, Current(next))
-		next, ok = O.Unwrap(Next(next)())
-	}
-	return current
+	_ = "STUB: not implemented"
+	return *new(V)
 }
+
+// next (with bad side effect)
 
 // Reduce applies a function for each value of the iterator with a floating result
 func Reduce[GU ~func() O.Option[P.Pair[GU, U]], U, V any](f func(V, U) V, initial V) func(GU) V {
-	return F.Bind23of3(reduce[GU, U, V])(f, initial)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ToArray converts the iterator to an array
 func ToArray[GU ~func() O.Option[P.Pair[GU, U]], US ~[]U, U any](u GU) US {
-	return Reduce[GU](A.Append[US], A.Empty[US]())(u)
+	_ = "STUB: not implemented"
+	return *new(US)
 }
 
 func Map[GV ~func() O.Option[P.Pair[GV, V]], GU ~func() O.Option[P.Pair[GU, U]], FCT ~func(U) V, U, V any](f FCT) func(ma GU) GV {
+	_ = "STUB: not implemented"
 	// pre-declare to avoid cyclic reference
-	var m func(O.Option[P.Pair[GU, U]]) O.Option[P.Pair[GV, V]]
-
-	recurse := func(ma GU) GV {
-		return F.Nullary2(
-			ma,
-			m,
-		)
-	}
-
-	m = O.Map(P.BiMap(recurse, f))
-
-	return recurse
+	return nil
 }
 
 func MonadMap[GV ~func() O.Option[P.Pair[GV, V]], GU ~func() O.Option[P.Pair[GU, U]], U, V any](ma GU, f func(U) V) GV {
-	return Map[GV, GU](f)(ma)
+	_ = "STUB: not implemented"
+	return *new(GV)
 }
 
 func concat[GU ~func() O.Option[P.Pair[GU, U]], U any](right, left GU) GU {
-	var m func(ma O.Option[P.Pair[GU, U]]) O.Option[P.Pair[GU, U]]
-
-	recurse := func(left GU) GU {
-		return F.Nullary2(left, m)
-	}
-
-	m = O.Fold(
-		right,
-		F.Flow2(
-			P.BiMap(recurse, F.Identity[U]),
-			O.Some[P.Pair[GU, U]],
-		))
-
-	return recurse(left)
+	_ = "STUB: not implemented"
+	return *new(GU)
 }
 
 func Chain[GV ~func() O.Option[P.Pair[GV, V]], GU ~func() O.Option[P.Pair[GU, U]], U, V any](f func(U) GV) func(GU) GV {
+	_ = "STUB: not implemented"
 	// pre-declare to avoid cyclic reference
-	var m func(O.Option[P.Pair[GU, U]]) O.Option[P.Pair[GV, V]]
-
-	recurse := func(ma GU) GV {
-		return F.Nullary2(
-			ma,
-			m,
-		)
-	}
-	m = O.Chain(
-		F.Flow3(
-			P.BiMap(recurse, f),
-			P.Paired(concat[GV]),
-			func(v GV) O.Option[P.Pair[GV, V]] {
-				return v()
-			},
-		),
-	)
-
-	return recurse
+	return nil
 }
 
 func MonadChain[GV ~func() O.Option[P.Pair[GV, V]], GU ~func() O.Option[P.Pair[GU, U]], U, V any](ma GU, f func(U) GV) GV {
-	return Chain[GV, GU](f)(ma)
+	_ = "STUB: not implemented"
+	return *new(GV)
 }
 
 func MonadChainFirst[GV ~func() O.Option[P.Pair[GV, V]], GU ~func() O.Option[P.Pair[GU, U]], U, V any](ma GU, f func(U) GV) GU {
-	return C.MonadChainFirst(
-		MonadChain[GU, GU, U, U],
-		MonadMap[GU, GV, V, U],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GU)
 }
 
 func ChainFirst[GV ~func() O.Option[P.Pair[GV, V]], GU ~func() O.Option[P.Pair[GU, U]], U, V any](f func(U) GV) func(GU) GU {
-	return C.ChainFirst(
-		Chain[GU, GU, U, U],
-		Map[GU, GV, func(V) U, V, U],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Flatten[GV ~func() O.Option[P.Pair[GV, GU]], GU ~func() O.Option[P.Pair[GU, U]], U any](ma GV) GU {
-	return MonadChain(ma, F.Identity[GU])
+	_ = "STUB: not implemented"
+	return *new(GU)
 }
 
 // MakeBy returns an [Iterator] with an infinite number of elements initialized with `f(i)`
 func MakeBy[GU ~func() O.Option[P.Pair[GU, U]], FCT ~func(int) U, U any](f FCT) GU {
-
-	var m func(int) O.Option[P.Pair[GU, U]]
-
-	recurse := func(i int) GU {
-		return F.Nullary2(
-			F.Constant(i),
-			m,
-		)
-	}
-
-	m = F.Flow3(
-		P.Of[int],
-		P.BiMap(F.Flow2(
-			utils.Inc,
-			recurse),
-			f),
-		O.Of[P.Pair[GU, U]],
-	)
-
-	// bootstrap
-	return recurse(0)
+	_ = "STUB: not implemented"
+	return *new(GU)
 }
+
+// bootstrap
 
 // Replicate creates an infinite [Iterator] containing a value.
 func Replicate[GU ~func() O.Option[P.Pair[GU, U]], U any](a U) GU {
-	return MakeBy[GU](F.Constant1[int](a))
+	_ = "STUB: not implemented"
+	return *new(GU)
 }
 
 // Repeat creates an [Iterator] containing a value repeated the specified number of times.
 // Alias of [Replicate] combined with [Take]
 func Repeat[GU ~func() O.Option[P.Pair[GU, U]], U any](n int, a U) GU {
-	return F.Pipe2(
-		a,
-		Replicate[GU],
-		Take[GU](n),
-	)
+	_ = "STUB: not implemented"
+	return *new(GU)
 }
 
 // Count creates an [Iterator] containing a consecutive sequence of integers starting with the provided start value
 func Count[GU ~func() O.Option[P.Pair[GU, int]]](start int) GU {
-	return MakeBy[GU](N.Add(start))
+	_ = "STUB: not implemented"
+	return *new(GU)
 }
 
 func FilterMap[GV ~func() O.Option[P.Pair[GV, V]], GU ~func() O.Option[P.Pair[GU, U]], FCT ~func(U) O.Option[V], U, V any](f FCT) func(ma GU) GV {
+	_ = "STUB: not implemented"
 	// pre-declare to avoid cyclic reference
-	var m func(O.Option[P.Pair[GU, U]]) O.Option[P.Pair[GV, V]]
-
-	recurse := func(ma GU) GV {
-		return F.Nullary2(
-			ma,
-			m,
-		)
-	}
-
-	m = O.Fold(
-		Empty[GV](),
-		func(t P.Pair[GU, U]) O.Option[P.Pair[GV, V]] {
-			r := recurse(Next(t))
-			return O.MonadFold(f(Current(t)), r, F.Flow2(
-				F.Bind1st(P.MakePair[GV, V], r),
-				O.Some[P.Pair[GV, V]],
-			))
-		},
-	)
-
-	return recurse
+	return nil
 }
 
 func Filter[GU ~func() O.Option[P.Pair[GU, U]], FCT ~func(U) bool, U any](f FCT) func(ma GU) GU {
-	return FilterMap[GU, GU](O.FromPredicate(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Ap[GUV ~func() O.Option[P.Pair[GUV, func(U) V]], GV ~func() O.Option[P.Pair[GV, V]], GU ~func() O.Option[P.Pair[GU, U]], U, V any](ma GU) func(fab GUV) GV {
-	return Chain[GV, GUV](F.Bind1st(MonadMap[GV, GU], ma))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadAp[GUV ~func() O.Option[P.Pair[GUV, func(U) V]], GV ~func() O.Option[P.Pair[GV, V]], GU ~func() O.Option[P.Pair[GU, U]], U, V any](fab GUV, ma GU) GV {
-	return Ap[GUV, GV, GU](ma)(fab)
+	_ = "STUB: not implemented"
+	return *new(GV)
 }
 
 func FilterChain[GVV ~func() O.Option[P.Pair[GVV, GV]], GV ~func() O.Option[P.Pair[GV, V]], GU ~func() O.Option[P.Pair[GU, U]], FCT ~func(U) O.Option[GV], U, V any](f FCT) func(ma GU) GV {
-	return F.Flow2(
-		FilterMap[GVV, GU](f),
-		Flatten[GVV],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FoldMap[GU ~func() O.Option[P.Pair[GU, U]], FCT ~func(U) V, U, V any](m M.Monoid[V]) func(FCT) func(ma GU) V {
-	return func(f FCT) func(ma GU) V {
-		return Reduce[GU](func(cur V, a U) V {
-			return m.Concat(cur, f(a))
-		}, m.Empty())
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Fold[GU ~func() O.Option[P.Pair[GU, U]], U any](m M.Monoid[U]) func(ma GU) U {
-	return Reduce[GU](m.Concat, m.Empty())
+	_ = "STUB: not implemented"
+	return nil
 }

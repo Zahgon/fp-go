@@ -28,16 +28,16 @@ type (
 )
 
 func (o *ioPointed[A]) Of(a A) IO[A] {
-	return Of(a)
+	_ = "STUB: not implemented"
+
+	// Pointed returns an instance of the Pointed type class for IO.
+	// This provides a structured way to access the Of operation for IO computations.
+	//
+	// Example:
+	//
+	//	p := io.Pointed[int]()
+	//	result := p.Of(42)
+	return nil
 }
 
-// Pointed returns an instance of the Pointed type class for IO.
-// This provides a structured way to access the Of operation for IO computations.
-//
-// Example:
-//
-//	p := io.Pointed[int]()
-//	result := p.Of(42)
-func Pointed[A any]() IOPointed[A] {
-	return &ioPointed[A]{}
-}
+func Pointed[A any]() IOPointed[A] { _ = "STUB: not implemented"; return nil }

@@ -18,15 +18,11 @@ package generic
 import (
 	C "github.com/IBM/fp-go/constant"
 	M "github.com/IBM/fp-go/monoid"
-	AR "github.com/IBM/fp-go/optics/traversal/array/generic"
 	G "github.com/IBM/fp-go/optics/traversal/generic"
 )
 
 // FromArray returns a traversal from an array for the const monad
 func FromArray[GA ~[]A, E, A any](m M.Monoid[E]) G.Traversal[GA, A, C.Const[E, GA], C.Const[E, A]] {
-	return AR.FromArray[GA, GA, A, A, C.Const[E, A], C.Const[E, func(A) GA], C.Const[E, GA]](
-		C.Of[E, GA](m),
-		C.Map[E, GA, func(A) GA],
-		C.Ap[E, A, GA](m),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

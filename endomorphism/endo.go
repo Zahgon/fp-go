@@ -15,22 +15,16 @@
 
 package endomorphism
 
-import (
-	G "github.com/IBM/fp-go/endomorphism/generic"
-)
+func MonadAp[A any](fab Endomorphism[A], fa A) A { _ = "STUB: not implemented"; return *new(A) }
 
-func MonadAp[A any](fab Endomorphism[A], fa A) A {
-	return G.MonadAp[Endomorphism[A]](fab, fa)
-}
-
-func Ap[A any](fa A) func(Endomorphism[A]) A {
-	return G.Ap[Endomorphism[A]](fa)
-}
+func Ap[A any](fa A) func(Endomorphism[A]) A { _ = "STUB: not implemented"; return nil }
 
 func MonadChain[A any](ma Endomorphism[A], f Endomorphism[A]) Endomorphism[A] {
-	return G.MonadChain[Endomorphism[A]](ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Chain[A any](f Endomorphism[A]) Endomorphism[Endomorphism[A]] {
-	return G.Chain[Endomorphism[Endomorphism[A]], Endomorphism[A], A](f)
+	_ = "STUB: not implemented"
+	return nil
 }

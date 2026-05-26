@@ -15,8 +15,6 @@
 
 package statereaderioresult
 
-import "github.com/IBM/fp-go/v2/statereaderioeither"
-
 // WithResource constructs a function that creates a resource with state management, operates on it,
 // and then releases the resource. This ensures proper resource cleanup even in the presence of errors,
 // following the Resource Acquisition Is Initialization (RAII) pattern.
@@ -97,5 +95,6 @@ func WithResource[A, S, RES, ANY any](
 	onCreate StateReaderIOResult[S, RES],
 	onRelease Kleisli[S, RES, ANY],
 ) Kleisli[S, Kleisli[S, RES, A], A] {
-	return statereaderioeither.WithResource[A](onCreate, onRelease)
+	_ = "STUB: not implemented"
+	return nil
 }

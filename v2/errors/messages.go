@@ -16,9 +16,6 @@
 package errors
 
 import (
-	"fmt"
-
-	A "github.com/IBM/fp-go/v2/array"
 	"github.com/IBM/fp-go/v2/endomorphism"
 )
 
@@ -33,11 +30,7 @@ import (
 //
 //	getErrorWithArgs := OnNone("failed to load %s", "config.json")
 //	err2 := getErrorWithArgs() // returns error: "failed to load config.json"
-func OnNone(msg string, args ...any) func() error {
-	return func() error {
-		return fmt.Errorf(msg, args...)
-	}
-}
+func OnNone(msg string, args ...any) func() error { _ = "STUB: not implemented"; return nil }
 
 // OnSome generates a unary function that produces a formatted error.
 // The function takes a value of type T and includes it in the error message.
@@ -56,20 +49,7 @@ func OnNone(msg string, args ...any) func() error {
 //	// With additional args - value is the first format argument
 //	makeError2 := OnSome[string]("failed to process %s in file %s", "data.txt")
 //	err2 := makeError2("record123") // returns error: "failed to process record123 in file data.txt"
-func OnSome[T any](msg string, args ...any) func(T) error {
-	l := len(args)
-	if l == 0 {
-		return func(value T) error {
-			return fmt.Errorf(msg, value)
-		}
-	}
-	return func(value T) error {
-		data := make([]any, l+1)
-		data[0] = value
-		copy(data[1:], args)
-		return fmt.Errorf(msg, data...)
-	}
-}
+func OnSome[T any](msg string, args ...any) func(T) error { _ = "STUB: not implemented"; return nil }
 
 // OnError generates a unary function that produces a formatted error with error wrapping.
 // The argument to that function is the root cause of the error and the message will be
@@ -86,9 +66,8 @@ func OnSome[T any](msg string, args ...any) func(T) error {
 //	// returns error: "failed to load configuration from config.json, Caused By: file not found"
 //	// errors.Is(wrappedErr, rootErr) returns true
 func OnError(msg string, args ...any) endomorphism.Endomorphism[error] {
-	return func(err error) error {
-		return fmt.Errorf(msg+", Caused By: %w", A.ArrayConcatAll(args, A.Of[any](err))...)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ToString converts an error to its string representation by calling the Error() method.
@@ -98,6 +77,4 @@ func OnError(msg string, args ...any) endomorphism.Endomorphism[error] {
 //
 //	err := errors.New("something went wrong")
 //	msg := ToString(err) // returns "something went wrong"
-func ToString(err error) string {
-	return err.Error()
-}
+func ToString(err error) string { _ = "STUB: not implemented"; return "" }

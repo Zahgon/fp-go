@@ -25,18 +25,8 @@ package option
 //	input := map[string]int{"a": 1, "b": 2}
 //	result := TraverseRecordG[map[string]int, map[string]int](validate)(input) // Some(map[a:2 b:4])
 func TraverseRecordG[GA ~map[K]A, GB ~map[K]B, K comparable, A, B any](f Kleisli[A, B]) Kleisli[GA, GB] {
-	return func(ga GA) (GB, bool) {
-		gb := make(GB)
-		for k, a := range ga {
-			if b, ok := f(a); ok {
-				gb[k] = b
-			} else {
-				return gb, false
-			}
-
-		}
-		return gb, true
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecord transforms a record (map) by applying a function that returns an Option to each value.
@@ -51,7 +41,8 @@ func TraverseRecordG[GA ~map[K]A, GB ~map[K]B, K comparable, A, B any](f Kleisli
 //	input := map[string]int{"a": 1, "b": 2}
 //	result := TraverseRecord(validate)(input) // Some(map[a:"1" b:"2"])
 func TraverseRecord[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, map[K]B] {
-	return TraverseRecordG[map[K]A, map[K]B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndexG transforms a record by applying a function that receives both key and value.
@@ -66,18 +57,8 @@ func TraverseRecord[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, ma
 //	input := map[string]int{"a": 1, "b": 2}
 //	result := TraverseRecordWithIndexG[map[string]int, map[string]string](f)(input) // Some(map[a:"a:1" b:"b:2"])
 func TraverseRecordWithIndexG[GA ~map[K]A, GB ~map[K]B, K comparable, A, B any](f func(K, A) (B, bool)) Kleisli[GA, GB] {
-	return func(ga GA) (GB, bool) {
-		gb := make(GB)
-		for k, a := range ga {
-			if b, ok := f(k, a); ok {
-				gb[k] = b
-			} else {
-				return gb, false
-			}
-
-		}
-		return gb, true
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndex transforms a record by applying a function that receives both key and value.
@@ -92,5 +73,6 @@ func TraverseRecordWithIndexG[GA ~map[K]A, GB ~map[K]B, K comparable, A, B any](
 //	input := map[string]int{"a": 1, "b": 2}
 //	result := TraverseRecordWithIndex(f)(input) // Some(map[a:1 b:2])
 func TraverseRecordWithIndex[K comparable, A, B any](f func(K, A) (B, bool)) Kleisli[map[K]A, map[K]B] {
-	return TraverseRecordWithIndexG[map[K]A, map[K]B](f)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -22,15 +22,12 @@ import (
 
 // Constructs an equal predicate for a [State]
 func Eq[GA ~func(S) P.Pair[A, S], S, A any](w EQ.Eq[S], a EQ.Eq[A]) func(S) EQ.Eq[GA] {
-	eqp := P.Eq(a, w)
-	return func(s S) EQ.Eq[GA] {
-		return EQ.FromEquals(func(l, r GA) bool {
-			return eqp.Equals(l(s), r(s))
-		})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
 func FromStrictEquals[GA ~func(S) P.Pair[A, S], S, A comparable]() func(S) EQ.Eq[GA] {
-	return Eq[GA](EQ.FromStrictEquals[S](), EQ.FromStrictEquals[A]())
+	_ = "STUB: not implemented"
+	return nil
 }

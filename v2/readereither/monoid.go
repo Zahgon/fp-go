@@ -48,12 +48,8 @@ import (
 //
 //go:inline
 func ApplicativeMonoid[R, E, A any](m monoid.Monoid[A]) monoid.Monoid[ReaderEither[R, E, A]] {
-	return monoid.ApplicativeMonoid(
-		Of[R, E, A],
-		MonadMap[R, E, A, func(A) A],
-		MonadAp[A, R, E, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AlternativeMonoid is the alternative [Monoid] for [ReaderEither].
@@ -87,13 +83,8 @@ func ApplicativeMonoid[R, E, A any](m monoid.Monoid[A]) monoid.Monoid[ReaderEith
 //
 //go:inline
 func AlternativeMonoid[R, E, A any](m monoid.Monoid[A]) monoid.Monoid[ReaderEither[R, E, A]] {
-	return monoid.AlternativeMonoid(
-		Of[R, E, A],
-		MonadMap[R, E, A, func(A) A],
-		MonadAp[A, R, E, A],
-		MonadAlt[R, E, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltMonoid is the alternative [Monoid] for a [ReaderEither].
@@ -128,8 +119,6 @@ func AlternativeMonoid[R, E, A any](m monoid.Monoid[A]) monoid.Monoid[ReaderEith
 //
 //go:inline
 func AltMonoid[R, E, A any](zero lazy.Lazy[ReaderEither[R, E, A]]) monoid.Monoid[ReaderEither[R, E, A]] {
-	return monoid.AltMonoid(
-		zero,
-		MonadAlt[R, E, A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

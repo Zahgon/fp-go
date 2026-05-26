@@ -16,9 +16,6 @@
 package reader
 
 import (
-	"github.com/IBM/fp-go/v2/function"
-	I "github.com/IBM/fp-go/v2/identity"
-	"github.com/IBM/fp-go/v2/internal/functor"
 	T "github.com/IBM/fp-go/v2/tuple"
 )
 
@@ -32,9 +29,7 @@ import (
 //	config := r(Config{Host: "localhost"}) // Returns the config itself
 //
 //go:inline
-func Ask[R any]() Reader[R, R] {
-	return function.Identity[R]
-}
+func Ask[R any]() Reader[R, R] { _ = "STUB: not implemented"; return nil }
 
 // Asks projects a value from the global context in a Reader.
 // It's essentially an identity function that makes the intent clearer.
@@ -47,30 +42,31 @@ func Ask[R any]() Reader[R, R] {
 //
 //go:inline
 func Asks[R, A any](f Reader[R, A]) Reader[R, A] {
-	return f
+	_ = "STUB: not implemented"
+
+	// AsksReader creates a Reader that depends on the environment to produce another Reader,
+	// then immediately executes that Reader with the same environment.
+	//
+	// This is useful when you need to dynamically choose a Reader based on the environment.
+	//
+	// Example:
+	//
+	//	type Config struct { UseCache bool }
+	//	r := reader.AsksReader(func(c Config) reader.Reader[Config, string] {
+	//	    if c.UseCache {
+	//	        return reader.Of[Config]("cached")
+	//	    }
+	//	    return reader.Of[Config]("fresh")
+	//	})
+	//
+	//go:inline
+	return nil
 }
 
-// AsksReader creates a Reader that depends on the environment to produce another Reader,
-// then immediately executes that Reader with the same environment.
-//
-// This is useful when you need to dynamically choose a Reader based on the environment.
-//
-// Example:
-//
-//	type Config struct { UseCache bool }
-//	r := reader.AsksReader(func(c Config) reader.Reader[Config, string] {
-//	    if c.UseCache {
-//	        return reader.Of[Config]("cached")
-//	    }
-//	    return reader.Of[Config]("fresh")
-//	})
-//
-//go:inline
 func AsksReader[R, A any](f Kleisli[R, R, A]) Reader[R, A] {
+	_ = "STUB: not implemented"
 	//go:inline
-	return func(r R) A {
-		return f(r)(r)
-	}
+	return nil
 }
 
 // MonadMap transforms the result value of a Reader using the provided function.
@@ -85,7 +81,8 @@ func AsksReader[R, A any](f Kleisli[R, R, A]) Reader[R, A] {
 //
 //go:inline
 func MonadMap[E, A, B any](fa Reader[E, A], f func(A) B) Reader[E, B] {
-	return function.Flow2(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMapTo creates a new Reader that completely ignores the first Reader and returns a constant value.
@@ -117,26 +114,26 @@ func MonadMap[E, A, B any](fa Reader[E, A], f func(A) B) Reader[E, B] {
 //
 //go:inline
 func MonadMapTo[E, A, B any](_ Reader[E, A], b B) Reader[E, B] {
-	return Of[E](b)
+	_ = "STUB: not implemented"
+
+	// Map transforms the result value of a Reader using the provided function.
+	// This is the Functor operation that allows you to transform values inside the Reader context.
+	//
+	// Map can be used to turn functions `func(A)B` into functions `(fa F[A])F[B]` whose argument and return types
+	// use the type constructor `F` to represent some computational context.
+	//
+	// Example:
+	//
+	//	type Config struct { Port int }
+	//	getPort := reader.Asks(func(c Config) int { return c.Port })
+	//	getPortStr := reader.Map(strconv.Itoa)(getPort)
+	//	result := getPortStr(Config{Port: 8080}) // "8080"
+	//
+	//go:inline
+	return nil
 }
 
-// Map transforms the result value of a Reader using the provided function.
-// This is the Functor operation that allows you to transform values inside the Reader context.
-//
-// Map can be used to turn functions `func(A)B` into functions `(fa F[A])F[B]` whose argument and return types
-// use the type constructor `F` to represent some computational context.
-//
-// Example:
-//
-//	type Config struct { Port int }
-//	getPort := reader.Asks(func(c Config) int { return c.Port })
-//	getPortStr := reader.Map(strconv.Itoa)(getPort)
-//	result := getPortStr(Config{Port: 8080}) // "8080"
-//
-//go:inline
-func Map[E, A, B any](f func(A) B) Operator[E, A, B] {
-	return function.Bind2nd(MonadMap[E, A, B], f)
-}
+func Map[E, A, B any](f func(A) B) Operator[E, A, B] { _ = "STUB: not implemented"; return nil }
 
 // MapTo creates an operator that completely ignores any Reader and returns a constant value.
 // This is the curried version where the constant value is provided first,
@@ -177,9 +174,7 @@ func Map[E, A, B any](f func(A) B) Operator[E, A, B] {
 //	output := pipeline(Env{Step: 1}) // "complete" (step1 was never evaluated)
 //
 //go:inline
-func MapTo[E, A, B any](b B) Operator[E, A, B] {
-	return Of[Reader[E, A]](Of[E](b))
-}
+func MapTo[E, A, B any](b B) Operator[E, A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadAp applies a Reader containing a function to a Reader containing a value.
 // Both Readers share the same environment and are evaluated with it.
@@ -194,9 +189,8 @@ func MapTo[E, A, B any](b B) Operator[E, A, B] {
 //	result := reader.MonadAp(getX, getY)
 //	sum := result(Config{X: 3, Y: 4}) // 7
 func MonadAp[B, R, A any](fab Reader[R, func(A) B], fa Reader[R, A]) Reader[R, B] {
-	return func(r R) B {
-		return fab(r)(fa(r))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap applies a Reader containing a function to a Reader containing a value.
@@ -211,7 +205,8 @@ func MonadAp[B, R, A any](fab Reader[R, func(A) B], fa Reader[R, A]) Reader[R, B
 //	getSum := reader.Ap(getY)(getX)
 //	sum := getSum(Config{X: 3, Y: 4}) // 7
 func Ap[B, R, A any](fa Reader[R, A]) Operator[R, func(A) B, B] {
-	return function.Bind2nd(MonadAp[B, R, A], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Of lifts a pure value into the Reader context.
@@ -223,9 +218,7 @@ func Ap[B, R, A any](fa Reader[R, A]) Operator[R, func(A) B, B] {
 //	type Config struct { Host string }
 //	r := reader.Of[Config]("constant value")
 //	result := r(Config{Host: "any"}) // "constant value"
-func Of[R, A any](a A) Reader[R, A] {
-	return function.Constant1[R](a)
-}
+func Of[R, A any](a A) Reader[R, A] { _ = "STUB: not implemented"; return nil }
 
 // OfLazy converts a lazy computation into a Reader that ignores its environment.
 // The resulting Reader will evaluate the lazy computation when executed, regardless
@@ -266,11 +259,7 @@ func Of[R, A any](a A) Reader[R, A] {
 //	r := reader.OfLazy[Env](expensiveCalc)
 //	// Computation is deferred until the Reader is executed
 //	result := r(Env{Debug: true}) // "computed result"
-func OfLazy[R, A any](fa Lazy[A]) Reader[R, A] {
-	return func(_ R) A {
-		return fa()
-	}
-}
+func OfLazy[R, A any](fa Lazy[A]) Reader[R, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadChain sequences two Reader computations where the second depends on the result of the first.
 // Both computations share the same environment.
@@ -286,9 +275,8 @@ func OfLazy[R, A any](fa Lazy[A]) Reader[R, A] {
 //	r := reader.MonadChain(getUser, getUserName)
 //	name := r(Config{UserId: 42}) // "User42"
 func MonadChain[R, A, B any](ma Reader[R, A], f Kleisli[R, A, B]) Reader[R, B] {
-	return func(r R) B {
-		return f(ma(r))(r)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain sequences two Reader computations where the second depends on the result of the first.
@@ -332,7 +320,8 @@ func MonadChain[R, A, B any](ma Reader[R, A], f Kleisli[R, A, B]) Reader[R, B] {
 //	r := reader.Chain(getUserName)(getUser)
 //	name := r(Config{UserId: 42}) // "User42"
 func Chain[R, A, B any](f Kleisli[R, A, B]) Operator[R, A, B] {
-	return function.Bind2nd(MonadChain[R, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainTo completely ignores the first Reader and returns the second Reader.
@@ -365,55 +354,55 @@ func Chain[R, A, B any](f Kleisli[R, A, B]) Operator[R, A, B] {
 //
 //go:inline
 func MonadChainTo[A, R, B any](_ Reader[R, A], b Reader[R, B]) Reader[R, B] {
-	return b
+	_ = "STUB: not implemented"
+
+	// ChainTo creates an operator that completely ignores any Reader and returns a specific Reader.
+	// This is the curried version where the second Reader is provided first,
+	// returning a function that can be applied to any first Reader (which will be ignored).
+	//
+	// IMPORTANT: Readers are pure functions with no side effects. This operator does NOT compose or evaluate
+	// the input Reader - it completely ignores it and returns the specified Reader directly.
+	// The input Reader is neither executed during composition nor when the resulting Reader runs.
+	//
+	// Type Parameters:
+	//   - A: The result type of the first Reader (completely ignored)
+	//   - R: The environment type
+	//   - B: The result type of the second Reader
+	//
+	// Parameters:
+	//   - b: The Reader to return (ignoring any input Reader)
+	//
+	// Returns:
+	//   - An Operator that takes a Reader[R, A] and returns Reader[R, B]
+	//
+	// Example:
+	//
+	//	type Config struct { Counter int; Message string }
+	//	getMessage := func(c Config) string { return c.Message }
+	//	// Create an operator that ignores any Reader and returns getMessage
+	//	thenGetMessage := reader.ChainTo[int, Config, string](getMessage)
+	//
+	//	increment := func(c Config) int { return c.Counter + 1 }
+	//	pipeline := thenGetMessage(increment)
+	//	result := pipeline(Config{Counter: 5, Message: "done"}) // "done" (increment was never evaluated)
+	//
+	// Example - In a functional pipeline:
+	//
+	//	type Env struct { Step int; Result string }
+	//	step1 := reader.Asks(func(e Env) int { return e.Step })
+	//	getResult := reader.Asks(func(e Env) string { return e.Result })
+	//
+	//	pipeline := F.Pipe1(
+	//	    step1,
+	//	    reader.ChainTo[int, Env, string](getResult),
+	//	)
+	//	output := pipeline(Env{Step: 1, Result: "success"}) // "success" (step1 was never evaluated)
+	//
+	//go:inline
+	return nil
 }
 
-// ChainTo creates an operator that completely ignores any Reader and returns a specific Reader.
-// This is the curried version where the second Reader is provided first,
-// returning a function that can be applied to any first Reader (which will be ignored).
-//
-// IMPORTANT: Readers are pure functions with no side effects. This operator does NOT compose or evaluate
-// the input Reader - it completely ignores it and returns the specified Reader directly.
-// The input Reader is neither executed during composition nor when the resulting Reader runs.
-//
-// Type Parameters:
-//   - A: The result type of the first Reader (completely ignored)
-//   - R: The environment type
-//   - B: The result type of the second Reader
-//
-// Parameters:
-//   - b: The Reader to return (ignoring any input Reader)
-//
-// Returns:
-//   - An Operator that takes a Reader[R, A] and returns Reader[R, B]
-//
-// Example:
-//
-//	type Config struct { Counter int; Message string }
-//	getMessage := func(c Config) string { return c.Message }
-//	// Create an operator that ignores any Reader and returns getMessage
-//	thenGetMessage := reader.ChainTo[int, Config, string](getMessage)
-//
-//	increment := func(c Config) int { return c.Counter + 1 }
-//	pipeline := thenGetMessage(increment)
-//	result := pipeline(Config{Counter: 5, Message: "done"}) // "done" (increment was never evaluated)
-//
-// Example - In a functional pipeline:
-//
-//	type Env struct { Step int; Result string }
-//	step1 := reader.Asks(func(e Env) int { return e.Step })
-//	getResult := reader.Asks(func(e Env) string { return e.Result })
-//
-//	pipeline := F.Pipe1(
-//	    step1,
-//	    reader.ChainTo[int, Env, string](getResult),
-//	)
-//	output := pipeline(Env{Step: 1, Result: "success"}) // "success" (step1 was never evaluated)
-//
-//go:inline
-func ChainTo[A, R, B any](b Reader[R, B]) Operator[R, A, B] {
-	return Of[Reader[R, A]](b)
-}
+func ChainTo[A, R, B any](b Reader[R, B]) Operator[R, A, B] { _ = "STUB: not implemented"; return nil }
 
 // Flatten removes one level of Reader nesting.
 // Converts Reader[R, Reader[R, A]] to Reader[R, A].
@@ -427,7 +416,8 @@ func ChainTo[A, R, B any](b Reader[R, B]) Operator[R, A, B] {
 //	flat := reader.Flatten(nested)
 //	result := flat(Config{Value: 5}) // 10 (5 + 5)
 func Flatten[R, A any](mma Reader[R, Reader[R, A]]) Reader[R, A] {
-	return MonadChain(mma, function.Identity[Reader[R, A]])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Compose composes two Readers sequentially, where the output environment of the first
@@ -490,7 +480,8 @@ func Flatten[R, A any](mma Reader[R, Reader[R, A]]) Reader[R, A] {
 //
 //go:inline
 func Compose[C, R, B any](ab Reader[R, B]) Kleisli[R, Reader[B, C], C] {
-	return function.Bind1st(function.Flow2[Reader[R, B], Reader[B, C]], ab)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // First applies a Reader to the first element of a tuple, leaving the second element unchanged.
@@ -502,9 +493,8 @@ func Compose[C, R, B any](ab Reader[R, B]) Kleisli[R, Reader[B, C], C] {
 //	r := reader.First[int, int, string](double)
 //	result := r(tuple.MakeTuple2(5, "hello")) // (10, "hello")
 func First[A, B, C any](pab Reader[A, B]) Reader[T.Tuple2[A, C], T.Tuple2[B, C]] {
-	return func(tac T.Tuple2[A, C]) T.Tuple2[B, C] {
-		return T.MakeTuple2(pab(tac.F1), tac.F2)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Second applies a Reader to the second element of a tuple, leaving the first element unchanged.
@@ -516,9 +506,8 @@ func First[A, B, C any](pab Reader[A, B]) Reader[T.Tuple2[A, C], T.Tuple2[B, C]]
 //	r := reader.Second[string, int, int](double)
 //	result := r(tuple.MakeTuple2("hello", 5)) // ("hello", 10)
 func Second[A, B, C any](pbc Reader[B, C]) Reader[T.Tuple2[A, B], T.Tuple2[A, C]] {
-	return func(tab T.Tuple2[A, B]) T.Tuple2[A, C] {
-		return T.MakeTuple2(tab.F1, pbc(tab.F2))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Read applies a context to a Reader to obtain its value.
@@ -541,9 +530,7 @@ func Second[A, B, C any](pbc Reader[B, C]) Reader[T.Tuple2[A, B], T.Tuple2[A, C]
 //	port := run(getPort) // 8080
 //
 //go:inline
-func Read[A, E any](e E) func(Reader[E, A]) A {
-	return I.Flap[A](e)
-}
+func Read[A, E any](e E) func(Reader[E, A]) A { _ = "STUB: not implemented"; return nil }
 
 // MonadFlap is the monadic version of Flap.
 // It takes a Reader containing a function and a value, and returns a Reader that applies the function to the value.
@@ -559,7 +546,8 @@ func Read[A, E any](e E) func(Reader[E, A]) A {
 //
 //go:inline
 func MonadFlap[R, B, A any](fab Reader[R, func(A) B], a A) Reader[R, B] {
-	return functor.MonadFlap(MonadMap[R, func(A) B, B], fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flap takes a value and returns a function that applies a Reader containing a function to that value.
@@ -576,6 +564,4 @@ func MonadFlap[R, B, A any](fab Reader[R, func(A) B], a A) Reader[R, B] {
 //	result := r(Config{Multiplier: 3}) // 15
 //
 //go:inline
-func Flap[R, B, A any](a A) Operator[R, func(A) B, B] {
-	return functor.Flap(Map[R, func(A) B, B], a)
-}
+func Flap[R, B, A any](a A) Operator[R, func(A) B, B] { _ = "STUB: not implemented"; return nil }

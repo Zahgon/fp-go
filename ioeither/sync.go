@@ -19,10 +19,10 @@ import (
 	"context"
 
 	IO "github.com/IBM/fp-go/io"
-	G "github.com/IBM/fp-go/ioeither/generic"
 )
 
 // WithLock executes the provided IO operation in the scope of a lock
 func WithLock[E, A any](lock IO.IO[context.CancelFunc]) func(fa IOEither[E, A]) IOEither[E, A] {
-	return G.WithLock[IOEither[E, A]](lock)
+	_ = "STUB: not implemented"
+	return nil
 }

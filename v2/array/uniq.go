@@ -1,9 +1,5 @@
 package array
 
-import (
-	G "github.com/IBM/fp-go/v2/array/generic"
-)
-
 // StrictUniq converts an array of arbitrary items into an array of unique items
 // where uniqueness is determined by the built-in equality constraint (comparable).
 // The first occurrence of each unique value is kept, subsequent duplicates are removed.
@@ -17,9 +13,7 @@ import (
 //	unique2 := array.StrictUniq(strings) // ["a", "b", "c"]
 //
 //go:inline
-func StrictUniq[A comparable](as []A) []A {
-	return G.StrictUniq(as)
-}
+func StrictUniq[A comparable](as []A) []A { _ = "STUB: not implemented"; return nil }
 
 // Uniq converts an array of arbitrary items into an array of unique items
 // where uniqueness is determined based on a key extractor function.
@@ -46,6 +40,4 @@ func StrictUniq[A comparable](as []A) []A {
 //	// Result: [{"Alice", 30}, {"Bob", 25}, {"Charlie", 30}]
 //
 //go:inline
-func Uniq[A any, K comparable](f func(A) K) Operator[A, A] {
-	return G.Uniq[[]A](f)
-}
+func Uniq[A any, K comparable](f func(A) K) Operator[A, A] { _ = "STUB: not implemented"; return nil }

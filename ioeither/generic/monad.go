@@ -28,41 +28,47 @@ type ioEitherMonad[E, A, B any, GA ~func() ET.Either[E, A], GB ~func() ET.Either
 
 type ioEitherFunctor[E, A, B any, GA ~func() ET.Either[E, A], GB ~func() ET.Either[E, B]] struct{}
 
-func (o *ioEitherPointed[E, A, GA]) Of(a A) GA {
-	return Of[GA, E, A](a)
-}
+func (o *ioEitherPointed[E, A, GA]) Of(a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func (o *ioEitherMonad[E, A, B, GA, GB, GAB]) Of(a A) GA {
-	return Of[GA, E, A](a)
+	_ = "STUB: not implemented"
+	return *new(GA)
 }
 
 func (o *ioEitherMonad[E, A, B, GA, GB, GAB]) Map(f func(A) B) func(GA) GB {
-	return Map[GA, GB, E, A, B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *ioEitherMonad[E, A, B, GA, GB, GAB]) Chain(f func(A) GB) func(GA) GB {
-	return Chain[GA, GB, E, A, B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *ioEitherMonad[E, A, B, GA, GB, GAB]) Ap(fa GA) func(GAB) GB {
-	return Ap[GB, GAB, GA, E, A, B](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *ioEitherFunctor[E, A, B, GA, GB]) Map(f func(A) B) func(GA) GB {
-	return Map[GA, GB, E, A, B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pointed implements the pointed operations for [IOEither]
 func Pointed[E, A any, GA ~func() ET.Either[E, A]]() pointed.Pointed[A, GA] {
-	return &ioEitherPointed[E, A, GA]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Functor implements the monadic operations for [IOEither]
 func Functor[E, A, B any, GA ~func() ET.Either[E, A], GB ~func() ET.Either[E, B]]() functor.Functor[A, B, GA, GB] {
-	return &ioEitherFunctor[E, A, B, GA, GB]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad implements the monadic operations for [IOEither]
 func Monad[E, A, B any, GA ~func() ET.Either[E, A], GB ~func() ET.Either[E, B], GAB ~func() ET.Either[E, func(A) B]]() monad.Monad[A, B, GA, GB, GAB] {
-	return &ioEitherMonad[E, A, B, GA, GB, GAB]{}
+	_ = "STUB: not implemented"
+	return nil
 }

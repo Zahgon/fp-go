@@ -15,8 +15,6 @@
 
 package ioresult
 
-import "github.com/IBM/fp-go/v2/idiomatic/result"
-
 // Bracket makes sure that a resource is cleaned up in the event of an error. The release action is called regardless of
 // whether the body action returns and error or not.
 func Bracket[A, B, ANY any](
@@ -24,19 +22,6 @@ func Bracket[A, B, ANY any](
 	use Kleisli[A, B],
 	release func(B, error) func(A) IOResult[ANY],
 ) IOResult[B] {
-	return func() (B, error) {
-		a, aerr := acquire()
-		if aerr != nil {
-			return result.Left[B](aerr)
-		}
-		b, berr := use(a)()
-		_, rerr := release(b, berr)(a)()
-		if berr != nil {
-			return result.Left[B](berr)
-		}
-		if rerr != nil {
-			return result.Left[B](rerr)
-		}
-		return result.Of(b)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

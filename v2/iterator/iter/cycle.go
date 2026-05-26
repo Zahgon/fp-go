@@ -84,19 +84,4 @@ package iter
 //	cycled := Cycle(seq)
 //	result := Take[int](10)(cycled)
 //	// yields: nothing (empty sequence, terminates immediately)
-func Cycle[U any](ma Seq[U]) Seq[U] {
-	return func(yield func(U) bool) {
-		for {
-			isEmpty := true
-			for u := range ma {
-				if !yield(u) {
-					return
-				}
-				isEmpty = false
-			}
-			if isEmpty {
-				return
-			}
-		}
-	}
-}
+func Cycle[U any](ma Seq[U]) Seq[U] { _ = "STUB: not implemented"; return nil }

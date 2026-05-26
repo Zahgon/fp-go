@@ -32,9 +32,7 @@ import "fmt"
 //	}
 //
 //go:inline
-func Bounce[L, B any](b B) Trampoline[B, L] {
-	return Trampoline[B, L]{Bounce: b, Landed: false}
-}
+func Bounce[L, B any](b B) Trampoline[B, L] { _ = "STUB: not implemented"; return nil }
 
 // Land creates a Trampoline that indicates the computation is complete
 // with a final result.
@@ -67,9 +65,7 @@ func Bounce[L, B any](b B) Trampoline[B, L] {
 //	}
 //
 //go:inline
-func Land[B, L any](l L) Trampoline[B, L] {
-	return Trampoline[B, L]{Land: l, Landed: true}
-}
+func Land[B, L any](l L) Trampoline[B, L] { _ = "STUB: not implemented"; return nil }
 
 // String implements fmt.Stringer for Trampoline.
 //
@@ -79,12 +75,7 @@ func Land[B, L any](l L) Trampoline[B, L] {
 // # Returns
 //
 //   - string: A formatted string representation of the trampoline state
-func (t Trampoline[B, L]) String() string {
-	if t.Landed {
-		return fmt.Sprintf("Land(%v)", t.Land)
-	}
-	return fmt.Sprintf("Bounce(%v)", t.Bounce)
-}
+func (t Trampoline[B, L]) String() string { _ = "STUB: not implemented"; return "" }
 
 // Format implements fmt.Formatter for Trampoline.
 //
@@ -99,34 +90,19 @@ func (t Trampoline[B, L]) String() string {
 //
 //   - f: The format state
 //   - verb: The formatting verb
-func (t Trampoline[B, L]) Format(f fmt.State, verb rune) {
-	switch verb {
-	case 'v':
-		if f.Flag('+') {
-			// %+v: detailed format with type information
-			if t.Landed {
-				fmt.Fprintf(f, "Trampoline[Land]{Land: %+v, Landed: true}", t.Land)
-			} else {
-				fmt.Fprintf(f, "Trampoline[Bounce]{Bounce: %+v, Landed: false}", t.Bounce)
-			}
-		} else if f.Flag('#') {
-			// %#v: Go-syntax representation (delegates to GoString)
-			fmt.Fprint(f, t.GoString())
-		} else {
-			// %v: default format (delegates to String)
-			fmt.Fprint(f, t.String())
-		}
-	case 's':
-		// %s: string format
-		fmt.Fprint(f, t.String())
-	case 'q':
-		// %q: quoted string format
-		fmt.Fprintf(f, "%q", t.String())
-	default:
-		// Unknown verb: print with %!verb notation
-		fmt.Fprintf(f, "%%!%c(Trampoline[B, L]=%s)", verb, t.String())
-	}
-}
+func (t Trampoline[B, L]) Format(f fmt.State, verb rune) { _ = "STUB: not implemented"; return }
+
+// %+v: detailed format with type information
+
+// %#v: Go-syntax representation (delegates to GoString)
+
+// %v: default format (delegates to String)
+
+// %s: string format
+
+// %q: quoted string format
+
+// Unknown verb: print with %!verb notation
 
 // GoString implements fmt.GoStringer for Trampoline.
 //
@@ -136,9 +112,4 @@ func (t Trampoline[B, L]) Format(f fmt.State, verb rune) {
 // # Returns
 //
 //   - string: A Go-syntax representation of the trampoline
-func (t Trampoline[B, L]) GoString() string {
-	if t.Landed {
-		return fmt.Sprintf("tailrec.Land[%T](%#v)", t.Bounce, t.Land)
-	}
-	return fmt.Sprintf("tailrec.Bounce[%T](%#v)", t.Land, t.Bounce)
-}
+func (t Trampoline[B, L]) GoString() string { _ = "STUB: not implemented"; return "" }

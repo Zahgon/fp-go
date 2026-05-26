@@ -15,14 +15,6 @@
 
 package readerioresult
 
-import (
-	"github.com/IBM/fp-go/v2/array"
-	"github.com/IBM/fp-go/v2/function"
-	F "github.com/IBM/fp-go/v2/function"
-	INTI "github.com/IBM/fp-go/v2/internal/iter"
-	"github.com/IBM/fp-go/v2/internal/record"
-)
-
 // TraverseArray transforms an array [[]A] into [[]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[[]B]].
 // This uses the default applicative behavior (parallel or sequential based on useParallel flag).
 //
@@ -31,25 +23,13 @@ import (
 //
 // Returns a function that transforms an array into a ReaderIOResult of an array.
 func TraverseArray[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
-	return array.Traverse(
-		Of[[]B],
-		Map[[]B, func(B) []B],
-		Ap[[]B, B],
-
-		F.Flow2(f, WithContext),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraverseIter[A, B any](f Kleisli[A, B]) Kleisli[Seq[A], Seq[B]] {
-	return INTI.Traverse[Seq[A]](
-		Map[B],
-
-		Of[Seq[B]],
-		Map[Seq[B]],
-		Ap[Seq[B]],
-
-		F.Flow2(f, WithContext),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms an array [[]A] into [[]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[[]B]].
@@ -60,13 +40,8 @@ func TraverseIter[A, B any](f Kleisli[A, B]) Kleisli[Seq[A], Seq[B]] {
 //
 // Returns a function that transforms an array into a ReaderIOResult of an array.
 func TraverseArrayWithIndex[A, B any](f func(int, A) ReaderIOResult[B]) Kleisli[[]A, []B] {
-	return array.TraverseWithIndex(
-		Of[[]B],
-		Map[[]B, func(B) []B],
-		Ap[[]B, B],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts a homogeneous sequence of ReaderIOResult into a ReaderIOResult of sequence.
@@ -77,7 +52,8 @@ func TraverseArrayWithIndex[A, B any](f func(int, A) ReaderIOResult[B]) Kleisli[
 //
 // Returns a ReaderIOResult containing an array of values.
 func SequenceArray[A any](ma []ReaderIOResult[A]) ReaderIOResult[[]A] {
-	return TraverseArray(function.Identity[ReaderIOResult[A]])(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecord transforms a record [map[K]A] into [map[K]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[map[K]B]].
@@ -87,13 +63,8 @@ func SequenceArray[A any](ma []ReaderIOResult[A]) ReaderIOResult[[]A] {
 //
 // Returns a function that transforms a map into a ReaderIOResult of a map.
 func TraverseRecord[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, map[K]B] {
-	return record.Traverse[map[K]A](
-		Of[map[K]B],
-		Map[map[K]B, func(B) map[K]B],
-		Ap[map[K]B, B],
-
-		F.Flow2(f, WithContext),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndex transforms a record [map[K]A] into [map[K]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[map[K]B]].
@@ -104,13 +75,8 @@ func TraverseRecord[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, ma
 //
 // Returns a function that transforms a map into a ReaderIOResult of a map.
 func TraverseRecordWithIndex[K comparable, A, B any](f func(K, A) ReaderIOResult[B]) Kleisli[map[K]A, map[K]B] {
-	return record.TraverseWithIndex[map[K]A](
-		Of[map[K]B],
-		Map[map[K]B, func(B) map[K]B],
-		Ap[map[K]B, B],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecord converts a homogeneous map of ReaderIOResult into a ReaderIOResult of map.
@@ -120,7 +86,8 @@ func TraverseRecordWithIndex[K comparable, A, B any](f func(K, A) ReaderIOResult
 //
 // Returns a ReaderIOResult containing a map of values.
 func SequenceRecord[K comparable, A any](ma map[K]ReaderIOResult[A]) ReaderIOResult[map[K]A] {
-	return TraverseRecord[K](function.Identity[ReaderIOResult[A]])(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTraverseArraySeq transforms an array [[]A] into [[]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[[]B]].
@@ -132,13 +99,8 @@ func SequenceRecord[K comparable, A any](ma map[K]ReaderIOResult[A]) ReaderIORes
 //
 // Returns a ReaderIOResult containing an array of transformed values.
 func MonadTraverseArraySeq[A, B any](as []A, f Kleisli[A, B]) ReaderIOResult[[]B] {
-	return array.MonadTraverse(
-		Of[[]B],
-		Map[[]B, func(B) []B],
-		ApSeq[[]B, B],
-		as,
-		F.Flow2(f, WithContext),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArraySeq transforms an array [[]A] into [[]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[[]B]].
@@ -149,22 +111,14 @@ func MonadTraverseArraySeq[A, B any](as []A, f Kleisli[A, B]) ReaderIOResult[[]B
 //
 // Returns a function that transforms an array into a ReaderIOResult of an array.
 func TraverseArraySeq[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
-	return array.Traverse(
-		Of[[]B],
-		Map[[]B, func(B) []B],
-		ApSeq[[]B, B],
-		F.Flow2(f, WithContext),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndexSeq uses transforms an array [[]A] into [[]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[[]B]]
 func TraverseArrayWithIndexSeq[A, B any](f func(int, A) ReaderIOResult[B]) Kleisli[[]A, []B] {
-	return array.TraverseWithIndex(
-		Of[[]B],
-		Map[[]B, func(B) []B],
-		ApSeq[[]B, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArraySeq converts a homogeneous sequence of ReaderIOResult into a ReaderIOResult of sequence.
@@ -175,45 +129,32 @@ func TraverseArrayWithIndexSeq[A, B any](f func(int, A) ReaderIOResult[B]) Kleis
 //
 // Returns a ReaderIOResult containing an array of values.
 func SequenceArraySeq[A any](ma []ReaderIOResult[A]) ReaderIOResult[[]A] {
-	return MonadTraverseArraySeq(ma, function.Identity[ReaderIOResult[A]])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTraverseRecordSeq uses transforms a record [map[K]A] into [map[K]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[map[K]B]]
 func MonadTraverseRecordSeq[K comparable, A, B any](as map[K]A, f Kleisli[A, B]) ReaderIOResult[map[K]B] {
-	return record.MonadTraverse(
-		Of[map[K]B],
-		Map[map[K]B, func(B) map[K]B],
-		ApSeq[map[K]B, B],
-		as,
-		F.Flow2(f, WithContext),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordSeq uses transforms a record [map[K]A] into [map[K]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[map[K]B]]
 func TraverseRecordSeq[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, map[K]B] {
-	return record.Traverse[map[K]A](
-		Of[map[K]B],
-		Map[map[K]B, func(B) map[K]B],
-		ApSeq[map[K]B, B],
-
-		F.Flow2(f, WithContext),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndexSeq uses transforms a record [map[K]A] into [map[K]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[map[K]B]]
 func TraverseRecordWithIndexSeq[K comparable, A, B any](f func(K, A) ReaderIOResult[B]) Kleisli[map[K]A, map[K]B] {
-	return record.TraverseWithIndex[map[K]A](
-		Of[map[K]B],
-		Map[map[K]B, func(B) map[K]B],
-		ApSeq[map[K]B, B],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecordSeq converts a homogeneous sequence of either into an either of sequence
 func SequenceRecordSeq[K comparable, A any](ma map[K]ReaderIOResult[A]) ReaderIOResult[map[K]A] {
-	return MonadTraverseRecordSeq(ma, function.Identity[ReaderIOResult[A]])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTraverseArrayPar transforms an array [[]A] into [[]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[[]B]].
@@ -225,13 +166,8 @@ func SequenceRecordSeq[K comparable, A any](ma map[K]ReaderIOResult[A]) ReaderIO
 //
 // Returns a ReaderIOResult containing an array of transformed values.
 func MonadTraverseArrayPar[A, B any](as []A, f Kleisli[A, B]) ReaderIOResult[[]B] {
-	return array.MonadTraverse(
-		Of[[]B],
-		Map[[]B, func(B) []B],
-		ApPar[[]B, B],
-		as,
-		F.Flow2(f, WithContext),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayPar transforms an array [[]A] into [[]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[[]B]].
@@ -242,22 +178,14 @@ func MonadTraverseArrayPar[A, B any](as []A, f Kleisli[A, B]) ReaderIOResult[[]B
 //
 // Returns a function that transforms an array into a ReaderIOResult of an array.
 func TraverseArrayPar[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
-	return array.Traverse(
-		Of[[]B],
-		Map[[]B, func(B) []B],
-		ApPar[[]B, B],
-		F.Flow2(f, WithContext),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndexPar uses transforms an array [[]A] into [[]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[[]B]]
 func TraverseArrayWithIndexPar[A, B any](f func(int, A) ReaderIOResult[B]) Kleisli[[]A, []B] {
-	return array.TraverseWithIndex(
-		Of[[]B],
-		Map[[]B, func(B) []B],
-		ApPar[[]B, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArrayPar converts a homogeneous sequence of ReaderIOResult into a ReaderIOResult of sequence.
@@ -268,40 +196,26 @@ func TraverseArrayWithIndexPar[A, B any](f func(int, A) ReaderIOResult[B]) Kleis
 //
 // Returns a ReaderIOResult containing an array of values.
 func SequenceArrayPar[A any](ma []ReaderIOResult[A]) ReaderIOResult[[]A] {
-	return MonadTraverseArrayPar(ma, function.Identity[ReaderIOResult[A]])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordPar uses transforms a record [map[K]A] into [map[K]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[map[K]B]]
 func TraverseRecordPar[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, map[K]B] {
-	return record.Traverse[map[K]A](
-		Of[map[K]B],
-		Map[map[K]B, func(B) map[K]B],
-		ApPar[map[K]B, B],
-
-		F.Flow2(f, WithContext),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndexPar uses transforms a record [map[K]A] into [map[K]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[map[K]B]]
 func TraverseRecordWithIndexPar[K comparable, A, B any](f func(K, A) ReaderIOResult[B]) Kleisli[map[K]A, map[K]B] {
-	return record.TraverseWithIndex[map[K]A](
-		Of[map[K]B],
-		Map[map[K]B, func(B) map[K]B],
-		ApPar[map[K]B, B],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTraverseRecordPar uses transforms a record [map[K]A] into [map[K]ReaderIOResult[B]] and then resolves that into a [ReaderIOResult[map[K]B]]
 func MonadTraverseRecordPar[K comparable, A, B any](as map[K]A, f Kleisli[A, B]) ReaderIOResult[map[K]B] {
-	return record.MonadTraverse(
-		Of[map[K]B],
-		Map[map[K]B, func(B) map[K]B],
-		ApPar[map[K]B, B],
-		as,
-		F.Flow2(f, WithContext),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecordPar converts a homogeneous map of ReaderIOResult into a ReaderIOResult of map.
@@ -312,7 +226,8 @@ func MonadTraverseRecordPar[K comparable, A, B any](as map[K]A, f Kleisli[A, B])
 //
 // Returns a ReaderIOResult containing a map of values.
 func SequenceRecordPar[K comparable, A any](ma map[K]ReaderIOResult[A]) ReaderIOResult[map[K]A] {
-	return MonadTraverseRecordPar(ma, function.Identity[ReaderIOResult[A]])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraversableArray returns a Traversable instance for arrays.
@@ -334,31 +249,34 @@ func SequenceRecordPar[K comparable, A any](ma map[K]ReaderIOResult[A]) ReaderIO
 //	transform := traversable(parse)
 //	result := transform([]string{"1", "2", "3"})(ctx)()
 func TraversableArray[A, B any]() Traversable[A, B, []A, []B] {
-	return TraverseArray[A, B]
+	_ = "STUB: not implemented"
+	return nil
+
+	// TraversableRecord returns a Traversable instance for maps.
+	// This provides a higher-order function that can be used to traverse maps
+	// with any transformation function.
+	//
+	// Type Parameters:
+	//   - K: The key type of the map (must be comparable)
+	//   - A: The value type of the input map
+	//   - B: The value type of the output map
+	//
+	// Returns:
+	//   - Traversable[A, B, map[K]A, map[K]B]: A function that takes a Kleisli arrow and
+	//     returns a function that transforms maps
+	//
+	// Example:
+	//
+	//	parse := result.Eitherize1(strconv.Atoi)
+	//	traversable := TraversableRecord[string, string, int]()
+	//	transform := traversable(parse)
+	//	input := map[string]string{"a": "1", "b": "2"}
+	//	result := transform(input)(ctx)()
 }
 
-// TraversableRecord returns a Traversable instance for maps.
-// This provides a higher-order function that can be used to traverse maps
-// with any transformation function.
-//
-// Type Parameters:
-//   - K: The key type of the map (must be comparable)
-//   - A: The value type of the input map
-//   - B: The value type of the output map
-//
-// Returns:
-//   - Traversable[A, B, map[K]A, map[K]B]: A function that takes a Kleisli arrow and
-//     returns a function that transforms maps
-//
-// Example:
-//
-//	parse := result.Eitherize1(strconv.Atoi)
-//	traversable := TraversableRecord[string, string, int]()
-//	transform := traversable(parse)
-//	input := map[string]string{"a": "1", "b": "2"}
-//	result := transform(input)(ctx)()
 func TraversableRecord[K comparable, A, B any]() Traversable[A, B, map[K]A, map[K]B] {
-	return TraverseRecord[K, A, B]
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraversableIter returns a Traversable instance for iterators.
@@ -381,5 +299,6 @@ func TraversableRecord[K comparable, A, B any]() Traversable[A, B, map[K]A, map[
 //	input := slices.Values([]string{"1", "2", "3"})
 //	result := transform(input)(ctx)()
 func TraversableIter[A, B any]() Traversable[A, B, Seq[A], Seq[B]] {
-	return TraverseIter[A, B]
+	_ = "STUB: not implemented"
+	return nil
 }

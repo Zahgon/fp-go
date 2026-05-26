@@ -16,7 +16,6 @@
 package endomorphism
 
 import (
-	"github.com/IBM/fp-go/v2/function"
 	S "github.com/IBM/fp-go/v2/semigroup"
 )
 
@@ -77,6 +76,4 @@ import (
 // The function uses function.Bind2of2 to partially apply the semigroup's Concat
 // operation, effectively currying it to create the desired Kleisli arrow while
 // maintaining the "data last" principle.
-func FromSemigroup[A any](s S.Semigroup[A]) Kleisli[A] {
-	return function.Bind2of2(s.Concat)
-}
+func FromSemigroup[A any](s S.Semigroup[A]) Kleisli[A] { _ = "STUB: not implemented"; return nil }

@@ -21,36 +21,36 @@ import (
 
 type eitherMonad[A, B any] struct{}
 
-func (o *eitherMonad[A, B]) Of(a A) Result[A] {
-	return Of(a)
-}
+func (o *eitherMonad[A, B]) Of(a A) Result[A] { _ = "STUB: not implemented"; return nil }
 
-func (o *eitherMonad[A, B]) Map(f func(A) B) Operator[A, B] {
-	return Map(f)
-}
+func (o *eitherMonad[A, B]) Map(f func(A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 func (o *eitherMonad[A, B]) Chain(f func(A) Result[B]) Operator[A, B] {
-	return Chain(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *eitherMonad[A, B]) Ap(fa Result[A]) Operator[func(A) B, B] {
-	return Ap[B](fa)
+	_ = "STUB: not implemented"
+
+	// Monad implements the monadic operations for Either.
+	// A monad combines the capabilities of Functor (Map), Applicative (Ap), and Chain (flatMap/bind).
+	// This allows for sequential composition of computations that may fail.
+	//
+	// Example:
+	//
+	//	m := either.Monad[error, int, string]()
+	//	result := m.Chain(func(x int) either.Result[string] {
+	//	    if x > 0 {
+	//	        return either.Right[error](strconv.Itoa(x))
+	//	    }
+	//	    return either.Left[string](errors.New("negative"))
+	//	})(either.Right[error](42))
+	//	// result is Right("42")
+	return nil
 }
 
-// Monad implements the monadic operations for Either.
-// A monad combines the capabilities of Functor (Map), Applicative (Ap), and Chain (flatMap/bind).
-// This allows for sequential composition of computations that may fail.
-//
-// Example:
-//
-//	m := either.Monad[error, int, string]()
-//	result := m.Chain(func(x int) either.Result[string] {
-//	    if x > 0 {
-//	        return either.Right[error](strconv.Itoa(x))
-//	    }
-//	    return either.Left[string](errors.New("negative"))
-//	})(either.Right[error](42))
-//	// result is Right("42")
 func Monad[A, B any]() monad.Monad[A, B, Result[A], Result[B], Result[func(A) B]] {
-	return &eitherMonad[A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -31,58 +31,66 @@ type stateApplicative[GB ~func(S) P.Pair[B, S], GAB ~func(S) P.Pair[func(A) B, S
 
 type stateMonad[GB ~func(S) P.Pair[B, S], GAB ~func(S) P.Pair[func(A) B, S], GA ~func(S) P.Pair[A, S], S, A, B any] struct{}
 
-func (o *statePointed[GA, S, A]) Of(a A) GA {
-	return Of[GA](a)
-}
+func (o *statePointed[GA, S, A]) Of(a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func (o *stateApplicative[GB, GAB, GA, S, A, B]) Of(a A) GA {
-	return Of[GA](a)
+	_ = "STUB: not implemented"
+	return *new(GA)
 }
 
-func (o *stateMonad[GB, GAB, GA, S, A, B]) Of(a A) GA {
-	return Of[GA](a)
-}
+func (o *stateMonad[GB, GAB, GA, S, A, B]) Of(a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func (o *stateFunctor[GB, GA, S, A, B]) Map(f func(A) B) func(GA) GB {
-	return Map[GB, GA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateApplicative[GB, GAB, GA, S, A, B]) Map(f func(A) B) func(GA) GB {
-	return Map[GB, GA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateMonad[GB, GAB, GA, S, A, B]) Map(f func(A) B) func(GA) GB {
-	return Map[GB, GA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateMonad[GB, GAB, GA, S, A, B]) Chain(f func(A) GB) func(GA) GB {
-	return Chain[GB, GA](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateApplicative[GB, GAB, GA, S, A, B]) Ap(fa GA) func(GAB) GB {
-	return Ap[GB, GAB, GA](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *stateMonad[GB, GAB, GA, S, A, B]) Ap(fa GA) func(GAB) GB {
-	return Ap[GB, GAB, GA](fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Pointed implements the pointed operations for [Writer]
 }
 
-// Pointed implements the pointed operations for [Writer]
 func Pointed[GA ~func(S) P.Pair[A, S], S, A any]() pointed.Pointed[A, GA] {
-	return &statePointed[GA, S, A]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Functor implements the functor operations for [Writer]
 func Functor[GB ~func(S) P.Pair[B, S], GA ~func(S) P.Pair[A, S], S, A, B any]() functor.Functor[A, B, GA, GB] {
-	return &stateFunctor[GB, GA, S, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Applicative implements the applicative operations for [Writer]
 func Applicative[GB ~func(S) P.Pair[B, S], GAB ~func(S) P.Pair[func(A) B, S], GA ~func(S) P.Pair[A, S], S, A, B any]() applicative.Applicative[A, B, GA, GB, GAB] {
-	return &stateApplicative[GB, GAB, GA, S, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad implements the monadic operations for [Writer]
 func Monad[GB ~func(S) P.Pair[B, S], GAB ~func(S) P.Pair[func(A) B, S], GA ~func(S) P.Pair[A, S], S, A, B any]() monad.Monad[A, B, GA, GB, GAB] {
-	return &stateMonad[GB, GAB, GA, S, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }

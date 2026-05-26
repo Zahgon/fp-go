@@ -18,11 +18,7 @@ package statereaderioresult
 import (
 	"context"
 
-	RIORES "github.com/IBM/fp-go/v2/context/readerioresult"
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/statet"
 	"github.com/IBM/fp-go/v2/pair"
-	"github.com/IBM/fp-go/v2/result"
 	SRIOE "github.com/IBM/fp-go/v2/statereaderioeither"
 )
 
@@ -33,9 +29,7 @@ import (
 //
 //	result := statereaderioresult.Left[AppState, string](errors.New("validation failed"))
 //	// Returns a failed computation that ignores state and context
-func Left[S, A any](e error) StateReaderIOResult[S, A] {
-	return function.Constant1[S](RIORES.Left[Pair[S, A]](e))
-}
+func Left[S, A any](e error) StateReaderIOResult[S, A] { _ = "STUB: not implemented"; return nil }
 
 // Right creates a StateReaderIOResult that represents a successful computation with the given value.
 // The value is wrapped and the state is passed through unchanged.
@@ -44,9 +38,7 @@ func Left[S, A any](e error) StateReaderIOResult[S, A] {
 //
 //	result := statereaderioresult.Right[AppState](42)
 //	// Returns a successful computation containing 42
-func Right[S, A any](a A) StateReaderIOResult[S, A] {
-	return statet.Of[StateReaderIOResult[S, A]](RIORES.Of[Pair[S, A]], a)
-}
+func Right[S, A any](a A) StateReaderIOResult[S, A] { _ = "STUB: not implemented"; return nil }
 
 // Of creates a StateReaderIOResult that represents a successful computation with the given value.
 // This is the monadic return/pure operation for StateReaderIOResult.
@@ -57,26 +49,25 @@ func Right[S, A any](a A) StateReaderIOResult[S, A] {
 //	result := statereaderioresult.Of[AppState](42)
 //	// Returns a successful computation containing 42
 func Of[S, A any](a A) StateReaderIOResult[S, A] {
-	return Right[S](a)
+	_ = "STUB: not implemented"
+
+	// MonadMap transforms the success value of a StateReaderIOResult using the provided function.
+	// If the computation fails, the error is propagated unchanged.
+	// The state is threaded through the computation.
+	// This is the functor map operation.
+	//
+	// Example:
+	//
+	//	result := statereaderioresult.MonadMap(
+	//	    statereaderioresult.Of[AppState](21),
+	//	    N.Mul(2),
+	//	) // Result contains 42
+	return nil
 }
 
-// MonadMap transforms the success value of a StateReaderIOResult using the provided function.
-// If the computation fails, the error is propagated unchanged.
-// The state is threaded through the computation.
-// This is the functor map operation.
-//
-// Example:
-//
-//	result := statereaderioresult.MonadMap(
-//	    statereaderioresult.Of[AppState](21),
-//	    N.Mul(2),
-//	) // Result contains 42
 func MonadMap[S, A, B any](fa StateReaderIOResult[S, A], f func(A) B) StateReaderIOResult[S, B] {
-	return statet.MonadMap[StateReaderIOResult[S, A], StateReaderIOResult[S, B]](
-		RIORES.MonadMap[Pair[S, A], Pair[S, B]],
-		fa,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map is the curried version of [MonadMap].
@@ -86,12 +77,7 @@ func MonadMap[S, A, B any](fa StateReaderIOResult[S, A], f func(A) B) StateReade
 //
 //	double := statereaderioresult.Map[AppState](N.Mul(2))
 //	result := function.Pipe1(statereaderioresult.Of[AppState](21), double)
-func Map[S, A, B any](f func(A) B) Operator[S, A, B] {
-	return statet.Map[StateReaderIOResult[S, A], StateReaderIOResult[S, B]](
-		RIORES.Map[Pair[S, A], Pair[S, B]],
-		f,
-	)
-}
+func Map[S, A, B any](f func(A) B) Operator[S, A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChain sequences two computations, passing the result of the first to a function
 // that produces the second computation. This is the monadic bind operation.
@@ -106,11 +92,8 @@ func Map[S, A, B any](f func(A) B) Operator[S, A, B] {
 //	    },
 //	)
 func MonadChain[S, A, B any](fa StateReaderIOResult[S, A], f Kleisli[S, A, B]) StateReaderIOResult[S, B] {
-	return statet.MonadChain(
-		RIORES.MonadChain[Pair[S, A], Pair[S, B]],
-		fa,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain is the curried version of [MonadChain].
@@ -123,10 +106,8 @@ func MonadChain[S, A, B any](fa StateReaderIOResult[S, A], f Kleisli[S, A, B]) S
 //	})
 //	result := function.Pipe1(statereaderioresult.Of[AppState](42), stringify)
 func Chain[S, A, B any](f Kleisli[S, A, B]) Operator[S, A, B] {
-	return statet.Chain[StateReaderIOResult[S, A]](
-		RIORES.Chain[Pair[S, A], Pair[S, B]],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAp applies a function wrapped in a StateReaderIOResult to a value wrapped in a StateReaderIOResult.
@@ -140,22 +121,15 @@ func Chain[S, A, B any](f Kleisli[S, A, B]) Operator[S, A, B] {
 //	fa := statereaderioresult.Of[AppState](21)
 //	result := statereaderioresult.MonadAp(fab, fa) // Result contains 42
 func MonadAp[B, S, A any](fab StateReaderIOResult[S, func(A) B], fa StateReaderIOResult[S, A]) StateReaderIOResult[S, B] {
-	return statet.MonadAp[StateReaderIOResult[S, A], StateReaderIOResult[S, B]](
-		RIORES.MonadMap[Pair[S, A], Pair[S, B]],
-		RIORES.MonadChain[Pair[S, func(A) B], Pair[S, B]],
-		fab,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap is the curried version of [MonadAp].
 // Returns a function that applies a wrapped function to the given wrapped value.
 func Ap[B, S, A any](fa StateReaderIOResult[S, A]) Operator[S, func(A) B, B] {
-	return statet.Ap[StateReaderIOResult[S, A], StateReaderIOResult[S, B], StateReaderIOResult[S, func(A) B]](
-		RIORES.Map[Pair[S, A], Pair[S, B]],
-		RIORES.Chain[Pair[S, func(A) B], Pair[S, B]],
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromReaderIOResult lifts a ReaderIOResult into a StateReaderIOResult.
@@ -166,29 +140,27 @@ func Ap[B, S, A any](fa StateReaderIOResult[S, A]) Operator[S, func(A) B, B] {
 //	riores := readerioresult.Of(42)
 //	result := statereaderioresult.FromReaderIOResult[AppState](riores)
 func FromReaderIOResult[S, A any](fa ReaderIOResult[A]) StateReaderIOResult[S, A] {
-	return statet.FromF[StateReaderIOResult[S, A]](
-		RIORES.MonadMap[A],
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromIOResult lifts an IOResult into a StateReaderIOResult.
 // The state is passed through unchanged and the context is ignored.
 func FromIOResult[S, A any](fa IOResult[A]) StateReaderIOResult[S, A] {
-	return FromReaderIOResult[S](RIORES.FromIOResult(fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromState lifts a State computation into a StateReaderIOResult.
 // The computation cannot fail (uses the error type).
 func FromState[S, A any](sa State[S, A]) StateReaderIOResult[S, A] {
-	return statet.FromState[StateReaderIOResult[S, A]](RIORES.Of[Pair[S, A]], sa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromIO lifts an IO computation into a StateReaderIOResult.
 // The state is passed through unchanged and the context is ignored.
-func FromIO[S, A any](fa IO[A]) StateReaderIOResult[S, A] {
-	return FromReaderIOResult[S](RIORES.FromIO(fa))
-}
+func FromIO[S, A any](fa IO[A]) StateReaderIOResult[S, A] { _ = "STUB: not implemented"; return nil }
 
 // FromResult lifts a Result into a StateReaderIOResult.
 // The state is passed through unchanged and the context is ignored.
@@ -197,7 +169,8 @@ func FromIO[S, A any](fa IO[A]) StateReaderIOResult[S, A] {
 //
 //	result := statereaderioresult.FromResult[AppState](result.Of(42))
 func FromResult[S, A any](ma Result[A]) StateReaderIOResult[S, A] {
-	return result.Fold(Left[S, A], Right[S, A])(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Combinators
@@ -237,9 +210,8 @@ func FromResult[S, A any](ma Result[A]) StateReaderIOResult[S, A] {
 //	)
 //	result := withTimeout(computation)
 func Local[S, A, R any](f pair.Kleisli[context.CancelFunc, R, context.Context]) SRIOE.Kleisli[S, R, error, StateReaderIOResult[S, A], A] {
-	return func(ma StateReaderIOResult[S, A]) SRIOE.StateReaderIOEither[S, R, error, A] {
-		return function.Flow2(ma, RIORES.Local[Pair[S, A]](f))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Asks creates a computation that derives a value from the context.
@@ -253,11 +225,8 @@ func Local[S, A, R any](f pair.Kleisli[context.CancelFunc, R, context.Context]) 
 //	    },
 //	)
 func Asks[S, A any](f func(context.Context) StateReaderIOResult[S, A]) StateReaderIOResult[S, A] {
-	return func(s S) ReaderIOResult[Pair[S, A]] {
-		return func(ctx context.Context) IOResult[Pair[S, A]] {
-			return f(ctx)(s)(ctx)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromResultK lifts a Result-returning function into a Kleisli arrow for StateReaderIOResult.
@@ -270,62 +239,57 @@ func Asks[S, A any](f func(context.Context) StateReaderIOResult[S, A]) StateRead
 //	}
 //	kleisli := statereaderioresult.FromResultK[AppState](validate)
 func FromResultK[S, A, B any](f func(A) Result[B]) Kleisli[S, A, B] {
-	return function.Flow2(
-		f,
-		FromResult[S, B],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromIOK lifts an IO-returning function into a Kleisli arrow for StateReaderIOResult.
-func FromIOK[S, A, B any](f func(A) IO[B]) Kleisli[S, A, B] {
-	return function.Flow2(
-		f,
-		FromIO[S, B],
-	)
-}
+func FromIOK[S, A, B any](f func(A) IO[B]) Kleisli[S, A, B] { _ = "STUB: not implemented"; return nil }
 
 // FromIOResultK lifts an IOResult-returning function into a Kleisli arrow for StateReaderIOResult.
 func FromIOResultK[S, A, B any](f func(A) IOResult[B]) Kleisli[S, A, B] {
-	return function.Flow2(
-		f,
-		FromIOResult[S, B],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromReaderIOResultK lifts a ReaderIOResult-returning function into a Kleisli arrow for StateReaderIOResult.
 func FromReaderIOResultK[S, A, B any](f func(A) ReaderIOResult[B]) Kleisli[S, A, B] {
-	return function.Flow2(
-		f,
-		FromReaderIOResult[S, B],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainReaderIOResultK chains a StateReaderIOResult with a ReaderIOResult-returning function.
 func MonadChainReaderIOResultK[S, A, B any](ma StateReaderIOResult[S, A], f func(A) ReaderIOResult[B]) StateReaderIOResult[S, B] {
-	return MonadChain(ma, FromReaderIOResultK[S](f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainReaderIOResultK is the curried version of [MonadChainReaderIOResultK].
 func ChainReaderIOResultK[S, A, B any](f func(A) ReaderIOResult[B]) Operator[S, A, B] {
-	return Chain(FromReaderIOResultK[S](f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainIOResultK chains a StateReaderIOResult with an IOResult-returning function.
 func MonadChainIOResultK[S, A, B any](ma StateReaderIOResult[S, A], f func(A) IOResult[B]) StateReaderIOResult[S, B] {
-	return MonadChain(ma, FromIOResultK[S](f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainIOResultK is the curried version of [MonadChainIOResultK].
 func ChainIOResultK[S, A, B any](f func(A) IOResult[B]) Operator[S, A, B] {
-	return Chain(FromIOResultK[S](f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainResultK chains a StateReaderIOResult with a Result-returning function.
 func MonadChainResultK[S, A, B any](ma StateReaderIOResult[S, A], f func(A) Result[B]) StateReaderIOResult[S, B] {
-	return MonadChain(ma, FromResultK[S](f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainResultK is the curried version of [MonadChainResultK].
 func ChainResultK[S, A, B any](f func(A) Result[B]) Operator[S, A, B] {
-	return Chain(FromResultK[S](f))
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,16 +16,8 @@
 package generic
 
 import (
-	I "github.com/IBM/fp-go/identity"
-	AR "github.com/IBM/fp-go/optics/traversal/array/generic"
 	G "github.com/IBM/fp-go/optics/traversal/generic"
 )
 
 // FromArray returns a traversal from an array for the identity monad
-func FromArray[GA ~[]A, A any]() G.Traversal[GA, A, GA, A] {
-	return AR.FromArray[GA, GA, A, A, A, func(A) GA, GA](
-		I.Of[GA],
-		I.Map[GA, func(A) GA],
-		I.Ap[GA, A],
-	)
-}
+func FromArray[GA ~[]A, A any]() G.Traversal[GA, A, GA, A] { _ = "STUB: not implemented"; return nil }

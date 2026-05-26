@@ -16,10 +16,6 @@
 // Package number provides Option-based utilities for number conversions.
 package number
 
-import (
-	"strconv"
-)
-
 // Atoi converts a string to an integer, returning Some(int) on success or None on failure.
 //
 // Example:
@@ -27,10 +23,7 @@ import (
 //	result := Atoi("42") // Some(42)
 //	result := Atoi("abc") // None
 //	result := Atoi("") // None
-func Atoi(value string) (int, bool) {
-	data, err := strconv.Atoi(value)
-	return data, err == nil
-}
+func Atoi(value string) (int, bool) { _ = "STUB: not implemented"; return 0, false }
 
 // Itoa converts an integer to a string, always returning Some(string).
 //
@@ -39,7 +32,4 @@ func Atoi(value string) (int, bool) {
 //	result := Itoa(42) // Some("42")
 //	result := Itoa(-10) // Some("-10")
 //	result := Itoa(0) // Some("0")
-func Itoa(value int) (string, bool) {
-	return strconv.Itoa(value), true
-
-}
+func Itoa(value int) (string, bool) { _ = "STUB: not implemented"; return "", false }

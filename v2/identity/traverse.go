@@ -55,5 +55,6 @@ package identity
 // See Also:
 //   - Map: The underlying implementation (Identity traversal is just mapping)
 func MakeTraversable[A, B, HKTB any]() func(func(A) HKTB) func(A) HKTB {
-	return Map
+	_ = "STUB: not implemented"
+	return nil
 }

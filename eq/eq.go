@@ -15,10 +15,6 @@
 
 package eq
 
-import (
-	F "github.com/IBM/fp-go/function"
-)
-
 type Eq[T any] interface {
 	Equals(x, y T) bool
 }
@@ -27,32 +23,26 @@ type eq[T any] struct {
 	c func(x, y T) bool
 }
 
-func (e eq[T]) Equals(x, y T) bool {
-	return e.c(x, y)
-}
+func (e eq[T]) Equals(x, y T) bool { _ = "STUB: not implemented"; return false }
 
 func strictEq[A comparable](a, b A) bool {
-	return a == b
+	_ = "STUB: not implemented"
+
+	// FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
+	return false
 }
 
-// FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
-func FromStrictEquals[T comparable]() Eq[T] {
-	return FromEquals(strictEq[T])
-}
+func FromStrictEquals[T comparable]() Eq[T] { _ = "STUB: not implemented"; return nil }
 
 // FromEquals constructs an [EQ.Eq] from the comparison function
 func FromEquals[T any](c func(x, y T) bool) Eq[T] {
-	return eq[T]{c: c}
+	_ = "STUB: not implemented"
+
+	// Empty returns the equals predicate that is always true
+	return nil
 }
 
-// Empty returns the equals predicate that is always true
-func Empty[T any]() Eq[T] {
-	return FromEquals(F.Constant2[T, T](true))
-}
+func Empty[T any]() Eq[T] { _ = "STUB: not implemented"; return nil }
 
 // Equals returns a predicate to test if one value equals the other under an equals predicate
-func Equals[T any](eq Eq[T]) func(T) func(T) bool {
-	return func(other T) func(T) bool {
-		return F.Bind2nd(eq.Equals, other)
-	}
-}
+func Equals[T any](eq Eq[T]) func(T) func(T) bool { _ = "STUB: not implemented"; return nil }

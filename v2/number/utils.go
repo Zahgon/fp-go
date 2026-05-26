@@ -38,11 +38,7 @@ type Number interface {
 //
 //	add5 := Add(5)
 //	result := add5(10) // returns 15
-func Add[T Number](right T) func(T) T {
-	return func(left T) T {
-		return left + right
-	}
-}
+func Add[T Number](right T) func(T) T { _ = "STUB: not implemented"; return nil }
 
 // Sub is a curried function that subtracts two numbers.
 // It takes a right operand and returns a function that takes a left operand,
@@ -54,11 +50,7 @@ func Add[T Number](right T) func(T) T {
 //
 //	sub5 := Sub(5)
 //	result := sub5(10) // returns 5
-func Sub[T Number](right T) func(T) T {
-	return func(left T) T {
-		return left - right
-	}
-}
+func Sub[T Number](right T) func(T) T { _ = "STUB: not implemented"; return nil }
 
 // Mul is a curried function that multiplies two numbers.
 // It takes a right operand and returns a function that takes a left operand,
@@ -70,11 +62,7 @@ func Sub[T Number](right T) func(T) T {
 //
 //	double := Mul(2)
 //	result := double(10) // returns 20
-func Mul[T Number](right T) func(T) T {
-	return func(left T) T {
-		return left * right
-	}
-}
+func Mul[T Number](right T) func(T) T { _ = "STUB: not implemented"; return nil }
 
 // Div is a curried function that divides two numbers.
 // It takes a right operand (divisor) and returns a function that takes a left operand (dividend),
@@ -88,11 +76,7 @@ func Mul[T Number](right T) func(T) T {
 //
 //	halve := Div(2)
 //	result := halve(10) // returns 5
-func Div[T Number](right T) func(T) T {
-	return func(left T) T {
-		return left / right
-	}
-}
+func Div[T Number](right T) func(T) T { _ = "STUB: not implemented"; return nil }
 
 // Inc increments a number by 1.
 // It works with any numeric type that satisfies the Number constraint.
@@ -101,54 +85,56 @@ func Div[T Number](right T) func(T) T {
 //
 //	result := Inc(5) // returns 6
 func Inc[T Number](value T) T {
-	return value + 1
+	_ = "STUB: not implemented"
+
+	// Min returns the minimum of two ordered values.
+	// If the values are considered equal, the first argument is returned.
+	//
+	// This function works with any type that satisfies the Ordered constraint,
+	// including all numeric types and strings.
+	//
+	// Example:
+	//
+	//	result := Min(5, 10) // returns 5
+	//	result := Min(3.14, 2.71) // returns 2.71
+	return *new(T)
 }
 
-// Min returns the minimum of two ordered values.
-// If the values are considered equal, the first argument is returned.
-//
-// This function works with any type that satisfies the Ordered constraint,
-// including all numeric types and strings.
-//
-// Example:
-//
-//	result := Min(5, 10) // returns 5
-//	result := Min(3.14, 2.71) // returns 2.71
 func Min[A C.Ordered](a, b A) A {
-	return min(a, b)
+	_ = "STUB: not implemented"
+
+	// Max returns the maximum of two ordered values.
+	// If the values are considered equal, the first argument is returned.
+	//
+	// This function works with any type that satisfies the Ordered constraint,
+	// including all numeric types and strings.
+	//
+	// Example:
+	//
+	//	result := Max(5, 10) // returns 10
+	//	result := Max(3.14, 2.71) // returns 3.14
+	return *new(A)
 }
 
-// Max returns the maximum of two ordered values.
-// If the values are considered equal, the first argument is returned.
-//
-// This function works with any type that satisfies the Ordered constraint,
-// including all numeric types and strings.
-//
-// Example:
-//
-//	result := Max(5, 10) // returns 10
-//	result := Max(3.14, 2.71) // returns 3.14
 func Max[A C.Ordered](a, b A) A {
-	return max(a, b)
+	_ = "STUB: not implemented"
+
+	// MoreThan is a curried comparison function that checks if a value is more than (greater than) another.
+	// It takes a threshold value 'a' and returns a predicate function that checks if 'a' is less than its argument,
+	// meaning the argument is more than 'a'.
+	//
+	// This curried form is useful for creating reusable predicates and function composition.
+	//
+	// Example:
+	//
+	//	moreThan10 := MoreThan(10)
+	//	result := moreThan10(15) // returns true (15 is more than 10)
+	//	result := moreThan10(10) // returns false (10 is not more than 10)
+	//	result := moreThan10(5)  // returns false (5 is not more than 10)
+	return *new(A)
 }
 
-// MoreThan is a curried comparison function that checks if a value is more than (greater than) another.
-// It takes a threshold value 'a' and returns a predicate function that checks if 'a' is less than its argument,
-// meaning the argument is more than 'a'.
-//
-// This curried form is useful for creating reusable predicates and function composition.
-//
-// Example:
-//
-//	moreThan10 := MoreThan(10)
-//	result := moreThan10(15) // returns true (15 is more than 10)
-//	result := moreThan10(10) // returns false (10 is not more than 10)
-//	result := moreThan10(5)  // returns false (5 is not more than 10)
-func MoreThan[A C.Ordered](a A) func(A) bool {
-	return func(b A) bool {
-		return a < b
-	}
-}
+func MoreThan[A C.Ordered](a A) func(A) bool { _ = "STUB: not implemented"; return nil }
 
 // LessThan is a curried comparison function that checks if a value is less than another.
 // It takes a threshold value 'a' and returns a predicate function that checks if 'a' is greater than its argument,
@@ -162,8 +148,4 @@ func MoreThan[A C.Ordered](a A) func(A) bool {
 //	result := lessThan10(5)  // returns true (5 is less than 10)
 //	result := lessThan10(10) // returns false (10 is not less than 10)
 //	result := lessThan10(15) // returns false (15 is not less than 10)
-func LessThan[A C.Ordered](a A) func(A) bool {
-	return func(b A) bool {
-		return a > b
-	}
-}
+func LessThan[A C.Ordered](a A) func(A) bool { _ = "STUB: not implemented"; return nil }

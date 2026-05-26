@@ -16,14 +16,11 @@
 package testing
 
 import (
-	"fmt"
 	"testing"
 
 	EQ "github.com/IBM/fp-go/v2/eq"
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/functor"
 	"github.com/IBM/fp-go/v2/internal/pointed"
-	"github.com/stretchr/testify/assert"
 )
 
 // SequenceArrayTest tests if the sequence operation works in case the operation cannot error
@@ -39,28 +36,8 @@ func SequenceArrayTest[
 	faa functor.Functor[[]string, bool, HKTAA, HKTB],
 	seq func([]HKTA) HKTAA,
 ) func(count int) func(t *testing.T) {
-
-	return func(count int) func(t *testing.T) {
-
-		exp := make([]string, count)
-		good := make([]HKTA, count)
-		for i := range count {
-			val := fmt.Sprintf("TestData %d", i)
-			exp[i] = val
-			good[i] = pa.Of(val)
-		}
-
-		return func(t *testing.T) {
-			res := F.Pipe2(
-				good,
-				seq,
-				faa.Map(func(act []string) bool {
-					return assert.Equal(t, exp, act)
-				}),
-			)
-			assert.True(t, eq.Equals(res, pb.Of(true)))
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArrayErrorTest tests if the sequence operation works in case the operation can error
@@ -78,71 +55,25 @@ func SequenceArrayErrorTest[
 	faa functor.Functor[[]string, bool, HKTAA, HKTB],
 	seq func([]HKTA) HKTAA,
 ) func(count int) func(t *testing.T) {
-
-	return func(count int) func(t *testing.T) {
-
-		expGood := make([]string, count)
-		good := make([]HKTA, count)
-		expBad := make([]error, count)
-		bad := make([]HKTA, count)
-
-		for i := range count {
-			goodVal := fmt.Sprintf("TestData %d", i)
-			badVal := fmt.Errorf("ErrorData %d", i)
-			expGood[i] = goodVal
-			good[i] = pa.Of(goodVal)
-			expBad[i] = badVal
-			bad[i] = left(badVal)
-		}
-
-		total := 1 << count
-
-		return func(t *testing.T) {
-			// test the good case
-			res := F.Pipe2(
-				good,
-				seq,
-				faa.Map(func(act []string) bool {
-					return assert.Equal(t, expGood, act)
-				}),
-			)
-			assert.True(t, eq.Equals(res, pb.Of(true)))
-			// iterate and test the bad cases
-			for i := 1; i < total; i++ {
-				// run the test
-				t.Run(fmt.Sprintf("Bitmask test %d", i), func(t1 *testing.T) {
-					// the actual
-					act := make([]HKTA, count)
-					// the expected error
-					var exp error
-					// prepare the values bases on the bit mask
-					mask := 1
-					for j := range count {
-						if (i & mask) == 0 {
-							act[j] = good[j]
-						} else {
-							act[j] = bad[j]
-							if exp == nil {
-								exp = expBad[j]
-							}
-						}
-						mask <<= 1
-					}
-					// test the good case
-					res := F.Pipe2(
-						act,
-						seq,
-						faa.Map(func(act []string) bool {
-							return assert.Equal(t, expGood, act)
-						}),
-					)
-					// validate the error
-					assert.True(t, eq.Equals(res, leftB(exp)))
-				})
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// test the good case
+
+// iterate and test the bad cases
+
+// run the test
+
+// the actual
+
+// the expected error
+
+// prepare the values bases on the bit mask
+
+// test the good case
+
+// validate the error
 
 // SequenceRecordTest tests if the sequence operation works in case the operation cannot error
 func SequenceRecordTest[
@@ -157,27 +88,6 @@ func SequenceRecordTest[
 	faa functor.Functor[map[string]string, bool, HKTAA, HKTB],
 	seq func(map[string]HKTA) HKTAA,
 ) func(count int) func(t *testing.T) {
-
-	return func(count int) func(t *testing.T) {
-
-		exp := make(map[string]string)
-		good := make(map[string]HKTA)
-		for i := range count {
-			key := fmt.Sprintf("KeyData %d", i)
-			val := fmt.Sprintf("ValueData %d", i)
-			exp[key] = val
-			good[key] = pa.Of(val)
-		}
-
-		return func(t *testing.T) {
-			res := F.Pipe2(
-				good,
-				seq,
-				faa.Map(func(act map[string]string) bool {
-					return assert.Equal(t, exp, act)
-				}),
-			)
-			assert.True(t, eq.Equals(res, pb.Of(true)))
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,7 +16,6 @@
 package prism
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	OPT "github.com/IBM/fp-go/v2/optics/optional"
 	P "github.com/IBM/fp-go/v2/optics/prism"
 	O "github.com/IBM/fp-go/v2/option"
@@ -24,19 +23,14 @@ import (
 
 // AsOptional converts a prism into an optional
 func AsOptional[S, A any](sa P.Prism[S, A]) OPT.Optional[S, A] {
-	return OPT.MakeOptional(
-		sa.GetOption,
-		func(s S, a A) S {
-			return P.Set[S](a)(sa)(s)
-		},
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func PrismSome[A any]() P.Prism[O.Option[A], A] {
-	return P.MakePrismWithName(F.Identity[O.Option[A]], O.Some[A], "PrismSome")
-}
+func PrismSome[A any]() P.Prism[O.Option[A], A] { _ = "STUB: not implemented"; return nil }
 
 // Some returns a `Optional` from a `Optional` focused on the `Some` of a `Option` type.
 func Some[S, A any](soa OPT.Optional[S, O.Option[A]]) OPT.Optional[S, A] {
-	return OPT.Compose[S](AsOptional(PrismSome[A]()))(soa)
+	_ = "STUB: not implemented"
+	return nil
 }

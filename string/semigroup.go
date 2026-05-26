@@ -16,15 +16,9 @@
 package string
 
 import (
-	"fmt"
-
 	S "github.com/IBM/fp-go/semigroup"
 )
 
-func concat(left string, right string) string {
-	return fmt.Sprintf("%s%s", left, right)
-}
+func concat(left string, right string) string { _ = "STUB: not implemented"; return "" }
 
-func Semigroup() S.Semigroup[string] {
-	return S.MakeSemigroup(concat)
-}
+func Semigroup() S.Semigroup[string] { _ = "STUB: not implemented"; return nil }

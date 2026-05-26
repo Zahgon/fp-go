@@ -18,8 +18,6 @@ package lens
 import (
 	"fmt"
 	"log/slog"
-
-	"github.com/IBM/fp-go/v2/internal/formatting"
 )
 
 // String returns the name of the lens for debugging and display purposes.
@@ -29,27 +27,27 @@ import (
 //	nameLens := lens.MakeLensWithName(..., "Person.Name")
 //	fmt.Println(nameLens)  // Prints: "Person.Name"
 func (l Lens[S, T]) String() string {
-	return l.name
+	_ = "STUB: not implemented"
+
+	// Format implements fmt.Formatter for Lens.
+	// Supports all standard format verbs:
+	//   - %s, %v, %+v: uses String() representation (lens name)
+	//   - %#v: uses GoString() representation
+	//   - %q: quoted String() representation
+	//   - other verbs: uses String() representation
+	//
+	// Example:
+	//
+	//	nameLens := lens.MakeLensWithName(..., "Person.Name")
+	//	fmt.Printf("%s", nameLens)   // "Person.Name"
+	//	fmt.Printf("%v", nameLens)   // "Person.Name"
+	//	fmt.Printf("%#v", nameLens)  // "lens.Lens[Person, string]{name: \"Person.Name\"}"
+	//
+	//go:noinline
+	return ""
 }
 
-// Format implements fmt.Formatter for Lens.
-// Supports all standard format verbs:
-//   - %s, %v, %+v: uses String() representation (lens name)
-//   - %#v: uses GoString() representation
-//   - %q: quoted String() representation
-//   - other verbs: uses String() representation
-//
-// Example:
-//
-//	nameLens := lens.MakeLensWithName(..., "Person.Name")
-//	fmt.Printf("%s", nameLens)   // "Person.Name"
-//	fmt.Printf("%v", nameLens)   // "Person.Name"
-//	fmt.Printf("%#v", nameLens)  // "lens.Lens[Person, string]{name: \"Person.Name\"}"
-//
-//go:noinline
-func (l Lens[S, T]) Format(f fmt.State, c rune) {
-	formatting.FmtString(l, f, c)
-}
+func (l Lens[S, T]) Format(f fmt.State, c rune) { _ = "STUB: not implemented"; return }
 
 // GoString implements fmt.GoStringer for Lens.
 // Returns a Go-syntax representation of the Lens value.
@@ -60,13 +58,7 @@ func (l Lens[S, T]) Format(f fmt.State, c rune) {
 //	nameLens.GoString() // "lens.Lens[Person, string]{name: \"Person.Name\"}"
 //
 //go:noinline
-func (l Lens[S, T]) GoString() string {
-	return fmt.Sprintf("lens.Lens[%s, %s]{name: %q}",
-		formatting.TypeInfo(new(S)),
-		formatting.TypeInfo(new(T)),
-		l.name,
-	)
-}
+func (l Lens[S, T]) GoString() string { _ = "STUB: not implemented"; return "" }
 
 // LogValue implements slog.LogValuer for Lens.
 // Returns a slog.Value that represents the Lens for structured logging.
@@ -80,6 +72,4 @@ func (l Lens[S, T]) GoString() string {
 //	// Logs: {"msg":"using lens","lens":"Person.Name"}
 //
 //go:noinline
-func (l Lens[S, T]) LogValue() slog.Value {
-	return slog.StringValue(l.name)
-}
+func (l Lens[S, T]) LogValue() slog.Value { _ = "STUB: not implemented"; return *new(slog.Value) }

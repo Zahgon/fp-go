@@ -16,11 +16,6 @@
 // Package generic provides generic array operations for custom Reader types.
 package generic
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	RA "github.com/IBM/fp-go/v2/internal/array"
-)
-
 // MonadTraverseArray transforms each element of an array using a function that returns a generic Reader,
 // then collects the results into a single generic Reader containing an array.
 // This is the monadic version that takes the array as the first parameter.
@@ -36,12 +31,8 @@ import (
 //   - A: The input element type
 //   - B: The output element type
 func MonadTraverseArray[GB ~func(R) B, GBS ~func(R) BBS, AAS ~[]A, BBS ~[]B, R, A, B any](tas AAS, f func(A) GB) GBS {
-	return RA.MonadTraverse(
-		Of[GBS, R, BBS],
-		Map[GBS, func(R) func(B) BBS, R, BBS, func(B) BBS],
-		Ap[GB, GBS, func(R) func(B) BBS, R, B, BBS],
-		tas, f,
-	)
+	_ = "STUB: not implemented"
+	return *new(GBS)
 }
 
 // TraverseArray transforms each element of an array using a function that returns a generic Reader,
@@ -58,12 +49,8 @@ func MonadTraverseArray[GB ~func(R) B, GBS ~func(R) BBS, AAS ~[]A, BBS ~[]B, R, 
 //   - A: The input element type
 //   - B: The output element type
 func TraverseArray[GB ~func(R) B, GBS ~func(R) BBS, AAS ~[]A, BBS ~[]B, R, A, B any](f func(A) GB) func(AAS) GBS {
-	return RA.Traverse[AAS](
-		Of[GBS, R, BBS],
-		Map[GBS, func(R) func(B) BBS, R, BBS, func(B) BBS],
-		Ap[GB, GBS, func(R) func(B) BBS, R, B, BBS],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms each element of an array using a function that takes
@@ -81,12 +68,8 @@ func TraverseArray[GB ~func(R) B, GBS ~func(R) BBS, AAS ~[]A, BBS ~[]B, R, A, B 
 //   - A: The input element type
 //   - B: The output element type
 func TraverseArrayWithIndex[GB ~func(R) B, GBS ~func(R) BBS, AAS ~[]A, BBS ~[]B, R, A, B any](f func(int, A) GB) func(AAS) GBS {
-	return RA.TraverseWithIndex[AAS](
-		Of[GBS, R, BBS],
-		Map[GBS, func(R) func(B) BBS, R, BBS, func(B) BBS],
-		Ap[GB, GBS, func(R) func(B) BBS, R, B, BBS],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts an array of generic Readers into a single generic Reader containing an array.
@@ -102,5 +85,6 @@ func TraverseArrayWithIndex[GB ~func(R) B, GBS ~func(R) BBS, AAS ~[]A, BBS ~[]B,
 //   - R: The environment/context type
 //   - A: The element type
 func SequenceArray[GA ~func(R) A, GAS ~func(R) AAS, AAS ~[]A, GAAS ~[]GA, R, A any](ma GAAS) GAS {
-	return MonadTraverseArray[GA, GAS](ma, F.Identity[GA])
+	_ = "STUB: not implemented"
+	return *new(GAS)
 }

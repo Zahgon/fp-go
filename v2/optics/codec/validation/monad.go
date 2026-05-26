@@ -1,9 +1,6 @@
 package validation
 
 import (
-	"github.com/IBM/fp-go/v2/array"
-	"github.com/IBM/fp-go/v2/either"
-	"github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/applicative"
 )
 
@@ -15,9 +12,7 @@ var errorsMonoid = ErrorsMonoid()
 // Example:
 //
 //	valid := Of(42) // Validation[int] containing 42
-func Of[A any](a A) Validation[A] {
-	return either.Of[Errors](a)
-}
+func Of[A any](a A) Validation[A] { _ = "STUB: not implemented"; return nil }
 
 // Ap applies a validation containing a function to a validation containing a value.
 // This is the applicative apply operation that accumulates errors from both validations.
@@ -31,9 +26,7 @@ func Of[A any](a A) Validation[A] {
 //	validateUser := Ap(Ap(Of(func(name string) func(age int) User {
 //		return func(age int) User { return User{name, age} }
 //	}))(validateName))(validateAge)
-func Ap[B, A any](fa Validation[A]) Operator[func(A) B, B] {
-	return either.ApV[B, A](errorsMonoid)(fa)
-}
+func Ap[B, A any](fa Validation[A]) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadAp applies a validation containing a function to a validation containing a value.
 // This is the applicative apply operation that **accumulates errors** from both validations.
@@ -95,7 +88,8 @@ func Ap[B, A any](fa Validation[A]) Operator[func(A) B, B] {
 //	result := MonadAp(step1, ageValidation)
 //	// Result contains ALL validation errors from both fields
 func MonadAp[B, A any](fab Validation[func(A) B], fa Validation[A]) Validation[B] {
-	return either.MonadApV[B, A](errorsMonoid)(fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map transforms the value inside a successful validation using the provided function.
@@ -143,9 +137,7 @@ func MonadAp[B, A any](fab Validation[func(A) B], fa Validation[A]) Validation[B
 //	    Map(strconv.Itoa),  // "30"
 //	)
 //	// Result: Success("30")
-func Map[A, B any](f func(A) B) Operator[A, B] {
-	return either.Map[Errors](f)
-}
+func Map[A, B any](f func(A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap transforms the value inside a successful validation using the provided function.
 // If the validation is a failure, the errors are preserved unchanged.
@@ -187,7 +179,8 @@ func Map[A, B any](f func(A) B) Operator[A, B] {
 //	)
 //	// Result: Success("John Doe")
 func MonadMap[A, B any](fa Validation[A], f func(A) B) Validation[B] {
-	return either.MonadMap(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain is the curried version of [MonadChain].
@@ -200,9 +193,7 @@ func MonadMap[A, B any](fa Validation[A], f func(A) B) Validation[B] {
 //	    return Failure("must be positive")
 //	}
 //	result := Chain(validatePositive)(Success(42)) // Success(42)
-func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] {
-	return either.Chain(f)
-}
+func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChain sequences two validation computations where the second depends on the first.
 // If the first validation fails, returns the failure without executing the second.
@@ -217,20 +208,16 @@ func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] {
 //	    },
 //	) // Success("Value: 42")
 func MonadChain[A, B any](fa Validation[A], f Kleisli[A, B]) Validation[B] {
-	return either.MonadChain(fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // chainErrors is an internal helper that chains error transformations while accumulating errors.
 // When the transformation function f returns a failure, it concatenates the original errors (e1)
 // with the new errors (e2) using the Errors monoid, ensuring all validation errors are preserved.
 func chainErrors[A any](f Kleisli[Errors, A]) func(Errors) Validation[A] {
-	return func(e1 Errors) Validation[A] {
-		return either.MonadFold(
-			f(e1),
-			function.Flow2(array.Concat(e1), either.Left[A]),
-			Of[A],
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainLeft is the curried version of [MonadChainLeft].
@@ -301,12 +288,7 @@ func chainErrors[A any](f Kleisli[Errors, A]) func(Errors) Validation[A] {
 //	    })
 //	})
 //	result := handler(Success(42)) // Success(42) - unchanged
-func ChainLeft[A any](f Kleisli[Errors, A]) Operator[A, A] {
-	return either.Fold(
-		chainErrors(f),
-		Of[A],
-	)
-}
+func ChainLeft[A any](f Kleisli[Errors, A]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainLeft sequences a computation on the failure (Left) channel of a Validation.
 // If the Validation is a failure, applies the function to transform or recover from the errors.
@@ -395,11 +377,8 @@ func ChainLeft[A any](f Kleisli[Errors, A]) Operator[A, A] {
 //	    },
 //	) // Success(42) - unchanged
 func MonadChainLeft[A any](fa Validation[A], f Kleisli[Errors, A]) Validation[A] {
-	return either.MonadFold(
-		fa,
-		chainErrors(f),
-		Of[A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Applicative creates an Applicative instance for Validation with error accumulation.
@@ -465,15 +444,12 @@ func MonadChainLeft[A any](fa Validation[A], f Kleisli[Errors, A]) Validation[A]
 //
 //	An Applicative instance with Of, Map, and Ap operations that accumulate errors
 func Applicative[A, B any]() applicative.Applicative[A, B, Validation[A], Validation[B], Validation[func(A) B]] {
-	return either.ApplicativeV[Errors, A, B](
-		errorsMonoid,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
-func OrElse[A any](f Kleisli[Errors, A]) Operator[A, A] {
-	return ChainLeft(f)
-}
+func OrElse[A any](f Kleisli[Errors, A]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadAlt implements the Alternative operation for Validation, providing fallback behavior.
 // If the first validation fails, it evaluates and returns the second validation as an alternative.
@@ -563,7 +539,8 @@ func OrElse[A any](f Kleisli[Errors, A]) Operator[A, A] {
 //	// Result: Failures with ALL errors ["error 1", "error 2", "error 3"]
 //	// The errors from v1 are aggregated with errors from v2
 func MonadAlt[A any](first Validation[A], second Lazy[Validation[A]]) Validation[A] {
-	return MonadChainLeft(first, function.Ignore1of1[Errors](second))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Alt is the curried version of [MonadAlt].
@@ -636,6 +613,4 @@ func MonadAlt[A any](first Validation[A], second Lazy[Validation[A]]) Validation
 //	    secondaryFallback,
 //	)
 //	// Tries: config.json → backup.json → default
-func Alt[A any](second Lazy[Validation[A]]) Operator[A, A] {
-	return ChainLeft(function.Ignore1of1[Errors](second))
-}
+func Alt[A any](second Lazy[Validation[A]]) Operator[A, A] { _ = "STUB: not implemented"; return nil }

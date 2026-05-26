@@ -5,13 +5,10 @@ import (
 
 	"github.com/IBM/fp-go/v2/either"
 	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/identity"
 	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/ioref"
-	"github.com/IBM/fp-go/v2/lazy"
 	"github.com/IBM/fp-go/v2/optics/lens"
 	"github.com/IBM/fp-go/v2/option"
-	"github.com/IBM/fp-go/v2/pair"
 	"github.com/IBM/fp-go/v2/reader"
 	"github.com/IBM/fp-go/v2/readerio"
 	"github.com/IBM/fp-go/v2/retry"
@@ -145,28 +142,8 @@ var (
 //	openState := makeOpen(retry.DefaultRetryStatus)(time.Now())
 //	// openState.resetAt will be approximately 1 second from now
 func makeOpenCircuitFromPolicy(policy retry.RetryPolicy) func(rs retry.RetryStatus) func(ct time.Time) openState {
-
-	return func(rs retry.RetryStatus) func(ct time.Time) openState {
-
-		retryStatus := retry.ApplyPolicy(policy, rs)
-
-		return func(ct time.Time) openState {
-
-			resetTime := F.Pipe2(
-				retryStatus,
-				retry.PreviousDelayLens.Get,
-				option.Fold(
-					F.Pipe1(
-						ct,
-						lazy.Of,
-					),
-					ct.Add,
-				),
-			)
-
-			return openState{openedAt: ct, resetAt: resetTime, retryStatus: retryStatus}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // extendOpenCircuitFromMakeCircuit creates a function that extends the open state of a circuit breaker
@@ -202,14 +179,8 @@ func makeOpenCircuitFromPolicy(policy retry.RetryPolicy) func(rs retry.RetryStat
 func extendOpenCircuitFromMakeCircuit(
 	makeCircuit func(rs retry.RetryStatus) func(ct time.Time) openState,
 ) func(time.Time) Endomorphism[openState] {
-	return func(ct time.Time) Endomorphism[openState] {
-		return F.Flow4(
-			retryStatusLens.Get,
-			makeCircuit,
-			identity.Flap[openState](ct),
-			testCircuit,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // isResetTimeExceeded checks if the reset time for an open circuit has been exceeded.
@@ -236,9 +207,8 @@ func extendOpenCircuitFromMakeCircuit(
 //   - If this returns Some, the circuit transitions to half-open state (canary mode)
 //   - If this returns None, the circuit remains fully open and requests are blocked
 func isResetTimeExceeded(ct time.Time) option.Kleisli[openState, openState] {
-	return option.FromPredicate(func(open openState) bool {
-		return !open.canaryRequest && ct.After(resetAtLens.Get(open))
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // handleSuccessOnClosed creates a Reader that handles successful requests when the circuit is closed.
@@ -270,10 +240,8 @@ func isResetTimeExceeded(ct time.Time) option.Kleisli[openState, openState] {
 func handleSuccessOnClosed(
 	addSuccess Reader[time.Time, Endomorphism[ClosedState]],
 ) Reader[time.Time, Endomorphism[BreakerState]] {
-	return F.Flow2(
-		addSuccess,
-		either.Map[openState],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // handleFailureOnClosed creates a Reader that handles failed requests when the circuit is closed.
@@ -328,27 +296,8 @@ func handleFailureOnClosed(
 	checkClosedState Reader[time.Time, option.Kleisli[ClosedState, ClosedState]],
 	openCircuit Reader[time.Time, openState],
 ) Reader[time.Time, Endomorphism[BreakerState]] {
-	return F.Pipe2(
-		F.Pipe1(
-			addError,
-			reader.ApS(reader.Map[ClosedState], checkClosedState),
-		),
-		reader.Chain(F.Flow2(
-			reader.Map[ClosedState](option.Fold(
-				F.Pipe2(
-					openCircuit,
-					reader.Map[time.Time](createOpenCircuit),
-					lazy.Of,
-				),
-				F.Flow2(
-					createClosedCircuit,
-					reader.Of[time.Time],
-				),
-			)),
-			reader.Sequence,
-		)),
-		reader.Map[time.Time](either.Chain[openState, ClosedState, ClosedState]),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func handleErrorOnClosed2[E any](
@@ -356,40 +305,31 @@ func handleErrorOnClosed2[E any](
 	onSuccess Reader[time.Time, Endomorphism[BreakerState]],
 	onFailure Reader[time.Time, Endomorphism[BreakerState]],
 ) reader.Kleisli[time.Time, E, Endomorphism[BreakerState]] {
-	return F.Flow3(
-		checkError,
-		option.MapTo[E](onFailure),
-		option.GetOrElse(lazy.Of(onSuccess)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func stateModifier(
 	modify io.Kleisli[Endomorphism[BreakerState], BreakerState],
 ) reader.Operator[time.Time, Endomorphism[BreakerState], IO[BreakerState]] {
-	return reader.Map[time.Time](modify)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func reportOnClose2(
 	onClosed ReaderIO[time.Time, Void],
 	onOpened ReaderIO[time.Time, Void],
 ) readerio.Operator[time.Time, BreakerState, Void] {
-	return readerio.Chain(either.Fold(
-		reader.Of[openState](onOpened),
-		reader.Of[ClosedState](onClosed),
-	))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func applyAndReportClose2(
 	currentTime IO[time.Time],
 	metrics readerio.Operator[time.Time, BreakerState, Void],
 ) func(io.Kleisli[Endomorphism[BreakerState], BreakerState]) func(Reader[time.Time, Endomorphism[BreakerState]]) IO[Void] {
-	return func(modify io.Kleisli[Endomorphism[BreakerState], BreakerState]) func(Reader[time.Time, Endomorphism[BreakerState]]) IO[Void] {
-		return F.Flow3(
-			reader.Map[time.Time](modify),
-			metrics,
-			readerio.ReadIO[Void](currentTime),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeCircuitBreaker creates a circuit breaker implementation for a higher-kinded type.
@@ -445,141 +385,17 @@ func MakeCircuitBreaker[E, T, HKTT, HKTOP, HKTHKTT any](
 	policy retry.RetryPolicy,
 	metrics Metrics,
 ) State[Pair[IORef[BreakerState], HKTT], HKTT] {
-
-	type Operator = func(HKTT) HKTT
-
-	addSuccess := reader.From1(ClosedState.AddSuccess)
-	addError := reader.From1(ClosedState.AddError)
-	checkClosedState := reader.From1(ClosedState.Check)
-
-	closedCircuit := createClosedCircuit(closedState.Empty())
-	makeOpenCircuit := makeOpenCircuitFromPolicy(policy)
-
-	openCircuit := F.Pipe1(
-		initialRetry,
-		makeOpenCircuit,
-	)
-
-	extendOpenCircuit := extendOpenCircuitFromMakeCircuit(makeOpenCircuit)
-
-	failWithError := F.Flow4(
-		resetAtLens.Get,
-		makeError,
-		left,
-		reader.Of[HKTT],
-	)
-
-	handleSuccess2 := handleSuccessOnClosed(addSuccess)
-	handleFailure2 := handleFailureOnClosed(addError, checkClosedState, openCircuit)
-
-	handleError2 := handleErrorOnClosed2(checkError, handleSuccess2, handleFailure2)
-
-	metricsClose2 := reportOnClose2(metrics.Accept, metrics.Open)
-	apply2 := applyAndReportClose2(currentTime, metricsClose2)
-
-	onClosed := func(modify io.Kleisli[Endomorphism[BreakerState], BreakerState]) Operator {
-		return chainFirstIOK2(F.Flow2(
-			either.Fold(
-				handleError2,
-				reader.Of[T](handleSuccess2),
-			),
-			apply2(modify),
-		))
-	}
-
-	onCanary := func(modify io.Kleisli[Endomorphism[BreakerState], BreakerState]) Operator {
-
-		handleSuccess := F.Pipe2(
-			closedCircuit,
-			reader.Of[BreakerState],
-			modify,
-		)
-
-		return F.Flow2(
-			// the canary request fails
-			chainFirstLeftIOK(F.Flow2(
-				checkError,
-				option.Fold(
-					// the canary request succeeds, we close the circuit
-					F.Pipe1(
-						handleSuccess,
-						lazy.Of,
-					),
-					// the canary request fails, we extend the circuit
-					F.Pipe1(
-						F.Pipe1(
-							currentTime,
-							io.Chain(func(ct time.Time) IO[BreakerState] {
-								return F.Pipe1(
-									F.Flow2(
-										either.Fold(
-											extendOpenCircuit(ct),
-											F.Pipe1(
-												openCircuit(ct),
-												reader.Of[ClosedState],
-											),
-										),
-										createOpenCircuit,
-									),
-									modify,
-								)
-							}),
-						),
-						reader.Of[E],
-					),
-				),
-			)),
-			// the canary request succeeds, we'll close the circuit
-			chainFirstIOK(F.Pipe1(
-				handleSuccess,
-				reader.Of[T],
-			)),
-		)
-	}
-
-	onOpen := func(ref IORef[BreakerState]) Operator {
-
-		modify := modifyV(ref)
-
-		return F.Pipe3(
-			currentTime,
-			io.Chain(func(ct time.Time) IO[Operator] {
-				return F.Pipe1(
-					ref,
-					ioref.ModifyWithResult(either.Fold(
-						func(open openState) Pair[BreakerState, Operator] {
-							return option.Fold(
-								func() Pair[BreakerState, Operator] {
-									return pair.MakePair(createOpenCircuit(open), failWithError(open))
-								},
-								func(open openState) Pair[BreakerState, Operator] {
-									return pair.MakePair(createOpenCircuit(testCircuit(open)), onCanary(modify))
-								},
-							)(isResetTimeExceeded(ct)(open))
-						},
-						func(closed ClosedState) Pair[BreakerState, Operator] {
-							return pair.MakePair(createClosedCircuit(closed), onClosed(modify))
-						},
-					)),
-				)
-			}),
-			fromIO,
-			func(src HKTOP) Operator {
-				return func(rdr HKTT) HKTT {
-					return F.Pipe2(
-						src,
-						flap(rdr),
-						flatten,
-					)
-				}
-			},
-		)
-	}
-
-	return func(e Pair[IORef[BreakerState], HKTT]) Pair[Pair[IORef[BreakerState], HKTT], HKTT] {
-		return pair.MakePair(e, onOpen(pair.Head(e))(pair.Tail(e)))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// the canary request fails
+
+// the canary request succeeds, we close the circuit
+
+// the canary request fails, we extend the circuit
+
+// the canary request succeeds, we'll close the circuit
 
 // MakeSingletonBreaker creates a singleton circuit breaker operator for a higher-kinded type.
 //
@@ -617,14 +433,6 @@ func MakeSingletonBreaker[HKTT any](
 	cb State[Pair[IORef[BreakerState], HKTT], HKTT],
 	closedState ClosedState,
 ) func(HKTT) HKTT {
-	return F.Flow3(
-		F.Pipe3(
-			closedState,
-			MakeClosedIORef,
-			io.Run,
-			pair.FromHead[HKTT],
-		),
-		cb,
-		pair.Tail,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

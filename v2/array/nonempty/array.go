@@ -16,10 +16,7 @@
 package nonempty
 
 import (
-	G "github.com/IBM/fp-go/v2/array/generic"
 	EM "github.com/IBM/fp-go/v2/endomorphism"
-	"github.com/IBM/fp-go/v2/internal/array"
-	"github.com/IBM/fp-go/v2/option"
 	S "github.com/IBM/fp-go/v2/semigroup"
 )
 
@@ -39,9 +36,7 @@ import (
 //
 //	arr := Of(42)           // NonEmptyArray[int]{42}
 //	str := Of("hello")      // NonEmptyArray[string]{"hello"}
-func Of[A any](first A) NonEmptyArray[A] {
-	return G.Of[NonEmptyArray[A]](first)
-}
+func Of[A any](first A) NonEmptyArray[A] { _ = "STUB: not implemented"; return nil }
 
 // From constructs a NonEmptyArray from a set of variadic arguments.
 // The first argument is required to ensure the array is non-empty, and additional
@@ -62,17 +57,9 @@ func Of[A any](first A) NonEmptyArray[A] {
 //	arr1 := From(1)              // NonEmptyArray[int]{1}
 //	arr2 := From(1, 2, 3)        // NonEmptyArray[int]{1, 2, 3}
 //	arr3 := From("a", "b", "c")  // NonEmptyArray[string]{"a", "b", "c"}
-func From[A any](first A, data ...A) NonEmptyArray[A] {
-	count := len(data)
-	if count == 0 {
-		return Of(first)
-	}
-	// allocate the requested buffer
-	buffer := make(NonEmptyArray[A], count+1)
-	buffer[0] = first
-	copy(buffer[1:], data)
-	return buffer
-}
+func From[A any](first A, data ...A) NonEmptyArray[A] { _ = "STUB: not implemented"; return nil }
+
+// allocate the requested buffer
 
 // IsEmpty always returns false for NonEmptyArray since it's guaranteed to have at least one element.
 // This function exists for API consistency with regular arrays.
@@ -88,48 +75,53 @@ func From[A any](first A, data ...A) NonEmptyArray[A] {
 //
 //go:inline
 func IsEmpty[A any](_ NonEmptyArray[A]) bool {
+	_ = "STUB: not implemented"
+
+	// IsNonEmpty always returns true for NonEmptyArray since it's guaranteed to have at least one element.
+	// This function exists for API consistency with regular arrays.
+	//
+	// Type Parameters:
+	//   - A: The element type
+	//
+	// Parameters:
+	//   - _: The NonEmptyArray (unused, as the result is always true)
+	//
+	// Returns:
+	//   - bool: Always true
+	//
+	//go:inline
 	return false
 }
 
-// IsNonEmpty always returns true for NonEmptyArray since it's guaranteed to have at least one element.
-// This function exists for API consistency with regular arrays.
-//
-// Type Parameters:
-//   - A: The element type
-//
-// Parameters:
-//   - _: The NonEmptyArray (unused, as the result is always true)
-//
-// Returns:
-//   - bool: Always true
-//
-//go:inline
 func IsNonEmpty[A any](_ NonEmptyArray[A]) bool {
-	return true
+	_ = "STUB: not implemented"
+
+	// MonadMap applies a function to each element of a NonEmptyArray, returning a new NonEmptyArray with the results.
+	// This is the monadic version of Map that takes the array as the first parameter.
+	//
+	// Type Parameters:
+	//   - A: The input element type
+	//   - B: The output element type
+	//
+	// Parameters:
+	//   - as: The input NonEmptyArray
+	//   - f: The function to apply to each element
+	//
+	// Returns:
+	//   - NonEmptyArray[B]: A new NonEmptyArray with the transformed elements
+	//
+	// Example:
+	//
+	//	arr := From(1, 2, 3)
+	//	doubled := MonadMap(arr, N.Mul(2))  // NonEmptyArray[int]{2, 4, 6}
+	//
+	//go:inline
+	return false
 }
 
-// MonadMap applies a function to each element of a NonEmptyArray, returning a new NonEmptyArray with the results.
-// This is the monadic version of Map that takes the array as the first parameter.
-//
-// Type Parameters:
-//   - A: The input element type
-//   - B: The output element type
-//
-// Parameters:
-//   - as: The input NonEmptyArray
-//   - f: The function to apply to each element
-//
-// Returns:
-//   - NonEmptyArray[B]: A new NonEmptyArray with the transformed elements
-//
-// Example:
-//
-//	arr := From(1, 2, 3)
-//	doubled := MonadMap(arr, N.Mul(2))  // NonEmptyArray[int]{2, 4, 6}
-//
-//go:inline
 func MonadMap[A, B any](as NonEmptyArray[A], f func(a A) B) NonEmptyArray[B] {
-	return G.MonadMap[NonEmptyArray[A], NonEmptyArray[B]](as, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map applies a function to each element of a NonEmptyArray, returning a new NonEmptyArray with the results.
@@ -151,9 +143,7 @@ func MonadMap[A, B any](as NonEmptyArray[A], f func(a A) B) NonEmptyArray[B] {
 //	result := double(From(1, 2, 3))  // NonEmptyArray[int]{2, 4, 6}
 //
 //go:inline
-func Map[A, B any](f func(a A) B) Operator[A, B] {
-	return G.Map[NonEmptyArray[A], NonEmptyArray[B]](f)
-}
+func Map[A, B any](f func(a A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Reduce applies a function to each element of a NonEmptyArray from left to right,
 // accumulating a result starting from an initial value.
@@ -177,9 +167,8 @@ func Map[A, B any](f func(a A) B) Operator[A, B] {
 //	concat := Reduce(func(acc string, x string) string { return acc + x }, "")
 //	result := concat(From("a", "b", "c"))  // "abc"
 func Reduce[A, B any](f func(B, A) B, initial B) func(NonEmptyArray[A]) B {
-	return func(as NonEmptyArray[A]) B {
-		return array.Reduce(as, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReduceRight applies a function to each element of a NonEmptyArray from right to left,
@@ -201,9 +190,8 @@ func Reduce[A, B any](f func(B, A) B, initial B) func(NonEmptyArray[A]) B {
 //	concat := ReduceRight(func(x string, acc string) string { return acc + x }, "")
 //	result := concat(From("a", "b", "c"))  // "cba"
 func ReduceRight[A, B any](f func(A, B) B, initial B) func(NonEmptyArray[A]) B {
-	return func(as NonEmptyArray[A]) B {
-		return array.ReduceRight(as, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Tail returns all elements of a NonEmptyArray except the first one.
@@ -228,160 +216,176 @@ func ReduceRight[A, B any](f func(A, B) B, initial B) func(NonEmptyArray[A]) B {
 //
 //go:inline
 func Tail[A any](as NonEmptyArray[A]) []A {
-	return as[1:]
+	_ = "STUB: not implemented"
+
+	// Head returns the first element of a NonEmptyArray.
+	// This operation is always safe since NonEmptyArray is guaranteed to have at least one element.
+	//
+	// Type Parameters:
+	//   - A: The element type
+	//
+	// Parameters:
+	//   - as: The input NonEmptyArray
+	//
+	// Returns:
+	//   - A: The first element
+	//
+	// Example:
+	//
+	//	arr := From(1, 2, 3)
+	//	first := Head(arr)  // 1
+	//
+	//go:inline
+	return nil
 }
 
-// Head returns the first element of a NonEmptyArray.
-// This operation is always safe since NonEmptyArray is guaranteed to have at least one element.
-//
-// Type Parameters:
-//   - A: The element type
-//
-// Parameters:
-//   - as: The input NonEmptyArray
-//
-// Returns:
-//   - A: The first element
-//
-// Example:
-//
-//	arr := From(1, 2, 3)
-//	first := Head(arr)  // 1
-//
-//go:inline
 func Head[A any](as NonEmptyArray[A]) A {
-	return as[0]
+	_ = "STUB: not implemented"
+
+	// First returns the first element of a NonEmptyArray.
+	// This is an alias for Head.
+	//
+	// Type Parameters:
+	//   - A: The element type
+	//
+	// Parameters:
+	//   - as: The input NonEmptyArray
+	//
+	// Returns:
+	//   - A: The first element
+	//
+	// Example:
+	//
+	//	arr := From(1, 2, 3)
+	//	first := First(arr)  // 1
+	//
+	//go:inline
+	return *new(A)
 }
 
-// First returns the first element of a NonEmptyArray.
-// This is an alias for Head.
-//
-// Type Parameters:
-//   - A: The element type
-//
-// Parameters:
-//   - as: The input NonEmptyArray
-//
-// Returns:
-//   - A: The first element
-//
-// Example:
-//
-//	arr := From(1, 2, 3)
-//	first := First(arr)  // 1
-//
-//go:inline
 func First[A any](as NonEmptyArray[A]) A {
-	return as[0]
+	_ = "STUB: not implemented"
+
+	// Last returns the last element of a NonEmptyArray.
+	// This operation is always safe since NonEmptyArray is guaranteed to have at least one element.
+	//
+	// Type Parameters:
+	//   - A: The element type
+	//
+	// Parameters:
+	//   - as: The input NonEmptyArray
+	//
+	// Returns:
+	//   - A: The last element
+	//
+	// Example:
+	//
+	//	arr := From(1, 2, 3)
+	//	last := Last(arr)  // 3
+	//
+	//go:inline
+	return *new(A)
 }
 
-// Last returns the last element of a NonEmptyArray.
-// This operation is always safe since NonEmptyArray is guaranteed to have at least one element.
-//
-// Type Parameters:
-//   - A: The element type
-//
-// Parameters:
-//   - as: The input NonEmptyArray
-//
-// Returns:
-//   - A: The last element
-//
-// Example:
-//
-//	arr := From(1, 2, 3)
-//	last := Last(arr)  // 3
-//
-//go:inline
 func Last[A any](as NonEmptyArray[A]) A {
-	return as[len(as)-1]
+	_ = "STUB: not implemented"
+	return *
+
+	// Size returns the number of elements in a NonEmptyArray.
+	// The result is always at least 1.
+	//
+	// Type Parameters:
+	//   - A: The element type
+	//
+	// Parameters:
+	//   - as: The input NonEmptyArray
+	//
+	// Returns:
+	//   - int: The number of elements (always >= 1)
+	//
+	// Example:
+	//
+	//	arr := From(1, 2, 3)
+	//	size := Size(arr)  // 3
+	//
+	//go:inline
+	new(A)
 }
 
-// Size returns the number of elements in a NonEmptyArray.
-// The result is always at least 1.
-//
-// Type Parameters:
-//   - A: The element type
-//
-// Parameters:
-//   - as: The input NonEmptyArray
-//
-// Returns:
-//   - int: The number of elements (always >= 1)
-//
-// Example:
-//
-//	arr := From(1, 2, 3)
-//	size := Size(arr)  // 3
-//
-//go:inline
 func Size[A any](as NonEmptyArray[A]) int {
-	return G.Size(as)
+	_ = "STUB: not implemented"
+
+	// Flatten flattens a NonEmptyArray of NonEmptyArrays into a single NonEmptyArray.
+	// This operation concatenates all inner arrays into one.
+	//
+	// Type Parameters:
+	//   - A: The element type
+	//
+	// Parameters:
+	//   - mma: A NonEmptyArray of NonEmptyArrays
+	//
+	// Returns:
+	//   - NonEmptyArray[A]: A flattened NonEmptyArray containing all elements
+	//
+	// Example:
+	//
+	//	nested := From(From(1, 2), From(3, 4), From(5))
+	//	flat := Flatten(nested)  // NonEmptyArray[int]{1, 2, 3, 4, 5}
+	return 0
 }
 
-// Flatten flattens a NonEmptyArray of NonEmptyArrays into a single NonEmptyArray.
-// This operation concatenates all inner arrays into one.
-//
-// Type Parameters:
-//   - A: The element type
-//
-// Parameters:
-//   - mma: A NonEmptyArray of NonEmptyArrays
-//
-// Returns:
-//   - NonEmptyArray[A]: A flattened NonEmptyArray containing all elements
-//
-// Example:
-//
-//	nested := From(From(1, 2), From(3, 4), From(5))
-//	flat := Flatten(nested)  // NonEmptyArray[int]{1, 2, 3, 4, 5}
 func Flatten[A any](mma NonEmptyArray[NonEmptyArray[A]]) NonEmptyArray[A] {
-	return G.Flatten(mma)
+	_ = "STUB: not implemented"
+	return nil
+
+	// MonadChain applies a function that returns a NonEmptyArray to each element and flattens the results.
+	// This is the monadic bind operation (flatMap) that takes the array as the first parameter.
+	//
+	// Type Parameters:
+	//   - A: The input element type
+	//   - B: The output element type
+	//
+	// Parameters:
+	//   - fa: The input NonEmptyArray
+	//   - f: A function that takes an element and returns a NonEmptyArray
+	//
+	// Returns:
+	//   - NonEmptyArray[B]: The flattened result
+	//
+	// Example:
+	//
+	//	arr := From(1, 2, 3)
+	//	result := MonadChain(arr, func(x int) NonEmptyArray[int] {
+	//	    return From(x, x*10)
+	//	})  // NonEmptyArray[int]{1, 10, 2, 20, 3, 30}
 }
 
-// MonadChain applies a function that returns a NonEmptyArray to each element and flattens the results.
-// This is the monadic bind operation (flatMap) that takes the array as the first parameter.
-//
-// Type Parameters:
-//   - A: The input element type
-//   - B: The output element type
-//
-// Parameters:
-//   - fa: The input NonEmptyArray
-//   - f: A function that takes an element and returns a NonEmptyArray
-//
-// Returns:
-//   - NonEmptyArray[B]: The flattened result
-//
-// Example:
-//
-//	arr := From(1, 2, 3)
-//	result := MonadChain(arr, func(x int) NonEmptyArray[int] {
-//	    return From(x, x*10)
-//	})  // NonEmptyArray[int]{1, 10, 2, 20, 3, 30}
 func MonadChain[A, B any](fa NonEmptyArray[A], f Kleisli[A, B]) NonEmptyArray[B] {
-	return G.MonadChain(fa, f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Chain applies a function that returns a NonEmptyArray to each element and flattens the results.
+	// This is the curried version of MonadChain.
+	//
+	// Type Parameters:
+	//   - A: The input element type
+	//   - B: The output element type
+	//
+	// Parameters:
+	//   - f: A function that takes an element and returns a NonEmptyArray
+	//
+	// Returns:
+	//   - Operator[A, B]: A function that transforms NonEmptyArray[A] to NonEmptyArray[B]
+	//
+	// Example:
+	//
+	//	duplicate := Chain(func(x int) NonEmptyArray[int] { return From(x, x) })
+	//	result := duplicate(From(1, 2, 3))  // NonEmptyArray[int]{1, 1, 2, 2, 3, 3}
 }
 
-// Chain applies a function that returns a NonEmptyArray to each element and flattens the results.
-// This is the curried version of MonadChain.
-//
-// Type Parameters:
-//   - A: The input element type
-//   - B: The output element type
-//
-// Parameters:
-//   - f: A function that takes an element and returns a NonEmptyArray
-//
-// Returns:
-//   - Operator[A, B]: A function that transforms NonEmptyArray[A] to NonEmptyArray[B]
-//
-// Example:
-//
-//	duplicate := Chain(func(x int) NonEmptyArray[int] { return From(x, x) })
-//	result := duplicate(From(1, 2, 3))  // NonEmptyArray[int]{1, 1, 2, 2, 3, 3}
 func Chain[A, B any](f func(A) NonEmptyArray[B]) Operator[A, B] {
-	return G.Chain[NonEmptyArray[A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAp applies a NonEmptyArray of functions to a NonEmptyArray of values.
@@ -404,7 +408,8 @@ func Chain[A, B any](f func(A) NonEmptyArray[B]) Operator[A, B] {
 //	vals := From(1, 2)
 //	result := MonadAp(fns, vals)  // NonEmptyArray[int]{2, 4, 11, 12}
 func MonadAp[B, A any](fab NonEmptyArray[func(A) B], fa NonEmptyArray[A]) NonEmptyArray[B] {
-	return G.MonadAp[NonEmptyArray[B]](fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap applies a NonEmptyArray of functions to a NonEmptyArray of values.
@@ -427,26 +432,18 @@ func MonadAp[B, A any](fab NonEmptyArray[func(A) B], fa NonEmptyArray[A]) NonEmp
 //	fns := From(N.Mul(2), func(x int) int { return x + 10 })
 //	result := applyTo(fns)  // NonEmptyArray[int]{2, 4, 11, 12}
 func Ap[B, A any](fa NonEmptyArray[A]) func(NonEmptyArray[func(A) B]) NonEmptyArray[B] {
-	return G.Ap[NonEmptyArray[B], NonEmptyArray[func(A) B]](fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FoldMap maps and folds a [NonEmptyArray]. Map the [NonEmptyArray] passing each value to the iterating function. Then fold the results using the provided [Semigroup].
 func FoldMap[A, B any](s S.Semigroup[B]) func(func(A) B) func(NonEmptyArray[A]) B {
-	return func(f func(A) B) func(NonEmptyArray[A]) B {
-		return func(as NonEmptyArray[A]) B {
-			return array.Reduce(Tail(as), func(cur B, a A) B {
-				return s.Concat(cur, f(a))
-			}, f(Head(as)))
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Fold folds the [NonEmptyArray] using the provided [Semigroup].
-func Fold[A any](s S.Semigroup[A]) func(NonEmptyArray[A]) A {
-	return func(as NonEmptyArray[A]) A {
-		return array.Reduce(Tail(as), s.Concat, Head(as))
-	}
-}
+func Fold[A any](s S.Semigroup[A]) func(NonEmptyArray[A]) A { _ = "STUB: not implemented"; return nil }
 
 // Prepend prepends a single value to the beginning of a NonEmptyArray.
 // Returns a new NonEmptyArray with the value at the front.
@@ -466,7 +463,8 @@ func Fold[A any](s S.Semigroup[A]) func(NonEmptyArray[A]) A {
 //	prepend1 := Prepend(1)
 //	result := prepend1(arr)  // NonEmptyArray[int]{1, 2, 3, 4}
 func Prepend[A any](head A) EM.Endomorphism[NonEmptyArray[A]] {
-	return array.Prepend[EM.Endomorphism[NonEmptyArray[A]]](head)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ToNonEmptyArray attempts to convert a regular slice into a NonEmptyArray.
@@ -548,12 +546,7 @@ func Prepend[A any](head A) EM.Endomorphism[NonEmptyArray[A]] {
 // Note: This function is particularly useful when working with APIs or functions
 // that return regular slices but you need the type-level guarantee that the
 // collection is non-empty for subsequent operations.
-func ToNonEmptyArray[A any](as []A) Option[NonEmptyArray[A]] {
-	if G.IsEmpty(as) {
-		return option.None[NonEmptyArray[A]]()
-	}
-	return option.Some(NonEmptyArray[A](as))
-}
+func ToNonEmptyArray[A any](as []A) Option[NonEmptyArray[A]] { _ = "STUB: not implemented"; return nil }
 
 // Extract returns the first element of a NonEmptyArray.
 // This is an alias for Head and is part of the Comonad interface.
@@ -574,39 +567,40 @@ func ToNonEmptyArray[A any](as []A) Option[NonEmptyArray[A]] {
 //
 //go:inline
 func Extract[A any](as NonEmptyArray[A]) A {
-	return Head(as)
+	_ = "STUB: not implemented"
+
+	// Extend applies a function to all suffixes of a NonEmptyArray.
+	// For each position i, it applies the function to the subarray starting at position i.
+	// This is part of the Comonad interface.
+	//
+	// Type Parameters:
+	//   - A: The input element type
+	//   - B: The output element type
+	//
+	// Parameters:
+	//   - f: A function that takes a NonEmptyArray and returns a value
+	//
+	// Returns:
+	//   - Operator[A, B]: A function that transforms NonEmptyArray[A] to NonEmptyArray[B]
+	//
+	// Example:
+	//
+	//	arr := From(1, 2, 3, 4)
+	//	sumSuffix := Extend(func(xs NonEmptyArray[int]) int {
+	//	    sum := 0
+	//	    for _, x := range xs {
+	//	        sum += x
+	//	    }
+	//	    return sum
+	//	})
+	//	result := sumSuffix(arr)  // NonEmptyArray[int]{10, 9, 7, 4}
+	//	// [1,2,3,4] -> 10, [2,3,4] -> 9, [3,4] -> 7, [4] -> 4
+	//
+	//go:inline
+	return *new(A)
 }
 
-// Extend applies a function to all suffixes of a NonEmptyArray.
-// For each position i, it applies the function to the subarray starting at position i.
-// This is part of the Comonad interface.
-//
-// Type Parameters:
-//   - A: The input element type
-//   - B: The output element type
-//
-// Parameters:
-//   - f: A function that takes a NonEmptyArray and returns a value
-//
-// Returns:
-//   - Operator[A, B]: A function that transforms NonEmptyArray[A] to NonEmptyArray[B]
-//
-// Example:
-//
-//	arr := From(1, 2, 3, 4)
-//	sumSuffix := Extend(func(xs NonEmptyArray[int]) int {
-//	    sum := 0
-//	    for _, x := range xs {
-//	        sum += x
-//	    }
-//	    return sum
-//	})
-//	result := sumSuffix(arr)  // NonEmptyArray[int]{10, 9, 7, 4}
-//	// [1,2,3,4] -> 10, [2,3,4] -> 9, [3,4] -> 7, [4] -> 4
-//
-//go:inline
 func Extend[A, B any](f func(NonEmptyArray[A]) B) Operator[A, B] {
-	return func(as NonEmptyArray[A]) NonEmptyArray[B] {
-		return G.MakeBy[NonEmptyArray[B]](len(as), func(i int) B { return f(as[i:]) })
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

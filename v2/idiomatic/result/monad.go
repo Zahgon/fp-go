@@ -24,36 +24,33 @@ type (
 	}
 )
 
-func (o eitherMonad[A, B]) Of(a A) (A, error) {
-	return Of(a)
-}
+func (o eitherMonad[A, B]) Of(a A) (A, error) { _ = "STUB: not implemented"; return *new(A), nil }
 
-func (o eitherMonad[A, B]) Map(f func(A) B) Operator[A, B] {
-	return Map(f)
-}
+func (o eitherMonad[A, B]) Map(f func(A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }
 
 func (o eitherMonad[A, B]) Chain(f func(A) (B, error)) Operator[A, B] {
-	return Chain(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o eitherMonad[A, B]) Ap(a A, err error) Operator[func(A) B, B] {
-	return Ap[B](a, err)
+	_ = "STUB: not implemented"
+	return nil
+
+	// MakeMonad creates a Monad instance for Result operations.
+	// A monad combines the capabilities of Functor (Map), Applicative (Ap), and Chain (flatMap/bind).
+	// This allows for sequential composition of computations that may fail.
+	//
+	// Example:
+	//
+	//	m := result.MakeMonad[int, string]()
+	//	val, err := m.Chain(func(x int) (string, error) {
+	//	    if x > 0 {
+	//	        return result.Right[error](strconv.Itoa(x))
+	//	    }
+	//	    return result.Left[string](errors.New("negative"))
+	//	})(result.Right[error](42))
+	//	// val is "42", err is nil
 }
 
-// MakeMonad creates a Monad instance for Result operations.
-// A monad combines the capabilities of Functor (Map), Applicative (Ap), and Chain (flatMap/bind).
-// This allows for sequential composition of computations that may fail.
-//
-// Example:
-//
-//	m := result.MakeMonad[int, string]()
-//	val, err := m.Chain(func(x int) (string, error) {
-//	    if x > 0 {
-//	        return result.Right[error](strconv.Itoa(x))
-//	    }
-//	    return result.Left[string](errors.New("negative"))
-//	})(result.Right[error](42))
-//	// val is "42", err is nil
-func MakeMonad[A, B any]() Monad[A, B] {
-	return eitherMonad[A, B]{}
-}
+func MakeMonad[A, B any]() Monad[A, B] { _ = "STUB: not implemented"; return nil }

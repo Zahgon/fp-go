@@ -17,27 +17,24 @@ package file
 
 import (
 	"io"
-	"path/filepath"
 )
 
 // Join appends a filename to a root path
-func Join(name string) func(root string) string {
-	return func(root string) string {
-		return filepath.Join(root, name)
-	}
-}
+func Join(name string) func(root string) string { _ = "STUB: not implemented"; return nil }
 
 // ToReader converts a [io.Reader]
 func ToReader[R io.Reader](r R) io.Reader {
-	return r
+	_ = "STUB: not implemented"
+
+	// ToWriter converts a [io.Writer]
+	return *new(io.Reader)
 }
 
-// ToWriter converts a [io.Writer]
 func ToWriter[W io.Writer](w W) io.Writer {
-	return w
+	_ = "STUB: not implemented"
+
+	// ToCloser converts a [io.Closer]
+	return *new(io.Writer)
 }
 
-// ToCloser converts a [io.Closer]
-func ToCloser[C io.Closer](c C) io.Closer {
-	return c
-}
+func ToCloser[C io.Closer](c C) io.Closer { _ = "STUB: not implemented"; return *new(io.Closer) }

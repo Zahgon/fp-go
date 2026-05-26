@@ -58,7 +58,8 @@ type Apply[A, B, HKTA, HKTB, HKTFAB any] interface {
 
 // ToFunctor converts from [Apply] to [functor.Functor]
 func ToFunctor[A, B, HKTA, HKTB, HKTFAB any](ap Apply[A, B, HKTA, HKTB, HKTFAB]) functor.Functor[A, B, HKTA, HKTB] {
-	return ap
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type ApType[HKTA, HKTB, HKTFAB any] = func(HKTA) func(HKTFAB) HKTB

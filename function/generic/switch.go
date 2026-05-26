@@ -18,11 +18,6 @@ package generic
 // Switch applies a handler to different cases. The handers are stored in a map. A key function
 // extracts the case from a value.
 func Switch[HF ~func(T) R, N ~map[K]HF, KF ~func(T) K, K comparable, T, R any](kf KF, n N, d HF) HF {
-	return func(t T) R {
-		f, ok := n[kf(t)]
-		if ok {
-			return f(t)
-		}
-		return d(t)
-	}
+	_ = "STUB: not implemented"
+	return *new(HF)
 }

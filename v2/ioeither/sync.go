@@ -17,11 +17,10 @@ package ioeither
 
 import (
 	"context"
-
-	"github.com/IBM/fp-go/v2/io"
 )
 
 // WithLock executes the provided IO operation in the scope of a lock
 func WithLock[E, A any](lock IO[context.CancelFunc]) Operator[E, A, A] {
-	return io.WithLock[Either[E, A]](lock)
+	_ = "STUB: not implemented"
+	return nil
 }

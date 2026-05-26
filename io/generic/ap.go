@@ -15,11 +15,6 @@
 
 package generic
 
-import (
-	F "github.com/IBM/fp-go/function"
-	G "github.com/IBM/fp-go/internal/apply"
-)
-
 const (
 	// useParallel is the feature flag to control if we use the parallel or the sequential implementation of ap
 	useParallel = true
@@ -27,111 +22,68 @@ const (
 
 // MonadApSeq implements the applicative on a single thread by first executing mab and the ma
 func MonadApSeq[GA ~func() A, GB ~func() B, GAB ~func() func(A) B, A, B any](mab GAB, ma GA) GB {
-	return MonadChain(mab, F.Bind1st(MonadMap[GA, GB], ma))
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // MonadApPar implements the applicative on two threads, the main thread executes mab and the actuall
 // apply operation and the second thread computes ma. Communication between the threads happens via a channel
 func MonadApPar[GA ~func() A, GB ~func() B, GAB ~func() func(A) B, A, B any](mab GAB, ma GA) GB {
-	return MakeIO[GB](func() B {
-		c := make(chan A)
-		go func() {
-			c <- ma()
-			close(c)
-		}()
-		return mab()(<-c)
-	})
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // MonadAp implements the `ap` operation. Depending on a feature flag this will be sequential or parallel, the preferred implementation
 // is parallel
 func MonadAp[GA ~func() A, GB ~func() B, GAB ~func() func(A) B, A, B any](mab GAB, ma GA) GB {
-	if useParallel {
-		return MonadApPar[GA, GB](mab, ma)
-	}
-	return MonadApSeq[GA, GB](mab, ma)
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // MonadApFirst combines two effectful actions, keeping only the result of the first.
 func MonadApFirst[GA ~func() A, GB ~func() B, GBA ~func() func(B) A, A, B any](first GA, second GB) GA {
-	return G.MonadApFirst(
-		MonadAp[GB, GA, GBA, B, A],
-		MonadMap[GA, GBA, A, func(B) A],
-
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return *new(GA)
 }
 
 // MonadApFirstPar combines two effectful actions, keeping only the result of the first.
 func MonadApFirstPar[GA ~func() A, GB ~func() B, GBA ~func() func(B) A, A, B any](first GA, second GB) GA {
-	return G.MonadApFirst(
-		MonadApPar[GB, GA, GBA, B, A],
-		MonadMap[GA, GBA, A, func(B) A],
-
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return *new(GA)
 }
 
 // MonadApFirstSeq combines two effectful actions, keeping only the result of the first.
 func MonadApFirstSeq[GA ~func() A, GB ~func() B, GBA ~func() func(B) A, A, B any](first GA, second GB) GA {
-	return G.MonadApFirst(
-		MonadApSeq[GB, GA, GBA, B, A],
-		MonadMap[GA, GBA, A, func(B) A],
-
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return *new(GA)
 }
 
 // ApFirst combines two effectful actions, keeping only the result of the first.
 func ApFirst[GA ~func() A, GB ~func() B, GBA ~func() func(B) A, A, B any](second GB) func(GA) GA {
-	return G.ApFirst(
-		MonadAp[GB, GA, GBA, B, A],
-		MonadMap[GA, GBA, A, func(B) A],
-
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApFirstPar combines two effectful actions, keeping only the result of the first.
 func ApFirstPar[GA ~func() A, GB ~func() B, GBA ~func() func(B) A, A, B any](second GB) func(GA) GA {
-	return G.ApFirst(
-		MonadApPar[GB, GA, GBA, B, A],
-		MonadMap[GA, GBA, A, func(B) A],
-
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApFirstSeq combines two effectful actions, keeping only the result of the first.
 func ApFirstSeq[GA ~func() A, GB ~func() B, GBA ~func() func(B) A, A, B any](second GB) func(GA) GA {
-	return G.ApFirst(
-		MonadApSeq[GB, GA, GBA, B, A],
-		MonadMap[GA, GBA, A, func(B) A],
-
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadApSecond combines two effectful actions, keeping only the result of the second.
 func MonadApSecond[GA ~func() A, GB ~func() B, GBB ~func() func(B) B, A, B any](first GA, second GB) GB {
-	return G.MonadApSecond(
-		MonadAp[GB, GB, GBB, B, B],
-		MonadMap[GA, GBB, A, func(B) B],
-
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // ApSecond combines two effectful actions, keeping only the result of the second.
 func ApSecond[GA ~func() A, GB ~func() B, GBB ~func() func(B) B, A, B any](second GB) func(GA) GB {
-	return G.ApSecond(
-		MonadAp[GB, GB, GBB, B, B],
-		MonadMap[GA, GBB, A, func(B) B],
-
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

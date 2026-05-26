@@ -35,34 +35,36 @@ type (
 //
 //go:inline
 func IsLeft[E, A any](val Either[E, A]) bool {
-	return val.isLeft
+	_ = "STUB: not implemented"
+
+	// IsRight tests if the Either is a Right value.
+	// Rather use [Fold] or [MonadFold] if you need to access the values.
+	// Inverse is [IsLeft].
+	//
+	// Example:
+	//
+	//	either.IsRight(either.Right[error](42)) // true
+	//	either.IsRight(either.Left[int](errors.New("err"))) // false
+	//
+	//go:inline
+	return false
 }
 
-// IsRight tests if the Either is a Right value.
-// Rather use [Fold] or [MonadFold] if you need to access the values.
-// Inverse is [IsLeft].
-//
-// Example:
-//
-//	either.IsRight(either.Right[error](42)) // true
-//	either.IsRight(either.Left[int](errors.New("err"))) // false
-//
-//go:inline
 func IsRight[E, A any](val Either[E, A]) bool {
-	return !val.isLeft
+	_ = "STUB: not implemented"
+
+	// Left creates a new Either representing a Left (error/failure) value.
+	// By convention, Left represents the error case.
+	//
+	// Example:
+	//
+	//	result := either.Left[int](errors.New("something went wrong"))
+	//
+	//go:inline
+	return false
 }
 
-// Left creates a new Either representing a Left (error/failure) value.
-// By convention, Left represents the error case.
-//
-// Example:
-//
-//	result := either.Left[int](errors.New("something went wrong"))
-//
-//go:inline
-func Left[A, E any](value E) Either[E, A] {
-	return Either[E, A]{l: value, isLeft: true}
-}
+func Left[A, E any](value E) Either[E, A] { _ = "STUB: not implemented"; return nil }
 
 // Right creates a new Either representing a Right (success) value.
 // By convention, Right represents the success case.
@@ -72,9 +74,7 @@ func Left[A, E any](value E) Either[E, A] {
 //	result := either.Right[error](42)
 //
 //go:inline
-func Right[E, A any](value A) Either[E, A] {
-	return Either[E, A]{r: value}
-}
+func Right[E, A any](value A) Either[E, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadFold extracts the value from an Either by providing handlers for both cases.
 // This is the fundamental pattern matching operation for Either.
@@ -89,10 +89,8 @@ func Right[E, A any](value A) Either[E, A] {
 //
 //go:inline
 func MonadFold[E, A, B any](ma Either[E, A], onLeft func(e E) B, onRight func(a A) B) B {
-	if !ma.isLeft {
-		return onRight(ma.r)
-	}
-	return onLeft(ma.l)
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 // Unwrap converts an Either into the idiomatic Go tuple (value, error).
@@ -105,6 +103,4 @@ func MonadFold[E, A, B any](ma Either[E, A], onLeft func(e E) B, onRight func(a 
 //	val, err := either.Unwrap(either.Left[int](errors.New("fail"))) // 0, error
 //
 //go:inline
-func Unwrap[E, A any](ma Either[E, A]) (A, E) {
-	return ma.r, ma.l
-}
+func Unwrap[E, A any](ma Either[E, A]) (A, E) { _ = "STUB: not implemented"; return *new(A), *new(E) }

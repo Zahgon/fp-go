@@ -15,11 +15,10 @@
 
 package iooption
 
-import "github.com/IBM/fp-go/v2/function"
-
 // WithResource constructs a function that creates a resource, then operates on it and then releases the resource
 func WithResource[
 	R, A, ANY any](onCreate IOOption[R], onRelease Kleisli[R, ANY]) Kleisli[Kleisli[R, A], A] {
+	_ = "STUB: not implemented"
 	// simply map to implementation of bracket
-	return function.Bind13of3(Bracket[R, A, ANY])(onCreate, function.Ignore2of2[Option[A]](onRelease))
+	return nil
 }

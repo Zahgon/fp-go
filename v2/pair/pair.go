@@ -15,19 +15,12 @@
 
 package pair
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/tuple"
-)
-
 // Of creates a [Pair] with the same value in both the head and tail positions.
 //
 // Example:
 //
 //	p := pair.Of(42)  // Pair[int, int]{42, 42}
-func Of[A any](value A) Pair[A, A] {
-	return Pair[A, A]{value, value}
-}
+func Of[A any](value A) Pair[A, A] { _ = "STUB: not implemented"; return nil }
 
 // FromTuple creates a [Pair] from a [Tuple2].
 // The first element of the tuple becomes the head, and the second becomes the tail.
@@ -38,9 +31,7 @@ func Of[A any](value A) Pair[A, A] {
 //	p := pair.FromTuple(t)  // Pair[string, int]{"hello", 42}
 //
 //go:inline
-func FromTuple[A, B any](t Tuple2[A, B]) Pair[A, B] {
-	return Pair[A, B]{t.F2, t.F1}
-}
+func FromTuple[A, B any](t Tuple2[A, B]) Pair[A, B] { _ = "STUB: not implemented"; return nil }
 
 // FromHead creates a function that constructs a [Pair] from a given head value.
 // It returns a function that takes a tail value and combines it with the head
@@ -55,9 +46,7 @@ func FromTuple[A, B any](t Tuple2[A, B]) Pair[A, B] {
 //	p := makePair(42)  // Pair[string, int]{"hello", 42}
 //
 //go:inline
-func FromHead[B, A any](a A) Kleisli[A, B, B] {
-	return F.Bind1st(MakePair[A, B], a)
-}
+func FromHead[B, A any](a A) Kleisli[A, B, B] { _ = "STUB: not implemented"; return nil }
 
 // FromTail creates a function that constructs a [Pair] from a given tail value.
 // It returns a function that takes a head value and combines it with the tail
@@ -72,9 +61,7 @@ func FromHead[B, A any](a A) Kleisli[A, B, B] {
 //	p := makePair("hello")  // Pair[string, int]{"hello", 42}
 //
 //go:inline
-func FromTail[A, B any](b B) Kleisli[A, A, B] {
-	return F.Bind2nd(MakePair[A, B], b)
-}
+func FromTail[A, B any](b B) Kleisli[A, A, B] { _ = "STUB: not implemented"; return nil }
 
 // ToTuple creates a [Tuple2] from a [Pair].
 // The head becomes the first element, and the tail becomes the second element.
@@ -85,9 +72,7 @@ func FromTail[A, B any](b B) Kleisli[A, A, B] {
 //	t := pair.ToTuple(p)  // Tuple2[string, int]{"hello", 42}
 //
 //go:inline
-func ToTuple[A, B any](t Pair[A, B]) Tuple2[A, B] {
-	return tuple.MakeTuple2(Head(t), Tail(t))
-}
+func ToTuple[A, B any](t Pair[A, B]) Tuple2[A, B] { _ = "STUB: not implemented"; return nil }
 
 // MakePair creates a [Pair] from two values.
 // The first value becomes the head, and the second becomes the tail.
@@ -97,9 +82,7 @@ func ToTuple[A, B any](t Pair[A, B]) Tuple2[A, B] {
 //	p := pair.MakePair("hello", 42)  // Pair[string, int]{"hello", 42}
 //
 //go:inline
-func MakePair[A, B any](a A, b B) Pair[A, B] {
-	return Pair[A, B]{b, a}
-}
+func MakePair[A, B any](a A, b B) Pair[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Head returns the head (first) value of the pair.
 //
@@ -110,76 +93,88 @@ func MakePair[A, B any](a A, b B) Pair[A, B] {
 //
 //go:inline
 func Head[A, B any](fa Pair[A, B]) A {
-	return fa.l
+	_ = "STUB: not implemented"
+
+	// Tail returns the tail (second) value of the pair.
+	//
+	// Example:
+	//
+	//	p := pair.MakePair("hello", 42)
+	//	t := pair.Tail(p)  // 42
+	//
+	//go:inline
+	return *new(A)
 }
 
-// Tail returns the tail (second) value of the pair.
-//
-// Example:
-//
-//	p := pair.MakePair("hello", 42)
-//	t := pair.Tail(p)  // 42
-//
-//go:inline
 func Tail[A, B any](fa Pair[A, B]) B {
-	return fa.r
+	_ = "STUB: not implemented"
+
+	// First returns the first value of the pair (alias for Head).
+	//
+	// Example:
+	//
+	//	p := pair.MakePair("hello", 42)
+	//	f := pair.First(p)  // "hello"
+	//
+	//go:inline
+	return *new(B)
 }
 
-// First returns the first value of the pair (alias for Head).
-//
-// Example:
-//
-//	p := pair.MakePair("hello", 42)
-//	f := pair.First(p)  // "hello"
-//
-//go:inline
 func First[A, B any](fa Pair[A, B]) A {
-	return fa.l
+	_ = "STUB: not implemented"
+
+	// Second returns the second value of the pair (alias for Tail).
+	//
+	// Example:
+	//
+	//	p := pair.MakePair("hello", 42)
+	//	s := pair.Second(p)  // 42
+	//
+	//go:inline
+	return *new(A)
 }
 
-// Second returns the second value of the pair (alias for Tail).
-//
-// Example:
-//
-//	p := pair.MakePair("hello", 42)
-//	s := pair.Second(p)  // 42
-//
-//go:inline
 func Second[A, B any](fa Pair[A, B]) B {
-	return fa.r
+	_ = "STUB: not implemented"
+
+	// MonadMapHead maps a function over the head value of the pair, leaving the tail unchanged.
+	//
+	// Example:
+	//
+	//	p := pair.MakePair(5, "hello")
+	//	p2 := pair.MonadMapHead(p, func(n int) string {
+	//	    return fmt.Sprintf("%d", n)
+	//	})  // Pair[string, string]{"5", "hello"}
+	//
+	//go:inline
+	return *new(B)
 }
 
-// MonadMapHead maps a function over the head value of the pair, leaving the tail unchanged.
-//
-// Example:
-//
-//	p := pair.MakePair(5, "hello")
-//	p2 := pair.MonadMapHead(p, func(n int) string {
-//	    return fmt.Sprintf("%d", n)
-//	})  // Pair[string, string]{"5", "hello"}
-//
-//go:inline
 func MonadMapHead[B, A, A1 any](fa Pair[A, B], f func(A) A1) Pair[A1, B] {
-	return MakePair(f(Head(fa)), fa.r)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MonadMap[A, B, B1 any](fa Pair[A, B], f func(B) B1) Pair[A, B1] {
-	return MonadMapTail(fa, f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// MonadMapTail maps a function over the tail value of the pair, leaving the head unchanged.
+	//
+	// Example:
+	//
+	//	p := pair.MakePair(5, "hello")
+	//	p2 := pair.MonadMapTail(p, func(s string) int {
+	//	    return len(s)
+	//	})  // Pair[int, int]{5, 5}
+	//
+	//go:inline
 }
 
-// MonadMapTail maps a function over the tail value of the pair, leaving the head unchanged.
-//
-// Example:
-//
-//	p := pair.MakePair(5, "hello")
-//	p2 := pair.MonadMapTail(p, func(s string) int {
-//	    return len(s)
-//	})  // Pair[int, int]{5, 5}
-//
-//go:inline
 func MonadMapTail[A, B, B1 any](fa Pair[A, B], f func(B) B1) Pair[A, B1] {
-	return MakePair(fa.l, f(Tail(fa)))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadBiMap maps functions over both the head and tail values of the pair.
@@ -194,7 +189,8 @@ func MonadMapTail[A, B, B1 any](fa Pair[A, B], f func(B) B1) Pair[A, B1] {
 //
 //go:inline
 func MonadBiMap[A, B, A1, B1 any](fa Pair[A, B], f func(A) A1, g func(B) B1) Pair[A1, B1] {
-	return MakePair(f(Head(fa)), g(Tail(fa)))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map returns a function that maps over the tail value of a pair (alias for MapTail).
@@ -207,9 +203,7 @@ func MonadBiMap[A, B, A1, B1 any](fa Pair[A, B], f func(A) A1, g func(B) B1) Pai
 //	p2 := mapper(p)  // Pair[int, int]{5, 5}
 //
 //go:inline
-func Map[A, B, B1 any](f func(B) B1) Operator[A, B, B1] {
-	return MapTail[A](f)
-}
+func Map[A, B, B1 any](f func(B) B1) Operator[A, B, B1] { _ = "STUB: not implemented"; return nil }
 
 // MapHead returns a function that maps over the head value of a pair.
 // This is the curried version of MonadMapHead.
@@ -224,7 +218,8 @@ func Map[A, B, B1 any](f func(B) B1) Operator[A, B, B1] {
 //
 //go:inline
 func MapHead[B, A, A1 any](f func(A) A1) func(Pair[A, B]) Pair[A1, B] {
-	return F.Bind2nd(MonadMapHead[B, A, A1], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MapTail returns a function that maps over the tail value of a pair.
@@ -237,9 +232,7 @@ func MapHead[B, A, A1 any](f func(A) A1) func(Pair[A, B]) Pair[A1, B] {
 //	p2 := mapper(p)  // Pair[int, int]{5, 5}
 //
 //go:inline
-func MapTail[A, B, B1 any](f func(B) B1) Operator[A, B, B1] {
-	return F.Bind2nd(MonadMapTail[A, B, B1], f)
-}
+func MapTail[A, B, B1 any](f func(B) B1) Operator[A, B, B1] { _ = "STUB: not implemented"; return nil }
 
 // BiMap returns a function that maps over both values of a pair.
 // This is the curried version of MonadBiMap.
@@ -255,9 +248,8 @@ func MapTail[A, B, B1 any](f func(B) B1) Operator[A, B, B1] {
 //
 //go:inline
 func BiMap[A, B, A1, B1 any](f func(A) A1, g func(B) B1) func(Pair[A, B]) Pair[A1, B1] {
-	return func(fa Pair[A, B]) Pair[A1, B1] {
-		return MonadBiMap(fa, f, g)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainHead chains a function over the head value, combining tail values using a semigroup.
@@ -274,8 +266,8 @@ func BiMap[A, B, A1, B1 any](f func(A) A1, g func(B) B1) func(Pair[A, B]) Pair[A
 //	    return pair.MakePair(fmt.Sprintf("%d", n), "!")
 //	})  // Pair[string, string]{"5", "hello!"}
 func MonadChainHead[B, A, A1 any](sg Semigroup[B], fa Pair[A, B], f func(A) Pair[A1, B]) Pair[A1, B] {
-	fb := f(Head(fa))
-	return MakePair(Head(fb), sg.Concat(Tail(fa), Tail(fb)))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainTail chains a function over the tail value, combining head values using a semigroup.
@@ -294,8 +286,8 @@ func MonadChainHead[B, A, A1 any](sg Semigroup[B], fa Pair[A, B], f func(A) Pair
 //
 //go:inline
 func MonadChainTail[A, B, B1 any](sg Semigroup[A], fb Pair[A, B], f Kleisli[A, B, B1]) Pair[A, B1] {
-	fa := f(Tail(fb))
-	return MakePair(sg.Concat(Head(fb), Head(fa)), Tail(fa))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChain chains a function over the tail value (alias for MonadChainTail).
@@ -312,7 +304,8 @@ func MonadChainTail[A, B, B1 any](sg Semigroup[A], fb Pair[A, B], f Kleisli[A, B
 //
 //go:inline
 func MonadChain[A, B, B1 any](sg Semigroup[A], fa Pair[A, B], f Kleisli[A, B, B1]) Pair[A, B1] {
-	return MonadChainTail(sg, fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainHead returns a function that chains over the head value.
@@ -331,9 +324,8 @@ func MonadChain[A, B, B1 any](sg Semigroup[A], fa Pair[A, B], f Kleisli[A, B, B1
 //
 //go:inline
 func ChainHead[B, A, A1 any](sg Semigroup[B], f func(A) Pair[A1, B]) func(Pair[A, B]) Pair[A1, B] {
-	return func(fa Pair[A, B]) Pair[A1, B] {
-		return MonadChainHead(sg, fa, f)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainTail returns a function that chains over the tail value.
@@ -352,9 +344,8 @@ func ChainHead[B, A, A1 any](sg Semigroup[B], f func(A) Pair[A1, B]) func(Pair[A
 //
 //go:inline
 func ChainTail[A, B, B1 any](sg Semigroup[A], f Kleisli[A, B, B1]) Operator[A, B, B1] {
-	return func(fa Pair[A, B]) Pair[A, B1] {
-		return MonadChainTail(sg, fa, f)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain returns a function that chains over the tail value (alias for ChainTail).
@@ -372,24 +363,27 @@ func ChainTail[A, B, B1 any](sg Semigroup[A], f Kleisli[A, B, B1]) Operator[A, B
 //
 //go:inline
 func Chain[A, B, B1 any](sg Semigroup[A], f Kleisli[A, B, B1]) Operator[A, B, B1] {
-	return ChainTail(sg, f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// MonadApHead applies a function wrapped in a pair to a value wrapped in a pair,
+	// operating on the head values and combining tail values using a semigroup.
+	//
+	// Example:
+	//
+	//	import SG "github.com/IBM/fp-go/v2/semigroup"
+	//
+	//	strConcat := SG.MakeSemigroup(func(a, b string) string { return a + b })
+	//	pf := pair.MakePair(strconv.Itoa, "!")
+	//	pv := pair.MakePair(42, "hello")
+	//	result := pair.MonadApHead(strConcat, pf, pv)  // Pair[string, string]{"42", "!hello"}
+	//
+	//go:inline
 }
 
-// MonadApHead applies a function wrapped in a pair to a value wrapped in a pair,
-// operating on the head values and combining tail values using a semigroup.
-//
-// Example:
-//
-//	import SG "github.com/IBM/fp-go/v2/semigroup"
-//
-//	strConcat := SG.MakeSemigroup(func(a, b string) string { return a + b })
-//	pf := pair.MakePair(strconv.Itoa, "!")
-//	pv := pair.MakePair(42, "hello")
-//	result := pair.MonadApHead(strConcat, pf, pv)  // Pair[string, string]{"42", "!hello"}
-//
-//go:inline
 func MonadApHead[B, A, A1 any](sg Semigroup[B], faa Pair[func(A) A1, B], fa Pair[A, B]) Pair[A1, B] {
-	return MakePair(Head(faa)(Head(fa)), sg.Concat(Tail(fa), Tail(faa)))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadApTail applies a function wrapped in a pair to a value wrapped in a pair,
@@ -406,7 +400,8 @@ func MonadApHead[B, A, A1 any](sg Semigroup[B], faa Pair[func(A) A1, B], fa Pair
 //
 //go:inline
 func MonadApTail[A, B, B1 any](sg Semigroup[A], fbb Pair[A, func(B) B1], fb Pair[A, B]) Pair[A, B1] {
-	return MakePair(sg.Concat(Head(fb), Head(fbb)), Tail(fbb)(Tail(fb)))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAp applies a function wrapped in a pair to a value wrapped in a pair,
@@ -423,7 +418,8 @@ func MonadApTail[A, B, B1 any](sg Semigroup[A], fbb Pair[A, func(B) B1], fb Pair
 //
 //go:inline
 func MonadAp[A, B, B1 any](sg Semigroup[A], faa Pair[A, func(B) B1], fa Pair[A, B]) Pair[A, B1] {
-	return MonadApTail(sg, faa, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApHead returns a function that applies a function in a pair to a value in a pair,
@@ -439,9 +435,8 @@ func MonadAp[A, B, B1 any](sg Semigroup[A], faa Pair[A, func(B) B1], fa Pair[A, 
 //	pf := pair.MakePair(strconv.Itoa, "!")
 //	result := ap(pf)  // Pair[string, string]{"42", "!hello"}
 func ApHead[B, A, A1 any](sg Semigroup[B], fa Pair[A, B]) func(Pair[func(A) A1, B]) Pair[A1, B] {
-	return func(faa Pair[func(A) A1, B]) Pair[A1, B] {
-		return MonadApHead(sg, faa, fa)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApTail returns a function that applies a function in a pair to a value in a pair,
@@ -457,9 +452,8 @@ func ApHead[B, A, A1 any](sg Semigroup[B], fa Pair[A, B]) func(Pair[func(A) A1, 
 //	pf := pair.MakePair(10, S.Size)
 //	result := ap(pf)  // Pair[int, int]{15, 5}
 func ApTail[A, B, B1 any](sg Semigroup[A], fb Pair[A, B]) Operator[A, func(B) B1, B1] {
-	return func(fbb Pair[A, func(B) B1]) Pair[A, B1] {
-		return MonadApTail(sg, fbb, fb)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap returns a function that applies a function in a pair to a value in a pair,
@@ -477,7 +471,8 @@ func ApTail[A, B, B1 any](sg Semigroup[A], fb Pair[A, B]) Operator[A, func(B) B1
 //
 //go:inline
 func Ap[A, B, B1 any](sg Semigroup[A], fa Pair[A, B]) Operator[A, func(B) B1, B1] {
-	return ApTail[A, B, B1](sg, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Swap swaps the head and tail values of a pair.
@@ -488,9 +483,7 @@ func Ap[A, B, B1 any](sg Semigroup[A], fa Pair[A, B]) Operator[A, func(B) B1, B1
 //	swapped := pair.Swap(p)  // Pair[int, string]{42, "hello"}
 //
 //go:inline
-func Swap[A, B any](fa Pair[A, B]) Pair[B, A] {
-	return MakePair(Tail(fa), Head(fa))
-}
+func Swap[A, B any](fa Pair[A, B]) Pair[B, A] { _ = "STUB: not implemented"; return nil }
 
 // Paired converts a function with 2 parameters into a function taking a [Pair].
 // The inverse function is [Unpaired].
@@ -501,9 +494,8 @@ func Swap[A, B any](fa Pair[A, B]) Pair[B, A] {
 //	pairedAdd := pair.Paired(add)
 //	result := pairedAdd(pair.MakePair(3, 4))  // 7
 func Paired[F ~func(T1, T2) R, T1, T2, R any](f F) func(Pair[T1, T2]) R {
-	return func(t Pair[T1, T2]) R {
-		return f(Head(t), Tail(t))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Unpaired converts a function with a [Pair] parameter into a function with 2 parameters.
@@ -517,9 +509,8 @@ func Paired[F ~func(T1, T2) R, T1, T2, R any](f F) func(Pair[T1, T2]) R {
 //	add := pair.Unpaired(pairedAdd)
 //	result := add(3, 4)  // 7
 func Unpaired[F ~func(Pair[T1, T2]) R, T1, T2, R any](f F) func(T1, T2) R {
-	return func(t1 T1, t2 T2) R {
-		return f(MakePair(t1, t2))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Merge applies a curried function to a pair by applying the tail value first, then the head value.
@@ -532,9 +523,8 @@ func Unpaired[F ~func(Pair[T1, T2]) R, T1, T2, R any](f F) func(T1, T2) R {
 //	merge := pair.Merge(add)
 //	result := merge(pair.MakePair(3, 4))  // 7 (applies 4 then 3)
 func Merge[F ~func(B) func(A) R, A, B, R any](f F) func(Pair[A, B]) R {
-	return func(p Pair[A, B]) R {
-		return f(Tail(p))(Head(p))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Zero returns the zero value of a [Pair], which is a Pair with zero values for both head and tail.
@@ -554,9 +544,7 @@ func Merge[F ~func(B) func(A) R, A, B, R any](f F) func(Pair[A, B]) R {
 //
 //	// Zero pair with pointer types
 //	p3 := pair.Zero[*int, *string]()  // Pair[*int, *string]{nil, nil}
-func Zero[L, R any]() Pair[L, R] {
-	return Pair[L, R]{}
-}
+func Zero[L, R any]() Pair[L, R] { _ = "STUB: not implemented"; return nil }
 
 // Unpack extracts both values from a [Pair] and returns them as separate values.
 // This is the inverse operation of [MakePair], allowing you to destructure a Pair
@@ -579,6 +567,4 @@ func Zero[L, R any]() Pair[L, R] {
 //	fmt.Printf("%s is %d years old\n", name, age)
 //
 //go:inline
-func Unpack[L, R any](p Pair[L, R]) (L, R) {
-	return Head(p), Tail(p)
-}
+func Unpack[L, R any](p Pair[L, R]) (L, R) { _ = "STUB: not implemented"; return *new(L), *new(R) }

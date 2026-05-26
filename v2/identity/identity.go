@@ -15,12 +15,6 @@
 
 package identity
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/chain"
-	"github.com/IBM/fp-go/v2/internal/functor"
-)
-
 // MonadAp applies a function to a value in the Identity monad context.
 // Since Identity has no computational context, this is just function application.
 //
@@ -34,27 +28,27 @@ import (
 //	result := identity.MonadAp(func(n int) int { return n * 2 }, 21)
 //	// result is 42
 func MonadAp[B, A any](fab func(A) B, fa A) B {
-	return fab(fa)
+	_ = "STUB: not implemented"
+
+	// Ap applies a wrapped function to a wrapped value.
+	// Returns a function that takes a function and applies the value to it.
+	//
+	// This is the curried version of MonadAp, useful for composition with Pipe.
+	//
+	// Implements the Fantasy Land Apply specification:
+	// https://github.com/fantasyland/fantasy-land?tab=readme-ov-file#apply
+	//
+	// Example:
+	//
+	//	import F "github.com/IBM/fp-go/v2/function"
+	//
+	//	double := func(n int) int { return n * 2 }
+	//	result := F.Pipe1(double, identity.Ap[int](21))
+	//	// result is 42
+	return *new(B)
 }
 
-// Ap applies a wrapped function to a wrapped value.
-// Returns a function that takes a function and applies the value to it.
-//
-// This is the curried version of MonadAp, useful for composition with Pipe.
-//
-// Implements the Fantasy Land Apply specification:
-// https://github.com/fantasyland/fantasy-land?tab=readme-ov-file#apply
-//
-// Example:
-//
-//	import F "github.com/IBM/fp-go/v2/function"
-//
-//	double := func(n int) int { return n * 2 }
-//	result := F.Pipe1(double, identity.Ap[int](21))
-//	// result is 42
-func Ap[B, A any](fa A) Operator[func(A) B, B] {
-	return function.Bind2nd(MonadAp[B, A], fa)
-}
+func Ap[B, A any](fa A) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap transforms a value using a function in the Identity monad context.
 // Since Identity has no computational context, this is just function application.
@@ -69,53 +63,57 @@ func Ap[B, A any](fa A) Operator[func(A) B, B] {
 //	result := identity.MonadMap(21, func(n int) int { return n * 2 })
 //	// result is 42
 func MonadMap[A, B any](fa A, f func(A) B) B {
-	return f(fa)
+	_ = "STUB: not implemented"
+
+	// Map transforms a value using a function.
+	// Returns the function itself since Identity adds no context.
+	//
+	// This is the curried version of MonadMap, useful for composition with Pipe.
+	//
+	// Implements the Fantasy Land Functor specification:
+	// https://github.com/fantasyland/fantasy-land?tab=readme-ov-file#functor
+	//
+	// Example:
+	//
+	//	import F "github.com/IBM/fp-go/v2/function"
+	//
+	//	result := F.Pipe1(21, identity.Map(func(n int) int { return n * 2 }))
+	//	// result is 42
+	return *new(B)
 }
 
-// Map transforms a value using a function.
-// Returns the function itself since Identity adds no context.
-//
-// This is the curried version of MonadMap, useful for composition with Pipe.
-//
-// Implements the Fantasy Land Functor specification:
-// https://github.com/fantasyland/fantasy-land?tab=readme-ov-file#functor
-//
-// Example:
-//
-//	import F "github.com/IBM/fp-go/v2/function"
-//
-//	result := F.Pipe1(21, identity.Map(func(n int) int { return n * 2 }))
-//	// result is 42
 func Map[A, B any](f func(A) B) Operator[A, B] {
-	return f
+	_ = "STUB: not implemented"
+
+	// MonadMapTo replaces a value with a constant, ignoring the input.
+	//
+	// This is the uncurried version of MapTo.
+	//
+	// Example:
+	//
+	//	result := identity.MonadMapTo("ignored", 42)
+	//	// result is 42
+	return nil
 }
 
-// MonadMapTo replaces a value with a constant, ignoring the input.
-//
-// This is the uncurried version of MapTo.
-//
-// Example:
-//
-//	result := identity.MonadMapTo("ignored", 42)
-//	// result is 42
 func MonadMapTo[A, B any](_ A, b B) B {
-	return b
+	_ = "STUB: not implemented"
+
+	// MapTo replaces any value with a constant value.
+	// Returns a function that ignores its input and returns the constant.
+	//
+	// This is the curried version of MonadMapTo, useful for composition with Pipe.
+	//
+	// Example:
+	//
+	//	import F "github.com/IBM/fp-go/v2/function"
+	//
+	//	result := F.Pipe1("ignored", identity.MapTo[string](42))
+	//	// result is 42
+	return *new(B)
 }
 
-// MapTo replaces any value with a constant value.
-// Returns a function that ignores its input and returns the constant.
-//
-// This is the curried version of MonadMapTo, useful for composition with Pipe.
-//
-// Example:
-//
-//	import F "github.com/IBM/fp-go/v2/function"
-//
-//	result := F.Pipe1("ignored", identity.MapTo[string](42))
-//	// result is 42
-func MapTo[A, B any](b B) func(A) B {
-	return function.Constant1[A](b)
-}
+func MapTo[A, B any](b B) func(A) B { _ = "STUB: not implemented"; return nil }
 
 // Of wraps a value in the Identity monad.
 // Since Identity has no computational context, this is just the identity function.
@@ -132,61 +130,65 @@ func MapTo[A, B any](b B) func(A) B {
 //
 //go:inline
 func Of[A any](a A) A {
-	return a
+	_ = "STUB: not implemented"
+
+	// MonadChain applies a Kleisli arrow to a value in the Identity monad context.
+	// Since Identity has no computational context, this is just function application.
+	//
+	// This is the uncurried version of Chain, also known as "bind" or "flatMap".
+	//
+	// Implements the Fantasy Land Chain specification:
+	// https://github.com/fantasyland/fantasy-land?tab=readme-ov-file#chain
+	//
+	// Example:
+	//
+	//	result := identity.MonadChain(21, func(n int) int { return n * 2 })
+	//	// result is 42
+	return *new(A)
 }
 
-// MonadChain applies a Kleisli arrow to a value in the Identity monad context.
-// Since Identity has no computational context, this is just function application.
-//
-// This is the uncurried version of Chain, also known as "bind" or "flatMap".
-//
-// Implements the Fantasy Land Chain specification:
-// https://github.com/fantasyland/fantasy-land?tab=readme-ov-file#chain
-//
-// Example:
-//
-//	result := identity.MonadChain(21, func(n int) int { return n * 2 })
-//	// result is 42
 func MonadChain[A, B any](ma A, f Kleisli[A, B]) B {
-	return f(ma)
+	_ = "STUB: not implemented"
+
+	// Chain applies a Kleisli arrow to a value.
+	// Returns the function itself since Identity adds no context.
+	//
+	// This is the curried version of MonadChain, also known as "bind" or "flatMap".
+	// Useful for composition with Pipe.
+	//
+	// Implements the Fantasy Land Chain specification:
+	// https://github.com/fantasyland/fantasy-land?tab=readme-ov-file#chain
+	//
+	// Example:
+	//
+	//	import F "github.com/IBM/fp-go/v2/function"
+	//
+	//	result := F.Pipe1(21, identity.Chain(func(n int) int { return n * 2 }))
+	//	// result is 42
+	//
+	//go:inline
+	return *new(B)
 }
 
-// Chain applies a Kleisli arrow to a value.
-// Returns the function itself since Identity adds no context.
-//
-// This is the curried version of MonadChain, also known as "bind" or "flatMap".
-// Useful for composition with Pipe.
-//
-// Implements the Fantasy Land Chain specification:
-// https://github.com/fantasyland/fantasy-land?tab=readme-ov-file#chain
-//
-// Example:
-//
-//	import F "github.com/IBM/fp-go/v2/function"
-//
-//	result := F.Pipe1(21, identity.Chain(func(n int) int { return n * 2 }))
-//	// result is 42
-//
-//go:inline
 func Chain[A, B any](f Kleisli[A, B]) Operator[A, B] {
-	return f
+	_ = "STUB: not implemented"
+
+	// MonadChainFirst executes a computation for its effect but returns the original value.
+	// Useful for side effects like logging while preserving the original value.
+	//
+	// This is the uncurried version of ChainFirst.
+	//
+	// Example:
+	//
+	//	result := identity.MonadChainFirst(42, func(n int) string {
+	//	    fmt.Printf("Value: %d\n", n)
+	//	    return "logged"
+	//	})
+	//	// result is 42 (original value preserved)
+	return nil
 }
 
-// MonadChainFirst executes a computation for its effect but returns the original value.
-// Useful for side effects like logging while preserving the original value.
-//
-// This is the uncurried version of ChainFirst.
-//
-// Example:
-//
-//	result := identity.MonadChainFirst(42, func(n int) string {
-//	    fmt.Printf("Value: %d\n", n)
-//	    return "logged"
-//	})
-//	// result is 42 (original value preserved)
-func MonadChainFirst[A, B any](fa A, f Kleisli[A, B]) A {
-	return chain.MonadChainFirst(MonadChain[A, A], MonadMap[B, A], fa, f)
-}
+func MonadChainFirst[A, B any](fa A, f Kleisli[A, B]) A { _ = "STUB: not implemented"; return *new(A) }
 
 // ChainFirst executes a computation for its effect but returns the original value.
 // Useful for side effects like logging while preserving the original value.
@@ -205,9 +207,7 @@ func MonadChainFirst[A, B any](fa A, f Kleisli[A, B]) A {
 //	    }),
 //	)
 //	// result is 42 (original value preserved)
-func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] {
-	return chain.ChainFirst(Chain[A, A], Map[B, A], f)
-}
+func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadFlap applies a value to a function, flipping the normal application order.
 // Instead of applying a function to a value, it applies a value to a function.
@@ -219,9 +219,7 @@ func ChainFirst[A, B any](f Kleisli[A, B]) Operator[A, A] {
 //	double := func(n int) int { return n * 2 }
 //	result := identity.MonadFlap(double, 21)
 //	// result is 42
-func MonadFlap[B, A any](fab func(A) B, a A) B {
-	return functor.MonadFlap(MonadMap[func(A) B, B], fab, a)
-}
+func MonadFlap[B, A any](fab func(A) B, a A) B { _ = "STUB: not implemented"; return *new(B) }
 
 // Flap applies a value to a function, flipping the normal application order.
 // Returns a function that takes a function and applies the value to it.
@@ -238,9 +236,7 @@ func MonadFlap[B, A any](fab func(A) B, a A) B {
 //	// result is 42
 //
 //go:inline
-func Flap[B, A any](a A) Operator[func(A) B, B] {
-	return functor.Flap(Map[func(A) B, B], a)
-}
+func Flap[B, A any](a A) Operator[func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // Extract extracts the value from the Identity monad.
 // Since Identity has no computational context, this is just the identity function.
@@ -257,25 +253,25 @@ func Flap[B, A any](a A) Operator[func(A) B, B] {
 //
 //go:inline
 func Extract[A any](a A) A {
-	return a
+	_ = "STUB: not implemented"
+
+	// Extend extends a computation over the Identity monad.
+	// Since Identity has no computational context, this is just function application.
+	//
+	// This is the Comonad "extend" operation, also known as "cobind".
+	//
+	// Implements the Fantasy Land Extend specification:
+	// https://github.com/fantasyland/fantasy-land?tab=readme-ov-file#extend
+	//
+	// Example:
+	//
+	//	import F "github.com/IBM/fp-go/v2/function"
+	//
+	//	result := F.Pipe1(21, identity.Extend(func(n int) int { return n * 2 }))
+	//	// result is 42
+	//
+	//go:inline
+	return *new(A)
 }
 
-// Extend extends a computation over the Identity monad.
-// Since Identity has no computational context, this is just function application.
-//
-// This is the Comonad "extend" operation, also known as "cobind".
-//
-// Implements the Fantasy Land Extend specification:
-// https://github.com/fantasyland/fantasy-land?tab=readme-ov-file#extend
-//
-// Example:
-//
-//	import F "github.com/IBM/fp-go/v2/function"
-//
-//	result := F.Pipe1(21, identity.Extend(func(n int) int { return n * 2 }))
-//	// result is 42
-//
-//go:inline
-func Extend[A, B any](f func(A) B) Operator[A, B] {
-	return f
-}
+func Extend[A, B any](f func(A) B) Operator[A, B] { _ = "STUB: not implemented"; return nil }

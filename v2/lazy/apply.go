@@ -16,7 +16,6 @@
 package lazy
 
 import (
-	IO "github.com/IBM/fp-go/v2/io"
 	M "github.com/IBM/fp-go/v2/monoid"
 	S "github.com/IBM/fp-go/v2/semigroup"
 )
@@ -50,7 +49,8 @@ import (
 //	// Combine the lazy computations
 //	result := intAddSemigroup.Concat(lazy1, lazy2)() // 15
 func ApplySemigroup[A any](s S.Semigroup[A]) S.Semigroup[Lazy[A]] {
-	return IO.ApplySemigroup(s)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoid lifts a Monoid[A] to a Monoid[Lazy[A]].
@@ -90,5 +90,6 @@ func ApplySemigroup[A any](s S.Semigroup[A]) S.Semigroup[Lazy[A]] {
 //	// Concat(Empty(), x) == x
 //	// Concat(x, Empty()) == x
 func ApplicativeMonoid[A any](m M.Monoid[A]) M.Monoid[Lazy[A]] {
-	return IO.ApplicativeMonoid(m)
+	_ = "STUB: not implemented"
+	return nil
 }

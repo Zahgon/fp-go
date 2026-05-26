@@ -31,8 +31,4 @@ import (
 //	// result2 is Right(1) - first Right wins
 //
 //go:inline
-func AltSemigroup[E, A any]() S.Semigroup[Either[E, A]] {
-	return S.AltSemigroup(
-		MonadAlt[E, A],
-	)
-}
+func AltSemigroup[E, A any]() S.Semigroup[Either[E, A]] { _ = "STUB: not implemented"; return nil }

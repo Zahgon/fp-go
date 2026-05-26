@@ -16,16 +16,15 @@
 package array
 
 import (
-	"github.com/IBM/fp-go/v2/internal/array"
 	M "github.com/IBM/fp-go/v2/monoid"
-	O "github.com/IBM/fp-go/v2/option"
 )
 
 func MonadSequence[HKTA, HKTRA any](
 	fof func(HKTA) HKTRA,
 	m M.Monoid[HKTRA],
 	ma []HKTA) HKTRA {
-	return array.MonadSequence(fof, m.Empty, m.Concat, ma)
+	_ = "STUB: not implemented"
+	return *new(HKTRA)
 }
 
 // Sequence takes an array where elements are HKT<A> (higher kinded type) and,
@@ -67,7 +66,8 @@ func Sequence[HKTA, HKTRA any](
 	fof func(HKTA) HKTRA,
 	m M.Monoid[HKTRA],
 ) func([]HKTA) HKTRA {
-	return array.Sequence[[]HKTA](fof, m.Empty, m.Concat)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ArrayOption returns a function to convert a sequence of options into an option of a sequence.
@@ -89,10 +89,4 @@ func Sequence[HKTA, HKTRA any](
 //	    option.Some(3),
 //	}
 //	result2 := array.ArrayOption[int]()(opts2) // None
-func ArrayOption[A any](ma []Option[A]) Option[[]A] {
-	return MonadSequence(
-		O.Map(Of[A]),
-		O.ApplicativeMonoid(Monoid[A]()),
-		ma,
-	)
-}
+func ArrayOption[A any](ma []Option[A]) Option[[]A] { _ = "STUB: not implemented"; return nil }

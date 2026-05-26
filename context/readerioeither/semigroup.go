@@ -16,11 +16,8 @@
 package readerioeither
 
 import (
-	G "github.com/IBM/fp-go/context/readerioeither/generic"
 	S "github.com/IBM/fp-go/semigroup"
 )
 
 // AltSemigroup is a [Semigroup] that tries the first item and then the second one using an alternative
-func AltSemigroup[A any]() S.Semigroup[ReaderIOEither[A]] {
-	return G.AltSemigroup[ReaderIOEither[A]]()
-}
+func AltSemigroup[A any]() S.Semigroup[ReaderIOEither[A]] { _ = "STUB: not implemented"; return nil }

@@ -16,12 +16,8 @@
 package generic
 
 import (
-	"github.com/IBM/fp-go/v2/endomorphism"
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/functor"
 	"github.com/IBM/fp-go/v2/internal/pointed"
-	"github.com/IBM/fp-go/v2/lazy"
-	"github.com/IBM/fp-go/v2/option"
 )
 
 // TraversalFromOptional converts an Optional into a Traversal that works with endomorphisms.
@@ -101,21 +97,6 @@ func FromOptional[S, A, HKTES, HKTA any](
 	fof pointed.OfType[Endomorphism[S], HKTES],
 	fmap functor.MapType[A, Endomorphism[S], HKTA, HKTES],
 ) func(Optional[S, A]) Traversal[S, A, HKTES, HKTA] {
-	onNone := lazy.Of(fof(endomorphism.Identity[S]()))
-	return func(sa Optional[S, A]) Traversal[S, A, HKTES, HKTA] {
-		saGet := sa.GetOption
-		saSet := fmap(sa.Set)
-		return func(f func(A) HKTA) func(S) HKTES {
-			return F.Flow2(
-				saGet,
-				option.Fold(
-					onNone,
-					F.Flow2(
-						f,
-						saSet,
-					),
-				),
-			)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

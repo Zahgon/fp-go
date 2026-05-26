@@ -17,19 +17,21 @@ package readerioresult
 
 import (
 	"github.com/IBM/fp-go/v2/eq"
-	RIOE "github.com/IBM/fp-go/v2/readerioeither"
 )
 
 // Eq implements the equals predicate for values contained in the IOEither monad
 //
 //go:inline
 func Eq[R, A any](eq eq.Eq[Result[A]]) func(R) eq.Eq[ReaderIOResult[R, A]] {
-	return RIOE.Eq[R](eq)
+	_ = "STUB: not implemented"
+	return nil
+
+	// FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
+	//
+	//go:inline
 }
 
-// FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
-//
-//go:inline
 func FromStrictEquals[R any, A comparable]() func(R) eq.Eq[ReaderIOResult[R, A]] {
-	return RIOE.FromStrictEquals[R, error, A]()
+	_ = "STUB: not implemented"
+	return nil
 }

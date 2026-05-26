@@ -16,7 +16,6 @@
 package option
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	M "github.com/IBM/fp-go/v2/monoid"
 	S "github.com/IBM/fp-go/v2/semigroup"
 )
@@ -35,18 +34,8 @@ import (
 //	optSemigroup.Concat(Some(2), None[int]()) // Some(2)
 //	optSemigroup.Concat(None[int](), Some(3)) // Some(3)
 func Semigroup[A any]() func(S.Semigroup[A]) S.Semigroup[Option[A]] {
-	return func(s S.Semigroup[A]) S.Semigroup[Option[A]] {
-		concat := s.Concat
-		return S.MakeSemigroup(
-			func(x, y Option[A]) Option[A] {
-				return MonadFold(x, F.Constant(y), func(left A) Option[A] {
-					return MonadFold(y, F.Constant(x), func(right A) Option[A] {
-						return Some(concat(left, right))
-					})
-				})
-			},
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monoid returns a function that lifts a Semigroup over type A to a Monoid over Option[A].
@@ -69,10 +58,8 @@ func Semigroup[A any]() func(S.Semigroup[A]) S.Semigroup[Option[A]] {
 //	optMonoid.Concat(Some(2), Some(3)) // Some(5)
 //	optMonoid.Empty() // None
 func Monoid[A any]() func(S.Semigroup[A]) M.Monoid[Option[A]] {
-	sg := Semigroup[A]()
-	return func(s S.Semigroup[A]) M.Monoid[Option[A]] {
-		return M.MakeMonoid(sg(s).Concat, None[A]())
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AlternativeMonoid creates a Monoid for Option[A] using the alternative semantics.
@@ -86,13 +73,8 @@ func Monoid[A any]() func(S.Semigroup[A]) M.Monoid[Option[A]] {
 //
 //go:inline
 func AlternativeMonoid[A any](m M.Monoid[A]) M.Monoid[Option[A]] {
-	return M.AlternativeMonoid(
-		Of[A],
-		MonadMap[A, func(A) A],
-		MonadAp[A, A],
-		MonadAlt[A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltMonoid creates a Monoid for Option[A] using the Alt operation.
@@ -107,20 +89,10 @@ func AlternativeMonoid[A any](m M.Monoid[A]) M.Monoid[Option[A]] {
 //	optMonoid.Empty() // None
 //
 //go:inline
-func AltMonoid[A any]() M.Monoid[Option[A]] {
-	return M.AltMonoid(
-		None[A],
-		MonadAlt[A],
-	)
-}
+func AltMonoid[A any]() M.Monoid[Option[A]] { _ = "STUB: not implemented"; return nil }
 
 // takeFirst is a helper function that returns the first Some value, or the second if the first is None.
-func takeFirst[A any](l, r Option[A]) Option[A] {
-	if IsSome(l) {
-		return l
-	}
-	return r
-}
+func takeFirst[A any](l, r Option[A]) Option[A] { _ = "STUB: not implemented"; return nil }
 
 // FirstMonoid creates a Monoid for Option[A] that returns the first Some value.
 // This monoid prefers the left operand when it is Some, otherwise returns the right operand.
@@ -146,17 +118,10 @@ func takeFirst[A any](l, r Option[A]) Option[A] {
 //	optMonoid.Empty() // None
 //
 //go:inline
-func FirstMonoid[A any]() M.Monoid[Option[A]] {
-	return M.MakeMonoid(takeFirst[A], None[A]())
-}
+func FirstMonoid[A any]() M.Monoid[Option[A]] { _ = "STUB: not implemented"; return nil }
 
 // takeLast is a helper function that returns the last Some value, or the first if the last is None.
-func takeLast[A any](l, r Option[A]) Option[A] {
-	if IsSome(r) {
-		return r
-	}
-	return l
-}
+func takeLast[A any](l, r Option[A]) Option[A] { _ = "STUB: not implemented"; return nil }
 
 // LastMonoid creates a Monoid for Option[A] that returns the last Some value.
 // This monoid prefers the right operand when it is Some, otherwise returns the left operand.
@@ -180,6 +145,4 @@ func takeLast[A any](l, r Option[A]) Option[A] {
 //	optMonoid.Empty() // None
 //
 //go:inline
-func LastMonoid[A any]() M.Monoid[Option[A]] {
-	return M.MakeMonoid(takeLast[A], None[A]())
-}
+func LastMonoid[A any]() M.Monoid[Option[A]] { _ = "STUB: not implemented"; return nil }

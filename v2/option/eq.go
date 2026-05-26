@@ -17,7 +17,6 @@ package option
 
 import (
 	EQ "github.com/IBM/fp-go/v2/eq"
-	F "github.com/IBM/fp-go/v2/function"
 )
 
 // Eq constructs an equality predicate for Option[A] given an equality predicate for A.
@@ -34,14 +33,12 @@ import (
 //	optEq.Equals(None[int](), None[int]()) // true
 //	optEq.Equals(Some(42), None[int]()) // false
 func Eq[A any](a EQ.Eq[A]) EQ.Eq[Option[A]] {
+	_ = "STUB: not implemented"
 	// some convenient shortcuts
-	fld := Fold(
-		F.Constant(Fold(F.ConstTrue, F.Constant1[A](false))),
-		F.Flow2(F.Curry2(a.Equals), F.Bind1st(Fold[A, bool], F.ConstFalse)),
-	)
-	// convert to an equals predicate
-	return EQ.FromEquals(F.Uncurry2(fld))
+	return nil
 }
+
+// convert to an equals predicate
 
 // FromStrictEquals constructs an Eq for Option[A] using Go's built-in equality (==) for type A.
 // This is a convenience function for comparable types.
@@ -51,6 +48,4 @@ func Eq[A any](a EQ.Eq[A]) EQ.Eq[Option[A]] {
 //	optEq := FromStrictEquals[int]()
 //	optEq.Equals(Some(42), Some(42)) // true
 //	optEq.Equals(None[int](), None[int]()) // true
-func FromStrictEquals[A comparable]() EQ.Eq[Option[A]] {
-	return Eq(EQ.FromStrictEquals[A]())
-}
+func FromStrictEquals[A comparable]() EQ.Eq[Option[A]] { _ = "STUB: not implemented"; return nil }

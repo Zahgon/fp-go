@@ -15,14 +15,7 @@
 
 package option
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-)
-
-func toType[T any](a any) (T, bool) {
-	b, ok := a.(T)
-	return b, ok
-}
+func toType[T any](a any) (T, bool) { _ = "STUB: not implemented"; return *new(T), false }
 
 // InstanceOf attempts to convert a value of type any to a specific type T using type assertion.
 // Returns Some(value) if the type assertion succeeds, None if it fails.
@@ -34,12 +27,7 @@ func toType[T any](a any) (T, bool) {
 //
 //	var y any = "hello"
 //	result := InstanceOf[int](y) // None (wrong type)
-func InstanceOf[T any](src any) Option[T] {
-	return F.Pipe1(
-		src,
-		Optionize1(toType[T]),
-	)
-}
+func InstanceOf[T any](src any) Option[T] { _ = "STUB: not implemented"; return nil }
 
 // ToAny converts a value of any type to Option[any].
 // This always succeeds and returns Some containing the value as any.
@@ -48,6 +36,4 @@ func InstanceOf[T any](src any) Option[T] {
 //
 //	result := ToAny(42) // Some(any(42))
 //	result := ToAny("hello") // Some(any("hello"))
-func ToAny[T any](src T) Option[any] {
-	return Of(any(src))
-}
+func ToAny[T any](src T) Option[any] { _ = "STUB: not implemented"; return nil }

@@ -16,11 +16,7 @@
 package readerioresult
 
 import (
-	"context"
 	"io"
-
-	RIOR "github.com/IBM/fp-go/v2/readerioresult"
-	"github.com/IBM/fp-go/v2/result"
 )
 
 // WithResource constructs a function that creates a resource, then operates on it and then releases the resource.
@@ -57,7 +53,8 @@ import (
 //	    })
 //	})
 func WithResource[A, R, ANY any](onCreate ReaderIOResult[R], onRelease Kleisli[R, ANY]) Kleisli[Kleisli[R, A], A] {
-	return RIOR.WithResource[A](onCreate, onRelease)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // onClose is a helper function that creates a ReaderIOResult for closing an io.Closer resource.
@@ -74,13 +71,7 @@ func WithResource[A, R, ANY any](onCreate ReaderIOResult[R], onRelease Kleisli[R
 //
 // The function ignores the context parameter since closing operations typically don't need context.
 // Any error from Close() is captured and returned as a Result error.
-func onClose[A io.Closer](a A) ReaderIOResult[any] {
-	return func(_ context.Context) IOResult[any] {
-		return func() Result[any] {
-			return result.TryCatchError[any](nil, a.Close())
-		}
-	}
-}
+func onClose[A io.Closer](a A) ReaderIOResult[any] { _ = "STUB: not implemented"; return nil }
 
 // WithCloser creates a resource management function specifically for io.Closer resources.
 // This is a specialized version of WithResource that automatically handles closing of resources
@@ -165,5 +156,6 @@ func onClose[A io.Closer](a A) ReaderIOResult[any] {
 //	    })
 //	})
 func WithCloser[B any, A io.Closer](onCreate ReaderIOResult[A]) Kleisli[Kleisli[A, B], B] {
-	return WithResource[B](onCreate, onClose[A])
+	_ = "STUB: not implemented"
+	return nil
 }

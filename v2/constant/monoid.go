@@ -16,7 +16,6 @@
 package constant
 
 import (
-	"github.com/IBM/fp-go/v2/function"
 	M "github.com/IBM/fp-go/v2/monoid"
 )
 
@@ -61,6 +60,4 @@ import (
 // See also:
 //   - function.Constant2: The underlying constant function
 //   - M.MakeMonoid: The monoid constructor
-func Monoid[A any](a A) M.Monoid[A] {
-	return M.MakeMonoid(function.Constant2[A, A](a), a)
-}
+func Monoid[A any](a A) M.Monoid[A] { _ = "STUB: not implemented"; return nil }

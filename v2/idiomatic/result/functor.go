@@ -24,18 +24,18 @@ type (
 )
 
 func (o eitherFunctor[A, B]) Map(f func(A) B) Operator[A, B] {
-	return Map(f)
+	_ = "STUB: not implemented"
+
+	// MakeFunctor creates a Functor instance for Result operations.
+	// A functor provides the Map operation that transforms values inside a context
+	// while preserving the structure.
+	//
+	// Example:
+	//
+	//	f := result.MakeFunctor[int, string]()
+	//	val, err := f.Map(strconv.Itoa)(result.Right[error](42))
+	//	// val is "42", err is nil
+	return nil
 }
 
-// MakeFunctor creates a Functor instance for Result operations.
-// A functor provides the Map operation that transforms values inside a context
-// while preserving the structure.
-//
-// Example:
-//
-//	f := result.MakeFunctor[int, string]()
-//	val, err := f.Map(strconv.Itoa)(result.Right[error](42))
-//	// val is "42", err is nil
-func MakeFunctor[A, B any]() Functor[A, B] {
-	return eitherFunctor[A, B]{}
-}
+func MakeFunctor[A, B any]() Functor[A, B] { _ = "STUB: not implemented"; return nil }

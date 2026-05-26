@@ -17,7 +17,6 @@ package generic
 
 import (
 	ET "github.com/IBM/fp-go/either"
-	GIO "github.com/IBM/fp-go/io/generic"
 	R "github.com/IBM/fp-go/retry"
 )
 
@@ -33,6 +32,7 @@ func Retrying[GA ~func() ET.Either[E, A], E, A any](
 	action func(R.RetryStatus) GA,
 	check func(ET.Either[E, A]) bool,
 ) GA {
+	_ = "STUB: not implemented"
 	// get an implementation for the types
-	return GIO.Retrying(policy, action, check)
+	return *new(GA)
 }

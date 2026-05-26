@@ -16,15 +16,11 @@
 package file
 
 import (
-	"context"
 	"io"
 	"os"
 
 	RIOE "github.com/IBM/fp-go/context/readerioeither"
-	ET "github.com/IBM/fp-go/either"
 	F "github.com/IBM/fp-go/function"
-	"github.com/IBM/fp-go/internal/file"
-	IOE "github.com/IBM/fp-go/ioeither"
 	IOEF "github.com/IBM/fp-go/ioeither/file"
 )
 
@@ -44,21 +40,7 @@ var (
 )
 
 // Close closes an object
-func Close[C io.Closer](c C) RIOE.ReaderIOEither[any] {
-	return F.Pipe2(
-		c,
-		IOEF.Close[C],
-		RIOE.FromIOEither[any],
-	)
-}
+func Close[C io.Closer](c C) RIOE.ReaderIOEither[any] { _ = "STUB: not implemented"; return nil }
 
 // ReadFile reads a file in the scope of a context
-func ReadFile(path string) RIOE.ReaderIOEither[[]byte] {
-	return RIOE.WithResource[[]byte](Open(path), Close[*os.File])(func(r *os.File) RIOE.ReaderIOEither[[]byte] {
-		return func(ctx context.Context) IOE.IOEither[error, []byte] {
-			return IOE.MakeIO(func() ET.Either[error, []byte] {
-				return file.ReadAll(ctx, r)
-			})
-		}
-	})
-}
+func ReadFile(path string) RIOE.ReaderIOEither[[]byte] { _ = "STUB: not implemented"; return nil }

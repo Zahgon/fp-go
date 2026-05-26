@@ -17,7 +17,6 @@ package stateio
 
 import (
 	"github.com/IBM/fp-go/v2/io"
-	"github.com/IBM/fp-go/v2/pair"
 )
 
 // uncurryState transforms a curried function into an uncurried function that operates on pairs.
@@ -26,9 +25,8 @@ import (
 //
 // It converts: func(A) io.Kleisli[S, B] -> io.Kleisli[Pair[S, A], B]
 func uncurryState[S, A, B any](f func(A) io.Kleisli[S, B]) io.Kleisli[Pair[S, A], B] {
-	return func(r Pair[S, A]) IO[B] {
-		return f(pair.Tail(r))(pair.Head(r))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WithResource provides safe resource management for StateIO computations.
@@ -72,11 +70,6 @@ func WithResource[A, S, RES, ANY any](
 	onCreate StateIO[S, RES],
 	onRelease Kleisli[S, RES, ANY],
 ) Kleisli[S, Kleisli[S, RES, A], A] {
-	release := uncurryState(onRelease)
-	return func(f Kleisli[S, RES, A]) StateIO[S, A] {
-		use := uncurryState(f)
-		return func(s S) IO[Pair[S, A]] {
-			return io.WithResource[Pair[S, RES], Pair[S, A]](onCreate(s), release)(use)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

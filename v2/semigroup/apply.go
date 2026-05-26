@@ -15,10 +15,6 @@
 
 package semigroup
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-)
-
 // ApplySemigroup creates a Semigroup for applicative functors (types with map and ap operations).
 // Given a Semigroup[A], it lifts it to work with higher-kinded types containing A values.
 //
@@ -61,9 +57,6 @@ func ApplySemigroup[A, HKTA, HKTFA any](
 
 	s Semigroup[A],
 ) Semigroup[HKTA] {
-
-	cb := F.Curry2(s.Concat)
-	return MakeSemigroup(func(first HKTA, second HKTA) HKTA {
-		return fap(fmap(first, cb), second)
-	})
+	_ = "STUB: not implemented"
+	return nil
 }

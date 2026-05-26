@@ -19,10 +19,6 @@ func AltSemigroup[HKTA any, LAZYHKTA ~func() HKTA](
 	falt func(HKTA, LAZYHKTA) HKTA,
 
 ) Semigroup[HKTA] {
-
-	return MakeSemigroup(
-		func(first, second HKTA) HKTA {
-			return falt(first, func() HKTA { return second })
-		},
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

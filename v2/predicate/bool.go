@@ -26,11 +26,7 @@ package predicate
 //	isNotPositive := Not(isPositive)
 //	isNotPositive(5)  // false
 //	isNotPositive(-3) // true
-func Not[A any](predicate Predicate[A]) Predicate[A] {
-	return func(a A) bool {
-		return !predicate(a)
-	}
-}
+func Not[A any](predicate Predicate[A]) Predicate[A] { _ = "STUB: not implemented"; return nil }
 
 // And creates an operator that combines two predicates using logical AND (&&).
 //
@@ -46,13 +42,7 @@ func Not[A any](predicate Predicate[A]) Predicate[A] {
 //	isPositiveAndEven(4)  // true
 //	isPositiveAndEven(-2) // false
 //	isPositiveAndEven(3)  // false
-func And[A any](second Predicate[A]) Operator[A, A] {
-	return func(first Predicate[A]) Predicate[A] {
-		return func(a A) bool {
-			return first(a) && second(a)
-		}
-	}
-}
+func And[A any](second Predicate[A]) Operator[A, A] { _ = "STUB: not implemented"; return nil }
 
 // Or creates an operator that combines two predicates using logical OR (||).
 //
@@ -69,10 +59,4 @@ func And[A any](second Predicate[A]) Operator[A, A] {
 //	isPositiveOrEven(-2) // true
 //	isPositiveOrEven(3)  // true
 //	isPositiveOrEven(-3) // false
-func Or[A any](second Predicate[A]) Operator[A, A] {
-	return func(first Predicate[A]) Predicate[A] {
-		return func(a A) bool {
-			return first(a) || second(a)
-		}
-	}
-}
+func Or[A any](second Predicate[A]) Operator[A, A] { _ = "STUB: not implemented"; return nil }

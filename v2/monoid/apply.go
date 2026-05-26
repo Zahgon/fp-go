@@ -15,10 +15,6 @@
 
 package monoid
 
-import (
-	S "github.com/IBM/fp-go/v2/semigroup"
-)
-
 // ApplicativeMonoid lifts a monoid into an applicative functor context.
 //
 // This function creates a monoid for applicative functor values (HKTA) given a monoid
@@ -68,9 +64,6 @@ func ApplicativeMonoid[A, HKTA, HKTFA any](
 
 	m Monoid[A],
 ) Monoid[HKTA] {
-
-	return MakeMonoid(
-		S.ApplySemigroup(fmap, fap, m).Concat,
-		fof(m.Empty()),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

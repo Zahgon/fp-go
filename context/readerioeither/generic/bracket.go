@@ -19,8 +19,6 @@ import (
 	"context"
 
 	E "github.com/IBM/fp-go/either"
-	G "github.com/IBM/fp-go/internal/bracket"
-	I "github.com/IBM/fp-go/readerio/generic"
 )
 
 // Bracket makes sure that a resource is cleaned up in the event of an error. The release action is called regardless of
@@ -40,14 +38,6 @@ func Bracket[
 	use func(A) GB,
 	release func(A, E.Either[error, B]) GANY,
 ) GB {
-	return G.Bracket[GA, GB, GANY, E.Either[error, B], A, B](
-		I.Of[GB, TB, context.Context, E.Either[error, B]],
-		MonadChain[GA, GB, TA, TB, A, B],
-		I.MonadChain[GB, GB, TB, TB, context.Context, E.Either[error, B], E.Either[error, B]],
-		MonadChain[GANY, GB, TANY, TB, ANY, B],
-
-		acquire,
-		use,
-		release,
-	)
+	_ = "STUB: not implemented"
+	return *new(GB)
 }

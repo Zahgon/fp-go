@@ -18,7 +18,6 @@ package effect
 import (
 	"github.com/IBM/fp-go/v2/context/reader"
 	thunk "github.com/IBM/fp-go/v2/context/readerioresult"
-	"github.com/IBM/fp-go/v2/context/readerreaderioresult"
 	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/ioresult"
 	"github.com/IBM/fp-go/v2/result"
@@ -53,7 +52,8 @@ import (
 //
 //go:inline
 func Local[A, C1, C2 any](acc Reader[C1, C2]) Kleisli[C1, Effect[C2, A], A] {
-	return readerreaderioresult.Local[A](acc)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Contramap is an alias for Local, following the contravariant functor naming convention.
@@ -75,7 +75,8 @@ func Local[A, C1, C2 any](acc Reader[C1, C2]) Kleisli[C1, Effect[C2, A], A] {
 //
 //go:inline
 func Contramap[A, C1, C2 any](acc Reader[C1, C2]) Kleisli[C1, Effect[C2, A], A] {
-	return readerreaderioresult.Local[A](acc)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalIOK transforms the context using an IO-based function.
@@ -105,7 +106,8 @@ func Contramap[A, C1, C2 any](acc Reader[C1, C2]) Kleisli[C1, Effect[C2, A], A] 
 //
 //go:inline
 func LocalIOK[A, C1, C2 any](f io.Kleisli[C2, C1]) func(Effect[C1, A]) Effect[C2, A] {
-	return readerreaderioresult.LocalIOK[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalIOResultK transforms the context using an IOResult-based function.
@@ -137,7 +139,8 @@ func LocalIOK[A, C1, C2 any](f io.Kleisli[C2, C1]) func(Effect[C1, A]) Effect[C2
 //
 //go:inline
 func LocalIOResultK[A, C1, C2 any](f ioresult.Kleisli[C2, C1]) func(Effect[C1, A]) Effect[C2, A] {
-	return readerreaderioresult.LocalIOResultK[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalResultK transforms the context using a Result-based function.
@@ -170,7 +173,8 @@ func LocalIOResultK[A, C1, C2 any](f ioresult.Kleisli[C2, C1]) func(Effect[C1, A
 //
 //go:inline
 func LocalResultK[A, C1, C2 any](f result.Kleisli[C2, C1]) func(Effect[C1, A]) Effect[C2, A] {
-	return readerreaderioresult.LocalResultK[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalThunkK transforms the context using a Thunk (ReaderIOResult) function.
@@ -202,7 +206,8 @@ func LocalResultK[A, C1, C2 any](f result.Kleisli[C2, C1]) func(Effect[C1, A]) E
 //
 //go:inline
 func LocalThunkK[A, C1, C2 any](f thunk.Kleisli[C2, C1]) func(Effect[C1, A]) Effect[C2, A] {
-	return readerreaderioresult.LocalReaderIOResultK[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalEffectK transforms the context of an Effect using an Effect-returning function.
@@ -273,7 +278,8 @@ func LocalThunkK[A, C1, C2 any](f thunk.Kleisli[C2, C1]) func(Effect[C1, A]) Eff
 //
 //go:inline
 func LocalEffectK[A, C1, C2 any](f Kleisli[C2, C2, C1]) func(Effect[C1, A]) Effect[C2, A] {
-	return readerreaderioresult.LocalReaderReaderIOEitherK[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LocalReaderK transforms the context of an Effect using a Reader-based Kleisli arrow.
@@ -352,7 +358,8 @@ func LocalEffectK[A, C1, C2 any](f Kleisli[C2, C2, C1]) func(Effect[C1, A]) Effe
 //
 //go:inline
 func LocalReaderK[A, C1, C2 any](f reader.Kleisli[C2, C1]) func(Effect[C1, A]) Effect[C2, A] {
-	return readerreaderioresult.LocalReaderK[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ask returns an Effect that produces the context C as its success value.
@@ -368,6 +375,4 @@ func LocalReaderK[A, C1, C2 any](f reader.Kleisli[C2, C1]) func(Effect[C1, A]) E
 //   - Effect[C, C]: An effect that succeeds with its own context value
 //
 //go:inline
-func Ask[C any]() Effect[C, C] {
-	return readerreaderioresult.Ask[C]()
-}
+func Ask[C any]() Effect[C, C] { _ = "STUB: not implemented"; return nil }

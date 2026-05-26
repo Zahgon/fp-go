@@ -20,17 +20,16 @@ import (
 )
 
 func UnionSemigroup[N ~map[K]V, K comparable, V any](s S.Semigroup[V]) S.Semigroup[N] {
-	return S.MakeSemigroup(func(first N, second N) N {
-		return union(S.ToMagma(s), first, second)
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func UnionLastSemigroup[N ~map[K]V, K comparable, V any]() S.Semigroup[N] {
-	return S.MakeSemigroup(unionLast[N])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func UnionFirstSemigroup[N ~map[K]V, K comparable, V any]() S.Semigroup[N] {
-	return S.MakeSemigroup(func(first N, second N) N {
-		return unionLast(second, first)
-	})
+	_ = "STUB: not implemented"
+	return nil
 }

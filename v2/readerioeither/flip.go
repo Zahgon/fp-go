@@ -16,10 +16,6 @@
 package readerioeither
 
 import (
-	"github.com/IBM/fp-go/v2/either"
-	"github.com/IBM/fp-go/v2/identity"
-	"github.com/IBM/fp-go/v2/internal/readert"
-	"github.com/IBM/fp-go/v2/ioeither"
 	"github.com/IBM/fp-go/v2/reader"
 )
 
@@ -43,10 +39,8 @@ import (
 //
 // The function preserves error handling and IO effects at both levels.
 func Sequence[R1, R2, E, A any](ma ReaderIOEither[R2, E, ReaderIOEither[R1, E, A]]) Kleisli[R2, E, R1, A] {
-	return readert.Sequence(
-		ioeither.Chain,
-		ma,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceReader swaps the order of environment parameters when the inner computation is a pure Reader.
@@ -66,10 +60,8 @@ func Sequence[R1, R2, E, A any](ma ReaderIOEither[R2, E, ReaderIOEither[R1, E, A
 // Returns:
 //   - A Kleisli[R2, E, R1, A], which is func(R2) func(R1) IOEither[E, A]
 func SequenceReader[R1, R2, E, A any](ma ReaderIOEither[R2, E, Reader[R1, A]]) Kleisli[R2, E, R1, A] {
-	return readert.SequenceReader(
-		ioeither.Map,
-		ma,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceReaderIO swaps the order of environment parameters when the inner computation is a ReaderIO.
@@ -89,18 +81,8 @@ func SequenceReader[R1, R2, E, A any](ma ReaderIOEither[R2, E, Reader[R1, A]]) K
 // Returns:
 //   - A Kleisli[R2, E, R1, A], which is func(R2) func(R1) IOEither[E, A]
 func SequenceReaderIO[R1, R2, E, A any](ma ReaderIOEither[R2, E, ReaderIO[R1, A]]) Kleisli[R2, E, R1, A] {
-	return func(r1 R1) ReaderIOEither[R2, E, A] {
-		return func(r2 R2) IOEither[E, A] {
-			return func() Either[E, A] {
-				return either.MonadMap(
-					ma(r2)(),
-					func(rr ReaderIO[R1, A]) A {
-						return rr(r1)()
-					},
-				)
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceReaderEither swaps the order of environment parameters when the inner computation is a ReaderEither.
@@ -120,16 +102,8 @@ func SequenceReaderIO[R1, R2, E, A any](ma ReaderIOEither[R2, E, ReaderIO[R1, A]
 // Returns:
 //   - A Kleisli[R2, E, R1, A], which is func(R2) func(R1) IOEither[E, A]
 func SequenceReaderEither[R1, R2, E, A any](ma ReaderIOEither[R2, E, ReaderEither[R1, E, A]]) Kleisli[R2, E, R1, A] {
-	return func(r1 R1) ReaderIOEither[R2, E, A] {
-		return func(r2 R2) IOEither[E, A] {
-			return func() Either[E, A] {
-				return either.MonadChain(
-					ma(r2)(),
-					identity.Ap[Either[E, A]](r1),
-				)
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Traverse transforms a ReaderIOEither computation by applying a function that produces
@@ -158,11 +132,8 @@ func SequenceReaderEither[R1, R2, E, A any](ma ReaderIOEither[R2, E, ReaderEithe
 func Traverse[R2, R1, E, A, B any](
 	f Kleisli[R1, E, A, B],
 ) func(ReaderIOEither[R2, E, A]) Kleisli[R2, E, R1, B] {
-	return readert.Traverse[ReaderIOEither[R2, E, A]](
-		ioeither.Map,
-		ioeither.Chain,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseReader transforms a ReaderIOEither computation by applying a Reader-based function,
@@ -220,9 +191,6 @@ func Traverse[R2, R1, E, A, B any](
 func TraverseReader[R2, R1, E, A, B any](
 	f reader.Kleisli[R1, A, B],
 ) func(ReaderIOEither[R2, E, A]) Kleisli[R2, E, R1, B] {
-	return readert.TraverseReader[ReaderIOEither[R2, E, A]](
-		ioeither.Map,
-		ioeither.Map,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

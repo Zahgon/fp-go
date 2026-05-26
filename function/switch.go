@@ -15,12 +15,9 @@
 
 package function
 
-import (
-	G "github.com/IBM/fp-go/function/generic"
-)
-
 // Switch applies a handler to different cases. The handers are stored in a map. A key function
 // extracts the case from a value.
 func Switch[K comparable, T, R any](kf func(T) K, n map[K]func(T) R, d func(T) R) func(T) R {
-	return G.Switch(kf, n, d)
+	_ = "STUB: not implemented"
+	return nil
 }

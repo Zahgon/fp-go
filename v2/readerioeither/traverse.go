@@ -15,11 +15,6 @@
 
 package readerioeither
 
-import (
-	INTI "github.com/IBM/fp-go/v2/internal/iter"
-	G "github.com/IBM/fp-go/v2/readerioeither/generic"
-)
-
 // TraverseArray transforms each element of an array using a function that returns a ReaderIOEither,
 // then collects the results into a single ReaderIOEither containing an array.
 //
@@ -49,20 +44,14 @@ import (
 //
 //go:inline
 func TraverseArray[R, E, A, B any](f Kleisli[R, E, A, B]) Kleisli[R, E, []A, []B] {
-	return G.TraverseArray[ReaderIOEither[R, E, B], ReaderIOEither[R, E, []B], IOEither[E, B], IOEither[E, []B], []A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func TraverseIter[R, E, A, B any](f Kleisli[R, E, A, B]) Kleisli[R, E, Seq[A], Seq[B]] {
-	return INTI.Traverse[Seq[A]](
-		Map[R, E, B],
-
-		Of[R, E, Seq[B]],
-		Map[R, E, Seq[B]],
-		Ap[Seq[B], R, E],
-
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex is like TraverseArray but the transformation function also receives the index.
@@ -90,7 +79,8 @@ func TraverseIter[R, E, A, B any](f Kleisli[R, E, A, B]) Kleisli[R, E, Seq[A], S
 //
 //go:inline
 func TraverseArrayWithIndex[R, E, A, B any](f func(int, A) ReaderIOEither[R, E, B]) func([]A) ReaderIOEither[R, E, []B] {
-	return G.TraverseArrayWithIndex[ReaderIOEither[R, E, B], ReaderIOEither[R, E, []B], IOEither[E, B], IOEither[E, []B], []A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts an array of ReaderIOEither into a ReaderIOEither of an array.
@@ -122,7 +112,8 @@ func TraverseArrayWithIndex[R, E, A, B any](f func(int, A) ReaderIOEither[R, E, 
 //
 //go:inline
 func SequenceArray[R, E, A any](ma []ReaderIOEither[R, E, A]) ReaderIOEither[R, E, []A] {
-	return G.SequenceArray[ReaderIOEither[R, E, A], ReaderIOEither[R, E, []A]](ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecord transforms each value in a map using a function that returns a ReaderIOEither,
@@ -154,7 +145,8 @@ func SequenceArray[R, E, A any](ma []ReaderIOEither[R, E, A]) ReaderIOEither[R, 
 //
 //go:inline
 func TraverseRecord[K comparable, R, E, A, B any](f Kleisli[R, E, A, B]) Kleisli[R, E, map[K]A, map[K]B] {
-	return G.TraverseRecord[ReaderIOEither[R, E, B], ReaderIOEither[R, E, map[K]B], IOEither[E, B], IOEither[E, map[K]B], map[K]A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndex is like TraverseRecord but the transformation function also receives the key.
@@ -183,7 +175,8 @@ func TraverseRecord[K comparable, R, E, A, B any](f Kleisli[R, E, A, B]) Kleisli
 //
 //go:inline
 func TraverseRecordWithIndex[K comparable, R, E, A, B any](f func(K, A) ReaderIOEither[R, E, B]) func(map[K]A) ReaderIOEither[R, E, map[K]B] {
-	return G.TraverseRecordWithIndex[ReaderIOEither[R, E, B], ReaderIOEither[R, E, map[K]B], IOEither[E, B], IOEither[E, map[K]B], map[K]A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecord converts a map of ReaderIOEither into a ReaderIOEither of a map.
@@ -216,17 +209,21 @@ func TraverseRecordWithIndex[K comparable, R, E, A, B any](f func(K, A) ReaderIO
 //
 //go:inline
 func SequenceRecord[K comparable, R, E, A any](ma map[K]ReaderIOEither[R, E, A]) ReaderIOEither[R, E, map[K]A] {
-	return G.SequenceRecord[ReaderIOEither[R, E, A], ReaderIOEither[R, E, map[K]A]](ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraversableArray[R, E, A, B any]() Traversable[R, E, A, B, []A, []B] {
-	return TraverseArray[R, E, A, B]
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraversableRecord[K comparable, R, E, A, B any]() Traversable[R, E, A, B, map[K]A, map[K]B] {
-	return TraverseRecord[K, R, E, A, B]
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraversableIter[R, E, A, B any]() Traversable[R, E, A, B, Seq[A], Seq[B]] {
-	return TraverseIter[R, E, A, B]
+	_ = "STUB: not implemented"
+	return nil
 }

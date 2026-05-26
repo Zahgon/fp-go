@@ -16,41 +16,24 @@
 package generic
 
 import (
-	"sort"
-
-	F "github.com/IBM/fp-go/function"
 	O "github.com/IBM/fp-go/ord"
 )
 
 // Sort implements a stable sort on the array given the provided ordering
-func Sort[GA ~[]T, T any](ord O.Ord[T]) func(ma GA) GA {
-	return SortByKey[GA](ord, F.Identity[T])
-}
+func Sort[GA ~[]T, T any](ord O.Ord[T]) func(ma GA) GA { _ = "STUB: not implemented"; return nil }
 
 // SortByKey implements a stable sort on the array given the provided ordering on an extracted key
 func SortByKey[GA ~[]T, K, T any](ord O.Ord[K], f func(T) K) func(ma GA) GA {
+	_ = "STUB: not implemented"
+	return nil
 
-	return func(ma GA) GA {
-		// nothing to sort
-		l := len(ma)
-		if l < 2 {
-			return ma
-		}
-		// copy
-		cpy := make(GA, l)
-		copy(cpy, ma)
-		sort.Slice(cpy, func(i, j int) bool {
-			return ord.Compare(f(cpy[i]), f(cpy[j])) < 0
-		})
-		return cpy
-	}
+	// nothing to sort
 }
+
+// copy
 
 // SortBy implements a stable sort on the array given the provided ordering
 func SortBy[GA ~[]T, GO ~[]O.Ord[T], T any](ord GO) func(ma GA) GA {
-	return F.Pipe2(
-		ord,
-		Fold[GO](O.Monoid[T]()),
-		Sort[GA, T],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

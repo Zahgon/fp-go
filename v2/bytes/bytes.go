@@ -52,9 +52,7 @@ package bytes
 // See also:
 //   - Monoid.Empty(): Alternative way to get empty byte slice
 //   - ConcatAll(): For concatenating multiple byte slices
-func Empty() []byte {
-	return Monoid.Empty()
-}
+func Empty() []byte { _ = "STUB: not implemented"; return nil }
 
 // ToString converts a byte slice to a string.
 //
@@ -109,69 +107,69 @@ func Empty() []byte {
 //   - []byte(string): For converting string to byte slice
 //   - Size(): For getting the length of a byte slice
 func ToString(a []byte) string {
-	return string(a)
+	_ = "STUB: not implemented"
+
+	// Size returns the number of bytes in a byte slice.
+	//
+	// This function returns the length of the byte slice, which is the number
+	// of bytes it contains. This is equivalent to len(as) but provided as a
+	// named function for use in functional composition.
+	//
+	// Parameters:
+	//   - as: The byte slice to measure
+	//
+	// Returns:
+	//   - The number of bytes in the slice
+	//
+	// Example - Basic usage:
+	//
+	//	data := []byte("hello")
+	//	size := Size(data)
+	//	fmt.Println(size) // 5
+	//
+	// Example - Empty slice:
+	//
+	//	empty := Empty()
+	//	size := Size(empty)
+	//	fmt.Println(size) // 0
+	//
+	// Example - Binary data:
+	//
+	//	binary := []byte{0x01, 0x02, 0x03, 0x04}
+	//	size := Size(binary)
+	//	fmt.Println(size) // 4
+	//
+	// Example - UTF-8 encoded text:
+	//
+	//	// Note: Size returns byte count, not character count
+	//	utf8 := []byte("Hello, 世界")
+	//	byteCount := Size(utf8)
+	//	fmt.Println(byteCount) // 13 (not 9 characters)
+	//
+	// Example - Using in functional composition:
+	//
+	//	import "github.com/IBM/fp-go/v2/array"
+	//
+	//	slices := [][]byte{
+	//	    []byte("a"),
+	//	    []byte("bb"),
+	//	    []byte("ccc"),
+	//	}
+	//
+	//	// Map to get sizes
+	//	sizes := array.Map(Size)(slices)
+	//	// sizes: []int{1, 2, 3}
+	//
+	// Example - Checking if slice is empty:
+	//
+	//	data := []byte("test")
+	//	isEmpty := Size(data) == 0
+	//	fmt.Println(isEmpty) // false
+	//
+	// See also:
+	//   - len(): Built-in function for getting slice length
+	//   - ToString(): For converting byte slice to string
+	return ""
 }
 
-// Size returns the number of bytes in a byte slice.
-//
-// This function returns the length of the byte slice, which is the number
-// of bytes it contains. This is equivalent to len(as) but provided as a
-// named function for use in functional composition.
-//
-// Parameters:
-//   - as: The byte slice to measure
-//
-// Returns:
-//   - The number of bytes in the slice
-//
-// Example - Basic usage:
-//
-//	data := []byte("hello")
-//	size := Size(data)
-//	fmt.Println(size) // 5
-//
-// Example - Empty slice:
-//
-//	empty := Empty()
-//	size := Size(empty)
-//	fmt.Println(size) // 0
-//
-// Example - Binary data:
-//
-//	binary := []byte{0x01, 0x02, 0x03, 0x04}
-//	size := Size(binary)
-//	fmt.Println(size) // 4
-//
-// Example - UTF-8 encoded text:
-//
-//	// Note: Size returns byte count, not character count
-//	utf8 := []byte("Hello, 世界")
-//	byteCount := Size(utf8)
-//	fmt.Println(byteCount) // 13 (not 9 characters)
-//
-// Example - Using in functional composition:
-//
-//	import "github.com/IBM/fp-go/v2/array"
-//
-//	slices := [][]byte{
-//	    []byte("a"),
-//	    []byte("bb"),
-//	    []byte("ccc"),
-//	}
-//
-//	// Map to get sizes
-//	sizes := array.Map(Size)(slices)
-//	// sizes: []int{1, 2, 3}
-//
-// Example - Checking if slice is empty:
-//
-//	data := []byte("test")
-//	isEmpty := Size(data) == 0
-//	fmt.Println(isEmpty) // false
-//
-// See also:
-//   - len(): Built-in function for getting slice length
-//   - ToString(): For converting byte slice to string
-func Size(as []byte) int {
-	return len(as)
-}
+func Size(as []byte) int { _ = "STUB: not implemented"; return 0 }

@@ -18,10 +18,6 @@ package generic
 import (
 	"time"
 
-	F "github.com/IBM/fp-go/v2/function"
-	C "github.com/IBM/fp-go/v2/internal/chain"
-	FC "github.com/IBM/fp-go/v2/internal/functor"
-	L "github.com/IBM/fp-go/v2/internal/lazy"
 	P "github.com/IBM/fp-go/v2/pair"
 	T "github.com/IBM/fp-go/v2/tuple"
 )
@@ -33,176 +29,155 @@ var (
 
 // type IO[A any] = func() A
 
-func MakeIO[GA ~func() A, A any](f func() A) GA {
-	return f
-}
+func MakeIO[GA ~func() A, A any](f func() A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
-func Of[GA ~func() A, A any](a A) GA {
-	return MakeIO[GA](F.Constant(a))
-}
+func Of[GA ~func() A, A any](a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func FromIO[GA ~func() A, A any](a GA) GA {
-	return a
+	_ = "STUB: not implemented"
+
+	// FromImpure converts a side effect without a return value into a side effect that returns any
+	return *new(GA)
 }
 
-// FromImpure converts a side effect without a return value into a side effect that returns any
-func FromImpure[GA ~func() any, IMP ~func()](f IMP) GA {
-	return MakeIO[GA](func() any {
-		f()
-		return undefined
-	})
-}
+func FromImpure[GA ~func() any, IMP ~func()](f IMP) GA { _ = "STUB: not implemented"; return *new(GA) }
 
-func MonadOf[GA ~func() A, A any](a A) GA {
-	return MakeIO[GA](F.Constant(a))
-}
+func MonadOf[GA ~func() A, A any](a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func MonadMap[GA ~func() A, GB ~func() B, A, B any](fa GA, f func(A) B) GB {
-	return MakeIO[GB](func() B {
-		return f(fa())
-	})
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 func Map[GA ~func() A, GB ~func() B, A, B any](f func(A) B) func(GA) GB {
-	return F.Bind2nd(MonadMap[GA, GB, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadMapTo[GA ~func() A, GB ~func() B, A, B any](fa GA, b B) GB {
-	return MonadMap[GA, GB](fa, F.Constant1[A](b))
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 func MapTo[GA ~func() A, GB ~func() B, A, B any](b B) func(GA) GB {
-	return Map[GA, GB](F.Constant1[A](b))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChain composes computations in sequence, using the return value of one computation to determine the next computation.
 func MonadChain[GA ~func() A, GB ~func() B, A, B any](fa GA, f func(A) GB) GB {
-	return MakeIO[GB](func() B {
-		return f(fa())()
-	})
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // Chain composes computations in sequence, using the return value of one computation to determine the next computation.
 func Chain[GA ~func() A, GB ~func() B, A, B any](f func(A) GB) func(GA) GB {
-	return F.Bind2nd(MonadChain[GA, GB, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainTo composes computations in sequence, ignoring the return value of the first computation
 func MonadChainTo[GA ~func() A, GB ~func() B, A, B any](fa GA, fb GB) GB {
-	return MonadChain(fa, F.Constant1[A](fb))
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 // ChainTo composes computations in sequence, ignoring the return value of the first computation
 func ChainTo[GA ~func() A, GB ~func() B, A, B any](fb GB) func(GA) GB {
-	return Chain[GA](F.Constant1[A](fb))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainFirst composes computations in sequence, using the return value of one computation to determine the next computation and
 // keeping only the result of the first.
 func MonadChainFirst[GA ~func() A, GB ~func() B, A, B any](fa GA, f func(A) GB) GA {
-	return C.MonadChainFirst(MonadChain[GA, GA, A, A], MonadMap[GB, GA, B, A], fa, f)
+	_ = "STUB: not implemented"
+	return *new(GA)
 }
 
 // ChainFirst composes computations in sequence, using the return value of one computation to determine the next computation and
 // keeping only the result of the first.
 func ChainFirst[GA ~func() A, GB ~func() B, A, B any](f func(A) GB) func(GA) GA {
-	return C.ChainFirst(
-		Chain[GA, GA, A, A],
-		Map[GB, GA, B, A],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ApSeq[GB ~func() B, GAB ~func() func(A) B, GA ~func() A, B, A any](ma GA) func(GAB) GB {
-	return F.Bind2nd(MonadApSeq[GA, GB, GAB, A, B], ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ApPar[GB ~func() B, GAB ~func() func(A) B, GA ~func() A, B, A any](ma GA) func(GAB) GB {
-	return F.Bind2nd(MonadApPar[GA, GB, GAB, A, B], ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Ap[GB ~func() B, GAB ~func() func(A) B, GA ~func() A, B, A any](ma GA) func(GAB) GB {
-	return F.Bind2nd(MonadAp[GA, GB, GAB, A, B], ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Flatten[GA ~func() A, GAA ~func() GA, A any](mma GAA) GA {
-	return mma()
+	_ = "STUB: not implemented"
+
+	// Memoize computes the value of the provided IO monad lazily but exactly once
+	return *new(GA)
 }
 
-// Memoize computes the value of the provided IO monad lazily but exactly once
 func Memoize[GA ~func() A, A any](ma GA) GA {
-	return L.Memoize(ma)
+	_ = "STUB: not implemented"
+	return *
+
+	// Delay creates an operation that passes in the value after some delay
+	new(GA)
 }
 
-// Delay creates an operation that passes in the value after some delay
 func Delay[GA ~func() A, A any](delay time.Duration) func(GA) GA {
-	return func(ga GA) GA {
-		return MakeIO[GA](func() A {
-			time.Sleep(delay)
-			return ga()
-		})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func after(timestamp time.Time) func() {
-	return func() {
-		// check if we need to wait
-		current := time.Now()
-		if current.Before(timestamp) {
-			time.Sleep(timestamp.Sub(current))
-		}
-	}
+	_ = "STUB: not implemented"
+
+	// check if we need to wait
+	return nil
 }
 
 // After creates an operation that passes after the given timestamp
 func After[GA ~func() A, A any](timestamp time.Time) func(GA) GA {
-	aft := after(timestamp)
-	return func(ga GA) GA {
-		return MakeIO[GA](func() A {
-			// wait as long as necessary
-			aft()
-			// execute after wait
-			return ga()
-		})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// wait as long as necessary
+
+// execute after wait
 
 // Now returns the current timestamp
-func Now[GA ~func() time.Time]() GA {
-	return MakeIO[GA](time.Now)
-}
+func Now[GA ~func() time.Time]() GA { _ = "STUB: not implemented"; return *new(GA) }
 
 // Defer creates an IO by creating a brand new IO via a generator function, each time
-func Defer[GA ~func() A, A any](gen func() GA) GA {
-	return MakeIO[GA](func() A {
-		return gen()()
-	})
-}
+func Defer[GA ~func() A, A any](gen func() GA) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func MonadFlap[FAB ~func(A) B, GFAB ~func() FAB, GB ~func() B, A, B any](fab GFAB, a A) GB {
-	return FC.MonadFlap(MonadMap[GFAB, GB, FAB, B], fab, a)
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 func Flap[FAB ~func(A) B, GFAB ~func() FAB, GB ~func() B, A, B any](a A) func(GFAB) GB {
-	return FC.Flap(Map[GFAB, GB, FAB, B], a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WithTime returns an operation that measures the start and end timestamp of the operation
 func WithTime[GTA ~func() T.Tuple3[A, time.Time, time.Time], GA ~func() A, A any](a GA) GTA {
-	return MakeIO[GTA](func() T.Tuple3[A, time.Time, time.Time] {
-		t0 := time.Now()
-		res := a()
-		t1 := time.Now()
-		return T.MakeTuple3(res, t0, t1)
-	})
+	_ = "STUB: not implemented"
+	return *new(GTA)
 }
 
 // WithDuration returns an operation that measures the duration of the operation
 func WithDuration[GTA ~func() P.Pair[time.Duration, A], GA ~func() A, A any](a GA) GTA {
-	return MakeIO[GTA](func() P.Pair[time.Duration, A] {
-		t0 := time.Now()
-		res := a()
-		t1 := time.Now()
-		return P.MakePair(t1.Sub(t0), res)
-	})
+	_ = "STUB: not implemented"
+	return *new(GTA)
 }

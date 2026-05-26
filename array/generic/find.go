@@ -16,82 +16,53 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/function"
 	O "github.com/IBM/fp-go/option"
 )
 
 // FindFirstWithIndex finds the first element which satisfies a predicate (or a refinement) function
 func FindFirstWithIndex[AS ~[]A, PRED ~func(int, A) bool, A any](pred PRED) func(AS) O.Option[A] {
-	none := O.None[A]()
-	return func(as AS) O.Option[A] {
-		for i, a := range as {
-			if pred(i, a) {
-				return O.Some(a)
-			}
-		}
-		return none
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindFirst finds the first element which satisfies a predicate (or a refinement) function
 func FindFirst[AS ~[]A, PRED ~func(A) bool, A any](pred PRED) func(AS) O.Option[A] {
-	return FindFirstWithIndex[AS](F.Ignore1of2[int](pred))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindFirstMapWithIndex finds the first element returned by an [O.Option] based selector function
 func FindFirstMapWithIndex[AS ~[]A, PRED ~func(int, A) O.Option[B], A, B any](pred PRED) func(AS) O.Option[B] {
-	none := O.None[B]()
-	return func(as AS) O.Option[B] {
-		count := len(as)
-		for i := 0; i < count; i++ {
-			out := pred(i, as[i])
-			if O.IsSome(out) {
-				return out
-			}
-		}
-		return none
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindFirstMap finds the first element returned by an [O.Option] based selector function
 func FindFirstMap[AS ~[]A, PRED ~func(A) O.Option[B], A, B any](pred PRED) func(AS) O.Option[B] {
-	return FindFirstMapWithIndex[AS](F.Ignore1of2[int](pred))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindLastWithIndex finds the first element which satisfies a predicate (or a refinement) function
 func FindLastWithIndex[AS ~[]A, PRED ~func(int, A) bool, A any](pred PRED) func(AS) O.Option[A] {
-	none := O.None[A]()
-	return func(as AS) O.Option[A] {
-		for i := len(as) - 1; i >= 0; i-- {
-			a := as[i]
-			if pred(i, a) {
-				return O.Some(a)
-			}
-		}
-		return none
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindLast finds the first element which satisfies a predicate (or a refinement) function
 func FindLast[AS ~[]A, PRED ~func(A) bool, A any](pred PRED) func(AS) O.Option[A] {
-	return FindLastWithIndex[AS](F.Ignore1of2[int](pred))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindLastMapWithIndex finds the first element returned by an [O.Option] based selector function
 func FindLastMapWithIndex[AS ~[]A, PRED ~func(int, A) O.Option[B], A, B any](pred PRED) func(AS) O.Option[B] {
-	none := O.None[B]()
-	return func(as AS) O.Option[B] {
-		for i := len(as) - 1; i >= 0; i-- {
-			out := pred(i, as[i])
-			if O.IsSome(out) {
-				return out
-			}
-		}
-		return none
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FindLastMap finds the first element returned by an [O.Option] based selector function
 func FindLastMap[AS ~[]A, PRED ~func(A) O.Option[B], A, B any](pred PRED) func(AS) O.Option[B] {
-	return FindLastMapWithIndex[AS](F.Ignore1of2[int](pred))
+	_ = "STUB: not implemented"
+	return nil
 }

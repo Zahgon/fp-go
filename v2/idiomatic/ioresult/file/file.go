@@ -33,23 +33,12 @@ var (
 
 // WriteFile writes a data blob to a file
 func WriteFile(dstName string, perm os.FileMode) Kleisli[[]byte, []byte] {
-	return func(data []byte) IOResult[[]byte] {
-		return func() ([]byte, error) {
-			return data, os.WriteFile(dstName, data, perm)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Remove removes a file by name
-func Remove(name string) IOResult[string] {
-	return func() (string, error) {
-		return name, os.Remove(name)
-	}
-}
+func Remove(name string) IOResult[string] { _ = "STUB: not implemented"; return nil }
 
 // Close closes an object
-func Close[C io.Closer](c C) IOResult[any] {
-	return func() (any, error) {
-		return c, c.Close()
-	}
-}
+func Close[C io.Closer](c C) IOResult[any] { _ = "STUB: not implemented"; return nil }

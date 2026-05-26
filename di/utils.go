@@ -18,8 +18,6 @@ package di
 import (
 	DIE "github.com/IBM/fp-go/di/erasure"
 	E "github.com/IBM/fp-go/either"
-	"github.com/IBM/fp-go/errors"
-	F "github.com/IBM/fp-go/function"
 	IOE "github.com/IBM/fp-go/ioeither"
 	IOO "github.com/IBM/fp-go/iooption"
 	O "github.com/IBM/fp-go/option"
@@ -34,51 +32,34 @@ var (
 
 // asDependency converts a generic type to a [DIE.Dependency]
 func asDependency[T DIE.Dependency](t T) DIE.Dependency {
-	return t
+	_ = "STUB: not implemented"
+
+	// toType converts an any to a T
+	return *new(DIE.Dependency)
 }
 
-// toType converts an any to a T
-func toType[T any]() func(t any) E.Either[error, T] {
-	return E.ToType[T](errors.OnSome[any]("Value of type [%T] cannot be converted."))
-}
+func toType[T any]() func(t any) E.Either[error, T] { _ = "STUB: not implemented"; return nil }
 
 // toOptionType converts an any to an Option[any] and then to an Option[T]
 func toOptionType[T any](item func(any) E.Either[error, T]) func(t any) E.Either[error, O.Option[T]] {
-	return F.Flow2(
-		toOptionAny,
-		E.Chain(O.Fold(
-			F.Nullary2(O.None[T], E.Of[error, O.Option[T]]),
-			F.Flow2(
-				item,
-				E.Map[error](O.Of[T]),
-			),
-		)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // toIOEitherType converts an any to an IOEither[error, any] and then to an IOEither[error, T]
 func toIOEitherType[T any](item func(any) E.Either[error, T]) func(t any) E.Either[error, IOE.IOEither[error, T]] {
-	return F.Flow2(
-		toIOEitherAny,
-		E.Map[error](IOE.ChainEitherK(item)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // toIOOptionType converts an any to an IOOption[any] and then to an IOOption[T]
 func toIOOptionType[T any](item func(any) E.Either[error, T]) func(t any) E.Either[error, IOO.IOOption[T]] {
-	return F.Flow2(
-		toIOOptionAny,
-		E.Map[error](IOO.ChainOptionK(F.Flow2(
-			item,
-			E.ToOption[error, T],
-		))),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // toArrayType converts an any to a []T
 func toArrayType[T any](item func(any) E.Either[error, T]) func(t any) E.Either[error, []T] {
-	return F.Flow2(
-		toArrayAny,
-		E.Chain(E.TraverseArray(item)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

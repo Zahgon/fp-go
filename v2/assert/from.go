@@ -15,13 +15,6 @@
 
 package assert
 
-import (
-	"testing"
-
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/result"
-)
-
 // FromReaderIOResult converts a ReaderIOResult[Reader] into a Reader.
 //
 // This function bridges the gap between context-aware, IO-based computations that may fail
@@ -65,12 +58,8 @@ import (
 //	    assertion(t)
 //	}
 func FromReaderIOResult(ri ReaderIOResult[Reader]) Reader {
-	return func(t *testing.T) bool {
-		return F.Pipe1(
-			ri(t.Context())(),
-			result.GetOrElse(NoError),
-		)(t)
-	}
+	_ = "STUB: not implemented"
+	return *new(Reader)
 }
 
 // FromReaderIO converts a ReaderIO[Reader] into a Reader.
@@ -115,8 +104,4 @@ func FromReaderIOResult(ri ReaderIOResult[Reader]) Reader {
 //	    assertion := assert.FromReaderIO(logAndCheck)
 //	    assertion(t)
 //	}
-func FromReaderIO(ri ReaderIO[Reader]) Reader {
-	return func(t *testing.T) bool {
-		return ri(t.Context())()(t)
-	}
-}
+func FromReaderIO(ri ReaderIO[Reader]) Reader { _ = "STUB: not implemented"; return *new(Reader) }

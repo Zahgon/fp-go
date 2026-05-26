@@ -15,12 +15,6 @@
 
 package stateio
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/statet"
-	"github.com/IBM/fp-go/v2/io"
-)
-
 // Of creates a StateIO that wraps a pure value.
 // The value is wrapped and the state is passed through unchanged.
 //
@@ -31,9 +25,7 @@ import (
 //
 //	result := Of[AppState](42)
 //	// Returns a computation containing 42 that passes state through unchanged
-func Of[S, A any](a A) StateIO[S, A] {
-	return statet.Of[StateIO[S, A]](io.Of[Pair[S, A]], a)
-}
+func Of[S, A any](a A) StateIO[S, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap transforms the value of a StateIO using the provided function.
 // The state is threaded through the computation unchanged.
@@ -46,11 +38,8 @@ func Of[S, A any](a A) StateIO[S, A] {
 //	    N.Mul(2),
 //	) // Result contains 42
 func MonadMap[S, A, B any](fa StateIO[S, A], f func(A) B) StateIO[S, B] {
-	return statet.MonadMap[StateIO[S, A], StateIO[S, B]](
-		io.MonadMap[Pair[S, A], Pair[S, B]],
-		fa,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map is the curried version of [MonadMap].
@@ -60,12 +49,7 @@ func MonadMap[S, A, B any](fa StateIO[S, A], f func(A) B) StateIO[S, B] {
 //
 //	double := Map[AppState](N.Mul(2))
 //	result := function.Pipe1(Of[AppState](21), double)
-func Map[S, A, B any](f func(A) B) Operator[S, A, B] {
-	return statet.Map[StateIO[S, A], StateIO[S, B]](
-		io.Map[Pair[S, A], Pair[S, B]],
-		f,
-	)
-}
+func Map[S, A, B any](f func(A) B) Operator[S, A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChain sequences two computations, passing the result of the first to a function
 // that produces the second computation. This is the monadic bind operation.
@@ -80,11 +64,8 @@ func Map[S, A, B any](f func(A) B) Operator[S, A, B] {
 //	    },
 //	)
 func MonadChain[S, A, B any](fa StateIO[S, A], f Kleisli[S, A, B]) StateIO[S, B] {
-	return statet.MonadChain(
-		io.MonadChain[Pair[S, A], Pair[S, B]],
-		fa,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain is the curried version of [MonadChain].
@@ -97,10 +78,8 @@ func MonadChain[S, A, B any](fa StateIO[S, A], f Kleisli[S, A, B]) StateIO[S, B]
 //	})
 //	result := function.Pipe1(Of[AppState](42), stringify)
 func Chain[S, A, B any](f Kleisli[S, A, B]) Operator[S, A, B] {
-	return statet.Chain[StateIO[S, A]](
-		io.Chain[Pair[S, A], Pair[S, B]],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAp applies a function wrapped in a StateIO to a value wrapped in a StateIO.
@@ -113,22 +92,15 @@ func Chain[S, A, B any](f Kleisli[S, A, B]) Operator[S, A, B] {
 //	fa := Of[AppState](21)
 //	result := MonadAp(fab, fa) // Result contains 42
 func MonadAp[B, S, A any](fab StateIO[S, func(A) B], fa StateIO[S, A]) StateIO[S, B] {
-	return statet.MonadAp[StateIO[S, A], StateIO[S, B]](
-		io.MonadMap[Pair[S, A], Pair[S, B]],
-		io.MonadChain[Pair[S, func(A) B], Pair[S, B]],
-		fab,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap is the curried version of [MonadAp].
 // Returns a function that applies a wrapped function to the given wrapped value.
 func Ap[B, S, A any](fa StateIO[S, A]) Operator[S, func(A) B, B] {
-	return statet.Ap[StateIO[S, A], StateIO[S, B], StateIO[S, func(A) B]](
-		io.Map[Pair[S, A], Pair[S, B]],
-		io.Chain[Pair[S, func(A) B], Pair[S, B]],
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromIO lifts an IO computation into StateIO.
@@ -139,12 +111,7 @@ func Ap[B, S, A any](fa StateIO[S, A]) Operator[S, func(A) B, B] {
 //
 //	ioAction := io.Of(42)
 //	stateIOAction := FromIO[AppState](ioAction)
-func FromIO[S, A any](fa IO[A]) StateIO[S, A] {
-	return statet.FromF[StateIO[S, A]](
-		io.MonadMap[A],
-		fa,
-	)
-}
+func FromIO[S, A any](fa IO[A]) StateIO[S, A] { _ = "STUB: not implemented"; return nil }
 
 // Combinators
 
@@ -156,9 +123,4 @@ func FromIO[S, A any](fa IO[A]) StateIO[S, A] {
 //	readFile := func(path string) IO[string] { ... }
 //	kleisli := FromIOK[AppState](readFile)
 //	// kleisli can now be used with Chain
-func FromIOK[S, A, B any](f func(A) IO[B]) Kleisli[S, A, B] {
-	return function.Flow2(
-		f,
-		FromIO[S, B],
-	)
-}
+func FromIOK[S, A, B any](f func(A) IO[B]) Kleisli[S, A, B] { _ = "STUB: not implemented"; return nil }

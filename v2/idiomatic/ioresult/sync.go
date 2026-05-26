@@ -23,10 +23,6 @@ import (
 // WithLock executes an IOResult within the scope of a lock.
 // The lock is acquired before execution and released after (via defer).
 func WithLock[A any](lock IO[context.CancelFunc]) Operator[A, A] {
-	return func(fa IOResult[A]) IOResult[A] {
-		return func() (A, error) {
-			defer lock()()
-			return fa()
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

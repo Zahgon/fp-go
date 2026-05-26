@@ -16,13 +16,9 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/apply"
-	AR "github.com/IBM/fp-go/v2/internal/array"
 	"github.com/IBM/fp-go/v2/internal/functor"
 	"github.com/IBM/fp-go/v2/internal/pointed"
-	"github.com/IBM/fp-go/v2/optics/optional"
-	OA "github.com/IBM/fp-go/v2/optics/optional/array/generic"
 	G "github.com/IBM/fp-go/v2/optics/traversal/generic"
 )
 
@@ -32,9 +28,8 @@ func FromArray[GA ~[]A, GB ~[]B, A, B, HKTB, HKTAB, HKTRB any](
 	fmap functor.MapType[GB, func(B) GB, HKTRB, HKTAB],
 	fap apply.ApType[HKTB, HKTRB, HKTAB],
 ) G.Traversal[GA, A, HKTRB, HKTB] {
-	return func(f func(A) HKTB) func(GA) HKTRB {
-		return AR.Traverse[GA](fof, fmap, fap, f)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // At creates a function that focuses a traversal on a specific array index.
@@ -108,13 +103,6 @@ func At[GA ~[]A, S, A, HKTS, HKTGA, HKTA any](
 	fof pointed.OfType[GA, HKTGA],
 	fmap functor.MapType[A, GA, HKTA, HKTGA],
 ) func(int) func(G.Traversal[S, GA, HKTS, HKTGA]) G.Traversal[S, A, HKTS, HKTA] {
-	return F.Flow3(
-		OA.At[GA],
-		optional.AsTraversal[G.Traversal[GA, A, HKTGA, HKTA]](fof, fmap),
-		G.Compose[
-			G.Traversal[GA, A, HKTGA, HKTA],
-			G.Traversal[S, GA, HKTS, HKTGA],
-			G.Traversal[S, A, HKTS, HKTA],
-		],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

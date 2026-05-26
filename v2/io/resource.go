@@ -15,10 +15,6 @@
 
 package io
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-)
-
 // WithResource constructs a function that creates a resource, operates on it, and then releases it.
 // This is a higher-level abstraction over Bracket that simplifies resource management patterns.
 //
@@ -37,6 +33,7 @@ import (
 //	})
 func WithResource[
 	R, A, ANY any](onCreate IO[R], onRelease func(R) IO[ANY]) Kleisli[Kleisli[R, A], A] {
+	_ = "STUB: not implemented"
 	// simply map to implementation of bracket
-	return function.Bind13of3(Bracket[R, A, ANY])(onCreate, function.Ignore2of2[A](onRelease))
+	return nil
 }

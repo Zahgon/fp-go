@@ -15,10 +15,6 @@
 
 package record
 
-import (
-	G "github.com/IBM/fp-go/v2/record/generic"
-)
-
 // UnionSemigroup creates a semigroup for maps that combines two maps using the provided
 // semigroup for resolving conflicts when the same key exists in both maps.
 //
@@ -52,7 +48,8 @@ import (
 //
 //go:inline
 func UnionSemigroup[K comparable, V any](s Semigroup[V]) Semigroup[Record[K, V]] {
-	return G.UnionSemigroup[Record[K, V]](s)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // UnionLastSemigroup creates a semigroup for maps where the last (right) value wins
@@ -81,7 +78,8 @@ func UnionSemigroup[K comparable, V any](s Semigroup[V]) Semigroup[Record[K, V]]
 //
 //go:inline
 func UnionLastSemigroup[K comparable, V any]() Semigroup[Record[K, V]] {
-	return G.UnionLastSemigroup[Record[K, V]]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // UnionFirstSemigroup creates a semigroup for maps where the first (left) value wins
@@ -110,5 +108,6 @@ func UnionLastSemigroup[K comparable, V any]() Semigroup[Record[K, V]] {
 //
 //go:inline
 func UnionFirstSemigroup[K comparable, V any]() Semigroup[Record[K, V]] {
-	return G.UnionFirstSemigroup[Record[K, V]]()
+	_ = "STUB: not implemented"
+	return nil
 }

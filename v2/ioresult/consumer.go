@@ -1,15 +1,10 @@
 package ioresult
 
-import (
-	"github.com/IBM/fp-go/v2/ioeither"
-)
-
 //go:inline
 func ChainConsumer[A any](c Consumer[A]) Operator[A, struct{}] {
-	return ioeither.ChainConsumer[error](c)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
-func ChainFirstConsumer[A any](c Consumer[A]) Operator[A, A] {
-	return ioeither.ChainFirstConsumer[error](c)
-}
+func ChainFirstConsumer[A any](c Consumer[A]) Operator[A, A] { _ = "STUB: not implemented"; return nil }

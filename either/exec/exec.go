@@ -16,12 +16,9 @@
 package exec
 
 import (
-	"context"
-
 	E "github.com/IBM/fp-go/either"
 	"github.com/IBM/fp-go/exec"
 	F "github.com/IBM/fp-go/function"
-	GE "github.com/IBM/fp-go/internal/exec"
 )
 
 var (
@@ -32,5 +29,6 @@ var (
 )
 
 func command(name string, args []string, in []byte) E.Either[error, exec.CommandOutput] {
-	return E.TryCatchError(GE.Exec(context.Background(), name, args, in))
+	_ = "STUB: not implemented"
+	return nil
 }

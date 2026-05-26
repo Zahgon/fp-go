@@ -22,10 +22,10 @@ import (
 type optionPointed[A any] struct{}
 
 func (o *optionPointed[A]) Of(a A) Option[A] {
-	return Of[A](a)
+	_ = "STUB: not implemented"
+
+	// Pointed implements the Pointed operations for [Option]
+	return nil
 }
 
-// Pointed implements the Pointed operations for [Option]
-func Pointed[A any]() pointed.Pointed[A, Option[A]] {
-	return &optionPointed[A]{}
-}
+func Pointed[A any]() pointed.Pointed[A, Option[A]] { _ = "STUB: not implemented"; return nil }

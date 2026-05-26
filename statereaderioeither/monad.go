@@ -20,25 +20,28 @@ import (
 	"github.com/IBM/fp-go/internal/functor"
 	"github.com/IBM/fp-go/internal/monad"
 	"github.com/IBM/fp-go/internal/pointed"
-	G "github.com/IBM/fp-go/statereaderioeither/generic"
 )
 
 // Pointed returns the pointed operations for [StateReaderIOEither]
 func Pointed[S, R, E, A any]() pointed.Pointed[A, StateReaderIOEither[S, R, E, A]] {
-	return G.Pointed[StateReaderIOEither[S, R, E, A]]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Functor returns the functor operations for [StateReaderIOEither]
 func Functor[S, R, E, A, B any]() functor.Functor[A, B, StateReaderIOEither[S, R, E, A], StateReaderIOEither[S, R, E, B]] {
-	return G.Functor[StateReaderIOEither[S, R, E, A], StateReaderIOEither[S, R, E, B]]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Applicative returns the applicative operations for [StateReaderIOEither]
 func Applicative[S, R, E, A, B any]() applicative.Applicative[A, B, StateReaderIOEither[S, R, E, A], StateReaderIOEither[S, R, E, B], StateReaderIOEither[S, R, E, func(A) B]] {
-	return G.Applicative[StateReaderIOEither[S, R, E, A], StateReaderIOEither[S, R, E, B], StateReaderIOEither[S, R, E, func(A) B]]()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad returns the monadic operations for [StateReaderIOEither]
 func Monad[S, R, E, A, B any]() monad.Monad[A, B, StateReaderIOEither[S, R, E, A], StateReaderIOEither[S, R, E, B], StateReaderIOEither[S, R, E, func(A) B]] {
-	return G.Monad[StateReaderIOEither[S, R, E, A], StateReaderIOEither[S, R, E, B], StateReaderIOEither[S, R, E, func(A) B]]()
+	_ = "STUB: not implemented"
+	return nil
 }

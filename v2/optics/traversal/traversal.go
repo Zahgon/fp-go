@@ -17,50 +17,51 @@ package traversal
 
 import (
 	C "github.com/IBM/fp-go/v2/constant"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/identity"
 	"github.com/IBM/fp-go/v2/internal/functor"
 	"github.com/IBM/fp-go/v2/internal/pointed"
-	G "github.com/IBM/fp-go/v2/optics/traversal/generic"
 )
 
 // Id is the identity constructor of a traversal
-func Id[S, A any]() Traversal[S, S, A, A] {
-	return F.Identity[func(S) A]
-}
+func Id[S, A any]() Traversal[S, S, A, A] { _ = "STUB: not implemented"; return nil }
 
 // Modify applies a transformation function to a traversal
 func Modify[S, A any](f Endomorphism[A]) func(Traversal[S, A, S, A]) Endomorphism[S] {
-	return identity.Flap[Endomorphism[S]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Set sets a constant value for all values of the traversal
 func Set[S, A any](a A) func(Traversal[S, A, S, A]) Endomorphism[S] {
-	return Modify[S](F.Constant1[A](a))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FoldMap maps each target to a `Monoid` and combines the result
 func FoldMap[S, M, A any](f func(A) M) func(sa Traversal[S, A, C.Const[M, S], C.Const[M, A]]) func(S) M {
-	return G.FoldMap[S](f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Fold maps each target to a `Monoid` and combines the result
 }
 
-// Fold maps each target to a `Monoid` and combines the result
 func Fold[S, A any](sa Traversal[S, A, C.Const[A, S], C.Const[A, A]]) func(S) A {
-	return G.Fold(sa)
+	_ = "STUB: not implemented"
+
+	// GetAll gets all the targets of a traversal
+	return nil
 }
 
-// GetAll gets all the targets of a traversal
 func GetAll[A, S any](s S) func(sa Traversal[S, A, C.Const[[]A, S], C.Const[[]A, A]]) []A {
-	return G.GetAll[[]A](s)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Compose composes two traversables
 }
 
-// Compose composes two traversables
 func Compose[
 	S, HKTS, A, B, HKTA, HKTB any](ab Traversal[A, B, HKTA, HKTB]) func(Traversal[S, A, HKTS, HKTA]) Traversal[S, B, HKTS, HKTB] {
-	return G.Compose[
-		Traversal[A, B, HKTA, HKTB],
-		Traversal[S, A, HKTS, HKTA],
-		Traversal[S, B, HKTS, HKTB]](ab)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Filter creates a function that filters the targets of a traversal based on a predicate.
@@ -123,5 +124,6 @@ func Filter[S, HKTS, A, HKTA any](
 	fof pointed.OfType[A, HKTA],
 	fmap functor.MapType[A, A, HKTA, HKTA],
 ) func(Predicate[A]) Endomorphism[Traversal[S, A, HKTS, HKTA]] {
-	return G.Filter[S, HKTS](fof, fmap)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -21,9 +21,11 @@ import (
 )
 
 func ApplySemigroup[GA ~func() A, A any](s S.Semigroup[A]) S.Semigroup[GA] {
-	return S.ApplySemigroup(MonadMap[GA, func() func(A) A, A, func(A) A], MonadAp[GA, GA, func() func(A) A, A, A], s)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ApplicativeMonoid[GA ~func() A, A any](m M.Monoid[A]) M.Monoid[GA] {
-	return M.ApplicativeMonoid(Of[GA, A], MonadMap[GA, func() func(A) A, A, func(A) A], MonadAp[GA, GA, func() func(A) A, A, A], m)
+	_ = "STUB: not implemented"
+	return nil
 }

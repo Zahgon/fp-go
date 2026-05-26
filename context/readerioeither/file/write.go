@@ -16,42 +16,24 @@
 package file
 
 import (
-	"context"
 	"io"
 
 	RIOE "github.com/IBM/fp-go/context/readerioeither"
-	F "github.com/IBM/fp-go/function"
 )
 
 func onWriteAll[W io.Writer](data []byte) func(w W) RIOE.ReaderIOEither[[]byte] {
-	return func(w W) RIOE.ReaderIOEither[[]byte] {
-		return F.Pipe1(
-			RIOE.TryCatch(func(_ context.Context) func() ([]byte, error) {
-				return func() ([]byte, error) {
-					_, err := w.Write(data)
-					return data, err
-				}
-			}),
-			RIOE.WithContext[[]byte],
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WriteAll uses a generator function to create a stream, writes data to it and closes it
 func WriteAll[W io.WriteCloser](data []byte) func(acquire RIOE.ReaderIOEither[W]) RIOE.ReaderIOEither[[]byte] {
-	onWrite := onWriteAll[W](data)
-	return func(onCreate RIOE.ReaderIOEither[W]) RIOE.ReaderIOEither[[]byte] {
-		return RIOE.WithResource[[]byte](
-			onCreate,
-			Close[W])(
-			onWrite,
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Write uses a generator function to create a stream, writes data to it and closes it
 func Write[R any, W io.WriteCloser](acquire RIOE.ReaderIOEither[W]) func(use func(W) RIOE.ReaderIOEither[R]) RIOE.ReaderIOEither[R] {
-	return RIOE.WithResource[R](
-		acquire,
-		Close[W])
+	_ = "STUB: not implemented"
+	return nil
 }

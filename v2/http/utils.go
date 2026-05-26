@@ -16,9 +16,7 @@
 package http
 
 import (
-	"fmt"
 	"io"
-	"mime"
 	H "net/http"
 	"net/url"
 	"regexp"
@@ -154,32 +152,30 @@ const (
 //	    params := P.Tail(parsed)     // map[string]string{"charset": "utf-8"}
 //	})(result)
 func ParseMediaType(mediaType string) E.Either[error, ParsedMediaType] {
-	m, p, err := mime.ParseMediaType(mediaType)
-	return E.TryCatchError(P.MakePair(m, p), err)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Error implements the error interface for HttpError.
 // It returns a formatted error message including the status code and URL.
-func (r *HttpError) Error() string {
-	return fmt.Sprintf("invalid status code [%d] when accessing URL [%s]", r.statusCode, r.url)
-}
+func (r *HttpError) Error() string { _ = "STUB: not implemented"; return "" }
 
 // String returns the string representation of the HttpError.
 // It's equivalent to calling Error().
 func (r *HttpError) String() string {
-	return r.Error()
+	_ = "STUB: not implemented"
+
+	// StatusCode returns the HTTP status code from the failed response.
+	//
+	// Example:
+	//
+	//	if httpErr, ok := err.(*HttpError); ok {
+	//	    code := httpErr.StatusCode()  // e.g., 404, 500
+	//	}
+	return ""
 }
 
-// StatusCode returns the HTTP status code from the failed response.
-//
-// Example:
-//
-//	if httpErr, ok := err.(*HttpError); ok {
-//	    code := httpErr.StatusCode()  // e.g., 404, 500
-//	}
-func (r *HttpError) StatusCode() int {
-	return r.statusCode
-}
+func (r *HttpError) StatusCode() int { _ = "STUB: not implemented"; return 0 }
 
 // Headers returns a clone of the HTTP headers from the failed response.
 // The headers are cloned to prevent modification of the original response.
@@ -191,80 +187,88 @@ func (r *HttpError) StatusCode() int {
 //	    contentType := headers.Get("Content-Type")
 //	}
 func (r *HttpError) Headers() H.Header {
-	return r.headers
+	_ = "STUB: not implemented"
+
+	// URL returns the URL that was accessed when the error occurred.
+	//
+	// Example:
+	//
+	//	if httpErr, ok := err.(*HttpError); ok {
+	//	    url := httpErr.URL()
+	//	    fmt.Printf("Failed to access: %s\n", url)
+	//	}
+	return *new(H.Header)
 }
 
-// URL returns the URL that was accessed when the error occurred.
-//
-// Example:
-//
-//	if httpErr, ok := err.(*HttpError); ok {
-//	    url := httpErr.URL()
-//	    fmt.Printf("Failed to access: %s\n", url)
-//	}
 func (r *HttpError) URL() *url.URL {
-	return r.url
+	_ = "STUB: not implemented"
+
+	// Body returns the response body bytes from the failed response.
+	// This can be useful for debugging or displaying error messages from the server.
+	//
+	// Example:
+	//
+	//	if httpErr, ok := err.(*HttpError); ok {
+	//	    body := httpErr.Body()
+	//	    fmt.Printf("Error response: %s\n", string(body))
+	//	}
+	return nil
 }
 
-// Body returns the response body bytes from the failed response.
-// This can be useful for debugging or displaying error messages from the server.
-//
-// Example:
-//
-//	if httpErr, ok := err.(*HttpError); ok {
-//	    body := httpErr.Body()
-//	    fmt.Printf("Error response: %s\n", string(body))
-//	}
 func (r *HttpError) Body() []byte {
-	return r.body
+	_ = "STUB: not implemented"
+
+	// GetHeader extracts the HTTP headers from an http.Response.
+	// This is a functional accessor for the Header field.
+	//
+	// Parameters:
+	//   - resp: The HTTP response
+	//
+	// Returns:
+	//   - The http.Header map from the response
+	//
+	// Example:
+	//
+	//	headers := GetHeader(response)
+	//	contentType := headers.Get("Content-Type")
+	return nil
 }
 
-// GetHeader extracts the HTTP headers from an http.Response.
-// This is a functional accessor for the Header field.
-//
-// Parameters:
-//   - resp: The HTTP response
-//
-// Returns:
-//   - The http.Header map from the response
-//
-// Example:
-//
-//	headers := GetHeader(response)
-//	contentType := headers.Get("Content-Type")
 func GetHeader(resp *H.Response) H.Header {
-	return resp.Header
+	_ = "STUB: not implemented"
+
+	// GetBody extracts the response body reader from an http.Response.
+	// This is a functional accessor for the Body field.
+	//
+	// Parameters:
+	//   - resp: The HTTP response
+	//
+	// Returns:
+	//   - The io.ReadCloser for reading the response body
+	//
+	// Example:
+	//
+	//	body := GetBody(response)
+	//	defer body.Close()
+	//	data, err := io.ReadAll(body)
+	return *new(H.Header)
 }
 
-// GetBody extracts the response body reader from an http.Response.
-// This is a functional accessor for the Body field.
-//
-// Parameters:
-//   - resp: The HTTP response
-//
-// Returns:
-//   - The io.ReadCloser for reading the response body
-//
-// Example:
-//
-//	body := GetBody(response)
-//	defer body.Close()
-//	data, err := io.ReadAll(body)
 func GetBody(resp *H.Response) io.ReadCloser {
-	return resp.Body
+	_ = "STUB: not implemented"
+
+	// isValidStatus checks if an HTTP response has a successful status code.
+	// A status code is considered valid if it's in the 2xx range (200-299).
+	//
+	// Parameters:
+	//   - resp: The HTTP response to check
+	//
+	// Returns:
+	//   - true if status code is 2xx, false otherwise
+	return *new(io.ReadCloser)
 }
 
-// isValidStatus checks if an HTTP response has a successful status code.
-// A status code is considered valid if it's in the 2xx range (200-299).
-//
-// Parameters:
-//   - resp: The HTTP response to check
-//
-// Returns:
-//   - true if status code is 2xx, false otherwise
-func isValidStatus(resp *H.Response) bool {
-	return resp.StatusCode >= H.StatusOK && resp.StatusCode < H.StatusMultipleChoices
-}
+func isValidStatus(resp *H.Response) bool { _ = "STUB: not implemented"; return false }
 
 // StatusCodeError creates an HttpError from an http.Response with a non-successful status code.
 // It reads the response body and captures all relevant information for debugging.
@@ -288,11 +292,11 @@ func isValidStatus(resp *H.Response) bool {
 //	    return err
 //	}
 func StatusCodeError(resp *H.Response) error {
+	_ = "STUB: not implemented"
 	// read the body
-	bodyRdr := GetBody(resp)
-	defer bodyRdr.Close()
-	// try to access body content
-	body, _ := io.ReadAll(bodyRdr)
-	// return an error with comprehensive information
-	return &HttpError{statusCode: resp.StatusCode, headers: GetHeader(resp).Clone(), body: body, url: resp.Request.URL}
+	return nil
 }
+
+// try to access body content
+
+// return an error with comprehensive information

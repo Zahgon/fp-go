@@ -15,10 +15,6 @@
 
 package result
 
-import (
-	"github.com/IBM/fp-go/v2/either"
-)
-
 // Curry0 converts a Go function that returns (R, error) into a curried version that returns Result[R].
 //
 // Example:
@@ -26,9 +22,7 @@ import (
 //	getConfig := func() (string, error) { return "config", nil }
 //	curried := either.Curry0(getConfig)
 //	result := curried() // Right("config")
-func Curry0[R any](f func() (R, error)) func() Result[R] {
-	return either.Curry0(f)
-}
+func Curry0[R any](f func() (R, error)) func() Result[R] { _ = "STUB: not implemented"; return nil }
 
 // Curry1 converts a Go function that returns (R, error) into a curried version that returns Result[R].
 //
@@ -38,43 +32,49 @@ func Curry0[R any](f func() (R, error)) func() Result[R] {
 //	curried := either.Curry1(parse)
 //	result := curried("42") // Right(42)
 func Curry1[T1, R any](f func(T1) (R, error)) func(T1) Result[R] {
-	return either.Curry1(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Curry2 converts a 2-argument Go function that returns (R, error) into a curried version.
+	//
+	// Example:
+	//
+	//	divide := func(a, b int) (int, error) {
+	//	    if b == 0 { return 0, errors.New("div by zero") }
+	//	    return a / b, nil
+	//	}
+	//	curried := either.Curry2(divide)
+	//	result := curried(10)(2) // Right(5)
 }
 
-// Curry2 converts a 2-argument Go function that returns (R, error) into a curried version.
-//
-// Example:
-//
-//	divide := func(a, b int) (int, error) {
-//	    if b == 0 { return 0, errors.New("div by zero") }
-//	    return a / b, nil
-//	}
-//	curried := either.Curry2(divide)
-//	result := curried(10)(2) // Right(5)
 func Curry2[T1, T2, R any](f func(T1, T2) (R, error)) func(T1) func(T2) Result[R] {
-	return either.Curry2(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Curry3 converts a 3-argument Go function that returns (R, error) into a curried version.
 }
 
-// Curry3 converts a 3-argument Go function that returns (R, error) into a curried version.
 func Curry3[T1, T2, T3, R any](f func(T1, T2, T3) (R, error)) func(T1) func(T2) func(T3) Result[R] {
-	return either.Curry3(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Curry4 converts a 4-argument Go function that returns (R, error) into a curried version.
 }
 
-// Curry4 converts a 4-argument Go function that returns (R, error) into a curried version.
 func Curry4[T1, T2, T3, T4, R any](f func(T1, T2, T3, T4) (R, error)) func(T1) func(T2) func(T3) func(T4) Result[R] {
-	return either.Curry4(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Uncurry0 converts a function returning Result[R] back to Go's (R, error) style.
+	//
+	// Example:
+	//
+	//	curried := func() either.Result[string] { return either.Right[error]("value") }
+	//	uncurried := either.Uncurry0(curried)
+	//	result, err := uncurried() // "value", nil
 }
 
-// Uncurry0 converts a function returning Result[R] back to Go's (R, error) style.
-//
-// Example:
-//
-//	curried := func() either.Result[string] { return either.Right[error]("value") }
-//	uncurried := either.Uncurry0(curried)
-//	result, err := uncurried() // "value", nil
-func Uncurry0[R any](f func() Result[R]) func() (R, error) {
-	return either.Uncurry0(f)
-}
+func Uncurry0[R any](f func() Result[R]) func() (R, error) { _ = "STUB: not implemented"; return nil }
 
 // Uncurry1 converts a function returning Result[R] back to Go's (R, error) style.
 //
@@ -84,20 +84,27 @@ func Uncurry0[R any](f func() Result[R]) func() (R, error) {
 //	uncurried := either.Uncurry1(curried)
 //	result, err := uncurried(42) // "42", nil
 func Uncurry1[T1, R any](f func(T1) Result[R]) func(T1) (R, error) {
-	return either.Uncurry1(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Uncurry2 converts a curried function returning Result[R] back to Go's (R, error) style.
 }
 
-// Uncurry2 converts a curried function returning Result[R] back to Go's (R, error) style.
 func Uncurry2[T1, T2, R any](f func(T1) func(T2) Result[R]) func(T1, T2) (R, error) {
-	return either.Uncurry2(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Uncurry3 converts a curried function returning Result[R] back to Go's (R, error) style.
 }
 
-// Uncurry3 converts a curried function returning Result[R] back to Go's (R, error) style.
 func Uncurry3[T1, T2, T3, R any](f func(T1) func(T2) func(T3) Result[R]) func(T1, T2, T3) (R, error) {
-	return either.Uncurry3(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Uncurry4 converts a curried function returning Result[R] back to Go's (R, error) style.
 }
 
-// Uncurry4 converts a curried function returning Result[R] back to Go's (R, error) style.
 func Uncurry4[T1, T2, T3, T4, R any](f func(T1) func(T2) func(T3) func(T4) Result[R]) func(T1, T2, T3, T4) (R, error) {
-	return either.Uncurry4(f)
+	_ = "STUB: not implemented"
+	return nil
 }

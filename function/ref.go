@@ -15,10 +15,6 @@
 
 package function
 
-func Ref[A any](a A) *A {
-	return &a
-}
+func Ref[A any](a A) *A { _ = "STUB: not implemented"; return nil }
 
-func Deref[A any](a *A) A {
-	return *a
-}
+func Deref[A any](a *A) A { _ = "STUB: not implemented"; return *new(A) }

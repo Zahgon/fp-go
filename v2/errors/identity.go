@@ -54,6 +54,4 @@ var Identity = F.Identity[error]
 //	// Using in functional contexts
 //	errors := []error{nil, errors.New("error1"), nil, errors.New("error2")}
 //	nonNilErrors := F.Filter(IsNonNil)(errors)  // [error1, error2]
-func IsNonNil(err error) bool {
-	return err != nil
-}
+func IsNonNil(err error) bool { _ = "STUB: not implemented"; return false }

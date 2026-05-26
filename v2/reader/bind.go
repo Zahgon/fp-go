@@ -16,10 +16,6 @@
 package reader
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/apply"
-	"github.com/IBM/fp-go/v2/internal/chain"
-	"github.com/IBM/fp-go/v2/internal/functor"
 	L "github.com/IBM/fp-go/v2/optics/lens"
 )
 
@@ -59,39 +55,37 @@ import (
 func Do[R, S any](
 	empty S,
 ) Reader[R, S] {
-	return Of[R](empty)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Bind attaches the result of a computation to a context [S1] to produce a context [S2].
+	// This enables building up complex computations in a pipeline where each step can depend
+	// on the results of previous steps and access the shared environment.
+	//
+	// The setter function takes the result of the computation and returns a function that
+	// updates the context from S1 to S2.
+	//
+	// Example:
+	//
+	//	type State struct { Value int }
+	//	type Config struct { Increment int }
+	//
+	//	addIncrement := reader.Bind(
+	//	    func(inc int) func(State) State {
+	//	        return func(s State) State { return State{Value: s.Value + inc} }
+	//	    },
+	//	    func(s State) reader.Reader[Config, int] {
+	//	        return reader.Asks(func(c Config) int { return c.Increment })
+	//	    },
+	//	)
 }
 
-// Bind attaches the result of a computation to a context [S1] to produce a context [S2].
-// This enables building up complex computations in a pipeline where each step can depend
-// on the results of previous steps and access the shared environment.
-//
-// The setter function takes the result of the computation and returns a function that
-// updates the context from S1 to S2.
-//
-// Example:
-//
-//	type State struct { Value int }
-//	type Config struct { Increment int }
-//
-//	addIncrement := reader.Bind(
-//	    func(inc int) func(State) State {
-//	        return func(s State) State { return State{Value: s.Value + inc} }
-//	    },
-//	    func(s State) reader.Reader[Config, int] {
-//	        return reader.Asks(func(c Config) int { return c.Increment })
-//	    },
-//	)
 func Bind[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[R, S1, T],
 ) Operator[R, S1, S2] {
-	return chain.Bind(
-		Chain[R, S1, S2],
-		Map[R, T, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a pure computation to a context [S1] to produce a context [S2].
@@ -118,11 +112,8 @@ func Let[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[R, S1, S2] {
-	return functor.Let(
-		Map[R, S1, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches a constant value to a context [S1] to produce a context [S2].
@@ -145,11 +136,8 @@ func LetTo[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) Operator[R, S1, S2] {
-	return functor.LetTo(
-		Map[R, S1, S2],
-		setter,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T].
@@ -169,10 +157,8 @@ func LetTo[R, S1, S2, T any](
 func BindTo[R, S1, T any](
 	setter func(T) S1,
 ) Operator[R, T, S1] {
-	return chain.BindTo(
-		Map[R, T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering
@@ -203,12 +189,8 @@ func ApS[R, S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa Reader[R, T],
 ) Operator[R, S1, S2] {
-	return apply.ApS(
-		Ap[S2, R, T],
-		Map[R, S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL attaches a value to a context using a lens-based setter.
@@ -243,50 +225,53 @@ func ApSL[R, S, T any](
 	lens L.Lens[S, T],
 	fa Reader[R, T],
 ) Operator[R, S, S] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL is a variant of Bind that uses a lens to focus on a specific part of the context.
+	// This provides a more ergonomic API when working with nested structures, eliminating
+	// the need to manually write setter functions.
+	//
+	// The lens parameter provides both a getter and setter for a field of type T within
+	// the context S. The function f receives the current value of the focused field and
+	// returns a Reader computation that produces an updated value.
+	//
+	// Example:
+	//
+	//	type State struct {
+	//	    Config ConfigData
+	//	    Status string
+	//	}
+	//	type ConfigData struct {
+	//	    Host string
+	//	    Port int
+	//	}
+	//	type Env struct {
+	//	    DefaultHost string
+	//	    DefaultPort int
+	//	}
+	//
+	//	configLens := lens.MakeLens(
+	//	    func(s State) ConfigData { return s.Config },
+	//	    func(s State, c ConfigData) State { s.Config = c; return s },
+	//	)
+	//
+	//	result := F.Pipe2(
+	//	    reader.Do[Env](State{}),
+	//	    reader.BindL(configLens, func(cfg ConfigData) reader.Reader[Env, ConfigData] {
+	//	        return reader.Asks(func(e Env) ConfigData {
+	//	            return ConfigData{Host: e.DefaultHost, Port: e.DefaultPort}
+	//	        })
+	//	    }),
+	//	)
 }
 
-// BindL is a variant of Bind that uses a lens to focus on a specific part of the context.
-// This provides a more ergonomic API when working with nested structures, eliminating
-// the need to manually write setter functions.
-//
-// The lens parameter provides both a getter and setter for a field of type T within
-// the context S. The function f receives the current value of the focused field and
-// returns a Reader computation that produces an updated value.
-//
-// Example:
-//
-//	type State struct {
-//	    Config ConfigData
-//	    Status string
-//	}
-//	type ConfigData struct {
-//	    Host string
-//	    Port int
-//	}
-//	type Env struct {
-//	    DefaultHost string
-//	    DefaultPort int
-//	}
-//
-//	configLens := lens.MakeLens(
-//	    func(s State) ConfigData { return s.Config },
-//	    func(s State, c ConfigData) State { s.Config = c; return s },
-//	)
-//
-//	result := F.Pipe2(
-//	    reader.Do[Env](State{}),
-//	    reader.BindL(configLens, func(cfg ConfigData) reader.Reader[Env, ConfigData] {
-//	        return reader.Asks(func(e Env) ConfigData {
-//	            return ConfigData{Host: e.DefaultHost, Port: e.DefaultPort}
-//	        })
-//	    }),
-//	)
 func BindL[R, S, T any](
 	lens L.Lens[S, T],
 	f Kleisli[R, T, T],
 ) Operator[R, S, S] {
-	return Bind(lens.Set, F.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL is a variant of Let that uses a lens to focus on a specific part of the context.
@@ -324,7 +309,8 @@ func LetL[R, S, T any](
 	lens L.Lens[S, T],
 	f func(T) T,
 ) Operator[R, S, S] {
-	return Let[R](lens.Set, F.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL is a variant of LetTo that uses a lens to focus on a specific part of the context.
@@ -359,5 +345,6 @@ func LetToL[R, S, T any](
 	lens L.Lens[S, T],
 	b T,
 ) Operator[R, S, S] {
-	return LetTo[R](lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }

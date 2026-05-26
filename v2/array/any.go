@@ -15,10 +15,6 @@
 
 package array
 
-import (
-	G "github.com/IBM/fp-go/v2/array/generic"
-)
-
 // AnyWithIndex tests if any of the elements in the array matches the predicate.
 // The predicate receives both the index and the element.
 // Returns true if at least one element satisfies the predicate, false otherwise.
@@ -32,7 +28,8 @@ import (
 //
 //go:inline
 func AnyWithIndex[A any](pred func(int, A) bool) func([]A) bool {
-	return G.AnyWithIndex[[]A](pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Any tests if any of the elements in the array matches the predicate.
@@ -45,6 +42,4 @@ func AnyWithIndex[A any](pred func(int, A) bool) func([]A) bool {
 //	result := hasEven([]int{1, 3, 4, 5}) // true
 //
 //go:inline
-func Any[A any](pred func(A) bool) func([]A) bool {
-	return G.Any[[]A](pred)
-}
+func Any[A any](pred func(A) bool) func([]A) bool { _ = "STUB: not implemented"; return nil }

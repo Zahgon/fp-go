@@ -47,7 +47,6 @@
 package constant
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	M "github.com/IBM/fp-go/v2/monoid"
 	S "github.com/IBM/fp-go/v2/semigroup"
 )
@@ -92,9 +91,7 @@ type Const[E, A any] struct {
 //
 //	c := Make[string, int]("hello")
 //	value := Unwrap(c)  // "hello"
-func Make[E, A any](e E) Const[E, A] {
-	return Const[E, A]{value: e}
-}
+func Make[E, A any](e E) Const[E, A] { _ = "STUB: not implemented"; return nil }
 
 // Unwrap extracts the wrapped value from a Const.
 //
@@ -115,34 +112,34 @@ func Make[E, A any](e E) Const[E, A] {
 //	c := Make[string, int]("world")
 //	value := Unwrap(c)  // "world"
 func Unwrap[E, A any](c Const[E, A]) E {
-	return c.value
+	_ = "STUB: not implemented"
+
+	// Of creates a Const containing the monoid's empty value, ignoring the input.
+	//
+	// This implements the Applicative's "pure" operation for Const. It creates a Const
+	// wrapping the monoid's identity element, regardless of the input value.
+	//
+	// Type Parameters:
+	//   - E: The type of the wrapped value (must have a monoid)
+	//   - A: The input type (ignored)
+	//
+	// Parameters:
+	//   - m: The monoid providing the empty value
+	//
+	// Returns:
+	//   - A function that ignores its input and returns Const[E, A] with the empty value
+	//
+	// Example:
+	//
+	//	import S "github.com/IBM/fp-go/v2/string"
+	//
+	//	of := Of[string, int](S.Monoid)
+	//	c := of(42)  // Const[string, int] containing ""
+	//	value := Unwrap(c)  // ""
+	return *new(E)
 }
 
-// Of creates a Const containing the monoid's empty value, ignoring the input.
-//
-// This implements the Applicative's "pure" operation for Const. It creates a Const
-// wrapping the monoid's identity element, regardless of the input value.
-//
-// Type Parameters:
-//   - E: The type of the wrapped value (must have a monoid)
-//   - A: The input type (ignored)
-//
-// Parameters:
-//   - m: The monoid providing the empty value
-//
-// Returns:
-//   - A function that ignores its input and returns Const[E, A] with the empty value
-//
-// Example:
-//
-//	import S "github.com/IBM/fp-go/v2/string"
-//
-//	of := Of[string, int](S.Monoid)
-//	c := of(42)  // Const[string, int] containing ""
-//	value := Unwrap(c)  // ""
-func Of[E, A any](m M.Monoid[E]) func(A) Const[E, A] {
-	return F.Constant1[A](Make[E, A](m.Empty()))
-}
+func Of[E, A any](m M.Monoid[E]) func(A) Const[E, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap applies a function to the phantom type parameter without changing the wrapped value.
 //
@@ -167,7 +164,8 @@ func Of[E, A any](m M.Monoid[E]) func(A) Const[E, A] {
 //	mapped := MonadMap(c, func(i int) string { return strconv.Itoa(i) })
 //	// mapped still contains "hello", function was never called
 func MonadMap[E, A, B any](fa Const[E, A], _ func(A) B) Const[E, B] {
-	return Make[E, B](fa.value)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAp combines two Const values using a semigroup.
@@ -196,9 +194,8 @@ func MonadMap[E, A, B any](fa Const[E, A], _ func(A) B) Const[E, B] {
 //	c2 := Make[string, int]("world")
 //	result := ap(c1, c2)  // Const containing "helloworld"
 func MonadAp[E, A, B any](s S.Semigroup[E]) func(fab Const[E, func(A) B], fa Const[E, A]) Const[E, B] {
-	return func(fab Const[E, func(A) B], fa Const[E, A]) Const[E, B] {
-		return Make[E, B](s.Concat(fab.value, fa.value))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map applies a function to the phantom type parameter without changing the wrapped value.
@@ -225,7 +222,8 @@ func MonadAp[E, A, B any](s S.Semigroup[E]) func(fab Const[E, func(A) B], fa Con
 //	mapped := F.Pipe1(c, Map[string, int, string](strconv.Itoa))
 //	// mapped still contains "data"
 func Map[E, A, B any](f func(A) B) func(fa Const[E, A]) Const[E, B] {
-	return F.Bind2nd(MonadMap[E, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap combines Const values using a semigroup in a curried style.
@@ -256,8 +254,6 @@ func Map[E, A, B any](f func(A) B) func(fa Const[E, A]) Const[E, B] {
 //	result := F.Pipe1(c1, Ap[string, int, int](S.Monoid)(c2))
 //	// result contains "helloworld"
 func Ap[E, A, B any](s S.Semigroup[E]) func(fa Const[E, A]) func(fab Const[E, func(A) B]) Const[E, B] {
-	monadap := MonadAp[E, A, B](s)
-	return func(fa Const[E, A]) func(fab Const[E, func(A) B]) Const[E, B] {
-		return F.Bind2nd(monadap, fa)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

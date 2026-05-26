@@ -80,6 +80,4 @@ var ConstFalse = Constant(false)
 //	    Timeout: ConstNil[int](),
 //	    MaxRetries: Ref(3),
 //	}
-func ConstNil[A any]() *A {
-	return (*A)(nil)
-}
+func ConstNil[A any]() *A { _ = "STUB: not implemented"; return nil }

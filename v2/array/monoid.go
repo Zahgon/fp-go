@@ -16,8 +16,6 @@
 package array
 
 import (
-	G "github.com/IBM/fp-go/v2/array/generic"
-	"github.com/IBM/fp-go/v2/internal/array"
 	M "github.com/IBM/fp-go/v2/monoid"
 	S "github.com/IBM/fp-go/v2/semigroup"
 )
@@ -32,9 +30,7 @@ import (
 //	empty := m.Empty() // []
 //
 //go:inline
-func Monoid[T any]() M.Monoid[[]T] {
-	return G.Monoid[[]T]()
-}
+func Monoid[T any]() M.Monoid[[]T] { _ = "STUB: not implemented"; return nil }
 
 // Semigroup returns a Semigroup instance for arrays.
 // The Semigroup combines arrays through concatenation.
@@ -45,13 +41,9 @@ func Monoid[T any]() M.Monoid[[]T] {
 //	result := s.Concat([]int{1, 2}, []int{3, 4}) // [1, 2, 3, 4]
 //
 //go:inline
-func Semigroup[T any]() S.Semigroup[[]T] {
-	return G.Semigroup[[]T]()
-}
+func Semigroup[T any]() S.Semigroup[[]T] { _ = "STUB: not implemented"; return nil }
 
-func addLen[A any](count int, data []A) int {
-	return count + len(data)
-}
+func addLen[A any](count int, data []A) int { _ = "STUB: not implemented"; return 0 }
 
 // ArrayConcatAll efficiently concatenates multiple arrays into a single array.
 // This function pre-allocates the exact amount of memory needed and performs
@@ -66,13 +58,11 @@ func addLen[A any](count int, data []A) int {
 //	    []int{5, 6},
 //	) // [1, 2, 3, 4, 5, 6]
 func ArrayConcatAll[A any](data ...[]A) []A {
+	_ = "STUB: not implemented"
 	// get the full size
-	count := array.Reduce(data, addLen[A], 0)
-	buf := make([]A, count)
-	// copy
-	array.Reduce(data, func(idx int, seg []A) int {
-		return idx + copy(buf[idx:], seg)
-	}, 0)
-	// returns the final array
-	return buf
+	return nil
 }
+
+// copy
+
+// returns the final array

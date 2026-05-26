@@ -21,10 +21,6 @@ import (
 
 // WithLock executes the provided IO operation in the scope of a lock
 func WithLock[GA ~func() A, A any](lock func() context.CancelFunc) func(fa GA) GA {
-	return func(fa GA) GA {
-		return func() A {
-			defer lock()()
-			return fa()
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

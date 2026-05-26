@@ -73,26 +73,18 @@ package builder
 
 import (
 	"bytes"
-	"crypto/sha256"
-	"fmt"
 	"net/http"
 	"net/url"
 
-	A "github.com/IBM/fp-go/v2/array"
 	B "github.com/IBM/fp-go/v2/bytes"
 	ENDO "github.com/IBM/fp-go/v2/endomorphism"
 	F "github.com/IBM/fp-go/v2/function"
 	C "github.com/IBM/fp-go/v2/http/content"
-	FM "github.com/IBM/fp-go/v2/http/form"
 	H "github.com/IBM/fp-go/v2/http/headers"
-	J "github.com/IBM/fp-go/v2/json"
-	LZ "github.com/IBM/fp-go/v2/lazy"
 	L "github.com/IBM/fp-go/v2/optics/lens"
 	O "github.com/IBM/fp-go/v2/option"
-	R "github.com/IBM/fp-go/v2/record"
 	"github.com/IBM/fp-go/v2/result"
 	S "github.com/IBM/fp-go/v2/string"
-	T "github.com/IBM/fp-go/v2/tuple"
 )
 
 type (
@@ -205,239 +197,129 @@ var (
 	bodyAsBytes = O.Fold(B.Empty, result.Fold(F.Ignore1of1[error](B.Empty), F.Identity[[]byte]))
 )
 
-func setRawQuery(u *url.URL, raw string) *url.URL {
-	u.RawQuery = raw
-	return u
-}
+func setRawQuery(u *url.URL, raw string) *url.URL { _ = "STUB: not implemented"; return nil }
 
-func getRawQuery(u *url.URL) string {
-	return u.RawQuery
-}
+func getRawQuery(u *url.URL) string { _ = "STUB: not implemented"; return "" }
 
-func (builder *Builder) clone() *Builder {
-	cpy := *builder
-	cpy.headers = cpy.headers.Clone()
-	return &cpy
-}
+func (builder *Builder) clone() *Builder { _ = "STUB: not implemented"; return nil }
 
 // GetTargetUrl constructs a full URL with query parameters on top of the provided URL string
 //
 // Deprecated: use [GetTargetURL] instead
-func (builder *Builder) GetTargetUrl() Result[string] {
-	return builder.GetTargetURL()
-}
+func (builder *Builder) GetTargetUrl() Result[string] { _ = "STUB: not implemented"; return nil }
 
 // GetTargetURL constructs a full URL with query parameters on top of the provided URL string
 func (builder *Builder) GetTargetURL() Result[string] {
+	_ = "STUB: not implemented"
 	// construct the final URL
-	return F.Pipe3(
-		builder,
-		Url.Get,
-		parseURL,
-		result.Chain(F.Flow4(
-			T.Replicate2[*url.URL],
-			T.Map2(
-				F.Flow2(
-					F.Curry2(setRawQuery),
-					result.Of[func(string) *url.URL],
-				),
-				F.Flow3(
-					rawQuery.Get,
-					parseQuery,
-					result.Map(F.Flow2(
-						F.Curry2(FM.ValuesMonoid.Concat)(builder.GetQuery()),
-						url.Values.Encode,
-					)),
-				),
-			),
-			T.Tupled2(result.MonadAp[*url.URL, string]),
-			result.Map((*url.URL).String),
-		)),
-	)
+	return nil
 }
 
 // Deprecated: use [GetURL] instead
-func (builder *Builder) GetUrl() string {
-	return builder.url
-}
+func (builder *Builder) GetUrl() string { _ = "STUB: not implemented"; return "" }
 
-func (builder *Builder) GetURL() string {
-	return builder.url
-}
+func (builder *Builder) GetURL() string { _ = "STUB: not implemented"; return "" }
 
-func (builder *Builder) GetMethod() string {
-	return F.Pipe1(
-		builder.method,
-		O.GetOrElse(defaultMethod),
-	)
-}
+func (builder *Builder) GetMethod() string { _ = "STUB: not implemented"; return "" }
 
 func (builder *Builder) GetHeaders() http.Header {
-	return builder.headers
+	_ = "STUB: not implemented"
+	return *new(http.Header)
 }
 
-func (builder *Builder) GetQuery() url.Values {
-	return builder.query
-}
+func (builder *Builder) GetQuery() url.Values { _ = "STUB: not implemented"; return *new(url.Values) }
 
-func (builder *Builder) SetQuery(query url.Values) *Builder {
-	builder.query = query
-	return builder
-}
+func (builder *Builder) SetQuery(query url.Values) *Builder { _ = "STUB: not implemented"; return nil }
 
-func (builder *Builder) GetBody() Option[Result[[]byte]] {
-	return builder.body
-}
+func (builder *Builder) GetBody() Option[Result[[]byte]] { _ = "STUB: not implemented"; return nil }
 
-func (builder *Builder) SetMethod(method string) *Builder {
-	builder.method = O.Some(method)
-	return builder
-}
+func (builder *Builder) SetMethod(method string) *Builder { _ = "STUB: not implemented"; return nil }
 
 // Deprecated: use [SetURL] instead
-func (builder *Builder) SetUrl(url string) *Builder {
-	builder.url = url
-	return builder
-}
+func (builder *Builder) SetUrl(url string) *Builder { _ = "STUB: not implemented"; return nil }
 
-func (builder *Builder) SetURL(url string) *Builder {
-	builder.url = url
-	return builder
-}
+func (builder *Builder) SetURL(url string) *Builder { _ = "STUB: not implemented"; return nil }
 
 func (builder *Builder) SetHeaders(headers http.Header) *Builder {
-	builder.headers = headers
-	return builder
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (builder *Builder) SetBody(body Option[Result[[]byte]]) *Builder {
-	builder.body = body
-	return builder
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (builder *Builder) SetHeader(name, value string) *Builder {
-	builder.headers.Set(name, value)
-	return builder
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (builder *Builder) DelHeader(name string) *Builder {
-	builder.headers.Del(name)
-	return builder
-}
+func (builder *Builder) DelHeader(name string) *Builder { _ = "STUB: not implemented"; return nil }
 
 func (builder *Builder) GetHeader(name string) Option[string] {
-	return F.Pipe2(
-		name,
-		builder.headers.Get,
-		O.FromPredicate(S.IsNonEmpty),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (builder *Builder) GetHeaderValues(name string) []string {
-	return builder.headers.Values(name)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetHash returns a hash value for the builder that can be used as a cache key
-func (builder *Builder) GetHash() string {
-	return MakeHash(builder)
-}
+func (builder *Builder) GetHash() string { _ = "STUB: not implemented"; return "" }
 
 // Header returns a [Lens] for a single header
-func Header(name string) Lens[*Builder, Option[string]] {
-	get := getHeader(name)
-	set := F.Bind1of2(setHeader(name))
-	del := F.Flow2(
-		LZ.Of[*Builder],
-		LZ.Map(delHeader(name)),
-	)
-
-	return L.MakeLensWithName(get, func(b *Builder, value Option[string]) *Builder {
-		cpy := b.clone()
-		return F.Pipe1(
-			value,
-			O.Fold(del(cpy), set(cpy)),
-		)
-	}, fmt.Sprintf("HttpHeader[%s]", name))
-}
+func Header(name string) Lens[*Builder, Option[string]] { _ = "STUB: not implemented"; return nil }
 
 // WithHeader creates a [Endomorphism] for a certain header
-func WithHeader(name string) func(value string) Endomorphism {
-	return F.Flow2(
-		O.Of[string],
-		Header(name).Set,
-	)
-}
+func WithHeader(name string) func(value string) Endomorphism { _ = "STUB: not implemented"; return nil }
 
 // WithoutHeader creates a [Endomorphism] to remove a certain header
-func WithoutHeader(name string) Endomorphism {
-	return Header(name).Set(noHeader)
-}
+func WithoutHeader(name string) Endomorphism { _ = "STUB: not implemented"; return *new(Endomorphism) }
 
 // WithJson creates a [Endomorphism] to send JSON payload
 //
 // Deprecated: use [WithJSON] instead
 func WithJson[T any](data T) Endomorphism {
-	return WithJSON(data)
+	_ = "STUB: not implemented"
+	return *
+
+	// WithJSON creates a [Endomorphism] to send JSON payload
+	new(Endomorphism)
 }
 
-// WithJSON creates a [Endomorphism] to send JSON payload
-func WithJSON[T any](data T) Endomorphism {
-	return Monoid.Concat(
-		F.Pipe2(
-			data,
-			J.Marshal[T],
-			WithBody,
-		),
-		WithContentType(C.JSON),
-	)
-}
+func WithJSON[T any](data T) Endomorphism { _ = "STUB: not implemented"; return *new(Endomorphism) }
 
 // QueryArg is a [Lens] for the first value of a query argument
-func QueryArg(name string) Lens[*Builder, Option[string]] {
-	return F.Pipe1(
-		Query,
-		L.Compose[*Builder](FM.AtValue(name)),
-	)
-}
+func QueryArg(name string) Lens[*Builder, Option[string]] { _ = "STUB: not implemented"; return nil }
 
 // WithQueryArg creates a [Endomorphism] for a certain query argument
 func WithQueryArg(name string) func(value string) Endomorphism {
-	return F.Flow2(
-		O.Of[string],
-		QueryArg(name).Set,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WithoutQueryArg creates a [Endomorphism] that removes a query argument
 func WithoutQueryArg(name string) Endomorphism {
-	return QueryArg(name).Set(noQueryArg)
+	_ = "STUB: not implemented"
+	return *new(Endomorphism)
 }
 
 func hashWriteValue(buf *bytes.Buffer, value string) *bytes.Buffer {
-	buf.WriteString(value)
-	return buf
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func hashWriteQuery(name string, buf *bytes.Buffer, values []string) *bytes.Buffer {
-	buf.WriteString(name)
-	return A.Reduce(hashWriteValue, buf)(values)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func makeBytes(b *Builder) []byte {
-	var buf bytes.Buffer
+func makeBytes(b *Builder) []byte { _ = "STUB: not implemented"; return nil }
 
-	buf.WriteString(b.GetMethod())
-	buf.WriteString(b.GetURL())
-	b.GetHeaders().Write(&buf) // #nosec: G104
-
-	R.ReduceOrdWithIndex[[]string, *bytes.Buffer](S.Ord)(hashWriteQuery, &buf)(b.GetQuery())
-
-	buf.Write(bodyAsBytes(b.GetBody()))
-
-	return buf.Bytes()
-}
+// #nosec: G104
 
 // MakeHash converts a [Builder] into a hash string, convenient to use as a cache key
-func MakeHash(b *Builder) string {
-	return fmt.Sprintf("%x", sha256.Sum256(makeBytes(b)))
-}
+func MakeHash(b *Builder) string { _ = "STUB: not implemented"; return "" }

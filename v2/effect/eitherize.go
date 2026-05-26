@@ -17,8 +17,6 @@ package effect
 
 import (
 	"context"
-
-	"github.com/IBM/fp-go/v2/context/readerreaderioresult"
 )
 
 // Eitherize converts a function that returns a value and error into an Effect.
@@ -106,7 +104,8 @@ import (
 //
 //go:inline
 func Eitherize[C, T any](f func(C, context.Context) (T, error)) Effect[C, T] {
-	return readerreaderioresult.Eitherize(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Eitherize1 converts a function that takes an additional parameter and returns a value
@@ -204,5 +203,6 @@ func Eitherize[C, T any](f func(C, context.Context) (T, error)) Effect[C, T] {
 //
 //go:inline
 func Eitherize1[C, A, T any](f func(C, context.Context, A) (T, error)) Kleisli[C, A, T] {
-	return readerreaderioresult.Eitherize1(f)
+	_ = "STUB: not implemented"
+	return nil
 }

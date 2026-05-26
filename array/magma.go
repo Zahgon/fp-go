@@ -19,6 +19,4 @@ import (
 	M "github.com/IBM/fp-go/monoid"
 )
 
-func ConcatAll[A any](m M.Monoid[A]) func([]A) A {
-	return Reduce(m.Concat, m.Empty())
-}
+func ConcatAll[A any](m M.Monoid[A]) func([]A) A { _ = "STUB: not implemented"; return nil }

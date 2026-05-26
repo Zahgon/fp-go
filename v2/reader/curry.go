@@ -15,10 +15,6 @@
 
 package reader
 
-import (
-	G "github.com/IBM/fp-go/v2/reader/generic"
-)
-
 // These functions curry a Go function with the context as the first parameter into a Reader
 // with the context as the last parameter, which is equivalent to a function returning a Reader
 // of that context.
@@ -34,9 +30,7 @@ import (
 //	getValue := func(c Config) int { return c.Value }
 //	r := reader.Curry0(getValue)
 //	result := r(Config{Value: 42}) // 42
-func Curry0[R, A any](f func(R) A) Reader[R, A] {
-	return G.Curry0[Reader[R, A]](f)
-}
+func Curry0[R, A any](f func(R) A) Reader[R, A] { _ = "STUB: not implemented"; return nil }
 
 // Curry1 converts a function with context as first parameter into a curried function
 // returning a Reader. The context parameter is moved to the end (Reader position).
@@ -48,9 +42,7 @@ func Curry0[R, A any](f func(R) A) Reader[R, A] {
 //	curried := reader.Curry1(addPrefix)
 //	r := curried("hello")
 //	result := r(Config{Prefix: ">> "}) // ">> hello"
-func Curry1[R, T1, A any](f func(R, T1) A) Kleisli[R, T1, A] {
-	return G.Curry1[Reader[R, A]](f)
-}
+func Curry1[R, T1, A any](f func(R, T1) A) Kleisli[R, T1, A] { _ = "STUB: not implemented"; return nil }
 
 // Curry is an alias for Curry1, converting a function with context as first parameter
 // into a curried function returning a Reader.
@@ -139,21 +131,24 @@ func Curry1[R, T1, A any](f func(R, T1) A) Kleisli[R, T1, A] {
 //
 //go:inline
 func Curry[R, T1, A any](f func(R, T1) A) Kleisli[R, T1, A] {
-	return Curry1(f)
+	_ = "STUB: not implemented"
+
+	// Curry2 converts a function with context as first parameter and 2 other parameters
+	// into a curried function returning a Reader.
+	//
+	// Example:
+	//
+	//	type Config struct { Sep string }
+	//	join := func(c Config, a, b string) string { return a + c.Sep + b }
+	//	curried := reader.Curry2(join)
+	//	r := curried("hello")("world")
+	//	result := r(Config{Sep: "-"}) // "hello-world"
+	return nil
 }
 
-// Curry2 converts a function with context as first parameter and 2 other parameters
-// into a curried function returning a Reader.
-//
-// Example:
-//
-//	type Config struct { Sep string }
-//	join := func(c Config, a, b string) string { return a + c.Sep + b }
-//	curried := reader.Curry2(join)
-//	r := curried("hello")("world")
-//	result := r(Config{Sep: "-"}) // "hello-world"
 func Curry2[R, T1, T2, A any](f func(R, T1, T2) A) func(T1) func(T2) Reader[R, A] {
-	return G.Curry2[Reader[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry3 converts a function with context as first parameter and 3 other parameters
@@ -169,7 +164,8 @@ func Curry2[R, T1, T2, A any](f func(R, T1, T2) A) func(T1) func(T2) Reader[R, A
 //	r := curried("a")("b")("c")
 //	result := r(Config{Format: "%s-%s-%s"}) // "a-b-c"
 func Curry3[R, T1, T2, T3, A any](f func(R, T1, T2, T3) A) func(T1) func(T2) func(T3) Reader[R, A] {
-	return G.Curry3[Reader[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry4 converts a function with context as first parameter and 4 other parameters
@@ -185,7 +181,8 @@ func Curry3[R, T1, T2, T3, A any](f func(R, T1, T2, T3) A) func(T1) func(T2) fun
 //	r := curried(1)(2)(3)(4)
 //	result := r(Config{Multiplier: 10}) // 100
 func Curry4[R, T1, T2, T3, T4, A any](f func(R, T1, T2, T3, T4) A) func(T1) func(T2) func(T3) func(T4) Reader[R, A] {
-	return G.Curry4[Reader[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry0 converts a Reader back into a regular function with context as first parameter.
@@ -196,9 +193,7 @@ func Curry4[R, T1, T2, T3, T4, A any](f func(R, T1, T2, T3, T4) A) func(T1) func
 //	r := reader.Of[Config](42)
 //	f := reader.Uncurry0(r)
 //	result := f(Config{Value: 0}) // 42
-func Uncurry0[R, A any](f Reader[R, A]) func(R) A {
-	return G.Uncurry0(f)
-}
+func Uncurry0[R, A any](f Reader[R, A]) func(R) A { _ = "STUB: not implemented"; return nil }
 
 // Uncurry1 converts a curried function returning a Reader back into a regular function
 // with context as first parameter.
@@ -212,34 +207,41 @@ func Uncurry0[R, A any](f Reader[R, A]) func(R) A {
 //	f := reader.Uncurry1(curried)
 //	result := f(Config{Prefix: ">> "}, "hello") // ">> hello"
 func Uncurry1[R, T1, A any](f Kleisli[R, T1, A]) func(R, T1) A {
-	return G.Uncurry1(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Uncurry2 converts a curried function with 2 parameters returning a Reader back into
+	// a regular function with context as first parameter.
+	//
+	// Example:
+	//
+	//	type Config struct { Sep string }
+	//	curried := func(a string) func(string) reader.Reader[Config, string] {
+	//	    return func(b string) reader.Reader[Config, string] {
+	//	        return reader.Asks(func(c Config) string { return a + c.Sep + b })
+	//	    }
+	//	}
+	//	f := reader.Uncurry2(curried)
+	//	result := f(Config{Sep: "-"}, "hello", "world") // "hello-world"
 }
 
-// Uncurry2 converts a curried function with 2 parameters returning a Reader back into
-// a regular function with context as first parameter.
-//
-// Example:
-//
-//	type Config struct { Sep string }
-//	curried := func(a string) func(string) reader.Reader[Config, string] {
-//	    return func(b string) reader.Reader[Config, string] {
-//	        return reader.Asks(func(c Config) string { return a + c.Sep + b })
-//	    }
-//	}
-//	f := reader.Uncurry2(curried)
-//	result := f(Config{Sep: "-"}, "hello", "world") // "hello-world"
 func Uncurry2[R, T1, T2, A any](f func(T1) func(T2) Reader[R, A]) func(R, T1, T2) A {
-	return G.Uncurry2(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Uncurry3 converts a curried function with 3 parameters returning a Reader back into
+	// a regular function with context as first parameter.
 }
 
-// Uncurry3 converts a curried function with 3 parameters returning a Reader back into
-// a regular function with context as first parameter.
 func Uncurry3[R, T1, T2, T3, A any](f func(T1) func(T2) func(T3) Reader[R, A]) func(R, T1, T2, T3) A {
-	return G.Uncurry3(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Uncurry4 converts a curried function with 4 parameters returning a Reader back into
+	// a regular function with context as first parameter.
 }
 
-// Uncurry4 converts a curried function with 4 parameters returning a Reader back into
-// a regular function with context as first parameter.
 func Uncurry4[R, T1, T2, T3, T4, A any](f func(T1) func(T2) func(T3) func(T4) Reader[R, A]) func(R, T1, T2, T3, T4) A {
-	return G.Uncurry4(f)
+	_ = "STUB: not implemented"
+	return nil
 }

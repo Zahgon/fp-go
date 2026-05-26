@@ -21,23 +21,26 @@ import (
 
 type eitherMonad[E, A, B any] struct{}
 
-func (o *eitherMonad[E, A, B]) Of(a A) Either[E, A] {
-	return Of[E, A](a)
-}
+func (o *eitherMonad[E, A, B]) Of(a A) Either[E, A] { _ = "STUB: not implemented"; return nil }
 
 func (o *eitherMonad[E, A, B]) Map(f func(A) B) func(Either[E, A]) Either[E, B] {
-	return Map[E, A, B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *eitherMonad[E, A, B]) Chain(f func(A) Either[E, B]) func(Either[E, A]) Either[E, B] {
-	return Chain[E, A, B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (o *eitherMonad[E, A, B]) Ap(fa Either[E, A]) func(Either[E, func(A) B]) Either[E, B] {
-	return Ap[B, E, A](fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Monad implements the monadic operations for [Either]
 }
 
-// Monad implements the monadic operations for [Either]
 func Monad[E, A, B any]() monad.Monad[A, B, Either[E, A], Either[E, B], Either[E, func(A) B]] {
-	return &eitherMonad[E, A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }

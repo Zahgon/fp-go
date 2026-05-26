@@ -19,22 +19,4 @@ import (
 	C "github.com/urfave/cli/v3"
 )
 
-func Commands() []*C.Command {
-	return []*C.Command{
-		PipeCommand(),
-		IdentityCommand(),
-		OptionCommand(),
-		EitherCommand(),
-		TupleCommand(),
-		BindCommand(),
-		ApplyCommand(),
-		ContextReaderIOEitherCommand(),
-		ReaderIOEitherCommand(),
-		ReaderCommand(),
-		IOEitherCommand(),
-		IOCommand(),
-		IOOptionCommand(),
-		DICommand(),
-		LensCommand(),
-	}
-}
+func Commands() []*C.Command { _ = "STUB: not implemented"; return nil }

@@ -16,12 +16,7 @@
 package readerresult
 
 import (
-	"context"
-	"time"
-
-	RD "github.com/IBM/fp-go/v2/reader"
 	R "github.com/IBM/fp-go/v2/retry"
-	RG "github.com/IBM/fp-go/v2/retry/generic"
 )
 
 // Retrying retries a ReaderResult computation according to a retry policy with context awareness.
@@ -100,6 +95,7 @@ func Retrying[A any](
 	action Kleisli[R.RetryStatus, A],
 	check Predicate[Result[A]],
 ) ReaderResult[A] {
+	_ = "STUB: not implemented"
 
 	// delayWithCancel implements a context-aware delay mechanism for retry operations.
 	// It creates a timeout context that will be cancelled when either:
@@ -119,38 +115,16 @@ func Retrying[A any](
 	//   - Retry delays respect context cancellation and terminate immediately
 	//   - The cancellation error propagates correctly through the retry chain
 	//   - No unnecessary delays occur when the context is already cancelled
-	delayWithCancel := func(delay time.Duration) RD.Operator[context.Context, R.RetryStatus, R.RetryStatus] {
-		return func(ri Reader[context.Context, R.RetryStatus]) Reader[context.Context, R.RetryStatus] {
-			return func(ctx context.Context) R.RetryStatus {
-				// Create a timeout context that will be cancelled when either:
-				// - The delay duration expires, or
-				// - The parent context is cancelled
-				timeoutCtx, cancelTimeout := context.WithTimeout(ctx, delay)
-				defer cancelTimeout()
-
-				// Wait for either the timeout or parent context cancellation
-				<-timeoutCtx.Done()
-
-				// Dispatch to the next action with the original context.
-				// WithContextK will handle context cancellation correctly.
-				return ri(ctx)
-			}
-		}
-	}
-
-	// get an implementation for the types
-	return RG.Retrying(
-		RD.Chain[context.Context, Result[A], Trampoline[R.RetryStatus, Result[A]]],
-		RD.Map[context.Context, R.RetryStatus, Trampoline[R.RetryStatus, Result[A]]],
-		RD.Of[context.Context, Trampoline[R.RetryStatus, Result[A]]],
-		RD.Of[context.Context, R.RetryStatus],
-		delayWithCancel,
-
-		RD.TailRec,
-
-		policy,
-		WithContextK(action),
-		check,
-	)
-
+	return nil
 }
+
+// Create a timeout context that will be cancelled when either:
+// - The delay duration expires, or
+// - The parent context is cancelled
+
+// Wait for either the timeout or parent context cancellation
+
+// Dispatch to the next action with the original context.
+// WithContextK will handle context cancellation correctly.
+
+// get an implementation for the types

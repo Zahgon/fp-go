@@ -16,16 +16,7 @@
 package itereither
 
 import (
-	A "github.com/IBM/fp-go/v2/array"
 	"github.com/IBM/fp-go/v2/either"
-	"github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/chain"
-	"github.com/IBM/fp-go/v2/internal/eithert"
-	"github.com/IBM/fp-go/v2/internal/file"
-	"github.com/IBM/fp-go/v2/internal/fromeither"
-	"github.com/IBM/fp-go/v2/internal/fromiter"
-	"github.com/IBM/fp-go/v2/internal/functor"
-	"github.com/IBM/fp-go/v2/io"
 	"github.com/IBM/fp-go/v2/iterator/iter"
 	"github.com/IBM/fp-go/v2/lazy"
 	O "github.com/IBM/fp-go/v2/option"
@@ -130,9 +121,7 @@ type (
 //   - FromLazy: Converts a Lazy computation to SeqEither
 //   - FromIOEither: Converts an IOEither to SeqEither
 //   - Right: Creates a SeqEither from a pure value
-func FromIO[E, A any](mr IO[A]) SeqEither[E, A] {
-	return iter.FromIO(eithert.RightF(io.MonadMap[A, Either[E, A]], mr))
-}
+func FromIO[E, A any](mr IO[A]) SeqEither[E, A] { _ = "STUB: not implemented"; return nil }
 
 // FromLazy converts a Lazy computation into a single-element SeqEither containing a Right value.
 // The Lazy computation is executed when the sequence is consumed, and its result is wrapped
@@ -165,9 +154,7 @@ func FromIO[E, A any](mr IO[A]) SeqEither[E, A] {
 //   - FromIO: Converts an IO computation to SeqEither
 //   - FromIOEither: Converts an IOEither to SeqEither
 //   - Right: Creates a SeqEither from a pure value
-func FromLazy[E, A any](mr Lazy[A]) SeqEither[E, A] {
-	return iter.FromIO(eithert.RightF(io.MonadMap[A, Either[E, A]], mr))
-}
+func FromLazy[E, A any](mr Lazy[A]) SeqEither[E, A] { _ = "STUB: not implemented"; return nil }
 
 // FromIOEither converts an IOEither computation into a single-element SeqEither.
 // The IOEither computation is executed when the sequence is consumed, and its result
@@ -203,98 +190,73 @@ func FromLazy[E, A any](mr Lazy[A]) SeqEither[E, A] {
 //   - FromLazy: Converts a Lazy computation to SeqEither (always Right)
 //   - FromEither: Converts a pure Either to SeqEither
 func FromIOEither[E, A any](mr IOEither[E, A]) SeqEither[E, A] {
-	return iter.FromIO(mr)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Left constructs an [SeqEither] that represents a failure with an error value of type E
 }
 
-// Left constructs an [SeqEither] that represents a failure with an error value of type E
-func Left[A, E any](l E) SeqEither[E, A] {
-	return eithert.Left(iter.Of[Either[E, A]], l)
-}
+func Left[A, E any](l E) SeqEither[E, A] { _ = "STUB: not implemented"; return nil }
 
 // Right constructs an [SeqEither] that represents a successful computation with a value of type A
-func Right[E, A any](r A) SeqEither[E, A] {
-	return eithert.Right(iter.Of[Either[E, A]], r)
-}
+func Right[E, A any](r A) SeqEither[E, A] { _ = "STUB: not implemented"; return nil }
 
 // Of constructs an [SeqEither] that represents a successful computation with a value of type A.
 // This is an alias for [Right] and is the canonical way to lift a pure value into the SeqEither context.
 func Of[E, A any](r A) SeqEither[E, A] {
-	return Right[E](r)
+	_ = "STUB: not implemented"
+
+	// MonadOf is an alias for [Of], provided for consistency with monad naming conventions
+	return nil
 }
 
-// MonadOf is an alias for [Of], provided for consistency with monad naming conventions
 func MonadOf[E, A any](r A) SeqEither[E, A] {
-	return Of[E](r)
+	_ = "STUB: not implemented"
+
+	// LeftSeq constructs an [SeqEither] from an [Seq] that produces an error value
+	return nil
 }
 
-// LeftSeq constructs an [SeqEither] from an [Seq] that produces an error value
-func LeftSeq[A, E any](ml Seq[E]) SeqEither[E, A] {
-	return eithert.LeftF(iter.MonadMap[E, Either[E, A]], ml)
-}
+func LeftSeq[A, E any](ml Seq[E]) SeqEither[E, A] { _ = "STUB: not implemented"; return nil }
 
 // RightSeq constructs an [SeqEither] from an [Seq] that produces a success value
-func RightSeq[E, A any](mr Seq[A]) SeqEither[E, A] {
-	return eithert.RightF(iter.MonadMap[A, Either[E, A]], mr)
-}
+func RightSeq[E, A any](mr Seq[A]) SeqEither[E, A] { _ = "STUB: not implemented"; return nil }
 
 // FromEither lifts an [Either] value into the [SeqEither] context
-func FromEither[E, A any](e Either[E, A]) SeqEither[E, A] {
-	return iter.Of(e)
-}
+func FromEither[E, A any](e Either[E, A]) SeqEither[E, A] { _ = "STUB: not implemented"; return nil }
 
 func FromOption[A, E any](onNone func() E) Kleisli[E, O.Option[A], A] {
-	return fromeither.FromOption(
-		FromEither[E, A],
-		onNone,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainOptionK[A, B, E any](onNone func() E) func(O.Kleisli[A, B]) Operator[E, A, B] {
-	return fromeither.ChainOptionK(
-		MonadChain[E, A, B],
-		FromEither[E, B],
-		onNone,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainSeqK[E, A, B any](ma SeqEither[E, A], f iter.Kleisli[A, B]) SeqEither[E, B] {
-	return fromiter.MonadChainIOK(
-		MonadChain[E, A, B],
-		FromSeq[E, B],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainSeqK[E, A, B any](f iter.Kleisli[A, B]) Operator[E, A, B] {
-	return fromiter.ChainIOK(
-		Chain[E, A, B],
-		FromSeq[E, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadMergeMapSeqK[E, A, B any](ma SeqEither[E, A], f iter.Kleisli[A, B]) SeqEither[E, B] {
-	return fromiter.MonadChainIOK(
-		MonadMergeMap[E, A, B],
-		FromSeq[E, B],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MergeMapSeqK[E, A, B any](f iter.Kleisli[A, B]) Operator[E, A, B] {
-	return fromiter.ChainIOK(
-		MergeMap[E, A, B],
-		FromSeq[E, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromSeq creates an [SeqEither] from an [Seq] instance, invoking [Seq] for each invocation of [SeqEither]
-func FromSeq[E, A any](mr Seq[A]) SeqEither[E, A] {
-	return RightSeq[E](mr)
-}
+func FromSeq[E, A any](mr Seq[A]) SeqEither[E, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadMap applies a function to the value inside a successful SeqEither, leaving errors unchanged.
 //
@@ -306,7 +268,8 @@ func FromSeq[E, A any](mr Seq[A]) SeqEither[E, A] {
 //
 // Where R(x) represents Right(x) and L(e) represents Left(e).
 func MonadMap[E, A, B any](fa SeqEither[E, A], f func(A) B) SeqEither[E, B] {
-	return eithert.MonadMap(iter.MonadMap[Either[E, A], Either[E, B]], fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map returns a function that applies a transformation to the value inside a successful SeqEither.
@@ -318,19 +281,16 @@ func MonadMap[E, A, B any](fa SeqEither[E, A], f func(A) B) SeqEither[E, B] {
 //	Output: ---R(2)---R(4)---L(e)---R(6)---|
 //
 // Where R(x) represents Right(x) and L(e) represents Left(e).
-func Map[E, A, B any](f func(A) B) Operator[E, A, B] {
-	return eithert.Map(iter.Map[Either[E, A], Either[E, B]], f)
-}
+func Map[E, A, B any](f func(A) B) Operator[E, A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadMapTo replaces the value inside a successful [SeqEither] with a constant value
 func MonadMapTo[E, A, B any](fa SeqEither[E, A], b B) SeqEither[E, B] {
-	return MonadMap(fa, function.Constant1[A](b))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MapTo returns a function that replaces the value inside a successful [SeqEither] with a constant value
-func MapTo[E, A, B any](b B) Operator[E, A, B] {
-	return Map[E](function.Constant1[A](b))
-}
+func MapTo[E, A, B any](b B) Operator[E, A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChain sequences two SeqEither computations, where the second depends on the result of the first.
 //
@@ -344,7 +304,8 @@ func MapTo[E, A, B any](b B) Operator[E, A, B] {
 // Each Right value is transformed into a sequence, which is then flattened.
 // Left values pass through unchanged and stop further processing.
 func MonadChain[E, A, B any](fa SeqEither[E, A], f Kleisli[E, A, B]) SeqEither[E, B] {
-	return eithert.MonadChain(iter.MonadChain[Either[E, A], Either[E, B]], iter.MonadOf[Either[E, B]], fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMergeMap sequences two SeqEither computations, where the second depends on the result of the first.
@@ -359,56 +320,49 @@ func MonadChain[E, A, B any](fa SeqEither[E, A], f Kleisli[E, A, B]) SeqEither[E
 //
 // Results are interleaved as they become available, rather than waiting for each sequence to complete.
 func MonadMergeMap[E, A, B any](fa SeqEither[E, A], f Kleisli[E, A, B]) SeqEither[E, B] {
-	return eithert.MonadChain(iter.MonadMergeMap[Either[E, A], Either[E, B]], iter.MonadOf[Either[E, B]], fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain returns a function that sequences two [SeqEither] computations
 func Chain[E, A, B any](f Kleisli[E, A, B]) Operator[E, A, B] {
-	return eithert.Chain(iter.Chain[Either[E, A], Either[E, B]], iter.Of[Either[E, B]], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MergeMap returns a function that sequences two [SeqEither] computations
 func MergeMap[E, A, B any](f Kleisli[E, A, B]) Operator[E, A, B] {
-	return eithert.Chain(iter.MergeMap[Either[E, A], Either[E, B]], iter.Of[Either[E, B]], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainEitherK[E, A, B any](ma SeqEither[E, A], f either.Kleisli[E, A, B]) SeqEither[E, B] {
-	return fromeither.MonadChainEitherK(
-		MonadChain[E, A, B],
-		FromEither[E, B],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainEitherK[E, A, B any](f either.Kleisli[E, A, B]) Operator[E, A, B] {
-	return fromeither.ChainEitherK(
-		Chain[E, A, B],
-		FromEither[E, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAp applies a function wrapped in an [SeqEither] to a value wrapped in an [SeqEither]
 func MonadAp[B, E, A any](mab SeqEither[E, func(A) B], ma SeqEither[E, A]) SeqEither[E, B] {
-	return eithert.MonadAp(
-		iter.MonadAp[Either[E, B], Either[E, A]],
-		iter.MonadMap[Either[E, func(A) B], func(Either[E, A]) Either[E, B]],
-		mab, ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Ap applies a function wrapped in an [SeqEither] to a value wrapped in an [SeqEither].
 // This is an alias of [ApPar] which applies the function and value in parallel.
 func Ap[B, E, A any](ma SeqEither[E, A]) Operator[E, func(A) B, B] {
-	return eithert.Ap(
-		iter.Ap[Either[E, B], Either[E, A]],
-		iter.Map[Either[E, func(A) B], func(Either[E, A]) Either[E, B]],
-		ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flatten removes one level of nesting from a nested [SeqEither]
 func Flatten[E, A any](mma SeqEither[E, SeqEither[E, A]]) SeqEither[E, A] {
-	return MonadChain(mma, function.Identity[SeqEither[E, A]])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMapLeft applies a function to the error value of a failed SeqEither, leaving successful values unchanged.
@@ -421,19 +375,14 @@ func Flatten[E, A any](mma SeqEither[E, SeqEither[E, A]]) SeqEither[E, A] {
 //
 // Where R(x) represents Right(x) and L(e) represents Left(e).
 func MonadMapLeft[A, E1, E2 any](fa SeqEither[E1, A], f func(E1) E2) SeqEither[E2, A] {
-	return eithert.MonadMapLeft(
-		iter.MonadMap[Either[E1, A], Either[E2, A]],
-		fa,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MapLeft returns a function that applies a transformation to the error value of a failed [SeqEither]
 func MapLeft[A, E1, E2 any](f func(E1) E2) func(SeqEither[E1, A]) SeqEither[E2, A] {
-	return eithert.MapLeft(
-		iter.Map[Either[E1, A], Either[E2, A]],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadBiMap applies one function to the error value and another to the success value of a SeqEither.
@@ -446,151 +395,127 @@ func MapLeft[A, E1, E2 any](f func(E1) E2) func(SeqEither[E1, A]) SeqEither[E2, 
 //
 // Both Left and Right values are transformed according to their respective functions.
 func MonadBiMap[E1, E2, A, B any](fa SeqEither[E1, A], f func(E1) E2, g func(A) B) SeqEither[E2, B] {
-	return eithert.MonadBiMap(iter.MonadMap[Either[E1, A], Either[E2, B]], fa, f, g)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BiMap returns a function that maps a pair of functions over the two type arguments of the bifunctor
 func BiMap[E1, E2, A, B any](f func(E1) E2, g func(A) B) func(SeqEither[E1, A]) SeqEither[E2, B] {
-	return eithert.BiMap(iter.Map[Either[E1, A], Either[E2, B]], f, g)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Fold converts an [SeqEither] into an [Seq] by providing handlers for both the error and success cases
 func Fold[E, A, B any](onLeft iter.Kleisli[E, B], onRight iter.Kleisli[A, B]) func(SeqEither[E, A]) Seq[B] {
-	return eithert.MatchE(iter.MonadChain[Either[E, A], B], onLeft, onRight)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetOrElse extracts the value from a successful [SeqEither] or computes a default value from the error
 func GetOrElse[E, A any](onLeft iter.Kleisli[E, A]) func(SeqEither[E, A]) Seq[A] {
-	return eithert.GetOrElse(iter.MonadChain[Either[E, A], A], iter.MonadOf[A], onLeft)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetOrElseOf extracts the value from a successful [SeqEither] or computes a default value from the error
 func GetOrElseOf[E, A any](onLeft func(E) A) func(SeqEither[E, A]) Seq[A] {
-	return eithert.GetOrElseOf(iter.MonadChain[Either[E, A], A], iter.MonadOf[A], onLeft)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainTo sequences two [SeqEither] computations, discarding the result of the first
 func MonadChainTo[A, E, B any](fa SeqEither[E, A], fb SeqEither[E, B]) SeqEither[E, B] {
-	return MonadChain(fa, function.Constant1[A](fb))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainTo returns a function that sequences two [SeqEither] computations, discarding the result of the first
 func ChainTo[A, E, B any](fb SeqEither[E, B]) Operator[E, A, B] {
-	return Chain(function.Constant1[A](fb))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainToSeq sequences an [SeqEither] with an [Seq], discarding the result of the first
 func MonadChainToSeq[E, A, B any](fa SeqEither[E, A], fb Seq[B]) SeqEither[E, B] {
-	return MonadChainTo(fa, FromSeq[E](fb))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainToSeq returns a function that sequences an [SeqEither] with an [Seq], discarding the result of the first
-func ChainToSeq[E, A, B any](fb Seq[B]) Operator[E, A, B] {
-	return ChainTo[A](FromSeq[E](fb))
-}
+func ChainToSeq[E, A, B any](fb Seq[B]) Operator[E, A, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainFirst executes a side-effecting [SeqEither] computation but returns the original value
 func MonadChainFirst[E, A, B any](ma SeqEither[E, A], f Kleisli[E, A, B]) SeqEither[E, A] {
-	return chain.MonadChainFirst(
-		MonadChain[E, A, A],
-		MonadMap[E, B, A],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTap is an alias for [MonadChainFirst], executing a side effect while preserving the original value
 func MonadTap[E, A, B any](ma SeqEither[E, A], f Kleisli[E, A, B]) SeqEither[E, A] {
-	return MonadChainFirst(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirst returns a function that executes a side-effecting [SeqEither] computation but returns the original value
 func ChainFirst[E, A, B any](f Kleisli[E, A, B]) Operator[E, A, A] {
-	return chain.ChainFirst(
-		Chain[E, A, A],
-		Map[E, B, A],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Tap is an alias for [ChainFirst], executing a side effect while preserving the original value
-func Tap[E, A, B any](f Kleisli[E, A, B]) Operator[E, A, A] {
-	return ChainFirst(f)
-}
+func Tap[E, A, B any](f Kleisli[E, A, B]) Operator[E, A, A] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainFirstEitherK executes a side-effecting [Either] computation but returns the original [SeqEither] value
 func MonadChainFirstEitherK[A, E, B any](ma SeqEither[E, A], f either.Kleisli[E, A, B]) SeqEither[E, A] {
-	return fromeither.MonadChainFirstEitherK(
-		MonadChain[E, A, A],
-		MonadMap[E, B, A],
-		FromEither[E, B],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstEitherK returns a function that executes a side-effecting [Either] computation but returns the original value
 func ChainFirstEitherK[A, E, B any](f either.Kleisli[E, A, B]) Operator[E, A, A] {
-	return fromeither.ChainFirstEitherK(
-		Chain[E, A, A],
-		Map[E, B, A],
-		FromEither[E, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadMergeMapFirstEitherK executes a side-effecting [Either] computation but returns the original [SeqEither] value
 func MonadMergeMapFirstEitherK[A, E, B any](ma SeqEither[E, A], f either.Kleisli[E, A, B]) SeqEither[E, A] {
-	return fromeither.MonadChainFirstEitherK(
-		MonadMergeMap[E, A, A],
-		MonadMap[E, B, A],
-		FromEither[E, B],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MergeMapFirstEitherK returns a function that executes a side-effecting [Either] computation but returns the original value
 func MergeMapFirstEitherK[A, E, B any](f either.Kleisli[E, A, B]) Operator[E, A, A] {
-	return fromeither.ChainFirstEitherK(
-		MergeMap[E, A, A],
-		Map[E, B, A],
-		FromEither[E, B],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadTapEitherK is an alias for [MonadChainFirstEitherK], executing an [Either] side effect while preserving the original value
 func MonadTapEitherK[A, E, B any](ma SeqEither[E, A], f either.Kleisli[E, A, B]) SeqEither[E, A] {
-	return MonadChainFirstEitherK(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TapEitherK is an alias for [ChainFirstEitherK], executing an [Either] side effect while preserving the original value
 func TapEitherK[A, E, B any](f either.Kleisli[E, A, B]) Operator[E, A, A] {
-	return ChainFirstEitherK(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFold eliminates an [SeqEither] by providing handlers for both error and success cases, returning an [Seq]
 func MonadFold[E, A, B any](ma SeqEither[E, A], onLeft iter.Kleisli[E, B], onRight iter.Kleisli[A, B]) Seq[B] {
-	return eithert.FoldE(iter.MonadChain[Either[E, A], B], ma, onLeft, onRight)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WithResource constructs a function that safely manages a resource with automatic cleanup.
 // It creates a resource, operates on it, and ensures the resource is released even if an error occurs.
 func WithResource[A, E, R, ANY any](onCreate SeqEither[E, R], onRelease Kleisli[E, R, ANY]) Kleisli[E, Kleisli[E, R, A], A] {
-	return file.WithResource(
-		MonadChain[E, R, A],
-		MonadFold[E, A, Either[E, A]],
-		MonadFold[E, ANY, Either[E, A]],
-		MonadMap[E, ANY, A],
-		Left[A, E],
-	)(function.Constant(onCreate), onRelease)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Swap exchanges the error and success type parameters of an [SeqEither]
-func Swap[E, A any](val SeqEither[E, A]) SeqEither[A, E] {
-	return MonadFold(val, Right[A, E], Left[E, A])
-}
+func Swap[E, A any](val SeqEither[E, A]) SeqEither[A, E] { _ = "STUB: not implemented"; return nil }
 
 // MonadAlt provides an alternative SeqEither computation if the first one fails.
 //
@@ -603,29 +528,24 @@ func Swap[E, A any](val SeqEither[E, A]) SeqEither[A, E] {
 // When a Left is encountered, it's replaced with values from the second sequence.
 // Right values from the first sequence pass through unchanged.
 func MonadAlt[E, A any](first SeqEither[E, A], second lazy.Lazy[SeqEither[E, A]]) SeqEither[E, A] {
-	return eithert.MonadAlt(
-		iter.Of[Either[E, A]],
-		iter.MonadChain[Either[E, A], Either[E, A]],
-
-		first,
-		second,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Alt returns a function that provides an alternative [SeqEither] computation if the first one fails
 func Alt[E, A any](second lazy.Lazy[SeqEither[E, A]]) Operator[E, A, A] {
-	return function.Bind2nd(MonadAlt[E, A], second)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadFlap applies a value to a function wrapped in an [SeqEither]
 func MonadFlap[E, B, A any](fab SeqEither[E, func(A) B], a A) SeqEither[E, B] {
-	return functor.MonadFlap(MonadMap[E, func(A) B, B], fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Flap returns a function that applies a value to a function wrapped in an [SeqEither]
-func Flap[E, B, A any](a A) Operator[E, func(A) B, B] {
-	return functor.Flap(Map[E, func(A) B, B], a)
-}
+func Flap[E, B, A any](a A) Operator[E, func(A) B, B] { _ = "STUB: not implemented"; return nil }
 
 // MonadChainLeft chains a computation on the left (error) side of a SeqEither.
 // If the input is a Left value, it applies the function f to transform the error and potentially
@@ -656,12 +576,8 @@ func Flap[E, B, A any](a A) Operator[E, func(A) B, B] {
 //	    },
 //	)
 func MonadChainLeft[EA, EB, A any](fa SeqEither[EA, A], f Kleisli[EB, EA, A]) SeqEither[EB, A] {
-	return eithert.MonadChainLeft(
-		iter.MonadChain[Either[EA, A], Either[EB, A]],
-		iter.MonadOf[Either[EB, A]],
-		fa,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainLeft is the curried version of MonadChainLeft.
@@ -693,11 +609,8 @@ func MonadChainLeft[EA, EB, A any](fa SeqEither[EA, A], f Kleisli[EB, EA, A]) Se
 //	    recoverFromNetworkError,
 //	)
 func ChainLeft[EA, EB, A any](f Kleisli[EB, EA, A]) func(SeqEither[EA, A]) SeqEither[EB, A] {
-	return eithert.ChainLeft(
-		iter.Chain[Either[EA, A], Either[EB, A]],
-		iter.Of[Either[EB, A]],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadChainFirstLeft chains a computation on the left (error) side but always returns the original error.
@@ -729,18 +642,14 @@ func ChainLeft[EA, EB, A any](f Kleisli[EB, EA, A]) func(SeqEither[EA, A]) SeqEi
 //	)
 //	// result will always be Left("database error"), even though f returns Right
 func MonadChainFirstLeft[A, EA, EB, B any](ma SeqEither[EA, A], f Kleisli[EB, EA, B]) SeqEither[EA, A] {
-	return eithert.MonadChainFirstLeft(
-		iter.MonadChain[Either[EA, A], Either[EA, A]],
-		iter.MonadMap[Either[EB, B], Either[EA, A]],
-		iter.MonadOf[Either[EA, A]],
-		ma,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MonadTapLeft[A, EA, EB, B any](ma SeqEither[EA, A], f Kleisli[EB, EA, B]) SeqEither[EA, A] {
-	return MonadChainFirstLeft(ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ChainFirstLeft is the curried version of MonadChainFirstLeft.
@@ -772,17 +681,14 @@ func MonadTapLeft[A, EA, EB, B any](ma SeqEither[EA, A], f Kleisli[EB, EA, B]) S
 //	)
 //	// result is always Left("validation failed"), even though f returns Right
 func ChainFirstLeft[A, EA, EB, B any](f Kleisli[EB, EA, B]) Operator[EA, A, A] {
-	return eithert.ChainFirstLeft(
-		iter.Chain[Either[EA, A], Either[EA, A]],
-		iter.Map[Either[EB, B], Either[EA, A]],
-		iter.Of[Either[EA, A]],
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func TapLeft[A, EA, EB, B any](f Kleisli[EB, EA, B]) Operator[EA, A, A] {
-	return ChainFirstLeft[A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // OrElse recovers from a Left (error) by providing an alternative computation.
@@ -809,7 +715,8 @@ func TapLeft[A, EA, EB, B any](f Kleisli[EB, EA, B]) Operator[EA, A, A] {
 //
 //go:inline
 func OrElse[E1, E2, A any](onLeft Kleisli[E2, E1, A]) Kleisli[E2, SeqEither[E1, A], A] {
-	return Fold(onLeft, Of[E2, A])
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadReduce reduces a SeqEither to a single Either value by applying a function to each
@@ -851,17 +758,8 @@ func OrElse[E1, E2, A any](onLeft Kleisli[E2, E1, A]) Kleisli[E2, SeqEither[E1, 
 //
 //go:inline
 func MonadReduce[E, A, B any](fa SeqEither[E, A], f func(B, A) B, initial B) IOEither[E, B] {
-	return func() Either[E, B] {
-		current := initial
-		for ea := range fa {
-			a, e := either.Unwrap(ea)
-			if either.IsLeft(ea) {
-				return either.Left[B](e)
-			}
-			current = f(current, a)
-		}
-		return either.Of[E](current)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Reduce returns a function that reduces a SeqEither to a single Either value.
@@ -892,9 +790,8 @@ func MonadReduce[E, A, B any](fa SeqEither[E, A], f func(B, A) B, initial B) IOE
 //	result := resultIO()
 //	// returns: E.Right[string](6)
 func Reduce[E, A, B any](f func(B, A) B, initial B) func(SeqEither[E, A]) IOEither[E, B] {
-	return func(fa SeqEither[E, A]) IOEither[E, B] {
-		return MonadReduce(fa, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Collect materializes a SeqEither into an Either containing a slice.
@@ -961,6 +858,4 @@ func Reduce[E, A, B any](f func(B, A) B, initial B) func(SeqEither[E, A]) IOEith
 //   - MonadReduce: Reduces a SeqEither to a single value
 //   - Fold: Converts SeqEither to Seq by handling both cases
 //   - GetOrElse: Extracts value or provides default
-func Collect[E, T any](fa SeqEither[E, T]) IOEither[E, []T] {
-	return MonadReduce(fa, A.Append, nil)
-}
+func Collect[E, T any](fa SeqEither[E, T]) IOEither[E, []T] { _ = "STUB: not implemented"; return nil }

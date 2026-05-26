@@ -15,8 +15,6 @@
 
 package readerioeither
 
-import "github.com/IBM/fp-go/v2/ioeither"
-
 // WithResource constructs a function that creates a resource, operates on it, and then releases the resource.
 // This ensures proper resource cleanup even in the presence of errors, following the Resource Acquisition Is Initialization (RAII) pattern.
 //
@@ -52,17 +50,8 @@ import "github.com/IBM/fp-go/v2/ioeither"
 //	    return readContent(f)
 //	})
 func WithResource[A, L, E, R, ANY any](onCreate ReaderIOEither[L, E, R], onRelease Kleisli[L, E, R, ANY]) Kleisli[L, E, Kleisli[L, E, R, A], A] {
-	return func(f func(R) ReaderIOEither[L, E, A]) ReaderIOEither[L, E, A] {
-		return func(l L) ioeither.IOEither[E, A] {
-			// dispatch to the generic implementation
-			return ioeither.WithResource[A](
-				onCreate(l),
-				func(r R) ioeither.IOEither[E, ANY] {
-					return onRelease(r)(l)
-				},
-			)(func(r R) ioeither.IOEither[E, A] {
-				return f(r)(l)
-			})
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// dispatch to the generic implementation

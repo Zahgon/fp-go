@@ -95,11 +95,4 @@ package eq
 // Contramap Law:
 // Contramap must satisfy: Contramap(f)(Contramap(g)(eq)) = Contramap(g ∘ f)(eq)
 // This means contramapping twice is the same as contramapping with the composed function.
-func Contramap[A, B any](f func(b B) A) func(Eq[A]) Eq[B] {
-	return func(fa Eq[A]) Eq[B] {
-		equals := fa.Equals
-		return FromEquals(func(x, y B) bool {
-			return equals(f(x), f(y))
-		})
-	}
-}
+func Contramap[A, B any](f func(b B) A) func(Eq[A]) Eq[B] { _ = "STUB: not implemented"; return nil }

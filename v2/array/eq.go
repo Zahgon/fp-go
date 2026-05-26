@@ -16,8 +16,6 @@
 package array
 
 import (
-	"slices"
-
 	E "github.com/IBM/fp-go/v2/eq"
 )
 
@@ -32,14 +30,7 @@ import (
 //	intArrayEq := array.Eq(eq.FromStrictEquals[int]())
 //	result := intArrayEq.Equals([]int{1, 2, 3}, []int{1, 2, 3}) // true
 //	result2 := intArrayEq.Equals([]int{1, 2, 3}, []int{1, 2, 4}) // false
-func Eq[T any](e E.Eq[T]) E.Eq[[]T] {
-	eq := e.Equals
-	return E.FromEquals(func(left, right []T) bool {
-		return slices.EqualFunc(left, right, eq)
-	})
-}
+func Eq[T any](e E.Eq[T]) E.Eq[[]T] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
-func StrictEquals[T comparable]() E.Eq[[]T] {
-	return E.FromEquals(slices.Equal[[]T])
-}
+func StrictEquals[T comparable]() E.Eq[[]T] { _ = "STUB: not implemented"; return nil }

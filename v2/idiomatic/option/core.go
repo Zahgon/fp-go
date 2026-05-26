@@ -15,8 +15,6 @@
 
 package option
 
-import "fmt"
-
 type (
 	Operator[A, B any] = func(A, bool) (B, bool)
 	Kleisli[A, B any]  = func(A) (B, bool)
@@ -37,77 +35,82 @@ type (
 //
 //go:inline
 func IsSome[T any](t T, tok bool) bool {
-	return tok
+	_ = "STUB: not implemented"
+
+	// IsNone checks if an Option is None (contains no value).
+	//
+	// Parameters:
+	//   - t: The value of the Option
+	//   - tok: Whether the Option contains a value (true for Some, false for None)
+	//
+	// Example:
+	//
+	//	opt := None[int]()
+	//	IsNone(opt) // true
+	//	opt := Some(42)
+	//	IsNone(opt) // false
+	//
+	//go:inline
+	return false
 }
 
-// IsNone checks if an Option is None (contains no value).
-//
-// Parameters:
-//   - t: The value of the Option
-//   - tok: Whether the Option contains a value (true for Some, false for None)
-//
-// Example:
-//
-//	opt := None[int]()
-//	IsNone(opt) // true
-//	opt := Some(42)
-//	IsNone(opt) // false
-//
-//go:inline
 func IsNone[T any](t T, tok bool) bool {
-	return !tok
+	_ = "STUB: not implemented"
+
+	// Some creates an Option that contains a value.
+	//
+	// Parameters:
+	//   - value: The value to wrap in Some
+	//
+	// Example:
+	//
+	//	opt := Some(42) // Option containing 42
+	//	opt := Some("hello") // Option containing "hello"
+	//
+	//go:inline
+	return false
 }
 
-// Some creates an Option that contains a value.
-//
-// Parameters:
-//   - value: The value to wrap in Some
-//
-// Example:
-//
-//	opt := Some(42) // Option containing 42
-//	opt := Some("hello") // Option containing "hello"
-//
-//go:inline
 func Some[T any](value T) (T, bool) {
-	return value, true
+	_ = "STUB: not implemented"
+
+	// Of creates an Option that contains a value.
+	// This is an alias for Some and is used in monadic contexts.
+	//
+	// Parameters:
+	//   - value: The value to wrap in Some
+	//
+	// Example:
+	//
+	//	opt := Of(42) // Option containing 42
+	//
+	//go:inline
+	return *new(T), false
 }
 
-// Of creates an Option that contains a value.
-// This is an alias for Some and is used in monadic contexts.
-//
-// Parameters:
-//   - value: The value to wrap in Some
-//
-// Example:
-//
-//	opt := Of(42) // Option containing 42
-//
-//go:inline
 func Of[T any](value T) (T, bool) {
-	return Some(value)
+	_ = "STUB: not implemented"
+
+	// None creates an Option that contains no value.
+	//
+	// Example:
+	//
+	//	opt := None[int]() // Empty Option of type int
+	//	opt := None[string]() // Empty Option of type string
+	//
+	//go:inline
+	return *new(T), false
 }
 
-// None creates an Option that contains no value.
-//
-// Example:
-//
-//	opt := None[int]() // Empty Option of type int
-//	opt := None[string]() // Empty Option of type string
-//
-//go:inline
 func None[T any]() (t T, tok bool) {
-	return
+	_ = "STUB: not implemented"
+
+	// ToString converts an Option to a string representation for debugging.
+	//
+	// Parameters:
+	//   - t: The value of the Option
+	//   - tok: Whether the Option contains a value (true for Some, false for None)
+	return *new(T), false
 }
 
-// ToString converts an Option to a string representation for debugging.
-//
-// Parameters:
-//   - t: The value of the Option
-//   - tok: Whether the Option contains a value (true for Some, false for None)
-func ToString[T any](t T, tok bool) string {
-	if tok {
-		return fmt.Sprintf("Some[%T](%v)", t, t)
-	}
-	return fmt.Sprintf("None[%T]", t)
-}
+func ToString[T any](t T, tok bool) string { _ = "STUB: not implemented"; return "" }

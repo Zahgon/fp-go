@@ -15,11 +15,6 @@
 
 package identity
 
-import (
-	I "github.com/IBM/fp-go/v2/identity"
-	G "github.com/IBM/fp-go/v2/optics/lens/traversal/generic"
-)
-
 // Compose composes a lens with a traversal to create a new traversal.
 //
 // This function allows you to focus deeper into a data structure by first using
@@ -80,7 +75,6 @@ import (
 //   - Traversal: A functional reference to multiple subparts
 //   - traversal.Compose: Composes two traversals
 func Compose[S, A, B any](t Traversal[A, B, A, B]) func(Lens[S, A]) Traversal[S, B, S, B] {
-	return G.Compose[B, B](
-		I.Map[A, S],
-	)(t)
+	_ = "STUB: not implemented"
+	return nil
 }

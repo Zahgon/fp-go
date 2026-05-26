@@ -6,11 +6,9 @@ package lens
 
 import (
 	__lens "github.com/IBM/fp-go/v2/optics/lens"
-	__option "github.com/IBM/fp-go/v2/option"
-	__prism "github.com/IBM/fp-go/v2/optics/prism"
 	__lens_option "github.com/IBM/fp-go/v2/optics/lens/option"
-	__iso_option "github.com/IBM/fp-go/v2/optics/iso/option"
 	option "github.com/IBM/fp-go/v2/optics/lens/option"
+	__prism "github.com/IBM/fp-go/v2/optics/prism"
 )
 
 // PersonLenses provides [lenses] for accessing fields of [Person]
@@ -18,30 +16,29 @@ import (
 // [lenses]: __lens.Lens
 type PersonLenses struct {
 	// mandatory fields
-	Name __lens.Lens[Person, string]
-	Age __lens.Lens[Person, int]
+	Name  __lens.Lens[Person, string]
+	Age   __lens.Lens[Person, int]
 	Email __lens.Lens[Person, string]
 	Phone __lens.Lens[Person, *string]
 	// optional fields
-	NameO __lens_option.LensO[Person, string]
-	AgeO __lens_option.LensO[Person, int]
+	NameO  __lens_option.LensO[Person, string]
+	AgeO   __lens_option.LensO[Person, int]
 	EmailO __lens_option.LensO[Person, string]
 	PhoneO __lens_option.LensO[Person, *string]
 }
 
 // PersonRefLenses provides [lenses] for accessing fields of [Person] via a reference to [Person]
 //
-//
 // [lenses]: __lens.Lens
 type PersonRefLenses struct {
 	// mandatory fields
-	Name __lens.Lens[*Person, string]
-	Age __lens.Lens[*Person, int]
+	Name  __lens.Lens[*Person, string]
+	Age   __lens.Lens[*Person, int]
 	Email __lens.Lens[*Person, string]
 	Phone __lens.Lens[*Person, *string]
 	// optional fields
-	NameO __lens_option.LensO[*Person, string]
-	AgeO __lens_option.LensO[*Person, int]
+	NameO  __lens_option.LensO[*Person, string]
+	AgeO   __lens_option.LensO[*Person, int]
 	EmailO __lens_option.LensO[*Person, string]
 	PhoneO __lens_option.LensO[*Person, *string]
 }
@@ -50,8 +47,8 @@ type PersonRefLenses struct {
 //
 // [prisms]: __prism.Prism
 type PersonPrisms struct {
-	Name __prism.Prism[Person, string]
-	Age __prism.Prism[Person, int]
+	Name  __prism.Prism[Person, string]
+	Age   __prism.Prism[Person, int]
 	Email __prism.Prism[Person, string]
 	Phone __prism.Prism[Person, *string]
 }
@@ -60,8 +57,8 @@ type PersonPrisms struct {
 //
 // [prisms]: __prism.Prism
 type PersonRefPrisms struct {
-	Name __prism.Prism[*Person, string]
-	Age __prism.Prism[*Person, int]
+	Name  __prism.Prism[*Person, string]
+	Age   __prism.Prism[*Person, int]
 	Email __prism.Prism[*Person, string]
 	Phone __prism.Prism[*Person, *string]
 }
@@ -70,445 +67,141 @@ type PersonRefPrisms struct {
 //
 // [lenses]:__lens.Lens
 func MakePersonLenses() PersonLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensName := __lens.MakeLensWithName(
-		func(s Person) string { return s.Name },
-		func(s Person, v string) Person { s.Name = v; return s },
-		"Person.Name",
-	)
-	lensAge := __lens.MakeLensWithName(
-		func(s Person) int { return s.Age },
-		func(s Person, v int) Person { s.Age = v; return s },
-		"Person.Age",
-	)
-	lensEmail := __lens.MakeLensWithName(
-		func(s Person) string { return s.Email },
-		func(s Person, v string) Person { s.Email = v; return s },
-		"Person.Email",
-	)
-	lensPhone := __lens.MakeLensWithName(
-		func(s Person) *string { return s.Phone },
-		func(s Person, v *string) Person { s.Phone = v; return s },
-		"Person.Phone",
-	)
-	// optional lenses
-	lensNameO := __lens_option.FromIso[Person](__iso_option.FromZero[string]())(lensName)
-	lensAgeO := __lens_option.FromIso[Person](__iso_option.FromZero[int]())(lensAge)
-	lensEmailO := __lens_option.FromIso[Person](__iso_option.FromZero[string]())(lensEmail)
-	lensPhoneO := __lens_option.FromIso[Person](__iso_option.FromZero[*string]())(lensPhone)
-	return PersonLenses{
-		// mandatory lenses
-		Name: lensName,
-		Age: lensAge,
-		Email: lensEmail,
-		Phone: lensPhone,
-		// optional lenses
-		NameO: lensNameO,
-		AgeO: lensAgeO,
-		EmailO: lensEmailO,
-		PhoneO: lensPhoneO,
-	}
+	return *new(PersonLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakePersonRefLenses creates a new [PersonRefLenses] with [lenses] for all fields
 //
 // [lenses]:__lens.Lens
 func MakePersonRefLenses() PersonRefLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensName := __lens.MakeLensStrictWithName(
-		func(s *Person) string { return s.Name },
-		func(s *Person, v string) *Person { s.Name = v; return s },
-		"(*Person).Name",
-	)
-	lensAge := __lens.MakeLensStrictWithName(
-		func(s *Person) int { return s.Age },
-		func(s *Person, v int) *Person { s.Age = v; return s },
-		"(*Person).Age",
-	)
-	lensEmail := __lens.MakeLensStrictWithName(
-		func(s *Person) string { return s.Email },
-		func(s *Person, v string) *Person { s.Email = v; return s },
-		"(*Person).Email",
-	)
-	lensPhone := __lens.MakeLensStrictWithName(
-		func(s *Person) *string { return s.Phone },
-		func(s *Person, v *string) *Person { s.Phone = v; return s },
-		"(*Person).Phone",
-	)
-	// optional lenses
-	lensNameO := __lens_option.FromIso[*Person](__iso_option.FromZero[string]())(lensName)
-	lensAgeO := __lens_option.FromIso[*Person](__iso_option.FromZero[int]())(lensAge)
-	lensEmailO := __lens_option.FromIso[*Person](__iso_option.FromZero[string]())(lensEmail)
-	lensPhoneO := __lens_option.FromIso[*Person](__iso_option.FromZero[*string]())(lensPhone)
-	return PersonRefLenses{
-		// mandatory lenses
-		Name: lensName,
-		Age: lensAge,
-		Email: lensEmail,
-		Phone: lensPhone,
-		// optional lenses
-		NameO: lensNameO,
-		AgeO: lensAgeO,
-		EmailO: lensEmailO,
-		PhoneO: lensPhoneO,
-	}
+	return *new(PersonRefLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakePersonPrisms creates a new [PersonPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
-func MakePersonPrisms() PersonPrisms {
-	_fromNonZeroName := __option.FromNonZero[string]()
-	_prismName := __prism.MakePrismWithName(
-		func(s Person) __option.Option[string] { return _fromNonZeroName(s.Name) },
-		func(v string) Person {
-			return Person{ Name: v }
-		},
-		"Person.Name",
-	)
-	_fromNonZeroAge := __option.FromNonZero[int]()
-	_prismAge := __prism.MakePrismWithName(
-		func(s Person) __option.Option[int] { return _fromNonZeroAge(s.Age) },
-		func(v int) Person {
-			return Person{ Age: v }
-		},
-		"Person.Age",
-	)
-	_fromNonZeroEmail := __option.FromNonZero[string]()
-	_prismEmail := __prism.MakePrismWithName(
-		func(s Person) __option.Option[string] { return _fromNonZeroEmail(s.Email) },
-		func(v string) Person {
-			return Person{ Email: v }
-		},
-		"Person.Email",
-	)
-	_fromNonZeroPhone := __option.FromNonZero[*string]()
-	_prismPhone := __prism.MakePrismWithName(
-		func(s Person) __option.Option[*string] { return _fromNonZeroPhone(s.Phone) },
-		func(v *string) Person {
-			return Person{ Phone: v }
-		},
-		"Person.Phone",
-	)
-	return PersonPrisms {
-		Name: _prismName,
-		Age: _prismAge,
-		Email: _prismEmail,
-		Phone: _prismPhone,
-	}
-}
+func MakePersonPrisms() PersonPrisms { _ = "STUB: not implemented"; return *new(PersonPrisms) }
 
 // MakePersonRefPrisms creates a new [PersonRefPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
-func MakePersonRefPrisms() PersonRefPrisms {
-	_fromNonZeroName := __option.FromNonZero[string]()
-	_prismName := __prism.MakePrismWithName(
-		func(s *Person) __option.Option[string] { return _fromNonZeroName(s.Name) },
-		func(v string) *Person {
-			return &Person{ Name: v }
-		},
-		"Person.Name",
-	)
-	_fromNonZeroAge := __option.FromNonZero[int]()
-	_prismAge := __prism.MakePrismWithName(
-		func(s *Person) __option.Option[int] { return _fromNonZeroAge(s.Age) },
-		func(v int) *Person {
-			return &Person{ Age: v }
-		},
-		"Person.Age",
-	)
-	_fromNonZeroEmail := __option.FromNonZero[string]()
-	_prismEmail := __prism.MakePrismWithName(
-		func(s *Person) __option.Option[string] { return _fromNonZeroEmail(s.Email) },
-		func(v string) *Person {
-			return &Person{ Email: v }
-		},
-		"Person.Email",
-	)
-	_fromNonZeroPhone := __option.FromNonZero[*string]()
-	_prismPhone := __prism.MakePrismWithName(
-		func(s *Person) __option.Option[*string] { return _fromNonZeroPhone(s.Phone) },
-		func(v *string) *Person {
-			return &Person{ Phone: v }
-		},
-		"Person.Phone",
-	)
-	return PersonRefPrisms {
-		Name: _prismName,
-		Age: _prismAge,
-		Email: _prismEmail,
-		Phone: _prismPhone,
-	}
-}
+func MakePersonRefPrisms() PersonRefPrisms { _ = "STUB: not implemented"; return *new(PersonRefPrisms) }
 
 // AddressLenses provides [lenses] for accessing fields of [Address]
 //
 // [lenses]: __lens.Lens
 type AddressLenses struct {
 	// mandatory fields
-	Street __lens.Lens[Address, string]
-	City __lens.Lens[Address, string]
+	Street  __lens.Lens[Address, string]
+	City    __lens.Lens[Address, string]
 	ZipCode __lens.Lens[Address, string]
 	Country __lens.Lens[Address, string]
-	State __lens.Lens[Address, *string]
+	State   __lens.Lens[Address, *string]
 	// optional fields
-	StreetO __lens_option.LensO[Address, string]
-	CityO __lens_option.LensO[Address, string]
+	StreetO  __lens_option.LensO[Address, string]
+	CityO    __lens_option.LensO[Address, string]
 	ZipCodeO __lens_option.LensO[Address, string]
 	CountryO __lens_option.LensO[Address, string]
-	StateO __lens_option.LensO[Address, *string]
+	StateO   __lens_option.LensO[Address, *string]
 }
 
 // AddressRefLenses provides [lenses] for accessing fields of [Address] via a reference to [Address]
 //
-//
 // [lenses]: __lens.Lens
 type AddressRefLenses struct {
 	// mandatory fields
-	Street __lens.Lens[*Address, string]
-	City __lens.Lens[*Address, string]
+	Street  __lens.Lens[*Address, string]
+	City    __lens.Lens[*Address, string]
 	ZipCode __lens.Lens[*Address, string]
 	Country __lens.Lens[*Address, string]
-	State __lens.Lens[*Address, *string]
+	State   __lens.Lens[*Address, *string]
 	// optional fields
-	StreetO __lens_option.LensO[*Address, string]
-	CityO __lens_option.LensO[*Address, string]
+	StreetO  __lens_option.LensO[*Address, string]
+	CityO    __lens_option.LensO[*Address, string]
 	ZipCodeO __lens_option.LensO[*Address, string]
 	CountryO __lens_option.LensO[*Address, string]
-	StateO __lens_option.LensO[*Address, *string]
+	StateO   __lens_option.LensO[*Address, *string]
 }
 
 // AddressPrisms provides [prisms] for accessing fields of [Address]
 //
 // [prisms]: __prism.Prism
 type AddressPrisms struct {
-	Street __prism.Prism[Address, string]
-	City __prism.Prism[Address, string]
+	Street  __prism.Prism[Address, string]
+	City    __prism.Prism[Address, string]
 	ZipCode __prism.Prism[Address, string]
 	Country __prism.Prism[Address, string]
-	State __prism.Prism[Address, *string]
+	State   __prism.Prism[Address, *string]
 }
 
 // AddressRefPrisms provides [prisms] for accessing fields of [Address] via a reference to [Address]
 //
 // [prisms]: __prism.Prism
 type AddressRefPrisms struct {
-	Street __prism.Prism[*Address, string]
-	City __prism.Prism[*Address, string]
+	Street  __prism.Prism[*Address, string]
+	City    __prism.Prism[*Address, string]
 	ZipCode __prism.Prism[*Address, string]
 	Country __prism.Prism[*Address, string]
-	State __prism.Prism[*Address, *string]
+	State   __prism.Prism[*Address, *string]
 }
 
 // MakeAddressLenses creates a new [AddressLenses] with [lenses] for all fields
 //
 // [lenses]:__lens.Lens
 func MakeAddressLenses() AddressLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensStreet := __lens.MakeLensWithName(
-		func(s Address) string { return s.Street },
-		func(s Address, v string) Address { s.Street = v; return s },
-		"Address.Street",
-	)
-	lensCity := __lens.MakeLensWithName(
-		func(s Address) string { return s.City },
-		func(s Address, v string) Address { s.City = v; return s },
-		"Address.City",
-	)
-	lensZipCode := __lens.MakeLensWithName(
-		func(s Address) string { return s.ZipCode },
-		func(s Address, v string) Address { s.ZipCode = v; return s },
-		"Address.ZipCode",
-	)
-	lensCountry := __lens.MakeLensWithName(
-		func(s Address) string { return s.Country },
-		func(s Address, v string) Address { s.Country = v; return s },
-		"Address.Country",
-	)
-	lensState := __lens.MakeLensWithName(
-		func(s Address) *string { return s.State },
-		func(s Address, v *string) Address { s.State = v; return s },
-		"Address.State",
-	)
-	// optional lenses
-	lensStreetO := __lens_option.FromIso[Address](__iso_option.FromZero[string]())(lensStreet)
-	lensCityO := __lens_option.FromIso[Address](__iso_option.FromZero[string]())(lensCity)
-	lensZipCodeO := __lens_option.FromIso[Address](__iso_option.FromZero[string]())(lensZipCode)
-	lensCountryO := __lens_option.FromIso[Address](__iso_option.FromZero[string]())(lensCountry)
-	lensStateO := __lens_option.FromIso[Address](__iso_option.FromZero[*string]())(lensState)
-	return AddressLenses{
-		// mandatory lenses
-		Street: lensStreet,
-		City: lensCity,
-		ZipCode: lensZipCode,
-		Country: lensCountry,
-		State: lensState,
-		// optional lenses
-		StreetO: lensStreetO,
-		CityO: lensCityO,
-		ZipCodeO: lensZipCodeO,
-		CountryO: lensCountryO,
-		StateO: lensStateO,
-	}
+	return *new(AddressLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeAddressRefLenses creates a new [AddressRefLenses] with [lenses] for all fields
 //
 // [lenses]:__lens.Lens
 func MakeAddressRefLenses() AddressRefLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensStreet := __lens.MakeLensStrictWithName(
-		func(s *Address) string { return s.Street },
-		func(s *Address, v string) *Address { s.Street = v; return s },
-		"(*Address).Street",
-	)
-	lensCity := __lens.MakeLensStrictWithName(
-		func(s *Address) string { return s.City },
-		func(s *Address, v string) *Address { s.City = v; return s },
-		"(*Address).City",
-	)
-	lensZipCode := __lens.MakeLensStrictWithName(
-		func(s *Address) string { return s.ZipCode },
-		func(s *Address, v string) *Address { s.ZipCode = v; return s },
-		"(*Address).ZipCode",
-	)
-	lensCountry := __lens.MakeLensStrictWithName(
-		func(s *Address) string { return s.Country },
-		func(s *Address, v string) *Address { s.Country = v; return s },
-		"(*Address).Country",
-	)
-	lensState := __lens.MakeLensStrictWithName(
-		func(s *Address) *string { return s.State },
-		func(s *Address, v *string) *Address { s.State = v; return s },
-		"(*Address).State",
-	)
-	// optional lenses
-	lensStreetO := __lens_option.FromIso[*Address](__iso_option.FromZero[string]())(lensStreet)
-	lensCityO := __lens_option.FromIso[*Address](__iso_option.FromZero[string]())(lensCity)
-	lensZipCodeO := __lens_option.FromIso[*Address](__iso_option.FromZero[string]())(lensZipCode)
-	lensCountryO := __lens_option.FromIso[*Address](__iso_option.FromZero[string]())(lensCountry)
-	lensStateO := __lens_option.FromIso[*Address](__iso_option.FromZero[*string]())(lensState)
-	return AddressRefLenses{
-		// mandatory lenses
-		Street: lensStreet,
-		City: lensCity,
-		ZipCode: lensZipCode,
-		Country: lensCountry,
-		State: lensState,
-		// optional lenses
-		StreetO: lensStreetO,
-		CityO: lensCityO,
-		ZipCodeO: lensZipCodeO,
-		CountryO: lensCountryO,
-		StateO: lensStateO,
-	}
+	return *new(AddressRefLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeAddressPrisms creates a new [AddressPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
-func MakeAddressPrisms() AddressPrisms {
-	_fromNonZeroStreet := __option.FromNonZero[string]()
-	_prismStreet := __prism.MakePrismWithName(
-		func(s Address) __option.Option[string] { return _fromNonZeroStreet(s.Street) },
-		func(v string) Address {
-			return Address{ Street: v }
-		},
-		"Address.Street",
-	)
-	_fromNonZeroCity := __option.FromNonZero[string]()
-	_prismCity := __prism.MakePrismWithName(
-		func(s Address) __option.Option[string] { return _fromNonZeroCity(s.City) },
-		func(v string) Address {
-			return Address{ City: v }
-		},
-		"Address.City",
-	)
-	_fromNonZeroZipCode := __option.FromNonZero[string]()
-	_prismZipCode := __prism.MakePrismWithName(
-		func(s Address) __option.Option[string] { return _fromNonZeroZipCode(s.ZipCode) },
-		func(v string) Address {
-			return Address{ ZipCode: v }
-		},
-		"Address.ZipCode",
-	)
-	_fromNonZeroCountry := __option.FromNonZero[string]()
-	_prismCountry := __prism.MakePrismWithName(
-		func(s Address) __option.Option[string] { return _fromNonZeroCountry(s.Country) },
-		func(v string) Address {
-			return Address{ Country: v }
-		},
-		"Address.Country",
-	)
-	_fromNonZeroState := __option.FromNonZero[*string]()
-	_prismState := __prism.MakePrismWithName(
-		func(s Address) __option.Option[*string] { return _fromNonZeroState(s.State) },
-		func(v *string) Address {
-			return Address{ State: v }
-		},
-		"Address.State",
-	)
-	return AddressPrisms {
-		Street: _prismStreet,
-		City: _prismCity,
-		ZipCode: _prismZipCode,
-		Country: _prismCountry,
-		State: _prismState,
-	}
-}
+func MakeAddressPrisms() AddressPrisms { _ = "STUB: not implemented"; return *new(AddressPrisms) }
 
 // MakeAddressRefPrisms creates a new [AddressRefPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
 func MakeAddressRefPrisms() AddressRefPrisms {
-	_fromNonZeroStreet := __option.FromNonZero[string]()
-	_prismStreet := __prism.MakePrismWithName(
-		func(s *Address) __option.Option[string] { return _fromNonZeroStreet(s.Street) },
-		func(v string) *Address {
-			return &Address{ Street: v }
-		},
-		"Address.Street",
-	)
-	_fromNonZeroCity := __option.FromNonZero[string]()
-	_prismCity := __prism.MakePrismWithName(
-		func(s *Address) __option.Option[string] { return _fromNonZeroCity(s.City) },
-		func(v string) *Address {
-			return &Address{ City: v }
-		},
-		"Address.City",
-	)
-	_fromNonZeroZipCode := __option.FromNonZero[string]()
-	_prismZipCode := __prism.MakePrismWithName(
-		func(s *Address) __option.Option[string] { return _fromNonZeroZipCode(s.ZipCode) },
-		func(v string) *Address {
-			return &Address{ ZipCode: v }
-		},
-		"Address.ZipCode",
-	)
-	_fromNonZeroCountry := __option.FromNonZero[string]()
-	_prismCountry := __prism.MakePrismWithName(
-		func(s *Address) __option.Option[string] { return _fromNonZeroCountry(s.Country) },
-		func(v string) *Address {
-			return &Address{ Country: v }
-		},
-		"Address.Country",
-	)
-	_fromNonZeroState := __option.FromNonZero[*string]()
-	_prismState := __prism.MakePrismWithName(
-		func(s *Address) __option.Option[*string] { return _fromNonZeroState(s.State) },
-		func(v *string) *Address {
-			return &Address{ State: v }
-		},
-		"Address.State",
-	)
-	return AddressRefPrisms {
-		Street: _prismStreet,
-		City: _prismCity,
-		ZipCode: _prismZipCode,
-		Country: _prismCountry,
-		State: _prismState,
-	}
+	_ = "STUB: not implemented"
+	return *new(AddressRefPrisms)
 }
 
 // CompanyLenses provides [lenses] for accessing fields of [Company]
@@ -516,31 +209,30 @@ func MakeAddressRefPrisms() AddressRefPrisms {
 // [lenses]: __lens.Lens
 type CompanyLenses struct {
 	// mandatory fields
-	Name __lens.Lens[Company, string]
+	Name    __lens.Lens[Company, string]
 	Address __lens.Lens[Company, Address]
-	CEO __lens.Lens[Company, Person]
+	CEO     __lens.Lens[Company, Person]
 	Website __lens.Lens[Company, *string]
 	// optional fields
-	NameO __lens_option.LensO[Company, string]
+	NameO    __lens_option.LensO[Company, string]
 	AddressO __lens_option.LensO[Company, Address]
-	CEOO __lens_option.LensO[Company, Person]
+	CEOO     __lens_option.LensO[Company, Person]
 	WebsiteO __lens_option.LensO[Company, *string]
 }
 
 // CompanyRefLenses provides [lenses] for accessing fields of [Company] via a reference to [Company]
 //
-//
 // [lenses]: __lens.Lens
 type CompanyRefLenses struct {
 	// mandatory fields
-	Name __lens.Lens[*Company, string]
+	Name    __lens.Lens[*Company, string]
 	Address __lens.Lens[*Company, Address]
-	CEO __lens.Lens[*Company, Person]
+	CEO     __lens.Lens[*Company, Person]
 	Website __lens.Lens[*Company, *string]
 	// optional fields
-	NameO __lens_option.LensO[*Company, string]
+	NameO    __lens_option.LensO[*Company, string]
 	AddressO __lens_option.LensO[*Company, Address]
-	CEOO __lens_option.LensO[*Company, Person]
+	CEOO     __lens_option.LensO[*Company, Person]
 	WebsiteO __lens_option.LensO[*Company, *string]
 }
 
@@ -548,9 +240,9 @@ type CompanyRefLenses struct {
 //
 // [prisms]: __prism.Prism
 type CompanyPrisms struct {
-	Name __prism.Prism[Company, string]
+	Name    __prism.Prism[Company, string]
 	Address __prism.Prism[Company, Address]
-	CEO __prism.Prism[Company, Person]
+	CEO     __prism.Prism[Company, Person]
 	Website __prism.Prism[Company, *string]
 }
 
@@ -558,9 +250,9 @@ type CompanyPrisms struct {
 //
 // [prisms]: __prism.Prism
 type CompanyRefPrisms struct {
-	Name __prism.Prism[*Company, string]
+	Name    __prism.Prism[*Company, string]
 	Address __prism.Prism[*Company, Address]
-	CEO __prism.Prism[*Company, Person]
+	CEO     __prism.Prism[*Company, Person]
 	Website __prism.Prism[*Company, *string]
 }
 
@@ -568,176 +260,43 @@ type CompanyRefPrisms struct {
 //
 // [lenses]:__lens.Lens
 func MakeCompanyLenses() CompanyLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensName := __lens.MakeLensWithName(
-		func(s Company) string { return s.Name },
-		func(s Company, v string) Company { s.Name = v; return s },
-		"Company.Name",
-	)
-	lensAddress := __lens.MakeLensWithName(
-		func(s Company) Address { return s.Address },
-		func(s Company, v Address) Company { s.Address = v; return s },
-		"Company.Address",
-	)
-	lensCEO := __lens.MakeLensWithName(
-		func(s Company) Person { return s.CEO },
-		func(s Company, v Person) Company { s.CEO = v; return s },
-		"Company.CEO",
-	)
-	lensWebsite := __lens.MakeLensWithName(
-		func(s Company) *string { return s.Website },
-		func(s Company, v *string) Company { s.Website = v; return s },
-		"Company.Website",
-	)
-	// optional lenses
-	lensNameO := __lens_option.FromIso[Company](__iso_option.FromZero[string]())(lensName)
-	lensAddressO := __lens_option.FromIso[Company](__iso_option.FromZero[Address]())(lensAddress)
-	lensCEOO := __lens_option.FromIso[Company](__iso_option.FromZero[Person]())(lensCEO)
-	lensWebsiteO := __lens_option.FromIso[Company](__iso_option.FromZero[*string]())(lensWebsite)
-	return CompanyLenses{
-		// mandatory lenses
-		Name: lensName,
-		Address: lensAddress,
-		CEO: lensCEO,
-		Website: lensWebsite,
-		// optional lenses
-		NameO: lensNameO,
-		AddressO: lensAddressO,
-		CEOO: lensCEOO,
-		WebsiteO: lensWebsiteO,
-	}
+	return *new(CompanyLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeCompanyRefLenses creates a new [CompanyRefLenses] with [lenses] for all fields
 //
 // [lenses]:__lens.Lens
 func MakeCompanyRefLenses() CompanyRefLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensName := __lens.MakeLensStrictWithName(
-		func(s *Company) string { return s.Name },
-		func(s *Company, v string) *Company { s.Name = v; return s },
-		"(*Company).Name",
-	)
-	lensAddress := __lens.MakeLensStrictWithName(
-		func(s *Company) Address { return s.Address },
-		func(s *Company, v Address) *Company { s.Address = v; return s },
-		"(*Company).Address",
-	)
-	lensCEO := __lens.MakeLensStrictWithName(
-		func(s *Company) Person { return s.CEO },
-		func(s *Company, v Person) *Company { s.CEO = v; return s },
-		"(*Company).CEO",
-	)
-	lensWebsite := __lens.MakeLensStrictWithName(
-		func(s *Company) *string { return s.Website },
-		func(s *Company, v *string) *Company { s.Website = v; return s },
-		"(*Company).Website",
-	)
-	// optional lenses
-	lensNameO := __lens_option.FromIso[*Company](__iso_option.FromZero[string]())(lensName)
-	lensAddressO := __lens_option.FromIso[*Company](__iso_option.FromZero[Address]())(lensAddress)
-	lensCEOO := __lens_option.FromIso[*Company](__iso_option.FromZero[Person]())(lensCEO)
-	lensWebsiteO := __lens_option.FromIso[*Company](__iso_option.FromZero[*string]())(lensWebsite)
-	return CompanyRefLenses{
-		// mandatory lenses
-		Name: lensName,
-		Address: lensAddress,
-		CEO: lensCEO,
-		Website: lensWebsite,
-		// optional lenses
-		NameO: lensNameO,
-		AddressO: lensAddressO,
-		CEOO: lensCEOO,
-		WebsiteO: lensWebsiteO,
-	}
+	return *new(CompanyRefLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeCompanyPrisms creates a new [CompanyPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
-func MakeCompanyPrisms() CompanyPrisms {
-	_fromNonZeroName := __option.FromNonZero[string]()
-	_prismName := __prism.MakePrismWithName(
-		func(s Company) __option.Option[string] { return _fromNonZeroName(s.Name) },
-		func(v string) Company {
-			return Company{ Name: v }
-		},
-		"Company.Name",
-	)
-	_fromNonZeroAddress := __option.FromNonZero[Address]()
-	_prismAddress := __prism.MakePrismWithName(
-		func(s Company) __option.Option[Address] { return _fromNonZeroAddress(s.Address) },
-		func(v Address) Company {
-			return Company{ Address: v }
-		},
-		"Company.Address",
-	)
-	_fromNonZeroCEO := __option.FromNonZero[Person]()
-	_prismCEO := __prism.MakePrismWithName(
-		func(s Company) __option.Option[Person] { return _fromNonZeroCEO(s.CEO) },
-		func(v Person) Company {
-			return Company{ CEO: v }
-		},
-		"Company.CEO",
-	)
-	_fromNonZeroWebsite := __option.FromNonZero[*string]()
-	_prismWebsite := __prism.MakePrismWithName(
-		func(s Company) __option.Option[*string] { return _fromNonZeroWebsite(s.Website) },
-		func(v *string) Company {
-			return Company{ Website: v }
-		},
-		"Company.Website",
-	)
-	return CompanyPrisms {
-		Name: _prismName,
-		Address: _prismAddress,
-		CEO: _prismCEO,
-		Website: _prismWebsite,
-	}
-}
+func MakeCompanyPrisms() CompanyPrisms { _ = "STUB: not implemented"; return *new(CompanyPrisms) }
 
 // MakeCompanyRefPrisms creates a new [CompanyRefPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
 func MakeCompanyRefPrisms() CompanyRefPrisms {
-	_fromNonZeroName := __option.FromNonZero[string]()
-	_prismName := __prism.MakePrismWithName(
-		func(s *Company) __option.Option[string] { return _fromNonZeroName(s.Name) },
-		func(v string) *Company {
-			return &Company{ Name: v }
-		},
-		"Company.Name",
-	)
-	_fromNonZeroAddress := __option.FromNonZero[Address]()
-	_prismAddress := __prism.MakePrismWithName(
-		func(s *Company) __option.Option[Address] { return _fromNonZeroAddress(s.Address) },
-		func(v Address) *Company {
-			return &Company{ Address: v }
-		},
-		"Company.Address",
-	)
-	_fromNonZeroCEO := __option.FromNonZero[Person]()
-	_prismCEO := __prism.MakePrismWithName(
-		func(s *Company) __option.Option[Person] { return _fromNonZeroCEO(s.CEO) },
-		func(v Person) *Company {
-			return &Company{ CEO: v }
-		},
-		"Company.CEO",
-	)
-	_fromNonZeroWebsite := __option.FromNonZero[*string]()
-	_prismWebsite := __prism.MakePrismWithName(
-		func(s *Company) __option.Option[*string] { return _fromNonZeroWebsite(s.Website) },
-		func(v *string) *Company {
-			return &Company{ Website: v }
-		},
-		"Company.Website",
-	)
-	return CompanyRefPrisms {
-		Name: _prismName,
-		Address: _prismAddress,
-		CEO: _prismCEO,
-		Website: _prismWebsite,
-	}
+	_ = "STUB: not implemented"
+	return *new(CompanyRefPrisms)
 }
 
 // CompanyExtendedLenses provides [lenses] for accessing fields of [CompanyExtended]
@@ -745,35 +304,34 @@ func MakeCompanyRefPrisms() CompanyRefPrisms {
 // [lenses]: __lens.Lens
 type CompanyExtendedLenses struct {
 	// mandatory fields
-	Name __lens.Lens[CompanyExtended, string]
-	Address __lens.Lens[CompanyExtended, Address]
-	CEO __lens.Lens[CompanyExtended, Person]
-	Website __lens.Lens[CompanyExtended, *string]
+	Name     __lens.Lens[CompanyExtended, string]
+	Address  __lens.Lens[CompanyExtended, Address]
+	CEO      __lens.Lens[CompanyExtended, Person]
+	Website  __lens.Lens[CompanyExtended, *string]
 	Extended __lens.Lens[CompanyExtended, string]
 	// optional fields
-	NameO __lens_option.LensO[CompanyExtended, string]
-	AddressO __lens_option.LensO[CompanyExtended, Address]
-	CEOO __lens_option.LensO[CompanyExtended, Person]
-	WebsiteO __lens_option.LensO[CompanyExtended, *string]
+	NameO     __lens_option.LensO[CompanyExtended, string]
+	AddressO  __lens_option.LensO[CompanyExtended, Address]
+	CEOO      __lens_option.LensO[CompanyExtended, Person]
+	WebsiteO  __lens_option.LensO[CompanyExtended, *string]
 	ExtendedO __lens_option.LensO[CompanyExtended, string]
 }
 
 // CompanyExtendedRefLenses provides [lenses] for accessing fields of [CompanyExtended] via a reference to [CompanyExtended]
 //
-//
 // [lenses]: __lens.Lens
 type CompanyExtendedRefLenses struct {
 	// mandatory fields
-	Name __lens.Lens[*CompanyExtended, string]
-	Address __lens.Lens[*CompanyExtended, Address]
-	CEO __lens.Lens[*CompanyExtended, Person]
-	Website __lens.Lens[*CompanyExtended, *string]
+	Name     __lens.Lens[*CompanyExtended, string]
+	Address  __lens.Lens[*CompanyExtended, Address]
+	CEO      __lens.Lens[*CompanyExtended, Person]
+	Website  __lens.Lens[*CompanyExtended, *string]
 	Extended __lens.Lens[*CompanyExtended, string]
 	// optional fields
-	NameO __lens_option.LensO[*CompanyExtended, string]
-	AddressO __lens_option.LensO[*CompanyExtended, Address]
-	CEOO __lens_option.LensO[*CompanyExtended, Person]
-	WebsiteO __lens_option.LensO[*CompanyExtended, *string]
+	NameO     __lens_option.LensO[*CompanyExtended, string]
+	AddressO  __lens_option.LensO[*CompanyExtended, Address]
+	CEOO      __lens_option.LensO[*CompanyExtended, Person]
+	WebsiteO  __lens_option.LensO[*CompanyExtended, *string]
 	ExtendedO __lens_option.LensO[*CompanyExtended, string]
 }
 
@@ -781,10 +339,10 @@ type CompanyExtendedRefLenses struct {
 //
 // [prisms]: __prism.Prism
 type CompanyExtendedPrisms struct {
-	Name __prism.Prism[CompanyExtended, string]
-	Address __prism.Prism[CompanyExtended, Address]
-	CEO __prism.Prism[CompanyExtended, Person]
-	Website __prism.Prism[CompanyExtended, *string]
+	Name     __prism.Prism[CompanyExtended, string]
+	Address  __prism.Prism[CompanyExtended, Address]
+	CEO      __prism.Prism[CompanyExtended, Person]
+	Website  __prism.Prism[CompanyExtended, *string]
 	Extended __prism.Prism[CompanyExtended, string]
 }
 
@@ -792,10 +350,10 @@ type CompanyExtendedPrisms struct {
 //
 // [prisms]: __prism.Prism
 type CompanyExtendedRefPrisms struct {
-	Name __prism.Prism[*CompanyExtended, string]
-	Address __prism.Prism[*CompanyExtended, Address]
-	CEO __prism.Prism[*CompanyExtended, Person]
-	Website __prism.Prism[*CompanyExtended, *string]
+	Name     __prism.Prism[*CompanyExtended, string]
+	Address  __prism.Prism[*CompanyExtended, Address]
+	CEO      __prism.Prism[*CompanyExtended, Person]
+	Website  __prism.Prism[*CompanyExtended, *string]
 	Extended __prism.Prism[*CompanyExtended, string]
 }
 
@@ -803,226 +361,46 @@ type CompanyExtendedRefPrisms struct {
 //
 // [lenses]:__lens.Lens
 func MakeCompanyExtendedLenses() CompanyExtendedLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensName := __lens.MakeLensWithName(
-		func(s CompanyExtended) string { return s.Name },
-		func(s CompanyExtended, v string) CompanyExtended { s.Name = v; return s },
-		"CompanyExtended.Name",
-	)
-	lensAddress := __lens.MakeLensWithName(
-		func(s CompanyExtended) Address { return s.Address },
-		func(s CompanyExtended, v Address) CompanyExtended { s.Address = v; return s },
-		"CompanyExtended.Address",
-	)
-	lensCEO := __lens.MakeLensWithName(
-		func(s CompanyExtended) Person { return s.CEO },
-		func(s CompanyExtended, v Person) CompanyExtended { s.CEO = v; return s },
-		"CompanyExtended.CEO",
-	)
-	lensWebsite := __lens.MakeLensWithName(
-		func(s CompanyExtended) *string { return s.Website },
-		func(s CompanyExtended, v *string) CompanyExtended { s.Website = v; return s },
-		"CompanyExtended.Website",
-	)
-	lensExtended := __lens.MakeLensWithName(
-		func(s CompanyExtended) string { return s.Extended },
-		func(s CompanyExtended, v string) CompanyExtended { s.Extended = v; return s },
-		"CompanyExtended.Extended",
-	)
-	// optional lenses
-	lensNameO := __lens_option.FromIso[CompanyExtended](__iso_option.FromZero[string]())(lensName)
-	lensAddressO := __lens_option.FromIso[CompanyExtended](__iso_option.FromZero[Address]())(lensAddress)
-	lensCEOO := __lens_option.FromIso[CompanyExtended](__iso_option.FromZero[Person]())(lensCEO)
-	lensWebsiteO := __lens_option.FromIso[CompanyExtended](__iso_option.FromZero[*string]())(lensWebsite)
-	lensExtendedO := __lens_option.FromIso[CompanyExtended](__iso_option.FromZero[string]())(lensExtended)
-	return CompanyExtendedLenses{
-		// mandatory lenses
-		Name: lensName,
-		Address: lensAddress,
-		CEO: lensCEO,
-		Website: lensWebsite,
-		Extended: lensExtended,
-		// optional lenses
-		NameO: lensNameO,
-		AddressO: lensAddressO,
-		CEOO: lensCEOO,
-		WebsiteO: lensWebsiteO,
-		ExtendedO: lensExtendedO,
-	}
+	return *new(CompanyExtendedLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeCompanyExtendedRefLenses creates a new [CompanyExtendedRefLenses] with [lenses] for all fields
 //
 // [lenses]:__lens.Lens
 func MakeCompanyExtendedRefLenses() CompanyExtendedRefLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensName := __lens.MakeLensStrictWithName(
-		func(s *CompanyExtended) string { return s.Name },
-		func(s *CompanyExtended, v string) *CompanyExtended { s.Name = v; return s },
-		"(*CompanyExtended).Name",
-	)
-	lensAddress := __lens.MakeLensStrictWithName(
-		func(s *CompanyExtended) Address { return s.Address },
-		func(s *CompanyExtended, v Address) *CompanyExtended { s.Address = v; return s },
-		"(*CompanyExtended).Address",
-	)
-	lensCEO := __lens.MakeLensStrictWithName(
-		func(s *CompanyExtended) Person { return s.CEO },
-		func(s *CompanyExtended, v Person) *CompanyExtended { s.CEO = v; return s },
-		"(*CompanyExtended).CEO",
-	)
-	lensWebsite := __lens.MakeLensStrictWithName(
-		func(s *CompanyExtended) *string { return s.Website },
-		func(s *CompanyExtended, v *string) *CompanyExtended { s.Website = v; return s },
-		"(*CompanyExtended).Website",
-	)
-	lensExtended := __lens.MakeLensStrictWithName(
-		func(s *CompanyExtended) string { return s.Extended },
-		func(s *CompanyExtended, v string) *CompanyExtended { s.Extended = v; return s },
-		"(*CompanyExtended).Extended",
-	)
-	// optional lenses
-	lensNameO := __lens_option.FromIso[*CompanyExtended](__iso_option.FromZero[string]())(lensName)
-	lensAddressO := __lens_option.FromIso[*CompanyExtended](__iso_option.FromZero[Address]())(lensAddress)
-	lensCEOO := __lens_option.FromIso[*CompanyExtended](__iso_option.FromZero[Person]())(lensCEO)
-	lensWebsiteO := __lens_option.FromIso[*CompanyExtended](__iso_option.FromZero[*string]())(lensWebsite)
-	lensExtendedO := __lens_option.FromIso[*CompanyExtended](__iso_option.FromZero[string]())(lensExtended)
-	return CompanyExtendedRefLenses{
-		// mandatory lenses
-		Name: lensName,
-		Address: lensAddress,
-		CEO: lensCEO,
-		Website: lensWebsite,
-		Extended: lensExtended,
-		// optional lenses
-		NameO: lensNameO,
-		AddressO: lensAddressO,
-		CEOO: lensCEOO,
-		WebsiteO: lensWebsiteO,
-		ExtendedO: lensExtendedO,
-	}
+	return *new(CompanyExtendedRefLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeCompanyExtendedPrisms creates a new [CompanyExtendedPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
 func MakeCompanyExtendedPrisms() CompanyExtendedPrisms {
-	_fromNonZeroName := __option.FromNonZero[string]()
-	_prismName := __prism.MakePrismWithName(
-		func(s CompanyExtended) __option.Option[string] { return _fromNonZeroName(s.Name) },
-		func(v string) CompanyExtended {
-			var result CompanyExtended
-			result.Name = v
-			return result
-		},
-		"CompanyExtended.Name",
-	)
-	_fromNonZeroAddress := __option.FromNonZero[Address]()
-	_prismAddress := __prism.MakePrismWithName(
-		func(s CompanyExtended) __option.Option[Address] { return _fromNonZeroAddress(s.Address) },
-		func(v Address) CompanyExtended {
-			var result CompanyExtended
-			result.Address = v
-			return result
-		},
-		"CompanyExtended.Address",
-	)
-	_fromNonZeroCEO := __option.FromNonZero[Person]()
-	_prismCEO := __prism.MakePrismWithName(
-		func(s CompanyExtended) __option.Option[Person] { return _fromNonZeroCEO(s.CEO) },
-		func(v Person) CompanyExtended {
-			var result CompanyExtended
-			result.CEO = v
-			return result
-		},
-		"CompanyExtended.CEO",
-	)
-	_fromNonZeroWebsite := __option.FromNonZero[*string]()
-	_prismWebsite := __prism.MakePrismWithName(
-		func(s CompanyExtended) __option.Option[*string] { return _fromNonZeroWebsite(s.Website) },
-		func(v *string) CompanyExtended {
-			var result CompanyExtended
-			result.Website = v
-			return result
-		},
-		"CompanyExtended.Website",
-	)
-	_fromNonZeroExtended := __option.FromNonZero[string]()
-	_prismExtended := __prism.MakePrismWithName(
-		func(s CompanyExtended) __option.Option[string] { return _fromNonZeroExtended(s.Extended) },
-		func(v string) CompanyExtended {
-			return CompanyExtended{ Extended: v }
-		},
-		"CompanyExtended.Extended",
-	)
-	return CompanyExtendedPrisms {
-		Name: _prismName,
-		Address: _prismAddress,
-		CEO: _prismCEO,
-		Website: _prismWebsite,
-		Extended: _prismExtended,
-	}
+	_ = "STUB: not implemented"
+	return *new(CompanyExtendedPrisms)
 }
 
 // MakeCompanyExtendedRefPrisms creates a new [CompanyExtendedRefPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
 func MakeCompanyExtendedRefPrisms() CompanyExtendedRefPrisms {
-	_fromNonZeroName := __option.FromNonZero[string]()
-	_prismName := __prism.MakePrismWithName(
-		func(s *CompanyExtended) __option.Option[string] { return _fromNonZeroName(s.Name) },
-		func(v string) *CompanyExtended {
-			var result CompanyExtended
-			result.Name = v
-			return &result
-		},
-		"CompanyExtended.Name",
-	)
-	_fromNonZeroAddress := __option.FromNonZero[Address]()
-	_prismAddress := __prism.MakePrismWithName(
-		func(s *CompanyExtended) __option.Option[Address] { return _fromNonZeroAddress(s.Address) },
-		func(v Address) *CompanyExtended {
-			var result CompanyExtended
-			result.Address = v
-			return &result
-		},
-		"CompanyExtended.Address",
-	)
-	_fromNonZeroCEO := __option.FromNonZero[Person]()
-	_prismCEO := __prism.MakePrismWithName(
-		func(s *CompanyExtended) __option.Option[Person] { return _fromNonZeroCEO(s.CEO) },
-		func(v Person) *CompanyExtended {
-			var result CompanyExtended
-			result.CEO = v
-			return &result
-		},
-		"CompanyExtended.CEO",
-	)
-	_fromNonZeroWebsite := __option.FromNonZero[*string]()
-	_prismWebsite := __prism.MakePrismWithName(
-		func(s *CompanyExtended) __option.Option[*string] { return _fromNonZeroWebsite(s.Website) },
-		func(v *string) *CompanyExtended {
-			var result CompanyExtended
-			result.Website = v
-			return &result
-		},
-		"CompanyExtended.Website",
-	)
-	_fromNonZeroExtended := __option.FromNonZero[string]()
-	_prismExtended := __prism.MakePrismWithName(
-		func(s *CompanyExtended) __option.Option[string] { return _fromNonZeroExtended(s.Extended) },
-		func(v string) *CompanyExtended {
-			return &CompanyExtended{ Extended: v }
-		},
-		"CompanyExtended.Extended",
-	)
-	return CompanyExtendedRefPrisms {
-		Name: _prismName,
-		Address: _prismAddress,
-		CEO: _prismCEO,
-		Website: _prismWebsite,
-		Extended: _prismExtended,
-	}
+	_ = "STUB: not implemented"
+	return *new(CompanyExtendedRefPrisms)
 }
 
 // CheckOptionLenses provides [lenses] for accessing fields of [CheckOption]
@@ -1030,7 +408,7 @@ func MakeCompanyExtendedRefPrisms() CompanyExtendedRefPrisms {
 // [lenses]: __lens.Lens
 type CheckOptionLenses struct {
 	// mandatory fields
-	Name __lens.Lens[CheckOption, option.Option[string]]
+	Name  __lens.Lens[CheckOption, option.Option[string]]
 	Value __lens.Lens[CheckOption, string]
 	// optional fields
 	ValueO __lens_option.LensO[CheckOption, string]
@@ -1038,11 +416,10 @@ type CheckOptionLenses struct {
 
 // CheckOptionRefLenses provides [lenses] for accessing fields of [CheckOption] via a reference to [CheckOption]
 //
-//
 // [lenses]: __lens.Lens
 type CheckOptionRefLenses struct {
 	// mandatory fields
-	Name __lens.Lens[*CheckOption, option.Option[string]]
+	Name  __lens.Lens[*CheckOption, option.Option[string]]
 	Value __lens.Lens[*CheckOption, string]
 	// optional fields
 	ValueO __lens_option.LensO[*CheckOption, string]
@@ -1052,7 +429,7 @@ type CheckOptionRefLenses struct {
 //
 // [prisms]: __prism.Prism
 type CheckOptionPrisms struct {
-	Name __prism.Prism[CheckOption, option.Option[string]]
+	Name  __prism.Prism[CheckOption, option.Option[string]]
 	Value __prism.Prism[CheckOption, string]
 }
 
@@ -1060,7 +437,7 @@ type CheckOptionPrisms struct {
 //
 // [prisms]: __prism.Prism
 type CheckOptionRefPrisms struct {
-	Name __prism.Prism[*CheckOption, option.Option[string]]
+	Name  __prism.Prism[*CheckOption, option.Option[string]]
 	Value __prism.Prism[*CheckOption, string]
 }
 
@@ -1068,102 +445,46 @@ type CheckOptionRefPrisms struct {
 //
 // [lenses]:__lens.Lens
 func MakeCheckOptionLenses() CheckOptionLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensName := __lens.MakeLensWithName(
-		func(s CheckOption) option.Option[string] { return s.Name },
-		func(s CheckOption, v option.Option[string]) CheckOption { s.Name = v; return s },
-		"CheckOption.Name",
-	)
-	lensValue := __lens.MakeLensWithName(
-		func(s CheckOption) string { return s.Value },
-		func(s CheckOption, v string) CheckOption { s.Value = v; return s },
-		"CheckOption.Value",
-	)
-	// optional lenses
-	lensValueO := __lens_option.FromIso[CheckOption](__iso_option.FromZero[string]())(lensValue)
-	return CheckOptionLenses{
-		// mandatory lenses
-		Name: lensName,
-		Value: lensValue,
-		// optional lenses
-		ValueO: lensValueO,
-	}
+	return *new(CheckOptionLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeCheckOptionRefLenses creates a new [CheckOptionRefLenses] with [lenses] for all fields
 //
 // [lenses]:__lens.Lens
 func MakeCheckOptionRefLenses() CheckOptionRefLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensName := __lens.MakeLensRefWithName(
-		func(s *CheckOption) option.Option[string] { return s.Name },
-		func(s *CheckOption, v option.Option[string]) *CheckOption { s.Name = v; return s },
-		"(*CheckOption).Name",
-	)
-	lensValue := __lens.MakeLensStrictWithName(
-		func(s *CheckOption) string { return s.Value },
-		func(s *CheckOption, v string) *CheckOption { s.Value = v; return s },
-		"(*CheckOption).Value",
-	)
-	// optional lenses
-	lensValueO := __lens_option.FromIso[*CheckOption](__iso_option.FromZero[string]())(lensValue)
-	return CheckOptionRefLenses{
-		// mandatory lenses
-		Name: lensName,
-		Value: lensValue,
-		// optional lenses
-		ValueO: lensValueO,
-	}
+	return *new(CheckOptionRefLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeCheckOptionPrisms creates a new [CheckOptionPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
 func MakeCheckOptionPrisms() CheckOptionPrisms {
-	_prismName := __prism.MakePrismWithName(
-		func(s CheckOption) __option.Option[option.Option[string]] { return __option.Some(s.Name) },
-		func(v option.Option[string]) CheckOption {
-			return CheckOption{ Name: v }
-		},
-		"CheckOption.Name",
-	)
-	_fromNonZeroValue := __option.FromNonZero[string]()
-	_prismValue := __prism.MakePrismWithName(
-		func(s CheckOption) __option.Option[string] { return _fromNonZeroValue(s.Value) },
-		func(v string) CheckOption {
-			return CheckOption{ Value: v }
-		},
-		"CheckOption.Value",
-	)
-	return CheckOptionPrisms {
-		Name: _prismName,
-		Value: _prismValue,
-	}
+	_ = "STUB: not implemented"
+	return *new(CheckOptionPrisms)
 }
 
 // MakeCheckOptionRefPrisms creates a new [CheckOptionRefPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
 func MakeCheckOptionRefPrisms() CheckOptionRefPrisms {
-	_prismName := __prism.MakePrismWithName(
-		func(s *CheckOption) __option.Option[option.Option[string]] { return __option.Some(s.Name) },
-		func(v option.Option[string]) *CheckOption {
-			return &CheckOption{ Name: v }
-		},
-		"CheckOption.Name",
-	)
-	_fromNonZeroValue := __option.FromNonZero[string]()
-	_prismValue := __prism.MakePrismWithName(
-		func(s *CheckOption) __option.Option[string] { return _fromNonZeroValue(s.Value) },
-		func(v string) *CheckOption {
-			return &CheckOption{ Value: v }
-		},
-		"CheckOption.Value",
-	)
-	return CheckOptionRefPrisms {
-		Name: _prismName,
-		Value: _prismValue,
-	}
+	_ = "STUB: not implemented"
+	return *new(CheckOptionRefPrisms)
 }
 
 // WithGenericLenses provides [lenses] for accessing fields of [WithGeneric]
@@ -1171,7 +492,7 @@ func MakeCheckOptionRefPrisms() CheckOptionRefPrisms {
 // [lenses]: __lens.Lens
 type WithGenericLenses[T any] struct {
 	// mandatory fields
-	Name __lens.Lens[WithGeneric[T], string]
+	Name  __lens.Lens[WithGeneric[T], string]
 	Value __lens.Lens[WithGeneric[T], T]
 	// optional fields
 	NameO __lens_option.LensO[WithGeneric[T], string]
@@ -1179,11 +500,10 @@ type WithGenericLenses[T any] struct {
 
 // WithGenericRefLenses provides [lenses] for accessing fields of [WithGeneric] via a reference to [WithGeneric]
 //
-//
 // [lenses]: __lens.Lens
 type WithGenericRefLenses[T any] struct {
 	// mandatory fields
-	Name __lens.Lens[*WithGeneric[T], string]
+	Name  __lens.Lens[*WithGeneric[T], string]
 	Value __lens.Lens[*WithGeneric[T], T]
 	// optional fields
 	NameO __lens_option.LensO[*WithGeneric[T], string]
@@ -1193,7 +513,7 @@ type WithGenericRefLenses[T any] struct {
 //
 // [prisms]: __prism.Prism
 type WithGenericPrisms[T any] struct {
-	Name __prism.Prism[WithGeneric[T], string]
+	Name  __prism.Prism[WithGeneric[T], string]
 	Value __prism.Prism[WithGeneric[T], T]
 }
 
@@ -1201,7 +521,7 @@ type WithGenericPrisms[T any] struct {
 //
 // [prisms]: __prism.Prism
 type WithGenericRefPrisms[T any] struct {
-	Name __prism.Prism[*WithGeneric[T], string]
+	Name  __prism.Prism[*WithGeneric[T], string]
 	Value __prism.Prism[*WithGeneric[T], T]
 }
 
@@ -1209,102 +529,43 @@ type WithGenericRefPrisms[T any] struct {
 //
 // [lenses]:__lens.Lens
 func MakeWithGenericLenses[T any]() WithGenericLenses[T] {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensName := __lens.MakeLensWithName(
-		func(s WithGeneric[T]) string { return s.Name },
-		func(s WithGeneric[T], v string) WithGeneric[T] { s.Name = v; return s },
-		"WithGeneric[T].Name",
-	)
-	lensValue := __lens.MakeLensWithName(
-		func(s WithGeneric[T]) T { return s.Value },
-		func(s WithGeneric[T], v T) WithGeneric[T] { s.Value = v; return s },
-		"WithGeneric[T].Value",
-	)
-	// optional lenses
-	lensNameO := __lens_option.FromIso[WithGeneric[T]](__iso_option.FromZero[string]())(lensName)
-	return WithGenericLenses[T]{
-		// mandatory lenses
-		Name: lensName,
-		Value: lensValue,
-		// optional lenses
-		NameO: lensNameO,
-	}
+	return nil
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeWithGenericRefLenses creates a new [WithGenericRefLenses] with [lenses] for all fields
 //
 // [lenses]:__lens.Lens
 func MakeWithGenericRefLenses[T any]() WithGenericRefLenses[T] {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensName := __lens.MakeLensStrictWithName(
-		func(s *WithGeneric[T]) string { return s.Name },
-		func(s *WithGeneric[T], v string) *WithGeneric[T] { s.Name = v; return s },
-		"(*WithGeneric[T]).Name",
-	)
-	lensValue := __lens.MakeLensRefWithName(
-		func(s *WithGeneric[T]) T { return s.Value },
-		func(s *WithGeneric[T], v T) *WithGeneric[T] { s.Value = v; return s },
-		"(*WithGeneric[T]).Value",
-	)
-	// optional lenses
-	lensNameO := __lens_option.FromIso[*WithGeneric[T]](__iso_option.FromZero[string]())(lensName)
-	return WithGenericRefLenses[T]{
-		// mandatory lenses
-		Name: lensName,
-		Value: lensValue,
-		// optional lenses
-		NameO: lensNameO,
-	}
+	return nil
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeWithGenericPrisms creates a new [WithGenericPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
-func MakeWithGenericPrisms[T any]() WithGenericPrisms[T] {
-	_fromNonZeroName := __option.FromNonZero[string]()
-	_prismName := __prism.MakePrismWithName(
-		func(s WithGeneric[T]) __option.Option[string] { return _fromNonZeroName(s.Name) },
-		func(v string) WithGeneric[T] {
-			return WithGeneric[T]{ Name: v }
-		},
-		"WithGeneric[T].Name",
-	)
-	_prismValue := __prism.MakePrismWithName(
-		func(s WithGeneric[T]) __option.Option[T] { return __option.Some(s.Value) },
-		func(v T) WithGeneric[T] {
-			return WithGeneric[T]{ Value: v }
-		},
-		"WithGeneric[T].Value",
-	)
-	return WithGenericPrisms[T] {
-		Name: _prismName,
-		Value: _prismValue,
-	}
-}
+func MakeWithGenericPrisms[T any]() WithGenericPrisms[T] { _ = "STUB: not implemented"; return nil }
 
 // MakeWithGenericRefPrisms creates a new [WithGenericRefPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
 func MakeWithGenericRefPrisms[T any]() WithGenericRefPrisms[T] {
-	_fromNonZeroName := __option.FromNonZero[string]()
-	_prismName := __prism.MakePrismWithName(
-		func(s *WithGeneric[T]) __option.Option[string] { return _fromNonZeroName(s.Name) },
-		func(v string) *WithGeneric[T] {
-			return &WithGeneric[T]{ Name: v }
-		},
-		"WithGeneric[T].Name",
-	)
-	_prismValue := __prism.MakePrismWithName(
-		func(s *WithGeneric[T]) __option.Option[T] { return __option.Some(s.Value) },
-		func(v T) *WithGeneric[T] {
-			return &WithGeneric[T]{ Value: v }
-		},
-		"WithGeneric[T].Value",
-	)
-	return WithGenericRefPrisms[T] {
-		Name: _prismName,
-		Value: _prismValue,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // DataBuilderLenses provides [lenses] for accessing fields of [DataBuilder]
@@ -1312,23 +573,22 @@ func MakeWithGenericRefPrisms[T any]() WithGenericRefPrisms[T] {
 // [lenses]: __lens.Lens
 type DataBuilderLenses struct {
 	// mandatory fields
-	name __lens.Lens[DataBuilder, string]
+	name  __lens.Lens[DataBuilder, string]
 	value __lens.Lens[DataBuilder, string]
 	// optional fields
-	nameO __lens_option.LensO[DataBuilder, string]
+	nameO  __lens_option.LensO[DataBuilder, string]
 	valueO __lens_option.LensO[DataBuilder, string]
 }
 
 // DataBuilderRefLenses provides [lenses] for accessing fields of [DataBuilder] via a reference to [DataBuilder]
 //
-//
 // [lenses]: __lens.Lens
 type DataBuilderRefLenses struct {
 	// mandatory fields
-	name __lens.Lens[*DataBuilder, string]
+	name  __lens.Lens[*DataBuilder, string]
 	value __lens.Lens[*DataBuilder, string]
 	// optional fields
-	nameO __lens_option.LensO[*DataBuilder, string]
+	nameO  __lens_option.LensO[*DataBuilder, string]
 	valueO __lens_option.LensO[*DataBuilder, string]
 }
 
@@ -1336,7 +596,7 @@ type DataBuilderRefLenses struct {
 //
 // [prisms]: __prism.Prism
 type DataBuilderPrisms struct {
-	name __prism.Prism[DataBuilder, string]
+	name  __prism.Prism[DataBuilder, string]
 	value __prism.Prism[DataBuilder, string]
 }
 
@@ -1344,7 +604,7 @@ type DataBuilderPrisms struct {
 //
 // [prisms]: __prism.Prism
 type DataBuilderRefPrisms struct {
-	name __prism.Prism[*DataBuilder, string]
+	name  __prism.Prism[*DataBuilder, string]
 	value __prism.Prism[*DataBuilder, string]
 }
 
@@ -1352,106 +612,44 @@ type DataBuilderRefPrisms struct {
 //
 // [lenses]:__lens.Lens
 func MakeDataBuilderLenses() DataBuilderLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensname := __lens.MakeLensWithName(
-		func(s DataBuilder) string { return s.name },
-		func(s DataBuilder, v string) DataBuilder { s.name = v; return s },
-		"DataBuilder.name",
-	)
-	lensvalue := __lens.MakeLensWithName(
-		func(s DataBuilder) string { return s.value },
-		func(s DataBuilder, v string) DataBuilder { s.value = v; return s },
-		"DataBuilder.value",
-	)
-	// optional lenses
-	lensnameO := __lens_option.FromIso[DataBuilder](__iso_option.FromZero[string]())(lensname)
-	lensvalueO := __lens_option.FromIso[DataBuilder](__iso_option.FromZero[string]())(lensvalue)
-	return DataBuilderLenses{
-		// mandatory lenses
-		name: lensname,
-		value: lensvalue,
-		// optional lenses
-		nameO: lensnameO,
-		valueO: lensvalueO,
-	}
+	return *new(DataBuilderLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeDataBuilderRefLenses creates a new [DataBuilderRefLenses] with [lenses] for all fields
 //
 // [lenses]:__lens.Lens
 func MakeDataBuilderRefLenses() DataBuilderRefLenses {
+	_ = "STUB: not implemented"
 	// mandatory lenses
-	lensname := __lens.MakeLensStrictWithName(
-		func(s *DataBuilder) string { return s.name },
-		func(s *DataBuilder, v string) *DataBuilder { s.name = v; return s },
-		"(*DataBuilder).name",
-	)
-	lensvalue := __lens.MakeLensStrictWithName(
-		func(s *DataBuilder) string { return s.value },
-		func(s *DataBuilder, v string) *DataBuilder { s.value = v; return s },
-		"(*DataBuilder).value",
-	)
-	// optional lenses
-	lensnameO := __lens_option.FromIso[*DataBuilder](__iso_option.FromZero[string]())(lensname)
-	lensvalueO := __lens_option.FromIso[*DataBuilder](__iso_option.FromZero[string]())(lensvalue)
-	return DataBuilderRefLenses{
-		// mandatory lenses
-		name: lensname,
-		value: lensvalue,
-		// optional lenses
-		nameO: lensnameO,
-		valueO: lensvalueO,
-	}
+	return *new(DataBuilderRefLenses)
 }
+
+// optional lenses
+
+// mandatory lenses
+
+// optional lenses
 
 // MakeDataBuilderPrisms creates a new [DataBuilderPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
 func MakeDataBuilderPrisms() DataBuilderPrisms {
-	_fromNonZeroname := __option.FromNonZero[string]()
-	_prismname := __prism.MakePrismWithName(
-		func(s DataBuilder) __option.Option[string] { return _fromNonZeroname(s.name) },
-		func(v string) DataBuilder {
-			return DataBuilder{ name: v }
-		},
-		"DataBuilder.name",
-	)
-	_fromNonZerovalue := __option.FromNonZero[string]()
-	_prismvalue := __prism.MakePrismWithName(
-		func(s DataBuilder) __option.Option[string] { return _fromNonZerovalue(s.value) },
-		func(v string) DataBuilder {
-			return DataBuilder{ value: v }
-		},
-		"DataBuilder.value",
-	)
-	return DataBuilderPrisms {
-		name: _prismname,
-		value: _prismvalue,
-	}
+	_ = "STUB: not implemented"
+	return *new(DataBuilderPrisms)
 }
 
 // MakeDataBuilderRefPrisms creates a new [DataBuilderRefPrisms] with [prisms] for all fields
 //
 // [prisms]:__prism.Prism
 func MakeDataBuilderRefPrisms() DataBuilderRefPrisms {
-	_fromNonZeroname := __option.FromNonZero[string]()
-	_prismname := __prism.MakePrismWithName(
-		func(s *DataBuilder) __option.Option[string] { return _fromNonZeroname(s.name) },
-		func(v string) *DataBuilder {
-			return &DataBuilder{ name: v }
-		},
-		"DataBuilder.name",
-	)
-	_fromNonZerovalue := __option.FromNonZero[string]()
-	_prismvalue := __prism.MakePrismWithName(
-		func(s *DataBuilder) __option.Option[string] { return _fromNonZerovalue(s.value) },
-		func(v string) *DataBuilder {
-			return &DataBuilder{ value: v }
-		},
-		"DataBuilder.value",
-	)
-	return DataBuilderRefPrisms {
-		name: _prismname,
-		value: _prismvalue,
-	}
+	_ = "STUB: not implemented"
+	return *new(DataBuilderRefPrisms)
 }

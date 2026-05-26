@@ -19,13 +19,10 @@ import (
 	"testing"
 
 	E "github.com/IBM/fp-go/eq"
-	F "github.com/IBM/fp-go/function"
 	"github.com/IBM/fp-go/internal/apply"
-	L "github.com/IBM/fp-go/internal/apply/testing"
 	"github.com/IBM/fp-go/internal/chain"
 	"github.com/IBM/fp-go/internal/functor"
 	"github.com/IBM/fp-go/internal/pointed"
-	"github.com/stretchr/testify/assert"
 )
 
 // Chain associativity law
@@ -46,19 +43,8 @@ func AssertAssociativity[HKTA, HKTB, HKTC, A, B, C any](t *testing.T,
 	ab func(A) B,
 	bc func(B) C,
 ) func(fa HKTA) bool {
-	return func(fa HKTA) bool {
-
-		afb := F.Flow2(ab, fofb)
-		bfc := F.Flow2(bc, fofc)
-
-		left := chainbc(chainab(fa, afb), bfc)
-
-		right := chainac(fa, func(a A) HKTC {
-			return chainbc(afb(a), bfc)
-		})
-
-		return assert.True(t, eq.Equals(left, right), "Chain associativity")
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Chain associativity law
@@ -77,19 +63,8 @@ func ChainAssertAssociativity[HKTA, HKTB, HKTC, HKTAB, HKTAC, HKTBC, A, B, C any
 	ab func(A) B,
 	bc func(B) C,
 ) func(fa HKTA) bool {
-	return func(fa HKTA) bool {
-
-		afb := F.Flow2(ab, fofb.Of)
-		bfc := F.Flow2(bc, fofc.Of)
-
-		left := chainbc.Chain(bfc)(chainab.Chain(afb)(fa))
-
-		right := chainac.Chain(func(a A) HKTC {
-			return chainbc.Chain(bfc)(afb(a))
-		})(fa)
-
-		return assert.True(t, eq.Equals(left, right), "Chain associativity")
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AssertLaws asserts the apply laws `identity`, `composition`, `associative composition` and `associativity`
@@ -125,15 +100,12 @@ func AssertLaws[HKTA, HKTB, HKTC, HKTAB, HKTBC, HKTAC, HKTABAC, A, B, C any](t *
 	ab func(A) B,
 	bc func(B) C,
 ) func(fa HKTA) bool {
+	_ = "STUB: not implemented"
 	// apply laws
-	apply := L.AssertLaws(t, eqa, eqc, fofab, fofbc, faa, fab, fac, fbc, fmap, fapab, fapbc, fapac, fapabac, ab, bc)
-	// chain laws
-	associativity := AssertAssociativity(t, eqc, fofb, fofc, chainab, chainac, chainbc, ab, bc)
-
-	return func(fa HKTA) bool {
-		return apply(fa) && associativity(fa)
-	}
+	return nil
 }
+
+// chain laws
 
 // ChainAssertLaws asserts the apply laws `identity`, `composition`, `associative composition` and `associativity`
 func ChainAssertLaws[HKTA, HKTB, HKTC, HKTAB, HKTBC, HKTAC, HKTABAC, A, B, C any](t *testing.T,
@@ -159,12 +131,9 @@ func ChainAssertLaws[HKTA, HKTB, HKTC, HKTAB, HKTBC, HKTAC, HKTABAC, A, B, C any
 	ab func(A) B,
 	bc func(B) C,
 ) func(fa HKTA) bool {
+	_ = "STUB: not implemented"
 	// apply laws
-	apply := L.ApplyAssertLaws(t, eqa, eqc, fofab, fofbc, faa, fmap, chain.ToApply(chainab), chain.ToApply(chainbc), chain.ToApply(chainac), fapabac, ab, bc)
-	// chain laws
-	associativity := ChainAssertAssociativity(t, eqc, fofb, fofc, chainab, chainac, chainbc, ab, bc)
-
-	return func(fa HKTA) bool {
-		return apply(fa) && associativity(fa)
-	}
+	return nil
 }
+
+// chain laws

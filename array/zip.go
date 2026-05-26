@@ -16,23 +16,19 @@
 package array
 
 import (
-	G "github.com/IBM/fp-go/array/generic"
 	T "github.com/IBM/fp-go/tuple"
 )
 
 // ZipWith applies a function to pairs of elements at the same index in two arrays, collecting the results in a new array. If one
 // input array is short, excess elements of the longer array are discarded.
 func ZipWith[FCT ~func(A, B) C, A, B, C any](fa []A, fb []B, f FCT) []C {
-	return G.ZipWith[[]A, []B, []C, FCT](fa, fb, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Zip takes two arrays and returns an array of corresponding pairs. If one input array is short, excess elements of the
 // longer array are discarded
-func Zip[A, B any](fb []B) func([]A) []T.Tuple2[A, B] {
-	return G.Zip[[]A, []B, []T.Tuple2[A, B]](fb)
-}
+func Zip[A, B any](fb []B) func([]A) []T.Tuple2[A, B] { _ = "STUB: not implemented"; return nil }
 
 // Unzip is the function is reverse of [Zip]. Takes an array of pairs and return two corresponding arrays
-func Unzip[A, B any](cs []T.Tuple2[A, B]) T.Tuple2[[]A, []B] {
-	return G.Unzip[[]A, []B, []T.Tuple2[A, B]](cs)
-}
+func Unzip[A, B any](cs []T.Tuple2[A, B]) T.Tuple2[[]A, []B] { _ = "STUB: not implemented"; return nil }

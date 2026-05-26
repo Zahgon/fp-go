@@ -29,17 +29,8 @@ package option
 //	result := TraverseArrayG[[]string, []int](parse)([]string{"1", "2", "3"}) // Some([1, 2, 3])
 //	result := TraverseArrayG[[]string, []int](parse)([]string{"1", "x", "3"}) // None
 func TraverseArrayG[GA ~[]A, GB ~[]B, A, B any](f Kleisli[A, B]) Kleisli[GA, GB] {
-	return func(g GA) (GB, bool) {
-		bs := make(GB, len(g))
-		for i, a := range g {
-			b, bok := f(a)
-			if !bok {
-				return bs, false
-			}
-			bs[i] = b
-		}
-		return bs, true
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArray transforms an array by applying a function that returns an Option to each element.
@@ -51,7 +42,8 @@ func TraverseArrayG[GA ~[]A, GB ~[]B, A, B any](f Kleisli[A, B]) Kleisli[GA, GB]
 //	result := TraverseArray(validate)([]int{1, 2, 3}) // Some([2, 4, 6])
 //	result := TraverseArray(validate)([]int{1, -1, 3}) // None
 func TraverseArray[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
-	return TraverseArrayG[[]A, []B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndexG transforms an array by applying an indexed function that returns an Option.
@@ -65,17 +57,8 @@ func TraverseArray[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
 //	}
 //	result := TraverseArrayWithIndexG[[]string, []string](f)([]string{"a", "b"}) // Some(["0:a", "1:b"])
 func TraverseArrayWithIndexG[GA ~[]A, GB ~[]B, A, B any](f func(int, A) (B, bool)) Kleisli[GA, GB] {
-	return func(g GA) (GB, bool) {
-		bs := make(GB, len(g))
-		for i, a := range g {
-			b, bok := f(i, a)
-			if !bok {
-				return bs, false
-			}
-			bs[i] = b
-		}
-		return bs, true
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms an array by applying an indexed function that returns an Option.
@@ -89,5 +72,6 @@ func TraverseArrayWithIndexG[GA ~[]A, GB ~[]B, A, B any](f func(int, A) (B, bool
 //	}
 //	result := TraverseArrayWithIndex(f)([]int{1, 2, 3}) // Some([1, 2, 3])
 func TraverseArrayWithIndex[A, B any](f func(int, A) (B, bool)) Kleisli[[]A, []B] {
-	return TraverseArrayWithIndexG[[]A, []B](f)
+	_ = "STUB: not implemented"
+	return nil
 }

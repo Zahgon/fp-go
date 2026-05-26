@@ -24,11 +24,6 @@ package readerresult
 import (
 	"context"
 	"log/slog"
-
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/logging"
-	"github.com/IBM/fp-go/v2/reader"
-	"github.com/IBM/fp-go/v2/result"
 )
 
 // curriedLog creates a curried logging function that takes an slog.Attr and a context,
@@ -49,10 +44,8 @@ func curriedLog(
 	logLevel slog.Level,
 	cb func(context.Context) *slog.Logger,
 	message string) func(slog.Attr) Reader[context.Context, struct{}] {
-	return F.Curry2(func(a slog.Attr, ctx context.Context) struct{} {
-		cb(ctx).LogAttrs(ctx, logLevel, message, a)
-		return struct{}{}
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SLogWithCallback creates a Kleisli arrow that logs a Result value using a custom
@@ -111,19 +104,11 @@ func SLogWithCallback[A any](
 	logLevel slog.Level,
 	cb func(context.Context) *slog.Logger,
 	message string) Kleisli[Result[A], A] {
-
-	return F.Pipe1(
-		F.Flow2(
-			result.ToSLogAttr[A](),
-			curriedLog(logLevel, cb, message),
-		),
-		reader.Chain(reader.Sequence(F.Flow2( // this flow is basically the `MapTo` function with side effects
-			reader.Of[struct{}, Result[A]],
-			reader.Map[context.Context, struct{}, Result[A]],
-		))),
-	)
-
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// this flow is basically the `MapTo` function with side effects
 
 // SLog creates a Kleisli arrow that logs a Result value at INFO level using the
 // logger from the context. This is a convenience function that uses SLogWithCallback
@@ -205,11 +190,7 @@ func SLogWithCallback[A any](
 // which falls back to the global logger if no logger is found in the context.
 //
 //go:inline
-func SLog[A any](message string) Kleisli[Result[A], A] {
-	return SLogWithCallback[A](slog.LevelInfo, logging.GetLoggerFromContext, message)
-}
+func SLog[A any](message string) Kleisli[Result[A], A] { _ = "STUB: not implemented"; return nil }
 
 //go:inline
-func TapSLog[A any](message string) Operator[A, A] {
-	return reader.Chain(SLog[A](message))
-}
+func TapSLog[A any](message string) Operator[A, A] { _ = "STUB: not implemented"; return nil }

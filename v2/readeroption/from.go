@@ -15,10 +15,6 @@
 
 package readeroption
 
-import (
-	G "github.com/IBM/fp-go/v2/readeroption/generic"
-)
-
 // From functions convert Go functions that take a context as the first parameter
 // and return (value, bool) into ReaderOption functions with uncurried parameters.
 //
@@ -44,7 +40,8 @@ import (
 //	ro := roFunc() // Returns a ReaderOption[context.Context, Config]
 //	result := ro(ctx) // Returns option.Some(config) or option.None()
 func From0[R, A any](f func(R) (A, bool)) func() ReaderOption[R, A] {
-	return G.From0[ReaderOption[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From1 converts a function that takes a context and one argument, returning (A, bool),
@@ -62,7 +59,8 @@ func From0[R, A any](f func(R) (A, bool)) func() ReaderOption[R, A] {
 //	ro := roFunc(123) // Returns a ReaderOption[context.Context, User]
 //	result := ro(ctx) // Returns option.Some(user) or option.None()
 func From1[R, T1, A any](f func(R, T1) (A, bool)) Kleisli[R, T1, A] {
-	return G.From1[ReaderOption[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From2 converts a function that takes a context and two arguments, returning (A, bool),
@@ -78,7 +76,8 @@ func From1[R, T1, A any](f func(R, T1) (A, bool)) Kleisli[R, T1, A] {
 //	ro := roFunc("users", 123) // Returns a ReaderOption[context.Context, Record]
 //	result := ro(ctx) // Returns option.Some(record) or option.None()
 func From2[R, T1, T2, A any](f func(R, T1, T2) (A, bool)) func(T1, T2) ReaderOption[R, A] {
-	return G.From2[ReaderOption[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // From3 converts a function that takes a context and three arguments, returning (A, bool),
@@ -94,5 +93,6 @@ func From2[R, T1, T2, A any](f func(R, T1, T2) (A, bool)) func(T1, T2) ReaderOpt
 //	ro := roFunc("mydb", "users", 123) // Returns a ReaderOption[context.Context, Record]
 //	result := ro(ctx) // Returns option.Some(record) or option.None()
 func From3[R, T1, T2, T3, A any](f func(R, T1, T2, T3) (A, bool)) func(T1, T2, T3) ReaderOption[R, A] {
-	return G.From3[ReaderOption[R, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,7 +16,6 @@
 package ioresult
 
 import (
-	"github.com/IBM/fp-go/v2/ioeither"
 	"github.com/IBM/fp-go/v2/monoid"
 )
 
@@ -26,7 +25,8 @@ import (
 func ApplicativeMonoid[A any](
 	m monoid.Monoid[A],
 ) Monoid[A] {
-	return ioeither.ApplicativeMonoid[error](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoid returns a [Monoid] that concatenates [IOResult] instances via their applicative
@@ -35,7 +35,8 @@ func ApplicativeMonoid[A any](
 func ApplicativeMonoidSeq[A any](
 	m monoid.Monoid[A],
 ) Monoid[A] {
-	return ioeither.ApplicativeMonoidSeq[error](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoid returns a [Monoid] that concatenates [IOResult] instances via their applicative
@@ -44,5 +45,6 @@ func ApplicativeMonoidSeq[A any](
 func ApplicativeMonoidPar[A any](
 	m monoid.Monoid[A],
 ) Monoid[A] {
-	return ioeither.ApplicativeMonoidPar[error](m)
+	_ = "STUB: not implemented"
+	return nil
 }

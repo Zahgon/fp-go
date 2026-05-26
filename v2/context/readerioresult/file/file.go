@@ -35,18 +35,13 @@
 package file
 
 import (
-	"context"
 	"io"
 	"os"
 
 	RIOE "github.com/IBM/fp-go/v2/context/readerioresult"
-	ET "github.com/IBM/fp-go/v2/either"
 	FL "github.com/IBM/fp-go/v2/file"
 	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/file"
-	IOE "github.com/IBM/fp-go/v2/ioeither"
 	IOEF "github.com/IBM/fp-go/v2/ioeither/file"
-	"github.com/IBM/fp-go/v2/lazy"
 	O "github.com/IBM/fp-go/v2/option"
 	P "github.com/IBM/fp-go/v2/predicate"
 )
@@ -203,13 +198,7 @@ var (
 // See Also:
 //   - Open: For opening files
 //   - ReadFile: For reading files with automatic closing
-func Close[C io.Closer](c C) ReaderIOResult[Void] {
-	return F.Pipe2(
-		c,
-		IOEF.Close[C],
-		RIOE.FromIOEither[Void],
-	)
-}
+func Close[C io.Closer](c C) ReaderIOResult[Void] { _ = "STUB: not implemented"; return nil }
 
 // ReadFile reads the entire contents of a file in a context-aware manner.
 // This function automatically manages the file resource using the RAII pattern,
@@ -247,15 +236,7 @@ func Close[C io.Closer](c C) ReaderIOResult[Void] {
 //   - Open: For opening files without automatic reading
 //   - Close: For closing file handles
 //   - WithResource: For custom resource management patterns
-func ReadFile(path string) ReaderIOResult[[]byte] {
-	return RIOE.WithResource[[]byte](OpenOrStdIn()(path), Close[io.ReadCloser])(func(r io.ReadCloser) ReaderIOResult[[]byte] {
-		return func(ctx context.Context) IOE.IOEither[error, []byte] {
-			return func() ET.Either[error, []byte] {
-				return file.ReadAll(ctx, r)
-			}
-		}
-	})
-}
+func ReadFile(path string) ReaderIOResult[[]byte] { _ = "STUB: not implemented"; return nil }
 
 // WriteFile writes data to a file in a context-aware manner.
 // This function automatically manages the file resource using the RAII pattern,
@@ -296,12 +277,7 @@ func ReadFile(path string) ReaderIOResult[[]byte] {
 //   - ReadFile: For reading file contents with automatic resource management
 //   - Create: For creating files without automatic writing
 //   - WriteAll: For writing to an already-open file handle
-func WriteFile(data []byte) Kleisli[string, []byte] {
-	return F.Flow2(
-		CreateOrStdOut(),
-		WriteAll[io.WriteCloser](data),
-	)
-}
+func WriteFile(data []byte) Kleisli[string, []byte] { _ = "STUB: not implemented"; return nil }
 
 // CreateOrStdOut creates a file for writing or returns stdout if the path is "-".
 // This function is useful for CLI applications that need to support writing to either
@@ -345,16 +321,7 @@ func WriteFile(data []byte) Kleisli[string, []byte] {
 // See Also:
 //   - OpenOrStdIn: For reading from files or stdin
 //   - Create: For creating files without stdout fallback
-func CreateOrStdOut() Kleisli[string, io.WriteCloser] {
-	return F.Flow3(
-		isNotStdIO,
-		O.Map(F.Flow2(
-			Create,
-			RIOE.Map[*os.File](FL.ToWriteCloser),
-		)),
-		O.GetOrElse(lazy.Of(RIOE.Of(FL.NopWriteCloser(os.Stdout)))),
-	)
-}
+func CreateOrStdOut() Kleisli[string, io.WriteCloser] { _ = "STUB: not implemented"; return nil }
 
 // OpenOrStdIn opens a file for reading or returns stdin if the path is "-".
 // This function is useful for CLI applications that need to support reading from either
@@ -399,13 +366,4 @@ func CreateOrStdOut() Kleisli[string, io.WriteCloser] {
 // See Also:
 //   - CreateOrStdOut: For writing to files or stdout
 //   - Open: For opening files without stdin fallback
-func OpenOrStdIn() Kleisli[string, io.ReadCloser] {
-	return F.Flow3(
-		isNotStdIO,
-		O.Map(F.Flow2(
-			Open,
-			RIOE.Map[*os.File](FL.ToReadCloser),
-		)),
-		O.GetOrElse(lazy.Of(RIOE.Of(FL.NopReadCloser(os.Stdin)))),
-	)
-}
+func OpenOrStdIn() Kleisli[string, io.ReadCloser] { _ = "STUB: not implemented"; return nil }

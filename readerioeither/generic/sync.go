@@ -19,10 +19,10 @@ import (
 	"context"
 
 	ET "github.com/IBM/fp-go/either"
-	G "github.com/IBM/fp-go/readerio/generic"
 )
 
 // WithLock executes the provided IO operation in the scope of a lock
 func WithLock[GEA ~func(R) GIOA, GIOA ~func() ET.Either[E, A], R, E, A any](lock func() context.CancelFunc) func(fa GEA) GEA {
-	return G.WithLock[GEA](lock)
+	_ = "STUB: not implemented"
+	return nil
 }

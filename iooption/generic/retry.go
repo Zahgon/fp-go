@@ -18,7 +18,6 @@ package generic
 import (
 	O "github.com/IBM/fp-go/option"
 	R "github.com/IBM/fp-go/retry"
-	G "github.com/IBM/fp-go/retry/generic"
 )
 
 // Retry combinator for actions that don't raise exceptions, but
@@ -29,13 +28,7 @@ func Retrying[GA ~func() O.Option[A], A any](
 	action func(R.RetryStatus) GA,
 	check func(A) bool,
 ) GA {
+	_ = "STUB: not implemented"
 	// get an implementation for the types
-	return G.Retrying(
-		Chain[GA, GA, A, A],
-		Chain[func() O.Option[R.RetryStatus], GA, R.RetryStatus, A],
-		Of[GA, A],
-		Of[func() O.Option[R.RetryStatus], R.RetryStatus],
-		Delay[func() O.Option[R.RetryStatus], R.RetryStatus],
-
-		policy, action, check)
+	return *new(GA)
 }

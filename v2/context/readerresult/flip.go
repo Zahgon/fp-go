@@ -19,7 +19,6 @@ import (
 	"context"
 
 	"github.com/IBM/fp-go/v2/reader"
-	RR "github.com/IBM/fp-go/v2/readerresult"
 )
 
 // SequenceReader swaps the order of environment parameters when the inner computation is a Reader.
@@ -79,7 +78,8 @@ import (
 //
 //go:inline
 func SequenceReader[R, A any](ma ReaderResult[Reader[R, A]]) reader.Kleisli[context.Context, R, Result[A]] {
-	return RR.SequenceReader(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseReader transforms a value using a Reader function and swaps environment parameter order.
@@ -150,5 +150,6 @@ func SequenceReader[R, A any](ma ReaderResult[Reader[R, A]]) reader.Kleisli[cont
 func TraverseReader[R, A, B any](
 	f reader.Kleisli[R, A, B],
 ) func(ReaderResult[A]) Kleisli[R, B] {
-	return RR.TraverseReader[context.Context](f)
+	_ = "STUB: not implemented"
+	return nil
 }

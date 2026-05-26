@@ -16,10 +16,7 @@
 package readerioresult
 
 import (
-	"context"
-
 	"github.com/IBM/fp-go/v2/monoid"
-	RIOR "github.com/IBM/fp-go/v2/readerioresult"
 )
 
 type (
@@ -36,9 +33,7 @@ type (
 //   - m: The underlying monoid for type A
 //
 // Returns a Monoid for ReaderIOResult[A].
-func ApplicativeMonoid[A any](m monoid.Monoid[A]) Monoid[A] {
-	return RIOR.ApplicativeMonoid[context.Context](m)
-}
+func ApplicativeMonoid[A any](m monoid.Monoid[A]) Monoid[A] { _ = "STUB: not implemented"; return nil }
 
 // ApplicativeMonoidSeq returns a [Monoid] that concatenates [ReaderIOResult] instances via their applicative.
 // This explicitly uses sequential execution for combining values.
@@ -48,7 +43,8 @@ func ApplicativeMonoid[A any](m monoid.Monoid[A]) Monoid[A] {
 //
 // Returns a Monoid for ReaderIOResult[A] with sequential execution.
 func ApplicativeMonoidSeq[A any](m monoid.Monoid[A]) Monoid[A] {
-	return RIOR.ApplicativeMonoidSeq[context.Context](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoidPar returns a [Monoid] that concatenates [ReaderIOResult] instances via their applicative.
@@ -59,7 +55,8 @@ func ApplicativeMonoidSeq[A any](m monoid.Monoid[A]) Monoid[A] {
 //
 // Returns a Monoid for ReaderIOResult[A] with parallel execution.
 func ApplicativeMonoidPar[A any](m monoid.Monoid[A]) Monoid[A] {
-	return RIOR.ApplicativeMonoidPar[context.Context](m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AlternativeMonoid is the alternative [Monoid] for [ReaderIOResult].
@@ -70,9 +67,7 @@ func ApplicativeMonoidPar[A any](m monoid.Monoid[A]) Monoid[A] {
 //   - m: The underlying monoid for type A
 //
 // Returns a Monoid for ReaderIOResult[A] with alternative semantics.
-func AlternativeMonoid[A any](m monoid.Monoid[A]) Monoid[A] {
-	return RIOR.AlternativeMonoid[context.Context](m)
-}
+func AlternativeMonoid[A any](m monoid.Monoid[A]) Monoid[A] { _ = "STUB: not implemented"; return nil }
 
 // AltMonoid is the alternative [Monoid] for a [ReaderIOResult].
 // This creates a monoid where the empty value is provided lazily,
@@ -83,5 +78,6 @@ func AlternativeMonoid[A any](m monoid.Monoid[A]) Monoid[A] {
 //
 // Returns a Monoid for ReaderIOResult[A] with Alt-based combination.
 func AltMonoid[A any](zero Lazy[ReaderIOResult[A]]) Monoid[A] {
-	return RIOR.AltMonoid(zero)
+	_ = "STUB: not implemented"
+	return nil
 }

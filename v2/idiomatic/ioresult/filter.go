@@ -15,8 +15,6 @@
 
 package ioresult
 
-import "github.com/IBM/fp-go/v2/idiomatic/result"
-
 // FilterOrElse filters an IOResult value based on a predicate in an idiomatic style.
 // If the IOResult computation succeeds and the predicate returns true, returns the original success value.
 // If the IOResult computation succeeds and the predicate returns false, returns an error with the error from onFalse.
@@ -43,5 +41,6 @@ import "github.com/IBM/fp-go/v2/idiomatic/result"
 //
 //go:inline
 func FilterOrElse[A any](pred Predicate[A], onFalse func(A) error) Operator[A, A] {
-	return ChainResultK(result.FromPredicate(pred, onFalse))
+	_ = "STUB: not implemented"
+	return nil
 }

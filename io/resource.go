@@ -15,13 +15,10 @@
 
 package io
 
-import (
-	G "github.com/IBM/fp-go/io/generic"
-)
-
 // WithResource constructs a function that creates a resource, then operates on it and then releases the resource
 func WithResource[
 	R, A, ANY any](onCreate IO[R], onRelease func(R) IO[ANY]) func(func(R) IO[A]) IO[A] {
+	_ = "STUB: not implemented"
 	// just dispatch
-	return G.WithResource[IO[A], IO[R], IO[ANY]](onCreate, onRelease)
+	return nil
 }

@@ -17,7 +17,6 @@ package option
 
 import (
 	C "github.com/IBM/fp-go/v2/constraints"
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/ord"
 )
 
@@ -36,14 +35,12 @@ import (
 //	optOrd.Compare(Some(5), Some(3)) // 1 (5 > 3)
 //	optOrd.Compare(None[int](), None[int]()) // 0 (equal)
 func Ord[A any](a ord.Ord[A]) ord.Ord[Option[A]] {
+	_ = "STUB: not implemented"
 	// some convenient shortcuts
-	fld := Fold(
-		F.Constant(Fold(F.Constant(0), F.Constant1[A](-1))),
-		F.Flow2(F.Curry2(a.Compare), F.Bind1st(Fold[A, int], F.Constant(1))),
-	)
-	// convert to an ordering predicate
-	return ord.MakeOrd(F.Uncurry2(fld), Eq(ord.ToEq(a)).Equals)
+	return nil
 }
+
+// convert to an ordering predicate
 
 // FromStrictCompare constructs an Ord for Option[A] using Go's built-in comparison operators for type A.
 // This is a convenience function for ordered types (types that support <, >, ==).
@@ -53,6 +50,4 @@ func Ord[A any](a ord.Ord[A]) ord.Ord[Option[A]] {
 //	optOrd := FromStrictCompare[int]()
 //	optOrd.Compare(Some(5), Some(10)) // -1
 //	optOrd.Compare(None[int](), Some(5)) // -1
-func FromStrictCompare[A C.Ordered]() ord.Ord[Option[A]] {
-	return Ord(ord.FromStrictCompare[A]())
-}
+func FromStrictCompare[A C.Ordered]() ord.Ord[Option[A]] { _ = "STUB: not implemented"; return nil }

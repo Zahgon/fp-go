@@ -16,7 +16,6 @@
 package array
 
 import (
-	G "github.com/IBM/fp-go/v2/array/generic"
 	O "github.com/IBM/fp-go/v2/ord"
 )
 
@@ -32,9 +31,7 @@ import (
 //	// Result: [1, 1, 2, 3, 4, 5, 6, 9]
 //
 //go:inline
-func Sort[T any](ord O.Ord[T]) Operator[T, T] {
-	return G.Sort[[]T](ord)
-}
+func Sort[T any](ord O.Ord[T]) Operator[T, T] { _ = "STUB: not implemented"; return nil }
 
 // SortByKey implements a stable sort on the array given the provided ordering on an extracted key.
 // This is useful when you want to sort complex types by a specific field.
@@ -63,7 +60,8 @@ func Sort[T any](ord O.Ord[T]) Operator[T, T] {
 //
 //go:inline
 func SortByKey[K, T any](ord O.Ord[K], f func(T) K) Operator[T, T] {
-	return G.SortByKey[[]T](ord, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SortBy implements a stable sort on the array using multiple ordering criteria.
@@ -93,6 +91,4 @@ func SortByKey[K, T any](ord O.Ord[K], f func(T) K) Operator[T, T] {
 //	// Result: [{"Jones", "Bob"}, {"Smith", "Alice"}, {"Smith", "John"}]
 //
 //go:inline
-func SortBy[T any](ord []O.Ord[T]) Operator[T, T] {
-	return G.SortBy[[]T](ord)
-}
+func SortBy[T any](ord []O.Ord[T]) Operator[T, T] { _ = "STUB: not implemented"; return nil }

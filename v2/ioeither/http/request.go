@@ -16,19 +16,11 @@
 package http
 
 import (
-	"bytes"
-	"io"
 	"net/http"
 
-	B "github.com/IBM/fp-go/v2/bytes"
-	FL "github.com/IBM/fp-go/v2/file"
 	F "github.com/IBM/fp-go/v2/function"
 	H "github.com/IBM/fp-go/v2/http"
 	"github.com/IBM/fp-go/v2/ioeither"
-	IOEF "github.com/IBM/fp-go/v2/ioeither/file"
-	J "github.com/IBM/fp-go/v2/json"
-	R "github.com/IBM/fp-go/v2/reader"
-	RIOE "github.com/IBM/fp-go/v2/readerioeither"
 )
 
 type (
@@ -56,86 +48,52 @@ var (
 
 // MakeBodyRequest creates a request that carries a body
 func MakeBodyRequest(method string, body ioeither.IOEither[error, []byte]) Kleisli[error, string, *http.Request] {
-	onBody := F.Pipe1(
-		body,
-		ioeither.Map[error](F.Flow2(
-			bytes.NewReader,
-			FL.ToReader[*bytes.Reader],
-		)),
-	)
-	onRelease := ioeither.Of[error, io.Reader]
-	withMethod := F.Bind1of3(MakeRequest)(method)
-
-	return F.Flow2(
-		F.Bind1of2(withMethod),
-		ioeither.WithResource[*http.Request](onBody, onRelease),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (client client) Do(req Requester) ioeither.IOEither[error, *http.Response] {
-	return F.Pipe1(
-		req,
-		ioeither.Chain(client.doIOE),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func MakeClient(httpClient *http.Client) Client {
-	return client{delegate: httpClient, doIOE: ioeither.Eitherize1(httpClient.Do)}
-}
+func MakeClient(httpClient *http.Client) Client { _ = "STUB: not implemented"; return *new(Client) }
 
 // ReadFullResponse sends a request,  reads the response as a byte array and represents the result as a tuple
 func ReadFullResponse(client Client) Kleisli[error, Requester, H.FullResponse] {
-	return F.Flow3(
-		client.Do,
-		ioeither.ChainEitherK(H.ValidateResponse),
-		ioeither.Chain(F.Pipe3(
-			H.GetBody,
-			RIOE.FromReader[error],
-			R.Map[*http.Response](IOEF.ReadAll[io.ReadCloser]),
-			RIOE.ChainReaderK[error](H.FromBody),
-		)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadAll sends a request and reads the response as bytes
 func ReadAll(client Client) Kleisli[error, Requester, []byte] {
-	return F.Flow2(
-		ReadFullResponse(client),
-		ioeither.Map[error](H.Body),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadText sends a request, reads the response and represents the response as a text string
 func ReadText(client Client) Kleisli[error, Requester, string] {
-	return F.Flow2(
-		ReadAll(client),
-		ioeither.Map[error](B.ToString),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadJson sends a request, reads the response and parses the response as JSON
 //
 // Deprecated: use [ReadJSON] instead
 func ReadJson[A any](client Client) Kleisli[error, Requester, A] {
-	return ReadJSON[A](client)
+	_ = "STUB: not implemented"
+	return nil
+
+	// readJSON sends a request, reads the response and parses the response as a []byte
 }
 
-// readJSON sends a request, reads the response and parses the response as a []byte
 func readJSON(client Client) Kleisli[error, Requester, []byte] {
-	return F.Flow3(
-		ReadFullResponse(client),
-		ioeither.ChainFirstEitherK(F.Flow2(
-			H.Response,
-			H.ValidateJSONResponse,
-		)),
-		ioeither.Map[error](H.Body),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadJSON sends a request, reads the response and parses the response as JSON
 func ReadJSON[A any](client Client) Kleisli[error, Requester, A] {
-	return F.Flow2(
-		readJSON(client),
-		ioeither.ChainEitherK(J.Unmarshal[A]),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

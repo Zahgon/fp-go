@@ -15,13 +15,6 @@
 
 package iter
 
-import (
-	"github.com/IBM/fp-go/v2/function"
-	A "github.com/IBM/fp-go/v2/internal/apply"
-	C "github.com/IBM/fp-go/v2/internal/chain"
-	F "github.com/IBM/fp-go/v2/internal/functor"
-)
-
 // Do creates a sequence containing a single element, typically used to start a do-notation chain.
 // This is the entry point for monadic composition using do-notation style.
 //
@@ -49,60 +42,58 @@ import (
 func Do[S any](
 	empty S,
 ) Seq[S] {
-	return Of(empty)
+	_ = "STUB: not implemented"
+
+	// Bind performs a monadic bind operation in do-notation style, chaining a computation
+	// that produces a sequence and updating the state with the result.
+	//
+	// This function is the core of do-notation for sequences. It takes a Kleisli arrow
+	// (a function that returns a sequence) and a setter function that updates the state
+	// with the result. The setter is curried to allow partial application.
+	//
+	// Type Parameters:
+	//   - S1: The input state type
+	//   - S2: The output state type
+	//   - T: The type of value produced by the Kleisli arrow
+	//
+	// Parameters:
+	//   - setter: A curried function that takes a value T and returns a function that updates S1 to S2
+	//   - f: A Kleisli arrow that takes S1 and produces a sequence of T
+	//
+	// Returns:
+	//   - An Operator that transforms Seq[S1] to Seq[S2]
+	//
+	// Example:
+	//
+	//	type State struct {
+	//	    Value int
+	//	    Double int
+	//	}
+	//
+	//	setValue := func(v int) func(State) State {
+	//	    return func(s State) State { s.Value = v; return s }
+	//	}
+	//
+	//	getValues := func(s State) Seq[int] {
+	//	    return From(1, 2, 3)
+	//	}
+	//
+	//	result := F.Pipe2(
+	//	    Do(State{}),
+	//	    Bind(setValue, getValues),
+	//	)
+	//	// yields: State{Value: 1}, State{Value: 2}, State{Value: 3}
+	//
+	//go:inline
+	return nil
 }
 
-// Bind performs a monadic bind operation in do-notation style, chaining a computation
-// that produces a sequence and updating the state with the result.
-//
-// This function is the core of do-notation for sequences. It takes a Kleisli arrow
-// (a function that returns a sequence) and a setter function that updates the state
-// with the result. The setter is curried to allow partial application.
-//
-// Type Parameters:
-//   - S1: The input state type
-//   - S2: The output state type
-//   - T: The type of value produced by the Kleisli arrow
-//
-// Parameters:
-//   - setter: A curried function that takes a value T and returns a function that updates S1 to S2
-//   - f: A Kleisli arrow that takes S1 and produces a sequence of T
-//
-// Returns:
-//   - An Operator that transforms Seq[S1] to Seq[S2]
-//
-// Example:
-//
-//	type State struct {
-//	    Value int
-//	    Double int
-//	}
-//
-//	setValue := func(v int) func(State) State {
-//	    return func(s State) State { s.Value = v; return s }
-//	}
-//
-//	getValues := func(s State) Seq[int] {
-//	    return From(1, 2, 3)
-//	}
-//
-//	result := F.Pipe2(
-//	    Do(State{}),
-//	    Bind(setValue, getValues),
-//	)
-//	// yields: State{Value: 1}, State{Value: 2}, State{Value: 3}
-//
-//go:inline
 func Bind[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[S1, T],
 ) Operator[S1, S2] {
-	return C.Bind(
-		Chain[S1, S2],
-		Map[T, S2],
-		setter,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let performs a pure computation in do-notation style, updating the state with a computed value.
@@ -149,11 +140,8 @@ func Let[S1, S2, T any](
 	key func(T) func(S1) S2,
 	f func(S1) T,
 ) Operator[S1, S2] {
-	return F.Let(
-		Map[S1, S2],
-		key,
-		f,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo sets a field in the state to a constant value in do-notation style.
@@ -195,11 +183,8 @@ func LetTo[S1, S2, T any](
 	key func(T) func(S1) S2,
 	b T,
 ) Operator[S1, S2] {
-	return F.LetTo(
-		Map[S1, S2],
-		key,
-		b,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo wraps a value into a structure using a setter function.
@@ -237,10 +222,8 @@ func LetTo[S1, S2, T any](
 func BindTo[S1, T any](
 	setter func(T) S1,
 ) Operator[T, S1] {
-	return C.BindTo(
-		Map[T, S1],
-		setter,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindToP wraps a value into a structure using a Prism's ReverseGet function.
@@ -271,7 +254,8 @@ func BindTo[S1, T any](
 func BindToP[S1, T any](
 	setter Prism[S1, T],
 ) Operator[T, S1] {
-	return BindTo(setter.ReverseGet)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS applies a sequence of values to update a state using applicative style.
@@ -316,12 +300,8 @@ func ApS[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa Seq[T],
 ) Operator[S1, S2] {
-	return A.ApS(
-		Ap[S2, T],
-		Map[S1, func(T) S2],
-		setter,
-		fa,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL applies a sequence of values to update a state field using a Lens.
@@ -361,50 +341,53 @@ func ApSL[S, T any](
 	lens Lens[S, T],
 	fa Seq[T],
 ) Endomorphism[Seq[S]] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL performs a monadic bind on a field of a structure using a Lens.
+	//
+	// This function combines Lens-based field access with monadic binding. It extracts
+	// a field value using the Lens's Get, applies a Kleisli arrow to produce a sequence,
+	// and updates the field with each result using the Lens's Set.
+	//
+	// Type Parameters:
+	//   - S: The state type
+	//   - T: The type of the field being accessed and updated
+	//
+	// Parameters:
+	//   - lens: A Lens focusing on the field to bind
+	//   - f: A Kleisli arrow that takes the field value and produces a sequence
+	//
+	// Returns:
+	//   - An Endomorphism on Seq[S]
+	//
+	// Example:
+	//
+	//	type State struct {
+	//	    Value int
+	//	}
+	//
+	//	valueLens := lens.Prop[State, int]("Value")
+	//
+	//	multiplyValues := func(v int) Seq[int] {
+	//	    return From(v, v*2, v*3)
+	//	}
+	//
+	//	result := F.Pipe2(
+	//	    Do(State{Value: 5}),
+	//	    BindL(valueLens, multiplyValues),
+	//	)
+	//	// yields: State{Value: 5}, State{Value: 10}, State{Value: 15}
+	//
+	//go:inline
 }
 
-// BindL performs a monadic bind on a field of a structure using a Lens.
-//
-// This function combines Lens-based field access with monadic binding. It extracts
-// a field value using the Lens's Get, applies a Kleisli arrow to produce a sequence,
-// and updates the field with each result using the Lens's Set.
-//
-// Type Parameters:
-//   - S: The state type
-//   - T: The type of the field being accessed and updated
-//
-// Parameters:
-//   - lens: A Lens focusing on the field to bind
-//   - f: A Kleisli arrow that takes the field value and produces a sequence
-//
-// Returns:
-//   - An Endomorphism on Seq[S]
-//
-// Example:
-//
-//	type State struct {
-//	    Value int
-//	}
-//
-//	valueLens := lens.Prop[State, int]("Value")
-//
-//	multiplyValues := func(v int) Seq[int] {
-//	    return From(v, v*2, v*3)
-//	}
-//
-//	result := F.Pipe2(
-//	    Do(State{Value: 5}),
-//	    BindL(valueLens, multiplyValues),
-//	)
-//	// yields: State{Value: 5}, State{Value: 10}, State{Value: 15}
-//
-//go:inline
 func BindL[S, T any](
 	lens Lens[S, T],
 	f Kleisli[T, T],
 ) Endomorphism[Seq[S]] {
-	return Bind(lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL performs a pure computation on a field of a structure using a Lens.
@@ -445,7 +428,8 @@ func LetL[S, T any](
 	lens Lens[S, T],
 	f Endomorphism[T],
 ) Endomorphism[Seq[S]] {
-	return Let(lens.Set, function.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL sets a field of a structure to a constant value using a Lens.
@@ -484,5 +468,6 @@ func LetToL[S, T any](
 	lens Lens[S, T],
 	b T,
 ) Endomorphism[Seq[S]] {
-	return LetTo(lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }

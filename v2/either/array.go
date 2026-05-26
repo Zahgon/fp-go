@@ -17,10 +17,6 @@ package either
 
 import (
 	"iter"
-	"slices"
-
-	F "github.com/IBM/fp-go/v2/function"
-	RA "github.com/IBM/fp-go/v2/internal/array"
 )
 
 // TraverseArrayG transforms an array by applying a function that returns an Either to each element.
@@ -39,17 +35,8 @@ import (
 //
 //go:inline
 func TraverseArrayG[GA ~[]A, GB ~[]B, E, A, B any](f Kleisli[E, A, B]) Kleisli[E, GA, GB] {
-	return func(ga GA) Either[E, GB] {
-		bs := make(GB, len(ga))
-		for i, a := range ga {
-			b := f(a)
-			if b.isLeft {
-				return Left[GB](b.l)
-			}
-			bs[i] = b.r
-		}
-		return Of[E](bs)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArray transforms an array by applying a function that returns an Either to each element.
@@ -67,7 +54,8 @@ func TraverseArrayG[GA ~[]A, GB ~[]B, E, A, B any](f Kleisli[E, A, B]) Kleisli[E
 //
 //go:inline
 func TraverseArray[E, A, B any](f Kleisli[E, A, B]) Kleisli[E, []A, []B] {
-	return TraverseArrayG[[]A, []B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndexG transforms an array by applying an indexed function that returns an Either.
@@ -88,17 +76,8 @@ func TraverseArray[E, A, B any](f Kleisli[E, A, B]) Kleisli[E, []A, []B] {
 //
 //go:inline
 func TraverseArrayWithIndexG[GA ~[]A, GB ~[]B, E, A, B any](f func(int, A) Either[E, B]) Kleisli[E, GA, GB] {
-	return func(ga GA) Either[E, GB] {
-		bs := make(GB, len(ga))
-		for i, a := range ga {
-			b := f(i, a)
-			if b.isLeft {
-				return Left[GB](b.l)
-			}
-			bs[i] = b.r
-		}
-		return Of[E](bs)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms an array by applying an indexed function that returns an Either.
@@ -118,12 +97,14 @@ func TraverseArrayWithIndexG[GA ~[]A, GB ~[]B, E, A, B any](f func(int, A) Eithe
 //
 //go:inline
 func TraverseArrayWithIndex[E, A, B any](f func(int, A) Either[E, B]) Kleisli[E, []A, []B] {
-	return TraverseArrayWithIndexG[[]A, []B](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func SequenceArrayG[GA ~[]A, GOA ~[]Either[E, A], E, A any](ma GOA) Either[E, GA] {
-	return TraverseArrayG[GOA, GA](F.Identity[Either[E, A]])(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts a homogeneous sequence of Either into an Either of sequence.
@@ -142,7 +123,8 @@ func SequenceArrayG[GA ~[]A, GOA ~[]Either[E, A], E, A any](ma GOA) Either[E, GA
 //
 //go:inline
 func SequenceArray[E, A any](ma []Either[E, A]) Either[E, []A] {
-	return SequenceArrayG[[]A](ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // CompactArrayG discards all Left values and keeps only the Right values.
@@ -160,9 +142,8 @@ func SequenceArray[E, A any](ma []Either[E, A]) Either[E, []A] {
 //
 //go:inline
 func CompactArrayG[A1 ~[]Either[E, A], A2 ~[]A, E, A any](fa A1) A2 {
-	return RA.Reduce(fa, func(out A2, value Either[E, A]) A2 {
-		return MonadFold(value, F.Constant1[E](out), F.Bind1st(RA.Append[A2, A], out))
-	}, make(A2, 0, len(fa)))
+	_ = "STUB: not implemented"
+	return *new(A2)
 }
 
 // CompactArray discards all Left values and keeps only the Right values.
@@ -178,9 +159,7 @@ func CompactArrayG[A1 ~[]Either[E, A], A2 ~[]A, E, A any](fa A1) A2 {
 //	// result is []int{1, 3}
 //
 //go:inline
-func CompactArray[E, A any](fa []Either[E, A]) []A {
-	return CompactArrayG[[]Either[E, A], []A](fa)
-}
+func CompactArray[E, A any](fa []Either[E, A]) []A { _ = "STUB: not implemented"; return nil }
 
 // TraverseSeq transforms an iterator by applying a function that returns an Either to each element.
 // If any element produces a Left, the entire result is that Left (short-circuits).
@@ -220,17 +199,8 @@ func CompactArray[E, A any](fa []Either[E, A]) []A {
 //   - TraverseArray: For slice-based traversal
 //   - SequenceSeq: For sequencing iterators of Either values
 func TraverseSeq[E, A, B any](f Kleisli[E, A, B]) Kleisli[E, iter.Seq[A], iter.Seq[B]] {
-	return func(ga iter.Seq[A]) Either[E, iter.Seq[B]] {
-		var bs []B
-		for a := range ga {
-			b := f(a)
-			if b.isLeft {
-				return Left[iter.Seq[B]](b.l)
-			}
-			bs = append(bs, b.r)
-		}
-		return Of[E](slices.Values(bs))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceSeq converts an iterator of Either into an Either of iterator.
@@ -268,9 +238,11 @@ func TraverseSeq[E, A, B any](f Kleisli[E, A, B]) Kleisli[E, iter.Seq[A], iter.S
 //   - SequenceArray: For slice-based sequencing
 //   - TraverseSeq: For transforming and sequencing in one step
 func SequenceSeq[E, A any](ma iter.Seq[Either[E, A]]) Either[E, iter.Seq[A]] {
-	return TraverseSeq(F.Identity[Either[E, A]])(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func TraversableArray[E, A, B any]() Traversable[E, A, B, []A, []B] {
-	return TraverseArrayG[[]A, []B, E, A, B]
+	_ = "STUB: not implemented"
+	return nil
 }

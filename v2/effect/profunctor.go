@@ -15,10 +15,6 @@
 
 package effect
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-)
-
 // Promap is the profunctor map operation that transforms both the input and output of an Effect.
 // It applies f to the input context (contravariantly) and g to the output value (covariantly).
 //
@@ -79,8 +75,6 @@ import (
 //
 //go:inline
 func Promap[E, A, D, B any](f Reader[D, E], g Reader[A, B]) Kleisli[D, Effect[E, A], B] {
-	return F.Flow2(
-		Local[A](f),
-		Map[D](g),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -15,10 +15,6 @@
 
 package semigroup
 
-import (
-	M "github.com/IBM/fp-go/v2/magma"
-)
-
 // GenericMonadConcatAll creates a function that concatenates all elements in a generic slice
 // with an initial value using the provided semigroup operation. This is the uncurried version
 // that takes both the slice and initial value as parameters.
@@ -33,7 +29,8 @@ import (
 //	concatAll := semigroup.GenericMonadConcatAll[MyInts](sum)
 //	result := concatAll(MyInts{1, 2, 3}, 10)  // 10 + 1 + 2 + 3 = 16
 func GenericMonadConcatAll[GA ~[]A, A any](s Semigroup[A]) func(GA, A) A {
-	return M.GenericMonadConcatAll[GA](M.MakeMagma(s.Concat))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GenericConcatAll creates a curried function that concatenates all elements in a generic slice
@@ -50,7 +47,8 @@ func GenericMonadConcatAll[GA ~[]A, A any](s Semigroup[A]) func(GA, A) A {
 //	concatAll := semigroup.GenericConcatAll[MyInts](sum)
 //	result := concatAll(10)(MyInts{1, 2, 3})  // 10 + 1 + 2 + 3 = 16
 func GenericConcatAll[GA ~[]A, A any](s Semigroup[A]) func(A) func(GA) A {
-	return M.GenericConcatAll[GA](M.MakeMagma(s.Concat))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadConcatAll creates a function that concatenates all elements in a slice with an initial
@@ -65,9 +63,7 @@ func GenericConcatAll[GA ~[]A, A any](s Semigroup[A]) func(A) func(GA) A {
 //	sum := N.SemigroupSum[int]()
 //	concatAll := semigroup.MonadConcatAll(sum)
 //	result := concatAll([]int{1, 2, 3}, 10)  // 10 + 1 + 2 + 3 = 16
-func MonadConcatAll[A any](s Semigroup[A]) func([]A, A) A {
-	return GenericMonadConcatAll[[]A](s)
-}
+func MonadConcatAll[A any](s Semigroup[A]) func([]A, A) A { _ = "STUB: not implemented"; return nil }
 
 // ConcatAll creates a curried function that concatenates all elements in a slice with an
 // initial value using the provided semigroup operation.
@@ -83,6 +79,4 @@ func MonadConcatAll[A any](s Semigroup[A]) func([]A, A) A {
 //	sum := N.SemigroupSum[int]()
 //	concatAll := semigroup.ConcatAll(sum)
 //	result := concatAll(10)([]int{1, 2, 3})  // 10 + 1 + 2 + 3 = 16
-func ConcatAll[A any](s Semigroup[A]) func(A) func([]A) A {
-	return GenericConcatAll[[]A](s)
-}
+func ConcatAll[A any](s Semigroup[A]) func(A) func([]A) A { _ = "STUB: not implemented"; return nil }

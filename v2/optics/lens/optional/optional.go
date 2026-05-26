@@ -16,19 +16,18 @@
 package optional
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
 	L "github.com/IBM/fp-go/v2/optics/lens"
 	OPT "github.com/IBM/fp-go/v2/optics/optional"
 	O "github.com/IBM/fp-go/v2/option"
 )
 
 func lensAsOptional[S, A any](creator func(get O.Kleisli[S, A], set func(S, A) S) OPT.Optional[S, A], sa L.Lens[S, A]) OPT.Optional[S, A] {
-	return creator(F.Flow2(sa.Get, O.Some[A]), func(s S, a A) S {
-		return sa.Set(a)(s)
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LensAsOptional converts a Lens into an Optional
 func LensAsOptional[S, A any](sa L.Lens[S, A]) OPT.Optional[S, A] {
-	return lensAsOptional(OPT.MakeOptional[S, A], sa)
+	_ = "STUB: not implemented"
+	return nil
 }

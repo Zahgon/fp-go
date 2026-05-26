@@ -15,10 +15,6 @@
 
 package function
 
-import (
-	G "github.com/IBM/fp-go/v2/function/generic"
-)
-
 // Memoize converts a unary function into a memoized version that caches computed values.
 //
 // Behavior:
@@ -60,9 +56,7 @@ import (
 //	result3 := memoized(10) // Takes 100ms, computes and caches 100
 //
 // Note: The cache grows unbounded. For bounded caches, use CacheCallback with a custom cache implementation.
-func Memoize[K comparable, T any](f func(K) T) func(K) T {
-	return G.Memoize(f)
-}
+func Memoize[K comparable, T any](f func(K) T) func(K) T { _ = "STUB: not implemented"; return nil }
 
 // ContramapMemoize creates a higher-order function that memoizes functions using a custom key extraction strategy.
 //
@@ -117,7 +111,8 @@ func Memoize[K comparable, T any](f func(K) T) func(K) T {
 //	result2 := memoized(User{ID: 1, Name: "Bob", Email: "b@example.com"})   // Cached (same ID)
 //	result3 := memoized(User{ID: 2, Name: "Alice", Email: "a@example.com"}) // Computed (different ID)
 func ContramapMemoize[T, A any, K comparable](kf func(A) K) func(func(A) T) func(A) T {
-	return G.ContramapMemoize[func(A) T](kf)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // CacheCallback creates a higher-order function that memoizes functions using a custom cache implementation.
@@ -205,7 +200,8 @@ func ContramapMemoize[T, A any, K comparable](kf func(A) K) func(func(A) T) func
 // See also: SingleElementCache for a simple bounded cache implementation.
 func CacheCallback[
 	T, A any, K comparable](kf func(A) K, getOrCreate func(K, func() func() T) func() T) func(func(A) T) func(A) T {
-	return G.CacheCallback[func(func(A) T) func(A) T](kf, getOrCreate)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SingleElementCache creates a thread-safe cache implementation that stores at most one element.
@@ -279,5 +275,6 @@ func CacheCallback[
 //   - Best case: Same key accessed repeatedly (100% hit rate)
 //   - Worst case: Alternating keys (0% hit rate)
 func SingleElementCache[K comparable, T any]() func(K, func() func() T) func() T {
-	return G.SingleElementCache[func() func() T, K]()
+	_ = "STUB: not implemented"
+	return nil
 }

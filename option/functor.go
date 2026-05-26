@@ -22,10 +22,13 @@ import (
 type optionFunctor[A, B any] struct{}
 
 func (o *optionFunctor[A, B]) Map(f func(A) B) func(Option[A]) Option[B] {
-	return Map[A, B](f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Functor implements the functoric operations for [Option]
 }
 
-// Functor implements the functoric operations for [Option]
 func Functor[A, B any]() functor.Functor[A, B, Option[A], Option[B]] {
-	return &optionFunctor[A, B]{}
+	_ = "STUB: not implemented"
+	return nil
 }

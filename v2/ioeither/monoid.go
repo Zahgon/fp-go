@@ -27,34 +27,22 @@ type (
 func ApplicativeMonoid[E, A any](
 	m monoid.Monoid[A],
 ) Monoid[E, A] {
-	return monoid.ApplicativeMonoid(
-		MonadOf[E, A],
-		MonadMap[E, A, func(A) A],
-		MonadAp[A, E, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoidSeq returns a [Monoid] that concatenates [IOEither] instances sequentially via their applicative
 func ApplicativeMonoidSeq[E, A any](
 	m monoid.Monoid[A],
 ) Monoid[E, A] {
-	return monoid.ApplicativeMonoid(
-		MonadOf[E, A],
-		MonadMap[E, A, func(A) A],
-		MonadApSeq[A, E, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoidPar returns a [Monoid] that concatenates [IOEither] instances in parallel via their applicative
 func ApplicativeMonoidPar[E, A any](
 	m monoid.Monoid[A],
 ) Monoid[E, A] {
-	return monoid.ApplicativeMonoid(
-		MonadOf[E, A],
-		MonadMap[E, A, func(A) A],
-		MonadApPar[A, E, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

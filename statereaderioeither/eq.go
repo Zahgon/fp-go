@@ -19,17 +19,18 @@ import (
 	EQ "github.com/IBM/fp-go/eq"
 	P "github.com/IBM/fp-go/pair"
 	RIOE "github.com/IBM/fp-go/readerioeither"
-	G "github.com/IBM/fp-go/statereaderioeither/generic"
 )
 
 // Eq implements the equals predicate for values contained in the [StateReaderIOEither] monad
 func Eq[
 	S, R, E, A any](eqr EQ.Eq[RIOE.ReaderIOEither[R, E, P.Pair[A, S]]]) func(S) EQ.Eq[StateReaderIOEither[S, R, E, A]] {
-	return G.Eq[StateReaderIOEither[S, R, E, A]](eqr)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
 func FromStrictEquals[
 	S, R any, E, A comparable]() func(R) func(S) EQ.Eq[StateReaderIOEither[S, R, E, A]] {
-	return G.FromStrictEquals[StateReaderIOEither[S, R, E, A]]()
+	_ = "STUB: not implemented"
+	return nil
 }

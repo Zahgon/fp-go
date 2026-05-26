@@ -17,10 +17,10 @@ package stateless
 
 import (
 	"github.com/IBM/fp-go/v2/internal/monad"
-	G "github.com/IBM/fp-go/v2/iterator/stateless/generic"
 )
 
 // Monad returns the monadic operations for an [Iterator]
 func Monad[A, B any]() monad.Monad[A, B, Iterator[A], Iterator[B], Iterator[func(A) B]] {
-	return G.Monad[A, B, Iterator[A], Iterator[B], Iterator[func(A) B]]()
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -19,8 +19,6 @@ import (
 	"testing"
 
 	"github.com/IBM/fp-go/v2/eq"
-	L "github.com/IBM/fp-go/v2/internal/monad/testing"
-	P "github.com/IBM/fp-go/v2/pair"
 
 	M "github.com/IBM/fp-go/v2/monoid"
 )
@@ -37,46 +35,8 @@ func assertLawsHead[E, A, B, C any](t *testing.T,
 	ab func(A) B,
 	bc func(B) C,
 ) func(a A) bool {
-
-	fofc := P.PointedHead[C](m)
-	fofaa := P.PointedHead[func(A) A](m)
-	fofbc := P.PointedHead[func(B) C](m)
-	fofabb := P.PointedHead[func(func(A) B) B](m)
-
-	fmap := P.FunctorHead[func(B) C, E, func(func(A) B) func(A) C]()
-
-	fapabb := P.ApplicativeHead[func(A) B, E, B](m)
-	fapabac := P.ApplicativeHead[func(A) B, E, func(A) C](m)
-
-	maa := P.MonadHead[A, E, A](m)
-	mab := P.MonadHead[A, E, B](m)
-	mac := P.MonadHead[A, E, C](m)
-	mbc := P.MonadHead[B, E, C](m)
-
-	return L.MonadAssertLaws(t,
-		P.Eq(eqa, eqe),
-		P.Eq(eqb, eqe),
-		P.Eq(eqc, eqe),
-
-		fofc,
-		fofaa,
-		fofbc,
-		fofabb,
-
-		fmap,
-
-		fapabb,
-		fapabac,
-
-		maa,
-		mab,
-		mac,
-		mbc,
-
-		ab,
-		bc,
-	)
-
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AssertLaws asserts the apply monad laws for the [P.Pair] monad
@@ -91,46 +51,8 @@ func assertLawsTail[E, A, B, C any](t *testing.T,
 	ab func(A) B,
 	bc func(B) C,
 ) func(a A) bool {
-
-	fofc := P.PointedTail[C](m)
-	fofaa := P.PointedTail[func(A) A](m)
-	fofbc := P.PointedTail[func(B) C](m)
-	fofabb := P.PointedTail[func(func(A) B) B](m)
-
-	fmap := P.FunctorTail[func(B) C, E, func(func(A) B) func(A) C]()
-
-	fapabb := P.ApplicativeTail[func(A) B, E, B](m)
-	fapabac := P.ApplicativeTail[func(A) B, E, func(A) C](m)
-
-	maa := P.MonadTail[A, E, A](m)
-	mab := P.MonadTail[A, E, B](m)
-	mac := P.MonadTail[A, E, C](m)
-	mbc := P.MonadTail[B, E, C](m)
-
-	return L.MonadAssertLaws(t,
-		P.Eq(eqe, eqa),
-		P.Eq(eqe, eqb),
-		P.Eq(eqe, eqc),
-
-		fofc,
-		fofaa,
-		fofbc,
-		fofabb,
-
-		fmap,
-
-		fapabb,
-		fapabac,
-
-		maa,
-		mab,
-		mac,
-		mbc,
-
-		ab,
-		bc,
-	)
-
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AssertLaws asserts the apply monad laws for the [P.Pair] monad
@@ -145,11 +67,6 @@ func AssertLaws[E, A, B, C any](t *testing.T,
 	ab func(A) B,
 	bc func(B) C,
 ) func(A) bool {
-
-	head := assertLawsHead(t, m, eqe, eqa, eqb, eqc, ab, bc)
-	tail := assertLawsTail(t, m, eqe, eqa, eqb, eqc, ab, bc)
-
-	return func(a A) bool {
-		return head(a) && tail(a)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

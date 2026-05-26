@@ -16,7 +16,6 @@
 package readerresult
 
 import (
-	"github.com/IBM/fp-go/v2/readereither"
 	"github.com/IBM/fp-go/v2/tuple"
 )
 
@@ -58,7 +57,8 @@ import (
 //
 //go:inline
 func SequenceT1[A any](a ReaderResult[A]) ReaderResult[tuple.Tuple1[A]] {
-	return readereither.SequenceT1(a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT2 combines two ReaderResults into a single ReaderResult containing a 2-tuple.
@@ -94,7 +94,8 @@ func SequenceT1[A any](a ReaderResult[A]) ReaderResult[tuple.Tuple1[A]] {
 //
 //go:inline
 func SequenceT2[A, B any](a ReaderResult[A], b ReaderResult[B]) ReaderResult[tuple.Tuple2[A, B]] {
-	return readereither.SequenceT2(a, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT3 combines three ReaderResults into a single ReaderResult containing a 3-tuple.
@@ -143,7 +144,8 @@ func SequenceT2[A, B any](a ReaderResult[A], b ReaderResult[B]) ReaderResult[tup
 //
 //go:inline
 func SequenceT3[A, B, C any](a ReaderResult[A], b ReaderResult[B], c ReaderResult[C]) ReaderResult[tuple.Tuple3[A, B, C]] {
-	return readereither.SequenceT3(a, b, c)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT4 combines four ReaderResults into a single ReaderResult containing a 4-tuple.
@@ -216,5 +218,6 @@ func SequenceT3[A, B, C any](a ReaderResult[A], b ReaderResult[B], c ReaderResul
 //
 //go:inline
 func SequenceT4[A, B, C, D any](a ReaderResult[A], b ReaderResult[B], c ReaderResult[C], d ReaderResult[D]) ReaderResult[tuple.Tuple4[A, B, C, D]] {
-	return readereither.SequenceT4(a, b, c, d)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,8 +16,6 @@
 package errors
 
 import (
-	"errors"
-
 	O "github.com/IBM/fp-go/v2/option"
 )
 
@@ -45,10 +43,4 @@ import (
 //	extractOther := As[*os.PathError]()
 //	result2 := extractOther(wrappedErr)
 //	// result2 is None since wrappedErr doesn't contain *os.PathError
-func As[A error]() func(error) O.Option[A] {
-	return O.FromValidation(func(err error) (A, bool) {
-		var a A
-		ok := errors.As(err, &a)
-		return a, ok
-	})
-}
+func As[A error]() func(error) O.Option[A] { _ = "STUB: not implemented"; return nil }

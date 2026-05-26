@@ -16,7 +16,6 @@
 package result
 
 import (
-	"github.com/IBM/fp-go/v2/either"
 	M "github.com/IBM/fp-go/v2/monoid"
 )
 
@@ -33,9 +32,7 @@ import (
 //	// result is Right(3)
 //
 //go:inline
-func AlternativeMonoid[A any](m M.Monoid[A]) Monoid[A] {
-	return either.AlternativeMonoid[error](m)
-}
+func AlternativeMonoid[A any](m M.Monoid[A]) Monoid[A] { _ = "STUB: not implemented"; return nil }
 
 // AltMonoid creates a monoid for Either using the Alt operation.
 // The empty value is provided as a lazy computation.
@@ -49,9 +46,7 @@ func AlternativeMonoid[A any](m M.Monoid[A]) Monoid[A] {
 //	// result is Right(42)
 //
 //go:inline
-func AltMonoid[A any](zero Lazy[Result[A]]) Monoid[A] {
-	return either.AltMonoid(zero)
-}
+func AltMonoid[A any](zero Lazy[Result[A]]) Monoid[A] { _ = "STUB: not implemented"; return nil }
 
 // FirstMonoid creates a Monoid for Result[A] that returns the first Ok (Right) value.
 // This monoid prefers the left operand when it is Ok, otherwise returns the right operand.
@@ -80,7 +75,8 @@ func AltMonoid[A any](zero Lazy[Result[A]]) Monoid[A] {
 //
 //go:inline
 func FirstMonoid[A any](zero Lazy[Result[A]]) M.Monoid[Result[A]] {
-	return either.FirstMonoid(zero)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LastMonoid creates a Monoid for Result[A] that returns the last Ok (Right) value.
@@ -108,5 +104,6 @@ func FirstMonoid[A any](zero Lazy[Result[A]]) M.Monoid[Result[A]] {
 //
 //go:inline
 func LastMonoid[A any](zero Lazy[Result[A]]) M.Monoid[Result[A]] {
-	return either.LastMonoid(zero)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -19,10 +19,10 @@ import (
 	"context"
 
 	ET "github.com/IBM/fp-go/either"
-	G "github.com/IBM/fp-go/io/generic"
 )
 
 // WithLock executes the provided IO operation in the scope of a lock
 func WithLock[GA ~func() ET.Either[E, A], E, A any](lock func() context.CancelFunc) func(fa GA) GA {
-	return G.WithLock[GA](lock)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -36,10 +36,6 @@ import (
 //	safeOperation := io.WithLock(lock)(dangerousOperation)
 //	result := safeOperation()
 func WithLock[A any](lock IO[context.CancelFunc]) Operator[A, A] {
-	return func(fa IO[A]) IO[A] {
-		return func() A {
-			defer lock()()
-			return fa()
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

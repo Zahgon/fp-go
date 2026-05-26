@@ -48,85 +48,66 @@ type (
 
 // Of implements the Pointed interface for IOResult.
 func (o *ioEitherPointed[A]) Of(a A) IOResult[A] {
-	return o.fof(a)
+	_ = "STUB: not implemented"
+
+	// Map implements the Monad interface's Map operation.
+	return nil
 }
 
-// Map implements the Monad interface's Map operation.
 func (o *ioEitherFunctor[A, B]) Map(f func(A) B) Operator[A, B] {
-	return o.fmap(f)
+	_ = "STUB: not implemented"
+
+	// Chain implements the Monad interface's Chain operation.
+	return nil
 }
 
-// Chain implements the Monad interface's Chain operation.
 func (o *ioEitherChainable[A, B]) Chain(f Kleisli[A, B]) Operator[A, B] {
-	return o.fchain(f)
+	_ = "STUB: not implemented"
+	return nil
+
+	// Ap implements the Monad interface's Ap operation.
 }
 
-// Ap implements the Monad interface's Ap operation.
 func (o *ioEitherApply[A, B]) Ap(fa IOResult[A]) Operator[func(A) B, B] {
-	return o.fap(fa)
+	_ = "STUB: not implemented"
+
+	// Pointed implements the pointed operations for [IOEither]
+	// Pointed returns a Pointed instance for IOResult.
+	// Pointed provides the ability to lift pure values into the IOResult context.
+	return nil
 }
 
-// Pointed implements the pointed operations for [IOEither]
-// Pointed returns a Pointed instance for IOResult.
-// Pointed provides the ability to lift pure values into the IOResult context.
-func Pointed[A any]() pointed.Pointed[A, IOResult[A]] {
-	return &ioEitherPointed[A]{
-		Of[A],
-	}
-}
+func Pointed[A any]() pointed.Pointed[A, IOResult[A]] { _ = "STUB: not implemented"; return nil }
 
 // Functor implements the monadic operations for [IOEither]
 // Functor returns a Functor instance for IOResult.
 // Functor provides the Map operation for transforming values.
 func Functor[A, B any]() functor.Functor[A, B, IOResult[A], IOResult[B]] {
-	return &ioEitherFunctor[A, B]{
-		Map[A, B],
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad implements the monadic operations for [IOEither]
 // Monad returns a Monad instance for IOResult.
 // Monad provides the full monadic interface including Map, Chain, and Ap.
 func Monad[A, B any]() monad.Monad[A, B, IOResult[A], IOResult[B], IOResult[func(A) B]] {
-	return MonadPar[A, B]()
+	_ = "STUB: not implemented"
+	return nil
+
+	// Monad implements the monadic operations for [IOEither]
+	// Monad returns a Monad instance for IOResult.
+	// Monad provides the full monadic interface including Map, Chain, and Ap.
 }
 
-// Monad implements the monadic operations for [IOEither]
-// Monad returns a Monad instance for IOResult.
-// Monad provides the full monadic interface including Map, Chain, and Ap.
 func MonadPar[A, B any]() monad.Monad[A, B, IOResult[A], IOResult[B], IOResult[func(A) B]] {
-	return &ioEitherMonad[A, B]{
-		ioEitherPointed[A]{
-			Of[A],
-		},
-		ioEitherChainable[A, B]{
-			ioEitherApply[A, B]{
-				ioEitherFunctor[A, B]{
-					Map[A, B],
-				},
-				ApPar[B, A],
-			},
-			Chain[A, B],
-		},
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Monad implements the monadic operations for [IOEither]
 // Monad returns a Monad instance for IOResult.
 // Monad provides the full monadic interface including Map, Chain, and Ap.
 func MonadSeq[A, B any]() monad.Monad[A, B, IOResult[A], IOResult[B], IOResult[func(A) B]] {
-	return &ioEitherMonad[A, B]{
-		ioEitherPointed[A]{
-			Of[A],
-		},
-		ioEitherChainable[A, B]{
-			ioEitherApply[A, B]{
-				ioEitherFunctor[A, B]{
-					Map[A, B],
-				},
-				ApSeq[B, A],
-			},
-			Chain[A, B],
-		},
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

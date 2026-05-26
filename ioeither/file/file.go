@@ -33,23 +33,12 @@ var (
 
 // WriteFile writes a data blob to a file
 func WriteFile(dstName string, perm os.FileMode) func([]byte) IOE.IOEither[error, []byte] {
-	return func(data []byte) IOE.IOEither[error, []byte] {
-		return IOE.TryCatchError(func() ([]byte, error) {
-			return data, os.WriteFile(dstName, data, perm)
-		})
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Remove removes a file by name
-func Remove(name string) IOE.IOEither[error, string] {
-	return IOE.TryCatchError(func() (string, error) {
-		return name, os.Remove(name)
-	})
-}
+func Remove(name string) IOE.IOEither[error, string] { _ = "STUB: not implemented"; return nil }
 
 // Close closes an object
-func Close[C io.Closer](c C) IOE.IOEither[error, any] {
-	return IOE.TryCatchError(func() (any, error) {
-		return c, c.Close()
-	})
-}
+func Close[C io.Closer](c C) IOE.IOEither[error, any] { _ = "STUB: not implemented"; return nil }

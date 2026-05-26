@@ -1,11 +1,5 @@
 package codec
 
-import (
-	"github.com/IBM/fp-go/v2/either"
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/optics/prism"
-)
-
 // TypeToPrism converts a Type codec into a Prism optic.
 //
 // A Type[A, S, S] represents a bidirectional codec that can decode S to A (with validation)
@@ -69,13 +63,4 @@ import (
 // Note: The prism's GetOption will return None for any validation failure,
 // discarding the specific error details. If you need error information,
 // use the Type's Decode method directly instead.
-func TypeToPrism[S, A any](t Type[A, S, S]) Prism[S, A] {
-	return prism.MakePrismWithName(
-		F.Flow2(
-			t.Decode,
-			either.ToOption,
-		),
-		t.Encode,
-		t.Name(),
-	)
-}
+func TypeToPrism[S, A any](t Type[A, S, S]) Prism[S, A] { _ = "STUB: not implemented"; return nil }

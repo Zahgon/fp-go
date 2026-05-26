@@ -15,8 +15,6 @@
 
 package result
 
-import "github.com/IBM/fp-go/v2/either"
-
 // IsLeft tests if the Either is a Left value.
 // Rather use [Fold] or [MonadFold] if you need to access the values.
 // Inverse is [IsRight].
@@ -27,9 +25,7 @@ import "github.com/IBM/fp-go/v2/either"
 //	either.IsLeft(either.Right[error](42)) // false
 //
 //go:inline
-func IsLeft[A any](val Result[A]) bool {
-	return either.IsLeft(val)
-}
+func IsLeft[A any](val Result[A]) bool { _ = "STUB: not implemented"; return false }
 
 // IsRight tests if the Either is a Right value.
 // Rather use [Fold] or [MonadFold] if you need to access the values.
@@ -41,9 +37,7 @@ func IsLeft[A any](val Result[A]) bool {
 //	either.IsRight(either.Left[int](errors.New("err"))) // false
 //
 //go:inline
-func IsRight[A any](val Result[A]) bool {
-	return either.IsRight(val)
-}
+func IsRight[A any](val Result[A]) bool { _ = "STUB: not implemented"; return false }
 
 // Left creates a new Either representing a Left (error/failure) value.
 // By convention, Left represents the error case.
@@ -53,10 +47,7 @@ func IsRight[A any](val Result[A]) bool {
 //	result := either.Left[int](errors.New("something went wrong"))
 //
 //go:inline
-func Left[A any](value error) Result[A] {
-	return either.Left[A](value)
-
-}
+func Left[A any](value error) Result[A] { _ = "STUB: not implemented"; return nil }
 
 // Right creates a new Either representing a Right (success) value.
 // By convention, Right represents the success case.
@@ -66,9 +57,7 @@ func Left[A any](value error) Result[A] {
 //	result := either.Right[error](42)
 //
 //go:inline
-func Right[A any](value A) Result[A] {
-	return either.Right[error](value)
-}
+func Right[A any](value A) Result[A] { _ = "STUB: not implemented"; return nil }
 
 // MonadFold extracts the value from an Either by providing handlers for both cases.
 // This is the fundamental pattern matching operation for Either.
@@ -83,7 +72,8 @@ func Right[A any](value A) Result[A] {
 //
 //go:inline
 func MonadFold[A, B any](ma Result[A], onLeft func(e error) B, onRight func(a A) B) B {
-	return either.MonadFold(ma, onLeft, onRight)
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 // Unwrap converts an Either into the idiomatic Go tuple (value, error).
@@ -96,6 +86,4 @@ func MonadFold[A, B any](ma Result[A], onLeft func(e error) B, onRight func(a A)
 //	val, err := either.Unwrap(either.Left[int](errors.New("fail"))) // 0, error
 //
 //go:inline
-func Unwrap[A any](ma Result[A]) (A, error) {
-	return either.Unwrap(ma)
-}
+func Unwrap[A any](ma Result[A]) (A, error) { _ = "STUB: not implemented"; return *new(A), nil }

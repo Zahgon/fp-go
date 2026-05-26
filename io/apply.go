@@ -16,15 +16,13 @@
 package io
 
 import (
-	G "github.com/IBM/fp-go/io/generic"
 	M "github.com/IBM/fp-go/monoid"
 	S "github.com/IBM/fp-go/semigroup"
 )
 
 func ApplySemigroup[A any](s S.Semigroup[A]) S.Semigroup[IO[A]] {
-	return G.ApplySemigroup[IO[A]](s)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func ApplicativeMonoid[A any](m M.Monoid[A]) M.Monoid[IO[A]] {
-	return G.ApplicativeMonoid[IO[A]](m)
-}
+func ApplicativeMonoid[A any](m M.Monoid[A]) M.Monoid[IO[A]] { _ = "STUB: not implemented"; return nil }

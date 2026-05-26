@@ -15,10 +15,6 @@
 
 package readeroption
 
-import (
-	G "github.com/IBM/fp-go/v2/readeroption/generic"
-)
-
 // TraverseArray transforms an array by applying a function that returns a ReaderOption to each element.
 // If any element results in None, the entire result is None.
 // Otherwise, returns Some containing an array of all the unwrapped values.
@@ -39,7 +35,8 @@ import (
 //	)
 //	// result will be Some([]User) if all users are found, None otherwise
 func TraverseArray[E, A, B any](f Kleisli[E, A, B]) Kleisli[E, []A, []B] {
-	return G.TraverseArray[ReaderOption[E, B], ReaderOption[E, []B], []A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex is like TraverseArray but the function also receives the index of each element.
@@ -56,7 +53,8 @@ func TraverseArray[E, A, B any](f Kleisli[E, A, B]) Kleisli[E, []A, []B] {
 //	values := []string{"a", "b", "c"}
 //	result := readeroption.TraverseArrayWithIndex[DB](processWithIndex)(values)
 func TraverseArrayWithIndex[E, A, B any](f func(int, A) ReaderOption[E, B]) func([]A) ReaderOption[E, []B] {
-	return G.TraverseArrayWithIndex[ReaderOption[E, B], ReaderOption[E, []B], []A](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts an array of ReaderOption values into a ReaderOption of an array.
@@ -84,5 +82,6 @@ func TraverseArrayWithIndex[E, A, B any](f func(int, A) ReaderOption[E, B]) func
 //	})
 //	// result2(config) will be option.Some([]User{{ID: 1, Name: "Alice"}, {ID: 2, Name: "Bob"}})
 func SequenceArray[E, A any](ma []ReaderOption[E, A]) ReaderOption[E, []A] {
-	return G.SequenceArray[ReaderOption[E, A], ReaderOption[E, []A]](ma)
+	_ = "STUB: not implemented"
+	return nil
 }

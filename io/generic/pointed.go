@@ -22,10 +22,11 @@ import (
 type ioPointed[A any, GA ~func() A] struct{}
 
 func (o *ioPointed[A, GA]) Of(a A) GA {
-	return Of[GA, A](a)
+	_ = "STUB: not implemented"
+	return *
+
+	// Pointed implements the pointedic operations for [IO]
+	new(GA)
 }
 
-// Pointed implements the pointedic operations for [IO]
-func Pointed[A any, GA ~func() A]() pointed.Pointed[A, GA] {
-	return &ioPointed[A, GA]{}
-}
+func Pointed[A any, GA ~func() A]() pointed.Pointed[A, GA] { _ = "STUB: not implemented"; return nil }

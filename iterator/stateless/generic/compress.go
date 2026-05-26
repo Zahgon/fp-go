@@ -16,7 +16,6 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/function"
 	O "github.com/IBM/fp-go/option"
 	P "github.com/IBM/fp-go/pair"
 )
@@ -24,11 +23,6 @@ import (
 // Compress returns an [Iterator] that filters elements from a data [Iterator] returning only those that have a corresponding element in selector [Iterator] that evaluates to `true`.
 // Stops when either the data or selectors iterator has been exhausted.
 func Compress[GU ~func() O.Option[P.Pair[GU, U]], GB ~func() O.Option[P.Pair[GB, bool]], CS ~func() O.Option[P.Pair[CS, P.Pair[U, bool]]], U any](sel GB) func(GU) GU {
-	return F.Flow2(
-		Zip[GU, GB, CS](sel),
-		FilterMap[GU, CS](F.Flow2(
-			O.FromPredicate(P.Tail[U, bool]),
-			O.Map(P.Head[U, bool]),
-		)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

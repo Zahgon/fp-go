@@ -15,13 +15,7 @@
 
 package ioresult
 
-import (
-	"github.com/IBM/fp-go/v2/ioeither"
-)
-
 // AltSemigroup is a [Semigroup] that tries the first item and then the second one using an alternative
 //
 //go:inline
-func AltSemigroup[A any]() Semigroup[A] {
-	return ioeither.AltSemigroup[error, A]()
-}
+func AltSemigroup[A any]() Semigroup[A] { _ = "STUB: not implemented"; return nil }

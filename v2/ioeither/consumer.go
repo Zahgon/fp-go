@@ -15,8 +15,6 @@
 
 package ioeither
 
-import "github.com/IBM/fp-go/v2/io"
-
 // ChainConsumer converts a Consumer into an IOEither operator that executes the consumer
 // as a side effect on successful (Right) values and returns an empty struct.
 //
@@ -82,10 +80,12 @@ import "github.com/IBM/fp-go/v2/io"
 //
 //go:inline
 func ChainConsumer[E, A any](c Consumer[A]) Operator[E, A, struct{}] {
-	return ChainIOK[E](io.FromConsumer(c))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func ChainFirstConsumer[E, A any](c Consumer[A]) Operator[E, A, A] {
-	return ChainFirstIOK[E](io.FromConsumer(c))
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,9 +16,6 @@
 package generic
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/internal/array"
-	FC "github.com/IBM/fp-go/v2/internal/functor"
 	M "github.com/IBM/fp-go/v2/monoid"
 	O "github.com/IBM/fp-go/v2/option"
 	"github.com/IBM/fp-go/v2/pair"
@@ -27,413 +24,306 @@ import (
 // Of constructs a single element array
 //
 //go:inline
-func Of[GA ~[]A, A any](value A) GA {
-	return array.Of[GA](value)
-}
+func Of[GA ~[]A, A any](value A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func Reduce[GA ~[]A, A, B any](f func(B, A) B, initial B) func(GA) B {
-	return func(as GA) B {
-		return MonadReduce(as, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ReduceWithIndex[GA ~[]A, A, B any](f func(int, B, A) B, initial B) func(GA) B {
-	return func(as GA) B {
-		return MonadReduceWithIndex(as, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ReduceRight[GA ~[]A, A, B any](f func(A, B) B, initial B) func(GA) B {
-	return func(as GA) B {
-		return MonadReduceRight(as, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ReduceRightWithIndex[GA ~[]A, A, B any](f func(int, A, B) B, initial B) func(GA) B {
-	return func(as GA) B {
-		return MonadReduceRightWithIndex(as, f, initial)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadReduce[GA ~[]A, A, B any](fa GA, f func(B, A) B, initial B) B {
-	return array.Reduce(fa, f, initial)
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 func MonadReduceWithIndex[GA ~[]A, A, B any](fa GA, f func(int, B, A) B, initial B) B {
-	return array.ReduceWithIndex(fa, f, initial)
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 func MonadReduceRight[GA ~[]A, A, B any](fa GA, f func(A, B) B, initial B) B {
-	return array.ReduceRight(fa, f, initial)
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 func MonadReduceRightWithIndex[GA ~[]A, A, B any](fa GA, f func(int, A, B) B, initial B) B {
-	return array.ReduceRightWithIndex(fa, f, initial)
+	_ = "STUB: not implemented"
+	return *new(B)
 }
 
 // From constructs an array from a set of variadic arguments
 func From[GA ~[]A, A any](data ...A) GA {
-	return data
+	_ = "STUB: not implemented"
+
+	// MakeBy returns a `Array` of length `n` with element `i` initialized with `f(i)`.
+	return *new(GA)
 }
 
-// MakeBy returns a `Array` of length `n` with element `i` initialized with `f(i)`.
 func MakeBy[AS ~[]A, F ~func(int) A, A any](n int, f F) AS {
+	_ = "STUB: not implemented"
 	// sanity check
-	if n <= 0 {
-		return Empty[AS]()
-	}
-	// run the generator function across the input
-	as := make(AS, n)
-	for i := range n {
-		as[i] = f(i)
-	}
-	return as
+	return *new(AS)
 }
 
-func Replicate[AS ~[]A, A any](n int, a A) AS {
-	return MakeBy[AS](n, F.Constant1[int](a))
-}
+// run the generator function across the input
 
-func Lookup[GA ~[]A, A any](idx int) func(GA) O.Option[A] {
-	none := O.None[A]()
-	if idx < 0 {
-		return F.Constant1[GA](none)
-	}
-	return func(as GA) O.Option[A] {
-		if idx < len(as) {
-			return O.Some(as[idx])
-		}
-		return none
-	}
-}
+func Replicate[AS ~[]A, A any](n int, a A) AS { _ = "STUB: not implemented"; return *new(AS) }
 
-func Tail[GA ~[]A, A any](as GA) O.Option[GA] {
-	if array.IsEmpty(as) {
-		return O.None[GA]()
-	}
-	return O.Some(as[1:])
-}
+func Lookup[GA ~[]A, A any](idx int) func(GA) O.Option[A] { _ = "STUB: not implemented"; return nil }
 
-func Head[GA ~[]A, A any](as GA) O.Option[A] {
-	if array.IsEmpty(as) {
-		return O.None[A]()
-	}
-	return O.Some(as[0])
-}
+func Tail[GA ~[]A, A any](as GA) O.Option[GA] { _ = "STUB: not implemented"; return nil }
 
-func First[GA ~[]A, A any](as GA) O.Option[A] {
-	return Head(as)
-}
+func Head[GA ~[]A, A any](as GA) O.Option[A] { _ = "STUB: not implemented"; return nil }
 
-func Last[GA ~[]A, A any](as GA) O.Option[A] {
-	if array.IsEmpty(as) {
-		return O.None[A]()
-	}
-	return O.Some(as[len(as)-1])
-}
+func First[GA ~[]A, A any](as GA) O.Option[A] { _ = "STUB: not implemented"; return nil }
 
-func Append[GA ~[]A, A any](as GA, a A) GA {
-	return array.Append(as, a)
-}
+func Last[GA ~[]A, A any](as GA) O.Option[A] { _ = "STUB: not implemented"; return nil }
+
+func Append[GA ~[]A, A any](as GA, a A) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func Empty[GA ~[]A, A any]() GA {
-	return array.Empty[GA]()
+	_ = "STUB: not implemented"
+	return *
+
+	//go:inline
+	new(GA)
 }
 
-//go:inline
-func UpsertAt[GA ~[]A, A any](a A) func(GA) GA {
-	return array.UpsertAt[GA](a)
-}
+func UpsertAt[GA ~[]A, A any](a A) func(GA) GA { _ = "STUB: not implemented"; return nil }
 
 //go:inline
 func MonadMap[GA ~[]A, GB ~[]B, A, B any](as GA, f func(a A) B) GB {
-	return array.MonadMap[GA, GB](as, f)
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 //go:inline
 func Map[GA ~[]A, GB ~[]B, A, B any](f func(a A) B) func(GA) GB {
-	return array.Map[GA, GB](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func MonadMapWithIndex[GA ~[]A, GB ~[]B, A, B any](as GA, f func(int, A) B) GB {
-	return array.MonadMapWithIndex[GA, GB](as, f)
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 //go:inline
 func MapWithIndex[GA ~[]A, GB ~[]B, A, B any](f func(int, A) B) func(GA) GB {
-	return F.Bind2nd(MonadMapWithIndex[GA, GB, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Size[GA ~[]A, A any](as GA) int {
-	return len(as)
-}
+func Size[GA ~[]A, A any](as GA) int { _ = "STUB: not implemented"; return 0 }
 
 func filterMap[GA ~[]A, GB ~[]B, A, B any](fa GA, f func(A) O.Option[B]) GB {
-	result := make(GB, 0, len(fa))
-	for _, a := range fa {
-		if b, ok := O.Unwrap(f(a)); ok {
-			result = append(result, b)
-		}
-	}
-	return result
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 func filterMapWithIndex[GA ~[]A, GB ~[]B, A, B any](fa GA, f func(int, A) O.Option[B]) GB {
-	result := make(GB, 0, len(fa))
-	for i, a := range fa {
-		if b, ok := O.Unwrap(f(i, a)); ok {
-			result = append(result, b)
-		}
-	}
-	return result
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 func MonadFilterMap[GA ~[]A, GB ~[]B, A, B any](fa GA, f func(A) O.Option[B]) GB {
-	return filterMap[GA, GB](fa, f)
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 func MonadFilterMapWithIndex[GA ~[]A, GB ~[]B, A, B any](fa GA, f func(int, A) O.Option[B]) GB {
-	return filterMapWithIndex[GA, GB](fa, f)
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 func filterWithIndex[AS ~[]A, PRED ~func(int, A) bool, A any](fa AS, pred PRED) AS {
-	result := make(AS, 0, len(fa))
-	for i, a := range fa {
-		if pred(i, a) {
-			result = append(result, a)
-		}
-	}
-	return result
+	_ = "STUB: not implemented"
+	return *new(AS)
 }
 
 func FilterWithIndex[AS ~[]A, PRED ~func(int, A) bool, A any](pred PRED) func(AS) AS {
-	return F.Bind2nd(filterWithIndex[AS, PRED, A], pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Filter[AS ~[]A, PRED ~func(A) bool, A any](pred PRED) func(AS) AS {
-	return FilterWithIndex[AS](F.Ignore1of2[int](pred))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainOptionK[GA ~[]A, GB ~[]B, A, B any](f func(a A) O.Option[GB]) func(GA) GB {
-	return F.Flow2(
-		FilterMap[GA, []GB](f),
-		Flatten[[]GB],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Flatten[GAA ~[]GA, GA ~[]A, A any](mma GAA) GA {
-	return MonadChain(mma, F.Identity[GA])
-}
+func Flatten[GAA ~[]GA, GA ~[]A, A any](mma GAA) GA { _ = "STUB: not implemented"; return *new(GA) }
 
 func FilterMap[GA ~[]A, GB ~[]B, A, B any](f func(A) O.Option[B]) func(GA) GB {
-	return F.Bind2nd(MonadFilterMap[GA, GB, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FilterMapWithIndex[GA ~[]A, GB ~[]B, A, B any](f func(int, A) O.Option[B]) func(GA) GB {
-	return F.Bind2nd(MonadFilterMapWithIndex[GA, GB, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadPartition[GA ~[]A, A any](as GA, pred func(A) bool) pair.Pair[GA, GA] {
-	left := Empty[GA]()
-	right := Empty[GA]()
-	array.Reduce(as, func(c bool, a A) bool {
-		if pred(a) {
-			right = append(right, a)
-		} else {
-			left = append(left, a)
-		}
-		return c
-	}, true)
-	// returns the partition
-	return pair.MakePair(left, right)
+	_ = "STUB: not implemented"
+	return nil
 }
 
+// returns the partition
+
 func Partition[GA ~[]A, A any](pred func(A) bool) func(GA) pair.Pair[GA, GA] {
-	return F.Bind2nd(MonadPartition[GA, A], pred)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChain[AS ~[]A, BS ~[]B, A, B any](fa AS, f func(a A) BS) BS {
-	return array.Reduce(fa, func(bs BS, a A) BS {
-		return append(bs, f(a)...)
-	}, Empty[BS]())
+	_ = "STUB: not implemented"
+	return *new(BS)
 }
 
 func Chain[AS ~[]A, BS ~[]B, A, B any](f func(A) BS) func(AS) BS {
-	return F.Bind2nd(MonadChain[AS, BS, A, B], f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadAp[BS ~[]B, ABS ~[]func(A) B, AS ~[]A, B, A any](fab ABS, fa AS) BS {
-	return MonadChain(fab, F.Bind1st(MonadMap[AS, BS, A, B], fa))
+	_ = "STUB: not implemented"
+	return *new(BS)
 }
 
 func Ap[BS ~[]B, ABS ~[]func(A) B, AS ~[]A, B, A any](fa AS) func(ABS) BS {
-	return F.Bind2nd(MonadAp[BS, ABS, AS], fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func IsEmpty[AS ~[]A, A any](as AS) bool {
-	return array.IsEmpty(as)
-}
+func IsEmpty[AS ~[]A, A any](as AS) bool { _ = "STUB: not implemented"; return false }
 
-func IsNil[GA ~[]A, A any](as GA) bool {
-	return array.IsNil(as)
-}
+func IsNil[GA ~[]A, A any](as GA) bool { _ = "STUB: not implemented"; return false }
 
-func IsNonNil[GA ~[]A, A any](as GA) bool {
-	return array.IsNonNil(as)
-}
+func IsNonNil[GA ~[]A, A any](as GA) bool { _ = "STUB: not implemented"; return false }
 
 func Match[AS ~[]A, A, B any](onEmpty func() B, onNonEmpty func(AS) B) func(AS) B {
-	return func(as AS) B {
-		if IsEmpty(as) {
-			return onEmpty()
-		}
-		return onNonEmpty(as)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MatchLeft[AS ~[]A, A, B any](onEmpty func() B, onNonEmpty func(A, AS) B) func(AS) B {
-	return func(as AS) B {
-		if IsEmpty(as) {
-			return onEmpty()
-		}
-		return onNonEmpty(as[0], as[1:])
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
-func Slice[AS ~[]A, A any](start, end int) func(AS) AS {
-	return array.Slice[AS](start, end)
-}
+func Slice[AS ~[]A, A any](start, end int) func(AS) AS { _ = "STUB: not implemented"; return nil }
 
 //go:inline
-func SliceRight[AS ~[]A, A any](start int) func(AS) AS {
-	return array.SliceRight[AS](start)
-}
+func SliceRight[AS ~[]A, A any](start int) func(AS) AS { _ = "STUB: not implemented"; return nil }
 
-func Copy[AS ~[]A, A any](b AS) AS {
-	buf := make(AS, len(b))
-	copy(buf, b)
-	return buf
-}
+func Copy[AS ~[]A, A any](b AS) AS { _ = "STUB: not implemented"; return *new(AS) }
 
 func Clone[AS ~[]A, A any](f func(A) A) func(as AS) AS {
+	_ = "STUB: not implemented"
 	// implementation assumes that map does not optimize for the empty array
-	return Map[AS, AS](f)
+	return nil
 }
 
 func FoldMap[AS ~[]A, A, B any](m M.Monoid[B]) func(func(A) B) func(AS) B {
-	concat := m.Concat
-	return func(f func(A) B) func(AS) B {
-		return func(as AS) B {
-			switch len(as) {
-			case 0:
-				return m.Empty()
-			case 1:
-				return f(as[0])
-			case 2:
-				return concat(f(as[0]), f(as[1]))
-			default:
-				return array.Reduce(as[1:], func(cur B, a A) B {
-					return concat(cur, f(a))
-				}, f(as[0]))
-			}
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FoldMapWithIndex[AS ~[]A, A, B any](m M.Monoid[B]) func(func(int, A) B) func(AS) B {
-	concat := m.Concat
-	return func(f func(int, A) B) func(AS) B {
-		return func(as AS) B {
-			return array.ReduceWithIndex(as, func(idx int, cur B, a A) B {
-				return concat(cur, f(idx, a))
-			}, m.Empty())
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Fold[AS ~[]A, A any](m M.Monoid[A]) func(AS) A {
-	concat := m.Concat
-	return func(as AS) A {
-		switch len(as) {
-		case 0:
-			return m.Empty()
-		case 1:
-			return as[0]
-		case 2:
-			return concat(as[0], as[1])
-		default:
-			return array.Reduce(as[1:], concat, as[0])
-		}
-	}
-}
+func Fold[AS ~[]A, A any](m M.Monoid[A]) func(AS) A { _ = "STUB: not implemented"; return nil }
 
 func Push[ENDO ~func(GA) GA, GA ~[]A, A any](a A) ENDO {
-	return F.Bind2nd(array.Push[GA, A], a)
+	_ = "STUB: not implemented"
+	return *new(ENDO)
 }
 
 func MonadFlap[FAB ~func(A) B, GFAB ~[]FAB, GB ~[]B, A, B any](fab GFAB, a A) GB {
-	return FC.MonadFlap(MonadMap[GFAB, GB], fab, a)
+	_ = "STUB: not implemented"
+	return *new(GB)
 }
 
 func Flap[FAB ~func(A) B, GFAB ~[]FAB, GB ~[]B, A, B any](a A) func(GFAB) GB {
-	return FC.Flap(Map[GFAB, GB], a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func Prepend[ENDO ~func(AS) AS, AS []A, A any](head A) ENDO {
-	return array.Prepend[ENDO](head)
+	_ = "STUB: not implemented"
+	return *new(ENDO)
 }
 
 //go:inline
 func Reverse[GT ~[]T, T any](as GT) GT {
-	return array.Reverse(as)
+	_ = "STUB: not implemented"
+	return *
+
+	// Extract returns the first element of an array, or a zero value if empty.
+	// This is the comonad extract operation for arrays.
+	//
+	// Extract is the dual of the monadic return/of operation. While Of wraps a value
+	// in a context, Extract unwraps a value from its context.
+	//
+	// Type Parameters:
+	//   - GA: The array type constraint
+	//   - A: The type of elements in the array
+	//
+	// Parameters:
+	//   - as: The input array
+	//
+	// Returns:
+	//   - The first element if the array is non-empty, otherwise the zero value of type A
+	//
+	// Behavior:
+	//   - Returns as[0] if the array has at least one element
+	//   - Returns the zero value of A if the array is empty
+	//   - Does not modify the input array
+	//
+	// Example:
+	//
+	//	result := Extract([]int{1, 2, 3})
+	//	// result: 1
+	//
+	// Example with empty array:
+	//
+	//	result := Extract([]int{})
+	//	// result: 0 (zero value for int)
+	//
+	// Comonad laws:
+	//   - Extract ∘ Of == Identity (extracting from a singleton returns the value)
+	//   - Extract ∘ Extend(f) == f (extract after extend equals applying f)
+	//
+	//go:inline
+	new(GT)
 }
 
-// Extract returns the first element of an array, or a zero value if empty.
-// This is the comonad extract operation for arrays.
-//
-// Extract is the dual of the monadic return/of operation. While Of wraps a value
-// in a context, Extract unwraps a value from its context.
-//
-// Type Parameters:
-//   - GA: The array type constraint
-//   - A: The type of elements in the array
-//
-// Parameters:
-//   - as: The input array
-//
-// Returns:
-//   - The first element if the array is non-empty, otherwise the zero value of type A
-//
-// Behavior:
-//   - Returns as[0] if the array has at least one element
-//   - Returns the zero value of A if the array is empty
-//   - Does not modify the input array
-//
-// Example:
-//
-//	result := Extract([]int{1, 2, 3})
-//	// result: 1
-//
-// Example with empty array:
-//
-//	result := Extract([]int{})
-//	// result: 0 (zero value for int)
-//
-// Comonad laws:
-//   - Extract ∘ Of == Identity (extracting from a singleton returns the value)
-//   - Extract ∘ Extend(f) == f (extract after extend equals applying f)
-//
-//go:inline
-func Extract[GA ~[]A, A any](as GA) A {
-	if len(as) > 0 {
-		return as[0]
-	}
-	var zero A
-	return zero
-}
+func Extract[GA ~[]A, A any](as GA) A { _ = "STUB: not implemented"; return *new(A) }
 
 // Extend applies a function to every suffix of an array, creating a new array of results.
 // This is the comonad extend operation for arrays.
@@ -485,20 +375,11 @@ func Extract[GA ~[]A, A any](as GA) A {
 //
 //go:inline
 func Extend[GA ~[]A, GB ~[]B, A, B any](f func(GA) B) func(GA) GB {
-	return func(as GA) GB {
-		return MakeBy[GB](len(as), func(i int) B { return f(as[i:]) })
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func UpdateAt[GT ~[]T, T any](i int, v T) func(GT) O.Option[GT] {
-	none := O.None[GT]()
-	if i < 0 {
-		return F.Constant1[GT](none)
-	}
-	return func(g GT) O.Option[GT] {
-		if i >= len(g) {
-			return none
-		}
-		return O.Of(array.UnsafeUpdateAt(g, i, v))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

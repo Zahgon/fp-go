@@ -19,7 +19,6 @@ package io
 
 import (
 	R "github.com/IBM/fp-go/v2/retry"
-	RG "github.com/IBM/fp-go/v2/retry/generic"
 )
 
 type (
@@ -103,18 +102,10 @@ func Retrying[A any](
 	action Kleisli[R.RetryStatus, A],
 	check Predicate[A],
 ) IO[A] {
+	_ = "STUB: not implemented"
 	// Delegate to the generic retry implementation, providing the IO monad operations
-	return RG.Retrying(
-		Chain[A, Trampoline[R.RetryStatus, A]],
-		Map[R.RetryStatus, Trampoline[R.RetryStatus, A]],
-		Of[Trampoline[R.RetryStatus, A]],
-		Of[R.RetryStatus],    // Pure/return for the status type
-		Delay[R.RetryStatus], // Delay operation for the status type
-
-		TailRec,
-
-		policy,
-		action,
-		check,
-	)
+	return nil
 }
+
+// Pure/return for the status type
+// Delay operation for the status type

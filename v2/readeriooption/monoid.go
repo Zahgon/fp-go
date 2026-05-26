@@ -66,12 +66,8 @@ import (
 //
 //go:inline
 func ApplicativeMonoid[R, A any](m monoid.Monoid[A]) monoid.Monoid[ReaderIOOption[R, A]] {
-	return monoid.ApplicativeMonoid(
-		Of[R, A],
-		MonadMap[R, A, func(A) A],
-		MonadAp[R, A, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AlternativeMonoid creates a Monoid for ReaderIOOption that combines both Alternative and Applicative behavior.
@@ -138,13 +134,8 @@ func ApplicativeMonoid[R, A any](m monoid.Monoid[A]) monoid.Monoid[ReaderIOOptio
 //
 //go:inline
 func AlternativeMonoid[R, A any](m monoid.Monoid[A]) monoid.Monoid[ReaderIOOption[R, A]] {
-	return monoid.AlternativeMonoid(
-		Of[R, A],
-		MonadMap[R, A, func(A) A],
-		MonadAp[R, A, A],
-		MonadAlt[R, A],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltMonoid creates a Monoid for ReaderIOOption that uses the Alt operation for combination.
@@ -209,8 +200,6 @@ func AlternativeMonoid[R, A any](m monoid.Monoid[A]) monoid.Monoid[ReaderIOOptio
 //
 //go:inline
 func AltMonoid[R, A any](zero lazy.Lazy[ReaderIOOption[R, A]]) monoid.Monoid[ReaderIOOption[R, A]] {
-	return monoid.AltMonoid(
-		zero,
-		MonadAlt[R, A],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

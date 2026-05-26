@@ -15,10 +15,6 @@
 
 package monoid
 
-import (
-	S "github.com/IBM/fp-go/semigroup"
-)
-
 func ApplicativeMonoid[A, HKTA, HKTFA any](
 	fof func(A) HKTA,
 	fmap func(HKTA, func(A) func(A) A) HKTFA,
@@ -26,9 +22,6 @@ func ApplicativeMonoid[A, HKTA, HKTFA any](
 
 	m Monoid[A],
 ) Monoid[HKTA] {
-
-	return MakeMonoid(
-		S.ApplySemigroup[A](fmap, fap, m).Concat,
-		fof(m.Empty()),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

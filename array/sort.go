@@ -16,21 +16,17 @@
 package array
 
 import (
-	G "github.com/IBM/fp-go/array/generic"
 	O "github.com/IBM/fp-go/ord"
 )
 
 // Sort implements a stable sort on the array given the provided ordering
-func Sort[T any](ord O.Ord[T]) func(ma []T) []T {
-	return G.Sort[[]T](ord)
-}
+func Sort[T any](ord O.Ord[T]) func(ma []T) []T { _ = "STUB: not implemented"; return nil }
 
 // SortByKey implements a stable sort on the array given the provided ordering on an extracted key
 func SortByKey[K, T any](ord O.Ord[K], f func(T) K) func(ma []T) []T {
-	return G.SortByKey[[]T](ord, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SortBy implements a stable sort on the array given the provided ordering
-func SortBy[T any](ord []O.Ord[T]) func(ma []T) []T {
-	return G.SortBy[[]T, []O.Ord[T]](ord)
-}
+func SortBy[T any](ord []O.Ord[T]) func(ma []T) []T { _ = "STUB: not implemented"; return nil }

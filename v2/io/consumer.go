@@ -15,8 +15,6 @@
 
 package io
 
-import "github.com/IBM/fp-go/v2/function"
-
 // ChainConsumer converts a Consumer into an IO operator that executes the consumer
 // as a side effect and returns an empty struct.
 //
@@ -70,9 +68,7 @@ import "github.com/IBM/fp-go/v2/function"
 //	    io.Map(func(struct{}) int { return len(values) }),
 //	)
 //	count := pipeline() // Returns 1, values contains [100]
-func ChainConsumer[A any](c Consumer[A]) Operator[A, Void] {
-	return Chain(FromConsumer(c))
-}
+func ChainConsumer[A any](c Consumer[A]) Operator[A, Void] { _ = "STUB: not implemented"; return nil }
 
 // FromConsumer converts a Consumer into a Kleisli arrow that wraps the consumer
 // in an IO context.
@@ -119,11 +115,4 @@ func ChainConsumer[A any](c Consumer[A]) Operator[A, Void] {
 //	        io.Map(func(struct{}) int { return 1 }),
 //	    )
 //	}
-func FromConsumer[A any](c Consumer[A]) Kleisli[A, Void] {
-	return func(a A) IO[Void] {
-		return func() Void {
-			c(a)
-			return function.VOID
-		}
-	}
-}
+func FromConsumer[A any](c Consumer[A]) Kleisli[A, Void] { _ = "STUB: not implemented"; return nil }

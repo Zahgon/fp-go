@@ -15,16 +15,6 @@
 
 package codec
 
-import (
-	"fmt"
-
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/lazy"
-	"github.com/IBM/fp-go/v2/monoid"
-	"github.com/IBM/fp-go/v2/optics/codec/validate"
-	"github.com/IBM/fp-go/v2/reader"
-)
-
 // validateAlt creates a validation function that tries the first codec's validation,
 // and if it fails, tries the second codec's validation as a fallback.
 //
@@ -65,14 +55,8 @@ func validateAlt[A, O, I any](
 	first Type[A, O, I],
 	second Lazy[Type[A, O, I]],
 ) Validate[I, A] {
-
-	return F.Pipe1(
-		first.Validate,
-		validate.Alt(F.Pipe1(
-			second,
-			lazy.Map(F.Flip(reader.Curry(Type[A, O, I].Validate))),
-		)),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MonadAlt creates a new codec that tries the first codec, and if it fails during
@@ -176,12 +160,8 @@ func validateAlt[A, O, I any](
 //   - validate.MonadAlt: The underlying validation operation
 //   - Either: For codecs that decode to Either[L, R] types
 func MonadAlt[A, O, I any](first Type[A, O, I], second Lazy[Type[A, O, I]]) Type[A, O, I] {
-	return MakeType(
-		fmt.Sprintf("Alt[%s]", first.Name()),
-		Is[A](),
-		validateAlt(first, second),
-		first.Encode,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Alt creates an operator that adds alternative fallback logic to a codec.
@@ -269,7 +249,8 @@ func MonadAlt[A, O, I any](first Type[A, O, I], second Lazy[Type[A, O, I]]) Type
 //   - validate.Alt: The underlying validation operation
 //   - F.Pipe: For composing multiple operators
 func Alt[A, O, I any](second Lazy[Type[A, O, I]]) Operator[A, A, O, I] {
-	return F.Bind2nd(MonadAlt, second)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AltMonoid creates a Monoid instance for Type[A, O, I] using alternative semantics
@@ -473,8 +454,6 @@ func Alt[A, O, I any](second Lazy[Type[A, O, I]]) Operator[A, A, O, I] {
 //   - validate.AltMonoid: The validation-level alternative monoid
 //   - decode.AltMonoid: The decode-level alternative monoid
 func AltMonoid[A, O, I any](zero Lazy[Type[A, O, I]]) Monoid[Type[A, O, I]] {
-	return monoid.AltMonoid(
-		zero,
-		MonadAlt[A, O, I],
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

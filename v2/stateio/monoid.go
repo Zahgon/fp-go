@@ -144,9 +144,6 @@ import (
 //
 //go:inline
 func ApplicativeMonoid[S, A any](m M.Monoid[A]) M.Monoid[StateIO[S, A]] {
-	return M.ApplicativeMonoid(
-		Of[S, A],
-		MonadMap[S, A, func(A) A],
-		MonadAp[A, S, A],
-		m)
+	_ = "STUB: not implemented"
+	return nil
 }

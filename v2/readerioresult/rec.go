@@ -16,11 +16,11 @@
 package readerioresult
 
 import (
-	"github.com/IBM/fp-go/v2/readerioeither"
 	"github.com/IBM/fp-go/v2/tailrec"
 )
 
 //go:inline
 func TailRec[R, A, B any](f Kleisli[R, A, tailrec.Trampoline[A, B]]) Kleisli[R, A, B] {
-	return readerioeither.TailRec(f)
+	_ = "STUB: not implemented"
+	return nil
 }

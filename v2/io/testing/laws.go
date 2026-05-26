@@ -19,8 +19,6 @@ import (
 	"testing"
 
 	EQ "github.com/IBM/fp-go/v2/eq"
-	L "github.com/IBM/fp-go/v2/internal/monad/testing"
-	"github.com/IBM/fp-go/v2/io"
 )
 
 // AssertLaws asserts the apply monad laws for the `Either` monad
@@ -32,29 +30,6 @@ func AssertLaws[A, B, C any](t *testing.T,
 	ab func(A) B,
 	bc func(B) C,
 ) func(a A) bool {
-
-	return L.MonadAssertLaws(t,
-		io.Eq(eqa),
-		io.Eq(eqb),
-		io.Eq(eqc),
-
-		io.Pointed[C](),
-		io.Pointed[func(A) A](),
-		io.Pointed[func(B) C](),
-		io.Pointed[func(func(A) B) B](),
-
-		io.Functor[func(B) C, func(func(A) B) func(A) C](),
-
-		io.Applicative[func(A) B, B](),
-		io.Applicative[func(A) B, func(A) C](),
-
-		io.Monad[A, A](),
-		io.Monad[A, B](),
-		io.Monad[A, C](),
-		io.Monad[B, C](),
-
-		ab,
-		bc,
-	)
-
+	_ = "STUB: not implemented"
+	return nil
 }

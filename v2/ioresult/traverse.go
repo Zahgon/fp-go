@@ -15,132 +15,137 @@
 
 package ioresult
 
-import (
-	"github.com/IBM/fp-go/v2/ioeither"
-)
-
 // TraverseArray transforms an array
 //
 //go:inline
 func TraverseArray[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
-	return ioeither.TraverseArray(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndex transforms an array
 //
 //go:inline
 func TraverseArrayWithIndex[A, B any](f func(int, A) IOResult[B]) Kleisli[[]A, []B] {
-	return ioeither.TraverseArrayWithIndex(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArray converts a homogeneous sequence of either into an either of sequence
 //
 //go:inline
-func SequenceArray[A any](ma []IOResult[A]) IOResult[[]A] {
-	return ioeither.SequenceArray(ma)
-}
+func SequenceArray[A any](ma []IOResult[A]) IOResult[[]A] { _ = "STUB: not implemented"; return nil }
 
 // TraverseRecord transforms a record
 //
 //go:inline
 func TraverseRecord[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, map[K]B] {
-	return ioeither.TraverseRecord[K](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndex transforms a record
 //
 //go:inline
 func TraverseRecordWithIndex[K comparable, A, B any](f func(K, A) IOResult[B]) Kleisli[map[K]A, map[K]B] {
-	return ioeither.TraverseRecordWithIndex(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecord converts a homogeneous sequence of either into an either of sequence
 //
 //go:inline
 func SequenceRecord[K comparable, A any](ma map[K]IOResult[A]) IOResult[map[K]A] {
-	return ioeither.SequenceRecord(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArraySeq transforms an array
 //
 //go:inline
 func TraverseArraySeq[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
-	return ioeither.TraverseArraySeq(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndexSeq transforms an array
 //
 //go:inline
 func TraverseArrayWithIndexSeq[A, B any](f func(int, A) IOResult[B]) Kleisli[[]A, []B] {
-	return ioeither.TraverseArrayWithIndexSeq(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArraySeq converts a homogeneous sequence of either into an either of sequence
 //
 //go:inline
-func SequenceArraySeq[A any](ma []IOResult[A]) IOResult[[]A] {
-	return ioeither.SequenceArraySeq(ma)
-}
+func SequenceArraySeq[A any](ma []IOResult[A]) IOResult[[]A] { _ = "STUB: not implemented"; return nil }
 
 // TraverseRecordSeq transforms a record
 //
 //go:inline
 func TraverseRecordSeq[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, map[K]B] {
-	return ioeither.TraverseRecordSeq[K](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndexSeq transforms a record
 //
 //go:inline
 func TraverseRecordWithIndexSeq[K comparable, A, B any](f func(K, A) IOResult[B]) Kleisli[map[K]A, map[K]B] {
-	return ioeither.TraverseRecordWithIndexSeq(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecordSeq converts a homogeneous sequence of either into an either of sequence
 //
 //go:inline
 func SequenceRecordSeq[K comparable, A any](ma map[K]IOResult[A]) IOResult[map[K]A] {
-	return ioeither.SequenceRecordSeq(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayPar transforms an array
 //
 //go:inline
 func TraverseArrayPar[A, B any](f Kleisli[A, B]) Kleisli[[]A, []B] {
-	return ioeither.TraverseArrayPar(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseArrayWithIndexPar transforms an array
 //
 //go:inline
 func TraverseArrayWithIndexPar[A, B any](f func(int, A) IOResult[B]) Kleisli[[]A, []B] {
-	return ioeither.TraverseArrayWithIndexPar(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceArrayPar converts a homogeneous Paruence of either into an either of Paruence
 //
 //go:inline
-func SequenceArrayPar[A any](ma []IOResult[A]) IOResult[[]A] {
-	return ioeither.SequenceArrayPar(ma)
-}
+func SequenceArrayPar[A any](ma []IOResult[A]) IOResult[[]A] { _ = "STUB: not implemented"; return nil }
 
 // TraverseRecordPar transforms a record
 //
 //go:inline
 func TraverseRecordPar[K comparable, A, B any](f Kleisli[A, B]) Kleisli[map[K]A, map[K]B] {
-	return ioeither.TraverseRecordPar[K](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseRecordWithIndexPar transforms a record
 //
 //go:inline
 func TraverseRecordWithIndexPar[K comparable, A, B any](f func(K, A) IOResult[B]) Kleisli[map[K]A, map[K]B] {
-	return ioeither.TraverseRecordWithIndexPar(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceRecordPar converts a homogeneous Paruence of either into an either of Paruence
 //
 //go:inline
 func SequenceRecordPar[K comparable, A any](ma map[K]IOResult[A]) IOResult[map[K]A] {
-	return ioeither.SequenceRecordPar(ma)
+	_ = "STUB: not implemented"
+	return nil
 }

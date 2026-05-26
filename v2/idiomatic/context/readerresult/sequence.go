@@ -16,7 +16,6 @@
 package readerresult
 
 import (
-	RR "github.com/IBM/fp-go/v2/idiomatic/readerresult"
 	T "github.com/IBM/fp-go/v2/tuple"
 )
 
@@ -41,65 +40,70 @@ import (
 //
 //go:inline
 func SequenceT1[A any](a ReaderResult[A]) ReaderResult[T.Tuple1[A]] {
-	return RR.SequenceT1(a)
+	_ = "STUB: not implemented"
+	return nil
+
+	// SequenceT2 combines two independent ReaderResult computations into a tuple.
+	//
+	// Both computations are executed with the same context. If either fails,
+	// the entire operation fails with the first error encountered.
+	//
+	// Type Parameters:
+	//   - A: The first value type
+	//   - B: The second value type
+	//
+	// Parameters:
+	//   - a: The first ReaderResult
+	//   - b: The second ReaderResult
+	//
+	// Returns:
+	//   - A ReaderResult[Tuple2[A, B]] containing both results
+	//
+	// Example:
+	//
+	//	getUser := readerresult.Right(User{ID: 1})
+	//	getConfig := readerresult.Right(Config{Port: 8080})
+	//	result := readerresult.SequenceT2(getUser, getConfig)
+	//	tuple, err := result(ctx)  // Returns (Tuple2{User, Config}, nil)
+	//
+	//go:inline
 }
 
-// SequenceT2 combines two independent ReaderResult computations into a tuple.
-//
-// Both computations are executed with the same context. If either fails,
-// the entire operation fails with the first error encountered.
-//
-// Type Parameters:
-//   - A: The first value type
-//   - B: The second value type
-//
-// Parameters:
-//   - a: The first ReaderResult
-//   - b: The second ReaderResult
-//
-// Returns:
-//   - A ReaderResult[Tuple2[A, B]] containing both results
-//
-// Example:
-//
-//	getUser := readerresult.Right(User{ID: 1})
-//	getConfig := readerresult.Right(Config{Port: 8080})
-//	result := readerresult.SequenceT2(getUser, getConfig)
-//	tuple, err := result(ctx)  // Returns (Tuple2{User, Config}, nil)
-//
-//go:inline
 func SequenceT2[A, B any](
 	a ReaderResult[A],
 	b ReaderResult[B],
 ) ReaderResult[T.Tuple2[A, B]] {
-	return RR.SequenceT2(a, b)
+	_ = "STUB: not implemented"
+	return nil
+
+	// SequenceT3 combines three independent ReaderResult computations into a tuple.
+	//
+	// All computations are executed with the same context. If any fails,
+	// the entire operation fails with the first error encountered.
+	//
+	// Type Parameters:
+	//   - A: The first value type
+	//   - B: The second value type
+	//   - C: The third value type
+	//
+	// Parameters:
+	//   - a: The first ReaderResult
+	//   - b: The second ReaderResult
+	//   - c: The third ReaderResult
+	//
+	// Returns:
+	//   - A ReaderResult[Tuple3[A, B, C]] containing all three results
+	//
+	//go:inline
 }
 
-// SequenceT3 combines three independent ReaderResult computations into a tuple.
-//
-// All computations are executed with the same context. If any fails,
-// the entire operation fails with the first error encountered.
-//
-// Type Parameters:
-//   - A: The first value type
-//   - B: The second value type
-//   - C: The third value type
-//
-// Parameters:
-//   - a: The first ReaderResult
-//   - b: The second ReaderResult
-//   - c: The third ReaderResult
-//
-// Returns:
-//   - A ReaderResult[Tuple3[A, B, C]] containing all three results
-//
-//go:inline
 func SequenceT3[A, B, C any](
 	a ReaderResult[A],
 	b ReaderResult[B],
 	c ReaderResult[C],
 ) ReaderResult[T.Tuple3[A, B, C]] {
-	return RR.SequenceT3(a, b, c)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceT4 combines four independent ReaderResult computations into a tuple.
@@ -129,5 +133,6 @@ func SequenceT4[A, B, C, D any](
 	c ReaderResult[C],
 	d ReaderResult[D],
 ) ReaderResult[T.Tuple4[A, B, C, D]] {
-	return RR.SequenceT4(a, b, c, d)
+	_ = "STUB: not implemented"
+	return nil
 }

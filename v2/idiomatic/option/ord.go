@@ -35,22 +35,8 @@ import (
 //	optOrd.Compare(Some(5), Some(3)) // 1 (5 > 3)
 //	optOrd.Compare(None[int](), None[int]()) // 0 (equal)
 func Ord[A any](o ord.Ord[A]) func(A, bool) func(A, bool) int {
-	return func(l A, lok bool) func(A, bool) int {
-		if lok {
-			return func(r A, rok bool) int {
-				if rok {
-					return o.Compare(l, r)
-				}
-				return +1
-			}
-		}
-		return func(_ A, rok bool) int {
-			if rok {
-				return -1
-			}
-			return 0
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromStrictCompare constructs an Ord for Option[A] using Go's built-in comparison operators for type A.
@@ -62,5 +48,6 @@ func Ord[A any](o ord.Ord[A]) func(A, bool) func(A, bool) int {
 //	optOrd.Compare(Some(5), Some(10)) // -1
 //	optOrd.Compare(None[int](), Some(5)) // -1
 func FromStrictCompare[A C.Ordered]() func(A, bool) func(A, bool) int {
-	return Ord(ord.FromStrictCompare[A]())
+	_ = "STUB: not implemented"
+	return nil
 }

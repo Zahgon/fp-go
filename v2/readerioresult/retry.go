@@ -15,7 +15,6 @@
 package readerioresult
 
 import (
-	"github.com/IBM/fp-go/v2/readerioeither"
 	"github.com/IBM/fp-go/v2/retry"
 )
 
@@ -104,6 +103,7 @@ func Retrying[R, A any](
 	action Kleisli[R, retry.RetryStatus, A],
 	check func(Result[A]) bool,
 ) ReaderIOResult[R, A] {
+	_ = "STUB: not implemented"
 	// get an implementation for the types
-	return readerioeither.Retrying(policy, action, check)
+	return nil
 }

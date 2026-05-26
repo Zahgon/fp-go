@@ -17,21 +17,17 @@ package ioresult
 
 import (
 	EQ "github.com/IBM/fp-go/v2/eq"
-	"github.com/IBM/fp-go/v2/idiomatic/result"
 )
 
 // Eq implements the equals predicate for values contained in the IOEither monad
 // Eq constructs an equality predicate for IOResult values.
 // The comparison function receives (value, error) tuples from both IOResults.
 func Eq[A any](eq func(A, error) func(A, error) bool) EQ.Eq[IOResult[A]] {
-	return EQ.FromEquals(func(l, r IOResult[A]) bool {
-		return eq(l())(r())
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
 // FromStrictEquals constructs an Eq from Go's built-in equality (==) for comparable types.
 // Both the value and error must match for two IOResults to be considered equal.
-func FromStrictEquals[A comparable]() EQ.Eq[IOResult[A]] {
-	return Eq(result.FromStrictEquals[A]())
-}
+func FromStrictEquals[A comparable]() EQ.Eq[IOResult[A]] { _ = "STUB: not implemented"; return nil }

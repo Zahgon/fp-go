@@ -20,19 +20,7 @@ import (
 )
 
 // MonoidSum is the [Monoid] that adds elements with a zero empty element
-func MonoidSum[A Number]() M.Monoid[A] {
-	s := SemigroupSum[A]()
-	return M.MakeMonoid(
-		s.Concat,
-		0,
-	)
-}
+func MonoidSum[A Number]() M.Monoid[A] { _ = "STUB: not implemented"; return nil }
 
 // MonoidProduct is the [Monoid] that multiplies elements with a one empty element
-func MonoidProduct[A Number]() M.Monoid[A] {
-	s := SemigroupProduct[A]()
-	return M.MakeMonoid(
-		s.Concat,
-		1,
-	)
-}
+func MonoidProduct[A Number]() M.Monoid[A] { _ = "STUB: not implemented"; return nil }

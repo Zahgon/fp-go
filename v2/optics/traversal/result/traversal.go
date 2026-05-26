@@ -15,15 +15,8 @@
 
 package result
 
-import (
-	T "github.com/IBM/fp-go/v2/optics/traversal/generic"
-)
-
 func Compose[
 	S, A, B any](ab Traversal[A, B]) Operator[S, A, B] {
-	return T.Compose[
-		Traversal[A, B],
-		Traversal[S, A],
-		Traversal[S, B],
-	](ab)
+	_ = "STUB: not implemented"
+	return nil
 }

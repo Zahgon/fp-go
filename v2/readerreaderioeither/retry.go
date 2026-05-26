@@ -15,9 +15,6 @@
 package readerreaderioeither
 
 import (
-	F "github.com/IBM/fp-go/v2/function"
-	"github.com/IBM/fp-go/v2/reader"
-	RIOE "github.com/IBM/fp-go/v2/readerioeither"
 	"github.com/IBM/fp-go/v2/retry"
 )
 
@@ -74,8 +71,7 @@ func Retrying[R, C, E, A any](
 	action Kleisli[R, C, E, retry.RetryStatus, A],
 	check Predicate[Either[E, A]],
 ) ReaderReaderIOEither[R, C, E, A] {
+	_ = "STUB: not implemented"
 	// get an implementation for the types
-	return func(r R) ReaderIOEither[C, E, A] {
-		return RIOE.Retrying(policy, F.Pipe1(action, reader.Map[retry.RetryStatus](reader.Read[ReaderIOEither[C, E, A]](r))), check)
-	}
+	return nil
 }

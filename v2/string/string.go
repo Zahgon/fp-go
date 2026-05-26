@@ -19,7 +19,6 @@
 package string
 
 import (
-	"fmt"
 	"strings"
 
 	F "github.com/IBM/fp-go/v2/function"
@@ -53,62 +52,56 @@ var (
 )
 
 // Eq tests if two strings are equal
-func Eq(left, right string) bool {
-	return left == right
-}
+func Eq(left, right string) bool { _ = "STUB: not implemented"; return false }
 
 // ToBytes converts a string to a byte slice
 func ToBytes(s string) []byte {
-	return []byte(s)
+	_ = "STUB: not implemented"
+
+	// ToRunes converts a string to a rune slice
+	return nil
 }
 
-// ToRunes converts a string to a rune slice
 func ToRunes(s string) []rune {
-	return []rune(s)
+	_ = "STUB: not implemented"
+
+	// IsEmpty returns true if the string is empty
+	//
+	//go:inline
+	return nil
 }
 
-// IsEmpty returns true if the string is empty
-//
-//go:inline
 func IsEmpty(s string) bool {
-	return s == ""
+	_ = "STUB: not implemented"
+
+	// IsNonEmpty returns true if the string is not empty
+	//
+	//go:inline
+	return false
 }
 
-// IsNonEmpty returns true if the string is not empty
-//
-//go:inline
 func IsNonEmpty(s string) bool {
-	return s != ""
+	_ = "STUB: not implemented"
+
+	// Size returns the length of the string in bytes
+	//
+	//go:inline
+	return false
 }
 
-// Size returns the length of the string in bytes
-//
-//go:inline
 func Size(s string) int {
-	return len(s)
+	_ = "STUB: not implemented"
+
+	// Format applies a format string to an arbitrary value and returns a function
+	// that formats values of type T using the provided format string
+	return 0
 }
 
-// Format applies a format string to an arbitrary value and returns a function
-// that formats values of type T using the provided format string
-func Format[T any](format string) func(T) string {
-	return func(t T) string {
-		return fmt.Sprintf(format, t)
-	}
-}
+func Format[T any](format string) func(T) string { _ = "STUB: not implemented"; return nil }
 
 // Intersperse returns a function that concatenates two strings with a middle string in between.
 // If either string is empty, the middle string is not added (to satisfy monoid identity laws).
-func Intersperse(middle string) func(string, string) string {
-	return func(l, r string) string {
-		if l == "" {
-			return r
-		}
-		if r == "" {
-			return l
-		}
-		return l + middle + r
-	}
-}
+func Intersperse(middle string) func(string, string) string { _ = "STUB: not implemented"; return nil }
 
 // Prepend returns a function that prepends a prefix to a string.
 // This is a curried function that takes a prefix and returns a function
@@ -118,11 +111,7 @@ func Intersperse(middle string) func(string, string) string {
 //
 //	addHello := Prepend("Hello, ")
 //	result := addHello("World") // "Hello, World"
-func Prepend(prefix string) func(string) string {
-	return func(suffix string) string {
-		return prefix + suffix
-	}
-}
+func Prepend(prefix string) func(string) string { _ = "STUB: not implemented"; return nil }
 
 // Append returns a function that appends a suffix to a string.
 // This is a curried function that takes a suffix and returns a function
@@ -132,8 +121,4 @@ func Prepend(prefix string) func(string) string {
 //
 //	addExclamation := Append("!")
 //	result := addExclamation("Hello") // "Hello!"
-func Append(suffix string) func(string) string {
-	return func(prefix string) string {
-		return prefix + suffix
-	}
-}
+func Append(suffix string) func(string) string { _ = "STUB: not implemented"; return nil }

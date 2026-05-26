@@ -16,48 +16,31 @@
 package array
 
 import (
-	"github.com/IBM/fp-go/internal/array"
 	M "github.com/IBM/fp-go/monoid"
 	S "github.com/IBM/fp-go/semigroup"
 )
 
 func concat[T any](left, right []T) []T {
+	_ = "STUB: not implemented"
 	// some performance checks
-	ll := len(left)
-	if ll == 0 {
-		return right
-	}
-	lr := len(right)
-	if lr == 0 {
-		return left
-	}
-	// need to copy
-	buf := make([]T, ll+lr)
-	copy(buf[copy(buf, left):], right)
-	return buf
+	return nil
 }
 
-func Monoid[T any]() M.Monoid[[]T] {
-	return M.MakeMonoid(concat[T], Empty[T]())
-}
+// need to copy
 
-func Semigroup[T any]() S.Semigroup[[]T] {
-	return S.MakeSemigroup(concat[T])
-}
+func Monoid[T any]() M.Monoid[[]T] { _ = "STUB: not implemented"; return nil }
 
-func addLen[A any](count int, data []A) int {
-	return count + len(data)
-}
+func Semigroup[T any]() S.Semigroup[[]T] { _ = "STUB: not implemented"; return nil }
+
+func addLen[A any](count int, data []A) int { _ = "STUB: not implemented"; return 0 }
 
 // ConcatAll efficiently concatenates the input arrays into a final array
 func ArrayConcatAll[A any](data ...[]A) []A {
+	_ = "STUB: not implemented"
 	// get the full size
-	count := array.Reduce(data, addLen[A], 0)
-	buf := make([]A, count)
-	// copy
-	array.Reduce(data, func(idx int, seg []A) int {
-		return idx + copy(buf[idx:], seg)
-	}, 0)
-	// returns the final array
-	return buf
+	return nil
 }
+
+// copy
+
+// returns the final array

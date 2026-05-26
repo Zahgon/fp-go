@@ -18,80 +18,76 @@ package state
 import (
 	P "github.com/IBM/fp-go/pair"
 	R "github.com/IBM/fp-go/reader"
-	G "github.com/IBM/fp-go/state/generic"
 )
 
 // State represents an operation on top of a current [State] that produces a value and a new [State]
 type State[S, A any] R.Reader[S, P.Pair[A, S]]
 
-func Get[S any]() State[S, S] {
-	return G.Get[State[S, S]]()
-}
+func Get[S any]() State[S, S] { _ = "STUB: not implemented"; return nil }
 
-func Gets[FCT ~func(S) A, A, S any](f FCT) State[S, A] {
-	return G.Gets[State[S, A]](f)
-}
+func Gets[FCT ~func(S) A, A, S any](f FCT) State[S, A] { _ = "STUB: not implemented"; return nil }
 
-func Put[S any]() State[S, any] {
-	return G.Put[State[S, any]]()
-}
+func Put[S any]() State[S, any] { _ = "STUB: not implemented"; return nil }
 
-func Modify[FCT ~func(S) S, S any](f FCT) State[S, any] {
-	return G.Modify[State[S, any]](f)
-}
+func Modify[FCT ~func(S) S, S any](f FCT) State[S, any] { _ = "STUB: not implemented"; return nil }
 
-func Of[S, A any](a A) State[S, A] {
-	return G.Of[State[S, A]](a)
-}
+func Of[S, A any](a A) State[S, A] { _ = "STUB: not implemented"; return nil }
 
 func MonadMap[S any, FCT ~func(A) B, A, B any](fa State[S, A], f FCT) State[S, B] {
-	return G.MonadMap[State[S, B], State[S, A]](fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Map[S any, FCT ~func(A) B, A, B any](f FCT) func(State[S, A]) State[S, B] {
-	return G.Map[State[S, B], State[S, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChain[S any, FCT ~func(A) State[S, B], A, B any](fa State[S, A], f FCT) State[S, B] {
-	return G.MonadChain[State[S, B], State[S, A]](fa, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Chain[S any, FCT ~func(A) State[S, B], A, B any](f FCT) func(State[S, A]) State[S, B] {
-	return G.Chain[State[S, B], State[S, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadAp[S, A, B any](fab State[S, func(A) B], fa State[S, A]) State[S, B] {
-	return G.MonadAp[State[S, B], State[S, func(A) B], State[S, A]](fab, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Ap[S, A, B any](ga State[S, A]) func(State[S, func(A) B]) State[S, B] {
-	return G.Ap[State[S, B], State[S, func(A) B], State[S, A]](ga)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func MonadChainFirst[S any, FCT ~func(A) State[S, B], A, B any](ma State[S, A], f FCT) State[S, A] {
-	return G.MonadChainFirst[State[S, B], State[S, A]](ma, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ChainFirst[S any, FCT ~func(A) State[S, B], A, B any](f FCT) func(State[S, A]) State[S, A] {
-	return G.ChainFirst[State[S, B], State[S, A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Flatten[S, A any](mma State[S, State[S, A]]) State[S, A] {
-	return G.Flatten[State[S, State[S, A]], State[S, A]](mma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func Execute[A, S any](s S) func(State[S, A]) S {
-	return G.Execute[State[S, A]](s)
-}
+func Execute[A, S any](s S) func(State[S, A]) S { _ = "STUB: not implemented"; return nil }
 
-func Evaluate[A, S any](s S) func(State[S, A]) A {
-	return G.Evaluate[State[S, A]](s)
-}
+func Evaluate[A, S any](s S) func(State[S, A]) A { _ = "STUB: not implemented"; return nil }
 
 func MonadFlap[FAB ~func(A) B, S, A, B any](fab State[S, FAB], a A) State[S, B] {
-	return G.MonadFlap[FAB, State[S, FAB], State[S, B], S, A, B](fab, a)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func Flap[S, A, B any](a A) func(State[S, func(A) B]) State[S, B] {
-	return G.Flap[func(A) B, State[S, func(A) B], State[S, B]](a)
+	_ = "STUB: not implemented"
+	return nil
 }

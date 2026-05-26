@@ -16,12 +16,8 @@
 package exec
 
 import (
-	"context"
-
 	"github.com/IBM/fp-go/v2/exec"
 	"github.com/IBM/fp-go/v2/function"
-	INTE "github.com/IBM/fp-go/v2/internal/exec"
-	"github.com/IBM/fp-go/v2/result"
 )
 
 var (
@@ -32,7 +28,6 @@ var (
 )
 
 func command(name string, args []string, in []byte) ReaderResult[exec.CommandOutput] {
-	return func(ctx context.Context) Result[exec.CommandOutput] {
-		return result.TryCatchError(INTE.Exec(ctx, name, args, in))
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

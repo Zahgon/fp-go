@@ -20,25 +20,11 @@ import (
 )
 
 func equals[M ~map[K]V, K comparable, V any](left, right M, eq func(V, V) bool) bool {
-	if len(left) != len(right) {
-		return false
-	}
-	for k, v1 := range left {
-		if v2, ok := right[k]; !ok || !eq(v1, v2) {
-			return false
-		}
-	}
-	return true
+	_ = "STUB: not implemented"
+	return false
 }
 
-func Eq[M ~map[K]V, K comparable, V any](e E.Eq[V]) E.Eq[M] {
-	eq := e.Equals
-	return E.FromEquals(func(left, right M) bool {
-		return equals(left, right, eq)
-	})
-}
+func Eq[M ~map[K]V, K comparable, V any](e E.Eq[V]) E.Eq[M] { _ = "STUB: not implemented"; return nil }
 
 // FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
-func FromStrictEquals[M ~map[K]V, K, V comparable]() E.Eq[M] {
-	return Eq[M](E.FromStrictEquals[V]())
-}
+func FromStrictEquals[M ~map[K]V, K, V comparable]() E.Eq[M] { _ = "STUB: not implemented"; return nil }

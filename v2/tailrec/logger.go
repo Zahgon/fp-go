@@ -45,13 +45,4 @@ import (
 //
 // This is particularly useful for debugging tail-recursive computations and
 // understanding the flow of recursive algorithms at runtime.
-func (t Trampoline[B, L]) LogValue() slog.Value {
-	if t.Landed {
-		return slog.GroupValue(
-			slog.Any("landed", t.Land),
-		)
-	}
-	return slog.GroupValue(
-		slog.Any("bouncing", t.Bounce),
-	)
-}
+func (t Trampoline[B, L]) LogValue() slog.Value { _ = "STUB: not implemented"; return *new(slog.Value) }

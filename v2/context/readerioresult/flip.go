@@ -16,11 +16,8 @@
 package readerioresult
 
 import (
-	"context"
-
 	"github.com/IBM/fp-go/v2/reader"
 	RIO "github.com/IBM/fp-go/v2/readerio"
-	RIOR "github.com/IBM/fp-go/v2/readerioresult"
 	RR "github.com/IBM/fp-go/v2/readerresult"
 )
 
@@ -84,7 +81,8 @@ import (
 //
 //go:inline
 func SequenceReader[R, A any](ma ReaderIOResult[Reader[R, A]]) Kleisli[R, A] {
-	return RIOR.SequenceReader(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceReaderIO transforms a ReaderIOResult containing a ReaderIO into a function that
@@ -146,7 +144,8 @@ func SequenceReader[R, A any](ma ReaderIOResult[Reader[R, A]]) Kleisli[R, A] {
 //
 //go:inline
 func SequenceReaderIO[R, A any](ma ReaderIOResult[RIO.ReaderIO[R, A]]) Kleisli[R, A] {
-	return RIOR.SequenceReaderIO(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SequenceReaderResult transforms a ReaderIOResult containing a ReaderResult into a function
@@ -213,7 +212,8 @@ func SequenceReaderIO[R, A any](ma ReaderIOResult[RIO.ReaderIO[R, A]]) Kleisli[R
 //
 //go:inline
 func SequenceReaderResult[R, A any](ma ReaderIOResult[RR.ReaderResult[R, A]]) Kleisli[R, A] {
-	return RIOR.SequenceReaderEither(ma)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // TraverseReader transforms a ReaderIOResult computation by applying a Reader-based function,
@@ -291,5 +291,6 @@ func SequenceReaderResult[R, A any](ma ReaderIOResult[RR.ReaderResult[R, A]]) Kl
 func TraverseReader[R, A, B any](
 	f reader.Kleisli[R, A, B],
 ) func(ReaderIOResult[A]) Kleisli[R, B] {
-	return RIOR.TraverseReader[context.Context](f)
+	_ = "STUB: not implemented"
+	return nil
 }

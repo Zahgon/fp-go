@@ -32,17 +32,12 @@
 package http
 
 import (
-	"io"
 	"net/http"
 
-	B "github.com/IBM/fp-go/v2/bytes"
 	RIOE "github.com/IBM/fp-go/v2/context/readerioresult"
 	F "github.com/IBM/fp-go/v2/function"
 	H "github.com/IBM/fp-go/v2/http"
 	IOE "github.com/IBM/fp-go/v2/ioeither"
-	IOEF "github.com/IBM/fp-go/v2/ioeither/file"
-	J "github.com/IBM/fp-go/v2/json"
-	P "github.com/IBM/fp-go/v2/pair"
 )
 
 type (
@@ -109,10 +104,8 @@ var (
 )
 
 func (client client) Do(req Requester) RIOE.ReaderIOResult[*http.Response] {
-	return F.Pipe1(
-		req,
-		RIOE.ChainIOEitherK(client.doIOE),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MakeClient creates a functional HTTP client wrapper around a standard http.Client.
@@ -131,9 +124,7 @@ func (client client) Do(req Requester) RIOE.ReaderIOResult[*http.Response] {
 //	// or with custom client
 //	customClient := &http.Client{Timeout: 10 * time.Second}
 //	client := MakeClient(customClient)
-func MakeClient(httpClient *http.Client) Client {
-	return client{delegate: httpClient, doIOE: IOE.Eitherize1(httpClient.Do)}
-}
+func MakeClient(httpClient *http.Client) Client { _ = "STUB: not implemented"; return *new(Client) }
 
 // ReadFullResponse sends an HTTP request, reads the complete response body as a byte array,
 // and returns both the response and body as a tuple (FullResponse).
@@ -159,23 +150,8 @@ func MakeClient(httpClient *http.Client) Client {
 //	fullResp := ReadFullResponse(client)(request)
 //	result := fullResp(t.Context())()
 func ReadFullResponse(client Client) RIOE.Operator[*http.Request, H.FullResponse] {
-	return func(req Requester) RIOE.ReaderIOResult[H.FullResponse] {
-		return F.Flow3(
-			client.Do(req),
-			IOE.ChainEitherK(H.ValidateResponse),
-			IOE.Chain(func(resp *http.Response) IOE.IOEither[error, H.FullResponse] {
-				return F.Pipe1(
-					F.Pipe3(
-						resp,
-						H.GetBody,
-						IOE.Of[error, io.ReadCloser],
-						IOEF.ReadAll[io.ReadCloser],
-					),
-					IOE.Map[error](F.Bind1st(P.MakePair[*http.Response, []byte], resp)),
-				)
-			}),
-		)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadAll sends an HTTP request and reads the complete response body as a byte array.
@@ -196,10 +172,8 @@ func ReadFullResponse(client Client) RIOE.Operator[*http.Request, H.FullResponse
 //	readBytes := ReadAll(client)
 //	result := readBytes(request)(t.Context())()
 func ReadAll(client Client) RIOE.Operator[*http.Request, []byte] {
-	return F.Flow2(
-		ReadFullResponse(client),
-		RIOE.Map(H.Body),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadText sends an HTTP request, reads the response body, and converts it to a string.
@@ -220,10 +194,8 @@ func ReadAll(client Client) RIOE.Operator[*http.Request, []byte] {
 //	readText := ReadText(client)
 //	result := readText(request)(t.Context())()
 func ReadText(client Client) RIOE.Operator[*http.Request, string] {
-	return F.Flow2(
-		ReadAll(client),
-		RIOE.Map(B.ToString),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadJson sends an HTTP request, reads the response, and parses it as JSON.
@@ -232,25 +204,21 @@ func ReadText(client Client) RIOE.Operator[*http.Request, string] {
 // but will be removed in a future version. The capitalized version follows Go naming
 // conventions for acronyms.
 func ReadJson[A any](client Client) RIOE.Operator[*http.Request, A] {
-	return ReadJSON[A](client)
+	_ = "STUB: not implemented"
+	return nil
+
+	// readJSON is an internal helper that reads the response body and validates JSON content type.
+	// It performs the following validations:
+	//  1. Validates HTTP status code
+	//  2. Validates that the response Content-Type is application/json
+	//  3. Reads the response body as bytes
+	//
+	// This function is used internally by ReadJSON to ensure proper JSON response handling.
 }
 
-// readJSON is an internal helper that reads the response body and validates JSON content type.
-// It performs the following validations:
-//  1. Validates HTTP status code
-//  2. Validates that the response Content-Type is application/json
-//  3. Reads the response body as bytes
-//
-// This function is used internally by ReadJSON to ensure proper JSON response handling.
 func readJSON(client Client) RIOE.Operator[*http.Request, []byte] {
-	return F.Flow3(
-		ReadFullResponse(client),
-		RIOE.ChainFirstEitherK(F.Flow2(
-			H.Response,
-			H.ValidateJSONResponse,
-		)),
-		RIOE.Map(H.Body),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ReadJSON sends an HTTP request, reads the response, and parses it as JSON into type A.
@@ -279,8 +247,6 @@ func readJSON(client Client) RIOE.Operator[*http.Request, []byte] {
 //	readUser := ReadJSON[User](client)
 //	result := readUser(request)(t.Context())()
 func ReadJSON[A any](client Client) RIOE.Operator[*http.Request, A] {
-	return F.Flow2(
-		readJSON(client),
-		RIOE.ChainEitherK(J.Unmarshal[A]),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

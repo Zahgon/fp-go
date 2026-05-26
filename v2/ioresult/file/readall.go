@@ -17,13 +17,12 @@ package file
 
 import (
 	"io"
-
-	"github.com/IBM/fp-go/v2/ioeither/file"
 )
 
 // ReadAll uses a generator function to create a stream, reads it and closes it
 //
 //go:inline
 func ReadAll[R io.ReadCloser](acquire IOResult[R]) IOResult[[]byte] {
-	return file.ReadAll(acquire)
+	_ = "STUB: not implemented"
+	return nil
 }

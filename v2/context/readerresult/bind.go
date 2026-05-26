@@ -15,11 +15,6 @@
 
 package readerresult
 
-import (
-	F "github.com/IBM/fp-go/v2/function"
-	G "github.com/IBM/fp-go/v2/readereither/generic"
-)
-
 // Do creates an empty context of type [S] to be used with the [Bind] operation.
 // This is the starting point for do-notation style composition.
 //
@@ -35,7 +30,8 @@ import (
 func Do[S any](
 	empty S,
 ) ReaderResult[S] {
-	return G.Do[ReaderResult[S]](empty)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Bind attaches the result of an EFFECTFUL computation to a context [S1] to produce a context [S2].
@@ -93,7 +89,8 @@ func Bind[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f Kleisli[S1, T],
 ) Kleisli[ReaderResult[S1], S2] {
-	return G.Bind[ReaderResult[S1], ReaderResult[S2]](setter, F.Flow2(f, WithContext))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Let attaches the result of a PURE computation to a context [S1] to produce a context [S2].
@@ -112,7 +109,8 @@ func Let[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	f func(S1) T,
 ) Kleisli[ReaderResult[S1], S2] {
-	return G.Let[ReaderResult[S1], ReaderResult[S2]](setter, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetTo attaches a constant value to a context [S1] to produce a context [S2].
@@ -123,7 +121,8 @@ func LetTo[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	b T,
 ) Kleisli[ReaderResult[S1], S2] {
-	return G.LetTo[ReaderResult[S1], ReaderResult[S2]](setter, b)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // BindTo initializes a new state [S1] from a value [T]
@@ -132,14 +131,16 @@ func LetTo[S1, S2, T any](
 func BindTo[S1, T any](
 	setter func(T) S1,
 ) Operator[T, S1] {
-	return G.BindTo[ReaderResult[S1], ReaderResult[T]](setter)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 //go:inline
 func BindToP[S1, T any](
 	setter Prism[S1, T],
 ) Operator[T, S1] {
-	return BindTo(setter.ReverseGet)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApS attaches a value to a context [S1] to produce a context [S2] by considering
@@ -188,7 +189,8 @@ func ApS[S1, S2, T any](
 	setter func(T) func(S1) S2,
 	fa ReaderResult[T],
 ) Kleisli[ReaderResult[S1], S2] {
-	return G.ApS[ReaderResult[S1], ReaderResult[S2]](setter, fa)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApSL is a variant of ApS that uses a lens to focus on a specific field in the state.
@@ -228,58 +230,61 @@ func ApSL[S, T any](
 	lens Lens[S, T],
 	fa ReaderResult[T],
 ) Kleisli[ReaderResult[S], S] {
-	return ApS(lens.Set, fa)
+	_ = "STUB: not implemented"
+	return nil
+
+	// BindL is a variant of Bind that uses a lens to focus on a specific field in the state.
+	// It combines the lens-based field access with monadic composition for EFFECTFUL computations.
+	//
+	// IMPORTANT: BindL is for EFFECTFUL FUNCTIONS that depend on context.Context.
+	// The function parameter returns a ReaderResult, which is effectful.
+	//
+	// It allows you to:
+	// 1. Extract a field value using the lens
+	// 2. Use that value in an effectful computation that may fail
+	// 3. Update the field with the result
+	//
+	// Parameters:
+	//   - lens: A lens that focuses on a field of type T within state S
+	//   - f: A function that takes the current field value and returns a ReaderResult computation
+	//
+	// Returns:
+	//   - A function that transforms ReaderResult[S] to ReaderResult[S]
+	//
+	// Example:
+	//
+	//	type Counter struct {
+	//	    Value int
+	//	}
+	//
+	//	valueLens := lens.MakeLens(
+	//	    func(c Counter) int { return c.Value },
+	//	    func(c Counter, v int) Counter { c.Value = v; return c },
+	//	)
+	//
+	//	increment := func(v int) readereither.ReaderResult[int] {
+	//	    return func(ctx context.Context) either.Either[error, int] {
+	//	        if v >= 100 {
+	//	            return either.Left[int](errors.New("value too large"))
+	//	        }
+	//	        return either.Right[error](v + 1)
+	//	    }
+	//	}
+	//
+	//	result := F.Pipe1(
+	//	    readereither.Of[error](Counter{Value: 42}),
+	//	    readereither.BindL(valueLens, increment),
+	//	)
+	//
+	//go:inline
 }
 
-// BindL is a variant of Bind that uses a lens to focus on a specific field in the state.
-// It combines the lens-based field access with monadic composition for EFFECTFUL computations.
-//
-// IMPORTANT: BindL is for EFFECTFUL FUNCTIONS that depend on context.Context.
-// The function parameter returns a ReaderResult, which is effectful.
-//
-// It allows you to:
-// 1. Extract a field value using the lens
-// 2. Use that value in an effectful computation that may fail
-// 3. Update the field with the result
-//
-// Parameters:
-//   - lens: A lens that focuses on a field of type T within state S
-//   - f: A function that takes the current field value and returns a ReaderResult computation
-//
-// Returns:
-//   - A function that transforms ReaderResult[S] to ReaderResult[S]
-//
-// Example:
-//
-//	type Counter struct {
-//	    Value int
-//	}
-//
-//	valueLens := lens.MakeLens(
-//	    func(c Counter) int { return c.Value },
-//	    func(c Counter, v int) Counter { c.Value = v; return c },
-//	)
-//
-//	increment := func(v int) readereither.ReaderResult[int] {
-//	    return func(ctx context.Context) either.Either[error, int] {
-//	        if v >= 100 {
-//	            return either.Left[int](errors.New("value too large"))
-//	        }
-//	        return either.Right[error](v + 1)
-//	    }
-//	}
-//
-//	result := F.Pipe1(
-//	    readereither.Of[error](Counter{Value: 42}),
-//	    readereither.BindL(valueLens, increment),
-//	)
-//
-//go:inline
 func BindL[S, T any](
 	lens Lens[S, T],
 	f Kleisli[T, T],
 ) Kleisli[ReaderResult[S], S] {
-	return Bind(lens.Set, F.Flow2(lens.Get, F.Flow2(f, WithContext)))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetL is a variant of Let that uses a lens to focus on a specific field in the state.
@@ -319,7 +324,8 @@ func LetL[S, T any](
 	lens Lens[S, T],
 	f Endomorphism[T],
 ) Kleisli[ReaderResult[S], S] {
-	return Let(lens.Set, F.Flow2(lens.Get, f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LetToL is a variant of LetTo that uses a lens to focus on a specific field in the state.
@@ -355,5 +361,6 @@ func LetToL[S, T any](
 	lens Lens[S, T],
 	b T,
 ) Kleisli[ReaderResult[S], S] {
-	return LetTo(lens.Set, b)
+	_ = "STUB: not implemented"
+	return nil
 }

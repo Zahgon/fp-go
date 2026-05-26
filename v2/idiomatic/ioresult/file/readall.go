@@ -18,8 +18,6 @@ package file
 import (
 	"io"
 
-	FL "github.com/IBM/fp-go/v2/file"
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/idiomatic/ioresult"
 )
 
@@ -30,11 +28,6 @@ var (
 
 // ReadAll uses a generator function to create a stream, reads it and closes it
 func ReadAll[R io.ReadCloser](acquire IOResult[R]) IOResult[[]byte] {
-	return F.Pipe1(
-		F.Flow2(
-			FL.ToReader[R],
-			readAll,
-		),
-		ioresult.WithResource[[]byte](acquire, Close[R]),
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

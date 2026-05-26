@@ -23,32 +23,20 @@ import (
 func ApplicativeMonoid[GEA ~func() ET.Either[E, A], GEFA ~func() ET.Either[E, func(A) A], E, A any](
 	m M.Monoid[A],
 ) M.Monoid[GEA] {
-	return M.ApplicativeMonoid(
-		MonadOf[GEA],
-		MonadMap[GEA, GEFA],
-		MonadAp[GEA, GEFA, GEA],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ApplicativeMonoidSeq[GEA ~func() ET.Either[E, A], GEFA ~func() ET.Either[E, func(A) A], E, A any](
 	m M.Monoid[A],
 ) M.Monoid[GEA] {
-	return M.ApplicativeMonoid(
-		MonadOf[GEA],
-		MonadMap[GEA, GEFA],
-		MonadApSeq[GEA, GEFA, GEA],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ApplicativeMonoidPar[GEA ~func() ET.Either[E, A], GEFA ~func() ET.Either[E, func(A) A], E, A any](
 	m M.Monoid[A],
 ) M.Monoid[GEA] {
-	return M.ApplicativeMonoid(
-		MonadOf[GEA],
-		MonadMap[GEA, GEFA],
-		MonadApPar[GEA, GEFA, GEA],
-		m,
-	)
+	_ = "STUB: not implemented"
+	return nil
 }

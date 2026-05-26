@@ -17,24 +17,19 @@ package generic
 
 import (
 	EQ "github.com/IBM/fp-go/eq"
-	G "github.com/IBM/fp-go/internal/eq"
 )
 
 // Eq implements the equals predicate for values contained in the IO monad
 func Eq[GA ~func() A, A any](e EQ.Eq[A]) EQ.Eq[GA] {
+	_ = "STUB: not implemented"
 	// comparator for the monad
-	eq := G.Eq(
-		MonadMap[GA, func() func(A) bool, A, func(A) bool],
-		MonadAp[GA, func() bool, func() func(A) bool, A, bool],
-		e,
-	)
-	// eagerly execute
-	return EQ.FromEquals(func(l, r GA) bool {
-		return eq(l, r)()
-	})
+	return nil
 }
+
+// eagerly execute
 
 // FromStrictEquals constructs an [EQ.Eq] from the canonical comparison function
 func FromStrictEquals[GA ~func() A, A comparable]() EQ.Eq[GA] {
-	return Eq[GA](EQ.FromStrictEquals[A]())
+	_ = "STUB: not implemented"
+	return nil
 }

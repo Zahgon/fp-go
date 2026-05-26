@@ -15,11 +15,6 @@
 
 package readeriooption
 
-import (
-	"github.com/IBM/fp-go/v2/iooption"
-	"github.com/IBM/fp-go/v2/reader"
-)
-
 // Promap is the profunctor map operation that transforms both the input and output of a ReaderIOOption.
 // It applies f to the input environment (contravariantly) and g to the output value (covariantly).
 //
@@ -46,7 +41,8 @@ import (
 //
 //go:inline
 func Promap[R, A, D, B any](f func(D) R, g func(A) B) Kleisli[D, ReaderIOOption[R, A], B] {
-	return reader.Promap(f, iooption.Map(g))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Contramap changes the value of the local environment during the execution of a ReaderIOOption.
@@ -70,5 +66,6 @@ func Promap[R, A, D, B any](f func(D) R, g func(A) B) Kleisli[D, ReaderIOOption[
 //
 //go:inline
 func Contramap[A, R1, R2 any](f func(R2) R1) Kleisli[R2, ReaderIOOption[R1, A], A] {
-	return reader.Contramap[IOOption[A]](f)
+	_ = "STUB: not implemented"
+	return nil
 }

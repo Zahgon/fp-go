@@ -17,7 +17,6 @@ package ioeither
 
 import (
 	ET "github.com/IBM/fp-go/either"
-	G "github.com/IBM/fp-go/ioeither/generic"
 	R "github.com/IBM/fp-go/retry"
 )
 
@@ -31,5 +30,6 @@ func Retrying[E, A any](
 	action func(R.RetryStatus) IOEither[E, A],
 	check func(ET.Either[E, A]) bool,
 ) IOEither[E, A] {
-	return G.Retrying(policy, action, check)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,10 +16,7 @@
 package generic
 
 import (
-	"github.com/IBM/fp-go/v2/endomorphism"
-	F "github.com/IBM/fp-go/v2/function"
 	"github.com/IBM/fp-go/v2/internal/functor"
-	"github.com/IBM/fp-go/v2/reader"
 )
 
 // ToTraversal converts a traversal endomorphism into a regular traversal.
@@ -100,19 +97,6 @@ import (
 func ToTraversal[A, HKTA, S, HKTES, HKTS any](
 	fmap functor.MapType[Endomorphism[S], S, HKTES, HKTS],
 ) func(Traversal[S, A, HKTES, HKTA]) Traversal[S, A, HKTS, HKTA] {
-	return func(t Traversal[S, A, HKTES, HKTA]) Traversal[S, A, HKTS, HKTA] {
-		return func(f func(A) HKTA) func(S) HKTS {
-			return F.Pipe1(
-				F.Pipe1(
-					endomorphism.Read[S],
-					reader.Map[S](fmap),
-				),
-				F.Pipe2(
-					f,
-					t,
-					reader.Ap[HKTS],
-				),
-			)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

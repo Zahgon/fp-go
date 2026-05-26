@@ -17,24 +17,27 @@ package generic
 
 import (
 	O "github.com/IBM/fp-go/v2/option"
-	G "github.com/IBM/fp-go/v2/reader/generic"
 )
 
 // these functions From a golang function with the context as the firsr parameter into a either reader with the context as the last parameter
 // this goes back to the advice in https://pkg.go.dev/context to put the context as a first parameter as a convention
 
 func From0[GEA ~func(R) O.Option[A], R, A any](f func(R) (A, bool)) func() GEA {
-	return G.From0[GEA](O.Optionize1(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func From1[GEA ~func(R) O.Option[A], R, T1, A any](f func(R, T1) (A, bool)) func(T1) GEA {
-	return G.From1[GEA](O.Optionize2(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func From2[GEA ~func(R) O.Option[A], R, T1, T2, A any](f func(R, T1, T2) (A, bool)) func(T1, T2) GEA {
-	return G.From2[GEA](O.Optionize3(f))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func From3[GEA ~func(R) O.Option[A], R, T1, T2, T3, A any](f func(R, T1, T2, T3) (A, bool)) func(T1, T2, T3) GEA {
-	return G.From3[GEA](O.Optionize4(f))
+	_ = "STUB: not implemented"
+	return nil
 }

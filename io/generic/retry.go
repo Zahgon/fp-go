@@ -17,7 +17,6 @@ package generic
 
 import (
 	R "github.com/IBM/fp-go/retry"
-	G "github.com/IBM/fp-go/retry/generic"
 )
 
 type retryStatusIO = func() R.RetryStatus
@@ -34,16 +33,7 @@ func Retrying[GA ~func() A, A any](
 	action func(R.RetryStatus) GA,
 	check func(A) bool,
 ) GA {
+	_ = "STUB: not implemented"
 	// get an implementation for the types
-	return G.Retrying(
-		Chain[GA, GA, A, A],
-		Chain[retryStatusIO, GA, R.RetryStatus, A],
-		Of[GA, A],
-		Of[retryStatusIO, R.RetryStatus],
-		Delay[retryStatusIO, R.RetryStatus],
-
-		policy,
-		action,
-		check,
-	)
+	return *new(GA)
 }

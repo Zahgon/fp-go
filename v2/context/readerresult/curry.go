@@ -17,8 +17,6 @@ package readerresult
 
 import (
 	"context"
-
-	"github.com/IBM/fp-go/v2/readereither"
 )
 
 // Curry and Uncurry functions convert between idiomatic Go functions (with context.Context as the first parameter)
@@ -62,7 +60,8 @@ import (
 //
 //go:inline
 func Curry0[A any](f func(context.Context) (A, error)) ReaderResult[A] {
-	return readereither.Curry0(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry1 converts a Go function with context and one parameter into a Kleisli arrow.
@@ -100,7 +99,8 @@ func Curry0[A any](f func(context.Context) (A, error)) ReaderResult[A] {
 //
 //go:inline
 func Curry1[T1, A any](f func(context.Context, T1) (A, error)) Kleisli[T1, A] {
-	return readereither.Curry1(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry2 converts a Go function with context and two parameters into a curried function.
@@ -142,7 +142,8 @@ func Curry1[T1, A any](f func(context.Context, T1) (A, error)) Kleisli[T1, A] {
 //
 //go:inline
 func Curry2[T1, T2, A any](f func(context.Context, T1, T2) (A, error)) func(T1) Kleisli[T2, A] {
-	return readereither.Curry2(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Curry3 converts a Go function with context and three parameters into a curried function.
@@ -186,7 +187,8 @@ func Curry2[T1, T2, A any](f func(context.Context, T1, T2) (A, error)) func(T1) 
 //
 //go:inline
 func Curry3[T1, T2, T3, A any](f func(context.Context, T1, T2, T3) (A, error)) func(T1) func(T2) Kleisli[T3, A] {
-	return readereither.Curry3(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry1 converts a Kleisli arrow back into an idiomatic Go function with context as the first parameter.
@@ -226,7 +228,8 @@ func Curry3[T1, T2, T3, A any](f func(context.Context, T1, T2, T3) (A, error)) f
 //
 //go:inline
 func Uncurry1[T1, A any](f Kleisli[T1, A]) func(context.Context, T1) (A, error) {
-	return readereither.Uncurry1(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry2 converts a curried function back into an idiomatic Go function with context as the first parameter.
@@ -269,7 +272,8 @@ func Uncurry1[T1, A any](f Kleisli[T1, A]) func(context.Context, T1) (A, error) 
 //
 //go:inline
 func Uncurry2[T1, T2, A any](f func(T1) Kleisli[T2, A]) func(context.Context, T1, T2) (A, error) {
-	return readereither.Uncurry2(f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Uncurry3 converts a curried function back into an idiomatic Go function with context as the first parameter.
@@ -315,5 +319,6 @@ func Uncurry2[T1, T2, A any](f func(T1) Kleisli[T2, A]) func(context.Context, T1
 //
 //go:inline
 func Uncurry3[T1, T2, T3, A any](f func(T1) func(T2) Kleisli[T3, A]) func(context.Context, T1, T2, T3) (A, error) {
-	return readereither.Uncurry3(f)
+	_ = "STUB: not implemented"
+	return nil
 }

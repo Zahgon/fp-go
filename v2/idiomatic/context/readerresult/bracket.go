@@ -16,10 +16,7 @@
 package readerresult
 
 import (
-	"context"
 	"io"
-
-	RR "github.com/IBM/fp-go/v2/idiomatic/readerresult"
 )
 
 // Bracket ensures safe resource management with guaranteed cleanup in the ReaderResult monad.
@@ -139,7 +136,8 @@ func Bracket[
 	use Kleisli[A, B],
 	release func(A, B, error) ReaderResult[ANY],
 ) ReaderResult[B] {
-	return RR.Bracket(acquire, WithContextK(use), release)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WithResource creates a higher-order function for resource management with automatic cleanup.
@@ -259,17 +257,14 @@ func WithResource[B, A, ANY any](
 	onCreate Lazy[ReaderResult[A]],
 	onRelease Kleisli[A, ANY],
 ) Kleisli[Kleisli[A, B], B] {
-	return WithContextK(RR.WithResource[B](onCreate, onRelease))
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // onClose is a helper function that creates a ReaderResult that closes an io.Closer.
 // This is used internally by WithCloser to provide automatic cleanup for resources
 // that implement the io.Closer interface.
-func onClose[A io.Closer](a A) ReaderResult[struct{}] {
-	return func(_ context.Context) (struct{}, error) {
-		return struct{}{}, a.Close()
-	}
-}
+func onClose[A io.Closer](a A) ReaderResult[struct{}] { _ = "STUB: not implemented"; return nil }
 
 // WithCloser creates a higher-order function for managing resources that implement io.Closer.
 //
@@ -405,5 +400,6 @@ func onClose[A io.Closer](a A) ReaderResult[struct{}] {
 //
 //go:inline
 func WithCloser[B any, A io.Closer](onCreate Lazy[ReaderResult[A]]) Kleisli[Kleisli[A, B], B] {
-	return WithResource[B](onCreate, onClose[A])
+	_ = "STUB: not implemented"
+	return nil
 }

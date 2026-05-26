@@ -15,10 +15,6 @@
 
 package stateless
 
-import (
-	G "github.com/IBM/fp-go/v2/iterator/stateless/generic"
-)
-
 // First returns the first element from an [Iterator] wrapped in an [Option].
 //
 // This function attempts to retrieve the first element from the iterator. If the iterator
@@ -52,6 +48,4 @@ import (
 //	filtered := stateless.Filter(func(x int) bool { return x > 3 })(iter)
 //	first := stateless.First(filtered)
 //	// Returns: Some(4)
-func First[U any](mu Iterator[U]) Option[U] {
-	return G.First(mu)
-}
+func First[U any](mu Iterator[U]) Option[U] { _ = "STUB: not implemented"; return nil }

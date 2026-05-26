@@ -17,21 +17,11 @@ package option
 
 import (
 	"log"
-
-	F "github.com/IBM/fp-go/v2/function"
-	L "github.com/IBM/fp-go/v2/logging"
 )
 
 func _log[A any](left, right func(string, ...any), prefix string) Kleisli[Option[A], A] {
-	return Fold(
-		func() Option[A] {
-			left("%s", prefix)
-			return None[A]()
-		},
-		func(a A) Option[A] {
-			right("%s: %v", prefix, a)
-			return Some(a)
-		})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Logger creates a logging function for Options that logs the state (None or Some with value)
@@ -56,14 +46,6 @@ func _log[A any](left, right func(string, ...any), prefix string) Kleisli[Option
 //	    logger("step1"), // logs "step1"
 //	) // None
 func Logger[A any](loggers ...*log.Logger) func(string) Kleisli[Option[A], A] {
-	left, right := L.LoggingCallbacks(loggers...)
-	return func(prefix string) Kleisli[Option[A], A] {
-		delegate := _log[A](left, right, prefix)
-		return func(ma Option[A]) Option[A] {
-			return F.Pipe1(
-				delegate(ma),
-				ChainTo[A](ma),
-			)
-		}
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

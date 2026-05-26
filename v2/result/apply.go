@@ -16,7 +16,6 @@
 package result
 
 import (
-	"github.com/IBM/fp-go/v2/either"
 	M "github.com/IBM/fp-go/v2/monoid"
 	S "github.com/IBM/fp-go/v2/semigroup"
 )
@@ -33,7 +32,8 @@ import (
 //
 //go:inline
 func ApplySemigroup[A any](s S.Semigroup[A]) S.Semigroup[Result[A]] {
-	return either.ApplySemigroup[error](s)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ApplicativeMonoid returns a Monoid that concatenates Either instances via their applicative.
@@ -47,5 +47,6 @@ func ApplySemigroup[A any](s S.Semigroup[A]) S.Semigroup[Result[A]] {
 //
 //go:inline
 func ApplicativeMonoid[A any](m M.Monoid[A]) M.Monoid[Result[A]] {
-	return either.ApplicativeMonoid[error](m)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -16,7 +16,6 @@
 package string
 
 import (
-	"fmt"
 	"strings"
 
 	F "github.com/IBM/fp-go/function"
@@ -43,33 +42,21 @@ var (
 	Includes = F.Curry2(F.Swap(strings.Contains))
 )
 
-func Eq(left string, right string) bool {
-	return left == right
-}
+func Eq(left string, right string) bool { _ = "STUB: not implemented"; return false }
 
-func ToBytes(s string) []byte {
-	return []byte(s)
-}
+func ToBytes(s string) []byte { _ = "STUB: not implemented"; return nil }
 
-func ToRunes(s string) []rune {
-	return []rune(s)
-}
+func ToRunes(s string) []rune { _ = "STUB: not implemented"; return nil }
 
-func IsEmpty(s string) bool {
-	return len(s) == 0
-}
+func IsEmpty(s string) bool { _ = "STUB: not implemented"; return false }
 
-func IsNonEmpty(s string) bool {
-	return len(s) > 0
-}
+func IsNonEmpty(s string) bool { _ = "STUB: not implemented"; return false }
 
 func Size(s string) int {
-	return len(s)
+	_ = "STUB: not implemented"
+
+	// Format applies a format string to an arbitrary value
+	return 0
 }
 
-// Format applies a format string to an arbitrary value
-func Format[T any](format string) func(t T) string {
-	return func(t T) string {
-		return fmt.Sprintf(format, t)
-	}
-}
+func Format[T any](format string) func(t T) string { _ = "STUB: not implemented"; return nil }
